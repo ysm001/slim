@@ -284,7 +284,7 @@ struct LmnEnv {
   BOOL enable_map;
   BOOL enable_map_heuristic;
   BOOL enable_bledge;
-  BOOL enable_mcndfs;
+  BOOL enable_mapndfs;
 
   BOOL show_reduced_graph;
   BOOL bfs_layer_sync;

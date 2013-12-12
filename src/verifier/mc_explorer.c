@@ -1076,16 +1076,16 @@ static void bledge_found_accepting_cycle(LmnWorker *w, Vector *cycle_path)
  */
 
 /* NDFSとMAPのハイブリッドなアルゴリズム */
-static BOOL mcndfs_loop(State *seed, Vector *search, Vector *postordered);
-static void mcndfs_found_accepting_cycle(LmnWorker *w, State *seed, Vector *cycle_path);
+static BOOL mapndfs_loop(State *seed, Vector *search, Vector *postordered);
+static void mapndfs_found_accepting_cycle(LmnWorker *w, State *seed, Vector *cycle_path);
 
-#define MCNDFS_USE_MAP
+#define MAPNDFS_USE_MAP
 /* MAP_WORKER_~ 系のマクロでアクセスするため、最初にMcSearchMapを持ってくる必要がある */
 /* McSearchMapを変更したらこっちも変更する必要あり */
 /* MAP系関数・マクロを使い回したかったので、こんな構造にしたが、色々と問題がありそうな構造なので要修正 */
-typedef struct McSearchMCNDFS McSearchMCNDFS;
-struct McSearchMCNDFS {
-#ifdef MCNDFS_USE_MAP
+typedef struct McSearchMAPNDFS McSearchMAPNDFS;
+struct McSearchMAPNDFS {
+#ifdef MAPNDFS_USE_MAP
   Queue *propagate;
   Queue *waitingSeed;
   st_table_t traversed;
@@ -1094,24 +1094,24 @@ struct McSearchMCNDFS {
   Vector *path;
 };
 
-#define MCNDFS_WORKER_OBJ(W)          ((McSearchMCNDFS *)worker_explorer_obj(W))
-#define MCNDFS_WORKER_OBJ_SET(W, O)   worker_explorer_obj_set(W, O)
-#define MCNDFS_WORKER_OPEN_VEC(W)     (MCNDFS_WORKER_OBJ(W)->open)
-#define MCNDFS_WORKER_PATH_VEC(W)     (MCNDFS_WORKER_OBJ(W)->path)
-#define MCNDFS_WORKER_OBJ_CLEAR(W) \
+#define MAPNDFS_WORKER_OBJ(W)          ((McSearchMAPNDFS *)worker_explorer_obj(W))
+#define MAPNDFS_WORKER_OBJ_SET(W, O)   worker_explorer_obj_set(W, O)
+#define MAPNDFS_WORKER_OPEN_VEC(W)     (MAPNDFS_WORKER_OBJ(W)->open)
+#define MAPNDFS_WORKER_PATH_VEC(W)     (MAPNDFS_WORKER_OBJ(W)->path)
+#define MAPNDFS_WORKER_OBJ_CLEAR(W) \
   do { \
-    vec_clear(MCNDFS_WORKER_OPEN_VEC(W)); \
-    vec_clear(MCNDFS_WORKER_PATH_VEC(W)); \
+    vec_clear(MAPNDFS_WORKER_OPEN_VEC(W)); \
+    vec_clear(MAPNDFS_WORKER_PATH_VEC(W)); \
   } while (0)
 
 
-void mcndfs_worker_init(LmnWorker *w)
+void mapndfs_worker_init(LmnWorker *w)
 {
-  McSearchMCNDFS *mc = LMN_MALLOC(McSearchMCNDFS);
+  McSearchMAPNDFS *mc = LMN_MALLOC(McSearchMAPNDFS);
   mc->open = vec_make(1024);
   mc->path = vec_make(512);
 
-#ifdef MCNDFS_USE_MAP
+#ifdef MAPNDFS_USE_MAP
   if (worker_id(w) == LMN_PRIMARY_ID) {
     if (workers_entried_num(worker_group(w)) > 1) {
       mc->propagate   = make_parallel_queue(LMN_Q_MRMW);
@@ -1129,15 +1129,15 @@ void mcndfs_worker_init(LmnWorker *w)
   mc->traversed = NULL;
 #endif
 
-  MCNDFS_WORKER_OBJ_SET(w, mc);
+  MAPNDFS_WORKER_OBJ_SET(w, mc);
 }
 
-void mcndfs_worker_finalize(LmnWorker *w)
+void mapndfs_worker_finalize(LmnWorker *w)
 {
-  vec_free(MCNDFS_WORKER_OPEN_VEC(w));
-  vec_free(MCNDFS_WORKER_PATH_VEC(w));
+  vec_free(MAPNDFS_WORKER_OPEN_VEC(w));
+  vec_free(MAPNDFS_WORKER_PATH_VEC(w));
 
-#ifdef MCNDFS_USE_MAP
+#ifdef MAPNDFS_USE_MAP
   if (worker_id(w) == LMN_PRIMARY_ID) {
     q_free(MAP_WORKER_PROPAG_G(w));
     q_free(MAP_WORKER_DEL_G(w));
@@ -1145,16 +1145,16 @@ void mcndfs_worker_finalize(LmnWorker *w)
   if(MAP_WORKER_HASHSET(w)) st_free_table(MAP_WORKER_HASHSET(w));
 #endif
 
-  LMN_FREE(MCNDFS_WORKER_OBJ(w));
+  LMN_FREE(MAPNDFS_WORKER_OBJ(w));
 }
 
-void mcndfs_env_set(LmnWorker *w)
+void mapndfs_env_set(LmnWorker *w)
 {
   if(lmn_env.core_num == 1)ndfs_env_set(w);
   else {  
-      worker_set_mcndfs(w);
-      worker_explorer_init_f_set(w, mcndfs_worker_init);
-      worker_explorer_finalize_f_set(w, mcndfs_worker_finalize);
+      worker_set_mapndfs(w);
+      worker_explorer_init_f_set(w, mapndfs_worker_init);
+      worker_explorer_finalize_f_set(w, mapndfs_worker_finalize);
 
       // thread0のみexplorer
       if(worker_id(w) == lmn_env.core_num - 1) worker_explorer_set(w);
@@ -1162,7 +1162,7 @@ void mcndfs_env_set(LmnWorker *w)
       if (lmn_env.prop_scc_driven) {
           worker_set_opt_scc(w);
       }
-#ifdef MCNDFS_USE_MAP
+#ifdef MAPNDFS_USE_MAP
       if (lmn_env.enable_map_heuristic) {
           worker_set_map(w);
       }
@@ -1173,27 +1173,27 @@ void mcndfs_env_set(LmnWorker *w)
 
 /* Nested-DFS, Double-DFS, Red-DFS:
  * 1段階目のDFSで求めたpostorder順に, 受理頂点seedから自身に戻る閉路(受理サイクル)を探索する. */
-void mcndfs_start(LmnWorker *w, State *seed)
+void mapndfs_start(LmnWorker *w, State *seed)
 {
   BOOL has_error;
   START_CYCLE_SEARCH();
 
   has_error = FALSE;
-  vec_push(MCNDFS_WORKER_OPEN_VEC(w), (vec_data_t)seed);
-  has_error = mcndfs_loop(seed,
-                        MCNDFS_WORKER_OPEN_VEC(w),
-                        MCNDFS_WORKER_PATH_VEC(w));
+  vec_push(MAPNDFS_WORKER_OPEN_VEC(w), (vec_data_t)seed);
+  has_error = mapndfs_loop(seed,
+                        MAPNDFS_WORKER_OPEN_VEC(w),
+                        MAPNDFS_WORKER_PATH_VEC(w));
 
   FINISH_CYCLE_SEARCH();
 
   if (has_error) {
-    mcndfs_found_accepting_cycle(w, seed, MCNDFS_WORKER_PATH_VEC(w));
+    mapndfs_found_accepting_cycle(w, seed, MAPNDFS_WORKER_PATH_VEC(w));
   }
 
-  MCNDFS_WORKER_OBJ_CLEAR(w);
+  MAPNDFS_WORKER_OBJ_CLEAR(w);
 }
 
-void mcndfs_found_accepting_cycle(LmnWorker *w, State *seed, Vector *cycle_path)
+void mapndfs_found_accepting_cycle(LmnWorker *w, State *seed, Vector *cycle_path)
 {
   LmnWorkerGroup *wp;
   Vector *v;
@@ -1225,7 +1225,7 @@ void mcndfs_found_accepting_cycle(LmnWorker *w, State *seed, Vector *cycle_path)
   }
 }
 
-static BOOL mcndfs_loop(State  *seed,
+static BOOL mapndfs_loop(State  *seed,
                       Vector *search,
                       Vector *path)
 {

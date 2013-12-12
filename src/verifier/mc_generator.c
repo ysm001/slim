@@ -160,12 +160,12 @@
   (DFS_HANDOFF_COND_STATIC_DEQ(W, Deq) || DFS_HANDOFF_COND_DYNAMIC(I, N, W))
 
 /* 既に到達した状態であるかを判定するための条件 */
-#define MCNDFS_ALREADY_VISITED(w, s) ( (s_is_blue(s) && worker_is_explorer(w)) \
+#define MAPNDFS_ALREADY_VISITED(w, s) ( (s_is_blue(s) && worker_is_explorer(w)) \
                                    ||  (s_is_red(s) && worker_is_generator(w)) ) 
 
 /* 初期状態を割り当てるワーカーの条件 */
-#define WORKER_FOR_INIT_STATE(w, s) ( (worker_use_mcndfs(w)  && worker_is_explorer(w) ) \ 
-                                   || (!worker_use_mcndfs(w) &&  worker_id(w) == 0)     \
+#define WORKER_FOR_INIT_STATE(w, s) ( (worker_use_mapndfs(w)  && worker_is_explorer(w) ) \ 
+                                   || (!worker_use_mapndfs(w) &&  worker_id(w) == 0)     \
                                    || !worker_on_parallel(w) )
 
 static inline void    dfs_loop(LmnWorker *w,
@@ -220,7 +220,7 @@ void dfs_worker_init(LmnWorker *w)
     if (lmn_env.core_num == 1) {
       mc->q = new_queue();
     } else if (worker_on_dynamic_lb(w)) {
-      if(worker_use_mcndfs(w)) mc->q = make_parallel_queue(LMN_Q_MRMW);
+      if(worker_use_mapndfs(w)) mc->q = make_parallel_queue(LMN_Q_MRMW);
       else mc->q = make_parallel_queue(LMN_Q_MRSW);
     } else {
       mc->q = make_parallel_queue(LMN_Q_SRSW);
@@ -414,7 +414,7 @@ void dfs_start(LmnWorker *w)
           break;
         } else if (worker_on_dynamic_lb(w) ){
           /* 職探しの旅 */
-          if(!worker_use_mcndfs(w)) s = (State *)dfs_work_stealing(w);
+          if(!worker_use_mapndfs(w)) s = (State *)dfs_work_stealing(w);
           else if(worker_is_generator(w)) s = (State *)mcdfs_work_stealing(w);
           else {
               // explorerの仕事無くなったら終了
@@ -437,7 +437,7 @@ void dfs_start(LmnWorker *w)
 #endif
           {
             put_stack(&DFS_WORKER_STACK(w), s);
-            if(worker_use_mcndfs(w)) mcdfs_loop(w, &DFS_WORKER_STACK(w), &new_ss, statespace_automata(ss), statespace_propsyms(ss));
+            if(worker_use_mapndfs(w)) mcdfs_loop(w, &DFS_WORKER_STACK(w), &new_ss, statespace_automata(ss), statespace_propsyms(ss));
             else dfs_loop(w, &DFS_WORKER_STACK(w), &new_ss, statespace_automata(ss), statespace_propsyms(ss));
             s = NULL;
             vec_clear(&DFS_WORKER_STACK(w));
@@ -481,8 +481,8 @@ static inline void dfs_loop(LmnWorker *w,
           w->red++;
         ndfs_start(w, s);
       }
-      else if (MCNDFS_COND(w, s, p_s)) {
-        mcndfs_start(w,s);
+      else if (MAPNDFS_COND(w, s, p_s)) {
+        mapndfs_start(w,s);
       }
       pop_stack(stack);
       continue;
@@ -547,12 +547,12 @@ static inline void mcdfs_loop(LmnWorker *w,
     s   = (State *)vec_peek(stack);
     p_s = MC_GET_PROPERTY(s, a);
     if (is_expanded(s)) {
-      if (MCNDFS_COND(w, s, p_s)) {
+      if (MAPNDFS_COND(w, s, p_s)) {
          /** entering red DFS **/
          w->red++;
-         mcndfs_start(w,s);
+         mapndfs_start(w,s);
       }          
-      if(MCNDFS_ALREADY_VISITED(w, s)) {
+      if(MAPNDFS_ALREADY_VISITED(w, s)) {
         pop_stack(stack);
         continue;
       }
@@ -587,7 +587,7 @@ static inline void mcdfs_loop(LmnWorker *w,
         }
       }
     }
-    /* 並列アルゴリズム使用時 MCNDFS使ってる時点で並列前提だけど一応 */
+    /* 並列アルゴリズム使用時 MAPNDFS使ってる時点で並列前提だけど一応 */
     if(worker_on_parallel(w)) {
       if (DFS_HANDOFF_COND_STATIC(w, stack) /*|| worker_is_explorer(w)*/) {
         mcdfs_handoff_all_task(w, new_ss);
