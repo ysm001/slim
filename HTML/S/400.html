@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>src/utility/process_util.c</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/733.html'>src</a>/<a href='../files/736.html'>utility</a>/process_util.c</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L49'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L49' title='Defined at 49.'>run_program</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>/*</em>
+<a id='L2' name='L2' /><em class='comment'> * process_util.c - process utility</em>
+<a id='L3' name='L3' /><em class='comment'> *</em>
+<a id='L4' name='L4' /><em class='comment'> *   Copyright (c) 2008, Ueda Laboratory LMNtal Group</em>
+<a id='L5' name='L5' /><em class='comment'> *                                         &lt;lmntal@ueda.info.waseda.ac.jp&gt;</em>
+<a id='L6' name='L6' /><em class='comment'> *   All rights reserved.</em>
+<a id='L7' name='L7' /><em class='comment'> *</em>
+<a id='L8' name='L8' /><em class='comment'> *   Redistribution and use in source and binary forms, with or without</em>
+<a id='L9' name='L9' /><em class='comment'> *   modification, are permitted provided that the following conditions are</em>
+<a id='L10' name='L10' /><em class='comment'> *   met:</em>
+<a id='L11' name='L11' /><em class='comment'> *</em>
+<a id='L12' name='L12' /><em class='comment'> *    1. Redistributions of source code must retain the above copyright</em>
+<a id='L13' name='L13' /><em class='comment'> *       notice, this list of conditions and the following disclaimer.</em>
+<a id='L14' name='L14' /><em class='comment'> *</em>
+<a id='L15' name='L15' /><em class='comment'> *    2. Redistributions in binary form must reproduce the above copyright</em>
+<a id='L16' name='L16' /><em class='comment'> *       notice, this list of conditions and the following disclaimer in</em>
+<a id='L17' name='L17' /><em class='comment'> *       the documentation and/or other materials provided with the</em>
+<a id='L18' name='L18' /><em class='comment'> *       distribution.</em>
+<a id='L19' name='L19' /><em class='comment'> *</em>
+<a id='L20' name='L20' /><em class='comment'> *    3. Neither the name of the Ueda Laboratory LMNtal Group nor the</em>
+<a id='L21' name='L21' /><em class='comment'> *       names of its contributors may be used to endorse or promote</em>
+<a id='L22' name='L22' /><em class='comment'> *       products derived from this software without specific prior</em>
+<a id='L23' name='L23' /><em class='comment'> *       written permission.</em>
+<a id='L24' name='L24' /><em class='comment'> *</em>
+<a id='L25' name='L25' /><em class='comment'> *   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L26' name='L26' /><em class='comment'> *   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L27' name='L27' /><em class='comment'> *   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L28' name='L28' /><em class='comment'> *   A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L29' name='L29' /><em class='comment'> *   OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L30' name='L30' /><em class='comment'> *   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L31' name='L31' /><em class='comment'> *   LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L32' name='L32' /><em class='comment'> *   DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L33' name='L33' /><em class='comment'> *   THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L34' name='L34' /><em class='comment'> *   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L35' name='L35' /><em class='comment'> *   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L36' name='L36' /><em class='comment'> *</em>
+<a id='L37' name='L37' /><em class='comment'> * $Id$</em>
+<a id='L38' name='L38' /><em class='comment'> */</em>
+<a id='L39' name='L39' />
+<a id='L40' name='L40' /><em class='comment'>/* 外部プログラムの起動など、プロセス関連の便利関数の定義 */</em>
+<a id='L41' name='L41' />
+<a id='L42' name='L42' /><em class='sharp'>#include</em> &lt;stdio.h&gt;
+<a id='L43' name='L43' /><em class='sharp'>#include</em> &lt;stdlib.h&gt;
+<a id='L44' name='L44' /><em class='sharp'>#include</em> &lt;sys/wait.h&gt;
+<a id='L45' name='L45' /><em class='sharp'>#include</em> "<a href='401.html'>process_util.h</a>"
+<a id='L46' name='L46' />
+<a id='L47' name='L47' />
+<a id='L48' name='L48' /><em class='comment'>/* program_pathにあるプログラムを引数argsで起動し、プログラムの出力のストリームを返す。*/</em>
+<a id='L49' name='L49' /><a href='../Y/186.html' title='Multiple used in 169 places.'>FILE</a> *<a href='../R/4616.html' title='Multiple refered from 2 places.'>run_program</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/4295.html' title='Multiple used in 2 places.'>program_path</a>, <strong class='reserved'>char</strong> **<a href='../Y/1501.html' title='Multiple used in 145 places.'>args</a>)
+<a id='L50' name='L50' /><em class='brace'>{</em>
+<a id='L51' name='L51' />   <a href='../S/686.html#L392' title='Defined at 392 in third_party/google-perftools-1.8.3/src/windows/port.h.'>pid_t</a> <a href='../Y/4163.html' title='Multiple used in 46 places.'>pid</a>;
+<a id='L52' name='L52' />   <strong class='reserved'>int</strong> <a href='../Y/4169.html' title='Multiple used in 7 places.'>pipes</a>[2];
+<a id='L53' name='L53' />
+<a id='L54' name='L54' />   <strong class='reserved'>if</strong> (<a href='../Y/4168.html' title='Multiple used in 3 places.'>pipe</a>(<a href='../Y/4169.html' title='Multiple used in 7 places.'>pipes</a>)) <em class='brace'>{</em> <em class='comment'>/* fail : -1 */</em>
+<a id='L55' name='L55' />     <a href='../Y/4152.html' title='Multiple used in 48 places.'>perror</a>("pipe failed");
+<a id='L56' name='L56' />     <a href='../Y/2261.html' title='Multiple used in 105 places.'>exit</a>(<a href='../Y/169.html' title='Multiple used in 24 places.'>EXIT_FAILURE</a>);
+<a id='L57' name='L57' />   <em class='brace'>}</em>
+<a id='L58' name='L58' />
+<a id='L59' name='L59' />   <a href='../Y/4163.html' title='Multiple used in 46 places.'>pid</a> = <a href='../Y/2425.html' title='Multiple used in 5 places.'>fork</a>();
+<a id='L60' name='L60' />
+<a id='L61' name='L61' />   <strong class='reserved'>switch</strong> (<a href='../Y/4163.html' title='Multiple used in 46 places.'>pid</a>) <em class='brace'>{</em>
+<a id='L62' name='L62' />   <strong class='reserved'>case</strong> 0: <em class='comment'>/* 子プロセス */</em>
+<a id='L63' name='L63' />   <em class='brace'>{</em>
+<a id='L64' name='L64' />     <strong class='reserved'>int</strong> <a href='../Y/3925.html' title='Multiple used in 24 places.'>old</a>;
+<a id='L65' name='L65' />     <a href='../S/686.html#L361' title='Defined at 361 in third_party/google-perftools-1.8.3/src/windows/port.h.'>close</a>(<a href='../Y/2362.html' title='Multiple used in 4 places.'>fileno</a>(<a href='../Y/5103.html' title='Multiple used in 103 places.'>stdout</a>));
+<a id='L66' name='L66' />     <a href='../Y/3925.html' title='Multiple used in 24 places.'>old</a> = <a href='../Y/2118.html' title='Multiple used in 2 places.'>dup</a>(<a href='../Y/4169.html' title='Multiple used in 7 places.'>pipes</a>[1]);
+<a id='L67' name='L67' />     <a href='../S/686.html#L361' title='Defined at 361 in third_party/google-perftools-1.8.3/src/windows/port.h.'>close</a>(<a href='../Y/4169.html' title='Multiple used in 7 places.'>pipes</a>[0]);
+<a id='L68' name='L68' />     <a href='../S/686.html#L361' title='Defined at 361 in third_party/google-perftools-1.8.3/src/windows/port.h.'>close</a>(<a href='../Y/4169.html' title='Multiple used in 7 places.'>pipes</a>[1]);
+<a id='L69' name='L69' />
+<a id='L70' name='L70' />     <strong class='reserved'>if</strong> (<a href='../Y/2258.html' title='Multiple used in 2 places.'>execv</a>(<a href='../Y/4295.html' title='Multiple used in 2 places.'>program_path</a>, <a href='../Y/1501.html' title='Multiple used in 145 places.'>args</a>) == -1) <em class='brace'>{</em>
+<a id='L71' name='L71' />       <a href='../Y/4152.html' title='Multiple used in 48 places.'>perror</a>("execv failed");
+<a id='L72' name='L72' />       <a href='../Y/2261.html' title='Multiple used in 105 places.'>exit</a>(<a href='../Y/169.html' title='Multiple used in 24 places.'>EXIT_FAILURE</a>);
+<a id='L73' name='L73' />     <em class='brace'>}</em>
+<a id='L74' name='L74' />   <em class='brace'>}</em>
+<a id='L75' name='L75' />   <strong class='reserved'>case</strong> -1: <em class='comment'>/* fork失敗 */</em>
+<a id='L76' name='L76' />     <a href='../Y/4152.html' title='Multiple used in 48 places.'>perror</a>("fork failed");
+<a id='L77' name='L77' />     <a href='../Y/2261.html' title='Multiple used in 105 places.'>exit</a>(<a href='../Y/169.html' title='Multiple used in 24 places.'>EXIT_FAILURE</a>);
+<a id='L78' name='L78' />   <strong class='reserved'>default</strong>: <em class='comment'>/* 親プロセス */</em>
+<a id='L79' name='L79' />   <em class='brace'>{</em>
+<a id='L80' name='L80' /><em class='comment'>//     int status;</em>
+<a id='L81' name='L81' />
+<a id='L82' name='L82' />     <a href='../S/686.html#L361' title='Defined at 361 in third_party/google-perftools-1.8.3/src/windows/port.h.'>close</a>(<a href='../Y/4169.html' title='Multiple used in 7 places.'>pipes</a>[1]);
+<a id='L83' name='L83' />     <em class='comment'>/* TODO: パイプのバッファを越える出力を受けた場合,</em>
+<a id='L84' name='L84' /><em class='comment'>      *       読み込むまでブロックされるためデッドロックしてしまう */</em>
+<a id='L85' name='L85' /><em class='comment'>//     if (waitpid(pid, &amp;status, 0) == -1) {</em>
+<a id='L86' name='L86' /><em class='comment'>//       perror("waitpid failed");</em>
+<a id='L87' name='L87' /><em class='comment'>//       exit(EXIT_FAILURE);</em>
+<a id='L88' name='L88' /><em class='comment'>//     }</em>
+<a id='L89' name='L89' />
+<a id='L90' name='L90' />     <strong class='reserved'>return</strong> <a href='../D/3808.html' title='Multiple defined in 3 places.'>fdopen</a>(<a href='../Y/4169.html' title='Multiple used in 7 places.'>pipes</a>[0], "r");
+<a id='L91' name='L91' />   <em class='brace'>}</em>
+<a id='L92' name='L92' />   <em class='brace'>}</em>
+<a id='L93' name='L93' /><em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L49'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

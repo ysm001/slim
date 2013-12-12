@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>version_definition</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/521.html#L160'>version_definition</a>  160 third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc   const ElfW(Verdef) *version_definition = verdef_;</span>
+<span class='curline'><a href='../S/521.html#L161'>version_definition</a>  161 third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc   while (version_definition-&gt;vd_ndx &lt; index &amp;&amp; version_definition-&gt;vd_next) {</span>
+<span class='curline'><a href='../S/521.html#L163'>version_definition</a>  163 third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc         reinterpret_cast&lt;const char *&gt;(version_definition);</span>
+<span class='curline'><a href='../S/521.html#L164'>version_definition</a>  164 third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc     version_definition =</span>
+<span class='curline'><a href='../S/521.html#L166'>version_definition</a>  166 third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc                                                version_definition-&gt;vd_next);</span>
+<span class='curline'><a href='../S/521.html#L168'>version_definition</a>  168 third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc   return version_definition-&gt;vd_ndx == index ? version_definition : NULL;</span>
+<span class='curline'><a href='../S/521.html#L408'>version_definition</a>  408 third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc   const ElfW(Verdef) *version_definition = NULL;</span>
+<span class='curline'><a href='../S/521.html#L415'>version_definition</a>  415 third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc     version_definition = image-&gt;GetVerdef(version_index);</span>
+<span class='curline'><a href='../S/521.html#L417'>version_definition</a>  417 third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc   if (version_definition) {</span>
+<span class='curline'><a href='../S/521.html#L420'>version_definition</a>  420 third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc     CHECK_LE(1, version_definition-&gt;vd_cnt);</span>
+<span class='curline'><a href='../S/521.html#L421'>version_definition</a>  421 third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc     CHECK_LE(version_definition-&gt;vd_cnt, 2);</span>
+<span class='curline'><a href='../S/521.html#L422'>version_definition</a>  422 third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc     const ElfW(Verdaux) *version_aux = image-&gt;GetVerdefAux(version_definition);</span>
+</pre>
+</body>
+</html>

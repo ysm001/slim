@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>pointer</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/520.html#L134'>pointer</a>           134 third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h   #define ANNOTATE_PUBLISH_MEMORY_RANGE(pointer, size) \</span>
+<span class='curline'><a href='../S/520.html#L135'>pointer</a>           135 third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h     AnnotatePublishMemoryRange(__FILE__, __LINE__, pointer, size)</span>
+<span class='curline'><a href='../S/520.html#L138'>pointer</a>           138 third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h   #define ANNOTATE_UNPUBLISH_MEMORY_RANGE(pointer, size) \</span>
+<span class='curline'><a href='../S/520.html#L139'>pointer</a>           139 third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h     AnnotateUnpublishMemoryRange(__FILE__, __LINE__, pointer, size)</span>
+<span class='curline'><a href='../S/520.html#L142'>pointer</a>           142 third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h   #define ANNOTATE_SWAP_MEMORY_RANGE(pointer, size)   \</span>
+<span class='curline'><a href='../S/520.html#L144'>pointer</a>           144 third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h       ANNOTATE_UNPUBLISH_MEMORY_RANGE(pointer, size); \</span>
+<span class='curline'><a href='../S/520.html#L145'>pointer</a>           145 third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h       ANNOTATE_PUBLISH_MEMORY_RANGE(pointer, size);   \</span>
+<span class='curline'><a href='../S/520.html#L206'>pointer</a>           206 third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h   #define ANNOTATE_BENIGN_RACE(pointer, description) \</span>
+<span class='curline'><a href='../S/520.html#L207'>pointer</a>           207 third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h     AnnotateBenignRaceSized(__FILE__, __LINE__, pointer, \</span>
+<span class='curline'><a href='../S/520.html#L208'>pointer</a>           208 third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h                             sizeof(*(pointer)), description)</span>
+<span class='curline'><a href='../S/540.html#L78'>pointer</a>            78 third_party/google-perftools-1.8.3/src/base/stl_allocator.h   pointer address(reference x) const { return &amp;x; }</span>
+<span class='curline'><a href='../S/540.html#L81'>pointer</a>            81 third_party/google-perftools-1.8.3/src/base/stl_allocator.h   pointer allocate(size_type n, const void* = 0) {</span>
+<span class='curline'><a href='../S/540.html#L85'>pointer</a>            85 third_party/google-perftools-1.8.3/src/base/stl_allocator.h   void deallocate(pointer p, size_type n) { Alloc::Free(p, n * sizeof(T)); }</span>
+<span class='curline'><a href='../S/540.html#L89'>pointer</a>            89 third_party/google-perftools-1.8.3/src/base/stl_allocator.h   void construct(pointer p, const T&amp; val) { ::new(p) T(val); }</span>
+<span class='curline'><a href='../S/540.html#L90'>pointer</a>            90 third_party/google-perftools-1.8.3/src/base/stl_allocator.h   void destroy(pointer p) { p-&gt;~T(); }</span>
+<span class='curline'><a href='../S/637.html#L788'>pointer</a>           788 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   typename Alloc::pointer ptrs[kSize];</span>
+<span class='curline'><a href='../S/637.html#L790'>pointer</a>           790 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     typename Alloc::pointer p = allocator.allocate(i*3+1);</span>
+</pre>
+</body>
+</html>

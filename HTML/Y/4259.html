@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>priv_data</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/581.html#L138'>priv_data</a>         138 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h   AtomicWord priv_data[kHookListMaxValues];</span>
+<span class='curline'><a href='../S/582.html#L214'>priv_data</a>         214 third_party/google-perftools-1.8.3/src/malloc_hook.cc          (base::subtle::NoBarrier_Load(&amp;priv_data[index]) != 0)) {</span>
+<span class='curline'><a href='../S/582.html#L221'>priv_data</a>         221 third_party/google-perftools-1.8.3/src/malloc_hook.cc   base::subtle::Release_Store(&amp;priv_data[index], value);</span>
+<span class='curline'><a href='../S/582.html#L237'>priv_data</a>         237 third_party/google-perftools-1.8.3/src/malloc_hook.cc              base::subtle::Acquire_Load(&amp;priv_data[index]))) {</span>
+<span class='curline'><a href='../S/582.html#L243'>priv_data</a>         243 third_party/google-perftools-1.8.3/src/malloc_hook.cc   base::subtle::Release_Store(&amp;priv_data[index], 0);</span>
+<span class='curline'><a href='../S/582.html#L248'>priv_data</a>         248 third_party/google-perftools-1.8.3/src/malloc_hook.cc            (base::subtle::Acquire_Load(&amp;priv_data[hooks_end - 1]) == 0)) {</span>
+<span class='curline'><a href='../S/582.html#L261'>priv_data</a>         261 third_party/google-perftools-1.8.3/src/malloc_hook.cc     AtomicWord data = base::subtle::Acquire_Load(&amp;priv_data[i]);</span>
+</pre>
+</body>
+</html>

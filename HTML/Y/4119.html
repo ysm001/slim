@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>parent_hl</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/334.html#L363'>parent_hl</a>         363 src/hyperlink.c   HyperLink *parent_hl, *current_hl;</span>
+<span class='curline'><a href='../S/334.html#L368'>parent_hl</a>         368 src/hyperlink.c   parent_hl  = hl-&gt;parent;</span>
+<span class='curline'><a href='../S/334.html#L373'>parent_hl</a>         373 src/hyperlink.c   if (lmn_hyperlink_element_num(parent_hl) &lt;= 2) {</span>
+<span class='curline'><a href='../S/334.html#L374'>parent_hl</a>         374 src/hyperlink.c     while (parent_hl != current_hl) {</span>
+<span class='curline'><a href='../S/334.html#L375'>parent_hl</a>         375 src/hyperlink.c       current_hl = parent_hl;</span>
+<span class='curline'><a href='../S/334.html#L376'>parent_hl</a>         376 src/hyperlink.c       parent_hl  = current_hl-&gt;parent;</span>
+<span class='curline'><a href='../S/334.html#L381'>parent_hl</a>         381 src/hyperlink.c     vec_init(&amp;children, lmn_hyperlink_element_num(parent_hl));</span>
+<span class='curline'><a href='../S/334.html#L383'>parent_hl</a>         383 src/hyperlink.c     while (parent_hl != current_hl) {</span>
+<span class='curline'><a href='../S/334.html#L385'>parent_hl</a>         385 src/hyperlink.c       current_hl = parent_hl;</span>
+<span class='curline'><a href='../S/334.html#L386'>parent_hl</a>         386 src/hyperlink.c       parent_hl  = current_hl-&gt;parent;</span>
+<span class='curline'><a href='../S/334.html#L390'>parent_hl</a>         390 src/hyperlink.c       hyperlink_path_compression(parent_hl, &amp;children); /* parent_hlはrootになっている */</span>
+<span class='curline'><a href='../S/334.html#L396'>parent_hl</a>         396 src/hyperlink.c   return parent_hl;</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>runtime_ruleset</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/351.html#L545'>runtime_ruleset</a>   545 src/load.c       LmnRuleSet runtime_ruleset;</span>
+<span class='curline'><a href='../S/351.html#L548'>runtime_ruleset</a>   548 src/load.c       runtime_ruleset = lmn_ruleset_make(ruleset_get_id(rs), 10);</span>
+<span class='curline'><a href='../S/351.html#L552'>runtime_ruleset</a>   552 src/load.c         lmn_ruleset_put(runtime_ruleset, load_rule(rulelist_get(rl, i)));</span>
+<span class='curline'><a href='../S/351.html#L555'>runtime_ruleset</a>   555 src/load.c       lmn_set_ruleset(runtime_ruleset, ruleset_get_id(rs));</span>
+<span class='curline'><a href='../S/351.html#L559'>runtime_ruleset</a>   559 src/load.c         for (i = 0; i &lt; lmn_ruleset_rule_num(runtime_ruleset); i++) {</span>
+<span class='curline'><a href='../S/351.html#L560'>runtime_ruleset</a>   560 src/load.c           LmnRule rule2 = lmn_rule_copy(lmn_ruleset_get_rule(runtime_ruleset, i));</span>
+<span class='curline'><a href='../S/351.html#L565'>runtime_ruleset</a>   565 src/load.c       return runtime_ruleset;</span>
+</pre>
+</body>
+</html>

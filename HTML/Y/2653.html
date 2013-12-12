@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>heap</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/626.html#L1026'>heap</a>             1026 third_party/google-perftools-1.8.3/src/tcmalloc.cc inline void* do_malloc_pages(ThreadCache* heap, size_t size) {</span>
+<span class='curline'><a href='../S/626.html#L1033'>heap</a>             1033 third_party/google-perftools-1.8.3/src/tcmalloc.cc   if ((FLAGS_tcmalloc_sample_parameter &gt; 0) &amp;&amp; heap-&gt;SampleAllocation(size)) {</span>
+<span class='curline'><a href='../S/626.html#L1055'>heap</a>             1055 third_party/google-perftools-1.8.3/src/tcmalloc.cc   ThreadCache* heap = ThreadCache::GetCache();</span>
+<span class='curline'><a href='../S/626.html#L1060'>heap</a>             1060 third_party/google-perftools-1.8.3/src/tcmalloc.cc     if ((FLAGS_tcmalloc_sample_parameter &gt; 0) &amp;&amp; heap-&gt;SampleAllocation(size)) {</span>
+<span class='curline'><a href='../S/626.html#L1065'>heap</a>             1065 third_party/google-perftools-1.8.3/src/tcmalloc.cc       ret = CheckedMallocResult(heap-&gt;Allocate(size, cl));</span>
+<span class='curline'><a href='../S/626.html#L1068'>heap</a>             1068 third_party/google-perftools-1.8.3/src/tcmalloc.cc     ret = do_malloc_pages(heap, size);</span>
+<span class='curline'><a href='../S/626.html#L1118'>heap</a>             1118 third_party/google-perftools-1.8.3/src/tcmalloc.cc     ThreadCache* heap = GetCacheIfPresent();</span>
+<span class='curline'><a href='../S/626.html#L1119'>heap</a>             1119 third_party/google-perftools-1.8.3/src/tcmalloc.cc     if (heap != NULL) {</span>
+<span class='curline'><a href='../S/626.html#L1120'>heap</a>             1120 third_party/google-perftools-1.8.3/src/tcmalloc.cc       heap-&gt;Deallocate(ptr, cl);</span>
+<span class='curline'><a href='../S/626.html#L1257'>heap</a>             1257 third_party/google-perftools-1.8.3/src/tcmalloc.cc       ThreadCache* heap = ThreadCache::GetCache();</span>
+<span class='curline'><a href='../S/626.html#L1259'>heap</a>             1259 third_party/google-perftools-1.8.3/src/tcmalloc.cc       return CheckedMallocResult(heap-&gt;Allocate(size, cl));</span>
+<span class='curline'><a href='../S/669.html#L335'>heap</a>              335 third_party/google-perftools-1.8.3/src/thread_cache.cc   ThreadCache* heap = NULL;</span>
+<span class='curline'><a href='../S/669.html#L361'>heap</a>              361 third_party/google-perftools-1.8.3/src/thread_cache.cc         heap = h;</span>
+<span class='curline'><a href='../S/669.html#L366'>heap</a>              366 third_party/google-perftools-1.8.3/src/thread_cache.cc     if (heap == NULL) heap = NewHeap(me);</span>
+<span class='curline'><a href='../S/669.html#L373'>heap</a>              373 third_party/google-perftools-1.8.3/src/thread_cache.cc   if (!heap-&gt;in_setspecific_ &amp;&amp; tsd_inited_) {</span>
+<span class='curline'><a href='../S/669.html#L374'>heap</a>              374 third_party/google-perftools-1.8.3/src/thread_cache.cc     heap-&gt;in_setspecific_ = true;</span>
+<span class='curline'><a href='../S/669.html#L375'>heap</a>              375 third_party/google-perftools-1.8.3/src/thread_cache.cc     perftools_pthread_setspecific(heap_key_, heap);</span>
+<span class='curline'><a href='../S/669.html#L378'>heap</a>              378 third_party/google-perftools-1.8.3/src/thread_cache.cc     threadlocal_heap_ = heap;</span>
+<span class='curline'><a href='../S/669.html#L380'>heap</a>              380 third_party/google-perftools-1.8.3/src/thread_cache.cc     heap-&gt;in_setspecific_ = false;</span>
+<span class='curline'><a href='../S/669.html#L382'>heap</a>              382 third_party/google-perftools-1.8.3/src/thread_cache.cc   return heap;</span>
+<span class='curline'><a href='../S/669.html#L387'>heap</a>              387 third_party/google-perftools-1.8.3/src/thread_cache.cc   ThreadCache *heap = threadcache_allocator.New();</span>
+<span class='curline'><a href='../S/669.html#L388'>heap</a>              388 third_party/google-perftools-1.8.3/src/thread_cache.cc   heap-&gt;Init(tid);</span>
+<span class='curline'><a href='../S/669.html#L389'>heap</a>              389 third_party/google-perftools-1.8.3/src/thread_cache.cc   heap-&gt;next_ = thread_heaps_;</span>
+<span class='curline'><a href='../S/669.html#L390'>heap</a>              390 third_party/google-perftools-1.8.3/src/thread_cache.cc   heap-&gt;prev_ = NULL;</span>
+<span class='curline'><a href='../S/669.html#L392'>heap</a>              392 third_party/google-perftools-1.8.3/src/thread_cache.cc     thread_heaps_-&gt;prev_ = heap;</span>
+<span class='curline'><a href='../S/669.html#L396'>heap</a>              396 third_party/google-perftools-1.8.3/src/thread_cache.cc     next_memory_steal_ = heap;</span>
+<span class='curline'><a href='../S/669.html#L398'>heap</a>              398 third_party/google-perftools-1.8.3/src/thread_cache.cc   thread_heaps_ = heap;</span>
+<span class='curline'><a href='../S/669.html#L400'>heap</a>              400 third_party/google-perftools-1.8.3/src/thread_cache.cc   return heap;</span>
+<span class='curline'><a href='../S/669.html#L405'>heap</a>              405 third_party/google-perftools-1.8.3/src/thread_cache.cc   ThreadCache* heap = GetThreadHeap();</span>
+<span class='curline'><a href='../S/669.html#L406'>heap</a>              406 third_party/google-perftools-1.8.3/src/thread_cache.cc   if (heap == NULL) return;             // No thread cache to remove</span>
+<span class='curline'><a href='../S/669.html#L407'>heap</a>              407 third_party/google-perftools-1.8.3/src/thread_cache.cc   if (heap-&gt;in_setspecific_) return;    // Do not disturb the active caller</span>
+<span class='curline'><a href='../S/669.html#L409'>heap</a>              409 third_party/google-perftools-1.8.3/src/thread_cache.cc   heap-&gt;in_setspecific_ = true;</span>
+<span class='curline'><a href='../S/669.html#L415'>heap</a>              415 third_party/google-perftools-1.8.3/src/thread_cache.cc   heap-&gt;in_setspecific_ = false;</span>
+<span class='curline'><a href='../S/669.html#L416'>heap</a>              416 third_party/google-perftools-1.8.3/src/thread_cache.cc   if (GetThreadHeap() == heap) {</span>
+<span class='curline'><a href='../S/669.html#L423'>heap</a>              423 third_party/google-perftools-1.8.3/src/thread_cache.cc   DeleteCache(heap);</span>
+<span class='curline'><a href='../S/669.html#L438'>heap</a>              438 third_party/google-perftools-1.8.3/src/thread_cache.cc void ThreadCache::DeleteCache(ThreadCache* heap) {</span>
+<span class='curline'><a href='../S/669.html#L440'>heap</a>              440 third_party/google-perftools-1.8.3/src/thread_cache.cc   heap-&gt;Cleanup();</span>
+<span class='curline'><a href='../S/669.html#L444'>heap</a>              444 third_party/google-perftools-1.8.3/src/thread_cache.cc   if (heap-&gt;next_ != NULL) heap-&gt;next_-&gt;prev_ = heap-&gt;prev_;</span>
+<span class='curline'><a href='../S/669.html#L445'>heap</a>              445 third_party/google-perftools-1.8.3/src/thread_cache.cc   if (heap-&gt;prev_ != NULL) heap-&gt;prev_-&gt;next_ = heap-&gt;next_;</span>
+<span class='curline'><a href='../S/669.html#L446'>heap</a>              446 third_party/google-perftools-1.8.3/src/thread_cache.cc   if (thread_heaps_ == heap) thread_heaps_ = heap-&gt;next_;</span>
+<span class='curline'><a href='../S/669.html#L449'>heap</a>              449 third_party/google-perftools-1.8.3/src/thread_cache.cc   if (next_memory_steal_ == heap) next_memory_steal_ = heap-&gt;next_;</span>
+<span class='curline'><a href='../S/669.html#L451'>heap</a>              451 third_party/google-perftools-1.8.3/src/thread_cache.cc   unclaimed_cache_space_ += heap-&gt;max_size_;</span>
+<span class='curline'><a href='../S/669.html#L453'>heap</a>              453 third_party/google-perftools-1.8.3/src/thread_cache.cc   threadcache_allocator.Delete(heap);</span>
+<span class='curline'><a href='../S/670.html#L313'>heap</a>              313 third_party/google-perftools-1.8.3/src/thread_cache.h   static void DeleteCache(ThreadCache* heap);</span>
+<span class='curline'><a href='../S/700.html#L256'>heap</a>              256 third_party/zdelta-2.1/deflate.h   int heap[2*D_CODES+1];      /* heap used to build the Huffman trees */</span>
+<span class='curline'><a href='../S/719.html#L544'>heap</a>              544 third_party/zdelta-2.1/trees.c     top = s-&gt;heap[SMALLEST]; \</span>
+<span class='curline'><a href='../S/719.html#L545'>heap</a>              545 third_party/zdelta-2.1/trees.c     s-&gt;heap[SMALLEST] = s-&gt;heap[s-&gt;heap_len--]; \</span>
+<span class='curline'><a href='../S/719.html#L568'>heap</a>              568 third_party/zdelta-2.1/trees.c   int v = s-&gt;heap[k];</span>
+<span class='curline'><a href='../S/719.html#L573'>heap</a>              573 third_party/zdelta-2.1/trees.c 	smaller(tree, s-&gt;heap[j+1], s-&gt;heap[j], s-&gt;depth)) {</span>
+<span class='curline'><a href='../S/719.html#L577'>heap</a>              577 third_party/zdelta-2.1/trees.c     if (smaller(tree, v, s-&gt;heap[j], s-&gt;depth)) break;</span>
+<span class='curline'><a href='../S/719.html#L580'>heap</a>              580 third_party/zdelta-2.1/trees.c     s-&gt;heap[k] = s-&gt;heap[j];  k = j;</span>
+<span class='curline'><a href='../S/719.html#L585'>heap</a>              585 third_party/zdelta-2.1/trees.c   s-&gt;heap[k] = v;</span>
+<span class='curline'><a href='../S/719.html#L620'>heap</a>              620 third_party/zdelta-2.1/trees.c   tree[s-&gt;heap[s-&gt;heap_max]].Len = 0; /* root of the heap */</span>
+<span class='curline'><a href='../S/719.html#L623'>heap</a>              623 third_party/zdelta-2.1/trees.c     n = s-&gt;heap[h];</span>
+<span class='curline'><a href='../S/719.html#L666'>heap</a>              666 third_party/zdelta-2.1/trees.c       m = s-&gt;heap[--h];</span>
+<span class='curline'><a href='../S/719.html#L749'>heap</a>              749 third_party/zdelta-2.1/trees.c       s-&gt;heap[++(s-&gt;heap_len)] = max_code = n;</span>
+<span class='curline'><a href='../S/719.html#L762'>heap</a>              762 third_party/zdelta-2.1/trees.c     node = s-&gt;heap[++(s-&gt;heap_len)] = (max_code &lt; 2 ? ++max_code : 0);</span>
+<span class='curline'><a href='../S/719.html#L781'>heap</a>              781 third_party/zdelta-2.1/trees.c     m = s-&gt;heap[SMALLEST]; /* m = node of next least frequency */</span>
+<span class='curline'><a href='../S/719.html#L783'>heap</a>              783 third_party/zdelta-2.1/trees.c     s-&gt;heap[--(s-&gt;heap_max)] = n; /* keep the nodes sorted by frequency */</span>
+<span class='curline'><a href='../S/719.html#L784'>heap</a>              784 third_party/zdelta-2.1/trees.c     s-&gt;heap[--(s-&gt;heap_max)] = m;</span>
+<span class='curline'><a href='../S/719.html#L797'>heap</a>              797 third_party/zdelta-2.1/trees.c     s-&gt;heap[SMALLEST] = node++;</span>
+<span class='curline'><a href='../S/719.html#L802'>heap</a>              802 third_party/zdelta-2.1/trees.c   s-&gt;heap[--(s-&gt;heap_max)] = s-&gt;heap[SMALLEST];</span>
+</pre>
+</body>
+</html>

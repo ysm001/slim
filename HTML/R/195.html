@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>AutomataSCC</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/413.html#L54'>AutomataSCC</a>        54 src/verifier/automata.c static inline unsigned int atmscc_id(AutomataSCC *s);</span>
+<span class='curline'><a href='../S/413.html#L55'>AutomataSCC</a>        55 src/verifier/automata.c static inline BYTE atmscc_type(AutomataSCC *s);</span>
+<span class='curline'><a href='../S/413.html#L56'>AutomataSCC</a>        56 src/verifier/automata.c static inline void atmscc_set_type(AutomataSCC *s, BYTE type);</span>
+<span class='curline'><a href='../S/413.html#L74'>AutomataSCC</a>        74 src/verifier/automata.c   AutomataSCC   *scc;</span>
+<span class='curline'><a href='../S/413.html#L131'>AutomataSCC</a>       131 src/verifier/automata.c     atmscc_free((AutomataSCC *)vec_get(&amp;a-&gt;sccs, i));</span>
+<span class='curline'><a href='../S/413.html#L297'>AutomataSCC</a>       297 src/verifier/automata.c inline void atmstate_set_scc(AutomataState s, AutomataSCC *scc)</span>
+<span class='curline'><a href='../S/413.html#L307'>AutomataSCC</a>       307 src/verifier/automata.c inline AutomataSCC *atmstate_scc(AutomataState s)</span>
+<span class='curline'><a href='../S/413.html#L332'>AutomataSCC</a>       332 src/verifier/automata.c char *atmscc_name(AutomataSCC *s)</span>
+<span class='curline'><a href='../S/413.html#L356'>AutomataSCC</a>       356 src/verifier/automata.c AutomataSCC *atmscc_make()</span>
+<span class='curline'><a href='../S/413.html#L358'>AutomataSCC</a>       358 src/verifier/automata.c   AutomataSCC *m = LMN_MALLOC(AutomataSCC);</span>
+<span class='curline'><a href='../S/413.html#L365'>AutomataSCC</a>       365 src/verifier/automata.c void atmscc_free(AutomataSCC *m)</span>
+<span class='curline'><a href='../S/413.html#L372'>AutomataSCC</a>       372 src/verifier/automata.c static inline void atmscc_issue_id(AutomataSCC *s)</span>
+<span class='curline'><a href='../S/413.html#L378'>AutomataSCC</a>       378 src/verifier/automata.c static inline unsigned int atmscc_id(AutomataSCC *s)</span>
+<span class='curline'><a href='../S/413.html#L383'>AutomataSCC</a>       383 src/verifier/automata.c static inline BYTE atmscc_type(AutomataSCC *s)</span>
+<span class='curline'><a href='../S/413.html#L388'>AutomataSCC</a>       388 src/verifier/automata.c static inline void atmscc_set_type(AutomataSCC *s, BYTE type)</span>
+<span class='curline'><a href='../S/413.html#L449'>AutomataSCC</a>       449 src/verifier/automata.c     AutomataSCC *scc = atmscc_make();</span>
+<span class='curline'><a href='../S/413.html#L474'>AutomataSCC</a>       474 src/verifier/automata.c       AutomataSCC *scc = atmstate_scc(s);</span>
+<span class='curline'><a href='../S/414.html#L50'>AutomataSCC</a>        50 src/verifier/automata.h typedef struct AutomataSCC         AutomataSCC;</span>
+<span class='curline'><a href='../S/414.html#L88'>AutomataSCC</a>        88 src/verifier/automata.h inline void        atmstate_set_scc(AutomataState s, AutomataSCC *scc);</span>
+<span class='curline'><a href='../S/414.html#L90'>AutomataSCC</a>        90 src/verifier/automata.h inline AutomataSCC *atmstate_scc(AutomataState s);</span>
+<span class='curline'><a href='../S/414.html#L101'>AutomataSCC</a>       101 src/verifier/automata.h AutomataSCC       *atmscc_make(void);</span>
+<span class='curline'><a href='../S/414.html#L102'>AutomataSCC</a>       102 src/verifier/automata.h void               atmscc_free(AutomataSCC *s);</span>
+<span class='curline'><a href='../S/414.html#L103'>AutomataSCC</a>       103 src/verifier/automata.h char              *atmscc_name(AutomataSCC *s);</span>
+</pre>
+</body>
+</html>

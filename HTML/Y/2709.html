@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>hl</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/334.html#L81'>hl</a>                 81 src/hyperlink.c   HyperLink *hl;</span>
+<span class='curline'><a href='../S/334.html#L83'>hl</a>                 83 src/hyperlink.c   hl = LMN_MALLOC(HyperLink);</span>
+<span class='curline'><a href='../S/334.html#L84'>hl</a>                 84 src/hyperlink.c   hl-&gt;atom     = at;</span>
+<span class='curline'><a href='../S/334.html#L85'>hl</a>                 85 src/hyperlink.c   hl-&gt;rank     = 0;</span>
+<span class='curline'><a href='../S/334.html#L86'>hl</a>                 86 src/hyperlink.c   hl-&gt;mem      = NULL;</span>
+<span class='curline'><a href='../S/334.html#L87'>hl</a>                 87 src/hyperlink.c   hl-&gt;id       = hyperlink_new_id();</span>
+<span class='curline'><a href='../S/334.html#L89'>hl</a>                 89 src/hyperlink.c   hl-&gt;parent   = hl;</span>
+<span class='curline'><a href='../S/334.html#L90'>hl</a>                 90 src/hyperlink.c   hl-&gt;children = NULL;</span>
+<span class='curline'><a href='../S/334.html#L92'>hl</a>                 92 src/hyperlink.c   LMN_SATOM_SET_LINK(LMN_SATOM(at), 1, (LmnWord)hl);</span>
+<span class='curline'><a href='../S/334.html#L114'>hl</a>                114 src/hyperlink.c void hyperlink_rank_calc(HyperLink *hl, int d)</span>
+<span class='curline'><a href='../S/334.html#L118'>hl</a>                118 src/hyperlink.c   hl-&gt;rank += d;</span>
+<span class='curline'><a href='../S/334.html#L119'>hl</a>                119 src/hyperlink.c   current   = hl;</span>
+<span class='curline'><a href='../S/334.html#L120'>hl</a>                120 src/hyperlink.c   parent    = hl-&gt;parent;</span>
+<span class='curline'><a href='../S/334.html#L151'>hl</a>                151 src/hyperlink.c HyperLink *hyperlink_head_child(HyperLink *hl)</span>
+<span class='curline'><a href='../S/334.html#L153'>hl</a>                153 src/hyperlink.c   HashSet *children = hl-&gt;children;</span>
+<span class='curline'><a href='../S/334.html#L180'>hl</a>                180 src/hyperlink.c   HyperLink *hl = lmn_hyperlink_at_to_hl(at);</span>
+<span class='curline'><a href='../S/334.html#L182'>hl</a>                182 src/hyperlink.c   if (hl) {</span>
+<span class='curline'><a href='../S/334.html#L185'>hl</a>                185 src/hyperlink.c     while (hl-&gt;children) {</span>
+<span class='curline'><a href='../S/334.html#L186'>hl</a>                186 src/hyperlink.c       HyperLink *child = hyperlink_head_child(hl);</span>
+<span class='curline'><a href='../S/334.html#L187'>hl</a>                187 src/hyperlink.c       hyperlink_swap_atom(hl, child);</span>
+<span class='curline'><a href='../S/334.html#L188'>hl</a>                188 src/hyperlink.c       hl = child;</span>
+<span class='curline'><a href='../S/334.html#L191'>hl</a>                191 src/hyperlink.c     parent = hl-&gt;parent;</span>
+<span class='curline'><a href='../S/334.html#L192'>hl</a>                192 src/hyperlink.c     if (parent != hl) {</span>
+<span class='curline'><a href='../S/334.html#L193'>hl</a>                193 src/hyperlink.c       hashset_delete(parent-&gt;children, (HashKeyType)hl);</span>
+<span class='curline'><a href='../S/334.html#L201'>hl</a>                201 src/hyperlink.c     LMN_FREE(hl);</span>
+<span class='curline'><a href='../S/334.html#L213'>hl</a>                213 src/hyperlink.c   HyperLink *hl, *parent;</span>
+<span class='curline'><a href='../S/334.html#L216'>hl</a>                216 src/hyperlink.c   hl = lmn_hyperlink_at_to_hl(at);</span>
+<span class='curline'><a href='../S/334.html#L217'>hl</a>                217 src/hyperlink.c   if (!hl) return;</span>
+<span class='curline'><a href='../S/334.html#L219'>hl</a>                219 src/hyperlink.c   parent   = hl-&gt;parent;</span>
+<span class='curline'><a href='../S/334.html#L220'>hl</a>                220 src/hyperlink.c   children = hl-&gt;children;</span>
+<span class='curline'><a href='../S/334.html#L222'>hl</a>                222 src/hyperlink.c   if (parent != hl) {</span>
+<span class='curline'><a href='../S/334.html#L229'>hl</a>                229 src/hyperlink.c     hashset_delete(parent-&gt;children, (HashKeyType)hl);</span>
+<span class='curline'><a href='../S/334.html#L300'>hl</a>                300 src/hyperlink.c   LMN_FREE(hl);</span>
+<span class='curline'><a href='../S/334.html#L330'>hl</a>                330 src/hyperlink.c     HyperLink *hl, *old_parent;</span>
+<span class='curline'><a href='../S/334.html#L332'>hl</a>                332 src/hyperlink.c     hl = (HyperLink *)vec_get(children, i);</span>
+<span class='curline'><a href='../S/334.html#L333'>hl</a>                333 src/hyperlink.c     old_parent = hl-&gt;parent;</span>
+<span class='curline'><a href='../S/334.html#L341'>hl</a>                341 src/hyperlink.c       hashset_delete(old_parent_children, (HashKeyType)hl);</span>
+<span class='curline'><a href='../S/334.html#L342'>hl</a>                342 src/hyperlink.c       sub_rank = hl-&gt;rank + 1;</span>
+<span class='curline'><a href='../S/334.html#L353'>hl</a>                353 src/hyperlink.c       hl-&gt;parent = root;</span>
+<span class='curline'><a href='../S/334.html#L354'>hl</a>                354 src/hyperlink.c       hashset_add(root-&gt;children, (HashKeyType)hl);</span>
+<span class='curline'><a href='../S/334.html#L361'>hl</a>                361 src/hyperlink.c HyperLink *lmn_hyperlink_get_root(HyperLink *hl)</span>
+<span class='curline'><a href='../S/334.html#L365'>hl</a>                365 src/hyperlink.c   if (hl-&gt;parent == hl) return hl;</span>
+<span class='curline'><a href='../S/334.html#L367'>hl</a>                367 src/hyperlink.c   current_hl = hl;</span>
+<span class='curline'><a href='../S/334.html#L368'>hl</a>                368 src/hyperlink.c   parent_hl  = hl-&gt;parent;</span>
+<span class='curline'><a href='../S/334.html#L450'>hl</a>                450 src/hyperlink.c LmnSAtom lmn_hyperlink_hl_to_at(HyperLink *hl)</span>
+<span class='curline'><a href='../S/334.html#L454'>hl</a>                454 src/hyperlink.c   return hl-&gt;atom;</span>
+<span class='curline'><a href='../S/334.html#L459'>hl</a>                459 src/hyperlink.c int lmn_hyperlink_rank(HyperLink *hl)</span>
+<span class='curline'><a href='../S/334.html#L461'>hl</a>                461 src/hyperlink.c   return LMN_HL_RANK(lmn_hyperlink_get_root(hl));</span>
+<span class='curline'><a href='../S/334.html#L466'>hl</a>                466 src/hyperlink.c int lmn_hyperlink_element_num(HyperLink *hl)</span>
+<span class='curline'><a href='../S/334.html#L468'>hl</a>                468 src/hyperlink.c   return (lmn_hyperlink_rank(hl) + 1);</span>
+<span class='curline'><a href='../S/334.html#L497'>hl</a>                497 src/hyperlink.c   HyperLink *hl, *parent;</span>
+<span class='curline'><a href='../S/334.html#L514'>hl</a>                514 src/hyperlink.c       hl = lmn_hyperlink_at_to_hl(atom);</span>
+<span class='curline'><a href='../S/334.html#L522'>hl</a>                522 src/hyperlink.c       if ((parent = hl-&gt;parent) != hl) {</span>
+<span class='curline'><a href='../S/334.html#L538'>hl</a>                538 src/hyperlink.c       fprintf(f, " %5d  ", lmn_hyperlink_element_num(hl));</span>
+<span class='curline'><a href='../S/334.html#L541'>hl</a>                541 src/hyperlink.c       if ((children = hl-&gt;children)) {</span>
+<span class='curline'><a href='../S/334.html#L899'>hl</a>                899 src/hyperlink.c       HyperLink *hl;</span>
+<span class='curline'><a href='../S/334.html#L902'>hl</a>                902 src/hyperlink.c       hl = LMN_PC_START(LMN_PC_ORI(pc));</span>
+<span class='curline'><a href='../S/334.html#L903'>hl</a>                903 src/hyperlink.c       LMN_PC_START(pc) = hl;</span>
+<span class='curline'><a href='../S/334.html#L909'>hl</a>                909 src/hyperlink.c       tmp_num = lmn_hyperlink_element_num(hl);</span>
+<span class='curline'><a href='../S/334.html#L912'>hl</a>                912 src/hyperlink.c         start_hl = hl;</span>
+<span class='curline'><a href='../S/334.html#L956'>hl</a>                956 src/hyperlink.c       HyperLink *hl = lmn_hyperlink_at_to_hl(linked_atom);</span>
+<span class='curline'><a href='../S/334.html#L957'>hl</a>                957 src/hyperlink.c       if (lmn_hyperlink_element_num(hl) &lt;= 1) {</span>
+<span class='curline'><a href='../S/334.html#L1023'>hl</a>               1023 src/hyperlink.c     HyperLink *hl = (HyperLink *)hashsetiter_entry(&amp;it);</span>
+<span class='curline'><a href='../S/334.html#L1024'>hl</a>               1024 src/hyperlink.c     if (hl-&gt;children &amp;&amp; hl-&gt;rank &gt; 0) { /* hlが子を持つならば */</span>
+<span class='curline'><a href='../S/334.html#L1025'>hl</a>               1025 src/hyperlink.c       hyperlink_get_children_without(tree, hl, without);</span>
+<span class='curline'><a href='../S/334.html#L1028'>hl</a>               1028 src/hyperlink.c     if (hl != without) {</span>
+<span class='curline'><a href='../S/334.html#L1029'>hl</a>               1029 src/hyperlink.c       vec_push(tree, (LmnWord)hl);</span>
+<span class='curline'><a href='../S/335.html#L95'>hl</a>                 95 src/hyperlink.h LmnSAtom   lmn_hyperlink_hl_to_at(HyperLink *hl);</span>
+<span class='curline'><a href='../S/335.html#L96'>hl</a>                 96 src/hyperlink.h HyperLink *lmn_hyperlink_get_root(HyperLink *hl);</span>
+<span class='curline'><a href='../S/335.html#L99'>hl</a>                 99 src/hyperlink.h int  lmn_hyperlink_rank(HyperLink *hl);</span>
+<span class='curline'><a href='../S/335.html#L100'>hl</a>                100 src/hyperlink.h int  lmn_hyperlink_element_num(HyperLink *hl);</span>
+<span class='curline'><a href='../S/335.html#L152'>hl</a>                152 src/hyperlink.h static inline unsigned long lmn_hyperlink_hash(HyperLink *hl) {</span>
+<span class='curline'><a href='../S/335.html#L153'>hl</a>                153 src/hyperlink.h   return lmn_hyperlink_element_num(hl);</span>
+<span class='curline'><a href='../S/357.html#L947'>hl</a>                947 src/membrane.c                 HyperLink *hl = (HyperLink *)hashsetiter_entry(&amp;it);</span>
+<span class='curline'><a href='../S/357.html#L948'>hl</a>                948 src/membrane.c                 if (proc_tbl_get_by_hlink(atoms, hl, &amp;t)) {</span>
+<span class='curline'><a href='../S/411.html#L98'>hl</a>                 98 src/utility/visitlog.h static inline void proc_tbl_put_new_hlink(ProcessTbl p, HyperLink *hl, LmnWord value);</span>
+<span class='curline'><a href='../S/411.html#L105'>hl</a>                105 src/utility/visitlog.h static inline int  proc_tbl_get_by_hlink(ProcessTbl p, HyperLink *hl, LmnWord *value);</span>
+<span class='curline'><a href='../S/411.html#L142'>hl</a>                142 src/utility/visitlog.h static inline void proc_tbl_put_new_hlink(ProcessTbl p, HyperLink *hl, LmnWord value)</span>
+<span class='curline'><a href='../S/411.html#L144'>hl</a>                144 src/utility/visitlog.h   proc_tbl_put(p, LMN_HL_ID(hl), value);</span>
+<span class='curline'><a href='../S/411.html#L225'>hl</a>                225 src/utility/visitlog.h static inline int proc_tbl_get_by_hlink(ProcessTbl p, HyperLink *hl, LmnWord *value)</span>
+<span class='curline'><a href='../S/411.html#L227'>hl</a>                227 src/utility/visitlog.h   return proc_tbl_get(p, LMN_HL_ID(hl), value);</span>
+<span class='curline'><a href='../S/411.html#L605'>hl</a>                605 src/utility/visitlog.h static inline BOOL tracelog_contains_hlink(TraceLog l, HyperLink *hl) ;</span>
+<span class='curline'><a href='../S/411.html#L609'>hl</a>                609 src/utility/visitlog.h static inline LmnWord tracelog_get_hlinkMatched(TraceLog l, HyperLink *hl);</span>
+<span class='curline'><a href='../S/411.html#L718'>hl</a>                718 src/utility/visitlog.h static inline BOOL tracelog_contains_hlink(TraceLog l, HyperLink *hl) {</span>
+<span class='curline'><a href='../S/411.html#L719'>hl</a>                719 src/utility/visitlog.h   return tracelog_contains(l, LMN_HL_ID(hl));</span>
+<span class='curline'><a href='../S/411.html#L734'>hl</a>                734 src/utility/visitlog.h static inline LmnWord tracelog_get_hlinkMatched(TraceLog l, HyperLink *hl) {</span>
+<span class='curline'><a href='../S/411.html#L735'>hl</a>                735 src/utility/visitlog.h   return tracelog_get_matched(l, LMN_HL_ID(hl));</span>
+<span class='curline'><a href='../S/411.html#L867'>hl</a>                867 src/utility/visitlog.h static inline int  visitlog_put_hlink(VisitLog visitlog, HyperLink *hl);</span>
+<span class='curline'><a href='../S/411.html#L871'>hl</a>                871 src/utility/visitlog.h static inline int  visitlog_get_hlink(VisitLog visitlog, HyperLink *hl, LmnWord *value);</span>
+<span class='curline'><a href='../S/411.html#L905'>hl</a>                905 src/utility/visitlog.h static inline int visitlog_put_hlink(VisitLog visitlog, HyperLink *hl)</span>
+<span class='curline'><a href='../S/411.html#L907'>hl</a>                907 src/utility/visitlog.h   return visitlog_put(visitlog, LMN_HL_ID(hl));</span>
+<span class='curline'><a href='../S/411.html#L934'>hl</a>                934 src/utility/visitlog.h static inline int visitlog_get_hlink(VisitLog visitlog, HyperLink *hl, LmnWord *value)</span>
+<span class='curline'><a href='../S/411.html#L936'>hl</a>                936 src/utility/visitlog.h   return proc_tbl_get_by_hlink(&amp;visitlog-&gt;tbl, hl, value);</span>
+<span class='curline'><a href='../S/568.html#L1549'>hl</a>               1549 third_party/google-perftools-1.8.3/src/heap-checker.cc     SpinLockHolder hl(&amp;heap_checker_lock);</span>
+<span class='curline'><a href='../S/568.html#L1691'>hl</a>               1691 third_party/google-perftools-1.8.3/src/heap-checker.cc     SpinLockHolder hl(&amp;heap_checker_lock);</span>
+<span class='curline'><a href='../S/568.html#L1822'>hl</a>               1822 third_party/google-perftools-1.8.3/src/heap-checker.cc       SpinLockHolder hl(&amp;heap_checker_lock);</span>
+</pre>
+</body>
+</html>

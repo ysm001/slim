@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>third_party/google-perftools-1.8.3/src/base/spinlock_internal.cc</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/738.html'>third_party</a>/<a href='../files/739.html'>google-perftools-1.8.3</a>/<a href='../files/740.html'>src</a>/<a href='../files/741.html'>base</a>/spinlock_internal.cc</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L60'>[^]</a><a href='#L80'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L60' title='Defined at 60.'>SpinLockWait</a></li>
+<li><a href='#L80' title='Defined at 80.'>SuggestedDelayNS</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>/* Copyright (c) 2010, Google Inc.</em>
+<a id='L2' name='L2' /><em class='comment'> * All rights reserved.</em>
+<a id='L3' name='L3' /><em class='comment'> *</em>
+<a id='L4' name='L4' /><em class='comment'> * Redistribution and use in source and binary forms, with or without</em>
+<a id='L5' name='L5' /><em class='comment'> * modification, are permitted provided that the following conditions are</em>
+<a id='L6' name='L6' /><em class='comment'> * met:</em>
+<a id='L7' name='L7' /><em class='comment'> *</em>
+<a id='L8' name='L8' /><em class='comment'> *     * Redistributions of source code must retain the above copyright</em>
+<a id='L9' name='L9' /><em class='comment'> * notice, this list of conditions and the following disclaimer.</em>
+<a id='L10' name='L10' /><em class='comment'> *     * Redistributions in binary form must reproduce the above</em>
+<a id='L11' name='L11' /><em class='comment'> * copyright notice, this list of conditions and the following disclaimer</em>
+<a id='L12' name='L12' /><em class='comment'> * in the documentation and/or other materials provided with the</em>
+<a id='L13' name='L13' /><em class='comment'> * distribution.</em>
+<a id='L14' name='L14' /><em class='comment'> *     * Neither the name of Google Inc. nor the names of its</em>
+<a id='L15' name='L15' /><em class='comment'> * contributors may be used to endorse or promote products derived from</em>
+<a id='L16' name='L16' /><em class='comment'> * this software without specific prior written permission.</em>
+<a id='L17' name='L17' /><em class='comment'> *</em>
+<a id='L18' name='L18' /><em class='comment'> * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L19' name='L19' /><em class='comment'> * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L20' name='L20' /><em class='comment'> * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L21' name='L21' /><em class='comment'> * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L22' name='L22' /><em class='comment'> * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L23' name='L23' /><em class='comment'> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L24' name='L24' /><em class='comment'> * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L25' name='L25' /><em class='comment'> * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L26' name='L26' /><em class='comment'> * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L27' name='L27' /><em class='comment'> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L28' name='L28' /><em class='comment'> * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L29' name='L29' /><em class='comment'> */</em>
+<a id='L30' name='L30' />
+<a id='L31' name='L31' /><em class='comment'>// The OS-specific header included below must provide two calls:</em>
+<a id='L32' name='L32' /><em class='comment'>// base::internal::SpinLockDelay() and base::internal::SpinLockWake().</em>
+<a id='L33' name='L33' /><em class='comment'>// See spinlock_internal.h for the spec of SpinLockWake().</em>
+<a id='L34' name='L34' />
+<a id='L35' name='L35' /><em class='comment'>// void SpinLockDelay(volatile Atomic32 *w, int32 value, int loop)</em>
+<a id='L36' name='L36' /><em class='comment'>// SpinLockDelay() generates an apprproate spin delay on iteration "loop" of a</em>
+<a id='L37' name='L37' /><em class='comment'>// spin loop on location *w, whose previously observed value was "value".</em>
+<a id='L38' name='L38' /><em class='comment'>// SpinLockDelay() may do nothing, may yield the CPU, may sleep a clock tick,</em>
+<a id='L39' name='L39' /><em class='comment'>// or may wait for a delay that can be truncated by a call to SpinlockWake(w).</em>
+<a id='L40' name='L40' /><em class='comment'>// In all cases, it must return in bounded time even if SpinlockWake() is not</em>
+<a id='L41' name='L41' /><em class='comment'>// called.</em>
+<a id='L42' name='L42' />
+<a id='L43' name='L43' /><em class='sharp'>#include</em> "<a href='536.html'>base/spinlock_internal.h</a>"
+<a id='L44' name='L44' />
+<a id='L45' name='L45' /><em class='comment'>// forward declaration for use by spinlock_*-inl.h</em>
+<a id='L46' name='L46' /><strong class='reserved'>namespace</strong> <a href='../R/3011.html' title='Multiple refered from 323 places.'>base</a> <em class='brace'>{</em> <strong class='reserved'>namespace</strong> <a href='../R/3681.html' title='Multiple refered from 49 places.'>internal</a> <em class='brace'>{</em> <strong class='reserved'>static</strong> <strong class='reserved'>int</strong> <a href='../S/535.html#L80' title='Defined at 80 in third_party/google-perftools-1.8.3/src/base/spinlock_internal.cc.'>SuggestedDelayNS</a>(<strong class='reserved'>int</strong> <a href='../Y/3335.html' title='Multiple used in 19 places.'>loop</a>); <em class='brace'>}</em><em class='brace'>}</em>
+<a id='L47' name='L47' />
+<a id='L48' name='L48' /><em class='sharp'>#if</em> <strong class='reserved'>defined</strong>(<a href='../Y/997.html' title='Multiple used in 42 places.'>_WIN32</a>)
+<a id='L49' name='L49' /><em class='sharp'>#include</em> "<a href='539.html'>base/spinlock_win32-inl.h</a>"
+<a id='L50' name='L50' /><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(<a href='../Y/1164.html' title='Multiple used in 12 places.'>__linux__</a>)
+<a id='L51' name='L51' /><em class='sharp'>#include</em> "<a href='537.html'>base/spinlock_linux-inl.h</a>"
+<a id='L52' name='L52' /><em class='sharp'>#else</em>
+<a id='L53' name='L53' /><em class='sharp'>#include</em> "<a href='538.html'>base/spinlock_posix-inl.h</a>"
+<a id='L54' name='L54' /><em class='sharp'>#endif</em>
+<a id='L55' name='L55' />
+<a id='L56' name='L56' /><strong class='reserved'>namespace</strong> <a href='../R/3011.html' title='Multiple refered from 323 places.'>base</a> <em class='brace'>{</em>
+<a id='L57' name='L57' /><strong class='reserved'>namespace</strong> <a href='../R/3681.html' title='Multiple refered from 49 places.'>internal</a> <em class='brace'>{</em>
+<a id='L58' name='L58' />
+<a id='L59' name='L59' /><em class='comment'>// See spinlock_internal.h for spec.</em>
+<a id='L60' name='L60' /><a href='../S/516.html#L59' title='Defined at 59 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>int32</a> <a href='../S/536.html#L57' title='Refered from 57 in third_party/google-perftools-1.8.3/src/base/spinlock_internal.h.'>SpinLockWait</a>(<strong class='reserved'>volatile</strong> <a href='../D/224.html' title='Multiple defined in 8 places.'>Atomic32</a> *<a href='../Y/5654.html' title='Multiple used in 512 places.'>w</a>, <strong class='reserved'>int</strong> <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>,
+<a id='L61' name='L61' />                   <strong class='reserved'>const</strong> <a href='../S/536.html#L47' title='Defined at 47 in third_party/google-perftools-1.8.3/src/base/spinlock_internal.h.'>SpinLockWaitTransition</a> <a href='../Y/5456.html' title='Multiple used in 6 places.'>trans</a>[]) <em class='brace'>{</em>
+<a id='L62' name='L62' />  <a href='../S/516.html#L59' title='Defined at 59 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>int32</a> <a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>;
+<a id='L63' name='L63' />  <strong class='reserved'>bool</strong> <a href='../Y/2083.html' title='Multiple used in 26 places.'>done</a> = <strong class='reserved'>false</strong>;
+<a id='L64' name='L64' />  <strong class='reserved'>for</strong> (<strong class='reserved'>int</strong> <a href='../Y/3335.html' title='Multiple used in 19 places.'>loop</a> = 0; !<a href='../Y/2083.html' title='Multiple used in 26 places.'>done</a>; <a href='../Y/3335.html' title='Multiple used in 19 places.'>loop</a>++) <em class='brace'>{</em>
+<a id='L65' name='L65' />    <a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a> = <a href='../D/3379.html' title='Multiple defined in 6 places.'>base</a>::<a href='../Y/5159.html' title='Multiple used in 114 places.'>subtle</a>::<a href='../D/136.html' title='Multiple defined in 3 places.'>Acquire_Load</a>(<a href='../Y/5654.html' title='Multiple used in 512 places.'>w</a>);
+<a id='L66' name='L66' />    <strong class='reserved'>int</strong> <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>;
+<a id='L67' name='L67' />    <strong class='reserved'>for</strong> (<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> = 0; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> != <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a> &amp;&amp; <a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a> != <a href='../Y/5456.html' title='Multiple used in 6 places.'>trans</a>[<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>].<a href='../Y/2471.html' title='Multiple used in 15 places.'>from</a>; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>++) <em class='brace'>{</em>
+<a id='L68' name='L68' />    <em class='brace'>}</em>
+<a id='L69' name='L69' />    <strong class='reserved'>if</strong> (<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> == <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>) <em class='brace'>{</em>
+<a id='L70' name='L70' />      <a href='../Y/803.html' title='Multiple used in 6 places.'>SpinLockDelay</a>(<a href='../Y/5654.html' title='Multiple used in 512 places.'>w</a>, <a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>, <a href='../Y/3335.html' title='Multiple used in 19 places.'>loop</a>);     <em class='comment'>// no matching transition</em>
+<a id='L71' name='L71' />    <em class='brace'>}</em> <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (<a href='../Y/5456.html' title='Multiple used in 6 places.'>trans</a>[<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>].<a href='../Y/5420.html' title='Multiple used in 12 places.'>to</a> == <a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a> ||   <em class='comment'>// null transition</em>
+<a id='L72' name='L72' />               <a href='../D/3379.html' title='Multiple defined in 6 places.'>base</a>::<a href='../Y/5159.html' title='Multiple used in 114 places.'>subtle</a>::<a href='../D/135.html' title='Multiple defined in 3 places.'>Acquire_CompareAndSwap</a>(<a href='../Y/5654.html' title='Multiple used in 512 places.'>w</a>, <a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>, <a href='../Y/5456.html' title='Multiple used in 6 places.'>trans</a>[<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>].<a href='../Y/5420.html' title='Multiple used in 12 places.'>to</a>) == <a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>) <em class='brace'>{</em>
+<a id='L73' name='L73' />      <a href='../Y/2083.html' title='Multiple used in 26 places.'>done</a> = <a href='../Y/5456.html' title='Multiple used in 6 places.'>trans</a>[<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>].<a href='../Y/2083.html' title='Multiple used in 26 places.'>done</a>;
+<a id='L74' name='L74' />    <em class='brace'>}</em>
+<a id='L75' name='L75' />  <em class='brace'>}</em>
+<a id='L76' name='L76' />  <strong class='reserved'>return</strong> <a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>;
+<a id='L77' name='L77' /><em class='brace'>}</em>
+<a id='L78' name='L78' />
+<a id='L79' name='L79' /><em class='comment'>// Return a suggested delay in nanoseconds for iteration number "loop"</em>
+<a id='L80' name='L80' /><strong class='reserved'>static</strong> <strong class='reserved'>int</strong> <a href='../R/2355.html' title='Multiple refered from 4 places.'>SuggestedDelayNS</a>(<strong class='reserved'>int</strong> <a href='../Y/3335.html' title='Multiple used in 19 places.'>loop</a>) <em class='brace'>{</em>
+<a id='L81' name='L81' />  <em class='comment'>// Weak pseudo-random number generator to get some spread between threads</em>
+<a id='L82' name='L82' />  <em class='comment'>// when many are spinning.</em>
+<a id='L83' name='L83' />  <strong class='reserved'>static</strong> <a href='../D/3379.html' title='Multiple defined in 6 places.'>base</a>::<a href='../Y/5159.html' title='Multiple used in 114 places.'>subtle</a>::<a href='../D/225.html' title='Multiple defined in 8 places.'>Atomic64</a> <a href='../Y/4427.html' title='Multiple used in 11 places.'>rand</a>;
+<a id='L84' name='L84' />  <a href='../S/516.html#L71' title='Defined at 71 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>uint64</a> <a href='../Y/4406.html' title='Multiple used in 354 places.'>r</a> = <a href='../D/3379.html' title='Multiple defined in 6 places.'>base</a>::<a href='../Y/5159.html' title='Multiple used in 114 places.'>subtle</a>::<a href='../Y/564.html' title='Multiple used in 40 places.'>NoBarrier_Load</a>(&amp;<a href='../Y/4427.html' title='Multiple used in 11 places.'>rand</a>);
+<a id='L85' name='L85' />  <a href='../Y/4406.html' title='Multiple used in 354 places.'>r</a> = 0x5deece66dLL * <a href='../Y/4406.html' title='Multiple used in 354 places.'>r</a> + 0xb;   <em class='comment'>// numbers from nrand48()</em>
+<a id='L86' name='L86' />  <a href='../D/3379.html' title='Multiple defined in 6 places.'>base</a>::<a href='../Y/5159.html' title='Multiple used in 114 places.'>subtle</a>::<a href='../Y/565.html' title='Multiple used in 33 places.'>NoBarrier_Store</a>(&amp;<a href='../Y/4427.html' title='Multiple used in 11 places.'>rand</a>, <a href='../Y/4406.html' title='Multiple used in 354 places.'>r</a>);
+<a id='L87' name='L87' />
+<a id='L88' name='L88' />  <a href='../Y/4406.html' title='Multiple used in 354 places.'>r</a> &lt;&lt;= 16;   <em class='comment'>// 48-bit random number now in top 48-bits.</em>
+<a id='L89' name='L89' />  <strong class='reserved'>if</strong> (<a href='../Y/3335.html' title='Multiple used in 19 places.'>loop</a> &lt; 0 || <a href='../Y/3335.html' title='Multiple used in 19 places.'>loop</a> &gt; 32) <em class='brace'>{</em>   <em class='comment'>// limit loop to 0..32</em>
+<a id='L90' name='L90' />    <a href='../Y/3335.html' title='Multiple used in 19 places.'>loop</a> = 32;
+<a id='L91' name='L91' />  <em class='brace'>}</em>
+<a id='L92' name='L92' />  <em class='comment'>// loop&gt;&gt;3 cannot exceed 4 because loop cannot exceed 32.</em>
+<a id='L93' name='L93' />  <em class='comment'>// Select top 20..24 bits of lower 48 bits,</em>
+<a id='L94' name='L94' />  <em class='comment'>// giving approximately 0ms to 16ms.</em>
+<a id='L95' name='L95' />  <em class='comment'>// Mean is exponential in loop for first 32 iterations, then 8ms.</em>
+<a id='L96' name='L96' />  <em class='comment'>// The futex path multiplies this by 16, since we expect explicit wakeups</em>
+<a id='L97' name='L97' />  <em class='comment'>// almost always on that path.</em>
+<a id='L98' name='L98' />  <strong class='reserved'>return</strong> <a href='../Y/4406.html' title='Multiple used in 354 places.'>r</a> &gt;&gt; (44 - (<a href='../Y/3335.html' title='Multiple used in 19 places.'>loop</a> &gt;&gt; 3));
+<a id='L99' name='L99' /><em class='brace'>}</em>
+<a id='L100' name='L100' />
+<a id='L101' name='L101' /><em class='brace'>}</em> <em class='comment'>// namespace internal</em>
+<a id='L102' name='L102' /><em class='brace'>}</em> <em class='comment'>// namespace base</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;]<a href='#L60'>[^]</a><a href='#L80'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

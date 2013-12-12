@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>traced_ids</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/410.html#L232'>traced_ids</a>        232 src/utility/visitlog.c   vec_init(&amp;track-&gt;traced_ids, PROC_TBL_DEFAULT_SIZE);</span>
+<span class='curline'><a href='../S/410.html#L238'>traced_ids</a>        238 src/utility/visitlog.c   vec_destroy(&amp;track-&gt;traced_ids);</span>
+<span class='curline'><a href='../S/411.html#L490'>traced_ids</a>        490 src/utility/visitlog.h   struct Vector traced_ids, btp_idx;</span>
+<span class='curline'><a href='../S/411.html#L502'>traced_ids</a>        502 src/utility/visitlog.h     while (vec_num(&amp;((Tracker)-&gt;traced_ids)) &gt; __bt_idx) {                     \</span>
+<span class='curline'><a href='../S/411.html#L503'>traced_ids</a>        503 src/utility/visitlog.h       LmnWord __key = vec_pop(&amp;((Tracker)-&gt;traced_ids));                       \</span>
+<span class='curline'><a href='../S/411.html#L509'>traced_ids</a>        509 src/utility/visitlog.h #define LogTracker_PUSH(TR) (vec_push(&amp;(TR)-&gt;btp_idx, vec_num(&amp;(TR)-&gt;traced_ids)))</span>
+<span class='curline'><a href='../S/411.html#L513'>traced_ids</a>        513 src/utility/visitlog.h #define LogTracker_TRACE(TR, ID) (vec_push(&amp;(TR)-&gt;traced_ids, (ID)))</span>
+</pre>
+</body>
+</html>

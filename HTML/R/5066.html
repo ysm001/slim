@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>ush</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/699.html#L153'>ush</a>               153 third_party/zdelta-2.1/deflate.c    ush good_length; /* reduce search above this match length */</span>
+<span class='curline'><a href='../S/699.html#L154'>ush</a>               154 third_party/zdelta-2.1/deflate.c    ush max_lazy;    /* do not perform lazy search above this match length */</span>
+<span class='curline'><a href='../S/699.html#L155'>ush</a>               155 third_party/zdelta-2.1/deflate.c    ush nice_length; /* quit search above this match length */</span>
+<span class='curline'><a href='../S/699.html#L156'>ush</a>               156 third_party/zdelta-2.1/deflate.c    ush max_chain;</span>
+<span class='curline'><a href='../S/699.html#L448'>ush</a>               448 third_party/zdelta-2.1/deflate.c   overlay = (ushf *) ZALLOC(strm, s-&gt;lit_bufsize, 2*sizeof(ush)+2);</span>
+<span class='curline'><a href='../S/699.html#L450'>ush</a>               450 third_party/zdelta-2.1/deflate.c   s-&gt;pending_buf_size = (ulg)s-&gt;lit_bufsize * (sizeof(ush)+2L);</span>
+<span class='curline'><a href='../S/699.html#L461'>ush</a>               461 third_party/zdelta-2.1/deflate.c   s-&gt;d_buf = overlay + s-&gt;lit_bufsize/sizeof(ush);</span>
+<span class='curline'><a href='../S/699.html#L463'>ush</a>               463 third_party/zdelta-2.1/deflate.c   s-&gt;z_buf = s-&gt;pending_buf + (1+2*sizeof(ush))*s-&gt;lit_bufsize;</span>
+<span class='curline'><a href='../S/700.html#L85'>ush</a>                85 third_party/zdelta-2.1/deflate.h     ush  freq;       /* frequency count */</span>
+<span class='curline'><a href='../S/700.html#L86'>ush</a>                86 third_party/zdelta-2.1/deflate.h     ush  code;       /* bit string */</span>
+<span class='curline'><a href='../S/700.html#L89'>ush</a>                89 third_party/zdelta-2.1/deflate.h     ush  dad;        /* father node in Huffman tree */</span>
+<span class='curline'><a href='../S/700.html#L90'>ush</a>                90 third_party/zdelta-2.1/deflate.h     ush  len;        /* length of bit string */</span>
+<span class='curline'><a href='../S/700.html#L109'>ush</a>               109 third_party/zdelta-2.1/deflate.h typedef ush Pos;</span>
+<span class='curline'><a href='../S/700.html#L253'>ush</a>               253 third_party/zdelta-2.1/deflate.h   ush bl_count[MAX_BITS+1];</span>
+<span class='curline'><a href='../S/700.html#L312'>ush</a>               312 third_party/zdelta-2.1/deflate.h   ush bi_buf;</span>
+<span class='curline'><a href='../S/700.html#L410'>ush</a>               410 third_party/zdelta-2.1/deflate.h   { ush len = (length); \</span>
+<span class='curline'><a href='../S/700.html#L411'>ush</a>               411 third_party/zdelta-2.1/deflate.h     ush dist = (distance); \</span>
+<span class='curline'><a href='../S/700.html#L422'>ush</a>               422 third_party/zdelta-2.1/deflate.h   { ush len = (length); \</span>
+<span class='curline'><a href='../S/700.html#L423'>ush</a>               423 third_party/zdelta-2.1/deflate.h     ush dist = (distance); \</span>
+<span class='curline'><a href='../S/719.html#L222'>ush</a>               222 third_party/zdelta-2.1/trees.c     put_byte(s, (uch)((ush)(w) &gt;&gt; 8)); \</span>
+<span class='curline'><a href='../S/719.html#L250'>ush</a>               250 third_party/zdelta-2.1/trees.c     s-&gt;bi_buf = (ush)value &gt;&gt; (Buf_size - s-&gt;bi_valid);</span>
+<span class='curline'><a href='../S/719.html#L265'>ush</a>               265 third_party/zdelta-2.1/trees.c     s-&gt;bi_buf = (ush)val &gt;&gt; (Buf_size - s-&gt;bi_valid);\</span>
+<span class='curline'><a href='../S/719.html#L291'>ush</a>               291 third_party/zdelta-2.1/trees.c   ush bl_count[MAX_BITS+1];</span>
+<span class='curline'><a href='../S/719.html#L612'>ush</a>               612 third_party/zdelta-2.1/trees.c   ush f;              /* frequency  */</span>
+<span class='curline'><a href='../S/719.html#L628'>ush</a>               628 third_party/zdelta-2.1/trees.c     tree[n].Len = (ush)bits;</span>
+<span class='curline'><a href='../S/719.html#L672'>ush</a>               672 third_party/zdelta-2.1/trees.c 	tree[m].Len = (ush)bits;</span>
+<span class='curline'><a href='../S/719.html#L692'>ush</a>               692 third_party/zdelta-2.1/trees.c   ush next_code[MAX_BITS+1]; /* next code value for each bit length */</span>
+<span class='curline'><a href='../S/719.html#L693'>ush</a>               693 third_party/zdelta-2.1/trees.c   ush code = 0;              /* running code value */</span>
+<span class='curline'><a href='../S/719.html#L789'>ush</a>               789 third_party/zdelta-2.1/trees.c     tree[n].Dad = tree[m].Dad = (ush)node;</span>
+<span class='curline'><a href='../S/719.html#L831'>ush</a>               831 third_party/zdelta-2.1/trees.c   tree[max_code+1].Len = (ush)0xffff; /* guard */</span>
+<span class='curline'><a href='../S/719.html#L1223'>ush</a>              1223 third_party/zdelta-2.1/trees.c   s-&gt;d_buf[s-&gt;last_lit] = (ush)dist;</span>
+<span class='curline'><a href='../S/719.html#L1232'>ush</a>              1232 third_party/zdelta-2.1/trees.c     Assert((ush)dist &lt; (ush)MAX_DIST(s) &amp;&amp;</span>
+<span class='curline'><a href='../S/719.html#L1233'>ush</a>              1233 third_party/zdelta-2.1/trees.c 	   (ush)lc &lt;= (ush)(MAX_MATCH-MIN_MATCH) &amp;&amp;</span>
+<span class='curline'><a href='../S/719.html#L1234'>ush</a>              1234 third_party/zdelta-2.1/trees.c 	   (ush)d_code(dist) &lt; (ush)D_CODES,  "_tr_tally: bad match");</span>
+<span class='curline'><a href='../S/719.html#L1419'>ush</a>              1419 third_party/zdelta-2.1/trees.c       put_short(s, (ush)len);   </span>
+<span class='curline'><a href='../S/719.html#L1420'>ush</a>              1420 third_party/zdelta-2.1/trees.c       put_short(s, (ush)~len);</span>
+<span class='curline'><a href='../S/729.html#L179'>ush</a>               179 third_party/zdelta-2.1/zutil.c         if (*(ush*)&amp;buf != 0) return buf;</span>
+<span class='curline'><a href='../S/729.html#L187'>ush</a>               187 third_party/zdelta-2.1/zutil.c     *((ush*)&amp;buf+1) += ((ush)((uch*)buf-0) + 15) &gt;&gt; 4;</span>
+<span class='curline'><a href='../S/729.html#L188'>ush</a>               188 third_party/zdelta-2.1/zutil.c     *(ush*)&amp;buf = 0;</span>
+<span class='curline'><a href='../S/729.html#L198'>ush</a>               198 third_party/zdelta-2.1/zutil.c     if (*(ush*)&amp;ptr != 0) { /* object &lt; 64K */</span>
+<span class='curline'><a href='../S/730.html#L50'>ush</a>                50 third_party/zdelta-2.1/zutil.h typedef ush FAR ushf;</span>
+</pre>
+</body>
+</html>

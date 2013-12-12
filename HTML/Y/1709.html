@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>c_Env</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/345.html#L140'>c_Env</a>             140 src/jni_lmntal.c   if (NULL == (jc_lmntal.c_Env = (*env)-&gt;FindClass(env, "Lruntime/Env;"))) {</span>
+<span class='curline'><a href='../S/345.html#L145'>c_Env</a>             145 src/jni_lmntal.c   if (NULL == (jc_lmntal.f_Env_slimcode = (*env)-&gt;GetStaticFieldID(env, jc_lmntal.c_Env, "slimcode", "Z"))) {</span>
+<span class='curline'><a href='../S/345.html#L150'>c_Env</a>             150 src/jni_lmntal.c   if (NULL == (jc_lmntal.f_Env_compileonly = (*env)-&gt;GetStaticFieldID(env, jc_lmntal.c_Env, "compileonly", "Z"))) {</span>
+<span class='curline'><a href='../S/345.html#L155'>c_Env</a>             155 src/jni_lmntal.c   if (NULL == (jc_lmntal.f_Env_fInterpret = (*env)-&gt;GetStaticFieldID(env, jc_lmntal.c_Env, "fInterpret", "Z"))) {</span>
+<span class='curline'><a href='../S/345.html#L160'>c_Env</a>             160 src/jni_lmntal.c   if (NULL == (jc_lmntal.f_Env_findatom2 = (*env)-&gt;GetStaticFieldID(env, jc_lmntal.c_Env, "findatom2", "Z"))) {</span>
+<span class='curline'><a href='../S/345.html#L165'>c_Env</a>             165 src/jni_lmntal.c   if (NULL == (jc_lmntal.f_Env_fGUI = (*env)-&gt;GetStaticFieldID(env, jc_lmntal.c_Env, "fGUI", "Z"))) {</span>
+<span class='curline'><a href='../S/345.html#L170'>c_Env</a>             170 src/jni_lmntal.c   if (NULL == (jc_lmntal.f_Env_shuffle = (*env)-&gt;GetStaticFieldID(env, jc_lmntal.c_Env, "shuffle", "I"))) {</span>
+<span class='curline'><a href='../S/345.html#L175'>c_Env</a>             175 src/jni_lmntal.c   if (NULL == (jc_lmntal.f_Env_nErrors = (*env)-&gt;GetStaticFieldID(env, jc_lmntal.c_Env, "nErrors", "I"))) {</span>
+<span class='curline'><a href='../S/345.html#L287'>c_Env</a>             287 src/jni_lmntal.c   (*env)-&gt;SetStaticBooleanField(env, jc_lmntal.c_Env, jc_lmntal.f_Env_slimcode, JNI_TRUE);</span>
+<span class='curline'><a href='../S/345.html#L288'>c_Env</a>             288 src/jni_lmntal.c   (*env)-&gt;SetStaticBooleanField(env, jc_lmntal.c_Env, jc_lmntal.f_Env_compileonly, JNI_TRUE);</span>
+<span class='curline'><a href='../S/345.html#L289'>c_Env</a>             289 src/jni_lmntal.c   (*env)-&gt;SetStaticBooleanField(env, jc_lmntal.c_Env, jc_lmntal.f_Env_fInterpret, JNI_TRUE);</span>
+<span class='curline'><a href='../S/345.html#L290'>c_Env</a>             290 src/jni_lmntal.c   (*env)-&gt;SetStaticBooleanField(env, jc_lmntal.c_Env, jc_lmntal.f_Env_findatom2, JNI_FALSE);</span>
+<span class='curline'><a href='../S/345.html#L291'>c_Env</a>             291 src/jni_lmntal.c   (*env)-&gt;SetStaticBooleanField(env, jc_lmntal.c_Env, jc_lmntal.f_Env_fGUI, JNI_FALSE);</span>
+<span class='curline'><a href='../S/345.html#L292'>c_Env</a>             292 src/jni_lmntal.c   (*env)-&gt;SetStaticIntField(env, jc_lmntal.c_Env, jc_lmntal.f_Env_shuffle, jc_lmntal.shuffle_level);</span>
+<span class='curline'><a href='../S/345.html#L332'>c_Env</a>             332 src/jni_lmntal.c   jint nErrors = (*env)-&gt;GetStaticIntField(env, jc_lmntal.c_Env, jc_lmntal.f_Env_nErrors);</span>
+<span class='curline'><a href='../S/345.html#L446'>c_Env</a>             446 src/jni_lmntal.c           (*env)-&gt;SetStaticIntField(env, jc_lmntal.c_Env, jc_lmntal.f_Env_shuffle, jc_lmntal.shuffle_level);</span>
+<span class='curline'><a href='../S/345.html#L454'>c_Env</a>             454 src/jni_lmntal.c         (*env)-&gt;SetStaticBooleanField(env, jc_lmntal.c_Env, jc_lmntal.f_Env_slimcode, JNI_FALSE);</span>
+<span class='curline'><a href='../S/345.html#L455'>c_Env</a>             455 src/jni_lmntal.c         (*env)-&gt;SetStaticBooleanField(env, jc_lmntal.c_Env, jc_lmntal.f_Env_compileonly, JNI_FALSE);</span>
+<span class='curline'><a href='../S/345.html#L456'>c_Env</a>             456 src/jni_lmntal.c         (*env)-&gt;SetStaticBooleanField(env, jc_lmntal.c_Env, jc_lmntal.f_Env_fGUI, JNI_TRUE);</span>
+<span class='curline'><a href='../S/345.html#L461'>c_Env</a>             461 src/jni_lmntal.c         (*env)-&gt;SetStaticBooleanField(env, jc_lmntal.c_Env, jc_lmntal.f_Env_slimcode, JNI_TRUE);</span>
+<span class='curline'><a href='../S/345.html#L462'>c_Env</a>             462 src/jni_lmntal.c         (*env)-&gt;SetStaticBooleanField(env, jc_lmntal.c_Env, jc_lmntal.f_Env_compileonly, JNI_TRUE);</span>
+<span class='curline'><a href='../S/345.html#L463'>c_Env</a>             463 src/jni_lmntal.c         (*env)-&gt;SetStaticBooleanField(env, jc_lmntal.c_Env, jc_lmntal.f_Env_fGUI, JNI_FALSE);</span>
+<span class='curline'><a href='../S/346.html#L74'>c_Env</a>              74 src/jni_lmntal.h 	jclass c_Env;</span>
+</pre>
+</body>
+</html>

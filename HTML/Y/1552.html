@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>atomvec_mem1</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/357.html#L2438'>atomvec_mem1</a>     2438 src/membrane.c       Vector *atomvec_mem1, *atomvec_mem2;</span>
+<span class='curline'><a href='../S/357.html#L2442'>atomvec_mem1</a>     2442 src/membrane.c       atomvec_mem1 = mem_mk_matching_vec(mem1);</span>
+<span class='curline'><a href='../S/357.html#L2445'>atomvec_mem1</a>     2445 src/membrane.c       LMN_ASSERT(vec_num(atomvec_mem1) == vec_num(atomvec_mem2));</span>
+<span class='curline'><a href='../S/357.html#L2451'>atomvec_mem1</a>     2451 src/membrane.c       for (i = 0; i &lt; vec_num(atomvec_mem1); i++) {</span>
+<span class='curline'><a href='../S/357.html#L2452'>atomvec_mem1</a>     2452 src/membrane.c         for (j = 0; j &lt; vec_num(((atomvec_data *)vec_get(atomvec_mem1, i))-&gt;atom_ptrs); j++) {</span>
+<span class='curline'><a href='../S/357.html#L2454'>atomvec_mem1</a>     2454 src/membrane.c                    vec_get(((atomvec_data *)vec_get(atomvec_mem1, i))-&gt;atom_ptrs, j));</span>
+<span class='curline'><a href='../S/357.html#L2460'>atomvec_mem1</a>     2460 src/membrane.c       free_atomvec_data(atomvec_mem1);</span>
+</pre>
+</body>
+</html>

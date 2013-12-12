@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>align</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/530.html#L352'>align</a>             352 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc static intptr_t RoundUp(intptr_t addr, intptr_t align) {</span>
+<span class='curline'><a href='../S/530.html#L353'>align</a>             353 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   return (addr + align - 1) &amp; ~(align - 1);</span>
+<span class='curline'><a href='../S/555.html#L1304'>align</a>            1304 third_party/google-perftools-1.8.3/src/debugallocation.cc static void* debug_cpp_memalign(size_t align, size_t size) {</span>
+<span class='curline'><a href='../S/555.html#L1306'>align</a>            1306 third_party/google-perftools-1.8.3/src/debugallocation.cc     void* p = do_debug_memalign(align, size);</span>
+<span class='curline'><a href='../S/555.html#L1350'>align</a>            1350 third_party/google-perftools-1.8.3/src/debugallocation.cc inline void* do_debug_memalign_or_debug_cpp_memalign(size_t align,</span>
+<span class='curline'><a href='../S/555.html#L1352'>align</a>            1352 third_party/google-perftools-1.8.3/src/debugallocation.cc   return tc_new_mode ? debug_cpp_memalign(align, size)</span>
+<span class='curline'><a href='../S/555.html#L1353'>align</a>            1353 third_party/google-perftools-1.8.3/src/debugallocation.cc                      : do_debug_memalign(align, size);</span>
+<span class='curline'><a href='../S/555.html#L1356'>align</a>            1356 third_party/google-perftools-1.8.3/src/debugallocation.cc extern "C" PERFTOOLS_DLL_DECL void* tc_memalign(size_t align, size_t size) __THROW {</span>
+<span class='curline'><a href='../S/555.html#L1357'>align</a>            1357 third_party/google-perftools-1.8.3/src/debugallocation.cc   void *p = do_debug_memalign_or_debug_cpp_memalign(align, size);</span>
+<span class='curline'><a href='../S/555.html#L1363'>align</a>            1363 third_party/google-perftools-1.8.3/src/debugallocation.cc extern "C" PERFTOOLS_DLL_DECL int tc_posix_memalign(void** result_ptr, size_t align, size_t size)</span>
+<span class='curline'><a href='../S/555.html#L1365'>align</a>            1365 third_party/google-perftools-1.8.3/src/debugallocation.cc   if (((align % sizeof(void*)) != 0) ||</span>
+<span class='curline'><a href='../S/555.html#L1366'>align</a>            1366 third_party/google-perftools-1.8.3/src/debugallocation.cc       ((align &amp; (align - 1)) != 0) ||</span>
+<span class='curline'><a href='../S/555.html#L1367'>align</a>            1367 third_party/google-perftools-1.8.3/src/debugallocation.cc       (align == 0)) {</span>
+<span class='curline'><a href='../S/555.html#L1371'>align</a>            1371 third_party/google-perftools-1.8.3/src/debugallocation.cc   void* result = do_debug_memalign_or_debug_cpp_memalign(align, size);</span>
+<span class='curline'><a href='../S/565.html#L89'>align</a>              89 third_party/google-perftools-1.8.3/src/google/tcmalloc.h                                            size_t align, size_t size) __THROW;</span>
+<span class='curline'><a href='../S/575.html#L79'>align</a>              79 third_party/google-perftools-1.8.3/src/libc_override_gcc_and_weak.h   void* memalign(size_t align, size_t s) __THROW  ALIAS(tc_memalign);</span>
+<span class='curline'><a href='../S/576.html#L82'>align</a>              82 third_party/google-perftools-1.8.3/src/libc_override_glibc.h   void* __libc_memalign(size_t align, size_t s)   ALIAS(tc_memalign);</span>
+<span class='curline'><a href='../S/576.html#L109'>align</a>             109 third_party/google-perftools-1.8.3/src/libc_override_glibc.h static void* glibc_override_memalign(size_t align, size_t size,</span>
+<span class='curline'><a href='../S/576.html#L111'>align</a>             111 third_party/google-perftools-1.8.3/src/libc_override_glibc.h   return tc_memalign(align, size);</span>
+<span class='curline'><a href='../S/577.html#L130'>align</a>             130 third_party/google-perftools-1.8.3/src/libc_override_osx.h void* mz_memalign(malloc_zone_t* zone, size_t align, size_t size) {</span>
+<span class='curline'><a href='../S/577.html#L131'>align</a>             131 third_party/google-perftools-1.8.3/src/libc_override_osx.h   return tc_memalign(align, size);</span>
+<span class='curline'><a href='../S/626.html#L226'>align</a>             226 third_party/google-perftools-1.8.3/src/tcmalloc.cc   int tc_posix_memalign(void** ptr, size_t align, size_t size) __THROW</span>
+<span class='curline'><a href='../S/626.html#L1005'>align</a>            1005 third_party/google-perftools-1.8.3/src/tcmalloc.cc void* cpp_memalign(size_t align, size_t size);</span>
+<span class='curline'><a href='../S/626.html#L1006'>align</a>            1006 third_party/google-perftools-1.8.3/src/tcmalloc.cc void* do_memalign(size_t align, size_t size);</span>
+<span class='curline'><a href='../S/626.html#L1008'>align</a>            1008 third_party/google-perftools-1.8.3/src/tcmalloc.cc inline void* do_memalign_or_cpp_memalign(size_t align, size_t size) {</span>
+<span class='curline'><a href='../S/626.html#L1009'>align</a>            1009 third_party/google-perftools-1.8.3/src/tcmalloc.cc   return tc_new_mode ? cpp_memalign(align, size) : do_memalign(align, size);</span>
+<span class='curline'><a href='../S/626.html#L1227'>align</a>            1227 third_party/google-perftools-1.8.3/src/tcmalloc.cc void* do_memalign(size_t align, size_t size) {</span>
+<span class='curline'><a href='../S/626.html#L1228'>align</a>            1228 third_party/google-perftools-1.8.3/src/tcmalloc.cc   ASSERT((align &amp; (align - 1)) == 0);</span>
+<span class='curline'><a href='../S/626.html#L1229'>align</a>            1229 third_party/google-perftools-1.8.3/src/tcmalloc.cc   ASSERT(align &gt; 0);</span>
+<span class='curline'><a href='../S/626.html#L1230'>align</a>            1230 third_party/google-perftools-1.8.3/src/tcmalloc.cc   if (size + align &lt; size) return NULL;         // Overflow</span>
+<span class='curline'><a href='../S/626.html#L1233'>align</a>            1233 third_party/google-perftools-1.8.3/src/tcmalloc.cc   if (align &lt;= AlignmentForSize(size)) {</span>
+<span class='curline'><a href='../S/626.html#L1235'>align</a>            1235 third_party/google-perftools-1.8.3/src/tcmalloc.cc     ASSERT((reinterpret_cast&lt;uintptr_t&gt;(p) % align) == 0);</span>
+<span class='curline'><a href='../S/626.html#L1244'>align</a>            1244 third_party/google-perftools-1.8.3/src/tcmalloc.cc   if (size &lt;= kMaxSize &amp;&amp; align &lt; kPageSize) {</span>
+<span class='curline'><a href='../S/626.html#L1253'>align</a>            1253 third_party/google-perftools-1.8.3/src/tcmalloc.cc            ((Static::sizemap()-&gt;class_to_size(cl) &amp; (align - 1)) != 0)) {</span>
+<span class='curline'><a href='../S/626.html#L1266'>align</a>            1266 third_party/google-perftools-1.8.3/src/tcmalloc.cc   if (align &lt;= kPageSize) {</span>
+<span class='curline'><a href='../S/626.html#L1275'>align</a>            1275 third_party/google-perftools-1.8.3/src/tcmalloc.cc   const Length alloc = tcmalloc::pages(size + align);</span>
+<span class='curline'><a href='../S/626.html#L1281'>align</a>            1281 third_party/google-perftools-1.8.3/src/tcmalloc.cc   while ((((span-&gt;start+skip) &lt;&lt; kPageShift) &amp; (align - 1)) != 0) {</span>
+<span class='curline'><a href='../S/626.html#L1389'>align</a>            1389 third_party/google-perftools-1.8.3/src/tcmalloc.cc void* cpp_memalign(size_t align, size_t size) {</span>
+<span class='curline'><a href='../S/626.html#L1391'>align</a>            1391 third_party/google-perftools-1.8.3/src/tcmalloc.cc     void* p = do_memalign(align, size);</span>
+<span class='curline'><a href='../S/626.html#L1576'>align</a>            1576 third_party/google-perftools-1.8.3/src/tcmalloc.cc extern "C" PERFTOOLS_DLL_DECL void* tc_memalign(size_t align,</span>
+<span class='curline'><a href='../S/626.html#L1578'>align</a>            1578 third_party/google-perftools-1.8.3/src/tcmalloc.cc   void* result = do_memalign_or_cpp_memalign(align, size);</span>
+<span class='curline'><a href='../S/626.html#L1584'>align</a>            1584 third_party/google-perftools-1.8.3/src/tcmalloc.cc     void** result_ptr, size_t align, size_t size) __THROW {</span>
+<span class='curline'><a href='../S/626.html#L1585'>align</a>            1585 third_party/google-perftools-1.8.3/src/tcmalloc.cc   if (((align % sizeof(void*)) != 0) ||</span>
+<span class='curline'><a href='../S/626.html#L1586'>align</a>            1586 third_party/google-perftools-1.8.3/src/tcmalloc.cc       ((align &amp; (align - 1)) != 0) ||</span>
+<span class='curline'><a href='../S/626.html#L1587'>align</a>            1587 third_party/google-perftools-1.8.3/src/tcmalloc.cc       (align == 0)) {</span>
+<span class='curline'><a href='../S/626.html#L1591'>align</a>            1591 third_party/google-perftools-1.8.3/src/tcmalloc.cc   void* result = do_memalign_or_cpp_memalign(align, size);</span>
+<span class='curline'><a href='../S/627.html#L59'>align</a>              59 third_party/google-perftools-1.8.3/src/tcmalloc.h extern "C" int posix_memalign(void** ptr, size_t align, size_t size) __THROW;</span>
+<span class='curline'><a href='../S/647.html#L105'>align</a>             105 third_party/google-perftools-1.8.3/src/tests/memalign_unittest.cc static void CheckAlignment(void* p, int align) {</span>
+<span class='curline'><a href='../S/647.html#L106'>align</a>             106 third_party/google-perftools-1.8.3/src/tests/memalign_unittest.cc   if ((Number(p) &amp; (align-1)) != 0)</span>
+<span class='curline'><a href='../S/647.html#L107'>align</a>             107 third_party/google-perftools-1.8.3/src/tests/memalign_unittest.cc     LOG(FATAL, "wrong alignment; wanted 0x%x; got %p\n", align, p);</span>
+<span class='curline'><a href='../S/664.html#L107'>align</a>             107 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc static inline void* Memalign(size_t align, size_t size) {</span>
+<span class='curline'><a href='../S/664.html#L112'>align</a>             112 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc static inline int PosixMemalign(void** ptr, size_t align, size_t size) {</span>
+<span class='curline'><a href='../S/664.html#L122'>align</a>             122 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc static inline void* Memalign(size_t align, size_t size) {</span>
+<span class='curline'><a href='../S/664.html#L127'>align</a>             127 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc static inline int PosixMemalign(void** ptr, size_t align, size_t size) {</span>
+<span class='curline'><a href='../S/664.html#L135'>align</a>             135 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc static inline void* Memalign(size_t align, size_t size) {</span>
+<span class='curline'><a href='../S/664.html#L136'>align</a>             136 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   return memalign(align, size);</span>
+<span class='curline'><a href='../S/664.html#L138'>align</a>             138 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc static inline int PosixMemalign(void** ptr, size_t align, size_t size) {</span>
+<span class='curline'><a href='../S/664.html#L139'>align</a>             139 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   return posix_memalign(ptr, align, size);</span>
+<span class='curline'><a href='../S/674.html#L89'>align</a>              89 third_party/google-perftools-1.8.3/src/windows/google/tcmalloc.h                                            size_t align, size_t size) __THROW;</span>
+</pre>
+</body>
+</html>

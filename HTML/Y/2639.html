@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>hash_val</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/404.html#L200'>hash_val</a>          200 src/utility/st.c #define PTR_NOT_EQUAL(table, ptr, hash_val, key) \</span>
+<span class='curline'><a href='../S/404.html#L201'>hash_val</a>          201 src/utility/st.c ((ptr) != 0 &amp;&amp; (ptr-&gt;hash != (hash_val) || !EQUAL((table), (key), (ptr)-&gt;key)))</span>
+<span class='curline'><a href='../S/404.html#L209'>hash_val</a>          209 src/utility/st.c #define FIND_ENTRY(table, ptr, hash_val, bin_pos)                       \</span>
+<span class='curline'><a href='../S/404.html#L211'>hash_val</a>          211 src/utility/st.c     bin_pos = hash_val%(table)-&gt;num_bins;                               \</span>
+<span class='curline'><a href='../S/404.html#L213'>hash_val</a>          213 src/utility/st.c     if (PTR_NOT_EQUAL(table, ptr, hash_val, key)) {                     \</span>
+<span class='curline'><a href='../S/404.html#L215'>hash_val</a>          215 src/utility/st.c       while (PTR_NOT_EQUAL(table, ptr-&gt;next, hash_val, key)) {          \</span>
+<span class='curline'><a href='../S/404.html#L222'>hash_val</a>          222 src/utility/st.c #define FIND_ENTRY_WITH_COL(table, ptr, hash_val, bin_pos, collision)   \</span>
+<span class='curline'><a href='../S/404.html#L224'>hash_val</a>          224 src/utility/st.c     bin_pos = hash_val%(table)-&gt;num_bins;                               \</span>
+<span class='curline'><a href='../S/404.html#L226'>hash_val</a>          226 src/utility/st.c     if (PTR_NOT_EQUAL(table, ptr, hash_val, key)) {                     \</span>
+<span class='curline'><a href='../S/404.html#L227'>hash_val</a>          227 src/utility/st.c       if ((ptr) != 0 &amp;&amp; (ptr-&gt;hash == (hash_val))) (collision)++;       \</span>
+<span class='curline'><a href='../S/404.html#L228'>hash_val</a>          228 src/utility/st.c       while (PTR_NOT_EQUAL(table, ptr-&gt;next, hash_val, key)) {          \</span>
+<span class='curline'><a href='../S/404.html#L230'>hash_val</a>          230 src/utility/st.c           if ((ptr) != 0 &amp;&amp; (ptr-&gt;hash == (hash_val))) (collision)++;   \</span>
+<span class='curline'><a href='../S/404.html#L240'>hash_val</a>          240 src/utility/st.c   unsigned long hash_val, bin_pos;</span>
+<span class='curline'><a href='../S/404.html#L243'>hash_val</a>          243 src/utility/st.c   hash_val = do_hash(key, table);</span>
+<span class='curline'><a href='../S/404.html#L244'>hash_val</a>          244 src/utility/st.c   FIND_ENTRY(table, ptr, hash_val, bin_pos);</span>
+<span class='curline'><a href='../S/404.html#L260'>hash_val</a>          260 src/utility/st.c   unsigned long hash_val, bin_pos;</span>
+<span class='curline'><a href='../S/404.html#L264'>hash_val</a>          264 src/utility/st.c   hash_val = do_hash(key, table);</span>
+<span class='curline'><a href='../S/404.html#L265'>hash_val</a>          265 src/utility/st.c   FIND_ENTRY_WITH_COL(table, ptr, hash_val, bin_pos, *n_col);</span>
+<span class='curline'><a href='../S/404.html#L282'>hash_val</a>          282 src/utility/st.c #define ADD_DIRECT(table, key, value, hash_val, bin_pos)                   \</span>
+<span class='curline'><a href='../S/404.html#L285'>hash_val</a>          285 src/utility/st.c     entry-&gt;hash = hash_val;                                                \</span>
+<span class='curline'><a href='../S/404.html#L296'>hash_val</a>          296 src/utility/st.c   unsigned long hash_val, bin_pos;</span>
+<span class='curline'><a href='../S/404.html#L299'>hash_val</a>          299 src/utility/st.c   hash_val = do_hash(key, table);</span>
+<span class='curline'><a href='../S/404.html#L300'>hash_val</a>          300 src/utility/st.c   FIND_ENTRY(table, ptr, hash_val, bin_pos);</span>
+<span class='curline'><a href='../S/404.html#L303'>hash_val</a>          303 src/utility/st.c     ADD_DIRECT(table, key, value, hash_val, bin_pos);</span>
+<span class='curline'><a href='../S/404.html#L325'>hash_val</a>          325 src/utility/st.c   unsigned long hash_val, bin_pos;</span>
+<span class='curline'><a href='../S/404.html#L328'>hash_val</a>          328 src/utility/st.c   hash_val = do_hash(key, table);</span>
+<span class='curline'><a href='../S/404.html#L329'>hash_val</a>          329 src/utility/st.c   FIND_ENTRY(table, ptr, hash_val, bin_pos);</span>
+<span class='curline'><a href='../S/404.html#L332'>hash_val</a>          332 src/utility/st.c     ADD_DIRECT(table, key, value, hash_val, bin_pos);</span>
+<span class='curline'><a href='../S/404.html#L355'>hash_val</a>          355 src/utility/st.c   unsigned long hash_val, bin_pos;</span>
+<span class='curline'><a href='../S/404.html#L357'>hash_val</a>          357 src/utility/st.c   hash_val = do_hash(key, table);</span>
+<span class='curline'><a href='../S/404.html#L358'>hash_val</a>          358 src/utility/st.c   bin_pos = hash_val % table-&gt;num_bins;</span>
+<span class='curline'><a href='../S/404.html#L359'>hash_val</a>          359 src/utility/st.c   ADD_DIRECT(table, key, value, hash_val, bin_pos);</span>
+<span class='curline'><a href='../S/404.html#L374'>hash_val</a>          374 src/utility/st.c   unsigned long hash_val;</span>
+<span class='curline'><a href='../S/404.html#L383'>hash_val</a>          383 src/utility/st.c       hash_val = ptr-&gt;hash % new_num_bins;</span>
+<span class='curline'><a href='../S/404.html#L384'>hash_val</a>          384 src/utility/st.c       ptr-&gt;next = new_bins[hash_val];</span>
+<span class='curline'><a href='../S/404.html#L385'>hash_val</a>          385 src/utility/st.c       new_bins[hash_val] = ptr;</span>
+<span class='curline'><a href='../S/404.html#L436'>hash_val</a>          436 src/utility/st.c   unsigned long hash_val;</span>
+<span class='curline'><a href='../S/404.html#L440'>hash_val</a>          440 src/utility/st.c   hash_val = do_hash_bin(key, table);</span>
+<span class='curline'><a href='../S/404.html#L441'>hash_val</a>          441 src/utility/st.c   ptr = table-&gt;bins[hash_val];</span>
+<span class='curline'><a href='../S/404.html#L448'>hash_val</a>          448 src/utility/st.c     table-&gt;bins[hash_val] = ptr-&gt;next;</span>
+<span class='curline'><a href='../S/404.html#L472'>hash_val</a>          472 src/utility/st.c   unsigned long hash_val;</span>
+<span class='curline'><a href='../S/404.html#L475'>hash_val</a>          475 src/utility/st.c   hash_val = do_hash_bin(*key, table);</span>
+<span class='curline'><a href='../S/404.html#L476'>hash_val</a>          476 src/utility/st.c   ptr = table-&gt;bins[hash_val];</span>
+<span class='curline'><a href='../S/404.html#L580'>hash_val</a>          580 src/utility/st.c   st_data_t hash_val = hash % table-&gt;num_bins;</span>
+<span class='curline'><a href='../S/404.html#L583'>hash_val</a>          583 src/utility/st.c   for (ptr = table-&gt;bins[hash_val]; ptr != 0;) { /* エントリーの存在するチェインでのみfuncが呼ばれる */</span>
+<span class='curline'><a href='../S/404.html#L592'>hash_val</a>          592 src/utility/st.c       for (tmp = table-&gt;bins[hash_val]; tmp; tmp = tmp-&gt;next) {</span>
+<span class='curline'><a href='../S/404.html#L610'>hash_val</a>          610 src/utility/st.c         table-&gt;bins[hash_val] = ptr-&gt;next;</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>random_sample</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/657.html#L174'>random_sample</a>     174 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc double AndersonDarlingStatistic(int n, double* random_sample) {</span>
+<span class='curline'><a href='../S/657.html#L177'>random_sample</a>     177 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc     ad_sum += (2*i + 1) * log(random_sample[i] * (1 - random_sample[n-1-i]));</span>
+<span class='curline'><a href='../S/657.html#L188'>random_sample</a>     188 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc double AndersonDarlingTest(int n, double* random_sample) {</span>
+<span class='curline'><a href='../S/657.html#L189'>random_sample</a>     189 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   double ad_statistic = AndersonDarlingStatistic(n, random_sample);</span>
+<span class='curline'><a href='../S/657.html#L198'>random_sample</a>     198 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   scoped_array&lt;double&gt; random_sample(new double[n]);</span>
+<span class='curline'><a href='../S/657.html#L200'>random_sample</a>     200 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc     random_sample[i] = (i+0.01)/n;</span>
+<span class='curline'><a href='../S/657.html#L202'>random_sample</a>     202 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   sort(random_sample.get(), random_sample.get() + n);</span>
+<span class='curline'><a href='../S/657.html#L203'>random_sample</a>     203 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   double ad_stat = AndersonDarlingStatistic(n, random_sample.get());</span>
+<span class='curline'><a href='../S/657.html#L241'>random_sample</a>     241 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   scoped_array&lt;double&gt; random_sample(new double[n]);</span>
+<span class='curline'><a href='../S/657.html#L244'>random_sample</a>     244 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc     random_sample[i] = static_cast&lt;double&gt;(int_random_sample[i])/max_prng_value;</span>
+<span class='curline'><a href='../S/657.html#L247'>random_sample</a>     247 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   double ad_pvalue = AndersonDarlingTest(n, random_sample.get());</span>
+<span class='curline'><a href='../S/657.html#L282'>random_sample</a>     282 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   scoped_array&lt;double&gt; random_sample(new double[n]);</span>
+<span class='curline'><a href='../S/657.html#L286'>random_sample</a>     286 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc     random_sample[i] = 1 - exp(-static_cast&lt;double&gt;(int_random_sample[i])</span>
+<span class='curline'><a href='../S/657.html#L290'>random_sample</a>     290 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   double geom_ad_pvalue = AndersonDarlingTest(n, random_sample.get());</span>
+</pre>
+</body>
+</html>

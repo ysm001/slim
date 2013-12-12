@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>mod</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/679.html#L359'>mod</a>               359 third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc   unsigned char mod = modrm &amp; 0xC0; // mask out top two bits to get mod field</span>
+<span class='curline'><a href='../S/679.html#L361'>mod</a>               361 third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc   mod = mod &gt;&gt; 3; // shift the mod field to the right place</span>
+<span class='curline'><a href='../S/679.html#L362'>mod</a>               362 third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc   modrm = mod | modrm; // combine the r/m and mod fields as discussed</span>
+<span class='curline'><a href='../S/679.html#L363'>mod</a>               363 third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc   mod = mod &gt;&gt; 3; // shift the mod field to bits 2..0</span>
+<span class='curline'><a href='../S/679.html#L386'>mod</a>               386 third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc     return ProcessSib(start_byte + 1, mod, size);</span>
+<span class='curline'><a href='../S/679.html#L394'>mod</a>               394 third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc                                   unsigned char mod,</span>
+<span class='curline'><a href='../S/679.html#L399'>mod</a>               399 third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc     switch (mod) {</span>
+<span class='curline'><a href='../S/680.html#L139'>mod</a>               139 third_party/google-perftools-1.8.3/src/windows/mini_disassembler.h   bool ProcessSib(unsigned char* start, unsigned char mod, unsigned int&amp; size);</span>
+</pre>
+</body>
+</html>

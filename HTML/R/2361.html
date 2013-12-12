@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>SysAllocator</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/559.html#L74'>SysAllocator</a>       74 third_party/google-perftools-1.8.3/src/google/malloc_extension.h class SysAllocator {</span>
+<span class='curline'><a href='../S/559.html#L76'>SysAllocator</a>       76 third_party/google-perftools-1.8.3/src/google/malloc_extension.h   SysAllocator() {</span>
+<span class='curline'><a href='../S/559.html#L78'>SysAllocator</a>       78 third_party/google-perftools-1.8.3/src/google/malloc_extension.h   virtual ~SysAllocator();</span>
+<span class='curline'><a href='../S/559.html#L226'>SysAllocator</a>      226 third_party/google-perftools-1.8.3/src/google/malloc_extension.h   virtual SysAllocator* GetSystemAllocator();</span>
+<span class='curline'><a href='../S/559.html#L242'>SysAllocator</a>      242 third_party/google-perftools-1.8.3/src/google/malloc_extension.h   virtual void SetSystemAllocator(SysAllocator *a);</span>
+<span class='curline'><a href='../S/580.html#L106'>SysAllocator</a>      106 third_party/google-perftools-1.8.3/src/malloc_extension.cc SysAllocator::~SysAllocator() {}</span>
+<span class='curline'><a href='../S/580.html#L152'>SysAllocator</a>      152 third_party/google-perftools-1.8.3/src/malloc_extension.cc SysAllocator* MallocExtension::GetSystemAllocator() {</span>
+<span class='curline'><a href='../S/580.html#L156'>SysAllocator</a>      156 third_party/google-perftools-1.8.3/src/malloc_extension.cc void MallocExtension::SetSystemAllocator(SysAllocator *a) {</span>
+<span class='curline'><a href='../S/587.html#L89'>SysAllocator</a>       89 third_party/google-perftools-1.8.3/src/memfs_malloc.cc class HugetlbSysAllocator: public SysAllocator {</span>
+<span class='curline'><a href='../S/587.html#L91'>SysAllocator</a>       91 third_party/google-perftools-1.8.3/src/memfs_malloc.cc   explicit HugetlbSysAllocator(SysAllocator* fallback)</span>
+<span class='curline'><a href='../S/587.html#L111'>SysAllocator</a>      111 third_party/google-perftools-1.8.3/src/memfs_malloc.cc   SysAllocator* fallback_;  // Default system allocator to fall back to.</span>
+<span class='curline'><a href='../S/587.html#L259'>SysAllocator</a>      259 third_party/google-perftools-1.8.3/src/memfs_malloc.cc     SysAllocator* alloc = MallocExtension::instance()-&gt;GetSystemAllocator();</span>
+<span class='curline'><a href='../S/624.html#L116'>SysAllocator</a>      116 third_party/google-perftools-1.8.3/src/system-alloc.cc SysAllocator* sys_alloc = NULL;</span>
+<span class='curline'><a href='../S/624.html#L135'>SysAllocator</a>      135 third_party/google-perftools-1.8.3/src/system-alloc.cc class SbrkSysAllocator : public SysAllocator {</span>
+<span class='curline'><a href='../S/624.html#L137'>SysAllocator</a>      137 third_party/google-perftools-1.8.3/src/system-alloc.cc   SbrkSysAllocator() : SysAllocator() {</span>
+<span class='curline'><a href='../S/624.html#L143'>SysAllocator</a>      143 third_party/google-perftools-1.8.3/src/system-alloc.cc class MmapSysAllocator : public SysAllocator {</span>
+<span class='curline'><a href='../S/624.html#L145'>SysAllocator</a>      145 third_party/google-perftools-1.8.3/src/system-alloc.cc   MmapSysAllocator() : SysAllocator() {</span>
+<span class='curline'><a href='../S/624.html#L151'>SysAllocator</a>      151 third_party/google-perftools-1.8.3/src/system-alloc.cc class DevMemSysAllocator : public SysAllocator {</span>
+<span class='curline'><a href='../S/624.html#L153'>SysAllocator</a>      153 third_party/google-perftools-1.8.3/src/system-alloc.cc   DevMemSysAllocator() : SysAllocator() {</span>
+<span class='curline'><a href='../S/624.html#L158'>SysAllocator</a>      158 third_party/google-perftools-1.8.3/src/system-alloc.cc class DefaultSysAllocator : public SysAllocator {</span>
+<span class='curline'><a href='../S/624.html#L160'>SysAllocator</a>      160 third_party/google-perftools-1.8.3/src/system-alloc.cc   DefaultSysAllocator() : SysAllocator() {</span>
+<span class='curline'><a href='../S/624.html#L167'>SysAllocator</a>      167 third_party/google-perftools-1.8.3/src/system-alloc.cc   void SetChildAllocator(SysAllocator* alloc, unsigned int index,</span>
+<span class='curline'><a href='../S/624.html#L180'>SysAllocator</a>      180 third_party/google-perftools-1.8.3/src/system-alloc.cc   SysAllocator* allocs_[kMaxAllocators];</span>
+<span class='curline'><a href='../S/625.html#L42'>SysAllocator</a>       42 third_party/google-perftools-1.8.3/src/system-alloc.h class SysAllocator;</span>
+<span class='curline'><a href='../S/625.html#L75'>SysAllocator</a>       75 third_party/google-perftools-1.8.3/src/system-alloc.h extern PERFTOOLS_DLL_DECL SysAllocator* sys_alloc;</span>
+<span class='curline'><a href='../S/626.html#L702'>SysAllocator</a>      702 third_party/google-perftools-1.8.3/src/tcmalloc.cc   virtual SysAllocator* GetSystemAllocator() {</span>
+<span class='curline'><a href='../S/626.html#L707'>SysAllocator</a>      707 third_party/google-perftools-1.8.3/src/tcmalloc.cc   virtual void SetSystemAllocator(SysAllocator* alloc) {</span>
+<span class='curline'><a href='../S/662.html#L48'>SysAllocator</a>       48 third_party/google-perftools-1.8.3/src/tests/system-alloc_unittest.cc class ArraySysAllocator : public SysAllocator {</span>
+<span class='curline'><a href='../S/662.html#L53'>SysAllocator</a>       53 third_party/google-perftools-1.8.3/src/tests/system-alloc_unittest.cc   ArraySysAllocator() : SysAllocator() {</span>
+<span class='curline'><a href='../S/685.html#L261'>SysAllocator</a>      261 third_party/google-perftools-1.8.3/src/windows/port.cc bool RegisterSystemAllocator(SysAllocator *allocator, int priority) {</span>
+<span class='curline'><a href='../S/685.html#L270'>SysAllocator</a>      270 third_party/google-perftools-1.8.3/src/windows/port.cc SysAllocator* sys_alloc = NULL;</span>
+</pre>
+</body>
+</html>

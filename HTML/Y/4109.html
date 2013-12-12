@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>pagesize</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/530.html#L185'>pagesize</a>          185 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   explicit Arena(int) : pagesize(0) {}  // set pagesize to zero explicitly</span>
+<span class='curline'><a href='../S/530.html#L193'>pagesize</a>          193 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   size_t pagesize;        // ==getpagesize()  (init under mu, then ro)</span>
+<span class='curline'><a href='../S/530.html#L264'>pagesize</a>          264 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   if (arena-&gt;pagesize == 0) {</span>
+<span class='curline'><a href='../S/530.html#L265'>pagesize</a>          265 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     arena-&gt;pagesize = getpagesize();</span>
+<span class='curline'><a href='../S/530.html#L330'>pagesize</a>          330 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       RAW_CHECK(size % arena-&gt;pagesize == 0,</span>
+<span class='curline'><a href='../S/530.html#L332'>pagesize</a>          332 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       RAW_CHECK(reinterpret_cast&lt;intptr_t&gt;(region) % arena-&gt;pagesize == 0,</span>
+<span class='curline'><a href='../S/530.html#L459'>pagesize</a>          459 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       size_t new_pages_size = RoundUp(req_rnd, arena-&gt;pagesize * 16);</span>
+<span class='curline'><a href='../S/555.html#L501'>pagesize</a>          501 third_party/google-perftools-1.8.3/src/debugallocation.cc       int pagesize = getpagesize();</span>
+<span class='curline'><a href='../S/555.html#L502'>pagesize</a>          502 third_party/google-perftools-1.8.3/src/debugallocation.cc       int num_pages = (sz + pagesize - 1) / pagesize + 1;</span>
+<span class='curline'><a href='../S/555.html#L503'>pagesize</a>          503 third_party/google-perftools-1.8.3/src/debugallocation.cc       char* p = (char*) mmap(NULL, num_pages * pagesize, PROT_READ|PROT_WRITE,</span>
+<span class='curline'><a href='../S/555.html#L514'>pagesize</a>          514 third_party/google-perftools-1.8.3/src/debugallocation.cc       if (mprotect(p + (num_pages - 1) * pagesize, pagesize, PROT_NONE)) {</span>
+<span class='curline'><a href='../S/555.html#L517'>pagesize</a>          517 third_party/google-perftools-1.8.3/src/debugallocation.cc       b = (MallocBlock*) (p + (num_pages - 1) * pagesize - sz);</span>
+<span class='curline'><a href='../S/555.html#L544'>pagesize</a>          544 third_party/google-perftools-1.8.3/src/debugallocation.cc       int pagesize = getpagesize();</span>
+<span class='curline'><a href='../S/555.html#L545'>pagesize</a>          545 third_party/google-perftools-1.8.3/src/debugallocation.cc       int num_pages = (size + pagesize - 1) / pagesize + 1;</span>
+<span class='curline'><a href='../S/555.html#L549'>pagesize</a>          549 third_party/google-perftools-1.8.3/src/debugallocation.cc         mprotect(p - (num_pages - 1) * pagesize + size,</span>
+<span class='curline'><a href='../S/555.html#L550'>pagesize</a>          550 third_party/google-perftools-1.8.3/src/debugallocation.cc                  num_pages * pagesize, PROT_NONE);</span>
+<span class='curline'><a href='../S/555.html#L552'>pagesize</a>          552 third_party/google-perftools-1.8.3/src/debugallocation.cc         munmap(p - (num_pages - 1) * pagesize + size, num_pages * pagesize);</span>
+<span class='curline'><a href='../S/555.html#L1391'>pagesize</a>         1391 third_party/google-perftools-1.8.3/src/debugallocation.cc   int pagesize = getpagesize();</span>
+<span class='curline'><a href='../S/555.html#L1392'>pagesize</a>         1392 third_party/google-perftools-1.8.3/src/debugallocation.cc   size = RoundUp(size, pagesize);</span>
+<span class='curline'><a href='../S/555.html#L1394'>pagesize</a>         1394 third_party/google-perftools-1.8.3/src/debugallocation.cc     size = pagesize;   // http://man.free4web.biz/man3/libmpatrol.3.html</span>
+<span class='curline'><a href='../S/555.html#L1396'>pagesize</a>         1396 third_party/google-perftools-1.8.3/src/debugallocation.cc   void *p = do_debug_memalign_or_debug_cpp_memalign(pagesize, size);</span>
+<span class='curline'><a href='../S/584.html#L75'>pagesize</a>           75 third_party/google-perftools-1.8.3/src/malloc_hook_mmap_linux.h     static int pagesize = 0;</span>
+<span class='curline'><a href='../S/584.html#L76'>pagesize</a>           76 third_party/google-perftools-1.8.3/src/malloc_hook_mmap_linux.h     if (!pagesize) pagesize = getpagesize();</span>
+<span class='curline'><a href='../S/584.html#L79'>pagesize</a>           79 third_party/google-perftools-1.8.3/src/malloc_hook_mmap_linux.h     if (offset &amp; (pagesize - 1)) {</span>
+<span class='curline'><a href='../S/584.html#L87'>pagesize</a>           87 third_party/google-perftools-1.8.3/src/malloc_hook_mmap_linux.h                              (off_t) (offset / pagesize));</span>
+<span class='curline'><a href='../S/624.html#L112'>pagesize</a>          112 third_party/google-perftools-1.8.3/src/system-alloc.cc static size_t pagesize = 0;</span>
+<span class='curline'><a href='../S/624.html#L277'>pagesize</a>          277 third_party/google-perftools-1.8.3/src/system-alloc.cc   if (pagesize == 0) pagesize = getpagesize();</span>
+<span class='curline'><a href='../S/624.html#L278'>pagesize</a>          278 third_party/google-perftools-1.8.3/src/system-alloc.cc   if (alignment &lt; pagesize) alignment = pagesize;</span>
+<span class='curline'><a href='../S/624.html#L293'>pagesize</a>          293 third_party/google-perftools-1.8.3/src/system-alloc.cc   if (alignment &gt; pagesize) {</span>
+<span class='curline'><a href='../S/624.html#L294'>pagesize</a>          294 third_party/google-perftools-1.8.3/src/system-alloc.cc     extra = alignment - pagesize;</span>
+<span class='curline'><a href='../S/624.html#L361'>pagesize</a>          361 third_party/google-perftools-1.8.3/src/system-alloc.cc   if (pagesize == 0) pagesize = getpagesize();</span>
+<span class='curline'><a href='../S/624.html#L362'>pagesize</a>          362 third_party/google-perftools-1.8.3/src/system-alloc.cc   if (alignment &lt; pagesize) alignment = pagesize;</span>
+<span class='curline'><a href='../S/624.html#L377'>pagesize</a>          377 third_party/google-perftools-1.8.3/src/system-alloc.cc   if (alignment &gt; pagesize) {</span>
+<span class='curline'><a href='../S/624.html#L378'>pagesize</a>          378 third_party/google-perftools-1.8.3/src/system-alloc.cc     extra = alignment - pagesize;</span>
+<span class='curline'><a href='../S/624.html#L497'>pagesize</a>          497 third_party/google-perftools-1.8.3/src/system-alloc.cc   if (pagesize == 0) pagesize = getpagesize();</span>
+<span class='curline'><a href='../S/624.html#L498'>pagesize</a>          498 third_party/google-perftools-1.8.3/src/system-alloc.cc   const size_t pagemask = pagesize - 1;</span>
+<span class='curline'><a href='../S/624.html#L506'>pagesize</a>          506 third_party/google-perftools-1.8.3/src/system-alloc.cc   new_start = (new_start + pagesize - 1) &amp; ~pagemask;</span>
+<span class='curline'><a href='../S/626.html#L1601'>pagesize</a>         1601 third_party/google-perftools-1.8.3/src/tcmalloc.cc static size_t pagesize = 0;</span>
+<span class='curline'><a href='../S/626.html#L1605'>pagesize</a>         1605 third_party/google-perftools-1.8.3/src/tcmalloc.cc   if (pagesize == 0) pagesize = getpagesize();</span>
+<span class='curline'><a href='../S/626.html#L1606'>pagesize</a>         1606 third_party/google-perftools-1.8.3/src/tcmalloc.cc   void* result = do_memalign_or_cpp_memalign(pagesize, size);</span>
+<span class='curline'><a href='../S/626.html#L1613'>pagesize</a>         1613 third_party/google-perftools-1.8.3/src/tcmalloc.cc   if (pagesize == 0) pagesize = getpagesize();</span>
+<span class='curline'><a href='../S/626.html#L1615'>pagesize</a>         1615 third_party/google-perftools-1.8.3/src/tcmalloc.cc     size = pagesize;   // http://man.free4web.biz/man3/libmpatrol.3.html</span>
+<span class='curline'><a href='../S/626.html#L1617'>pagesize</a>         1617 third_party/google-perftools-1.8.3/src/tcmalloc.cc   size = (size + pagesize - 1) &amp; ~(pagesize - 1);</span>
+<span class='curline'><a href='../S/626.html#L1618'>pagesize</a>         1618 third_party/google-perftools-1.8.3/src/tcmalloc.cc   void* result = do_memalign_or_cpp_memalign(pagesize, size);</span>
+<span class='curline'><a href='../S/647.html#L194'>pagesize</a>          194 third_party/google-perftools-1.8.3/src/tests/memalign_unittest.cc   const int pagesize = getpagesize();</span>
+<span class='curline'><a href='../S/647.html#L199'>pagesize</a>          199 third_party/google-perftools-1.8.3/src/tests/memalign_unittest.cc       CheckAlignment(p, pagesize);</span>
+<span class='curline'><a href='../S/647.html#L210'>pagesize</a>          210 third_party/google-perftools-1.8.3/src/tests/memalign_unittest.cc       CheckAlignment(p, pagesize);</span>
+<span class='curline'><a href='../S/647.html#L211'>pagesize</a>          211 third_party/google-perftools-1.8.3/src/tests/memalign_unittest.cc       int alloc_needed = ((s + pagesize - 1) / pagesize) * pagesize;</span>
+<span class='curline'><a href='../S/685.html#L54'>pagesize</a>           54 third_party/google-perftools-1.8.3/src/windows/port.cc   static int pagesize = 0;</span>
+<span class='curline'><a href='../S/685.html#L55'>pagesize</a>           55 third_party/google-perftools-1.8.3/src/windows/port.cc   if (pagesize == 0) {</span>
+<span class='curline'><a href='../S/685.html#L58'>pagesize</a>           58 third_party/google-perftools-1.8.3/src/windows/port.cc     pagesize = std::max(system_info.dwPageSize,</span>
+<span class='curline'><a href='../S/685.html#L61'>pagesize</a>           61 third_party/google-perftools-1.8.3/src/windows/port.cc   return pagesize;</span>
+<span class='curline'><a href='../S/685.html#L226'>pagesize</a>          226 third_party/google-perftools-1.8.3/src/windows/port.cc   const int pagesize = getpagesize();</span>
+<span class='curline'><a href='../S/685.html#L227'>pagesize</a>          227 third_party/google-perftools-1.8.3/src/windows/port.cc   if (alignment &lt; pagesize) alignment = pagesize;</span>
+<span class='curline'><a href='../S/685.html#L237'>pagesize</a>          237 third_party/google-perftools-1.8.3/src/windows/port.cc   if (alignment &gt; pagesize) {</span>
+<span class='curline'><a href='../S/685.html#L238'>pagesize</a>          238 third_party/google-perftools-1.8.3/src/windows/port.cc     extra = alignment - pagesize;</span>
+</pre>
+</body>
+</html>

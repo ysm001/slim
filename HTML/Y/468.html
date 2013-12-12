@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>MB</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/664.html#L838'>MB</a>                838 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   static const int MB = 1048576;</span>
+<span class='curline'><a href='../S/664.html#L839'>MB</a>                839 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   void* a = malloc(MB);</span>
+<span class='curline'><a href='../S/664.html#L840'>MB</a>                840 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   void* b = malloc(MB);</span>
+<span class='curline'><a href='../S/664.html#L841'>MB</a>                841 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   CheckRangeCallback(a, base::MallocRange::INUSE, MB);</span>
+<span class='curline'><a href='../S/664.html#L842'>MB</a>                842 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   CheckRangeCallback(b, base::MallocRange::INUSE, MB);</span>
+<span class='curline'><a href='../S/664.html#L844'>MB</a>                844 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   CheckRangeCallback(a, base::MallocRange::FREE, MB);</span>
+<span class='curline'><a href='../S/664.html#L845'>MB</a>                845 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   CheckRangeCallback(b, base::MallocRange::INUSE, MB);</span>
+<span class='curline'><a href='../S/664.html#L847'>MB</a>                847 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   CheckRangeCallback(a, base::MallocRange::UNMAPPED, MB);</span>
+<span class='curline'><a href='../S/664.html#L848'>MB</a>                848 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   CheckRangeCallback(b, base::MallocRange::INUSE, MB);</span>
+<span class='curline'><a href='../S/664.html#L850'>MB</a>                850 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   CheckRangeCallback(a, base::MallocRange::UNMAPPED, MB);</span>
+<span class='curline'><a href='../S/664.html#L851'>MB</a>                851 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   CheckRangeCallback(b, base::MallocRange::FREE, MB);</span>
+<span class='curline'><a href='../S/664.html#L871'>MB</a>                871 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   static const int MB = 1048576;</span>
+<span class='curline'><a href='../S/664.html#L872'>MB</a>                872 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   void* a = malloc(MB);</span>
+<span class='curline'><a href='../S/664.html#L873'>MB</a>                873 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   void* b = malloc(MB);</span>
+<span class='curline'><a href='../S/664.html#L882'>MB</a>                882 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   MallocExtension::instance()-&gt;ReleaseToSystem(MB);</span>
+<span class='curline'><a href='../S/664.html#L888'>MB</a>                888 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   MallocExtension::instance()-&gt;ReleaseToSystem(MB/2);</span>
+<span class='curline'><a href='../S/664.html#L889'>MB</a>                889 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   EXPECT_EQ(starting_bytes + MB, GetUnmappedBytes());</span>
+<span class='curline'><a href='../S/664.html#L892'>MB</a>                892 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   MallocExtension::instance()-&gt;ReleaseToSystem(MB/4);</span>
+<span class='curline'><a href='../S/664.html#L893'>MB</a>                893 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   EXPECT_EQ(starting_bytes + MB, GetUnmappedBytes());</span>
+<span class='curline'><a href='../S/664.html#L898'>MB</a>                898 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   MallocExtension::instance()-&gt;ReleaseToSystem(MB/2);</span>
+<span class='curline'><a href='../S/664.html#L899'>MB</a>                899 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   EXPECT_EQ(starting_bytes + 2*MB, GetUnmappedBytes());</span>
+<span class='curline'><a href='../S/664.html#L902'>MB</a>                902 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   MallocExtension::instance()-&gt;ReleaseToSystem(MB/2);</span>
+<span class='curline'><a href='../S/664.html#L903'>MB</a>                903 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   EXPECT_EQ(starting_bytes + 2*MB, GetUnmappedBytes());</span>
+<span class='curline'><a href='../S/664.html#L907'>MB</a>                907 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   EXPECT_EQ(starting_bytes + 2*MB, GetUnmappedBytes());</span>
+<span class='curline'><a href='../S/664.html#L909'>MB</a>                909 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   a = malloc(MB);</span>
+<span class='curline'><a href='../S/664.html#L911'>MB</a>                911 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   EXPECT_EQ(starting_bytes + MB, GetUnmappedBytes());</span>
+<span class='curline'><a href='../S/664.html#L915'>MB</a>                915 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   EXPECT_EQ(starting_bytes + 2*MB, GetUnmappedBytes());</span>
+</pre>
+</body>
+</html>

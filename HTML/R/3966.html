@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>lmn_register_c_fun</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/313.html#L53'>lmn_register_c_fun</a>   53 src/ccallback.h void lmn_register_c_fun(const char *name, void *f, int arity);</span>
+<span class='curline'><a href='../S/317.html#L1060'>lmn_register_c_fun</a> 1060 src/dumper.c     lmn_register_c_fun("cb_dump_mem", cb_dump_mem, 3);</span>
+<span class='curline'><a href='../S/322.html#L91'>lmn_register_c_fun</a>   91 src/ext/atomic.c   lmn_register_c_fun("atomic_ruleset", atomic_ruleset, 1);</span>
+<span class='curline'><a href='../S/325.html#L167'>lmn_register_c_fun</a>  167 src/ext/integer.c   lmn_register_c_fun("integer_set", integer_set, 3);</span>
+<span class='curline'><a href='../S/325.html#L168'>lmn_register_c_fun</a>  168 src/ext/integer.c   lmn_register_c_fun("integer_srand", integer_srand, 1);</span>
+<span class='curline'><a href='../S/325.html#L169'>lmn_register_c_fun</a>  169 src/ext/integer.c   lmn_register_c_fun("integer_rand", integer_rand, 2);</span>
+<span class='curline'><a href='../S/325.html#L170'>lmn_register_c_fun</a>  170 src/ext/integer.c   lmn_register_c_fun("integer_of_string", integer_of_string, 2);</span>
+<span class='curline'><a href='../S/326.html#L149'>lmn_register_c_fun</a>  149 src/ext/io.c     lmn_register_c_fun("cb_print_newline_with_port", cb_print_newline_with_port, 2);</span>
+<span class='curline'><a href='../S/326.html#L150'>lmn_register_c_fun</a>  150 src/ext/io.c     lmn_register_c_fun("cb_print_line_with_port", cb_print_line_with_port, 3);</span>
+<span class='curline'><a href='../S/326.html#L151'>lmn_register_c_fun</a>  151 src/ext/io.c     lmn_register_c_fun("cb_read_line", cb_input_line_with_oprt, 3);</span>
+<span class='curline'><a href='../S/327.html#L70'>lmn_register_c_fun</a>   70 src/ext/nd_conf.c   lmn_register_c_fun("set_functor_priority", cb_set_functor_priority, 3);</span>
+<span class='curline'><a href='../S/328.html#L142'>lmn_register_c_fun</a>  142 src/ext/nlmem.c   lmn_register_c_fun("nlmem_copy", nlmem_copy, 3);</span>
+<span class='curline'><a href='../S/328.html#L143'>lmn_register_c_fun</a>  143 src/ext/nlmem.c   lmn_register_c_fun("nlmem_kill", nlmem_kill, 2);</span>
+<span class='curline'><a href='../S/329.html#L62'>lmn_register_c_fun</a>   62 src/ext/time.c   lmn_register_c_fun("gettime", gettime, 1);</span>
+<span class='curline'><a href='../S/362.html#L689'>lmn_register_c_fun</a>  689 src/port.c       lmn_register_c_fun("cb_port_stdin", cb_stdin_port, 1);</span>
+<span class='curline'><a href='../S/362.html#L690'>lmn_register_c_fun</a>  690 src/port.c       lmn_register_c_fun("cb_port_stdout", cb_stdout_port, 1);</span>
+<span class='curline'><a href='../S/362.html#L691'>lmn_register_c_fun</a>  691 src/port.c       lmn_register_c_fun("cb_port_stderr", cb_stderr_port, 1);</span>
+<span class='curline'><a href='../S/362.html#L692'>lmn_register_c_fun</a>  692 src/port.c       lmn_register_c_fun("cb_port_getc", cb_port_getc, 3);</span>
+<span class='curline'><a href='../S/362.html#L693'>lmn_register_c_fun</a>  693 src/port.c       lmn_register_c_fun("cb_port_putc", cb_port_putc, 3);</span>
+<span class='curline'><a href='../S/362.html#L694'>lmn_register_c_fun</a>  694 src/port.c       lmn_register_c_fun("cb_port_puts", cb_port_puts, 3);</span>
+<span class='curline'><a href='../S/362.html#L695'>lmn_register_c_fun</a>  695 src/port.c       lmn_register_c_fun("cb_port_read_line", cb_port_read_line, 3);</span>
+<span class='curline'><a href='../S/362.html#L696'>lmn_register_c_fun</a>  696 src/port.c       lmn_register_c_fun("cb_make_output_string", cb_make_output_string, 1);</span>
+<span class='curline'><a href='../S/362.html#L697'>lmn_register_c_fun</a>  697 src/port.c       lmn_register_c_fun("cb_make_input_string", cb_make_input_string, 2);</span>
+<span class='curline'><a href='../S/362.html#L698'>lmn_register_c_fun</a>  698 src/port.c       lmn_register_c_fun("cb_port_output_string", cb_port_output_string, 3);</span>
+<span class='curline'><a href='../S/362.html#L699'>lmn_register_c_fun</a>  699 src/port.c       lmn_register_c_fun("cb_port_close", cb_port_close, 2);</span>
+<span class='curline'><a href='../S/362.html#L700'>lmn_register_c_fun</a>  700 src/port.c       lmn_register_c_fun("cb_port_free", cb_port_free, 1);</span>
+<span class='curline'><a href='../S/377.html#L376'>lmn_register_c_fun</a>  376 src/string.c     lmn_register_c_fun("string_make", cb_string_make, 2);</span>
+<span class='curline'><a href='../S/377.html#L377'>lmn_register_c_fun</a>  377 src/string.c     lmn_register_c_fun("string_concat", cb_string_concat, 3);</span>
+<span class='curline'><a href='../S/377.html#L378'>lmn_register_c_fun</a>  378 src/string.c     lmn_register_c_fun("string_length", cb_string_length, 2);</span>
+<span class='curline'><a href='../S/377.html#L379'>lmn_register_c_fun</a>  379 src/string.c     lmn_register_c_fun("string_reverse", cb_string_reverse, 2);</span>
+<span class='curline'><a href='../S/377.html#L380'>lmn_register_c_fun</a>  380 src/string.c     lmn_register_c_fun("string_substr", cb_string_substr, 4);</span>
+<span class='curline'><a href='../S/377.html#L381'>lmn_register_c_fun</a>  381 src/string.c     lmn_register_c_fun("string_substr_right", cb_string_substr_right, 3);</span>
+</pre>
+</body>
+</html>

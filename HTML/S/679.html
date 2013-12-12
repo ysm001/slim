@@ -1,0 +1,452 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/738.html'>third_party</a>/<a href='../files/739.html'>google-perftools-1.8.3</a>/<a href='../files/740.html'>src</a>/<a href='../files/745.html'>windows</a>/mini_disassembler.cc</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L43'>[^]</a><a href='#L393'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L43' title='Defined at 43.'>address_default_is_32_bits_</a></li>
+<li><a href='#L49' title='Defined at 49.'>address_default_is_32_bits_</a></li>
+<li><a href='#L100' title='Defined at 100.'>Initialize</a></li>
+<li><a href='#L112' title='Defined at 112.'>ProcessPrefixes</a></li>
+<li><a href='#L144' title='Defined at 144.'>ProcessOpcode</a></li>
+<li><a href='#L225' title='Defined at 225.'>ProcessOperand</a></li>
+<li><a href='#L346' title='Defined at 346.'>ProcessModrm</a></li>
+<li><a href='#L393' title='Defined at 393.'>ProcessSib</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>/* Copyright (c) 2007, Google Inc.</em>
+<a id='L2' name='L2' /><em class='comment'> * All rights reserved.</em>
+<a id='L3' name='L3' /><em class='comment'> * </em>
+<a id='L4' name='L4' /><em class='comment'> * Redistribution and use in source and binary forms, with or without</em>
+<a id='L5' name='L5' /><em class='comment'> * modification, are permitted provided that the following conditions are</em>
+<a id='L6' name='L6' /><em class='comment'> * met:</em>
+<a id='L7' name='L7' /><em class='comment'> * </em>
+<a id='L8' name='L8' /><em class='comment'> *     * Redistributions of source code must retain the above copyright</em>
+<a id='L9' name='L9' /><em class='comment'> * notice, this list of conditions and the following disclaimer.</em>
+<a id='L10' name='L10' /><em class='comment'> *     * Redistributions in binary form must reproduce the above</em>
+<a id='L11' name='L11' /><em class='comment'> * copyright notice, this list of conditions and the following disclaimer</em>
+<a id='L12' name='L12' /><em class='comment'> * in the documentation and/or other materials provided with the</em>
+<a id='L13' name='L13' /><em class='comment'> * distribution.</em>
+<a id='L14' name='L14' /><em class='comment'> *     * Neither the name of Google Inc. nor the names of its</em>
+<a id='L15' name='L15' /><em class='comment'> * contributors may be used to endorse or promote products derived from</em>
+<a id='L16' name='L16' /><em class='comment'> * this software without specific prior written permission.</em>
+<a id='L17' name='L17' /><em class='comment'> * </em>
+<a id='L18' name='L18' /><em class='comment'> * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L19' name='L19' /><em class='comment'> * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L20' name='L20' /><em class='comment'> * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L21' name='L21' /><em class='comment'> * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L22' name='L22' /><em class='comment'> * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L23' name='L23' /><em class='comment'> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L24' name='L24' /><em class='comment'> * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L25' name='L25' /><em class='comment'> * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L26' name='L26' /><em class='comment'> * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L27' name='L27' /><em class='comment'> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L28' name='L28' /><em class='comment'> * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L29' name='L29' /><em class='comment'> *</em>
+<a id='L30' name='L30' /><em class='comment'> * ---</em>
+<a id='L31' name='L31' /><em class='comment'> * Author: Joi Sigurdsson</em>
+<a id='L32' name='L32' /><em class='comment'> *</em>
+<a id='L33' name='L33' /><em class='comment'> * Implementation of MiniDisassembler.</em>
+<a id='L34' name='L34' /><em class='comment'> */</em>
+<a id='L35' name='L35' />
+<a id='L36' name='L36' /><em class='sharp'>#include</em> "<a href='680.html'>mini_disassembler.h</a>"
+<a id='L37' name='L37' />
+<a id='L38' name='L38' /><strong class='reserved'>namespace</strong> <a href='../R/4662.html' title='Multiple refered from 8 places.'>sidestep</a> <em class='brace'>{</em>
+<a id='L39' name='L39' />
+<a id='L40' name='L40' /><a href='../Y/520.html' title='Multiple used in 17 places.'>MiniDisassembler</a>::<a href='../Y/520.html' title='Multiple used in 17 places.'>MiniDisassembler</a>(<strong class='reserved'>bool</strong> <a href='../Y/3988.html' title='Multiple used in 2 places.'>operand_default_is_32_bits</a>,
+<a id='L41' name='L41' />                                   <strong class='reserved'>bool</strong> <a href='../Y/1414.html' title='Multiple used in 2 places.'>address_default_is_32_bits</a>)
+<a id='L42' name='L42' />    : <a href='../Y/3989.html' title='Multiple used in 5 places.'>operand_default_is_32_bits_</a>(<a href='../Y/3988.html' title='Multiple used in 2 places.'>operand_default_is_32_bits</a>),
+<a id='L43' name='L43' />      <a href='../R/2937.html' title='Multiple refered from 3 places.'>address_default_is_32_bits_</a>(<a href='../Y/1414.html' title='Multiple used in 2 places.'>address_default_is_32_bits</a>) <em class='brace'>{</em>
+<a id='L44' name='L44' />  <a href='../D/1273.html' title='Multiple defined in 4 places.'>Initialize</a>();
+<a id='L45' name='L45' /><em class='brace'>}</em>
+<a id='L46' name='L46' />
+<a id='L47' name='L47' /><a href='../Y/520.html' title='Multiple used in 17 places.'>MiniDisassembler</a>::<a href='../Y/520.html' title='Multiple used in 17 places.'>MiniDisassembler</a>()
+<a id='L48' name='L48' />    : <a href='../Y/3989.html' title='Multiple used in 5 places.'>operand_default_is_32_bits_</a>(<strong class='reserved'>true</strong>),
+<a id='L49' name='L49' />      <a href='../R/2937.html' title='Multiple refered from 3 places.'>address_default_is_32_bits_</a>(<strong class='reserved'>true</strong>) <em class='brace'>{</em>
+<a id='L50' name='L50' />  <a href='../D/1273.html' title='Multiple defined in 4 places.'>Initialize</a>();
+<a id='L51' name='L51' /><em class='brace'>}</em>
+<a id='L52' name='L52' />
+<a id='L53' name='L53' /><a href='../S/681.html#L43' title='Defined at 43 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>InstructionType</a> <a href='../Y/520.html' title='Multiple used in 17 places.'>MiniDisassembler</a>::<a href='../R/540.html' title='Multiple refered from 3 places.'>Disassemble</a>(
+<a id='L54' name='L54' />    <strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong>* <a href='../Y/5044.html' title='Multiple used in 19 places.'>start_byte</a>,
+<a id='L55' name='L55' />    <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong>&amp; <a href='../Y/2858.html' title='Multiple used in 3 places.'>instruction_bytes</a>) <em class='brace'>{</em>
+<a id='L56' name='L56' />  <em class='comment'>// Clean up any state from previous invocations.</em>
+<a id='L57' name='L57' />  <a href='../D/1273.html' title='Multiple defined in 4 places.'>Initialize</a>();
+<a id='L58' name='L58' />
+<a id='L59' name='L59' />  <em class='comment'>// Start by processing any prefixes.</em>
+<a id='L60' name='L60' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong>* <a href='../Y/1925.html' title='Multiple used in 10 places.'>current_byte</a> = <a href='../Y/5044.html' title='Multiple used in 19 places.'>start_byte</a>;
+<a id='L61' name='L61' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a> = 0;
+<a id='L62' name='L62' />  <a href='../S/681.html#L43' title='Defined at 43 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>InstructionType</a> <a href='../Y/2859.html' title='Multiple used in 13 places.'>instruction_type</a> = <a href='../S/679.html#L112' title='Defined at 112 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc.'>ProcessPrefixes</a>(<a href='../Y/1925.html' title='Multiple used in 10 places.'>current_byte</a>, <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>);
+<a id='L63' name='L63' />
+<a id='L64' name='L64' />  <strong class='reserved'>if</strong> (<a href='../S/681.html#L47' title='Defined at 47 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>IT_UNKNOWN</a> == <a href='../Y/2859.html' title='Multiple used in 13 places.'>instruction_type</a>)
+<a id='L65' name='L65' />    <strong class='reserved'>return</strong> <a href='../Y/2859.html' title='Multiple used in 13 places.'>instruction_type</a>;
+<a id='L66' name='L66' />
+<a id='L67' name='L67' />  <a href='../Y/1925.html' title='Multiple used in 10 places.'>current_byte</a> += <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>;
+<a id='L68' name='L68' />  <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a> = 0;
+<a id='L69' name='L69' />
+<a id='L70' name='L70' />  <em class='comment'>// Invariant: We have stripped all prefixes, and the operand_is_32_bits_</em>
+<a id='L71' name='L71' />  <em class='comment'>// and address_is_32_bits_ flags are correctly set.</em>
+<a id='L72' name='L72' />
+<a id='L73' name='L73' />  <a href='../Y/2859.html' title='Multiple used in 13 places.'>instruction_type</a> = <a href='../S/679.html#L144' title='Defined at 144 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc.'>ProcessOpcode</a>(<a href='../Y/1925.html' title='Multiple used in 10 places.'>current_byte</a>, 0, <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>);
+<a id='L74' name='L74' />
+<a id='L75' name='L75' />  <em class='comment'>// Check for error processing instruction</em>
+<a id='L76' name='L76' />  <strong class='reserved'>if</strong> ((<a href='../S/681.html#L47' title='Defined at 47 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>IT_UNKNOWN</a> == <a href='../Y/2860.html' title='Multiple used in 10 places.'>instruction_type_</a>) || (<a href='../S/681.html#L45' title='Defined at 45 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>IT_UNUSED</a> == <a href='../Y/2860.html' title='Multiple used in 10 places.'>instruction_type_</a>)) <em class='brace'>{</em>
+<a id='L77' name='L77' />    <strong class='reserved'>return</strong> <a href='../S/681.html#L47' title='Defined at 47 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>IT_UNKNOWN</a>;
+<a id='L78' name='L78' />  <em class='brace'>}</em>
+<a id='L79' name='L79' />
+<a id='L80' name='L80' />  <a href='../Y/1925.html' title='Multiple used in 10 places.'>current_byte</a> += <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>;
+<a id='L81' name='L81' />
+<a id='L82' name='L82' />  <em class='comment'>// Invariant: operand_bytes_ indicates the total size of operands</em>
+<a id='L83' name='L83' />  <em class='comment'>// specified by the opcode and/or ModR/M byte and/or SIB byte.</em>
+<a id='L84' name='L84' />  <em class='comment'>// pCurrentByte points to the first byte after the ModR/M byte, or after</em>
+<a id='L85' name='L85' />  <em class='comment'>// the SIB byte if it is present (i.e. the first byte of any operands</em>
+<a id='L86' name='L86' />  <em class='comment'>// encoded in the instruction).</em>
+<a id='L87' name='L87' />
+<a id='L88' name='L88' />  <em class='comment'>// We get the total length of any prefixes, the opcode, and the ModR/M and</em>
+<a id='L89' name='L89' />  <em class='comment'>// SIB bytes if present, by taking the difference of the original starting</em>
+<a id='L90' name='L90' />  <em class='comment'>// address and the current byte (which points to the first byte of the</em>
+<a id='L91' name='L91' />  <em class='comment'>// operands if present, or to the first byte of the next instruction if</em>
+<a id='L92' name='L92' />  <em class='comment'>// they are not).  Adding the count of bytes in the operands encoded in</em>
+<a id='L93' name='L93' />  <em class='comment'>// the instruction gives us the full length of the instruction in bytes.</em>
+<a id='L94' name='L94' />  <a href='../Y/2858.html' title='Multiple used in 3 places.'>instruction_bytes</a> += <a href='../Y/3986.html' title='Multiple used in 20 places.'>operand_bytes_</a> + (<a href='../Y/1925.html' title='Multiple used in 10 places.'>current_byte</a> - <a href='../Y/5044.html' title='Multiple used in 19 places.'>start_byte</a>);
+<a id='L95' name='L95' />
+<a id='L96' name='L96' />  <em class='comment'>// Return the instruction type, which was set by ProcessOpcode().</em>
+<a id='L97' name='L97' />  <strong class='reserved'>return</strong> <a href='../Y/2860.html' title='Multiple used in 10 places.'>instruction_type_</a>;
+<a id='L98' name='L98' /><em class='brace'>}</em>
+<a id='L99' name='L99' />
+<a id='L100' name='L100' /><strong class='reserved'>void</strong> <a href='../Y/520.html' title='Multiple used in 17 places.'>MiniDisassembler</a>::<a href='../R/1098.html' title='Multiple refered from 10 places.'>Initialize</a>() <em class='brace'>{</em>
+<a id='L101' name='L101' />  <a href='../Y/3990.html' title='Multiple used in 6 places.'>operand_is_32_bits_</a> = <a href='../Y/3989.html' title='Multiple used in 5 places.'>operand_default_is_32_bits_</a>;
+<a id='L102' name='L102' />  <a href='../Y/1415.html' title='Multiple used in 4 places.'>address_is_32_bits_</a> = <a href='../D/3301.html' title='Multiple defined in 2 places.'>address_default_is_32_bits_</a>;
+<a id='L103' name='L103' />  <a href='../Y/3986.html' title='Multiple used in 20 places.'>operand_bytes_</a> = 0;
+<a id='L104' name='L104' />  <a href='../Y/2647.html' title='Multiple used in 6 places.'>have_modrm_</a> = <strong class='reserved'>false</strong>;
+<a id='L105' name='L105' />  <a href='../Y/4828.html' title='Multiple used in 4 places.'>should_decode_modrm_</a> = <strong class='reserved'>false</strong>;
+<a id='L106' name='L106' />  <a href='../Y/2860.html' title='Multiple used in 10 places.'>instruction_type_</a> = <a href='../S/681.html#L47' title='Defined at 47 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>IT_UNKNOWN</a>;
+<a id='L107' name='L107' />  <a href='../Y/2584.html' title='Multiple used in 4 places.'>got_f2_prefix_</a> = <strong class='reserved'>false</strong>;
+<a id='L108' name='L108' />  <a href='../Y/2585.html' title='Multiple used in 4 places.'>got_f3_prefix_</a> = <strong class='reserved'>false</strong>;
+<a id='L109' name='L109' />  <a href='../Y/2583.html' title='Multiple used in 4 places.'>got_66_prefix_</a> = <strong class='reserved'>false</strong>;
+<a id='L110' name='L110' /><em class='brace'>}</em>
+<a id='L111' name='L111' />
+<a id='L112' name='L112' /><a href='../S/681.html#L43' title='Defined at 43 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>InstructionType</a> <a href='../Y/520.html' title='Multiple used in 17 places.'>MiniDisassembler</a>::<a href='../R/1992.html' title='Multiple refered from 3 places.'>ProcessPrefixes</a>(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong>* <a href='../Y/5044.html' title='Multiple used in 19 places.'>start_byte</a>,
+<a id='L113' name='L113' />                                                  <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong>&amp; <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>) <em class='brace'>{</em>
+<a id='L114' name='L114' />  <a href='../S/681.html#L43' title='Defined at 43 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>InstructionType</a> <a href='../Y/2859.html' title='Multiple used in 13 places.'>instruction_type</a> = <a href='../S/681.html#L61' title='Defined at 61 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>IT_GENERIC</a>;
+<a id='L115' name='L115' />  <strong class='reserved'>const</strong> <a href='../S/681.html#L169' title='Defined at 169 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>Opcode</a>&amp; <a href='../Y/3979.html' title='Multiple used in 15 places.'>opcode</a> = <a href='../Y/4675.html' title='Multiple used in 4 places.'>s_ia32_opcode_map_</a>[0].<a href='../S/608.html#L59' title='Defined at 59 in third_party/google-perftools-1.8.3/src/stack_trace_table.cc.'>table_</a>[*<a href='../Y/5044.html' title='Multiple used in 19 places.'>start_byte</a>];
+<a id='L116' name='L116' />
+<a id='L117' name='L117' />  <strong class='reserved'>switch</strong> (<a href='../Y/3979.html' title='Multiple used in 15 places.'>opcode</a>.<a href='../Y/5493.html' title='Multiple used in 7 places.'>type_</a>) <em class='brace'>{</em>
+<a id='L118' name='L118' />    <strong class='reserved'>case</strong> <a href='../S/681.html#L53' title='Defined at 53 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>IT_PREFIX_ADDRESS</a>:
+<a id='L119' name='L119' />      <a href='../Y/1415.html' title='Multiple used in 4 places.'>address_is_32_bits_</a> = !<a href='../D/3301.html' title='Multiple defined in 2 places.'>address_default_is_32_bits_</a>;
+<a id='L120' name='L120' />      <strong class='reserved'>goto</strong> <a href='../Y/3830.html' title='Multiple used in 2 places.'>nochangeoperand</a>;
+<a id='L121' name='L121' />    <strong class='reserved'>case</strong> <a href='../S/681.html#L55' title='Defined at 55 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>IT_PREFIX_OPERAND</a>:
+<a id='L122' name='L122' />      <a href='../Y/3990.html' title='Multiple used in 6 places.'>operand_is_32_bits_</a> = !<a href='../Y/3989.html' title='Multiple used in 5 places.'>operand_default_is_32_bits_</a>;
+<a id='L123' name='L123' />      <a href='../Y/3830.html' title='Multiple used in 2 places.'>nochangeoperand</a>:
+<a id='L124' name='L124' />    <strong class='reserved'>case</strong> <a href='../S/681.html#L51' title='Defined at 51 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>IT_PREFIX</a>:
+<a id='L125' name='L125' />
+<a id='L126' name='L126' />      <strong class='reserved'>if</strong> (0xF2 == (*<a href='../Y/5044.html' title='Multiple used in 19 places.'>start_byte</a>))
+<a id='L127' name='L127' />        <a href='../Y/2584.html' title='Multiple used in 4 places.'>got_f2_prefix_</a> = <strong class='reserved'>true</strong>;
+<a id='L128' name='L128' />      <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (0xF3 == (*<a href='../Y/5044.html' title='Multiple used in 19 places.'>start_byte</a>))
+<a id='L129' name='L129' />        <a href='../Y/2585.html' title='Multiple used in 4 places.'>got_f3_prefix_</a> = <strong class='reserved'>true</strong>;
+<a id='L130' name='L130' />      <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (0x66 == (*<a href='../Y/5044.html' title='Multiple used in 19 places.'>start_byte</a>))
+<a id='L131' name='L131' />        <a href='../Y/2583.html' title='Multiple used in 4 places.'>got_66_prefix_</a> = <strong class='reserved'>true</strong>;
+<a id='L132' name='L132' />
+<a id='L133' name='L133' />      <a href='../Y/2859.html' title='Multiple used in 13 places.'>instruction_type</a> = <a href='../Y/3979.html' title='Multiple used in 15 places.'>opcode</a>.<a href='../Y/5493.html' title='Multiple used in 7 places.'>type_</a>;
+<a id='L134' name='L134' />      <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a> ++;
+<a id='L135' name='L135' />      <em class='comment'>// we got a prefix, so add one and check next byte</em>
+<a id='L136' name='L136' />      <a href='../S/679.html#L112' title='Defined at 112 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc.'>ProcessPrefixes</a>(<a href='../Y/5044.html' title='Multiple used in 19 places.'>start_byte</a> + 1, <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>);
+<a id='L137' name='L137' />    <strong class='reserved'>default</strong>:
+<a id='L138' name='L138' />      <strong class='reserved'>break</strong>;   <em class='comment'>// not a prefix byte</em>
+<a id='L139' name='L139' />  <em class='brace'>}</em>
+<a id='L140' name='L140' />
+<a id='L141' name='L141' />  <strong class='reserved'>return</strong> <a href='../Y/2859.html' title='Multiple used in 13 places.'>instruction_type</a>;
+<a id='L142' name='L142' /><em class='brace'>}</em>
+<a id='L143' name='L143' />
+<a id='L144' name='L144' /><a href='../S/681.html#L43' title='Defined at 43 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>InstructionType</a> <a href='../Y/520.html' title='Multiple used in 17 places.'>MiniDisassembler</a>::<a href='../R/1990.html' title='Multiple refered from 3 places.'>ProcessOpcode</a>(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong>* <a href='../Y/5044.html' title='Multiple used in 19 places.'>start_byte</a>,
+<a id='L145' name='L145' />                                                <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/5278.html' title='Multiple used in 2 places.'>table_index</a>,
+<a id='L146' name='L146' />                                                <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong>&amp; <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>) <em class='brace'>{</em>
+<a id='L147' name='L147' />  <strong class='reserved'>const</strong> <a href='../S/681.html#L197' title='Defined at 197 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OpcodeTable</a>&amp; <a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a> = <a href='../Y/4675.html' title='Multiple used in 4 places.'>s_ia32_opcode_map_</a>[<a href='../Y/5278.html' title='Multiple used in 2 places.'>table_index</a>];   <em class='comment'>// Get our table</em>
+<a id='L148' name='L148' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> <a href='../Y/1925.html' title='Multiple used in 10 places.'>current_byte</a> = (*<a href='../Y/5044.html' title='Multiple used in 19 places.'>start_byte</a>) &gt;&gt; <a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>.<a href='../Y/4824.html' title='Multiple used in 2 places.'>shift_</a>;
+<a id='L149' name='L149' />  <a href='../Y/1925.html' title='Multiple used in 10 places.'>current_byte</a> = <a href='../Y/1925.html' title='Multiple used in 10 places.'>current_byte</a> &amp; <a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>.<a href='../Y/3424.html' title='Multiple used in 6 places.'>mask_</a>;  <em class='comment'>// Mask out the bits we will use</em>
+<a id='L150' name='L150' />
+<a id='L151' name='L151' />  <em class='comment'>// Check whether the byte we have is inside the table we have.</em>
+<a id='L152' name='L152' />  <strong class='reserved'>if</strong> (<a href='../Y/1925.html' title='Multiple used in 10 places.'>current_byte</a> &lt; <a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>.<a href='../Y/3545.html' title='Multiple used in 2 places.'>min_lim_</a> || <a href='../Y/1925.html' title='Multiple used in 10 places.'>current_byte</a> &gt; <a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>.<a href='../Y/3458.html' title='Multiple used in 2 places.'>max_lim_</a>) <em class='brace'>{</em>
+<a id='L153' name='L153' />    <a href='../Y/2860.html' title='Multiple used in 10 places.'>instruction_type_</a> = <a href='../S/681.html#L47' title='Defined at 47 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>IT_UNKNOWN</a>;
+<a id='L154' name='L154' />    <strong class='reserved'>return</strong> <a href='../Y/2860.html' title='Multiple used in 10 places.'>instruction_type_</a>;
+<a id='L155' name='L155' />  <em class='brace'>}</em>
+<a id='L156' name='L156' />
+<a id='L157' name='L157' />  <strong class='reserved'>const</strong> <a href='../S/681.html#L169' title='Defined at 169 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>Opcode</a>&amp; <a href='../Y/3979.html' title='Multiple used in 15 places.'>opcode</a> = <a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>.<a href='../S/608.html#L59' title='Defined at 59 in third_party/google-perftools-1.8.3/src/stack_trace_table.cc.'>table_</a>[<a href='../Y/1925.html' title='Multiple used in 10 places.'>current_byte</a>];
+<a id='L158' name='L158' />  <strong class='reserved'>if</strong> (<a href='../S/681.html#L45' title='Defined at 45 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>IT_UNUSED</a> == <a href='../Y/3979.html' title='Multiple used in 15 places.'>opcode</a>.<a href='../Y/5493.html' title='Multiple used in 7 places.'>type_</a>) <em class='brace'>{</em>
+<a id='L159' name='L159' />    <em class='comment'>// This instruction is not used by the IA-32 ISA, so we indicate</em>
+<a id='L160' name='L160' />    <em class='comment'>// this to the user.  Probably means that we were pointed to</em>
+<a id='L161' name='L161' />    <em class='comment'>// a byte in memory that was not the start of an instruction.</em>
+<a id='L162' name='L162' />    <a href='../Y/2860.html' title='Multiple used in 10 places.'>instruction_type_</a> = <a href='../S/681.html#L45' title='Defined at 45 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>IT_UNUSED</a>;
+<a id='L163' name='L163' />    <strong class='reserved'>return</strong> <a href='../Y/2860.html' title='Multiple used in 10 places.'>instruction_type_</a>;
+<a id='L164' name='L164' />  <em class='brace'>}</em> <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (<a href='../S/681.html#L49' title='Defined at 49 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>IT_REFERENCE</a> == <a href='../Y/3979.html' title='Multiple used in 15 places.'>opcode</a>.<a href='../Y/5493.html' title='Multiple used in 7 places.'>type_</a>) <em class='brace'>{</em>
+<a id='L165' name='L165' />    <em class='comment'>// We are looking at an opcode that has more bytes (or is continued</em>
+<a id='L166' name='L166' />    <em class='comment'>// in the ModR/M byte).  Recursively find the opcode definition in</em>
+<a id='L167' name='L167' />    <em class='comment'>// the table for the opcode's next byte.</em>
+<a id='L168' name='L168' />    <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>++;
+<a id='L169' name='L169' />    <a href='../S/679.html#L144' title='Defined at 144 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc.'>ProcessOpcode</a>(<a href='../Y/5044.html' title='Multiple used in 19 places.'>start_byte</a> + 1, <a href='../Y/3979.html' title='Multiple used in 15 places.'>opcode</a>.<a href='../Y/5279.html' title='Multiple used in 3 places.'>table_index_</a>, <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>);
+<a id='L170' name='L170' />    <strong class='reserved'>return</strong> <a href='../Y/2860.html' title='Multiple used in 10 places.'>instruction_type_</a>;
+<a id='L171' name='L171' />  <em class='brace'>}</em>
+<a id='L172' name='L172' />
+<a id='L173' name='L173' />  <strong class='reserved'>const</strong> <a href='../S/681.html#L148' title='Defined at 148 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>SpecificOpcode</a>* <a href='../Y/4947.html' title='Multiple used in 8 places.'>specific_opcode</a> = (<a href='../S/681.html#L148' title='Defined at 148 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>SpecificOpcode</a>*)&amp;<a href='../Y/3979.html' title='Multiple used in 15 places.'>opcode</a>;
+<a id='L174' name='L174' />  <strong class='reserved'>if</strong> (<a href='../Y/3979.html' title='Multiple used in 15 places.'>opcode</a>.<a href='../Y/2919.html' title='Multiple used in 2 places.'>is_prefix_dependent_</a>) <em class='brace'>{</em>
+<a id='L175' name='L175' />    <strong class='reserved'>if</strong> (<a href='../Y/2584.html' title='Multiple used in 4 places.'>got_f2_prefix_</a> &amp;&amp; <a href='../Y/3979.html' title='Multiple used in 15 places.'>opcode</a>.<a href='../Y/3981.html' title='Multiple used in 3 places.'>opcode_if_f2_prefix_</a>.<a href='../Y/3568.html' title='Multiple used in 5 places.'>mnemonic_</a> != 0) <em class='brace'>{</em>
+<a id='L176' name='L176' />      <a href='../Y/4947.html' title='Multiple used in 8 places.'>specific_opcode</a> = &amp;<a href='../Y/3979.html' title='Multiple used in 15 places.'>opcode</a>.<a href='../Y/3981.html' title='Multiple used in 3 places.'>opcode_if_f2_prefix_</a>;
+<a id='L177' name='L177' />    <em class='brace'>}</em> <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (<a href='../Y/2585.html' title='Multiple used in 4 places.'>got_f3_prefix_</a> &amp;&amp; <a href='../Y/3979.html' title='Multiple used in 15 places.'>opcode</a>.<a href='../Y/3982.html' title='Multiple used in 3 places.'>opcode_if_f3_prefix_</a>.<a href='../Y/3568.html' title='Multiple used in 5 places.'>mnemonic_</a> != 0) <em class='brace'>{</em>
+<a id='L178' name='L178' />      <a href='../Y/4947.html' title='Multiple used in 8 places.'>specific_opcode</a> = &amp;<a href='../Y/3979.html' title='Multiple used in 15 places.'>opcode</a>.<a href='../Y/3982.html' title='Multiple used in 3 places.'>opcode_if_f3_prefix_</a>;
+<a id='L179' name='L179' />    <em class='brace'>}</em> <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (<a href='../Y/2583.html' title='Multiple used in 4 places.'>got_66_prefix_</a> &amp;&amp; <a href='../Y/3979.html' title='Multiple used in 15 places.'>opcode</a>.<a href='../Y/3980.html' title='Multiple used in 3 places.'>opcode_if_66_prefix_</a>.<a href='../Y/3568.html' title='Multiple used in 5 places.'>mnemonic_</a> != 0) <em class='brace'>{</em>
+<a id='L180' name='L180' />      <a href='../Y/4947.html' title='Multiple used in 8 places.'>specific_opcode</a> = &amp;<a href='../Y/3979.html' title='Multiple used in 15 places.'>opcode</a>.<a href='../Y/3980.html' title='Multiple used in 3 places.'>opcode_if_66_prefix_</a>;
+<a id='L181' name='L181' />    <em class='brace'>}</em>
+<a id='L182' name='L182' />  <em class='brace'>}</em>
+<a id='L183' name='L183' />
+<a id='L184' name='L184' />  <em class='comment'>// Inv: The opcode type is known.</em>
+<a id='L185' name='L185' />  <a href='../Y/2860.html' title='Multiple used in 10 places.'>instruction_type_</a> = <a href='../Y/4947.html' title='Multiple used in 8 places.'>specific_opcode</a>-&gt;<a href='../Y/5493.html' title='Multiple used in 7 places.'>type_</a>;
+<a id='L186' name='L186' />
+<a id='L187' name='L187' />  <em class='comment'>// Let's process the operand types to see if we have any immediate</em>
+<a id='L188' name='L188' />  <em class='comment'>// operands, and/or a ModR/M byte.</em>
+<a id='L189' name='L189' />
+<a id='L190' name='L190' />  <a href='../S/679.html#L225' title='Defined at 225 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc.'>ProcessOperand</a>(<a href='../Y/4947.html' title='Multiple used in 8 places.'>specific_opcode</a>-&gt;<a href='../Y/2395.html' title='Multiple used in 3 places.'>flag_dest_</a>);
+<a id='L191' name='L191' />  <a href='../S/679.html#L225' title='Defined at 225 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc.'>ProcessOperand</a>(<a href='../Y/4947.html' title='Multiple used in 8 places.'>specific_opcode</a>-&gt;<a href='../Y/2397.html' title='Multiple used in 3 places.'>flag_source_</a>);
+<a id='L192' name='L192' />  <a href='../S/679.html#L225' title='Defined at 225 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc.'>ProcessOperand</a>(<a href='../Y/4947.html' title='Multiple used in 8 places.'>specific_opcode</a>-&gt;<a href='../Y/2394.html' title='Multiple used in 3 places.'>flag_aux_</a>);
+<a id='L193' name='L193' />
+<a id='L194' name='L194' />  <em class='comment'>// Inv: We have processed the opcode and incremented operand_bytes_</em>
+<a id='L195' name='L195' />  <em class='comment'>// by the number of bytes of any operands specified by the opcode</em>
+<a id='L196' name='L196' />  <em class='comment'>// that are stored in the instruction (not registers etc.).  Now</em>
+<a id='L197' name='L197' />  <em class='comment'>// we need to return the total number of bytes for the opcode and</em>
+<a id='L198' name='L198' />  <em class='comment'>// for the ModR/M or SIB bytes if they are present.</em>
+<a id='L199' name='L199' />
+<a id='L200' name='L200' />  <strong class='reserved'>if</strong> (<a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>.<a href='../Y/3424.html' title='Multiple used in 6 places.'>mask_</a> != 0xff) <em class='brace'>{</em>
+<a id='L201' name='L201' />    <strong class='reserved'>if</strong> (<a href='../Y/2647.html' title='Multiple used in 6 places.'>have_modrm_</a>) <em class='brace'>{</em>
+<a id='L202' name='L202' />      <em class='comment'>// we're looking at a ModR/M byte so we're not going to</em>
+<a id='L203' name='L203' />      <em class='comment'>// count that into the opcode size</em>
+<a id='L204' name='L204' />      <a href='../S/679.html#L346' title='Defined at 346 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc.'>ProcessModrm</a>(<a href='../Y/5044.html' title='Multiple used in 19 places.'>start_byte</a>, <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>);
+<a id='L205' name='L205' />      <strong class='reserved'>return</strong> <a href='../S/681.html#L61' title='Defined at 61 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>IT_GENERIC</a>;
+<a id='L206' name='L206' />    <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L207' name='L207' />      <em class='comment'>// need to count the ModR/M byte even if it's just being</em>
+<a id='L208' name='L208' />      <em class='comment'>// used for opcode extension</em>
+<a id='L209' name='L209' />      <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>++;
+<a id='L210' name='L210' />      <strong class='reserved'>return</strong> <a href='../S/681.html#L61' title='Defined at 61 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>IT_GENERIC</a>;
+<a id='L211' name='L211' />    <em class='brace'>}</em>
+<a id='L212' name='L212' />  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L213' name='L213' />    <strong class='reserved'>if</strong> (<a href='../Y/2647.html' title='Multiple used in 6 places.'>have_modrm_</a>) <em class='brace'>{</em>
+<a id='L214' name='L214' />      <em class='comment'>// The ModR/M byte is the next byte.</em>
+<a id='L215' name='L215' />      <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>++;
+<a id='L216' name='L216' />      <a href='../S/679.html#L346' title='Defined at 346 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc.'>ProcessModrm</a>(<a href='../Y/5044.html' title='Multiple used in 19 places.'>start_byte</a> + 1, <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>);
+<a id='L217' name='L217' />      <strong class='reserved'>return</strong> <a href='../S/681.html#L61' title='Defined at 61 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>IT_GENERIC</a>;
+<a id='L218' name='L218' />    <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L219' name='L219' />      <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>++;
+<a id='L220' name='L220' />      <strong class='reserved'>return</strong> <a href='../S/681.html#L61' title='Defined at 61 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>IT_GENERIC</a>;
+<a id='L221' name='L221' />    <em class='brace'>}</em>
+<a id='L222' name='L222' />  <em class='brace'>}</em>
+<a id='L223' name='L223' /><em class='brace'>}</em>
+<a id='L224' name='L224' />
+<a id='L225' name='L225' /><strong class='reserved'>bool</strong> <a href='../Y/520.html' title='Multiple used in 17 places.'>MiniDisassembler</a>::<a href='../R/1991.html' title='Multiple refered from 4 places.'>ProcessOperand</a>(<strong class='reserved'>int</strong> <a href='../Y/2396.html' title='Multiple used in 5 places.'>flag_operand</a>) <em class='brace'>{</em>
+<a id='L226' name='L226' />  <strong class='reserved'>bool</strong> <a href='../Y/5172.html' title='Multiple used in 19 places.'>succeeded</a> = <strong class='reserved'>true</strong>;
+<a id='L227' name='L227' />  <strong class='reserved'>if</strong> (<a href='../S/681.html#L90' title='Defined at 90 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>AM_NOT_USED</a> == <a href='../Y/2396.html' title='Multiple used in 5 places.'>flag_operand</a>)
+<a id='L228' name='L228' />    <strong class='reserved'>return</strong> <a href='../Y/5172.html' title='Multiple used in 19 places.'>succeeded</a>;
+<a id='L229' name='L229' />
+<a id='L230' name='L230' />  <em class='comment'>// Decide what to do based on the addressing mode.</em>
+<a id='L231' name='L231' />  <strong class='reserved'>switch</strong> (<a href='../Y/2396.html' title='Multiple used in 5 places.'>flag_operand</a> &amp; <a href='../S/681.html#L91' title='Defined at 91 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>AM_MASK</a>) <em class='brace'>{</em>
+<a id='L232' name='L232' />    <em class='comment'>// No ModR/M byte indicated by these addressing modes, and no</em>
+<a id='L233' name='L233' />    <em class='comment'>// additional (e.g. immediate) parameters.</em>
+<a id='L234' name='L234' />    <strong class='reserved'>case</strong> <a href='../S/681.html#L92' title='Defined at 92 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>AM_A</a>: <em class='comment'>// Direct address</em>
+<a id='L235' name='L235' />    <strong class='reserved'>case</strong> <a href='../S/681.html#L96' title='Defined at 96 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>AM_F</a>: <em class='comment'>// EFLAGS register</em>
+<a id='L236' name='L236' />    <strong class='reserved'>case</strong> <a href='../S/681.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>AM_X</a>: <em class='comment'>// Memory addressed by the DS:SI register pair</em>
+<a id='L237' name='L237' />    <strong class='reserved'>case</strong> <a href='../S/681.html#L110' title='Defined at 110 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>AM_Y</a>: <em class='comment'>// Memory addressed by the ES:DI register pair</em>
+<a id='L238' name='L238' />    <strong class='reserved'>case</strong> <a href='../S/681.html#L112' title='Defined at 112 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>AM_IMPLICIT</a>: <em class='comment'>// Parameter is implicit, occupies no space in</em>
+<a id='L239' name='L239' />                       <em class='comment'>// instruction</em>
+<a id='L240' name='L240' />      <strong class='reserved'>break</strong>;
+<a id='L241' name='L241' />
+<a id='L242' name='L242' />    <em class='comment'>// There is a ModR/M byte but it does not necessarily need</em>
+<a id='L243' name='L243' />    <em class='comment'>// to be decoded.</em>
+<a id='L244' name='L244' />    <strong class='reserved'>case</strong> <a href='../S/681.html#L93' title='Defined at 93 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>AM_C</a>: <em class='comment'>// reg field of ModR/M selects a control register</em>
+<a id='L245' name='L245' />    <strong class='reserved'>case</strong> <a href='../S/681.html#L94' title='Defined at 94 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>AM_D</a>: <em class='comment'>// reg field of ModR/M selects a debug register</em>
+<a id='L246' name='L246' />    <strong class='reserved'>case</strong> <a href='../S/681.html#L97' title='Defined at 97 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>AM_G</a>: <em class='comment'>// reg field of ModR/M selects a general register</em>
+<a id='L247' name='L247' />    <strong class='reserved'>case</strong> <a href='../S/681.html#L102' title='Defined at 102 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>AM_P</a>: <em class='comment'>// reg field of ModR/M selects an MMX register</em>
+<a id='L248' name='L248' />    <strong class='reserved'>case</strong> <a href='../S/681.html#L104' title='Defined at 104 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>AM_R</a>: <em class='comment'>// mod field of ModR/M may refer only to a general register</em>
+<a id='L249' name='L249' />    <strong class='reserved'>case</strong> <a href='../S/681.html#L105' title='Defined at 105 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>AM_S</a>: <em class='comment'>// reg field of ModR/M selects a segment register</em>
+<a id='L250' name='L250' />    <strong class='reserved'>case</strong> <a href='../S/681.html#L106' title='Defined at 106 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>AM_T</a>: <em class='comment'>// reg field of ModR/M selects a test register</em>
+<a id='L251' name='L251' />    <strong class='reserved'>case</strong> <a href='../S/681.html#L107' title='Defined at 107 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>AM_V</a>: <em class='comment'>// reg field of ModR/M selects a 128-bit XMM register</em>
+<a id='L252' name='L252' />      <a href='../Y/2647.html' title='Multiple used in 6 places.'>have_modrm_</a> = <strong class='reserved'>true</strong>;
+<a id='L253' name='L253' />      <strong class='reserved'>break</strong>;
+<a id='L254' name='L254' />
+<a id='L255' name='L255' />    <em class='comment'>// In these addressing modes, there is a ModR/M byte and it needs to be</em>
+<a id='L256' name='L256' />    <em class='comment'>// decoded. No other (e.g. immediate) params than indicated in ModR/M.</em>
+<a id='L257' name='L257' />    <strong class='reserved'>case</strong> <a href='../S/681.html#L95' title='Defined at 95 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>AM_E</a>: <em class='comment'>// Operand is either a general-purpose register or memory,</em>
+<a id='L258' name='L258' />                 <em class='comment'>// specified by ModR/M byte</em>
+<a id='L259' name='L259' />    <strong class='reserved'>case</strong> <a href='../S/681.html#L100' title='Defined at 100 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>AM_M</a>: <em class='comment'>// ModR/M byte will refer only to memory</em>
+<a id='L260' name='L260' />    <strong class='reserved'>case</strong> <a href='../S/681.html#L103' title='Defined at 103 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>AM_Q</a>: <em class='comment'>// Operand is either an MMX register or memory (complex</em>
+<a id='L261' name='L261' />                 <em class='comment'>// evaluation), specified by ModR/M byte</em>
+<a id='L262' name='L262' />    <strong class='reserved'>case</strong> <a href='../S/681.html#L108' title='Defined at 108 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>AM_W</a>: <em class='comment'>// Operand is either a 128-bit XMM register or memory (complex</em>
+<a id='L263' name='L263' />                 <em class='comment'>// eval), specified by ModR/M byte</em>
+<a id='L264' name='L264' />      <a href='../Y/2647.html' title='Multiple used in 6 places.'>have_modrm_</a> = <strong class='reserved'>true</strong>;
+<a id='L265' name='L265' />      <a href='../Y/4828.html' title='Multiple used in 4 places.'>should_decode_modrm_</a> = <strong class='reserved'>true</strong>;
+<a id='L266' name='L266' />      <strong class='reserved'>break</strong>;
+<a id='L267' name='L267' />
+<a id='L268' name='L268' />    <em class='comment'>// These addressing modes specify an immediate or an offset value</em>
+<a id='L269' name='L269' />    <em class='comment'>// directly, so we need to look at the operand type to see how many</em>
+<a id='L270' name='L270' />    <em class='comment'>// bytes.</em>
+<a id='L271' name='L271' />    <strong class='reserved'>case</strong> <a href='../S/681.html#L98' title='Defined at 98 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>AM_I</a>: <em class='comment'>// Immediate data.</em>
+<a id='L272' name='L272' />    <strong class='reserved'>case</strong> <a href='../S/681.html#L99' title='Defined at 99 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>AM_J</a>: <em class='comment'>// Jump to offset.</em>
+<a id='L273' name='L273' />    <strong class='reserved'>case</strong> <a href='../S/681.html#L101' title='Defined at 101 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>AM_O</a>: <em class='comment'>// Operand is at offset.</em>
+<a id='L274' name='L274' />      <strong class='reserved'>switch</strong> (<a href='../Y/2396.html' title='Multiple used in 5 places.'>flag_operand</a> &amp; <a href='../S/681.html#L124' title='Defined at 124 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OT_MASK</a>) <em class='brace'>{</em>
+<a id='L275' name='L275' />        <strong class='reserved'>case</strong> <a href='../S/681.html#L126' title='Defined at 126 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OT_B</a>: <em class='comment'>// Byte regardless of operand-size attribute.</em>
+<a id='L276' name='L276' />          <a href='../Y/3986.html' title='Multiple used in 20 places.'>operand_bytes_</a> += <a href='../S/681.html#L67' title='Defined at 67 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OS_BYTE</a>;
+<a id='L277' name='L277' />          <strong class='reserved'>break</strong>;
+<a id='L278' name='L278' />        <strong class='reserved'>case</strong> <a href='../S/681.html#L127' title='Defined at 127 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OT_C</a>: <em class='comment'>// Byte or word, depending on operand-size attribute.</em>
+<a id='L279' name='L279' />          <strong class='reserved'>if</strong> (<a href='../Y/3990.html' title='Multiple used in 6 places.'>operand_is_32_bits_</a>)
+<a id='L280' name='L280' />            <a href='../Y/3986.html' title='Multiple used in 20 places.'>operand_bytes_</a> += <a href='../S/681.html#L68' title='Defined at 68 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OS_WORD</a>;
+<a id='L281' name='L281' />          <strong class='reserved'>else</strong>
+<a id='L282' name='L282' />            <a href='../Y/3986.html' title='Multiple used in 20 places.'>operand_bytes_</a> += <a href='../S/681.html#L67' title='Defined at 67 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OS_BYTE</a>;
+<a id='L283' name='L283' />          <strong class='reserved'>break</strong>;
+<a id='L284' name='L284' />        <strong class='reserved'>case</strong> <a href='../S/681.html#L128' title='Defined at 128 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OT_D</a>: <em class='comment'>// Doubleword, regardless of operand-size attribute.</em>
+<a id='L285' name='L285' />          <a href='../Y/3986.html' title='Multiple used in 20 places.'>operand_bytes_</a> += <a href='../S/681.html#L69' title='Defined at 69 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OS_DOUBLE_WORD</a>;
+<a id='L286' name='L286' />          <strong class='reserved'>break</strong>;
+<a id='L287' name='L287' />        <strong class='reserved'>case</strong> <a href='../S/681.html#L129' title='Defined at 129 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OT_DQ</a>: <em class='comment'>// Double-quadword, regardless of operand-size attribute.</em>
+<a id='L288' name='L288' />          <a href='../Y/3986.html' title='Multiple used in 20 places.'>operand_bytes_</a> += <a href='../S/681.html#L71' title='Defined at 71 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OS_DOUBLE_QUAD_WORD</a>;
+<a id='L289' name='L289' />          <strong class='reserved'>break</strong>;
+<a id='L290' name='L290' />        <strong class='reserved'>case</strong> <a href='../S/681.html#L130' title='Defined at 130 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OT_P</a>: <em class='comment'>// 32-bit or 48-bit pointer, depending on operand-size</em>
+<a id='L291' name='L291' />                     <em class='comment'>// attribute.</em>
+<a id='L292' name='L292' />          <strong class='reserved'>if</strong> (<a href='../Y/3990.html' title='Multiple used in 6 places.'>operand_is_32_bits_</a>)
+<a id='L293' name='L293' />            <a href='../Y/3986.html' title='Multiple used in 20 places.'>operand_bytes_</a> += <a href='../S/681.html#L73' title='Defined at 73 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OS_48_BIT_POINTER</a>;
+<a id='L294' name='L294' />          <strong class='reserved'>else</strong>
+<a id='L295' name='L295' />            <a href='../Y/3986.html' title='Multiple used in 20 places.'>operand_bytes_</a> += <a href='../S/681.html#L72' title='Defined at 72 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OS_32_BIT_POINTER</a>;
+<a id='L296' name='L296' />          <strong class='reserved'>break</strong>;
+<a id='L297' name='L297' />        <strong class='reserved'>case</strong> <a href='../S/681.html#L132' title='Defined at 132 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OT_PS</a>: <em class='comment'>// 128-bit packed single-precision floating-point data.</em>
+<a id='L298' name='L298' />          <a href='../Y/3986.html' title='Multiple used in 20 places.'>operand_bytes_</a> += <a href='../S/681.html#L77' title='Defined at 77 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OS_128_BIT_PACKED_SINGLE_PRECISION_FLOATING</a>;
+<a id='L299' name='L299' />          <strong class='reserved'>break</strong>;
+<a id='L300' name='L300' />        <strong class='reserved'>case</strong> <a href='../S/681.html#L133' title='Defined at 133 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OT_Q</a>: <em class='comment'>// Quadword, regardless of operand-size attribute.</em>
+<a id='L301' name='L301' />          <a href='../Y/3986.html' title='Multiple used in 20 places.'>operand_bytes_</a> += <a href='../S/681.html#L70' title='Defined at 70 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OS_QUAD_WORD</a>;
+<a id='L302' name='L302' />          <strong class='reserved'>break</strong>;
+<a id='L303' name='L303' />        <strong class='reserved'>case</strong> <a href='../S/681.html#L134' title='Defined at 134 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OT_S</a>: <em class='comment'>// 6-byte pseudo-descriptor.</em>
+<a id='L304' name='L304' />          <a href='../Y/3986.html' title='Multiple used in 20 places.'>operand_bytes_</a> += <a href='../S/681.html#L78' title='Defined at 78 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OS_PSEUDO_DESCRIPTOR</a>;
+<a id='L305' name='L305' />          <strong class='reserved'>break</strong>;
+<a id='L306' name='L306' />        <strong class='reserved'>case</strong> <a href='../S/681.html#L139' title='Defined at 139 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OT_SD</a>: <em class='comment'>// Scalar Double-Precision Floating-Point Value</em>
+<a id='L307' name='L307' />        <strong class='reserved'>case</strong> <a href='../S/681.html#L140' title='Defined at 140 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OT_PD</a>: <em class='comment'>// Unaligned packed double-precision floating point value</em>
+<a id='L308' name='L308' />          <a href='../Y/3986.html' title='Multiple used in 20 places.'>operand_bytes_</a> += <a href='../S/681.html#L75' title='Defined at 75 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OS_DOUBLE_PRECISION_FLOATING</a>;
+<a id='L309' name='L309' />          <strong class='reserved'>break</strong>;
+<a id='L310' name='L310' />        <strong class='reserved'>case</strong> <a href='../S/681.html#L135' title='Defined at 135 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OT_SS</a>:
+<a id='L311' name='L311' />          <em class='comment'>// Scalar element of a 128-bit packed single-precision</em>
+<a id='L312' name='L312' />          <em class='comment'>// floating data.</em>
+<a id='L313' name='L313' />          <em class='comment'>// We simply return enItUnknown since we don't have to support</em>
+<a id='L314' name='L314' />          <em class='comment'>// floating point</em>
+<a id='L315' name='L315' />          <a href='../Y/5172.html' title='Multiple used in 19 places.'>succeeded</a> = <strong class='reserved'>false</strong>;
+<a id='L316' name='L316' />          <strong class='reserved'>break</strong>;
+<a id='L317' name='L317' />        <strong class='reserved'>case</strong> <a href='../S/681.html#L137' title='Defined at 137 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OT_V</a>: <em class='comment'>// Word or doubleword, depending on operand-size attribute.</em>
+<a id='L318' name='L318' />          <strong class='reserved'>if</strong> (<a href='../Y/3990.html' title='Multiple used in 6 places.'>operand_is_32_bits_</a>)
+<a id='L319' name='L319' />            <a href='../Y/3986.html' title='Multiple used in 20 places.'>operand_bytes_</a> += <a href='../S/681.html#L69' title='Defined at 69 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OS_DOUBLE_WORD</a>;
+<a id='L320' name='L320' />          <strong class='reserved'>else</strong>
+<a id='L321' name='L321' />            <a href='../Y/3986.html' title='Multiple used in 20 places.'>operand_bytes_</a> += <a href='../S/681.html#L68' title='Defined at 68 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OS_WORD</a>;
+<a id='L322' name='L322' />          <strong class='reserved'>break</strong>;
+<a id='L323' name='L323' />        <strong class='reserved'>case</strong> <a href='../S/681.html#L138' title='Defined at 138 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OT_W</a>: <em class='comment'>// Word, regardless of operand-size attribute.</em>
+<a id='L324' name='L324' />          <a href='../Y/3986.html' title='Multiple used in 20 places.'>operand_bytes_</a> += <a href='../S/681.html#L68' title='Defined at 68 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OS_WORD</a>;
+<a id='L325' name='L325' />          <strong class='reserved'>break</strong>;
+<a id='L326' name='L326' />
+<a id='L327' name='L327' />        <em class='comment'>// Can safely ignore these.</em>
+<a id='L328' name='L328' />        <strong class='reserved'>case</strong> <a href='../S/681.html#L125' title='Defined at 125 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OT_A</a>: <em class='comment'>// Two one-word operands in memory or two double-word</em>
+<a id='L329' name='L329' />                     <em class='comment'>// operands in memory</em>
+<a id='L330' name='L330' />        <strong class='reserved'>case</strong> <a href='../S/681.html#L131' title='Defined at 131 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OT_PI</a>: <em class='comment'>// Quadword MMX technology register (e.g. mm0)</em>
+<a id='L331' name='L331' />        <strong class='reserved'>case</strong> <a href='../S/681.html#L136' title='Defined at 136 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OT_SI</a>: <em class='comment'>// Doubleword integer register (e.g., eax)</em>
+<a id='L332' name='L332' />          <strong class='reserved'>break</strong>;
+<a id='L333' name='L333' />
+<a id='L334' name='L334' />        <strong class='reserved'>default</strong>:
+<a id='L335' name='L335' />          <strong class='reserved'>break</strong>;
+<a id='L336' name='L336' />      <em class='brace'>}</em>
+<a id='L337' name='L337' />      <strong class='reserved'>break</strong>;
+<a id='L338' name='L338' />
+<a id='L339' name='L339' />    <strong class='reserved'>default</strong>:
+<a id='L340' name='L340' />      <strong class='reserved'>break</strong>;
+<a id='L341' name='L341' />  <em class='brace'>}</em>
+<a id='L342' name='L342' />
+<a id='L343' name='L343' />  <strong class='reserved'>return</strong> <a href='../Y/5172.html' title='Multiple used in 19 places.'>succeeded</a>;
+<a id='L344' name='L344' /><em class='brace'>}</em>
+<a id='L345' name='L345' />
+<a id='L346' name='L346' /><strong class='reserved'>bool</strong> <a href='../Y/520.html' title='Multiple used in 17 places.'>MiniDisassembler</a>::<a href='../R/1989.html' title='Multiple refered from 3 places.'>ProcessModrm</a>(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong>* <a href='../Y/5044.html' title='Multiple used in 19 places.'>start_byte</a>,
+<a id='L347' name='L347' />                                    <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong>&amp; <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>) <em class='brace'>{</em>
+<a id='L348' name='L348' />  <em class='comment'>// If we don't need to decode, we just return the size of the ModR/M</em>
+<a id='L349' name='L349' />  <em class='comment'>// byte (there is never a SIB byte in this case).</em>
+<a id='L350' name='L350' />  <strong class='reserved'>if</strong> (!<a href='../Y/4828.html' title='Multiple used in 4 places.'>should_decode_modrm_</a>) <em class='brace'>{</em>
+<a id='L351' name='L351' />    <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>++;
+<a id='L352' name='L352' />    <strong class='reserved'>return</strong> <strong class='reserved'>true</strong>;
+<a id='L353' name='L353' />  <em class='brace'>}</em>
+<a id='L354' name='L354' />
+<a id='L355' name='L355' />  <em class='comment'>// We never care about the reg field, only the combination of the mod</em>
+<a id='L356' name='L356' />  <em class='comment'>// and r/m fields, so let's start by packing those fields together into</em>
+<a id='L357' name='L357' />  <em class='comment'>// 5 bits.</em>
+<a id='L358' name='L358' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> <a href='../Y/3579.html' title='Multiple used in 6 places.'>modrm</a> = (*<a href='../Y/5044.html' title='Multiple used in 19 places.'>start_byte</a>);
+<a id='L359' name='L359' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> <a href='../Y/3570.html' title='Multiple used in 8 places.'>mod</a> = <a href='../Y/3579.html' title='Multiple used in 6 places.'>modrm</a> &amp; 0xC0; <em class='comment'>// mask out top two bits to get mod field</em>
+<a id='L360' name='L360' />  <a href='../Y/3579.html' title='Multiple used in 6 places.'>modrm</a> = <a href='../Y/3579.html' title='Multiple used in 6 places.'>modrm</a> &amp; 0x07; <em class='comment'>// mask out bottom 3 bits to get r/m field</em>
+<a id='L361' name='L361' />  <a href='../Y/3570.html' title='Multiple used in 8 places.'>mod</a> = <a href='../Y/3570.html' title='Multiple used in 8 places.'>mod</a> &gt;&gt; 3; <em class='comment'>// shift the mod field to the right place</em>
+<a id='L362' name='L362' />  <a href='../Y/3579.html' title='Multiple used in 6 places.'>modrm</a> = <a href='../Y/3570.html' title='Multiple used in 8 places.'>mod</a> | <a href='../Y/3579.html' title='Multiple used in 6 places.'>modrm</a>; <em class='comment'>// combine the r/m and mod fields as discussed</em>
+<a id='L363' name='L363' />  <a href='../Y/3570.html' title='Multiple used in 8 places.'>mod</a> = <a href='../Y/3570.html' title='Multiple used in 8 places.'>mod</a> &gt;&gt; 3; <em class='comment'>// shift the mod field to bits 2..0</em>
+<a id='L364' name='L364' />
+<a id='L365' name='L365' />  <em class='comment'>// Invariant: modrm contains the mod field in bits 4..3 and the r/m field</em>
+<a id='L366' name='L366' />  <em class='comment'>// in bits 2..0, and mod contains the mod field in bits 2..0</em>
+<a id='L367' name='L367' />
+<a id='L368' name='L368' />  <strong class='reserved'>const</strong> <a href='../S/681.html#L210' title='Defined at 210 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>ModrmEntry</a>* <a href='../Y/3580.html' title='Multiple used in 6 places.'>modrm_entry</a> = 0;
+<a id='L369' name='L369' />  <strong class='reserved'>if</strong> (<a href='../Y/1415.html' title='Multiple used in 4 places.'>address_is_32_bits_</a>)
+<a id='L370' name='L370' />    <a href='../Y/3580.html' title='Multiple used in 6 places.'>modrm_entry</a> = &amp;<a href='../Y/4674.html' title='Multiple used in 3 places.'>s_ia32_modrm_map_</a>[<a href='../Y/3579.html' title='Multiple used in 6 places.'>modrm</a>];
+<a id='L371' name='L371' />  <strong class='reserved'>else</strong>
+<a id='L372' name='L372' />    <a href='../Y/3580.html' title='Multiple used in 6 places.'>modrm_entry</a> = &amp;<a href='../Y/4673.html' title='Multiple used in 3 places.'>s_ia16_modrm_map_</a>[<a href='../Y/3579.html' title='Multiple used in 6 places.'>modrm</a>];
+<a id='L373' name='L373' />
+<a id='L374' name='L374' />  <em class='comment'>// Invariant: modrm_entry points to information that we need to decode</em>
+<a id='L375' name='L375' />  <em class='comment'>// the ModR/M byte.</em>
+<a id='L376' name='L376' />
+<a id='L377' name='L377' />  <em class='comment'>// Add to the count of operand bytes, if the ModR/M byte indicates</em>
+<a id='L378' name='L378' />  <em class='comment'>// that some operands are encoded in the instruction.</em>
+<a id='L379' name='L379' />  <strong class='reserved'>if</strong> (<a href='../Y/3580.html' title='Multiple used in 6 places.'>modrm_entry</a>-&gt;<a href='../Y/2902.html' title='Multiple used in 2 places.'>is_encoded_in_instruction_</a>)
+<a id='L380' name='L380' />    <a href='../Y/3986.html' title='Multiple used in 20 places.'>operand_bytes_</a> += <a href='../Y/3580.html' title='Multiple used in 6 places.'>modrm_entry</a>-&gt;<a href='../Y/3991.html' title='Multiple used in 2 places.'>operand_size_</a>;
+<a id='L381' name='L381' />
+<a id='L382' name='L382' />  <em class='comment'>// Process the SIB byte if necessary, and return the count</em>
+<a id='L383' name='L383' />  <em class='comment'>// of ModR/M and SIB bytes.</em>
+<a id='L384' name='L384' />  <strong class='reserved'>if</strong> (<a href='../Y/3580.html' title='Multiple used in 6 places.'>modrm_entry</a>-&gt;<a href='../Y/5564.html' title='Multiple used in 2 places.'>use_sib_byte_</a>) <em class='brace'>{</em>
+<a id='L385' name='L385' />    <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>++;
+<a id='L386' name='L386' />    <strong class='reserved'>return</strong> <a href='../S/679.html#L393' title='Defined at 393 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc.'>ProcessSib</a>(<a href='../Y/5044.html' title='Multiple used in 19 places.'>start_byte</a> + 1, <a href='../Y/3570.html' title='Multiple used in 8 places.'>mod</a>, <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>);
+<a id='L387' name='L387' />  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L388' name='L388' />    <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>++;
+<a id='L389' name='L389' />    <strong class='reserved'>return</strong> <strong class='reserved'>true</strong>;
+<a id='L390' name='L390' />  <em class='brace'>}</em>
+<a id='L391' name='L391' /><em class='brace'>}</em>
+<a id='L392' name='L392' />
+<a id='L393' name='L393' /><strong class='reserved'>bool</strong> <a href='../Y/520.html' title='Multiple used in 17 places.'>MiniDisassembler</a>::<a href='../R/1993.html' title='Multiple refered from 2 places.'>ProcessSib</a>(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong>* <a href='../Y/5044.html' title='Multiple used in 19 places.'>start_byte</a>,
+<a id='L394' name='L394' />                                  <strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> <a href='../Y/3570.html' title='Multiple used in 8 places.'>mod</a>,
+<a id='L395' name='L395' />                                  <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong>&amp; <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>) <em class='brace'>{</em>
+<a id='L396' name='L396' />  <em class='comment'>// get the mod field from the 2..0 bits of the SIB byte</em>
+<a id='L397' name='L397' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> <a href='../Y/4840.html' title='Multiple used in 2 places.'>sib_base</a> = (*<a href='../Y/5044.html' title='Multiple used in 19 places.'>start_byte</a>) &amp; 0x07;
+<a id='L398' name='L398' />  <strong class='reserved'>if</strong> (0x05 == <a href='../Y/4840.html' title='Multiple used in 2 places.'>sib_base</a>) <em class='brace'>{</em>
+<a id='L399' name='L399' />    <strong class='reserved'>switch</strong> (<a href='../Y/3570.html' title='Multiple used in 8 places.'>mod</a>) <em class='brace'>{</em>
+<a id='L400' name='L400' />    <strong class='reserved'>case</strong> 0x00: <em class='comment'>// mod == 00</em>
+<a id='L401' name='L401' />    <strong class='reserved'>case</strong> 0x02: <em class='comment'>// mod == 10</em>
+<a id='L402' name='L402' />      <a href='../Y/3986.html' title='Multiple used in 20 places.'>operand_bytes_</a> += <a href='../S/681.html#L69' title='Defined at 69 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OS_DOUBLE_WORD</a>;
+<a id='L403' name='L403' />      <strong class='reserved'>break</strong>;
+<a id='L404' name='L404' />    <strong class='reserved'>case</strong> 0x01: <em class='comment'>// mod == 01</em>
+<a id='L405' name='L405' />      <a href='../Y/3986.html' title='Multiple used in 20 places.'>operand_bytes_</a> += <a href='../S/681.html#L67' title='Defined at 67 in third_party/google-perftools-1.8.3/src/windows/mini_disassembler_types.h.'>OS_BYTE</a>;
+<a id='L406' name='L406' />      <strong class='reserved'>break</strong>;
+<a id='L407' name='L407' />    <strong class='reserved'>case</strong> 0x03: <em class='comment'>// mod == 11</em>
+<a id='L408' name='L408' />      <em class='comment'>// According to the IA-32 docs, there does not seem to be a disp</em>
+<a id='L409' name='L409' />      <em class='comment'>// value for this value of mod</em>
+<a id='L410' name='L410' />    <strong class='reserved'>default</strong>:
+<a id='L411' name='L411' />      <strong class='reserved'>break</strong>;
+<a id='L412' name='L412' />    <em class='brace'>}</em>
+<a id='L413' name='L413' />  <em class='brace'>}</em>
+<a id='L414' name='L414' />
+<a id='L415' name='L415' />  <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>++;
+<a id='L416' name='L416' />  <strong class='reserved'>return</strong> <strong class='reserved'>true</strong>;
+<a id='L417' name='L417' /><em class='brace'>}</em>
+<a id='L418' name='L418' />
+<a id='L419' name='L419' /><em class='brace'>}</em>;  <em class='comment'>// namespace sidestep</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;]<a href='#L43'>[^]</a><a href='#L393'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

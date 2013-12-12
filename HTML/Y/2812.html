@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>init_size</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/365.html#L145'>init_size</a>         145 src/rule.c     LmnRuleSet lmn_ruleset_make(LmnRulesetId id, int init_size)</span>
+<span class='curline'><a href='../S/365.html#L150'>init_size</a>         150 src/rule.c       ruleset-&gt;rules = LMN_CALLOC(LmnRule, init_size);</span>
+<span class='curline'><a href='../S/365.html#L152'>init_size</a>         152 src/rule.c       ruleset-&gt;cap = init_size;</span>
+<span class='curline'><a href='../S/366.html#L160'>init_size</a>         160 src/rule.h     LmnRuleSet lmn_ruleset_make(LmnRulesetId id, int init_size);</span>
+<span class='curline'><a href='../S/393.html#L90'>init_size</a>          90 src/utility/internal_hash.c void hashtbl_init(SimpleHashtbl *ht, unsigned int init_size)</span>
+<span class='curline'><a href='../S/393.html#L93'>init_size</a>          93 src/utility/internal_hash.c   ht-&gt;cap = round2up(init_size);</span>
+<span class='curline'><a href='../S/393.html#L98'>init_size</a>          98 src/utility/internal_hash.c SimpleHashtbl *hashtbl_make(unsigned int init_size)</span>
+<span class='curline'><a href='../S/393.html#L101'>init_size</a>         101 src/utility/internal_hash.c   hashtbl_init(ht, init_size);</span>
+<span class='curline'><a href='../S/393.html#L212'>init_size</a>         212 src/utility/internal_hash.c void hashset_init(HashSet *set, unsigned int init_size)</span>
+<span class='curline'><a href='../S/393.html#L215'>init_size</a>         215 src/utility/internal_hash.c   set-&gt;cap = round2up(init_size);</span>
+<span class='curline'><a href='../S/393.html#L220'>init_size</a>         220 src/utility/internal_hash.c HashSet *hashset_make(unsigned int init_size)</span>
+<span class='curline'><a href='../S/393.html#L223'>init_size</a>         223 src/utility/internal_hash.c   hashset_init(hs, init_size);</span>
+<span class='curline'><a href='../S/394.html#L63'>init_size</a>          63 src/utility/internal_hash.h void hashtbl_init(SimpleHashtbl *ht, unsigned int init_size);</span>
+<span class='curline'><a href='../S/394.html#L64'>init_size</a>          64 src/utility/internal_hash.h SimpleHashtbl *hashtbl_make(unsigned int init_size);</span>
+<span class='curline'><a href='../S/394.html#L92'>init_size</a>          92 src/utility/internal_hash.h HashSet *hashset_make(unsigned int init_size);</span>
+<span class='curline'><a href='../S/394.html#L93'>init_size</a>          93 src/utility/internal_hash.h void hashset_init(HashSet *set, unsigned int init_size);</span>
+<span class='curline'><a href='../S/403.html#L113'>init_size</a>         113 src/utility/queue.h static inline void    deq_init(Deque *deq, unsigned int init_size);</span>
+<span class='curline'><a href='../S/403.html#L114'>init_size</a>         114 src/utility/queue.h static inline Deque  *deq_make(unsigned int init_size);</span>
+<span class='curline'><a href='../S/403.html#L139'>init_size</a>         139 src/utility/queue.h static inline void deq_init(Deque *deq, unsigned int init_size) {</span>
+<span class='curline'><a href='../S/403.html#L140'>init_size</a>         140 src/utility/queue.h   deq-&gt;tbl  = LMN_NALLOC(LmnWord, init_size);</span>
+<span class='curline'><a href='../S/403.html#L143'>init_size</a>         143 src/utility/queue.h   deq-&gt;cap  = init_size;</span>
+<span class='curline'><a href='../S/403.html#L147'>init_size</a>         147 src/utility/queue.h static inline Deque *deq_make(unsigned int init_size) {</span>
+<span class='curline'><a href='../S/403.html#L148'>init_size</a>         148 src/utility/queue.h   LMN_ASSERT(init_size &gt; 0);</span>
+<span class='curline'><a href='../S/403.html#L150'>init_size</a>         150 src/utility/queue.h   deq_init(deq, init_size);</span>
+<span class='curline'><a href='../S/409.html#L57'>init_size</a>          57 src/utility/vector.h static inline Vector *vec_init(Vector *vec, unsigned int init_size);</span>
+<span class='curline'><a href='../S/409.html#L58'>init_size</a>          58 src/utility/vector.h static inline Vector *vec_make(unsigned int init_size);</span>
+<span class='curline'><a href='../S/409.html#L81'>init_size</a>          81 src/utility/vector.h static inline Vector *vec_init(Vector *vec, unsigned int init_size) {</span>
+<span class='curline'><a href='../S/409.html#L82'>init_size</a>          82 src/utility/vector.h   vec-&gt;tbl = LMN_NALLOC(LmnWord, init_size);</span>
+<span class='curline'><a href='../S/409.html#L84'>init_size</a>          84 src/utility/vector.h   vec-&gt;cap = init_size;</span>
+<span class='curline'><a href='../S/409.html#L89'>init_size</a>          89 src/utility/vector.h static inline Vector *vec_make(unsigned int init_size) {</span>
+<span class='curline'><a href='../S/409.html#L90'>init_size</a>          90 src/utility/vector.h   LMN_ASSERT(init_size &gt; 0);</span>
+<span class='curline'><a href='../S/409.html#L92'>init_size</a>          92 src/utility/vector.h   return vec_init(vec, init_size);</span>
+</pre>
+</body>
+</html>

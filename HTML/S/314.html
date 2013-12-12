@@ -1,0 +1,414 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>src/config.h</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/733.html'>src</a>/config.h</h2>
+<em class='comment'>/* [&lt;][&gt;][^][v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/6.html' title='Multiple included from 77 places.'>INCLUDED FROM</a></h2>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>/* src/config.h.  Generated from config.h.in by configure.  */</em>
+<a id='L2' name='L2' /><em class='comment'>/* src/config.h.in.  Generated from configure.ac by autoheader.  */</em>
+<a id='L3' name='L3' />
+<a id='L4' name='L4' />
+<a id='L5' name='L5' /><em class='sharp'>#ifndef</em> <a href='../S/314.html#L6' title='Defined at 6 in src/config.h.'>GOOGLE_PERFTOOLS_CONFIG_H_</a>
+<a id='L6' name='L6' /><em class='sharp'>#define</em> <a href='../S/314.html#L5' title='Refered from 5 in src/config.h.'>GOOGLE_PERFTOOLS_CONFIG_H_</a>
+<a id='L7' name='L7' />
+<a id='L8' name='L8' />
+<a id='L9' name='L9' /><em class='comment'>/* enable debug */</em>
+<a id='L10' name='L10' /><em class='comment'>/* #undef DEBUG */</em>
+<a id='L11' name='L11' />
+<a id='L12' name='L12' /><em class='comment'>/* enable devel */</em>
+<a id='L13' name='L13' /><em class='comment'>/* #undef DEVEL */</em>
+<a id='L14' name='L14' />
+<a id='L15' name='L15' /><em class='comment'>/* Define to 1 if the system has the function `add_and_fetch'. */</em>
+<a id='L16' name='L16' /><em class='sharp'>#define</em> <a href='../S/396.html#L59' title='Refered from 59 in src/utility/lmntal_thread.h.'>HAVE_ATOMIC_ADD</a> 1
+<a id='L17' name='L17' />
+<a id='L18' name='L18' /><em class='comment'>/* Define to 1 if the system has the function `compare_and_swap'. */</em>
+<a id='L19' name='L19' /><em class='sharp'>#define</em> <a href='../S/396.html#L53' title='Refered from 53 in src/utility/lmntal_thread.h.'>HAVE_ATOMIC_CAS</a> 1
+<a id='L20' name='L20' />
+<a id='L21' name='L21' /><em class='comment'>/* Define to 1 if the system has the function `and_and_fetch'. */</em>
+<a id='L22' name='L22' /><em class='sharp'>#define</em> <a href='../S/396.html#L71' title='Refered from 71 in src/utility/lmntal_thread.h.'>HAVE_ATOMIC_LOGICAL_AND</a> 1
+<a id='L23' name='L23' />
+<a id='L24' name='L24' /><em class='comment'>/* Define to 1 if the system has the function `or_and_fetch'. */</em>
+<a id='L25' name='L25' /><em class='sharp'>#define</em> <a href='../S/396.html#L77' title='Refered from 77 in src/utility/lmntal_thread.h.'>HAVE_ATOMIC_LOGICAL_OR</a> 1
+<a id='L26' name='L26' />
+<a id='L27' name='L27' /><em class='comment'>/* Define to 1 if the system has the function `sub_and_fetch'. */</em>
+<a id='L28' name='L28' /><em class='sharp'>#define</em> <a href='../R/785.html' title='Multiple refered from 2 places.'>HAVE_ATOMIC_SUB</a> 1
+<a id='L29' name='L29' />
+<a id='L30' name='L30' /><em class='comment'>/* Define to 1 if the system has the function `__sync_synchronize'. */</em>
+<a id='L31' name='L31' /><em class='sharp'>#define</em> <a href='../R/787.html' title='Multiple refered from 2 places.'>HAVE_BUILTIN_MBARRIER</a> 1
+<a id='L32' name='L32' />
+<a id='L33' name='L33' /><em class='comment'>/* Define to 1 if compiler supports __builtin_stack_pointer */</em>
+<a id='L34' name='L34' /><em class='comment'>/* #undef HAVE_BUILTIN_STACK_POINTER */</em>
+<a id='L35' name='L35' />
+<a id='L36' name='L36' /><em class='comment'>/* Define to 1 if you have the &lt;conflict-signal.h&gt; header file. */</em>
+<a id='L37' name='L37' /><em class='comment'>/* #undef HAVE_CONFLICT_SIGNAL_H */</em>
+<a id='L38' name='L38' />
+<a id='L39' name='L39' /><em class='comment'>/* Define to 1 if you have the &lt;cygwin/signal.h&gt; header file. */</em>
+<a id='L40' name='L40' /><em class='comment'>/* #undef HAVE_CYGWIN_SIGNAL_H */</em>
+<a id='L41' name='L41' />
+<a id='L42' name='L42' /><em class='comment'>/* Define to 1 if you have the declaration of `cfree', and to 0 if you don't.</em>
+<a id='L43' name='L43' /><em class='comment'>   */</em>
+<a id='L44' name='L44' /><em class='sharp'>#define</em> HAVE_DECL_CFREE 0
+<a id='L45' name='L45' />
+<a id='L46' name='L46' /><em class='comment'>/* Define to 1 if you have the declaration of `memalign', and to 0 if you</em>
+<a id='L47' name='L47' /><em class='comment'>   don't. */</em>
+<a id='L48' name='L48' /><em class='sharp'>#define</em> HAVE_DECL_MEMALIGN 0
+<a id='L49' name='L49' />
+<a id='L50' name='L50' /><em class='comment'>/* Define to 1 if you have the declaration of `posix_memalign', and to 0 if</em>
+<a id='L51' name='L51' /><em class='comment'>   you don't. */</em>
+<a id='L52' name='L52' /><em class='sharp'>#define</em> HAVE_DECL_POSIX_MEMALIGN 0
+<a id='L53' name='L53' />
+<a id='L54' name='L54' /><em class='comment'>/* Define to 1 if you have the declaration of `pvalloc', and to 0 if you</em>
+<a id='L55' name='L55' /><em class='comment'>   don't. */</em>
+<a id='L56' name='L56' /><em class='sharp'>#define</em> HAVE_DECL_PVALLOC 0
+<a id='L57' name='L57' />
+<a id='L58' name='L58' /><em class='comment'>/* Define to 1 if you have the declaration of `uname', and to 0 if you don't.</em>
+<a id='L59' name='L59' /><em class='comment'>   */</em>
+<a id='L60' name='L60' /><em class='sharp'>#define</em> <a href='../S/669.html#L81' title='Refered from 81 in third_party/google-perftools-1.8.3/src/thread_cache.cc.'>HAVE_DECL_UNAME</a> 1
+<a id='L61' name='L61' />
+<a id='L62' name='L62' /><em class='comment'>/* Define to 1 if you have the declaration of `valloc', and to 0 if you don't.</em>
+<a id='L63' name='L63' /><em class='comment'>   */</em>
+<a id='L64' name='L64' /><em class='sharp'>#define</em> HAVE_DECL_VALLOC 0
+<a id='L65' name='L65' />
+<a id='L66' name='L66' /><em class='comment'>/* Define to 1 if you have the &lt;dlfcn.h&gt; header file. */</em>
+<a id='L67' name='L67' /><em class='sharp'>#define</em> HAVE_DLFCN_H 1
+<a id='L68' name='L68' />
+<a id='L69' name='L69' /><em class='comment'>/* Define to 1 if the system has the type `Elf32_Versym'. */</em>
+<a id='L70' name='L70' /><em class='comment'>/* #undef HAVE_ELF32_VERSYM */</em>
+<a id='L71' name='L71' />
+<a id='L72' name='L72' /><em class='comment'>/* Define to 1 if you have the &lt;execinfo.h&gt; header file. */</em>
+<a id='L73' name='L73' /><em class='sharp'>#define</em> <a href='../R/792.html' title='Multiple refered from 4 places.'>HAVE_EXECINFO_H</a> 1
+<a id='L74' name='L74' />
+<a id='L75' name='L75' /><em class='comment'>/* Define to 1 if you have the &lt;fcntl.h&gt; header file. */</em>
+<a id='L76' name='L76' /><em class='sharp'>#define</em> <a href='../R/793.html' title='Multiple refered from 4 places.'>HAVE_FCNTL_H</a> 1
+<a id='L77' name='L77' />
+<a id='L78' name='L78' /><em class='comment'>/* Define to 1 if you have the &lt;features.h&gt; header file. */</em>
+<a id='L79' name='L79' /><em class='comment'>/* #undef HAVE_FEATURES_H */</em>
+<a id='L80' name='L80' />
+<a id='L81' name='L81' /><em class='comment'>/* Define to 1 if you have the `geteuid' function. */</em>
+<a id='L82' name='L82' /><em class='sharp'>#define</em> <a href='../R/795.html' title='Multiple refered from 3 places.'>HAVE_GETEUID</a> 1
+<a id='L83' name='L83' />
+<a id='L84' name='L84' /><em class='comment'>/* Define to 1 if you have the `getpagesize' function. */</em>
+<a id='L85' name='L85' /><em class='sharp'>#define</em> HAVE_GETPAGESIZE 1
+<a id='L86' name='L86' />
+<a id='L87' name='L87' /><em class='comment'>/* Define to 1 if you have the &lt;glob.h&gt; header file. */</em>
+<a id='L88' name='L88' /><em class='sharp'>#define</em> <a href='../R/796.html' title='Multiple refered from 2 places.'>HAVE_GLOB_H</a> 1
+<a id='L89' name='L89' />
+<a id='L90' name='L90' /><em class='comment'>/* Define to 1 if you have the &lt;grp.h&gt; header file. */</em>
+<a id='L91' name='L91' /><em class='sharp'>#define</em> <a href='../R/797.html' title='Multiple refered from 2 places.'>HAVE_GRP_H</a> 1
+<a id='L92' name='L92' />
+<a id='L93' name='L93' /><em class='comment'>/* Define to 1 if you have the &lt;inttypes.h&gt; header file. */</em>
+<a id='L94' name='L94' /><em class='sharp'>#define</em> <a href='../R/798.html' title='Multiple refered from 19 places.'>HAVE_INTTYPES_H</a> 1
+<a id='L95' name='L95' />
+<a id='L96' name='L96' /><em class='comment'>/* Define to 1 if you have the `gomp' library (-lgomp). */</em>
+<a id='L97' name='L97' /><em class='sharp'>#define</em> HAVE_LIBGOMP 1
+<a id='L98' name='L98' />
+<a id='L99' name='L99' /><em class='comment'>/* Define to 1 if you have the `pthread' library (-lpthread). */</em>
+<a id='L100' name='L100' /><em class='sharp'>#define</em> <a href='../R/800.html' title='Multiple refered from 4 places.'>HAVE_LIBPTHREAD</a> 1
+<a id='L101' name='L101' />
+<a id='L102' name='L102' /><em class='comment'>/* Define to 1 if you have the `rt' library (-lrt). */</em>
+<a id='L103' name='L103' /><em class='comment'>/* #undef HAVE_LIBRT */</em>
+<a id='L104' name='L104' />
+<a id='L105' name='L105' /><em class='comment'>/* Define to 1 if you have the &lt;libunwind.h&gt; header file. */</em>
+<a id='L106' name='L106' /><em class='sharp'>#define</em> <a href='../S/612.html#L54' title='Refered from 54 in third_party/google-perftools-1.8.3/src/stacktrace_config.h.'>HAVE_LIBUNWIND_H</a> 1
+<a id='L107' name='L107' />
+<a id='L108' name='L108' /><em class='comment'>/* Define to 1 if you have the `z' library (-lz). */</em>
+<a id='L109' name='L109' /><em class='sharp'>#define</em> <a href='../R/802.html' title='Multiple refered from 4 places.'>HAVE_LIBZ</a> 1
+<a id='L110' name='L110' />
+<a id='L111' name='L111' /><em class='comment'>/* Define to 1 if you have the &lt;linux/ptrace.h&gt; header file. */</em>
+<a id='L112' name='L112' /><em class='comment'>/* #undef HAVE_LINUX_PTRACE_H */</em>
+<a id='L113' name='L113' />
+<a id='L114' name='L114' /><em class='comment'>/* Define to 1 if the system has the type `long double'. */</em>
+<a id='L115' name='L115' /><em class='sharp'>#define</em> HAVE_LONG_DOUBLE 1
+<a id='L116' name='L116' />
+<a id='L117' name='L117' /><em class='comment'>/* Define to 1 if you have the &lt;malloc.h&gt; header file. */</em>
+<a id='L118' name='L118' /><em class='comment'>/* #undef HAVE_MALLOC_H */</em>
+<a id='L119' name='L119' />
+<a id='L120' name='L120' /><em class='comment'>/* Define to 1 if you have the &lt;memory.h&gt; header file. */</em>
+<a id='L121' name='L121' /><em class='sharp'>#define</em> HAVE_MEMORY_H 1
+<a id='L122' name='L122' />
+<a id='L123' name='L123' /><em class='comment'>/* Define to 1 if you have a working `mmap' system call. */</em>
+<a id='L124' name='L124' /><em class='sharp'>#define</em> <a href='../R/807.html' title='Multiple refered from 22 places.'>HAVE_MMAP</a> 1
+<a id='L125' name='L125' />
+<a id='L126' name='L126' /><em class='comment'>/* define if the compiler implements namespaces */</em>
+<a id='L127' name='L127' /><em class='sharp'>#define</em> HAVE_NAMESPACES 1
+<a id='L128' name='L128' />
+<a id='L129' name='L129' /><em class='comment'>/* Define to 1 if you have the &lt;omp.h&gt; header file. */</em>
+<a id='L130' name='L130' /><em class='sharp'>#define</em> <a href='../S/347.html#L341' title='Refered from 341 in src/lmntal.h.'>HAVE_OMP_H</a> 1
+<a id='L131' name='L131' />
+<a id='L132' name='L132' /><em class='comment'>/* Define to 1 if you have the &lt;poll.h&gt; header file. */</em>
+<a id='L133' name='L133' /><em class='sharp'>#define</em> <a href='../R/810.html' title='Multiple refered from 4 places.'>HAVE_POLL_H</a> 1
+<a id='L134' name='L134' />
+<a id='L135' name='L135' /><em class='comment'>/* Define to Enable Processor Elements on your environment. */</em>
+<a id='L136' name='L136' /><em class='sharp'>#define</em> <a href='../S/395.html#L61' title='Refered from 61 in src/utility/lmntal_thread.c.'>HAVE_PROCESSOR_ELEMENTS</a> 8
+<a id='L137' name='L137' />
+<a id='L138' name='L138' /><em class='comment'>/* define if libc has program_invocation_name */</em>
+<a id='L139' name='L139' /><em class='comment'>/* #undef HAVE_PROGRAM_INVOCATION_NAME */</em>
+<a id='L140' name='L140' />
+<a id='L141' name='L141' /><em class='comment'>/* Define if you have POSIX threads libraries and header files. */</em>
+<a id='L142' name='L142' /><em class='sharp'>#define</em> <a href='../R/813.html' title='Multiple refered from 13 places.'>HAVE_PTHREAD</a> 1
+<a id='L143' name='L143' />
+<a id='L144' name='L144' /><em class='comment'>/* Define to 1 if the system has `pthread_barrier'. */</em>
+<a id='L145' name='L145' /><em class='comment'>/* #undef HAVE_PTHREAD_BARRIER */</em>
+<a id='L146' name='L146' />
+<a id='L147' name='L147' /><em class='comment'>/* Define to 1 if you have the &lt;pwd.h&gt; header file. */</em>
+<a id='L148' name='L148' /><em class='sharp'>#define</em> <a href='../R/814.html' title='Multiple refered from 2 places.'>HAVE_PWD_H</a> 1
+<a id='L149' name='L149' />
+<a id='L150' name='L150' /><em class='comment'>/* Define to 1 if you have the `sbrk' function. */</em>
+<a id='L151' name='L151' /><em class='sharp'>#define</em> <a href='../R/815.html' title='Multiple refered from 2 places.'>HAVE_SBRK</a> 1
+<a id='L152' name='L152' />
+<a id='L153' name='L153' /><em class='comment'>/* Define to 1 if you have the &lt;sched.h&gt; header file. */</em>
+<a id='L154' name='L154' /><em class='sharp'>#define</em> <a href='../R/816.html' title='Multiple refered from 4 places.'>HAVE_SCHED_H</a> 1
+<a id='L155' name='L155' />
+<a id='L156' name='L156' /><em class='comment'>/* Define to 1 if you have the &lt;stdint.h&gt; header file. */</em>
+<a id='L157' name='L157' /><em class='sharp'>#define</em> <a href='../R/818.html' title='Multiple refered from 28 places.'>HAVE_STDINT_H</a> 1
+<a id='L158' name='L158' />
+<a id='L159' name='L159' /><em class='comment'>/* Define to 1 if you have the &lt;stdlib.h&gt; header file. */</em>
+<a id='L160' name='L160' /><em class='sharp'>#define</em> HAVE_STDLIB_H 1
+<a id='L161' name='L161' />
+<a id='L162' name='L162' /><em class='comment'>/* Define to 1 if you have the &lt;strings.h&gt; header file. */</em>
+<a id='L163' name='L163' /><em class='sharp'>#define</em> HAVE_STRINGS_H 1
+<a id='L164' name='L164' />
+<a id='L165' name='L165' /><em class='comment'>/* Define to 1 if you have the &lt;string.h&gt; header file. */</em>
+<a id='L166' name='L166' /><em class='sharp'>#define</em> HAVE_STRING_H 1
+<a id='L167' name='L167' />
+<a id='L168' name='L168' /><em class='comment'>/* Define to 1 if the system has the type `struct mallinfo'. */</em>
+<a id='L169' name='L169' /><em class='comment'>/* #undef HAVE_STRUCT_MALLINFO */</em>
+<a id='L170' name='L170' />
+<a id='L171' name='L171' /><em class='comment'>/* Define to 1 if you have the &lt;syscall.h&gt; header file. */</em>
+<a id='L172' name='L172' /><em class='comment'>/* #undef HAVE_SYSCALL_H */</em>
+<a id='L173' name='L173' />
+<a id='L174' name='L174' /><em class='comment'>/* Define to 1 if you have the &lt;sys/cdefs.h&gt; header file. */</em>
+<a id='L175' name='L175' /><em class='sharp'>#define</em> <a href='../R/820.html' title='Multiple refered from 6 places.'>HAVE_SYS_CDEFS_H</a> 1
+<a id='L176' name='L176' />
+<a id='L177' name='L177' /><em class='comment'>/* Define to 1 if you have the &lt;sys/param.h&gt; header file. */</em>
+<a id='L178' name='L178' /><em class='sharp'>#define</em> HAVE_SYS_PARAM_H 1
+<a id='L179' name='L179' />
+<a id='L180' name='L180' /><em class='comment'>/* Define to 1 if you have the &lt;sys/prctl.h&gt; header file. */</em>
+<a id='L181' name='L181' /><em class='comment'>/* #undef HAVE_SYS_PRCTL_H */</em>
+<a id='L182' name='L182' />
+<a id='L183' name='L183' /><em class='comment'>/* Define to 1 if you have the &lt;sys/resource.h&gt; header file. */</em>
+<a id='L184' name='L184' /><em class='sharp'>#define</em> <a href='../R/822.html' title='Multiple refered from 5 places.'>HAVE_SYS_RESOURCE_H</a> 1
+<a id='L185' name='L185' />
+<a id='L186' name='L186' /><em class='comment'>/* Define to 1 if you have the &lt;sys/socket.h&gt; header file. */</em>
+<a id='L187' name='L187' /><em class='sharp'>#define</em> <a href='../R/823.html' title='Multiple refered from 2 places.'>HAVE_SYS_SOCKET_H</a> 1
+<a id='L188' name='L188' />
+<a id='L189' name='L189' /><em class='comment'>/* Define to 1 if you have the &lt;sys/stat.h&gt; header file. */</em>
+<a id='L190' name='L190' /><em class='sharp'>#define</em> HAVE_SYS_STAT_H 1
+<a id='L191' name='L191' />
+<a id='L192' name='L192' /><em class='comment'>/* Define to 1 if you have the &lt;sys/syscall.h&gt; header file. */</em>
+<a id='L193' name='L193' /><em class='sharp'>#define</em> <a href='../R/824.html' title='Multiple refered from 4 places.'>HAVE_SYS_SYSCALL_H</a> 1
+<a id='L194' name='L194' />
+<a id='L195' name='L195' /><em class='comment'>/* Define to 1 if you have the &lt;sys/types.h&gt; header file. */</em>
+<a id='L196' name='L196' /><em class='sharp'>#define</em> <a href='../S/528.html#L76' title='Refered from 76 in third_party/google-perftools-1.8.3/src/base/logging.cc.'>HAVE_SYS_TYPES_H</a> 1
+<a id='L197' name='L197' />
+<a id='L198' name='L198' /><em class='comment'>/* &lt;sys/ucontext.h&gt; is broken on redhat 7 */</em>
+<a id='L199' name='L199' /><em class='comment'>/* #undef HAVE_SYS_UCONTEXT_H */</em>
+<a id='L200' name='L200' />
+<a id='L201' name='L201' /><em class='comment'>/* Define to 1 if you have the &lt;sys/wait.h&gt; header file. */</em>
+<a id='L202' name='L202' /><em class='sharp'>#define</em> <a href='../R/827.html' title='Multiple refered from 2 places.'>HAVE_SYS_WAIT_H</a> 1
+<a id='L203' name='L203' />
+<a id='L204' name='L204' /><em class='comment'>/* enable tcmalloc */</em>
+<a id='L205' name='L205' /><em class='sharp'>#define</em> <a href='../S/367.html#L454' title='Refered from 454 in src/runtime_status.c.'>HAVE_TCMALLOC</a> 1
+<a id='L206' name='L206' />
+<a id='L207' name='L207' /><em class='comment'>/* Define to 1 if compiler supports __thread */</em>
+<a id='L208' name='L208' /><em class='comment'>/* #undef HAVE_TLS */</em>
+<a id='L209' name='L209' />
+<a id='L210' name='L210' /><em class='comment'>/* Define to 1 if you have the &lt;ucontext.h&gt; header file. */</em>
+<a id='L211' name='L211' /><em class='comment'>/* #undef HAVE_UCONTEXT_H */</em>
+<a id='L212' name='L212' />
+<a id='L213' name='L213' /><em class='comment'>/* Define to 1 if you have the &lt;unistd.h&gt; header file. */</em>
+<a id='L214' name='L214' /><em class='sharp'>#define</em> <a href='../R/831.html' title='Multiple refered from 29 places.'>HAVE_UNISTD_H</a> 1
+<a id='L215' name='L215' />
+<a id='L216' name='L216' /><em class='comment'>/* Define to 1 if you have the &lt;unwind.h&gt; header file. */</em>
+<a id='L217' name='L217' /><em class='sharp'>#define</em> HAVE_UNWIND_H 1
+<a id='L218' name='L218' />
+<a id='L219' name='L219' /><em class='comment'>/* Define to 1 if you have the &lt;valgrind.h&gt; header file. */</em>
+<a id='L220' name='L220' /><em class='comment'>/* #undef HAVE_VALGRIND_H */</em>
+<a id='L221' name='L221' />
+<a id='L222' name='L222' /><em class='comment'>/* define if your compiler has __attribute__ */</em>
+<a id='L223' name='L223' /><em class='sharp'>#define</em> <a href='../R/834.html' title='Multiple refered from 9 places.'>HAVE___ATTRIBUTE__</a> 1
+<a id='L224' name='L224' />
+<a id='L225' name='L225' /><em class='comment'>/* Define to 1 if compiler supports __environ */</em>
+<a id='L226' name='L226' /><em class='comment'>/* #undef HAVE___ENVIRON */</em>
+<a id='L227' name='L227' />
+<a id='L228' name='L228' /><em class='comment'>/* Define to 1 if the system has the type `__int64'. */</em>
+<a id='L229' name='L229' /><em class='comment'>/* #undef HAVE___INT64 */</em>
+<a id='L230' name='L230' />
+<a id='L231' name='L231' /><em class='comment'>/* Define to 1 if the system has the TLS keyword `__thread'. */</em>
+<a id='L232' name='L232' /><em class='comment'>/* #undef HAVE___THREAD */</em>
+<a id='L233' name='L233' />
+<a id='L234' name='L234' /><em class='comment'>/* prefix where we look for installed files */</em>
+<a id='L235' name='L235' /><em class='sharp'>#define</em> INSTALL_PREFIX "/usr/local"
+<a id='L236' name='L236' />
+<a id='L237' name='L237' /><em class='comment'>/* Define to 1 if int32_t is equivalent to intptr_t */</em>
+<a id='L238' name='L238' /><em class='comment'>/* #undef INT32_EQUALS_INTPTR */</em>
+<a id='L239' name='L239' />
+<a id='L240' name='L240' /><em class='comment'>/* enable opt minmax */</em>
+<a id='L241' name='L241' /><em class='comment'>/* #undef KWBT_OPT */</em>
+<a id='L242' name='L242' />
+<a id='L243' name='L243' /><em class='comment'>/* library directory */</em>
+<a id='L244' name='L244' /><em class='sharp'>#define</em> LIB_DIR "/liba"
+<a id='L245' name='L245' />
+<a id='L246' name='L246' /><em class='comment'>/* Define to the sub-directory in which libtool stores uninstalled libraries.</em>
+<a id='L247' name='L247' /><em class='comment'>   */</em>
+<a id='L248' name='L248' /><em class='sharp'>#define</em> LT_OBJDIR ".libs/"
+<a id='L249' name='L249' />
+<a id='L250' name='L250' /><em class='comment'>/* Define to 'volatile' if __malloc_hook is declared volatile */</em>
+<a id='L251' name='L251' /><em class='sharp'>#define</em> <a href='../R/1519.html' title='Multiple refered from 5 places.'>MALLOC_HOOK_MAYBE_VOLATILE</a> <em class='comment'>/**/</em>
+<a id='L252' name='L252' />
+<a id='L253' name='L253' /><em class='comment'>/* Define to 1 if your C compiler doesn't accept -c and -o together. */</em>
+<a id='L254' name='L254' /><em class='comment'>/* #undef NO_MINUS_C_MINUS_O */</em>
+<a id='L255' name='L255' />
+<a id='L256' name='L256' /><em class='comment'>/* Name of package */</em>
+<a id='L257' name='L257' /><em class='sharp'>#define</em> PACKAGE "slim"
+<a id='L258' name='L258' />
+<a id='L259' name='L259' /><em class='comment'>/* Define to the address where bug reports for this package should be sent. */</em>
+<a id='L260' name='L260' /><em class='sharp'>#define</em> PACKAGE_BUGREPORT "lmntal@ueda.info.waseda.ac.jp"
+<a id='L261' name='L261' />
+<a id='L262' name='L262' /><em class='comment'>/* Define to the full name of this package. */</em>
+<a id='L263' name='L263' /><em class='sharp'>#define</em> PACKAGE_NAME "SLIM"
+<a id='L264' name='L264' />
+<a id='L265' name='L265' /><em class='comment'>/* Define to the full name and version of this package. */</em>
+<a id='L266' name='L266' /><em class='sharp'>#define</em> <a href='../S/664.html#L1323' title='Refered from 1323 in third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc.'>PACKAGE_STRING</a> "SLIM 2.2.2"
+<a id='L267' name='L267' />
+<a id='L268' name='L268' /><em class='comment'>/* Define to the one symbol short name of this package. */</em>
+<a id='L269' name='L269' /><em class='sharp'>#define</em> PACKAGE_TARNAME "slim"
+<a id='L270' name='L270' />
+<a id='L271' name='L271' /><em class='comment'>/* Define to the home page for this package. */</em>
+<a id='L272' name='L272' /><em class='sharp'>#define</em> PACKAGE_URL ""
+<a id='L273' name='L273' />
+<a id='L274' name='L274' /><em class='comment'>/* Define to the version of this package. */</em>
+<a id='L275' name='L275' /><em class='sharp'>#define</em> <a href='../S/664.html#L1324' title='Refered from 1324 in third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc.'>PACKAGE_VERSION</a> "2.2.2"
+<a id='L276' name='L276' />
+<a id='L277' name='L277' /><em class='comment'>/* How to access the PC from a struct ucontext */</em>
+<a id='L278' name='L278' /><em class='comment'>/* #undef PC_FROM_UCONTEXT */</em>
+<a id='L279' name='L279' />
+<a id='L280' name='L280' /><em class='comment'>/* Always the empty-string on non-windows systems. On windows, should be</em>
+<a id='L281' name='L281' /><em class='comment'>   "__declspec(dllexport)". This way, when we compile the dll, we export our</em>
+<a id='L282' name='L282' /><em class='comment'>   functions/classes. It's safe to define this here because config.h is only</em>
+<a id='L283' name='L283' /><em class='comment'>   used internally, to compile the DLL, and every DLL source file #includes</em>
+<a id='L284' name='L284' /><em class='comment'>   "config.h" before anything else. */</em>
+<a id='L285' name='L285' /><em class='sharp'>#define</em> <a href='../R/1851.html' title='Multiple refered from 187 places.'>PERFTOOLS_DLL_DECL</a> <em class='comment'>/**/</em>
+<a id='L286' name='L286' />
+<a id='L287' name='L287' /><em class='comment'>/* printf format code for printing a size_t and ssize_t */</em>
+<a id='L288' name='L288' /><em class='sharp'>#define</em> <a href='../R/1873.html' title='Multiple refered from 2 places.'>PRIdS</a> "ld"
+<a id='L289' name='L289' />
+<a id='L290' name='L290' /><em class='comment'>/* printf format code for printing a size_t and ssize_t */</em>
+<a id='L291' name='L291' /><em class='sharp'>#define</em> <a href='../R/1876.html' title='Multiple refered from 36 places.'>PRIuS</a> "lu"
+<a id='L292' name='L292' />
+<a id='L293' name='L293' /><em class='comment'>/* printf format code for printing a size_t and ssize_t */</em>
+<a id='L294' name='L294' /><em class='sharp'>#define</em> <a href='../S/664.html#L582' title='Refered from 582 in third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc.'>PRIxS</a> "lx"
+<a id='L295' name='L295' />
+<a id='L296' name='L296' /><em class='comment'>/* enable profile */</em>
+<a id='L297' name='L297' /><em class='comment'>/* #undef PROFILE */</em>
+<a id='L298' name='L298' />
+<a id='L299' name='L299' /><em class='comment'>/* Define to necessary symbol if this constant uses a non-standard name on</em>
+<a id='L300' name='L300' /><em class='comment'>   your system. */</em>
+<a id='L301' name='L301' /><em class='comment'>/* #undef PTHREAD_CREATE_JOINABLE */</em>
+<a id='L302' name='L302' />
+<a id='L303' name='L303' /><em class='comment'>/* root directory */</em>
+<a id='L304' name='L304' /><em class='sharp'>#define</em> ROOT_DIR "${exec_prefix}/lib"
+<a id='L305' name='L305' />
+<a id='L306' name='L306' /><em class='comment'>/* The size of `long', as computed by sizeof. */</em>
+<a id='L307' name='L307' /><em class='sharp'>#define</em> <a href='../R/2224.html' title='Multiple refered from 14 places.'>SIZEOF_LONG</a> 8
+<a id='L308' name='L308' />
+<a id='L309' name='L309' /><em class='comment'>/* The size of `void*', as computed by sizeof. */</em>
+<a id='L310' name='L310' /><em class='sharp'>#define</em> <a href='../S/347.html#L95' title='Refered from 95 in src/lmntal.h.'>SIZEOF_VOIDP</a> 8
+<a id='L311' name='L311' />
+<a id='L312' name='L312' /><em class='comment'>/* slim version */</em>
+<a id='L313' name='L313' /><em class='sharp'>#define</em> <a href='../S/353.html#L132' title='Refered from 132 in src/main.c.'>SLIM_VERSION</a> "2.2.2"
+<a id='L314' name='L314' />
+<a id='L315' name='L315' /><em class='comment'>/* Define to 1 if you have the ANSI C header files. */</em>
+<a id='L316' name='L316' /><em class='sharp'>#define</em> <a href='../S/718.html#L197' title='Refered from 197 in third_party/zdelta-2.1/tailor.h.'>STDC_HEADERS</a> 1
+<a id='L317' name='L317' />
+<a id='L318' name='L318' /><em class='comment'>/* the namespace where STL code like vector&lt;&gt; is defined */</em>
+<a id='L319' name='L319' /><em class='sharp'>#define</em> <a href='../R/2260.html' title='Multiple refered from 8 places.'>STL_NAMESPACE</a> <a href='../Y/5100.html' title='Multiple used in 181 places.'>std</a>
+<a id='L320' name='L320' />
+<a id='L321' name='L321' /><em class='comment'>/* enable timeopt */</em>
+<a id='L322' name='L322' /><em class='sharp'>#define</em> <a href='../R/2437.html' title='Multiple refered from 49 places.'>TIME_OPT</a> 1
+<a id='L323' name='L323' />
+<a id='L324' name='L324' /><em class='comment'>/* Define to 1 if you can safely include both &lt;sys/time.h&gt; and &lt;time.h&gt;. */</em>
+<a id='L325' name='L325' /><em class='sharp'>#define</em> <a href='../S/368.html#L50' title='Refered from 50 in src/runtime_status.h.'>TIME_WITH_SYS_TIME</a> 1
+<a id='L326' name='L326' />
+<a id='L327' name='L327' /><em class='comment'>/* enable jni */</em>
+<a id='L328' name='L328' /><em class='comment'>/* #undef USE_JNI */</em>
+<a id='L329' name='L329' />
+<a id='L330' name='L330' /><em class='comment'>/* Version number of package */</em>
+<a id='L331' name='L331' /><em class='sharp'>#define</em> VERSION "2.2.2"
+<a id='L332' name='L332' />
+<a id='L333' name='L333' /><em class='comment'>/* Define if using the dmalloc debugging malloc package */</em>
+<a id='L334' name='L334' /><em class='comment'>/* #undef WITH_DMALLOC */</em>
+<a id='L335' name='L335' />
+<a id='L336' name='L336' /><em class='comment'>/* Define to 1 if `lex' declares `yytext' as a `char *' by default, not a</em>
+<a id='L337' name='L337' /><em class='comment'>   `char[]'. */</em>
+<a id='L338' name='L338' /><em class='sharp'>#define</em> YYTEXT_POINTER 1
+<a id='L339' name='L339' />
+<a id='L340' name='L340' /><em class='comment'>/* Define for Solaris 2.5.1 so the uint64_t typedef from &lt;sys/synch.h&gt;,</em>
+<a id='L341' name='L341' /><em class='comment'>   &lt;pthread.h&gt;, or &lt;semaphore.h&gt; is not used. If the typedef were allowed, the</em>
+<a id='L342' name='L342' /><em class='comment'>   #define below would cause a syntax error. */</em>
+<a id='L343' name='L343' /><em class='comment'>/* #undef _UINT64_T */</em>
+<a id='L344' name='L344' />
+<a id='L345' name='L345' /><em class='comment'>/* Define to 1 if type `char' is unsigned and you are not using gcc.  */</em>
+<a id='L346' name='L346' /><em class='sharp'>#ifndef</em> __CHAR_UNSIGNED__
+<a id='L347' name='L347' /><em class='comment'>/* # undef __CHAR_UNSIGNED__ */</em>
+<a id='L348' name='L348' /><em class='sharp'>#endif</em>
+<a id='L349' name='L349' />
+<a id='L350' name='L350' /><em class='comment'>/* C99 says: define this to get the PRI... macros from stdint.h */</em>
+<a id='L351' name='L351' /><em class='sharp'>#ifndef</em> <a href='../D/3261.html' title='Multiple defined in 2 places.'>__STDC_FORMAT_MACROS</a>
+<a id='L352' name='L352' /><em class='sharp'># define</em> <a href='../R/2910.html' title='Multiple refered from 2 places.'>__STDC_FORMAT_MACROS</a> 1
+<a id='L353' name='L353' /><em class='sharp'>#endif</em>
+<a id='L354' name='L354' />
+<a id='L355' name='L355' /><em class='comment'>/* Define to empty if `const' does not conform to ANSI C. */</em>
+<a id='L356' name='L356' /><em class='comment'>/* #undef const */</em>
+<a id='L357' name='L357' />
+<a id='L358' name='L358' /><em class='comment'>/* Define to `__inline__' or `__inline' if that's what the C compiler</em>
+<a id='L359' name='L359' /><em class='comment'>   calls it, or to nothing if 'inline' is not supported under any name.  */</em>
+<a id='L360' name='L360' /><em class='sharp'>#ifndef</em> <a href='../Y/1125.html' title='Multiple used in 121 places.'>__cplusplus</a>
+<a id='L361' name='L361' /><em class='comment'>/* #undef inline */</em>
+<a id='L362' name='L362' /><em class='sharp'>#endif</em>
+<a id='L363' name='L363' />
+<a id='L364' name='L364' /><em class='comment'>/* Define to the equivalent of the C99 'restrict' keyword, or to</em>
+<a id='L365' name='L365' /><em class='comment'>   nothing if this is not supported.  Do not define if restrict is</em>
+<a id='L366' name='L366' /><em class='comment'>   supported directly.  */</em>
+<a id='L367' name='L367' /><em class='sharp'>#define</em> <strong class='reserved'>restrict</strong> <strong class='reserved'>__restrict</strong>
+<a id='L368' name='L368' /><em class='comment'>/* Work around a bug in Sun C++: it does not support _Restrict or</em>
+<a id='L369' name='L369' /><em class='comment'>   __restrict__, even though the corresponding Sun C compiler ends up with</em>
+<a id='L370' name='L370' /><em class='comment'>   "#define restrict _Restrict" or "#define restrict __restrict__" in the</em>
+<a id='L371' name='L371' /><em class='comment'>   previous line.  Perhaps some future version of Sun C++ will work with</em>
+<a id='L372' name='L372' /><em class='comment'>   restrict; if so, hopefully it defines __RESTRICT like Sun C does.  */</em>
+<a id='L373' name='L373' /><em class='sharp'>#if</em> <strong class='reserved'>defined</strong> __SUNPRO_CC &amp;&amp; !<strong class='reserved'>defined</strong> __RESTRICT
+<a id='L374' name='L374' /><em class='sharp'># define</em> _Restrict
+<a id='L375' name='L375' /><em class='sharp'># define</em> <strong class='reserved'>__restrict__</strong>
+<a id='L376' name='L376' /><em class='sharp'>#endif</em>
+<a id='L377' name='L377' />
+<a id='L378' name='L378' /><em class='comment'>/* Define to the type of an unsigned integer type of width exactly 64 bits if</em>
+<a id='L379' name='L379' /><em class='comment'>   such a type exists and the standard includes do not define it. */</em>
+<a id='L380' name='L380' /><em class='comment'>/* #undef uint64_t */</em>
+<a id='L381' name='L381' />
+<a id='L382' name='L382' /><em class='comment'>/* Define to empty if the keyword `volatile' does not work. Warning: valid</em>
+<a id='L383' name='L383' /><em class='comment'>   code using `volatile' can become incorrect without. Disable with care. */</em>
+<a id='L384' name='L384' /><em class='comment'>/* #undef volatile */</em>
+<a id='L385' name='L385' />
+<a id='L386' name='L386' />
+<a id='L387' name='L387' /><em class='sharp'>#ifdef</em> <a href='../Y/1053.html' title='Multiple used in 17 places.'>__MINGW32__</a>
+<a id='L388' name='L388' /><em class='sharp'>#include</em> "<a href='678.html'>windows/mingw.h</a>"
+<a id='L389' name='L389' /><em class='sharp'>#endif</em>
+<a id='L390' name='L390' />
+<a id='L391' name='L391' /><em class='sharp'>#endif</em>  <em class='comment'>/* #ifndef GOOGLE_PERFTOOLS_CONFIG_H_ */</em>
+<a id='L392' name='L392' />
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^][v]<a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

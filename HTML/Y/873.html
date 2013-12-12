@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>ThreadCache</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/626.html#L175'>ThreadCache</a>       175 third_party/google-perftools-1.8.3/src/tcmalloc.cc using tcmalloc::ThreadCache;</span>
+<span class='curline'><a href='../S/626.html#L332'>ThreadCache</a>       332 third_party/google-perftools-1.8.3/src/tcmalloc.cc     ThreadCache::GetThreadStats(&amp;r-&gt;thread_bytes, class_count);</span>
+<span class='curline'><a href='../S/626.html#L409'>ThreadCache</a>       409 third_party/google-perftools-1.8.3/src/tcmalloc.cc       uint64_t(ThreadCache::HeapsInUse()),</span>
+<span class='curline'><a href='../S/626.html#L613'>ThreadCache</a>       613 third_party/google-perftools-1.8.3/src/tcmalloc.cc     *sample_period = ThreadCache::GetCache()-&gt;GetSamplePeriod();</span>
+<span class='curline'><a href='../S/626.html#L670'>ThreadCache</a>       670 third_party/google-perftools-1.8.3/src/tcmalloc.cc       *value = ThreadCache::overall_thread_cache_size();</span>
+<span class='curline'><a href='../S/626.html#L689'>ThreadCache</a>       689 third_party/google-perftools-1.8.3/src/tcmalloc.cc       ThreadCache::set_overall_thread_cache_size(value);</span>
+<span class='curline'><a href='../S/626.html#L697'>ThreadCache</a>       697 third_party/google-perftools-1.8.3/src/tcmalloc.cc     ThreadCache::BecomeIdle();</span>
+<span class='curline'><a href='../S/626.html#L816'>ThreadCache</a>       816 third_party/google-perftools-1.8.3/src/tcmalloc.cc       ThreadCache::GetThreadStats(&amp;thread_bytes, class_count);</span>
+<span class='curline'><a href='../S/626.html#L890'>ThreadCache</a>       890 third_party/google-perftools-1.8.3/src/tcmalloc.cc     ThreadCache::InitTSD();</span>
+<span class='curline'><a href='../S/626.html#L1026'>ThreadCache</a>      1026 third_party/google-perftools-1.8.3/src/tcmalloc.cc inline void* do_malloc_pages(ThreadCache* heap, size_t size) {</span>
+<span class='curline'><a href='../S/626.html#L1055'>ThreadCache</a>      1055 third_party/google-perftools-1.8.3/src/tcmalloc.cc   ThreadCache* heap = ThreadCache::GetCache();</span>
+<span class='curline'><a href='../S/626.html#L1086'>ThreadCache</a>      1086 third_party/google-perftools-1.8.3/src/tcmalloc.cc static inline ThreadCache* GetCacheIfPresent() {</span>
+<span class='curline'><a href='../S/626.html#L1087'>ThreadCache</a>      1087 third_party/google-perftools-1.8.3/src/tcmalloc.cc   void* const p = ThreadCache::GetCacheIfPresent();</span>
+<span class='curline'><a href='../S/626.html#L1088'>ThreadCache</a>      1088 third_party/google-perftools-1.8.3/src/tcmalloc.cc   return reinterpret_cast&lt;ThreadCache*&gt;(p);</span>
+<span class='curline'><a href='../S/626.html#L1118'>ThreadCache</a>      1118 third_party/google-perftools-1.8.3/src/tcmalloc.cc     ThreadCache* heap = GetCacheIfPresent();</span>
+<span class='curline'><a href='../S/626.html#L1239'>ThreadCache</a>      1239 third_party/google-perftools-1.8.3/src/tcmalloc.cc   if (Static::pageheap() == NULL) ThreadCache::InitModule();</span>
+<span class='curline'><a href='../S/626.html#L1257'>ThreadCache</a>      1257 third_party/google-perftools-1.8.3/src/tcmalloc.cc       ThreadCache* heap = ThreadCache::GetCache();</span>
+<span class='curline'><a href='../S/669.html#L58'>ThreadCache</a>        58 third_party/google-perftools-1.8.3/src/thread_cache.cc volatile size_t ThreadCache::per_thread_cache_size_ = kMaxThreadCacheSize;</span>
+<span class='curline'><a href='../S/669.html#L59'>ThreadCache</a>        59 third_party/google-perftools-1.8.3/src/thread_cache.cc size_t ThreadCache::overall_thread_cache_size_ = kDefaultOverallThreadCacheSize;</span>
+<span class='curline'><a href='../S/669.html#L60'>ThreadCache</a>        60 third_party/google-perftools-1.8.3/src/thread_cache.cc ssize_t ThreadCache::unclaimed_cache_space_ = kDefaultOverallThreadCacheSize;</span>
+<span class='curline'><a href='../S/669.html#L61'>ThreadCache</a>        61 third_party/google-perftools-1.8.3/src/thread_cache.cc PageHeapAllocator&lt;ThreadCache&gt; threadcache_allocator;</span>
+<span class='curline'><a href='../S/669.html#L62'>ThreadCache</a>        62 third_party/google-perftools-1.8.3/src/thread_cache.cc ThreadCache* ThreadCache::thread_heaps_ = NULL;</span>
+<span class='curline'><a href='../S/669.html#L63'>ThreadCache</a>        63 third_party/google-perftools-1.8.3/src/thread_cache.cc int ThreadCache::thread_heap_count_ = 0;</span>
+<span class='curline'><a href='../S/669.html#L64'>ThreadCache</a>        64 third_party/google-perftools-1.8.3/src/thread_cache.cc ThreadCache* ThreadCache::next_memory_steal_ = NULL;</span>
+<span class='curline'><a href='../S/669.html#L66'>ThreadCache</a>        66 third_party/google-perftools-1.8.3/src/thread_cache.cc __thread ThreadCache* ThreadCache::threadlocal_heap_</span>
+<span class='curline'><a href='../S/669.html#L72'>ThreadCache</a>        72 third_party/google-perftools-1.8.3/src/thread_cache.cc bool ThreadCache::tsd_inited_ = false;</span>
+<span class='curline'><a href='../S/669.html#L73'>ThreadCache</a>        73 third_party/google-perftools-1.8.3/src/thread_cache.cc pthread_key_t ThreadCache::heap_key_;</span>
+<span class='curline'><a href='../S/669.html#L111'>ThreadCache</a>       111 third_party/google-perftools-1.8.3/src/thread_cache.cc void ThreadCache::Init(pthread_t tid) {</span>
+<span class='curline'><a href='../S/669.html#L139'>ThreadCache</a>       139 third_party/google-perftools-1.8.3/src/thread_cache.cc void ThreadCache::Cleanup() {</span>
+<span class='curline'><a href='../S/669.html#L150'>ThreadCache</a>       150 third_party/google-perftools-1.8.3/src/thread_cache.cc void* ThreadCache::FetchFromCentralCache(size_t cl, size_t byte_size) {</span>
+<span class='curline'><a href='../S/669.html#L187'>ThreadCache</a>       187 third_party/google-perftools-1.8.3/src/thread_cache.cc void ThreadCache::ListTooLong(FreeList* list, size_t cl) {</span>
+<span class='curline'><a href='../S/669.html#L212'>ThreadCache</a>       212 third_party/google-perftools-1.8.3/src/thread_cache.cc void ThreadCache::ReleaseToCentralCache(FreeList* src, size_t cl, int N) {</span>
+<span class='curline'><a href='../S/669.html#L233'>ThreadCache</a>       233 third_party/google-perftools-1.8.3/src/thread_cache.cc void ThreadCache::Scavenge() {</span>
+<span class='curline'><a href='../S/669.html#L267'>ThreadCache</a>       267 third_party/google-perftools-1.8.3/src/thread_cache.cc void ThreadCache::IncreaseCacheLimit() {</span>
+<span class='curline'><a href='../S/669.html#L272'>ThreadCache</a>       272 third_party/google-perftools-1.8.3/src/thread_cache.cc void ThreadCache::IncreaseCacheLimitLocked() {</span>
+<span class='curline'><a href='../S/669.html#L302'>ThreadCache</a>       302 third_party/google-perftools-1.8.3/src/thread_cache.cc int ThreadCache::GetSamplePeriod() {</span>
+<span class='curline'><a href='../S/669.html#L306'>ThreadCache</a>       306 third_party/google-perftools-1.8.3/src/thread_cache.cc void ThreadCache::InitModule() {</span>
+<span class='curline'><a href='../S/669.html#L315'>ThreadCache</a>       315 third_party/google-perftools-1.8.3/src/thread_cache.cc void ThreadCache::InitTSD() {</span>
+<span class='curline'><a href='../S/669.html#L325'>ThreadCache</a>       325 third_party/google-perftools-1.8.3/src/thread_cache.cc   for (ThreadCache* h = thread_heaps_; h != NULL; h = h-&gt;next_) {</span>
+<span class='curline'><a href='../S/669.html#L333'>ThreadCache</a>       333 third_party/google-perftools-1.8.3/src/thread_cache.cc ThreadCache* ThreadCache::CreateCacheIfNecessary() {</span>
+<span class='curline'><a href='../S/669.html#L335'>ThreadCache</a>       335 third_party/google-perftools-1.8.3/src/thread_cache.cc   ThreadCache* heap = NULL;</span>
+<span class='curline'><a href='../S/669.html#L359'>ThreadCache</a>       359 third_party/google-perftools-1.8.3/src/thread_cache.cc     for (ThreadCache* h = thread_heaps_; h != NULL; h = h-&gt;next_) {</span>
+<span class='curline'><a href='../S/669.html#L385'>ThreadCache</a>       385 third_party/google-perftools-1.8.3/src/thread_cache.cc ThreadCache* ThreadCache::NewHeap(pthread_t tid) {</span>
+<span class='curline'><a href='../S/669.html#L387'>ThreadCache</a>       387 third_party/google-perftools-1.8.3/src/thread_cache.cc   ThreadCache *heap = threadcache_allocator.New();</span>
+<span class='curline'><a href='../S/669.html#L403'>ThreadCache</a>       403 third_party/google-perftools-1.8.3/src/thread_cache.cc void ThreadCache::BecomeIdle() {</span>
+<span class='curline'><a href='../S/669.html#L405'>ThreadCache</a>       405 third_party/google-perftools-1.8.3/src/thread_cache.cc   ThreadCache* heap = GetThreadHeap();</span>
+<span class='curline'><a href='../S/669.html#L426'>ThreadCache</a>       426 third_party/google-perftools-1.8.3/src/thread_cache.cc void ThreadCache::DestroyThreadCache(void* ptr) {</span>
+<span class='curline'><a href='../S/669.html#L435'>ThreadCache</a>       435 third_party/google-perftools-1.8.3/src/thread_cache.cc   DeleteCache(reinterpret_cast&lt;ThreadCache*&gt;(ptr));</span>
+<span class='curline'><a href='../S/669.html#L438'>ThreadCache</a>       438 third_party/google-perftools-1.8.3/src/thread_cache.cc void ThreadCache::DeleteCache(ThreadCache* heap) {</span>
+<span class='curline'><a href='../S/669.html#L456'>ThreadCache</a>       456 third_party/google-perftools-1.8.3/src/thread_cache.cc void ThreadCache::RecomputePerThreadCacheSize() {</span>
+<span class='curline'><a href='../S/669.html#L467'>ThreadCache</a>       467 third_party/google-perftools-1.8.3/src/thread_cache.cc   for (ThreadCache* h = thread_heaps_; h != NULL; h = h-&gt;next_) {</span>
+<span class='curline'><a href='../S/669.html#L479'>ThreadCache</a>       479 third_party/google-perftools-1.8.3/src/thread_cache.cc void ThreadCache::GetThreadStats(uint64_t* total_bytes, uint64_t* class_count) {</span>
+<span class='curline'><a href='../S/669.html#L480'>ThreadCache</a>       480 third_party/google-perftools-1.8.3/src/thread_cache.cc   for (ThreadCache* h = thread_heaps_; h != NULL; h = h-&gt;next_) {</span>
+<span class='curline'><a href='../S/669.html#L490'>ThreadCache</a>       490 third_party/google-perftools-1.8.3/src/thread_cache.cc void ThreadCache::set_overall_thread_cache_size(size_t new_size) {</span>
+<span class='curline'><a href='../S/670.html#L76'>ThreadCache</a>        76 third_party/google-perftools-1.8.3/src/thread_cache.h class ThreadCache {</span>
+<span class='curline'><a href='../S/670.html#L79'>ThreadCache</a>        79 third_party/google-perftools-1.8.3/src/thread_cache.h   ThreadCache* next_;</span>
+<span class='curline'><a href='../S/670.html#L80'>ThreadCache</a>        80 third_party/google-perftools-1.8.3/src/thread_cache.h   ThreadCache* prev_;</span>
+<span class='curline'><a href='../S/670.html#L106'>ThreadCache</a>       106 third_party/google-perftools-1.8.3/src/thread_cache.h   static ThreadCache* GetThreadHeap();</span>
+<span class='curline'><a href='../S/670.html#L107'>ThreadCache</a>       107 third_party/google-perftools-1.8.3/src/thread_cache.h   static ThreadCache* GetCache();</span>
+<span class='curline'><a href='../S/670.html#L108'>ThreadCache</a>       108 third_party/google-perftools-1.8.3/src/thread_cache.h   static ThreadCache* GetCacheIfPresent();</span>
+<span class='curline'><a href='../S/670.html#L109'>ThreadCache</a>       109 third_party/google-perftools-1.8.3/src/thread_cache.h   static ThreadCache* CreateCacheIfNecessary();</span>
+<span class='curline'><a href='../S/670.html#L255'>ThreadCache</a>       255 third_party/google-perftools-1.8.3/src/thread_cache.h   static __thread ThreadCache* threadlocal_heap_</span>
+<span class='curline'><a href='../S/670.html#L271'>ThreadCache</a>       271 third_party/google-perftools-1.8.3/src/thread_cache.h   static ThreadCache* thread_heaps_;</span>
+<span class='curline'><a href='../S/670.html#L278'>ThreadCache</a>       278 third_party/google-perftools-1.8.3/src/thread_cache.h   static ThreadCache* next_memory_steal_;</span>
+<span class='curline'><a href='../S/670.html#L308'>ThreadCache</a>       308 third_party/google-perftools-1.8.3/src/thread_cache.h   static ThreadCache* NewHeap(pthread_t tid);</span>
+<span class='curline'><a href='../S/670.html#L313'>ThreadCache</a>       313 third_party/google-perftools-1.8.3/src/thread_cache.h   static void DeleteCache(ThreadCache* heap);</span>
+<span class='curline'><a href='../S/670.html#L325'>ThreadCache</a>       325 third_party/google-perftools-1.8.3/src/thread_cache.h extern PageHeapAllocator&lt;ThreadCache&gt; threadcache_allocator;</span>
+<span class='curline'><a href='../S/670.html#L327'>ThreadCache</a>       327 third_party/google-perftools-1.8.3/src/thread_cache.h inline int ThreadCache::HeapsInUse() {</span>
+<span class='curline'><a href='../S/670.html#L331'>ThreadCache</a>       331 third_party/google-perftools-1.8.3/src/thread_cache.h inline bool ThreadCache::SampleAllocation(size_t k) {</span>
+<span class='curline'><a href='../S/670.html#L335'>ThreadCache</a>       335 third_party/google-perftools-1.8.3/src/thread_cache.h inline void* ThreadCache::Allocate(size_t size, size_t cl) {</span>
+<span class='curline'><a href='../S/670.html#L347'>ThreadCache</a>       347 third_party/google-perftools-1.8.3/src/thread_cache.h inline void ThreadCache::Deallocate(void* ptr, size_t cl) {</span>
+<span class='curline'><a href='../S/670.html#L372'>ThreadCache</a>       372 third_party/google-perftools-1.8.3/src/thread_cache.h inline ThreadCache* ThreadCache::GetThreadHeap() {</span>
+<span class='curline'><a href='../S/670.html#L378'>ThreadCache</a>       378 third_party/google-perftools-1.8.3/src/thread_cache.h   return reinterpret_cast&lt;ThreadCache *&gt;(</span>
+<span class='curline'><a href='../S/670.html#L382'>ThreadCache</a>       382 third_party/google-perftools-1.8.3/src/thread_cache.h inline ThreadCache* ThreadCache::GetCache() {</span>
+<span class='curline'><a href='../S/670.html#L383'>ThreadCache</a>       383 third_party/google-perftools-1.8.3/src/thread_cache.h   ThreadCache* ptr = NULL;</span>
+<span class='curline'><a href='../S/670.html#L396'>ThreadCache</a>       396 third_party/google-perftools-1.8.3/src/thread_cache.h inline ThreadCache* ThreadCache::GetCacheIfPresent() {</span>
+</pre>
+</body>
+</html>

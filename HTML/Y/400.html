@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>Iter</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/358.html#L555'>Iter</a>              555 src/membrane.h #define atomlist_iter_condition(Mem, Iter) ((Iter) &lt; lmn_mem_max_functor(Mem))</span>
+<span class='curline'><a href='../S/358.html#L556'>Iter</a>              556 src/membrane.h #define atomlist_iter_next(Iter)           ((Iter)++)</span>
+<span class='curline'><a href='../S/358.html#L557'>Iter</a>              557 src/membrane.h #define atomlist_iter_get_entry(Mem, Iter) lmn_mem_get_atomlist(Mem, Iter)</span>
+<span class='curline'><a href='../S/358.html#L558'>Iter</a>              558 src/membrane.h #define atomlist_iter_get_functor(Iter)    (Iter)</span>
+<span class='curline'><a href='../S/358.html#L562'>Iter</a>              562 src/membrane.h #define atomlist_iter_condition(Mem, Iter) (!hashtbliter_isend(&amp;Iter))</span>
+<span class='curline'><a href='../S/358.html#L563'>Iter</a>              563 src/membrane.h #define atomlist_iter_next(Iter)           hashtbliter_next(&amp;Iter)</span>
+<span class='curline'><a href='../S/358.html#L564'>Iter</a>              564 src/membrane.h #define atomlist_iter_get_entry(Mem, Iter) ((AtomListEntry *)hashtbliter_entry(&amp;(Iter))-&gt;data)</span>
+<span class='curline'><a href='../S/358.html#L565'>Iter</a>              565 src/membrane.h #define atomlist_iter_get_functor(Iter)    ((LmnFunctor)hashtbliter_entry(&amp;(Iter))-&gt;key)</span>
+</pre>
+</body>
+</html>

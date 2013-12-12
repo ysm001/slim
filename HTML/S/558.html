@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>third_party/google-perftools-1.8.3/src/google/heap-profiler.h</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/738.html'>third_party</a>/<a href='../files/739.html'>google-perftools-1.8.3</a>/<a href='../files/740.html'>src</a>/<a href='../files/742.html'>google</a>/heap-profiler.h</h2>
+<em class='comment'>/* [&lt;][&gt;][^][v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/181.html' title='Multiple included from 2 places.'>INCLUDED FROM</a></h2>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>/* Copyright (c) 2005, Google Inc.</em>
+<a id='L2' name='L2' /><em class='comment'> * All rights reserved.</em>
+<a id='L3' name='L3' /><em class='comment'> * </em>
+<a id='L4' name='L4' /><em class='comment'> * Redistribution and use in source and binary forms, with or without</em>
+<a id='L5' name='L5' /><em class='comment'> * modification, are permitted provided that the following conditions are</em>
+<a id='L6' name='L6' /><em class='comment'> * met:</em>
+<a id='L7' name='L7' /><em class='comment'> * </em>
+<a id='L8' name='L8' /><em class='comment'> *     * Redistributions of source code must retain the above copyright</em>
+<a id='L9' name='L9' /><em class='comment'> * notice, this list of conditions and the following disclaimer.</em>
+<a id='L10' name='L10' /><em class='comment'> *     * Redistributions in binary form must reproduce the above</em>
+<a id='L11' name='L11' /><em class='comment'> * copyright notice, this list of conditions and the following disclaimer</em>
+<a id='L12' name='L12' /><em class='comment'> * in the documentation and/or other materials provided with the</em>
+<a id='L13' name='L13' /><em class='comment'> * distribution.</em>
+<a id='L14' name='L14' /><em class='comment'> *     * Neither the name of Google Inc. nor the names of its</em>
+<a id='L15' name='L15' /><em class='comment'> * contributors may be used to endorse or promote products derived from</em>
+<a id='L16' name='L16' /><em class='comment'> * this software without specific prior written permission.</em>
+<a id='L17' name='L17' /><em class='comment'> * </em>
+<a id='L18' name='L18' /><em class='comment'> * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L19' name='L19' /><em class='comment'> * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L20' name='L20' /><em class='comment'> * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L21' name='L21' /><em class='comment'> * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L22' name='L22' /><em class='comment'> * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L23' name='L23' /><em class='comment'> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L24' name='L24' /><em class='comment'> * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L25' name='L25' /><em class='comment'> * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L26' name='L26' /><em class='comment'> * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L27' name='L27' /><em class='comment'> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L28' name='L28' /><em class='comment'> * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L29' name='L29' /><em class='comment'> *</em>
+<a id='L30' name='L30' /><em class='comment'> * ---</em>
+<a id='L31' name='L31' /><em class='comment'> * Author: Sanjay Ghemawat</em>
+<a id='L32' name='L32' /><em class='comment'> *</em>
+<a id='L33' name='L33' /><em class='comment'> * Module for heap-profiling.</em>
+<a id='L34' name='L34' /><em class='comment'> *</em>
+<a id='L35' name='L35' /><em class='comment'> * For full(er) information, see doc/heapprofile.html</em>
+<a id='L36' name='L36' /><em class='comment'> *</em>
+<a id='L37' name='L37' /><em class='comment'> * This module can be linked into your program with</em>
+<a id='L38' name='L38' /><em class='comment'> * no slowdown caused by this unless you activate the profiler</em>
+<a id='L39' name='L39' /><em class='comment'> * using one of the following methods:</em>
+<a id='L40' name='L40' /><em class='comment'> *</em>
+<a id='L41' name='L41' /><em class='comment'> *    1. Before starting the program, set the environment variable</em>
+<a id='L42' name='L42' /><em class='comment'> *       "HEAPPROFILE" to be the name of the file to which the profile</em>
+<a id='L43' name='L43' /><em class='comment'> *       data should be written.</em>
+<a id='L44' name='L44' /><em class='comment'> *</em>
+<a id='L45' name='L45' /><em class='comment'> *    2. Programmatically, start and stop the profiler using the</em>
+<a id='L46' name='L46' /><em class='comment'> *       routines "HeapProfilerStart(filename)" and "HeapProfilerStop()".</em>
+<a id='L47' name='L47' /><em class='comment'> *</em>
+<a id='L48' name='L48' /><em class='comment'> */</em>
+<a id='L49' name='L49' />
+<a id='L50' name='L50' /><em class='sharp'>#ifndef</em> <a href='../S/558.html#L51' title='Defined at 51 in third_party/google-perftools-1.8.3/src/google/heap-profiler.h.'>BASE_HEAP_PROFILER_H_</a>
+<a id='L51' name='L51' /><em class='sharp'>#define</em> <a href='../S/558.html#L50' title='Refered from 50 in third_party/google-perftools-1.8.3/src/google/heap-profiler.h.'>BASE_HEAP_PROFILER_H_</a>
+<a id='L52' name='L52' />
+<a id='L53' name='L53' /><em class='sharp'>#include</em> &lt;stddef.h&gt;
+<a id='L54' name='L54' />
+<a id='L55' name='L55' /><em class='comment'>/* Annoying stuff for windows; makes sure clients can import these functions */</em>
+<a id='L56' name='L56' /><em class='sharp'>#ifndef</em> <a href='../D/2076.html' title='Multiple defined in 25 places.'>PERFTOOLS_DLL_DECL</a>
+<a id='L57' name='L57' /><em class='sharp'># ifdef</em> <a href='../Y/997.html' title='Multiple used in 42 places.'>_WIN32</a>
+<a id='L58' name='L58' /><em class='sharp'>#   define</em> <a href='../R/1851.html' title='Multiple refered from 187 places.'>PERFTOOLS_DLL_DECL</a>  <a href='../Y/1130.html' title='Multiple used in 17 places.'>__declspec</a>(<a href='../Y/2070.html' title='Multiple used in 12 places.'>dllimport</a>)
+<a id='L59' name='L59' /><em class='sharp'># else</em>
+<a id='L60' name='L60' /><em class='sharp'>#   define</em> <a href='../R/1851.html' title='Multiple refered from 187 places.'>PERFTOOLS_DLL_DECL</a>
+<a id='L61' name='L61' /><em class='sharp'># endif</em>
+<a id='L62' name='L62' /><em class='sharp'>#endif</em>
+<a id='L63' name='L63' />
+<a id='L64' name='L64' /><em class='comment'>/* All this code should be usable from within C apps. */</em>
+<a id='L65' name='L65' /><em class='sharp'>#ifdef</em> <a href='../Y/1125.html' title='Multiple used in 121 places.'>__cplusplus</a>
+<a id='L66' name='L66' /><strong class='reserved'>extern</strong> "C" <em class='brace'>{</em>
+<a id='L67' name='L67' /><em class='sharp'>#endif</em>
+<a id='L68' name='L68' />
+<a id='L69' name='L69' /><em class='comment'>/* Start profiling and arrange to write profile data to file names</em>
+<a id='L70' name='L70' /><em class='comment'> * of the form: "prefix.0000", "prefix.0001", ...</em>
+<a id='L71' name='L71' /><em class='comment'> */</em>
+<a id='L72' name='L72' /><a href='../D/2076.html' title='Multiple defined in 25 places.'>PERFTOOLS_DLL_DECL</a> <strong class='reserved'>void</strong> <a href='../S/571.html#L431' title='Defined at 431 in third_party/google-perftools-1.8.3/src/heap-profiler.cc.'>HeapProfilerStart</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../Y/4226.html' title='Multiple used in 12 places.'>prefix</a>);
+<a id='L73' name='L73' />
+<a id='L74' name='L74' /><em class='comment'>/* Returns non-zero if we are currently profiling the heap.  (Returns</em>
+<a id='L75' name='L75' /><em class='comment'> * an int rather than a bool so it's usable from C.)  This is true</em>
+<a id='L76' name='L76' /><em class='comment'> * between calls to HeapProfilerStart() and HeapProfilerStop(), and</em>
+<a id='L77' name='L77' /><em class='comment'> * also if the program has been run with HEAPPROFILER, or some other</em>
+<a id='L78' name='L78' /><em class='comment'> * way to turn on whole-program profiling.</em>
+<a id='L79' name='L79' /><em class='comment'> */</em>
+<a id='L80' name='L80' /><strong class='reserved'>int</strong> <a href='../S/571.html#L495' title='Defined at 495 in third_party/google-perftools-1.8.3/src/heap-profiler.cc.'>IsHeapProfilerRunning</a>();
+<a id='L81' name='L81' />
+<a id='L82' name='L82' /><em class='comment'>/* Stop heap profiling.  Can be restarted again with HeapProfilerStart(),</em>
+<a id='L83' name='L83' /><em class='comment'> * but the currently accumulated profiling information will be cleared.</em>
+<a id='L84' name='L84' /><em class='comment'> */</em>
+<a id='L85' name='L85' /><a href='../D/2076.html' title='Multiple defined in 25 places.'>PERFTOOLS_DLL_DECL</a> <strong class='reserved'>void</strong> <a href='../S/571.html#L500' title='Defined at 500 in third_party/google-perftools-1.8.3/src/heap-profiler.cc.'>HeapProfilerStop</a>();
+<a id='L86' name='L86' />
+<a id='L87' name='L87' /><em class='comment'>/* Dump a profile now - can be used for dumping at a hopefully</em>
+<a id='L88' name='L88' /><em class='comment'> * quiescent state in your program, in order to more easily track down</em>
+<a id='L89' name='L89' /><em class='comment'> * memory leaks. Will include the reason in the logged message</em>
+<a id='L90' name='L90' /><em class='comment'> */</em>
+<a id='L91' name='L91' /><a href='../D/2076.html' title='Multiple defined in 25 places.'>PERFTOOLS_DLL_DECL</a> <strong class='reserved'>void</strong> <a href='../S/571.html#L541' title='Defined at 541 in third_party/google-perftools-1.8.3/src/heap-profiler.cc.'>HeapProfilerDump</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/4456.html' title='Multiple used in 7 places.'>reason</a>);
+<a id='L92' name='L92' />
+<a id='L93' name='L93' /><em class='comment'>/* Generate current heap profiling information.</em>
+<a id='L94' name='L94' /><em class='comment'> * Returns an empty string when heap profiling is not active.</em>
+<a id='L95' name='L95' /><em class='comment'> * The returned pointer is a '\0'-terminated string allocated using malloc()</em>
+<a id='L96' name='L96' /><em class='comment'> * and should be free()-ed as soon as the caller does not need it anymore.</em>
+<a id='L97' name='L97' /><em class='comment'> */</em>
+<a id='L98' name='L98' /><a href='../D/2076.html' title='Multiple defined in 25 places.'>PERFTOOLS_DLL_DECL</a> <strong class='reserved'>char</strong>* <a href='../S/571.html#L228' title='Defined at 228 in third_party/google-perftools-1.8.3/src/heap-profiler.cc.'>GetHeapProfile</a>();
+<a id='L99' name='L99' />
+<a id='L100' name='L100' /><em class='sharp'>#ifdef</em> <a href='../Y/1125.html' title='Multiple used in 121 places.'>__cplusplus</a>
+<a id='L101' name='L101' /><em class='brace'>}</em>  <em class='comment'>// extern "C"</em>
+<a id='L102' name='L102' /><em class='sharp'>#endif</em>
+<a id='L103' name='L103' />
+<a id='L104' name='L104' /><em class='sharp'>#endif</em>  <em class='comment'>/* BASE_HEAP_PROFILER_H_ */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^][v]<a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

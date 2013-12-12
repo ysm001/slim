@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>rulelist_push</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/339.html#L1654'>rulelist_push</a>    1654 src/il_parser.c     { (yyval.rules) = rulelist_make(); rulelist_push((yyval.rules), (yyvsp[(1) - (1)].rule)); }</span>
+<span class='curline'><a href='../S/339.html#L1659'>rulelist_push</a>    1659 src/il_parser.c     { rulelist_push((yyvsp[(1) - (2)].rules), (yyvsp[(2) - (2)].rule)); (yyval.rules) = (yyvsp[(1) - (2)].rules); }</span>
+<span class='curline'><a href='../S/341.html#L172'>rulelist_push</a>     172 src/il_parser.y   rule { $$ = rulelist_make(); rulelist_push($$, $1); }</span>
+<span class='curline'><a href='../S/341.html#L173'>rulelist_push</a>     173 src/il_parser.y | ruleList rule { rulelist_push($1, $2); $$ = $1; }</span>
+<span class='curline'><a href='../S/381.html#L151'>rulelist_push</a>     151 src/syntax.h   void rulelist_push(RuleList l, Rule r);</span>
+</pre>
+</body>
+</html>

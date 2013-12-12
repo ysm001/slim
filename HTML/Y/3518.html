@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>memset</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/309.html#L62'>memset</a>             62 src/alloc.c        memset(atom_memory_pools[i], 0, sizeof(memory_pool *) * core_num);</span>
+<span class='curline'><a href='../S/336.html#L1905'>memset</a>           1905 src/il_lexer.c 		memset(yyg-&gt;yy_buffer_stack, 0, num_to_alloc * sizeof(struct yy_buffer_state*));</span>
+<span class='curline'><a href='../S/336.html#L1926'>memset</a>           1926 src/il_lexer.c 		memset(yyg-&gt;yy_buffer_stack + yyg-&gt;yy_buffer_stack_max, 0, grow_size * sizeof(struct yy_buffer_state*));</span>
+<span class='curline'><a href='../S/336.html#L2236'>memset</a>           2236 src/il_lexer.c     memset(*ptr_yy_globals,0x00,sizeof(struct yyguts_t));</span>
+<span class='curline'><a href='../S/336.html#L2270'>memset</a>           2270 src/il_lexer.c     memset(*ptr_yy_globals,0x00,sizeof(struct yyguts_t));</span>
+<span class='curline'><a href='../S/357.html#L252'>memset</a>            252 src/membrane.c         memset(mem-&gt;atomset + org_size, 0, (mem-&gt;atomset_size - org_size) * sizeof(struct AtomListEntry *));</span>
+<span class='curline'><a href='../S/357.html#L2281'>memset</a>           2281 src/membrane.c     memset(v_mems_children1-&gt;tbl, 0, sizeof(vec_data_t) * vec_cap(v_mems_children1));</span>
+<span class='curline'><a href='../S/357.html#L2282'>memset</a>           2282 src/membrane.c     memset(v_mems_children2-&gt;tbl, 0, sizeof(vec_data_t) * vec_cap(v_mems_children2));</span>
+<span class='curline'><a href='../S/357.html#L2434'>memset</a>           2434 src/membrane.c     memset(v_atoms_not_checked1-&gt;tbl, 0, sizeof(vec_data_t) * vec_cap(v_atoms_not_checked1));</span>
+<span class='curline'><a href='../S/357.html#L2435'>memset</a>           2435 src/membrane.c     memset(v_atoms_not_checked2-&gt;tbl, 0, sizeof(vec_data_t) * vec_cap(v_atoms_not_checked2));</span>
+<span class='curline'><a href='../S/357.html#L2524'>memset</a>           2524 src/membrane.c       memset(v_log1-&gt;tbl, 0, sizeof(vec_data_t) * vec_cap(v_log1));</span>
+<span class='curline'><a href='../S/357.html#L2525'>memset</a>           2525 src/membrane.c       memset(v_log2-&gt;tbl, 0, sizeof(vec_data_t) * vec_cap(v_log2));</span>
+<span class='curline'><a href='../S/357.html#L2753'>memset</a>           2753 src/membrane.c   memset(vec-&gt;tbl, 0, sizeof(atomvec_data *) * vec-&gt;cap);</span>
+<span class='curline'><a href='../S/363.html#L51'>memset</a>             51 src/react_context.c   memset(v, 0, sizeof(struct LmnRegister) * size);</span>
+<span class='curline'><a href='../S/363.html#L64'>memset</a>             64 src/react_context.c   memset(rc-&gt;work_arry + warry_size(rc),</span>
+<span class='curline'><a href='../S/365.html#L197'>memset</a>            197 src/rule.c       memset(ruleset_table-&gt;entry, 0, ruleset_table-&gt;size * sizeof(ruleset_table-&gt;entry[0]));</span>
+<span class='curline'><a href='../S/365.html#L223'>memset</a>            223 src/rule.c         memset(ruleset_table-&gt;entry + old_size, 0, (ruleset_table-&gt;size - old_size) * sizeof(LmnRuleSet));</span>
+<span class='curline'><a href='../S/365.html#L437'>memset</a>            437 src/rule.c           memset(rs2v_matched, 0U, sizeof(BOOL) * n);</span>
+<span class='curline'><a href='../S/367.html#L132'>memset</a>            132 src/runtime_status.c   memset(total, 0U, sizeof(struct MCProfiler2));</span>
+<span class='curline'><a href='../S/393.html#L95'>memset</a>             95 src/utility/internal_hash.c   memset(ht-&gt;tbl, 0xffU, sizeof(struct HashEntry) * ht-&gt;cap);</span>
+<span class='curline'><a href='../S/393.html#L152'>memset</a>            152 src/utility/internal_hash.c   memset(ht-&gt;tbl, 0xffU, sizeof(struct HashEntry) * ht-&gt;cap);</span>
+<span class='curline'><a href='../S/393.html#L182'>memset</a>            182 src/utility/internal_hash.c   memset(ht-&gt;tbl, 0xffU, sizeof(struct HashEntry) * ht-&gt;cap);</span>
+<span class='curline'><a href='../S/393.html#L217'>memset</a>            217 src/utility/internal_hash.c   memset(set-&gt;tbl, 0xffU, sizeof(HashKeyType) * set-&gt;cap);</span>
+<span class='curline'><a href='../S/393.html#L257'>memset</a>            257 src/utility/internal_hash.c   memset(set-&gt;tbl, 0xffU, sizeof(HashKeyType) * set-&gt;cap);</span>
+<span class='curline'><a href='../S/393.html#L283'>memset</a>            283 src/utility/internal_hash.c   memset(set-&gt;tbl, 0xffU, sizeof(HashKeyType) * set-&gt;cap);</span>
+<span class='curline'><a href='../S/410.html#L54'>memset</a>             54 src/utility/visitlog.c   memset(p-&gt;tbl, 0xffU, sizeof(LmnWord) * p-&gt;size);</span>
+<span class='curline'><a href='../S/410.html#L93'>memset</a>             93 src/utility/visitlog.c   memset(p-&gt;tbl, 0xff, sizeof(LmnWord) * p-&gt;size);</span>
+<span class='curline'><a href='../S/410.html#L152'>memset</a>            152 src/utility/visitlog.c   memset(p-&gt;tbl + org_size, 0xffU, sizeof(LmnWord) * (p-&gt;size - org_size));</span>
+<span class='curline'><a href='../S/410.html#L162'>memset</a>            162 src/utility/visitlog.c   memset(p-&gt;tbl, SPROC_TBL_INIT_V, sizeof(BYTE) * p-&gt;cap);</span>
+<span class='curline'><a href='../S/410.html#L209'>memset</a>            209 src/utility/visitlog.c   memset(l-&gt;tbl, 0U, sizeof(struct TraceData) * l-&gt;cap);</span>
+<span class='curline'><a href='../S/411.html#L307'>memset</a>            307 src/utility/visitlog.h   memset(p-&gt;tbl + org_size,</span>
+<span class='curline'><a href='../S/411.html#L640'>memset</a>            640 src/utility/visitlog.h   memset(l-&gt;tbl + org_size, TLOG_INIT_DATA, sizeof(struct TraceData) * (l-&gt;cap - org_size));</span>
+<span class='curline'><a href='../S/436.html#L213'>memset</a>            213 src/verifier/mem_encode.c   memset(functor_priority, 0xff, sizeof(uint16_t) * FUNCTOR_MAX + 1);</span>
+<span class='curline'><a href='../S/436.html#L235'>memset</a>            235 src/verifier/mem_encode.c   memset(bs-&gt;v, 0x0U, sizeof(BYTE) * real_len);</span>
+<span class='curline'><a href='../S/436.html#L294'>memset</a>            294 src/verifier/mem_encode.c   memset(p-&gt;v, 0x0U, sizeof(BYTE) * BS_TBL_SIZE);</span>
+<span class='curline'><a href='../S/436.html#L351'>memset</a>            351 src/verifier/mem_encode.c     memset(bs-&gt;v + org_size, 0x0U, sizeof(BYTE) * ((bs-&gt;size / TAG_IN_BYTE) - org_size));</span>
+<span class='curline'><a href='../S/436.html#L388'>memset</a>            388 src/verifier/mem_encode.c     memset(bs-&gt;v + org_size, 0x0U, sizeof(BYTE) * ((bs-&gt;size / TAG_IN_BYTE) - org_size));</span>
+<span class='curline'><a href='../S/440.html#L1737'>memset</a>           1737 src/verifier/nc_lexer.c 		memset(yyg-&gt;yy_buffer_stack, 0, num_to_alloc * sizeof(struct yy_buffer_state*));</span>
+<span class='curline'><a href='../S/440.html#L1758'>memset</a>           1758 src/verifier/nc_lexer.c 		memset(yyg-&gt;yy_buffer_stack + yyg-&gt;yy_buffer_stack_max, 0, grow_size * sizeof(struct yy_buffer_state*));</span>
+<span class='curline'><a href='../S/440.html#L2068'>memset</a>           2068 src/verifier/nc_lexer.c     memset(*ptr_yy_globals,0x00,sizeof(struct yyguts_t));</span>
+<span class='curline'><a href='../S/440.html#L2102'>memset</a>           2102 src/verifier/nc_lexer.c     memset(*ptr_yy_globals,0x00,sizeof(struct yyguts_t));</span>
+<span class='curline'><a href='../S/448.html#L1674'>memset</a>           1674 src/verifier/propsym_lexer.c 		memset(yyg-&gt;yy_buffer_stack, 0, num_to_alloc * sizeof(struct yy_buffer_state*));</span>
+<span class='curline'><a href='../S/448.html#L1695'>memset</a>           1695 src/verifier/propsym_lexer.c 		memset(yyg-&gt;yy_buffer_stack + yyg-&gt;yy_buffer_stack_max, 0, grow_size * sizeof(struct yy_buffer_state*));</span>
+<span class='curline'><a href='../S/448.html#L2005'>memset</a>           2005 src/verifier/propsym_lexer.c     memset(*ptr_yy_globals,0x00,sizeof(struct yyguts_t));</span>
+<span class='curline'><a href='../S/448.html#L2039'>memset</a>           2039 src/verifier/propsym_lexer.c     memset(*ptr_yy_globals,0x00,sizeof(struct yyguts_t));</span>
+<span class='curline'><a href='../S/505.html#L259'>memset</a>            259 third_party/google-perftools-1.8.3/src/addressmap-inl.h     memset(ptr, 0, sizeof(Object) + num*sizeof(T));</span>
+<span class='curline'><a href='../S/525.html#L2558'>memset</a>           2558 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     memset(&amp;set-&gt;sig, 0, sizeof(set-&gt;sig));</span>
+<span class='curline'><a href='../S/525.html#L2563'>memset</a>           2563 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     memset(&amp;set-&gt;sig, -1, sizeof(set-&gt;sig));</span>
+<span class='curline'><a href='../S/525.html#L2685'>memset</a>           2685 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h             memset(oldact, 0, sizeof(*oldact));</span>
+<span class='curline'><a href='../S/526.html#L228'>memset</a>            228 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc   memset(buf, 0, amount);</span>
+<span class='curline'><a href='../S/526.html#L295'>memset</a>            295 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc   memset(&amp;altstack, 0, sizeof(altstack));</span>
+<span class='curline'><a href='../S/526.html#L311'>memset</a>            311 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc     memset(&amp;sa, 0, sizeof(sa));</span>
+<span class='curline'><a href='../S/526.html#L547'>memset</a>            547 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc   memset(altstack_mem, 0, sizeof(altstack_mem));</span>
+<span class='curline'><a href='../S/530.html#L279'>memset</a>            279 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     memset(arena-&gt;freelist.next, 0, sizeof (arena-&gt;freelist.next));</span>
+<span class='curline'><a href='../S/542.html#L244'>memset</a>            244 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     memset(line, '\0', sizeof(line));</span>
+<span class='curline'><a href='../S/542.html#L622'>memset</a>            622 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   memset(&amp;module_, 0, sizeof(module_));</span>
+<span class='curline'><a href='../S/542.html#L693'>memset</a>            693 third_party/google-perftools-1.8.3/src/base/sysinfo.cc         memset(etext_, 0, ebuf_ - etext_);</span>
+<span class='curline'><a href='../S/555.html#L391'>memset</a>            391 third_party/google-perftools-1.8.3/src/debugallocation.cc     memset(data_addr(), kMagicUninitializedByte, size);</span>
+<span class='curline'><a href='../S/555.html#L409'>memset</a>            409 third_party/google-perftools-1.8.3/src/debugallocation.cc     memset(this, kMagicDeletedByte, size);</span>
+<span class='curline'><a href='../S/555.html#L621'>memset</a>            621 third_party/google-perftools-1.8.3/src/debugallocation.cc     memset(kMagicDeletedBuffer, kMagicDeletedByte, sizeof(kMagicDeletedBuffer));</span>
+<span class='curline'><a href='../S/555.html#L758'>memset</a>            758 third_party/google-perftools-1.8.3/src/debugallocation.cc     memset(histogram, 0, kMallocHistogramSize * sizeof(int));</span>
+<span class='curline'><a href='../S/555.html#L1175'>memset</a>           1175 third_party/google-perftools-1.8.3/src/debugallocation.cc   if (block)  memset(block, 0, total_size);</span>
+<span class='curline'><a href='../S/569.html#L128'>memset</a>            128 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   memset(table_, 0, table_bytes);</span>
+<span class='curline'><a href='../S/569.html#L133'>memset</a>            133 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   memset(&amp;total_, 0, sizeof(total_));</span>
+<span class='curline'><a href='../S/569.html#L182'>memset</a>            182 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   memset(b, 0, sizeof(*b));</span>
+<span class='curline'><a href='../S/569.html#L351'>memset</a>            351 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   memset(&amp;stats, 0, sizeof(stats));</span>
+<span class='curline'><a href='../S/569.html#L381'>memset</a>            381 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   memset(&amp;b, 0, sizeof(b));</span>
+<span class='curline'><a href='../S/570.html#L369'>memset</a>            369 third_party/google-perftools-1.8.3/src/heap-profile-table.h     memset(&amp;total_, 0, sizeof(total_));</span>
+<span class='curline'><a href='../S/577.html#L210'>memset</a>            210 third_party/google-perftools-1.8.3/src/libc_override_osx.h   memset(&amp;tcmalloc_introspection, 0, sizeof(tcmalloc_introspection));</span>
+<span class='curline'><a href='../S/577.html#L221'>memset</a>            221 third_party/google-perftools-1.8.3/src/libc_override_osx.h   memset(&amp;tcmalloc_zone, 0, sizeof(malloc_zone_t));</span>
+<span class='curline'><a href='../S/580.html#L132'>memset</a>            132 third_party/google-perftools-1.8.3/src/malloc_extension.cc   memset(histogram, 0, sizeof(*histogram) * kMallocHistogramSize);</span>
+<span class='curline'><a href='../S/589.html#L189'>memset</a>            189 third_party/google-perftools-1.8.3/src/memory_region_map.h       if (DEBUG_MODE) memset(this, 0xFF, sizeof(*this));</span>
+<span class='curline'><a href='../S/594.html#L74'>memset</a>             74 third_party/google-perftools-1.8.3/src/pagemap.h     memset(array_, 0, sizeof(void*) &lt;&lt; BITS);</span>
+<span class='curline'><a href='../S/594.html#L141'>memset</a>            141 third_party/google-perftools-1.8.3/src/pagemap.h     memset(root_, 0, sizeof(root_));</span>
+<span class='curline'><a href='../S/594.html#L172'>memset</a>            172 third_party/google-perftools-1.8.3/src/pagemap.h         memset(leaf, 0, sizeof(*leaf));</span>
+<span class='curline'><a href='../S/594.html#L234'>memset</a>            234 third_party/google-perftools-1.8.3/src/pagemap.h       memset(result, 0, sizeof(*result));</span>
+<span class='curline'><a href='../S/594.html#L286'>memset</a>            286 third_party/google-perftools-1.8.3/src/pagemap.h         memset(leaf, 0, sizeof(*leaf));</span>
+<span class='curline'><a href='../S/596.html#L435'>memset</a>            435 third_party/google-perftools-1.8.3/src/profile-handler.cc   memset(&amp;timer, 0, sizeof timer);</span>
+<span class='curline'><a href='../S/598.html#L115'>memset</a>            115 third_party/google-perftools-1.8.3/src/profiledata.cc   memset(hash_, 0, sizeof(hash_[0]) * kBuckets);</span>
+<span class='curline'><a href='../S/600.html#L335'>memset</a>            335 third_party/google-perftools-1.8.3/src/profiler.cc   memset(state, 0, sizeof(*state));</span>
+<span class='curline'><a href='../S/606.html#L55'>memset</a>             55 third_party/google-perftools-1.8.3/src/span.cc   memset(result, 0, sizeof(*result));</span>
+<span class='curline'><a href='../S/606.html#L67'>memset</a>             67 third_party/google-perftools-1.8.3/src/span.cc   memset(span, 0x3f, sizeof(*span));</span>
+<span class='curline'><a href='../S/608.html#L60'>memset</a>             60 third_party/google-perftools-1.8.3/src/stack_trace_table.cc   memset(table_, 0, kHashTableSize * sizeof(Bucket*));</span>
+<span class='curline'><a href='../S/613.html#L79'>memset</a>             79 third_party/google-perftools-1.8.3/src/stacktrace_generic-inl.h   memset(sizes, 0, sizeof(*sizes) * result_count);</span>
+<span class='curline'><a href='../S/619.html#L148'>memset</a>            148 third_party/google-perftools-1.8.3/src/stacktrace_x86_64-inl.h   memset(sizes, 0, sizeof(*sizes) * targ.count);</span>
+<span class='curline'><a href='../S/622.html#L241'>memset</a>            241 third_party/google-perftools-1.8.3/src/symbolize.cc       memset(symbol_buffer_, '\0', kSymbolBufferSize);</span>
+<span class='curline'><a href='../S/626.html#L812'>memset</a>            812 third_party/google-perftools-1.8.3/src/tcmalloc.cc     memset(class_count, 0, sizeof(class_count));</span>
+<span class='curline'><a href='../S/626.html#L1081'>memset</a>           1081 third_party/google-perftools-1.8.3/src/tcmalloc.cc     memset(result, 0, size);</span>
+<span class='curline'><a href='../S/626.html#L1318'>memset</a>           1318 third_party/google-perftools-1.8.3/src/tcmalloc.cc   memset(&amp;info, 0, sizeof(info));</span>
+<span class='curline'><a href='../S/630.html#L56'>memset</a>             56 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   memset(&amp;prev_word_value, 0xFF, sizeof(AtomicType));</span>
+<span class='curline'><a href='../S/630.html#L57'>memset</a>             57 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   memset(&amp;next_word_value, 0xEE, sizeof(AtomicType));</span>
+<span class='curline'><a href='../S/637.html#L249'>memset</a>            249 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   memset(p, 0, size);</span>
+<span class='curline'><a href='../S/637.html#L254'>memset</a>            254 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   memset(p, 0, size);</span>
+<span class='curline'><a href='../S/651.html#L109'>memset</a>            109 third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc     memset(&amp;virtual_timer_, 0, sizeof virtual_timer_);</span>
+<span class='curline'><a href='../S/651.html#L126'>memset</a>            126 third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc   memset(&amp;new_timer_val, 0, sizeof new_timer_val);</span>
+<span class='curline'><a href='../S/651.html#L137'>memset</a>            137 third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc   memset(&amp;new_timer_val, 0, sizeof new_timer_val);</span>
+<span class='curline'><a href='../S/664.html#L522'>memset</a>            522 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     memset(object-&gt;ptr, c, object-&gt;size);</span>
+<span class='curline'><a href='../S/669.html#L323'>memset</a>            323 third_party/google-perftools-1.8.3/src/thread_cache.cc   memset(&amp;zero, 0, sizeof(zero));</span>
+<span class='curline'><a href='../S/669.html#L348'>memset</a>            348 third_party/google-perftools-1.8.3/src/thread_cache.cc       memset(&amp;me, 0, sizeof(me));</span>
+<span class='curline'><a href='../S/682.html#L121'>memset</a>            121 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c   memset(&amp;module_info, 0, sizeof(module_info));</span>
+<span class='curline'><a href='../S/682.html#L256'>memset</a>            256 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c   memset(&amp;ctx, 0, sizeof(ctx));</span>
+<span class='curline'><a href='../S/683.html#L56'>memset</a>             56 third_party/google-perftools-1.8.3/src/windows/override_functions.cc   memset(result, 0, n * size);</span>
+<span class='curline'><a href='../S/684.html#L150'>memset</a>            150 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc     memset(this, 0, sizeof(*this));  // easiest way to initialize the array</span>
+<span class='curline'><a href='../S/689.html#L188'>memset</a>            188 third_party/google-perftools-1.8.3/src/windows/preamble_patcher_with_stub.cc     memset(reinterpret_cast&lt;void*&gt;(target + 5), ASM_INT3, preamble_bytes - 5);</span>
+<span class='curline'><a href='../S/730.html#L205'>memset</a>            205 third_party/zdelta-2.1/zutil.h #    define zmemzero(dest, len) memset(dest, 0, len)</span>
+</pre>
+</body>
+</html>

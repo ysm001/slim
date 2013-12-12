@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>hooks_end</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/582.html#L234'>hooks_end</a>         234 third_party/google-perftools-1.8.3/src/malloc_hook.cc   AtomicWord hooks_end = base::subtle::Acquire_Load(&amp;priv_end);</span>
+<span class='curline'><a href='../S/582.html#L236'>hooks_end</a>         236 third_party/google-perftools-1.8.3/src/malloc_hook.cc   while (index &lt; hooks_end &amp;&amp; value_as_t != bit_cast&lt;T&gt;(</span>
+<span class='curline'><a href='../S/582.html#L240'>hooks_end</a>         240 third_party/google-perftools-1.8.3/src/malloc_hook.cc   if (index == hooks_end) {</span>
+<span class='curline'><a href='../S/582.html#L244'>hooks_end</a>         244 third_party/google-perftools-1.8.3/src/malloc_hook.cc   if (hooks_end == index + 1) {</span>
+<span class='curline'><a href='../S/582.html#L246'>hooks_end</a>         246 third_party/google-perftools-1.8.3/src/malloc_hook.cc     hooks_end = index;</span>
+<span class='curline'><a href='../S/582.html#L247'>hooks_end</a>         247 third_party/google-perftools-1.8.3/src/malloc_hook.cc     while ((hooks_end &gt; 0) &amp;&amp;</span>
+<span class='curline'><a href='../S/582.html#L248'>hooks_end</a>         248 third_party/google-perftools-1.8.3/src/malloc_hook.cc            (base::subtle::Acquire_Load(&amp;priv_data[hooks_end - 1]) == 0)) {</span>
+<span class='curline'><a href='../S/582.html#L249'>hooks_end</a>         249 third_party/google-perftools-1.8.3/src/malloc_hook.cc       --hooks_end;</span>
+<span class='curline'><a href='../S/582.html#L251'>hooks_end</a>         251 third_party/google-perftools-1.8.3/src/malloc_hook.cc     base::subtle::Release_Store(&amp;priv_end, hooks_end);</span>
+<span class='curline'><a href='../S/582.html#L258'>hooks_end</a>         258 third_party/google-perftools-1.8.3/src/malloc_hook.cc   AtomicWord hooks_end = base::subtle::Acquire_Load(&amp;priv_end);</span>
+<span class='curline'><a href='../S/582.html#L260'>hooks_end</a>         260 third_party/google-perftools-1.8.3/src/malloc_hook.cc   for (int i = 0; i &lt; hooks_end &amp;&amp; n &gt; 0; ++i) {</span>
+</pre>
+</body>
+</html>

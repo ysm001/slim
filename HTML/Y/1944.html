@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>cxt</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/363.html#L95'>cxt</a>                95 src/react_context.c inline void stand_alone_react_cxt_init(LmnReactCxt *cxt)</span>
+<span class='curline'><a href='../S/363.html#L97'>cxt</a>                97 src/react_context.c   react_context_init(cxt, REACT_STAND_ALONE);</span>
+<span class='curline'><a href='../S/363.html#L100'>cxt</a>               100 src/react_context.c inline void stand_alone_react_cxt_destroy(LmnReactCxt *cxt)</span>
+<span class='curline'><a href='../S/363.html#L102'>cxt</a>               102 src/react_context.c   react_context_destroy(cxt);</span>
+<span class='curline'><a href='../S/363.html#L109'>cxt</a>               109 src/react_context.c inline void property_react_cxt_init(LmnReactCxt *cxt)</span>
+<span class='curline'><a href='../S/363.html#L111'>cxt</a>               111 src/react_context.c   react_context_init(cxt, REACT_PROPERTY);</span>
+<span class='curline'><a href='../S/363.html#L114'>cxt</a>               114 src/react_context.c inline void property_react_cxt_destroy(LmnReactCxt *cxt)</span>
+<span class='curline'><a href='../S/363.html#L116'>cxt</a>               116 src/react_context.c   react_context_destroy(cxt);</span>
+<span class='curline'><a href='../S/363.html#L124'>cxt</a>               124 src/react_context.c inline void mem_react_cxt_init(LmnReactCxt *cxt)</span>
+<span class='curline'><a href='../S/363.html#L127'>cxt</a>               127 src/react_context.c   react_context_init(cxt, REACT_MEM_ORIENTED);</span>
+<span class='curline'><a href='../S/363.html#L128'>cxt</a>               128 src/react_context.c   cxt-&gt;v = v;</span>
+<span class='curline'><a href='../S/363.html#L129'>cxt</a>               129 src/react_context.c   RC_MEMSTACK(cxt) = lmn_memstack_make();</span>
+<span class='curline'><a href='../S/363.html#L132'>cxt</a>               132 src/react_context.c inline void mem_react_cxt_destroy(LmnReactCxt *cxt)</span>
+<span class='curline'><a href='../S/363.html#L134'>cxt</a>               134 src/react_context.c   lmn_memstack_free(RC_MEMSTACK(cxt));</span>
+<span class='curline'><a href='../S/363.html#L135'>cxt</a>               135 src/react_context.c   LMN_FREE(cxt-&gt;v);</span>
+<span class='curline'><a href='../S/363.html#L136'>cxt</a>               136 src/react_context.c   react_context_destroy(cxt);</span>
+<span class='curline'><a href='../S/363.html#L203'>cxt</a>               203 src/react_context.c inline void mc_react_cxt_destroy(LmnReactCxt *cxt)</span>
+<span class='curline'><a href='../S/363.html#L205'>cxt</a>               205 src/react_context.c   mc_react_data_free(RC_ND_DATA(cxt));</span>
+<span class='curline'><a href='../S/363.html#L206'>cxt</a>               206 src/react_context.c   react_context_destroy(cxt);</span>
+<span class='curline'><a href='../S/363.html#L210'>cxt</a>               210 src/react_context.c inline void mc_react_cxt_add_expanded(LmnReactCxt *cxt,</span>
+<span class='curline'><a href='../S/363.html#L214'>cxt</a>               214 src/react_context.c   vec_push(RC_EXPANDED(cxt), (vec_data_t)mem);</span>
+<span class='curline'><a href='../S/363.html#L215'>cxt</a>               215 src/react_context.c   vec_push(RC_EXPANDED_RULES(cxt), (vec_data_t)rule);</span>
+<span class='curline'><a href='../S/363.html#L219'>cxt</a>               219 src/react_context.c void mc_react_cxt_add_mem_delta(LmnReactCxt *cxt,</span>
+<span class='curline'><a href='../S/363.html#L223'>cxt</a>               223 src/react_context.c   vec_push(RC_MEM_DELTAS(cxt), (vec_data_t)d);</span>
+<span class='curline'><a href='../S/363.html#L224'>cxt</a>               224 src/react_context.c   vec_push(RC_EXPANDED_RULES(cxt), (vec_data_t)rule);</span>
+<span class='curline'><a href='../S/364.html#L240'>cxt</a>               240 src/react_context.h inline void stand_alone_react_cxt_init(LmnReactCxt *cxt);</span>
+<span class='curline'><a href='../S/364.html#L241'>cxt</a>               241 src/react_context.h inline void stand_alone_react_cxt_destroy(LmnReactCxt *cxt);</span>
+<span class='curline'><a href='../S/364.html#L242'>cxt</a>               242 src/react_context.h inline void property_react_cxt_init(LmnReactCxt *cxt);</span>
+<span class='curline'><a href='../S/364.html#L243'>cxt</a>               243 src/react_context.h inline void property_react_cxt_destroy(LmnReactCxt *cxt);</span>
+<span class='curline'><a href='../S/364.html#L244'>cxt</a>               244 src/react_context.h inline void mem_react_cxt_init(LmnReactCxt *cxt);</span>
+<span class='curline'><a href='../S/364.html#L245'>cxt</a>               245 src/react_context.h inline void mem_react_cxt_destroy(LmnReactCxt *cxt);</span>
+<span class='curline'><a href='../S/364.html#L246'>cxt</a>               246 src/react_context.h inline void mc_react_cxt_init(LmnReactCxt *cxt);</span>
+<span class='curline'><a href='../S/364.html#L247'>cxt</a>               247 src/react_context.h inline void mc_react_cxt_destroy(LmnReactCxt *cxt);</span>
+<span class='curline'><a href='../S/364.html#L248'>cxt</a>               248 src/react_context.h inline void mc_react_cxt_add_expanded(LmnReactCxt *cxt,</span>
+<span class='curline'><a href='../S/364.html#L251'>cxt</a>               251 src/react_context.h inline void mc_react_cxt_add_mem_delta(LmnReactCxt *cxt,</span>
+<span class='curline'><a href='../S/364.html#L255'>cxt</a>               255 src/react_context.h static inline LmnWord mc_react_cxt_expanded_pop(LmnReactCxt *cxt) {</span>
+<span class='curline'><a href='../S/364.html#L256'>cxt</a>               256 src/react_context.h   vec_pop(RC_EXPANDED_RULES(cxt));</span>
+<span class='curline'><a href='../S/364.html#L257'>cxt</a>               257 src/react_context.h   if (RC_MC_USE_DMEM(cxt)) {</span>
+<span class='curline'><a href='../S/364.html#L258'>cxt</a>               258 src/react_context.h     return vec_pop(RC_MEM_DELTAS(cxt));</span>
+<span class='curline'><a href='../S/364.html#L260'>cxt</a>               260 src/react_context.h     return vec_pop(RC_EXPANDED(cxt));</span>
+<span class='curline'><a href='../S/364.html#L264'>cxt</a>               264 src/react_context.h static inline LmnWord mc_react_cxt_expanded_get(LmnReactCxt *cxt, unsigned int i) {</span>
+<span class='curline'><a href='../S/364.html#L265'>cxt</a>               265 src/react_context.h   if (RC_MC_USE_DMEM(cxt)) {</span>
+<span class='curline'><a href='../S/364.html#L266'>cxt</a>               266 src/react_context.h     return vec_get(RC_MEM_DELTAS(cxt), i);</span>
+<span class='curline'><a href='../S/364.html#L268'>cxt</a>               268 src/react_context.h     return vec_get(RC_EXPANDED(cxt), i);</span>
+<span class='curline'><a href='../S/364.html#L272'>cxt</a>               272 src/react_context.h static inline unsigned int mc_react_cxt_succ_num_org(LmnReactCxt *cxt) {</span>
+<span class='curline'><a href='../S/364.html#L273'>cxt</a>               273 src/react_context.h   return RC_ND_ORG_SUCC_NUM(cxt);</span>
+<span class='curline'><a href='../S/364.html#L276'>cxt</a>               276 src/react_context.h static inline unsigned int mc_react_cxt_expanded_num(LmnReactCxt *cxt) {</span>
+<span class='curline'><a href='../S/364.html#L277'>cxt</a>               277 src/react_context.h   return RC_MC_USE_DMEM(cxt) ? vec_num(RC_MEM_DELTAS(cxt))</span>
+<span class='curline'><a href='../S/364.html#L278'>cxt</a>               278 src/react_context.h                              : vec_num(RC_EXPANDED(cxt));</span>
+<span class='curline'><a href='../S/435.html#L166'>cxt</a>               166 src/verifier/mc_worker.h   LmnReactCxt     cxt;           /* ReactContext Object */</span>
+<span class='curline'><a href='../S/435.html#L183'>cxt</a>               183 src/verifier/mc_worker.h #define worker_rc(W)                    ((W)-&gt;cxt)</span>
+</pre>
+</body>
+</html>

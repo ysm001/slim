@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>third_party/zdelta-2.1/infcodes.h</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/738.html'>third_party</a>/<a href='../files/747.html'>zdelta-2.1</a>/infcodes.h</h2>
+<em class='comment'>/* [&lt;][&gt;][^][v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/310.html' title='Multiple included from 4 places.'>INCLUDED FROM</a></h2>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>/* infcodes.h -- header to use infcodes.c</em>
+<a id='L2' name='L2' /><em class='comment'> * Copyright (C) 1995-1998 Mark Adler</em>
+<a id='L3' name='L3' /><em class='comment'> * For conditions of distribution and use, see copyright notice in zlib.h </em>
+<a id='L4' name='L4' /><em class='comment'> */</em>
+<a id='L5' name='L5' />
+<a id='L6' name='L6' /><em class='comment'>/* WARNING: this file should *not* be used by applications. It is</em>
+<a id='L7' name='L7' /><em class='comment'>   part of the implementation of the compression library and is</em>
+<a id='L8' name='L8' /><em class='comment'>   subject to change. Applications should only use zdlib.h.</em>
+<a id='L9' name='L9' /><em class='comment'></em>
+<a id='L10' name='L10' /><em class='comment'>   file modified by Dimitre Trendafilov (2003)</em>
+<a id='L11' name='L11' /><em class='comment'> */</em>
+<a id='L12' name='L12' />
+<a id='L13' name='L13' /><em class='comment'>/* zdelta:</em>
+<a id='L14' name='L14' /><em class='comment'> *</em>
+<a id='L15' name='L15' /><em class='comment'> * modified: </em>
+<a id='L16' name='L16' /><em class='comment'> *          inflate_codes_new</em>
+<a id='L17' name='L17' /><em class='comment'> *          inflate_codes</em>
+<a id='L18' name='L18' /><em class='comment'> * added:</em>
+<a id='L19' name='L19' /><em class='comment'> *          --</em>
+<a id='L20' name='L20' /><em class='comment'> * removed:</em>
+<a id='L21' name='L21' /><em class='comment'> *          --</em>
+<a id='L22' name='L22' /><em class='comment'> */</em>
+<a id='L23' name='L23' />
+<a id='L24' name='L24' />
+<a id='L25' name='L25' /><strong class='reserved'>struct</strong> <a href='../S/703.html#L48' title='Defined at 48 in third_party/zdelta-2.1/infcodes.c.'>inflate_codes_state</a>;
+<a id='L26' name='L26' /><strong class='reserved'>typedef</strong> <strong class='reserved'>struct</strong> <a href='../S/703.html#L48' title='Defined at 48 in third_party/zdelta-2.1/infcodes.c.'>inflate_codes_state</a> <a href='../D/735.html' title='Multiple defined in 5 places.'>FAR</a> <a href='../S/704.html#L26' title='Defined at 26 in third_party/zdelta-2.1/infcodes.h.'>inflate_codes_statef</a>;
+<a id='L27' name='L27' />
+<a id='L28' name='L28' /><strong class='reserved'>extern</strong> <a href='../S/704.html#L26' title='Defined at 26 in third_party/zdelta-2.1/infcodes.h.'>inflate_codes_statef</a> *<a href='../S/703.html#L87' title='Defined at 87 in third_party/zdelta-2.1/infcodes.c.'>inflate_codes_new</a> <a href='../D/1965.html' title='Multiple defined in 6 places.'>OF</a>((
+<a id='L29' name='L29' />    <a href='../D/5483.html' title='Multiple defined in 2 places.'>uInt</a>, <a href='../D/5483.html' title='Multiple defined in 2 places.'>uInt</a>, <a href='../D/5483.html' title='Multiple defined in 2 places.'>uInt</a>,
+<a id='L30' name='L30' />    <a href='../S/710.html#L27' title='Defined at 27 in third_party/zdelta-2.1/inftrees.h.'>inflate_huft</a> *, <a href='../S/710.html#L27' title='Defined at 27 in third_party/zdelta-2.1/inftrees.h.'>inflate_huft</a> *, <a href='../S/710.html#L27' title='Defined at 27 in third_party/zdelta-2.1/inftrees.h.'>inflate_huft</a> *,
+<a id='L31' name='L31' />    <a href='../S/726.html#L126' title='Defined at 126 in third_party/zdelta-2.1/zdlib.h.'>zd_streamp</a> ));
+<a id='L32' name='L32' />
+<a id='L33' name='L33' /><strong class='reserved'>extern</strong> <strong class='reserved'>int</strong> <a href='../S/703.html#L114' title='Defined at 114 in third_party/zdelta-2.1/infcodes.c.'>inflate_codes</a> <a href='../D/1965.html' title='Multiple defined in 6 places.'>OF</a>((
+<a id='L34' name='L34' />    <a href='../S/702.html#L25' title='Defined at 25 in third_party/zdelta-2.1/infblock.h.'>inflate_blocks_statef</a> *,
+<a id='L35' name='L35' />    <a href='../S/726.html#L126' title='Defined at 126 in third_party/zdelta-2.1/zdlib.h.'>zd_streamp</a> ,
+<a id='L36' name='L36' />    <strong class='reserved'>int</strong>));
+<a id='L37' name='L37' />
+<a id='L38' name='L38' /><strong class='reserved'>extern</strong> <strong class='reserved'>void</strong> <a href='../S/703.html#L358' title='Defined at 358 in third_party/zdelta-2.1/infcodes.c.'>inflate_codes_free</a> <a href='../D/1965.html' title='Multiple defined in 6 places.'>OF</a>((
+<a id='L39' name='L39' />    <a href='../S/704.html#L26' title='Defined at 26 in third_party/zdelta-2.1/infcodes.h.'>inflate_codes_statef</a> *,
+<a id='L40' name='L40' />    <a href='../S/726.html#L126' title='Defined at 126 in third_party/zdelta-2.1/zdlib.h.'>zd_streamp</a> ));
+<a id='L41' name='L41' />
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^][v]<a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

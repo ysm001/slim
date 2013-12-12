@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>lmntal_home</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/345.html#L211'>lmntal_home</a>       211 src/jni_lmntal.c   char *arg, *path, *lmntal_home;</span>
+<span class='curline'><a href='../S/345.html#L214'>lmntal_home</a>       214 src/jni_lmntal.c   lmntal_home = NULL;</span>
+<span class='curline'><a href='../S/345.html#L215'>lmntal_home</a>       215 src/jni_lmntal.c   if ((lmntal_home = getenv("LMNTAL_HOME")) == NULL) {</span>
+<span class='curline'><a href='../S/345.html#L225'>lmntal_home</a>       225 src/jni_lmntal.c   arg = LMN_CALLOC(char, strlen(lmntal_home) + strlen(JNI_LMNTAL_JAR_REL_PATH) + 2 + 1);</span>
+<span class='curline'><a href='../S/345.html#L226'>lmntal_home</a>       226 src/jni_lmntal.c   sprintf(arg, "%s%s%s", lmntal_home, JNI_LMNTAL_JAR_REL_PATH, ":.");</span>
+<span class='curline'><a href='../S/345.html#L241'>lmntal_home</a>       241 src/jni_lmntal.c   path = run_cygpath("-wp", lmntal_home);</span>
+<span class='curline'><a href='../S/345.html#L243'>lmntal_home</a>       243 src/jni_lmntal.c   path = LMN_CALLOC(char, strlen(lmntal_home) + 1);</span>
+<span class='curline'><a href='../S/345.html#L244'>lmntal_home</a>       244 src/jni_lmntal.c   strcpy(path, lmntal_home);</span>
+<span class='curline'><a href='../S/349.html#L82'>lmntal_home</a>        82 src/lmntal_system_adapter.c   const char *lmntal_home = getenv(ENV_LMNTAL_HOME);</span>
+<span class='curline'><a href='../S/349.html#L86'>lmntal_home</a>        86 src/lmntal_system_adapter.c                         strlen(lmntal_home) + strlen(LMNTAL_BIN_REL_PATH) + 1);</span>
+<span class='curline'><a href='../S/349.html#L87'>lmntal_home</a>        87 src/lmntal_system_adapter.c   sprintf(*program, "%s%s", lmntal_home, LMNTAL_BIN_REL_PATH);</span>
+</pre>
+</body>
+</html>

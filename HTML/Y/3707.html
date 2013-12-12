@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>needed_slots</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/626.html#L487'>needed_slots</a>      487 third_party/google-perftools-1.8.3/src/tcmalloc.cc   int needed_slots = 0;</span>
+<span class='curline'><a href='../S/626.html#L494'>needed_slots</a>      494 third_party/google-perftools-1.8.3/src/tcmalloc.cc       needed_slots += 3 + t-&gt;depth;</span>
+<span class='curline'><a href='../S/626.html#L496'>needed_slots</a>      496 third_party/google-perftools-1.8.3/src/tcmalloc.cc     needed_slots += 100;            // Slop in case list grows</span>
+<span class='curline'><a href='../S/626.html#L497'>needed_slots</a>      497 third_party/google-perftools-1.8.3/src/tcmalloc.cc     needed_slots += needed_slots/8; // An extra 12.5% slop</span>
+<span class='curline'><a href='../S/626.html#L500'>needed_slots</a>      500 third_party/google-perftools-1.8.3/src/tcmalloc.cc   void** result = new void*[needed_slots];</span>
+<span class='curline'><a href='../S/626.html#L504'>needed_slots</a>      504 third_party/google-perftools-1.8.3/src/tcmalloc.cc         needed_slots * sizeof(*result));</span>
+<span class='curline'><a href='../S/626.html#L514'>needed_slots</a>      514 third_party/google-perftools-1.8.3/src/tcmalloc.cc     ASSERT(used_slots &lt; needed_slots);  // Need to leave room for terminator</span>
+<span class='curline'><a href='../S/626.html#L515'>needed_slots</a>      515 third_party/google-perftools-1.8.3/src/tcmalloc.cc     if (used_slots + 3 + t-&gt;depth &gt;= needed_slots) {</span>
+</pre>
+</body>
+</html>

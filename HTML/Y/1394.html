@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>actual_size</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/559.html#L83'>actual_size</a>        83 third_party/google-perftools-1.8.3/src/google/malloc_extension.h   virtual void* Alloc(size_t size, size_t *actual_size, size_t alignment) = 0;</span>
+<span class='curline'><a href='../S/587.html#L99'>actual_size</a>        99 third_party/google-perftools-1.8.3/src/memfs_malloc.cc   void* Alloc(size_t size, size_t *actual_size, size_t alignment);</span>
+<span class='curline'><a href='../S/587.html#L105'>actual_size</a>       105 third_party/google-perftools-1.8.3/src/memfs_malloc.cc   void* AllocInternal(size_t size, size_t *actual_size, size_t alignment);</span>
+<span class='curline'><a href='../S/587.html#L117'>actual_size</a>       117 third_party/google-perftools-1.8.3/src/memfs_malloc.cc void* HugetlbSysAllocator::Alloc(size_t size, size_t *actual_size,</span>
+<span class='curline'><a href='../S/587.html#L120'>actual_size</a>       120 third_party/google-perftools-1.8.3/src/memfs_malloc.cc     return fallback_-&gt;Alloc(size, actual_size, alignment);</span>
+<span class='curline'><a href='../S/587.html#L125'>actual_size</a>       125 third_party/google-perftools-1.8.3/src/memfs_malloc.cc   if (actual_size == NULL &amp;&amp; size &lt; big_page_size_) {</span>
+<span class='curline'><a href='../S/587.html#L126'>actual_size</a>       126 third_party/google-perftools-1.8.3/src/memfs_malloc.cc     return fallback_-&gt;Alloc(size, actual_size, alignment);</span>
+<span class='curline'><a href='../S/587.html#L135'>actual_size</a>       135 third_party/google-perftools-1.8.3/src/memfs_malloc.cc     return fallback_-&gt;Alloc(size, actual_size, alignment);</span>
+<span class='curline'><a href='../S/587.html#L138'>actual_size</a>       138 third_party/google-perftools-1.8.3/src/memfs_malloc.cc   void* result = AllocInternal(aligned_size, actual_size, new_alignment);</span>
+<span class='curline'><a href='../S/587.html#L148'>actual_size</a>       148 third_party/google-perftools-1.8.3/src/memfs_malloc.cc   return fallback_-&gt;Alloc(size, actual_size, alignment);</span>
+<span class='curline'><a href='../S/587.html#L151'>actual_size</a>       151 third_party/google-perftools-1.8.3/src/memfs_malloc.cc void* HugetlbSysAllocator::AllocInternal(size_t size, size_t* actual_size,</span>
+<span class='curline'><a href='../S/587.html#L210'>actual_size</a>       210 third_party/google-perftools-1.8.3/src/memfs_malloc.cc   if (actual_size) {</span>
+<span class='curline'><a href='../S/587.html#L211'>actual_size</a>       211 third_party/google-perftools-1.8.3/src/memfs_malloc.cc     *actual_size = size + extra - adjust;</span>
+<span class='curline'><a href='../S/591.html#L409'>actual_size</a>       409 third_party/google-perftools-1.8.3/src/page_heap.cc   size_t actual_size;</span>
+<span class='curline'><a href='../S/591.html#L410'>actual_size</a>       410 third_party/google-perftools-1.8.3/src/page_heap.cc   void* ptr = TCMalloc_SystemAlloc(ask &lt;&lt; kPageShift, &amp;actual_size, kPageSize);</span>
+<span class='curline'><a href='../S/591.html#L415'>actual_size</a>       415 third_party/google-perftools-1.8.3/src/page_heap.cc       ptr = TCMalloc_SystemAlloc(ask &lt;&lt; kPageShift, &amp;actual_size, kPageSize);</span>
+<span class='curline'><a href='../S/591.html#L419'>actual_size</a>       419 third_party/google-perftools-1.8.3/src/page_heap.cc   ask = actual_size &gt;&gt; kPageShift;</span>
+<span class='curline'><a href='../S/624.html#L139'>actual_size</a>       139 third_party/google-perftools-1.8.3/src/system-alloc.cc   void* Alloc(size_t size, size_t *actual_size, size_t alignment);</span>
+<span class='curline'><a href='../S/624.html#L147'>actual_size</a>       147 third_party/google-perftools-1.8.3/src/system-alloc.cc   void* Alloc(size_t size, size_t *actual_size, size_t alignment);</span>
+<span class='curline'><a href='../S/624.html#L155'>actual_size</a>       155 third_party/google-perftools-1.8.3/src/system-alloc.cc   void* Alloc(size_t size, size_t *actual_size, size_t alignment);</span>
+<span class='curline'><a href='../S/624.html#L175'>actual_size</a>       175 third_party/google-perftools-1.8.3/src/system-alloc.cc   void* Alloc(size_t size, size_t *actual_size, size_t alignment);</span>
+<span class='curline'><a href='../S/624.html#L188'>actual_size</a>       188 third_party/google-perftools-1.8.3/src/system-alloc.cc void* SbrkSysAllocator::Alloc(size_t size, size_t *actual_size,</span>
+<span class='curline'><a href='../S/624.html#L214'>actual_size</a>       214 third_party/google-perftools-1.8.3/src/system-alloc.cc   if (actual_size) {</span>
+<span class='curline'><a href='../S/624.html#L215'>actual_size</a>       215 third_party/google-perftools-1.8.3/src/system-alloc.cc     *actual_size = size;</span>
+<span class='curline'><a href='../S/624.html#L260'>actual_size</a>       260 third_party/google-perftools-1.8.3/src/system-alloc.cc void* MmapSysAllocator::Alloc(size_t size, size_t *actual_size,</span>
+<span class='curline'><a href='../S/624.html#L287'>actual_size</a>       287 third_party/google-perftools-1.8.3/src/system-alloc.cc   if (actual_size) {</span>
+<span class='curline'><a href='../S/624.html#L288'>actual_size</a>       288 third_party/google-perftools-1.8.3/src/system-alloc.cc     *actual_size = size;</span>
+<span class='curline'><a href='../S/624.html#L329'>actual_size</a>       329 third_party/google-perftools-1.8.3/src/system-alloc.cc void* DevMemSysAllocator::Alloc(size_t size, size_t *actual_size,</span>
+<span class='curline'><a href='../S/624.html#L371'>actual_size</a>       371 third_party/google-perftools-1.8.3/src/system-alloc.cc   if (actual_size) {</span>
+<span class='curline'><a href='../S/624.html#L372'>actual_size</a>       372 third_party/google-perftools-1.8.3/src/system-alloc.cc     *actual_size = size;</span>
+<span class='curline'><a href='../S/624.html#L419'>actual_size</a>       419 third_party/google-perftools-1.8.3/src/system-alloc.cc void* DefaultSysAllocator::Alloc(size_t size, size_t *actual_size,</span>
+<span class='curline'><a href='../S/624.html#L423'>actual_size</a>       423 third_party/google-perftools-1.8.3/src/system-alloc.cc       void* result = allocs_[i]-&gt;Alloc(size, actual_size, alignment);</span>
+<span class='curline'><a href='../S/624.html#L462'>actual_size</a>       462 third_party/google-perftools-1.8.3/src/system-alloc.cc void* TCMalloc_SystemAlloc(size_t size, size_t *actual_size,</span>
+<span class='curline'><a href='../S/624.html#L477'>actual_size</a>       477 third_party/google-perftools-1.8.3/src/system-alloc.cc   void* result = sys_alloc-&gt;Alloc(size, actual_size, alignment);</span>
+<span class='curline'><a href='../S/624.html#L479'>actual_size</a>       479 third_party/google-perftools-1.8.3/src/system-alloc.cc     if (actual_size) {</span>
+<span class='curline'><a href='../S/624.html#L481'>actual_size</a>       481 third_party/google-perftools-1.8.3/src/system-alloc.cc           reinterpret_cast&lt;uintptr_t&gt;(result) + *actual_size - 1);</span>
+<span class='curline'><a href='../S/662.html#L58'>actual_size</a>        58 third_party/google-perftools-1.8.3/src/tests/system-alloc_unittest.cc   void* Alloc(size_t size, size_t *actual_size, size_t alignment) {</span>
+<span class='curline'><a href='../S/662.html#L68'>actual_size</a>        68 third_party/google-perftools-1.8.3/src/tests/system-alloc_unittest.cc     if (actual_size) {</span>
+<span class='curline'><a href='../S/662.html#L69'>actual_size</a>        69 third_party/google-perftools-1.8.3/src/tests/system-alloc_unittest.cc       *actual_size = size;</span>
+<span class='curline'><a href='../S/685.html#L223'>actual_size</a>       223 third_party/google-perftools-1.8.3/src/windows/port.cc extern void* TCMalloc_SystemAlloc(size_t size, size_t *actual_size,</span>
+<span class='curline'><a href='../S/685.html#L231'>actual_size</a>       231 third_party/google-perftools-1.8.3/src/windows/port.cc   if (actual_size) {</span>
+<span class='curline'><a href='../S/685.html#L232'>actual_size</a>       232 third_party/google-perftools-1.8.3/src/windows/port.cc     *actual_size = size;</span>
+</pre>
+</body>
+</html>

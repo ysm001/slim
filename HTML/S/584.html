@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>third_party/google-perftools-1.8.3/src/malloc_hook_mmap_linux.h</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/738.html'>third_party</a>/<a href='../files/739.html'>google-perftools-1.8.3</a>/<a href='../files/740.html'>src</a>/malloc_hook_mmap_linux.h</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L56'>[^]</a><a href='#L224'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='582.html#L698' title='Included from 698 in third_party/google-perftools-1.8.3/src/malloc_hook.cc.'>INCLUDED FROM</a></h2>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L56' title='Defined at 56.'>do_mmap64</a></li>
+<li><a href='#L67' title='Defined at 67.'>do_mmap64</a></li>
+<li><a href='#L154' title='Defined at 154.'>mmap64</a></li>
+<li><a href='#L168' title='Defined at 168.'>mmap</a></li>
+<li><a href='#L183' title='Defined at 183.'>munmap</a></li>
+<li><a href='#L192' title='Defined at 192.'>mremap</a></li>
+<li><a href='#L207' title='Defined at 207.'>sbrk</a></li>
+<li><a href='#L214' title='Defined at 214.'>UnhookedMMap</a></li>
+<li><a href='#L224' title='Defined at 224.'>UnhookedMUnmap</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>// Copyright (c) 2005, Google Inc.</em>
+<a id='L2' name='L2' /><em class='comment'>// All rights reserved.</em>
+<a id='L3' name='L3' /><em class='comment'>//</em>
+<a id='L4' name='L4' /><em class='comment'>// Redistribution and use in source and binary forms, with or without</em>
+<a id='L5' name='L5' /><em class='comment'>// modification, are permitted provided that the following conditions are</em>
+<a id='L6' name='L6' /><em class='comment'>// met:</em>
+<a id='L7' name='L7' /><em class='comment'>//</em>
+<a id='L8' name='L8' /><em class='comment'>//     * Redistributions of source code must retain the above copyright</em>
+<a id='L9' name='L9' /><em class='comment'>// notice, this list of conditions and the following disclaimer.</em>
+<a id='L10' name='L10' /><em class='comment'>//     * Redistributions in binary form must reproduce the above</em>
+<a id='L11' name='L11' /><em class='comment'>// copyright notice, this list of conditions and the following disclaimer</em>
+<a id='L12' name='L12' /><em class='comment'>// in the documentation and/or other materials provided with the</em>
+<a id='L13' name='L13' /><em class='comment'>// distribution.</em>
+<a id='L14' name='L14' /><em class='comment'>//     * Neither the name of Google Inc. nor the names of its</em>
+<a id='L15' name='L15' /><em class='comment'>// contributors may be used to endorse or promote products derived from</em>
+<a id='L16' name='L16' /><em class='comment'>// this software without specific prior written permission.</em>
+<a id='L17' name='L17' /><em class='comment'>//</em>
+<a id='L18' name='L18' /><em class='comment'>// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L19' name='L19' /><em class='comment'>// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L20' name='L20' /><em class='comment'>// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L21' name='L21' /><em class='comment'>// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L22' name='L22' /><em class='comment'>// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L23' name='L23' /><em class='comment'>// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L24' name='L24' /><em class='comment'>// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L25' name='L25' /><em class='comment'>// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L26' name='L26' /><em class='comment'>// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L27' name='L27' /><em class='comment'>// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L28' name='L28' /><em class='comment'>// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L29' name='L29' />
+<a id='L30' name='L30' /><em class='comment'>// ---</em>
+<a id='L31' name='L31' /><em class='comment'>// Author: Sanjay Ghemawat &lt;opensource@google.com&gt;</em>
+<a id='L32' name='L32' />
+<a id='L33' name='L33' /><em class='comment'>// We define mmap() and mmap64(), which somewhat reimplements libc's mmap</em>
+<a id='L34' name='L34' /><em class='comment'>// syscall stubs.  Unfortunately libc only exports the stubs via weak symbols</em>
+<a id='L35' name='L35' /><em class='comment'>// (which we're overriding with our mmap64() and mmap() wrappers) so we can't</em>
+<a id='L36' name='L36' /><em class='comment'>// just call through to them.</em>
+<a id='L37' name='L37' />
+<a id='L38' name='L38' /><em class='sharp'>#ifndef</em> <a href='../Y/1163.html' title='Multiple used in 13 places.'>__linux</a>
+<a id='L39' name='L39' /><em class='sharp'># error</em> Should only be including malloc_hook_mmap_linux.h on linux systems.
+<a id='L40' name='L40' /><em class='sharp'>#endif</em>
+<a id='L41' name='L41' />
+<a id='L42' name='L42' /><em class='sharp'>#include</em> &lt;unistd.h&gt;
+<a id='L43' name='L43' /><em class='sharp'>#include</em> &lt;syscall.h&gt;
+<a id='L44' name='L44' /><em class='sharp'>#include</em> &lt;sys/mman.h&gt;
+<a id='L45' name='L45' /><em class='sharp'>#include</em> &lt;errno.h&gt;
+<a id='L46' name='L46' /><em class='sharp'>#include</em> "<a href='525.html'>base/linux_syscall_support.h</a>"
+<a id='L47' name='L47' />
+<a id='L48' name='L48' /><em class='comment'>// The x86-32 case and the x86-64 case differ:</em>
+<a id='L49' name='L49' /><em class='comment'>// 32b has a mmap2() syscall, 64b does not.</em>
+<a id='L50' name='L50' /><em class='comment'>// 64b and 32b have different calling conventions for mmap().</em>
+<a id='L51' name='L51' />
+<a id='L52' name='L52' /><em class='comment'>// I test for 64-bit first so I don't have to do things like</em>
+<a id='L53' name='L53' /><em class='comment'>// '#if (defined(__mips__) &amp;&amp; !defined(__MIPS64__))' as a mips32 check.</em>
+<a id='L54' name='L54' /><em class='sharp'>#if</em> <strong class='reserved'>defined</strong>(<a href='../Y/1243.html' title='Multiple used in 34 places.'>__x86_64__</a>) || <strong class='reserved'>defined</strong>(<a href='../Y/1089.html' title='Multiple used in 6 places.'>__PPC64__</a>) || (<strong class='reserved'>defined</strong>(<a href='../Y/977.html' title='Multiple used in 25 places.'>_MIPS_SIM</a>) &amp;&amp; <a href='../Y/977.html' title='Multiple used in 25 places.'>_MIPS_SIM</a> == _ABI64)
+<a id='L55' name='L55' />
+<a id='L56' name='L56' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong>* <a href='../R/3321.html' title='Multiple refered from 3 places.'>do_mmap64</a>(<strong class='reserved'>void</strong> *<a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>,
+<a id='L57' name='L57' />                              <strong class='reserved'>int</strong> <a href='../Y/4326.html' title='Multiple used in 43 places.'>prot</a>, <strong class='reserved'>int</strong> <a href='../Y/2400.html' title='Multiple used in 235 places.'>flags</a>,
+<a id='L58' name='L58' />                              <strong class='reserved'>int</strong> <a href='../Y/2340.html' title='Multiple used in 181 places.'>fd</a>, <a href='../Y/1173.html' title='Multiple used in 5 places.'>__off64_t</a> <a href='../Y/3919.html' title='Multiple used in 128 places.'>offset</a>) <a href='../D/3265.html' title='Multiple defined in 10 places.'>__THROW</a> <em class='brace'>{</em>
+<a id='L59' name='L59' />  <strong class='reserved'>return</strong> sys_mmap(<a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>, <a href='../Y/4326.html' title='Multiple used in 43 places.'>prot</a>, <a href='../Y/2400.html' title='Multiple used in 235 places.'>flags</a>, <a href='../Y/2340.html' title='Multiple used in 181 places.'>fd</a>, <a href='../Y/3919.html' title='Multiple used in 128 places.'>offset</a>);
+<a id='L60' name='L60' /><em class='brace'>}</em>
+<a id='L61' name='L61' />
+<a id='L62' name='L62' /><em class='sharp'>#define</em> <a href='../S/584.html#L124' title='Refered from 124 in third_party/google-perftools-1.8.3/src/malloc_hook_mmap_linux.h.'>MALLOC_HOOK_HAVE_DO_MMAP64</a> 1
+<a id='L63' name='L63' />
+<a id='L64' name='L64' /><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(<a href='../Y/1146.html' title='Multiple used in 35 places.'>__i386__</a>) || <strong class='reserved'>defined</strong>(<a href='../Y/1090.html' title='Multiple used in 18 places.'>__PPC__</a>) || <strong class='reserved'>defined</strong>(<a href='../Y/1169.html' title='Multiple used in 29 places.'>__mips__</a>) || \
+<a id='L65' name='L65' />      <strong class='reserved'>defined</strong>(<a href='../Y/1116.html' title='Multiple used in 15 places.'>__arm__</a>)
+<a id='L66' name='L66' />
+<a id='L67' name='L67' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong>* <a href='../R/3321.html' title='Multiple refered from 3 places.'>do_mmap64</a>(<strong class='reserved'>void</strong> *<a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>,
+<a id='L68' name='L68' />                              <strong class='reserved'>int</strong> <a href='../Y/4326.html' title='Multiple used in 43 places.'>prot</a>, <strong class='reserved'>int</strong> <a href='../Y/2400.html' title='Multiple used in 235 places.'>flags</a>,
+<a id='L69' name='L69' />                              <strong class='reserved'>int</strong> <a href='../Y/2340.html' title='Multiple used in 181 places.'>fd</a>, <a href='../Y/1173.html' title='Multiple used in 5 places.'>__off64_t</a> <a href='../Y/3919.html' title='Multiple used in 128 places.'>offset</a>) <a href='../D/3265.html' title='Multiple defined in 10 places.'>__THROW</a> <em class='brace'>{</em>
+<a id='L70' name='L70' />  <strong class='reserved'>void</strong> *<a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>;
+<a id='L71' name='L71' />
+<a id='L72' name='L72' />  <em class='comment'>// Try mmap2() unless it's not supported</em>
+<a id='L73' name='L73' />  <strong class='reserved'>static</strong> <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../Y/2646.html' title='Multiple used in 3 places.'>have_mmap2</a> = <a href='../Y/5473.html' title='Multiple used in 20 places.'>true</a>;
+<a id='L74' name='L74' />  <strong class='reserved'>if</strong> (<a href='../Y/2646.html' title='Multiple used in 3 places.'>have_mmap2</a>) <em class='brace'>{</em>
+<a id='L75' name='L75' />    <strong class='reserved'>static</strong> <strong class='reserved'>int</strong> <a href='../Y/4109.html' title='Multiple used in 56 places.'>pagesize</a> = 0;
+<a id='L76' name='L76' />    <strong class='reserved'>if</strong> (!<a href='../Y/4109.html' title='Multiple used in 56 places.'>pagesize</a>) <a href='../Y/4109.html' title='Multiple used in 56 places.'>pagesize</a> = <a href='../S/685.html#L53' title='Defined at 53 in third_party/google-perftools-1.8.3/src/windows/port.cc.'>getpagesize</a>();
+<a id='L77' name='L77' />
+<a id='L78' name='L78' />    <em class='comment'>// Check that the offset is page aligned</em>
+<a id='L79' name='L79' />    <strong class='reserved'>if</strong> (<a href='../Y/3919.html' title='Multiple used in 128 places.'>offset</a> &amp; (<a href='../Y/4109.html' title='Multiple used in 56 places.'>pagesize</a> - 1)) <em class='brace'>{</em>
+<a id='L80' name='L80' />      <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a> = <a href='../D/1720.html' title='Multiple defined in 2 places.'>MAP_FAILED</a>;
+<a id='L81' name='L81' />      <a href='../Y/2232.html' title='Multiple used in 77 places.'>errno</a> = <a href='../Y/142.html' title='Multiple used in 28 places.'>EINVAL</a>;
+<a id='L82' name='L82' />      <strong class='reserved'>goto</strong> <a href='../Y/4047.html' title='Multiple used in 124 places.'>out</a>;
+<a id='L83' name='L83' />    <em class='brace'>}</em>
+<a id='L84' name='L84' />
+<a id='L85' name='L85' />    <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a> = (<strong class='reserved'>void</strong> *)<a href='../Y/5255.html' title='Multiple used in 10 places.'>syscall</a>(SYS_mmap2,
+<a id='L86' name='L86' />                             <a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>, <a href='../Y/4326.html' title='Multiple used in 43 places.'>prot</a>, <a href='../Y/2400.html' title='Multiple used in 235 places.'>flags</a>, <a href='../Y/2340.html' title='Multiple used in 181 places.'>fd</a>,
+<a id='L87' name='L87' />                             (<a href='../S/686.html#L268' title='Defined at 268 in third_party/google-perftools-1.8.3/src/windows/port.h.'>off_t</a>) (<a href='../Y/3919.html' title='Multiple used in 128 places.'>offset</a> / <a href='../Y/4109.html' title='Multiple used in 56 places.'>pagesize</a>));
+<a id='L88' name='L88' />    <strong class='reserved'>if</strong> (<a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a> != <a href='../D/1720.html' title='Multiple defined in 2 places.'>MAP_FAILED</a> || <a href='../Y/2232.html' title='Multiple used in 77 places.'>errno</a> != <a href='../Y/163.html' title='Multiple used in 11 places.'>ENOSYS</a>)  <strong class='reserved'>goto</strong> <a href='../Y/4047.html' title='Multiple used in 124 places.'>out</a>;
+<a id='L89' name='L89' />
+<a id='L90' name='L90' />    <em class='comment'>// We don't have mmap2() after all - don't bother trying it in future</em>
+<a id='L91' name='L91' />    <a href='../Y/2646.html' title='Multiple used in 3 places.'>have_mmap2</a> = <a href='../Y/2331.html' title='Multiple used in 24 places.'>false</a>;
+<a id='L92' name='L92' />  <em class='brace'>}</em>
+<a id='L93' name='L93' />
+<a id='L94' name='L94' />  <strong class='reserved'>if</strong> (((<a href='../S/686.html#L268' title='Defined at 268 in third_party/google-perftools-1.8.3/src/windows/port.h.'>off_t</a>)<a href='../Y/3919.html' title='Multiple used in 128 places.'>offset</a>) != <a href='../Y/3919.html' title='Multiple used in 128 places.'>offset</a>) <em class='brace'>{</em>
+<a id='L95' name='L95' />    <em class='comment'>// If we're trying to map a 64-bit offset, fail now since we don't</em>
+<a id='L96' name='L96' />    <em class='comment'>// have 64-bit mmap() support.</em>
+<a id='L97' name='L97' />    <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a> = <a href='../D/1720.html' title='Multiple defined in 2 places.'>MAP_FAILED</a>;
+<a id='L98' name='L98' />    <a href='../Y/2232.html' title='Multiple used in 77 places.'>errno</a> = <a href='../Y/142.html' title='Multiple used in 28 places.'>EINVAL</a>;
+<a id='L99' name='L99' />    <strong class='reserved'>goto</strong> <a href='../Y/4047.html' title='Multiple used in 124 places.'>out</a>;
+<a id='L100' name='L100' />  <em class='brace'>}</em>
+<a id='L101' name='L101' />
+<a id='L102' name='L102' /><em class='sharp'>#ifdef</em> __NR_mmap
+<a id='L103' name='L103' />  <em class='brace'>{</em>
+<a id='L104' name='L104' />    <em class='comment'>// Fall back to old 32-bit offset mmap() call</em>
+<a id='L105' name='L105' />    <em class='comment'>// Old syscall interface cannot handle six args, so pass in an array</em>
+<a id='L106' name='L106' />    <a href='../S/516.html#L59' title='Defined at 59 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>int32</a> <a href='../Y/1501.html' title='Multiple used in 145 places.'>args</a>[6] = <em class='brace'>{</em> (<a href='../S/516.html#L59' title='Defined at 59 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>int32</a>) <a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, (<a href='../S/516.html#L59' title='Defined at 59 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>int32</a>) <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>, <a href='../Y/4326.html' title='Multiple used in 43 places.'>prot</a>, <a href='../Y/2400.html' title='Multiple used in 235 places.'>flags</a>, <a href='../Y/2340.html' title='Multiple used in 181 places.'>fd</a>,
+<a id='L107' name='L107' />                      (<a href='../S/686.html#L268' title='Defined at 268 in third_party/google-perftools-1.8.3/src/windows/port.h.'>off_t</a>) <a href='../Y/3919.html' title='Multiple used in 128 places.'>offset</a> <em class='brace'>}</em>;
+<a id='L108' name='L108' />    <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a> = (<strong class='reserved'>void</strong> *)<a href='../Y/5255.html' title='Multiple used in 10 places.'>syscall</a>(<a href='../Y/766.html' title='Multiple used in 3 places.'>SYS_mmap</a>, <a href='../Y/1501.html' title='Multiple used in 145 places.'>args</a>);
+<a id='L109' name='L109' />  <em class='brace'>}</em>
+<a id='L110' name='L110' /><em class='sharp'>#else</em>
+<a id='L111' name='L111' />  <em class='comment'>// Some Linux ports like ARM EABI Linux has no mmap, just mmap2.</em>
+<a id='L112' name='L112' />  <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a> = <a href='../D/1720.html' title='Multiple defined in 2 places.'>MAP_FAILED</a>;
+<a id='L113' name='L113' /><em class='sharp'>#endif</em>
+<a id='L114' name='L114' />
+<a id='L115' name='L115' /> <a href='../Y/4047.html' title='Multiple used in 124 places.'>out</a>:
+<a id='L116' name='L116' />  <strong class='reserved'>return</strong> <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>;
+<a id='L117' name='L117' /><em class='brace'>}</em>
+<a id='L118' name='L118' />
+<a id='L119' name='L119' /><em class='sharp'>#define</em> <a href='../S/584.html#L124' title='Refered from 124 in third_party/google-perftools-1.8.3/src/malloc_hook_mmap_linux.h.'>MALLOC_HOOK_HAVE_DO_MMAP64</a> 1
+<a id='L120' name='L120' />
+<a id='L121' name='L121' /><em class='sharp'>#endif</em>  <em class='comment'>// #if defined(__x86_64__)</em>
+<a id='L122' name='L122' />
+<a id='L123' name='L123' />
+<a id='L124' name='L124' /><em class='sharp'>#ifdef</em> <a href='../D/1712.html' title='Multiple defined in 3 places.'>MALLOC_HOOK_HAVE_DO_MMAP64</a>
+<a id='L125' name='L125' />
+<a id='L126' name='L126' /><em class='comment'>// We use do_mmap64 abstraction to put MallocHook::InvokeMmapHook</em>
+<a id='L127' name='L127' /><em class='comment'>// calls right into mmap and mmap64, so that the stack frames in the caller's</em>
+<a id='L128' name='L128' /><em class='comment'>// stack are at the same offsets for all the calls of memory allocating</em>
+<a id='L129' name='L129' /><em class='comment'>// functions.</em>
+<a id='L130' name='L130' />
+<a id='L131' name='L131' /><em class='comment'>// Put all callers of MallocHook::Invoke* in this module into</em>
+<a id='L132' name='L132' /><em class='comment'>// malloc_hook section,</em>
+<a id='L133' name='L133' /><em class='comment'>// so that MallocHook::GetCallerStackTrace can function accurately:</em>
+<a id='L134' name='L134' />
+<a id='L135' name='L135' /><em class='comment'>// Make sure mmap doesn't get #define'd away by &lt;sys/mman.h&gt;</em>
+<a id='L136' name='L136' /><em class='sharp'># undef</em> <a href='../R/4269.html' title='Multiple refered from 18 places.'>mmap</a>
+<a id='L137' name='L137' />
+<a id='L138' name='L138' /><strong class='reserved'>extern</strong> "C" <em class='brace'>{</em>
+<a id='L139' name='L139' />  <strong class='reserved'>void</strong>* <a href='../S/584.html#L154' title='Defined at 154 in third_party/google-perftools-1.8.3/src/malloc_hook_mmap_linux.h.'>mmap64</a>(<strong class='reserved'>void</strong> *<a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>, <strong class='reserved'>int</strong> <a href='../Y/4326.html' title='Multiple used in 43 places.'>prot</a>, <strong class='reserved'>int</strong> <a href='../Y/2400.html' title='Multiple used in 235 places.'>flags</a>,
+<a id='L140' name='L140' />               <strong class='reserved'>int</strong> <a href='../Y/2340.html' title='Multiple used in 181 places.'>fd</a>, <a href='../Y/1173.html' title='Multiple used in 5 places.'>__off64_t</a> <a href='../Y/3919.html' title='Multiple used in 128 places.'>offset</a>  ) <a href='../D/3265.html' title='Multiple defined in 10 places.'>__THROW</a>
+<a id='L141' name='L141' />    <a href='../D/126.html' title='Multiple defined in 3 places.'>ATTRIBUTE_SECTION</a>(<a href='../Y/3398.html' title='Multiple used in 17 places.'>malloc_hook</a>);
+<a id='L142' name='L142' />  <strong class='reserved'>void</strong>* <a href='../D/4682.html' title='Multiple defined in 5 places.'>mmap</a>(<strong class='reserved'>void</strong> *<a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>,<strong class='reserved'>int</strong> <a href='../Y/4326.html' title='Multiple used in 43 places.'>prot</a>, <strong class='reserved'>int</strong> <a href='../Y/2400.html' title='Multiple used in 235 places.'>flags</a>,
+<a id='L143' name='L143' />             <strong class='reserved'>int</strong> <a href='../Y/2340.html' title='Multiple used in 181 places.'>fd</a>, <a href='../S/686.html#L268' title='Defined at 268 in third_party/google-perftools-1.8.3/src/windows/port.h.'>off_t</a> <a href='../Y/3919.html' title='Multiple used in 128 places.'>offset</a>) <a href='../D/3265.html' title='Multiple defined in 10 places.'>__THROW</a>
+<a id='L144' name='L144' />    <a href='../D/126.html' title='Multiple defined in 3 places.'>ATTRIBUTE_SECTION</a>(<a href='../Y/3398.html' title='Multiple used in 17 places.'>malloc_hook</a>);
+<a id='L145' name='L145' />  <strong class='reserved'>int</strong> <a href='../D/4700.html' title='Multiple defined in 3 places.'>munmap</a>(<strong class='reserved'>void</strong>* <a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>) <a href='../D/3265.html' title='Multiple defined in 10 places.'>__THROW</a>
+<a id='L146' name='L146' />    <a href='../D/126.html' title='Multiple defined in 3 places.'>ATTRIBUTE_SECTION</a>(<a href='../Y/3398.html' title='Multiple used in 17 places.'>malloc_hook</a>);
+<a id='L147' name='L147' />  <strong class='reserved'>void</strong>* <a href='../D/4698.html' title='Multiple defined in 3 places.'>mremap</a>(<strong class='reserved'>void</strong>* <a href='../Y/3929.html' title='Multiple used in 18 places.'>old_addr</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/3946.html' title='Multiple used in 32 places.'>old_size</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../S/404.html#L85' title='Defined at 85 in src/utility/st.c.'>new_size</a>,
+<a id='L148' name='L148' />               <strong class='reserved'>int</strong> <a href='../Y/2400.html' title='Multiple used in 235 places.'>flags</a>, ...) <a href='../D/3265.html' title='Multiple defined in 10 places.'>__THROW</a>
+<a id='L149' name='L149' />    <a href='../D/126.html' title='Multiple defined in 3 places.'>ATTRIBUTE_SECTION</a>(<a href='../Y/3398.html' title='Multiple used in 17 places.'>malloc_hook</a>);
+<a id='L150' name='L150' />  <strong class='reserved'>void</strong>* <a href='../D/5059.html' title='Multiple defined in 3 places.'>sbrk</a>(<a href='../Y/4386.html' title='Multiple used in 22 places.'>ptrdiff_t</a> <a href='../Y/2795.html' title='Multiple used in 142 places.'>increment</a>) <a href='../D/3265.html' title='Multiple defined in 10 places.'>__THROW</a>
+<a id='L151' name='L151' />    <a href='../D/126.html' title='Multiple defined in 3 places.'>ATTRIBUTE_SECTION</a>(<a href='../Y/3398.html' title='Multiple used in 17 places.'>malloc_hook</a>);
+<a id='L152' name='L152' /><em class='brace'>}</em>
+<a id='L153' name='L153' />
+<a id='L154' name='L154' /><strong class='reserved'>extern</strong> "C" <strong class='reserved'>void</strong>* <a href='../S/584.html#L139' title='Refered from 139 in third_party/google-perftools-1.8.3/src/malloc_hook_mmap_linux.h.'>mmap64</a>(<strong class='reserved'>void</strong> *<a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>, <strong class='reserved'>int</strong> <a href='../Y/4326.html' title='Multiple used in 43 places.'>prot</a>, <strong class='reserved'>int</strong> <a href='../Y/2400.html' title='Multiple used in 235 places.'>flags</a>,
+<a id='L155' name='L155' />                        <strong class='reserved'>int</strong> <a href='../Y/2340.html' title='Multiple used in 181 places.'>fd</a>, <a href='../Y/1173.html' title='Multiple used in 5 places.'>__off64_t</a> <a href='../Y/3919.html' title='Multiple used in 128 places.'>offset</a>) <a href='../D/3265.html' title='Multiple defined in 10 places.'>__THROW</a> <em class='brace'>{</em>
+<a id='L156' name='L156' />  <a href='../Y/501.html' title='Multiple used in 224 places.'>MallocHook</a>::<a href='../S/581.html#L189' title='Defined at 189 in third_party/google-perftools-1.8.3/src/malloc_hook-inl.h.'>InvokePreMmapHook</a>(<a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>, <a href='../Y/4326.html' title='Multiple used in 43 places.'>prot</a>, <a href='../Y/2400.html' title='Multiple used in 235 places.'>flags</a>, <a href='../Y/2340.html' title='Multiple used in 181 places.'>fd</a>, <a href='../Y/3919.html' title='Multiple used in 128 places.'>offset</a>);
+<a id='L157' name='L157' />  <strong class='reserved'>void</strong> *<a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>;
+<a id='L158' name='L158' />  <strong class='reserved'>if</strong> (!<a href='../Y/501.html' title='Multiple used in 224 places.'>MallocHook</a>::<a href='../S/581.html#L230' title='Defined at 230 in third_party/google-perftools-1.8.3/src/malloc_hook-inl.h.'>InvokeMmapReplacement</a>(
+<a id='L159' name='L159' />          <a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>, <a href='../Y/4326.html' title='Multiple used in 43 places.'>prot</a>, <a href='../Y/2400.html' title='Multiple used in 235 places.'>flags</a>, <a href='../Y/2340.html' title='Multiple used in 181 places.'>fd</a>, <a href='../Y/3919.html' title='Multiple used in 128 places.'>offset</a>, &amp;<a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>)) <em class='brace'>{</em>
+<a id='L160' name='L160' />    <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a> = <a href='../D/3699.html' title='Multiple defined in 2 places.'>do_mmap64</a>(<a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>, <a href='../Y/4326.html' title='Multiple used in 43 places.'>prot</a>, <a href='../Y/2400.html' title='Multiple used in 235 places.'>flags</a>, <a href='../Y/2340.html' title='Multiple used in 181 places.'>fd</a>, <a href='../Y/3919.html' title='Multiple used in 128 places.'>offset</a>);
+<a id='L161' name='L161' />  <em class='brace'>}</em>
+<a id='L162' name='L162' />  <a href='../Y/501.html' title='Multiple used in 224 places.'>MallocHook</a>::<a href='../S/581.html#L211' title='Defined at 211 in third_party/google-perftools-1.8.3/src/malloc_hook-inl.h.'>InvokeMmapHook</a>(<a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>, <a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>, <a href='../Y/4326.html' title='Multiple used in 43 places.'>prot</a>, <a href='../Y/2400.html' title='Multiple used in 235 places.'>flags</a>, <a href='../Y/2340.html' title='Multiple used in 181 places.'>fd</a>, <a href='../Y/3919.html' title='Multiple used in 128 places.'>offset</a>);
+<a id='L163' name='L163' />  <strong class='reserved'>return</strong> <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>;
+<a id='L164' name='L164' /><em class='brace'>}</em>
+<a id='L165' name='L165' />
+<a id='L166' name='L166' /><em class='sharp'># if</em> !<strong class='reserved'>defined</strong>(__USE_FILE_OFFSET64) || !<strong class='reserved'>defined</strong>(__REDIRECT_NTH)
+<a id='L167' name='L167' />
+<a id='L168' name='L168' /><strong class='reserved'>extern</strong> "C" <strong class='reserved'>void</strong>* <a href='../R/4269.html' title='Multiple refered from 18 places.'>mmap</a>(<strong class='reserved'>void</strong> *<a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>, <strong class='reserved'>int</strong> <a href='../Y/4326.html' title='Multiple used in 43 places.'>prot</a>, <strong class='reserved'>int</strong> <a href='../Y/2400.html' title='Multiple used in 235 places.'>flags</a>,
+<a id='L169' name='L169' />                      <strong class='reserved'>int</strong> <a href='../Y/2340.html' title='Multiple used in 181 places.'>fd</a>, <a href='../S/686.html#L268' title='Defined at 268 in third_party/google-perftools-1.8.3/src/windows/port.h.'>off_t</a> <a href='../Y/3919.html' title='Multiple used in 128 places.'>offset</a>) <a href='../D/3265.html' title='Multiple defined in 10 places.'>__THROW</a> <em class='brace'>{</em>
+<a id='L170' name='L170' />  <a href='../Y/501.html' title='Multiple used in 224 places.'>MallocHook</a>::<a href='../S/581.html#L189' title='Defined at 189 in third_party/google-perftools-1.8.3/src/malloc_hook-inl.h.'>InvokePreMmapHook</a>(<a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>, <a href='../Y/4326.html' title='Multiple used in 43 places.'>prot</a>, <a href='../Y/2400.html' title='Multiple used in 235 places.'>flags</a>, <a href='../Y/2340.html' title='Multiple used in 181 places.'>fd</a>, <a href='../Y/3919.html' title='Multiple used in 128 places.'>offset</a>);
+<a id='L171' name='L171' />  <strong class='reserved'>void</strong> *<a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>;
+<a id='L172' name='L172' />  <strong class='reserved'>if</strong> (!<a href='../Y/501.html' title='Multiple used in 224 places.'>MallocHook</a>::<a href='../S/581.html#L230' title='Defined at 230 in third_party/google-perftools-1.8.3/src/malloc_hook-inl.h.'>InvokeMmapReplacement</a>(
+<a id='L173' name='L173' />          <a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>, <a href='../Y/4326.html' title='Multiple used in 43 places.'>prot</a>, <a href='../Y/2400.html' title='Multiple used in 235 places.'>flags</a>, <a href='../Y/2340.html' title='Multiple used in 181 places.'>fd</a>, <a href='../Y/3919.html' title='Multiple used in 128 places.'>offset</a>, &amp;<a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>)) <em class='brace'>{</em>
+<a id='L174' name='L174' />    <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a> = <a href='../D/3699.html' title='Multiple defined in 2 places.'>do_mmap64</a>(<a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>, <a href='../Y/4326.html' title='Multiple used in 43 places.'>prot</a>, <a href='../Y/2400.html' title='Multiple used in 235 places.'>flags</a>, <a href='../Y/2340.html' title='Multiple used in 181 places.'>fd</a>,
+<a id='L175' name='L175' />                       <a href='../Y/5080.html' title='Multiple used in 31 places.'>static_cast</a>&lt;<a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a>&gt;(<a href='../Y/3919.html' title='Multiple used in 128 places.'>offset</a>)); <em class='comment'>// avoid sign extension</em>
+<a id='L176' name='L176' />  <em class='brace'>}</em>
+<a id='L177' name='L177' />  <a href='../Y/501.html' title='Multiple used in 224 places.'>MallocHook</a>::<a href='../S/581.html#L211' title='Defined at 211 in third_party/google-perftools-1.8.3/src/malloc_hook-inl.h.'>InvokeMmapHook</a>(<a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>, <a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>, <a href='../Y/4326.html' title='Multiple used in 43 places.'>prot</a>, <a href='../Y/2400.html' title='Multiple used in 235 places.'>flags</a>, <a href='../Y/2340.html' title='Multiple used in 181 places.'>fd</a>, <a href='../Y/3919.html' title='Multiple used in 128 places.'>offset</a>);
+<a id='L178' name='L178' />  <strong class='reserved'>return</strong> <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>;
+<a id='L179' name='L179' /><em class='brace'>}</em>
+<a id='L180' name='L180' />
+<a id='L181' name='L181' /><em class='sharp'># endif</em>  <em class='comment'>// !defined(__USE_FILE_OFFSET64) || !defined(__REDIRECT_NTH)</em>
+<a id='L182' name='L182' />
+<a id='L183' name='L183' /><strong class='reserved'>extern</strong> "C" <strong class='reserved'>int</strong> <a href='../R/4287.html' title='Multiple refered from 15 places.'>munmap</a>(<strong class='reserved'>void</strong>* <a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>) <a href='../D/3265.html' title='Multiple defined in 10 places.'>__THROW</a> <em class='brace'>{</em>
+<a id='L184' name='L184' />  <a href='../Y/501.html' title='Multiple used in 224 places.'>MallocHook</a>::<a href='../S/581.html#L251' title='Defined at 251 in third_party/google-perftools-1.8.3/src/malloc_hook-inl.h.'>InvokeMunmapHook</a>(<a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>);
+<a id='L185' name='L185' />  <strong class='reserved'>int</strong> <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>;
+<a id='L186' name='L186' />  <strong class='reserved'>if</strong> (!<a href='../Y/501.html' title='Multiple used in 224 places.'>MallocHook</a>::<a href='../S/581.html#L261' title='Defined at 261 in third_party/google-perftools-1.8.3/src/malloc_hook-inl.h.'>InvokeMunmapReplacement</a>(<a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>, &amp;<a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>)) <em class='brace'>{</em>
+<a id='L187' name='L187' />    <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a> = sys_munmap(<a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>);
+<a id='L188' name='L188' />  <em class='brace'>}</em>
+<a id='L189' name='L189' />  <strong class='reserved'>return</strong> <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>;
+<a id='L190' name='L190' /><em class='brace'>}</em>
+<a id='L191' name='L191' />
+<a id='L192' name='L192' /><strong class='reserved'>extern</strong> "C" <strong class='reserved'>void</strong>* <a href='../R/4285.html' title='Multiple refered from 3 places.'>mremap</a>(<strong class='reserved'>void</strong>* <a href='../Y/3929.html' title='Multiple used in 18 places.'>old_addr</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/3946.html' title='Multiple used in 32 places.'>old_size</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../S/404.html#L85' title='Defined at 85 in src/utility/st.c.'>new_size</a>,
+<a id='L193' name='L193' />                        <strong class='reserved'>int</strong> <a href='../Y/2400.html' title='Multiple used in 235 places.'>flags</a>, ...) <a href='../D/3265.html' title='Multiple defined in 10 places.'>__THROW</a> <em class='brace'>{</em>
+<a id='L194' name='L194' />  <a href='../Y/5593.html' title='Multiple used in 27 places.'>va_list</a> <a href='../Y/1470.html' title='Multiple used in 194 places.'>ap</a>;
+<a id='L195' name='L195' />  <a href='../Y/5594.html' title='Multiple used in 17 places.'>va_start</a>(<a href='../Y/1470.html' title='Multiple used in 194 places.'>ap</a>, <a href='../Y/2400.html' title='Multiple used in 235 places.'>flags</a>);
+<a id='L196' name='L196' />  <strong class='reserved'>void</strong> *<a href='../Y/3718.html' title='Multiple used in 6 places.'>new_address</a> = <a href='../Y/5591.html' title='Multiple used in 11 places.'>va_arg</a>(<a href='../Y/1470.html' title='Multiple used in 194 places.'>ap</a>, <strong class='reserved'>void</strong> *);
+<a id='L197' name='L197' />  <a href='../Y/5592.html' title='Multiple used in 16 places.'>va_end</a>(<a href='../Y/1470.html' title='Multiple used in 194 places.'>ap</a>);
+<a id='L198' name='L198' />  <strong class='reserved'>void</strong>* <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a> = sys_mremap(<a href='../Y/3929.html' title='Multiple used in 18 places.'>old_addr</a>, <a href='../Y/3946.html' title='Multiple used in 32 places.'>old_size</a>, <a href='../S/404.html#L85' title='Defined at 85 in src/utility/st.c.'>new_size</a>, <a href='../Y/2400.html' title='Multiple used in 235 places.'>flags</a>, <a href='../Y/3718.html' title='Multiple used in 6 places.'>new_address</a>);
+<a id='L199' name='L199' />  <a href='../Y/501.html' title='Multiple used in 224 places.'>MallocHook</a>::<a href='../S/581.html#L274' title='Defined at 274 in third_party/google-perftools-1.8.3/src/malloc_hook-inl.h.'>InvokeMremapHook</a>(<a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>, <a href='../Y/3929.html' title='Multiple used in 18 places.'>old_addr</a>, <a href='../Y/3946.html' title='Multiple used in 32 places.'>old_size</a>, <a href='../S/404.html#L85' title='Defined at 85 in src/utility/st.c.'>new_size</a>, <a href='../Y/2400.html' title='Multiple used in 235 places.'>flags</a>,
+<a id='L200' name='L200' />                               <a href='../Y/3718.html' title='Multiple used in 6 places.'>new_address</a>);
+<a id='L201' name='L201' />  <strong class='reserved'>return</strong> <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>;
+<a id='L202' name='L202' /><em class='brace'>}</em>
+<a id='L203' name='L203' />
+<a id='L204' name='L204' /><em class='comment'>// libc's version:</em>
+<a id='L205' name='L205' /><strong class='reserved'>extern</strong> "C" <strong class='reserved'>void</strong>* <a href='../S/685.html#L64' title='Defined at 64 in third_party/google-perftools-1.8.3/src/windows/port.cc.'>__sbrk</a>(<a href='../Y/4386.html' title='Multiple used in 22 places.'>ptrdiff_t</a> <a href='../Y/2795.html' title='Multiple used in 142 places.'>increment</a>);
+<a id='L206' name='L206' />
+<a id='L207' name='L207' /><strong class='reserved'>extern</strong> "C" <strong class='reserved'>void</strong>* <a href='../R/4629.html' title='Multiple refered from 14 places.'>sbrk</a>(<a href='../Y/4386.html' title='Multiple used in 22 places.'>ptrdiff_t</a> <a href='../Y/2795.html' title='Multiple used in 142 places.'>increment</a>) <a href='../D/3265.html' title='Multiple defined in 10 places.'>__THROW</a> <em class='brace'>{</em>
+<a id='L208' name='L208' />  <a href='../Y/501.html' title='Multiple used in 224 places.'>MallocHook</a>::<a href='../S/581.html#L296' title='Defined at 296 in third_party/google-perftools-1.8.3/src/malloc_hook-inl.h.'>InvokePreSbrkHook</a>(<a href='../Y/2795.html' title='Multiple used in 142 places.'>increment</a>);
+<a id='L209' name='L209' />  <strong class='reserved'>void</strong> *<a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a> = <a href='../S/685.html#L64' title='Defined at 64 in third_party/google-perftools-1.8.3/src/windows/port.cc.'>__sbrk</a>(<a href='../Y/2795.html' title='Multiple used in 142 places.'>increment</a>);
+<a id='L210' name='L210' />  <a href='../Y/501.html' title='Multiple used in 224 places.'>MallocHook</a>::<a href='../S/581.html#L311' title='Defined at 311 in third_party/google-perftools-1.8.3/src/malloc_hook-inl.h.'>InvokeSbrkHook</a>(<a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>, <a href='../Y/2795.html' title='Multiple used in 142 places.'>increment</a>);
+<a id='L211' name='L211' />  <strong class='reserved'>return</strong> <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>;
+<a id='L212' name='L212' /><em class='brace'>}</em>
+<a id='L213' name='L213' />
+<a id='L214' name='L214' /><em class='comment'>/*static*/</em><strong class='reserved'>void</strong>* <a href='../Y/501.html' title='Multiple used in 224 places.'>MallocHook</a>::<a href='../R/2589.html' title='Multiple refered from 2 places.'>UnhookedMMap</a>(<strong class='reserved'>void</strong> *<a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>, <strong class='reserved'>int</strong> <a href='../Y/4326.html' title='Multiple used in 43 places.'>prot</a>,
+<a id='L215' name='L215' />                                         <strong class='reserved'>int</strong> <a href='../Y/2400.html' title='Multiple used in 235 places.'>flags</a>, <strong class='reserved'>int</strong> <a href='../Y/2340.html' title='Multiple used in 181 places.'>fd</a>, <a href='../S/686.html#L268' title='Defined at 268 in third_party/google-perftools-1.8.3/src/windows/port.h.'>off_t</a> <a href='../Y/3919.html' title='Multiple used in 128 places.'>offset</a>) <em class='brace'>{</em>
+<a id='L216' name='L216' />  <strong class='reserved'>void</strong>* <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>;
+<a id='L217' name='L217' />  <strong class='reserved'>if</strong> (!<a href='../Y/501.html' title='Multiple used in 224 places.'>MallocHook</a>::<a href='../S/581.html#L230' title='Defined at 230 in third_party/google-perftools-1.8.3/src/malloc_hook-inl.h.'>InvokeMmapReplacement</a>(
+<a id='L218' name='L218' />          <a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>, <a href='../Y/4326.html' title='Multiple used in 43 places.'>prot</a>, <a href='../Y/2400.html' title='Multiple used in 235 places.'>flags</a>, <a href='../Y/2340.html' title='Multiple used in 181 places.'>fd</a>, <a href='../Y/3919.html' title='Multiple used in 128 places.'>offset</a>, &amp;<a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>)) <em class='brace'>{</em>
+<a id='L219' name='L219' />    <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a> = <a href='../D/3699.html' title='Multiple defined in 2 places.'>do_mmap64</a>(<a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>, <a href='../Y/4326.html' title='Multiple used in 43 places.'>prot</a>, <a href='../Y/2400.html' title='Multiple used in 235 places.'>flags</a>, <a href='../Y/2340.html' title='Multiple used in 181 places.'>fd</a>, <a href='../Y/3919.html' title='Multiple used in 128 places.'>offset</a>);
+<a id='L220' name='L220' />  <em class='brace'>}</em>
+<a id='L221' name='L221' />  <strong class='reserved'>return</strong> <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>;
+<a id='L222' name='L222' /><em class='brace'>}</em>
+<a id='L223' name='L223' />
+<a id='L224' name='L224' /><em class='comment'>/*static*/</em><strong class='reserved'>int</strong> <a href='../Y/501.html' title='Multiple used in 224 places.'>MallocHook</a>::<a href='../R/2590.html' title='Multiple refered from 2 places.'>UnhookedMUnmap</a>(<strong class='reserved'>void</strong> *<a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>) <em class='brace'>{</em>
+<a id='L225' name='L225' />  <strong class='reserved'>int</strong> <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>;
+<a id='L226' name='L226' />  <strong class='reserved'>if</strong> (!<a href='../Y/501.html' title='Multiple used in 224 places.'>MallocHook</a>::<a href='../S/581.html#L261' title='Defined at 261 in third_party/google-perftools-1.8.3/src/malloc_hook-inl.h.'>InvokeMunmapReplacement</a>(<a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>, &amp;<a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>)) <em class='brace'>{</em>
+<a id='L227' name='L227' />    <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a> = <a href='../Y/5255.html' title='Multiple used in 10 places.'>syscall</a>(<a href='../Y/768.html' title='Multiple used in 3 places.'>SYS_munmap</a>, <a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>);
+<a id='L228' name='L228' />  <em class='brace'>}</em>
+<a id='L229' name='L229' />  <strong class='reserved'>return</strong> <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>;
+<a id='L230' name='L230' /><em class='brace'>}</em>
+<a id='L231' name='L231' />
+<a id='L232' name='L232' /><em class='sharp'>#undef</em> <a href='../S/584.html#L124' title='Refered from 124 in third_party/google-perftools-1.8.3/src/malloc_hook_mmap_linux.h.'>MALLOC_HOOK_HAVE_DO_MMAP64</a>
+<a id='L233' name='L233' />
+<a id='L234' name='L234' /><em class='sharp'>#endif</em>  <em class='comment'>// #ifdef MALLOC_HOOK_HAVE_DO_MMAP64</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;]<a href='#L56'>[^]</a><a href='#L224'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

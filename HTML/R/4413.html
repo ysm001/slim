@@ -1,0 +1,697 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>printf</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/334.html#L725'>printf</a>            725 src/hyperlink.c     printf("&gt;&gt;&gt;&gt; NULL\n");</span>
+<span class='curline'><a href='../S/334.html#L729'>printf</a>            729 src/hyperlink.c     printf("&gt;&gt;&gt;&gt; sht %p num %d cap %d\n", sht, n, sht-&gt;cap);</span>
+<span class='curline'><a href='../S/334.html#L731'>printf</a>            731 src/hyperlink.c       if (sht-&gt;tbl[i].key == EMPTY_KEY) printf("%3d: key: %p data: %p\n", i, (void *)sht-&gt;tbl[i].key, (HyperLink *)sht-&gt;tbl[i].data);</span>
+<span class='curline'><a href='../S/334.html#L734'>printf</a>            734 src/hyperlink.c           printf("%3d: key: %p data: %p-&gt;%p\n", i, (void *)sht-&gt;tbl[i].key, (HyperLink *)sht-&gt;tbl[i].data, (void*)((HyperLink *)sht-&gt;tbl[i].data)-&gt;atom);</span>
+<span class='curline'><a href='../S/334.html#L736'>printf</a>            736 src/hyperlink.c           printf("%3d: key: %p data: %p\n", i, (void *)sht-&gt;tbl[i].key, (HyperLink *)sht-&gt;tbl[i].data);</span>
+<span class='curline'><a href='../S/334.html#L748'>printf</a>            748 src/hyperlink.c     printf("&gt;&gt;&gt;&gt; NULL\n");</span>
+<span class='curline'><a href='../S/334.html#L752'>printf</a>            752 src/hyperlink.c     printf("&gt;&gt;&gt;&gt;  hs %p num %d cap %d\n", hs, n, hs-&gt;cap);</span>
+<span class='curline'><a href='../S/334.html#L755'>printf</a>            755 src/hyperlink.c       if (hs-&gt;tbl[i] &lt; DELETED_KEY) printf("%3d: key: %p\n", i, (void *)hs-&gt;tbl[i]);</span>
+<span class='curline'><a href='../S/334.html#L758'>printf</a>            758 src/hyperlink.c           printf("%3d: key: %p\n", i, (void *)hs-&gt;tbl[i]);</span>
+<span class='curline'><a href='../S/334.html#L760'>printf</a>            760 src/hyperlink.c           printf("%3d: key: %p\n", i, (void *)hs-&gt;tbl[i]);</span>
+<span class='curline'><a href='../S/345.html#L334'>printf</a>            334 src/jni_lmntal.c     printf("Compilation Failed\n\n");</span>
+<span class='curline'><a href='../S/345.html#L340'>printf</a>            340 src/jni_lmntal.c     printf("Compilation Failed\n\n");</span>
+<span class='curline'><a href='../S/345.html#L374'>printf</a>            374 src/jni_lmntal.c   printf("Commands:\n");</span>
+<span class='curline'><a href='../S/345.html#L375'>printf</a>            375 src/jni_lmntal.c   printf("  :nd            - Set nondeterministic execution mode ON, print all execution paths\n");</span>
+<span class='curline'><a href='../S/345.html#L376'>printf</a>            376 src/jni_lmntal.c   printf("  :nd_result     - Set nondeterministic execution mode ON, print only deadlock paths\n");</span>
+<span class='curline'><a href='../S/345.html#L377'>printf</a>            377 src/jni_lmntal.c   printf("  :nd_dump       - Set nondeterministic execution mode ON, print all state instantly\n");</span>
+<span class='curline'><a href='../S/345.html#L378'>printf</a>            378 src/jni_lmntal.c   printf("  :nond          - Set nondeterministic execution mode OFF\n");</span>
+<span class='curline'><a href='../S/345.html#L379'>printf</a>            379 src/jni_lmntal.c   printf("  :remain        - Set remain mode ON\n");</span>
+<span class='curline'><a href='../S/345.html#L380'>printf</a>            380 src/jni_lmntal.c   printf("  :noremain      - Set remain mode OFF\n");</span>
+<span class='curline'><a href='../S/345.html#L381'>printf</a>            381 src/jni_lmntal.c   printf("  :clear         - Clean the remain atoms (if remain mode ON)\n");</span>
+<span class='curline'><a href='../S/345.html#L382'>printf</a>            382 src/jni_lmntal.c   printf("  :gui           - Set gui mode ON (BUT able to run only once)\n");</span>
+<span class='curline'><a href='../S/345.html#L383'>printf</a>            383 src/jni_lmntal.c   printf("  :nogui         - Set gui mode OFF\n");</span>
+<span class='curline'><a href='../S/345.html#L384'>printf</a>            384 src/jni_lmntal.c   printf("  :trace         - Set trace mode ON\n");</span>
+<span class='curline'><a href='../S/345.html#L385'>printf</a>            385 src/jni_lmntal.c   printf("  :notrace       - Set trace mode OFF\n");</span>
+<span class='curline'><a href='../S/345.html#L386'>printf</a>            386 src/jni_lmntal.c   printf("  :showproxy     - Show proxy atoms\n");</span>
+<span class='curline'><a href='../S/345.html#L387'>printf</a>            387 src/jni_lmntal.c   printf("  :hideproxy     - Hide proxy atoms\n");</span>
+<span class='curline'><a href='../S/345.html#L389'>printf</a>            389 src/jni_lmntal.c   printf("  :s[0-3]        - Set shuffle level\n");</span>
+<span class='curline'><a href='../S/345.html#L390'>printf</a>            390 src/jni_lmntal.c   printf("  :h             - help\n");</span>
+<span class='curline'><a href='../S/345.html#L391'>printf</a>            391 src/jni_lmntal.c   printf("  :q             - quit\n");</span>
+<span class='curline'><a href='../S/345.html#L392'>printf</a>            392 src/jni_lmntal.c   printf("\n");</span>
+<span class='curline'><a href='../S/345.html#L406'>printf</a>            406 src/jni_lmntal.c     printf("&gt; ");</span>
+<span class='curline'><a href='../S/345.html#L421'>printf</a>            421 src/jni_lmntal.c       printf("no-input\n");</span>
+<span class='curline'><a href='../S/345.html#L426'>printf</a>            426 src/jni_lmntal.c         printf("halt...\n");</span>
+<span class='curline'><a href='../S/345.html#L447'>printf</a>            447 src/jni_lmntal.c           printf("set optimize level %d \n", jc_lmntal.shuffle_level);</span>
+<span class='curline'><a href='../S/345.html#L457'>printf</a>            457 src/jni_lmntal.c         printf("gui mode on\n");</span>
+<span class='curline'><a href='../S/345.html#L464'>printf</a>            464 src/jni_lmntal.c         printf("gui mode off\n");</span>
+<span class='curline'><a href='../S/345.html#L469'>printf</a>            469 src/jni_lmntal.c         printf("nd mode on\n");</span>
+<span class='curline'><a href='../S/345.html#L475'>printf</a>            475 src/jni_lmntal.c         printf("nd_result mode on\n");</span>
+<span class='curline'><a href='../S/345.html#L481'>printf</a>            481 src/jni_lmntal.c         printf("nd_dump mode on\n");</span>
+<span class='curline'><a href='../S/345.html#L488'>printf</a>            488 src/jni_lmntal.c         printf("nd(nd_dump,nd_result) mode off\n");</span>
+<span class='curline'><a href='../S/345.html#L495'>printf</a>            495 src/jni_lmntal.c             printf("clear remaining atoms (nd)\n");</span>
+<span class='curline'><a href='../S/345.html#L497'>printf</a>            497 src/jni_lmntal.c             printf("can't clear atoms in normal(=not remain) mode (nd)\n");</span>
+<span class='curline'><a href='../S/345.html#L503'>printf</a>            503 src/jni_lmntal.c             printf("clear remaining atoms (normal)\n");</span>
+<span class='curline'><a href='../S/345.html#L505'>printf</a>            505 src/jni_lmntal.c             printf("can't clear atoms in normal(=not remain) mode (normal)\n");</span>
+<span class='curline'><a href='../S/345.html#L513'>printf</a>            513 src/jni_lmntal.c           printf("remain mode on (nd)\n");</span>
+<span class='curline'><a href='../S/345.html#L516'>printf</a>            516 src/jni_lmntal.c           printf("remain mode on (normal)\n");</span>
+<span class='curline'><a href='../S/345.html#L524'>printf</a>            524 src/jni_lmntal.c           printf("remain mode off (nd)\n");</span>
+<span class='curline'><a href='../S/345.html#L528'>printf</a>            528 src/jni_lmntal.c           printf("remain mode off (normal)\n");</span>
+<span class='curline'><a href='../S/345.html#L534'>printf</a>            534 src/jni_lmntal.c         printf("trace mode on\n");</span>
+<span class='curline'><a href='../S/345.html#L539'>printf</a>            539 src/jni_lmntal.c         printf("trace mode off\n");</span>
+<span class='curline'><a href='../S/345.html#L544'>printf</a>            544 src/jni_lmntal.c         printf("show_proxy mode on\n");</span>
+<span class='curline'><a href='../S/345.html#L549'>printf</a>            549 src/jni_lmntal.c         printf("show_proxy mode off\n");</span>
+<span class='curline'><a href='../S/345.html#L551'>printf</a>            551 src/jni_lmntal.c         printf("unknown command: %s\n",line);</span>
+<span class='curline'><a href='../S/351.html#L74'>printf</a>             74 src/load.c         printf("%s.%s_%d[%d]",</span>
+<span class='curline'><a href='../S/351.html#L82'>printf</a>             82 src/load.c         printf("%ld", functor_get_int_value(f));</span>
+<span class='curline'><a href='../S/351.html#L85'>printf</a>             85 src/load.c         printf("%f", functor_get_float_value(f));</span>
+<span class='curline'><a href='../S/351.html#L88'>printf</a>             88 src/load.c         printf("$in");</span>
+<span class='curline'><a href='../S/351.html#L91'>printf</a>             91 src/load.c         printf("$out");</span>
+<span class='curline'><a href='../S/351.html#L94'>printf</a>             94 src/load.c         printf("=");</span>
+<span class='curline'><a href='../S/351.html#L108'>printf</a>            108 src/load.c         printf("%d", inst_arg_get_var(arg));</span>
+<span class='curline'><a href='../S/351.html#L111'>printf</a>            111 src/load.c         printf("L%d", inst_arg_get_label(arg));</span>
+<span class='curline'><a href='../S/351.html#L114'>printf</a>            114 src/load.c         printf("\"%s\"", lmn_id_to_name(inst_arg_get_str_id(arg)));</span>
+<span class='curline'><a href='../S/351.html#L117'>printf</a>            117 src/load.c         printf("Line:%d", inst_arg_get_linenum(arg));</span>
+<span class='curline'><a href='../S/351.html#L120'>printf</a>            120 src/load.c         printf("@%d", inst_arg_get_ruleset_id(arg));</span>
+<span class='curline'><a href='../S/351.html#L131'>printf</a>            131 src/load.c         printf("[");</span>
+<span class='curline'><a href='../S/351.html#L133'>printf</a>            133 src/load.c           if (i &gt; 0) printf(", ");</span>
+<span class='curline'><a href='../S/351.html#L134'>printf</a>            134 src/load.c           printf("%d", var_list_get(l, i));</span>
+<span class='curline'><a href='../S/351.html#L136'>printf</a>            136 src/load.c         printf("]");</span>
+<span class='curline'><a href='../S/351.html#L145'>printf</a>            145 src/load.c         printf("[\n");</span>
+<span class='curline'><a href='../S/351.html#L147'>printf</a>            147 src/load.c           printf("   ");</span>
+<span class='curline'><a href='../S/351.html#L150'>printf</a>            150 src/load.c         printf("     ]");</span>
+<span class='curline'><a href='../S/351.html#L164'>printf</a>            164 src/load.c       printf("     %d arg= [", inst_get_id(inst));</span>
+<span class='curline'><a href='../S/351.html#L167'>printf</a>            167 src/load.c         if (i &gt; 0) printf(", ");</span>
+<span class='curline'><a href='../S/351.html#L170'>printf</a>            170 src/load.c       printf("]\n");</span>
+<span class='curline'><a href='../S/351.html#L178'>printf</a>            178 src/load.c       printf("    Label=%d \n", inst_block_get_label(ib));</span>
+<span class='curline'><a href='../S/351.html#L187'>printf</a>            187 src/load.c       printf("Rule NAME=%s \n", lmn_id_to_name(rule_get_name(rule)));</span>
+<span class='curline'><a href='../S/351.html#L188'>printf</a>            188 src/load.c       printf("  amatch \n");</span>
+<span class='curline'><a href='../S/351.html#L190'>printf</a>            190 src/load.c       printf("  mmatch \n");</span>
+<span class='curline'><a href='../S/351.html#L192'>printf</a>            192 src/load.c       printf("  guard \n");</span>
+<span class='curline'><a href='../S/351.html#L194'>printf</a>            194 src/load.c       printf("  body \n");</span>
+<span class='curline'><a href='../S/351.html#L203'>printf</a>            203 src/load.c       if (ruleset_is_system_ruleset(rs)) printf("SystemRuleset:\n");</span>
+<span class='curline'><a href='../S/351.html#L204'>printf</a>            204 src/load.c       printf("Ruleset ID=%d \n", ruleset_get_id(rs));</span>
+<span class='curline'><a href='../S/351.html#L214'>printf</a>            214 src/load.c       printf("module %s, %d\n",</span>
+<span class='curline'><a href='../S/353.html#L206'>printf</a>            206 src/main.c           printf("log_options entries must have positive 4th member.\n");</span>
+<span class='curline'><a href='../S/353.html#L511'>printf</a>            511 src/main.c           printf("?? getopt returned character code 0x%x ??\n", c);</span>
+<span class='curline'><a href='../S/384.html#L1180'>printf</a>           1180 src/task.c                   printf("count=%d\n", count);</span>
+<span class='curline'><a href='../S/384.html#L3252'>printf</a>           3252 src/task.c               printf("EXTERNAL FUNCTION: too many arguments\n");</span>
+<span class='curline'><a href='../S/384.html#L4154'>printf</a>           4154 src/task.c               printf("EXTERNAL FUNCTION: too many arguments\n");</span>
+<span class='curline'><a href='../S/388.html#L28'>printf</a>             28 src/translate_generated.c   print_indent(indent); printf("  TR_INSTR_SPEC(rc, %d);\n", (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L37'>printf</a>             37 src/translate_generated.c   print_indent(indent++); printf("{\n");</span>
+<span class='curline'><a href='../S/388.html#L39'>printf</a>             39 src/translate_generated.c   print_indent(indent); printf("  {\n");</span>
+<span class='curline'><a href='../S/388.html#L40'>printf</a>             40 src/translate_generated.c   print_indent(indent); printf("    const Vector v = vec_const_temporary_from_array(targ1_num, targ1);\n");</span>
+<span class='curline'><a href='../S/388.html#L41'>printf</a>             41 src/translate_generated.c   print_indent(indent); printf("    warry_set(rc, %d, insertconnectors(rc, NULL, &amp;v), 0, TT_OTHER);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L47'>printf</a>             47 src/translate_generated.c   print_indent(indent); printf("  label_always_%p:\n", op_address);</span>
+<span class='curline'><a href='../S/388.html#L48'>printf</a>             48 src/translate_generated.c   print_indent(indent); printf("    hashset_free((HashSet *)wt(rc, %d));\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L49'>printf</a>             49 src/translate_generated.c   print_indent(indent); printf("    %s;\n", successcode);</span>
+<span class='curline'><a href='../S/388.html#L50'>printf</a>             50 src/translate_generated.c   print_indent(indent); printf("    lmn_fatal(\"translate recursive error\\n\");\n");</span>
+<span class='curline'><a href='../S/388.html#L51'>printf</a>             51 src/translate_generated.c   print_indent(indent); printf("  }\n");</span>
+<span class='curline'><a href='../S/388.html#L54'>printf</a>             54 src/translate_generated.c   print_indent(--indent); printf("}\n");</span>
+<span class='curline'><a href='../S/388.html#L65'>printf</a>             65 src/translate_generated.c   print_indent(indent++); printf("{\n");</span>
+<span class='curline'><a href='../S/388.html#L67'>printf</a>             67 src/translate_generated.c   print_indent(indent); printf("  {\n");</span>
+<span class='curline'><a href='../S/388.html#L68'>printf</a>             68 src/translate_generated.c   print_indent(indent); printf("    const Vector v = vec_const_temporary_from_array(targ1_num, targ1);\n");</span>
+<span class='curline'><a href='../S/388.html#L69'>printf</a>             69 src/translate_generated.c   print_indent(indent); printf("    warry_set(rc, %d, insertconnectors(rc, (LmnMembrane *)wt(rc, %d), &amp;v), 0, TT_OTHER);\n", (int)targ0, (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L75'>printf</a>             75 src/translate_generated.c   print_indent(indent); printf("  label_always_%p:\n", op_address);</span>
+<span class='curline'><a href='../S/388.html#L76'>printf</a>             76 src/translate_generated.c   print_indent(indent); printf("    hashset_free((HashSet *)wt(rc, %d));\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L77'>printf</a>             77 src/translate_generated.c   print_indent(indent); printf("    %s;\n", successcode);</span>
+<span class='curline'><a href='../S/388.html#L78'>printf</a>             78 src/translate_generated.c   print_indent(indent); printf("    lmn_fatal(\"translate recursive error\\n\");\n");</span>
+<span class='curline'><a href='../S/388.html#L79'>printf</a>             79 src/translate_generated.c   print_indent(indent); printf("  }\n");</span>
+<span class='curline'><a href='../S/388.html#L82'>printf</a>             82 src/translate_generated.c   print_indent(--indent); printf("}\n");</span>
+<span class='curline'><a href='../S/388.html#L90'>printf</a>             90 src/translate_generated.c   print_indent(indent); printf("  {\n");</span>
+<span class='curline'><a href='../S/388.html#L91'>printf</a>             91 src/translate_generated.c   print_indent(indent); printf("    LmnMembrane *ptmp_global_root;\n");</span>
+<span class='curline'><a href='../S/388.html#L92'>printf</a>             92 src/translate_generated.c   print_indent(indent); printf("    LmnRegister *v;\n");</span>
+<span class='curline'><a href='../S/388.html#L93'>printf</a>             93 src/translate_generated.c   print_indent(indent); printf("    unsigned int org_next_id;\n");</span>
+<span class='curline'><a href='../S/388.html#L94'>printf</a>             94 src/translate_generated.c   print_indent(indent); printf("    unsigned int warry_use_org, warry_size_org;\n");</span>
+<span class='curline'><a href='../S/388.html#L95'>printf</a>             95 src/translate_generated.c   print_indent(indent); printf("    warry_use_org  = warry_use_size(rc);\n");</span>
+<span class='curline'><a href='../S/388.html#L96'>printf</a>             96 src/translate_generated.c   print_indent(indent); printf("    warry_size_org = warry_size(rc);\n");</span>
+<span class='curline'><a href='../S/388.html#L97'>printf</a>             97 src/translate_generated.c   print_indent(indent); printf("    org_next_id = 0;\n");</span>
+<span class='curline'><a href='../S/388.html#L98'>printf</a>             98 src/translate_generated.c   print_indent(indent); printf("    tr_instr_commit_ready(rc, rule, TR_GSID(%d), %d, &amp;ptmp_global_root, &amp;v, &amp;org_next_id);\n", (int)targ0, (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L106'>printf</a>            106 src/translate_generated.c   print_indent(indent); printf("  label_always_%p:\n", op_address);</span>
+<span class='curline'><a href='../S/388.html#L107'>printf</a>            107 src/translate_generated.c   print_indent(indent); printf("    if(tr_instr_commit_finish(rc, rule, TR_GSID(%d), %d, &amp;ptmp_global_root, &amp;v, warry_use_org, warry_size_org))\n", (int)targ0, (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L108'>printf</a>            108 src/translate_generated.c   print_indent(indent); printf("      %s;\n", successcode);</span>
+<span class='curline'><a href='../S/388.html#L109'>printf</a>            109 src/translate_generated.c   print_indent(indent); printf("    else\n");</span>
+<span class='curline'><a href='../S/388.html#L110'>printf</a>            110 src/translate_generated.c   print_indent(indent); printf("      env_set_next_id(org_next_id);\n");</span>
+<span class='curline'><a href='../S/388.html#L111'>printf</a>            111 src/translate_generated.c   print_indent(indent); printf("      %s;\n", failcode);</span>
+<span class='curline'><a href='../S/388.html#L112'>printf</a>            112 src/translate_generated.c   print_indent(indent); printf("    lmn_fatal(\"translate recursive error\\n\");\n");</span>
+<span class='curline'><a href='../S/388.html#L113'>printf</a>            113 src/translate_generated.c   print_indent(indent); printf("  }\n");</span>
+<span class='curline'><a href='../S/388.html#L128'>printf</a>            128 src/translate_generated.c   print_indent(indent); printf("    {\n");</span>
+<span class='curline'><a href='../S/388.html#L129'>printf</a>            129 src/translate_generated.c   print_indent(indent); printf("      AtomListEntry *atomlist_ent = lmn_mem_get_atomlist((LmnMembrane*)wt(rc, %d), TR_GFID(%d));\n", (int)targ1, targ2.functor_data);</span>
+<span class='curline'><a href='../S/388.html#L130'>printf</a>            130 src/translate_generated.c   print_indent(indent); printf("      LmnSAtom atom;\n");</span>
+<span class='curline'><a href='../S/388.html#L131'>printf</a>            131 src/translate_generated.c   print_indent(indent); printf("      if (atomlist_ent) {\n");</span>
+<span class='curline'><a href='../S/388.html#L132'>printf</a>            132 src/translate_generated.c   print_indent(indent); printf("        at_set(rc, %d, LMN_ATTR_MAKE_LINK(0));\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L133'>printf</a>            133 src/translate_generated.c   print_indent(indent); printf("        /* EACH_ATOMを使うとループ内コード中でコンマが使えない場合が出てくる */\n");</span>
+<span class='curline'><a href='../S/388.html#L134'>printf</a>            134 src/translate_generated.c   print_indent(indent); printf("        for(atom = atomlist_head(atomlist_ent);\n");</span>
+<span class='curline'><a href='../S/388.html#L135'>printf</a>            135 src/translate_generated.c   print_indent(indent); printf("            atom != lmn_atomlist_end(atomlist_ent);\n");</span>
+<span class='curline'><a href='../S/388.html#L136'>printf</a>            136 src/translate_generated.c   print_indent(indent); printf("            atom = LMN_SATOM_GET_NEXT_RAW(atom)){\n");</span>
+<span class='curline'><a href='../S/388.html#L137'>printf</a>            137 src/translate_generated.c   print_indent(indent); printf("          if(LMN_SATOM_GET_FUNCTOR(atom) != LMN_RESUME_FUNCTOR){\n");</span>
+<span class='curline'><a href='../S/388.html#L138'>printf</a>            138 src/translate_generated.c   print_indent(indent); printf("            wt_set(rc, %d, atom);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L139'>printf</a>            139 src/translate_generated.c   print_indent(indent); printf("            tt_set(rc, %d, TT_ATOM);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L145'>printf</a>            145 src/translate_generated.c   print_indent(indent); printf("          }\n");</span>
+<span class='curline'><a href='../S/388.html#L146'>printf</a>            146 src/translate_generated.c   print_indent(indent); printf("        label_fail_%p:\n", op_address);</span>
+<span class='curline'><a href='../S/388.html#L147'>printf</a>            147 src/translate_generated.c   print_indent(indent); printf("          ; /* PROFILEでない場合に必要 */\n");</span>
+<span class='curline'><a href='../S/388.html#L148'>printf</a>            148 src/translate_generated.c   print_indent(indent); printf(" #ifdef PROFILE\n");</span>
+<span class='curline'><a href='../S/388.html#L149'>printf</a>            149 src/translate_generated.c   print_indent(indent); printf("          if (lmn_env.profile_level &gt;= 2) {\n");</span>
+<span class='curline'><a href='../S/388.html#L150'>printf</a>            150 src/translate_generated.c   print_indent(indent); printf("          }\n");</span>
+<span class='curline'><a href='../S/388.html#L151'>printf</a>            151 src/translate_generated.c   print_indent(indent); printf(" #endif\n");</span>
+<span class='curline'><a href='../S/388.html#L152'>printf</a>            152 src/translate_generated.c   print_indent(indent); printf("        }\n");</span>
+<span class='curline'><a href='../S/388.html#L153'>printf</a>            153 src/translate_generated.c   print_indent(indent); printf("      }\n");</span>
+<span class='curline'><a href='../S/388.html#L154'>printf</a>            154 src/translate_generated.c   print_indent(indent); printf("    }\n");</span>
+<span class='curline'><a href='../S/388.html#L155'>printf</a>            155 src/translate_generated.c   print_indent(indent); printf("    %s;\n", failcode);</span>
+<span class='curline'><a href='../S/388.html#L167'>printf</a>            167 src/translate_generated.c   print_indent(indent); printf("  warry_set(rc, %d, LMN_PROXY_GET_MEM(wt(rc, %d)), 0, TT_MEM);\n", (int)targ0, (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L168'>printf</a>            168 src/translate_generated.c   print_indent(indent); printf("  if(((LmnMembrane*)wt(rc, %d))-&gt;name != TR_GSID(%d)) %s;\n", (int)targ0, (int)targ2, failcode);</span>
+<span class='curline'><a href='../S/388.html#L180'>printf</a>            180 src/translate_generated.c   print_indent(indent); printf("  {\n");</span>
+<span class='curline'><a href='../S/388.html#L181'>printf</a>            181 src/translate_generated.c   print_indent(indent); printf("    LmnMembrane *mp = ((LmnMembrane*)wt(rc, %d))-&gt;child_head;\n", (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L182'>printf</a>            182 src/translate_generated.c   print_indent(indent); printf("    for (; mp; mp=mp-&gt;next) {\n");</span>
+<span class='curline'><a href='../S/388.html#L183'>printf</a>            183 src/translate_generated.c   print_indent(indent); printf("      warry_set(rc, %d, mp, 0, TT_MEM);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L184'>printf</a>            184 src/translate_generated.c   print_indent(indent); printf("      if (mp-&gt;name == TR_GSID(%d)){\n", (int)targ3);</span>
+<span class='curline'><a href='../S/388.html#L190'>printf</a>            190 src/translate_generated.c   print_indent(indent); printf("      }\n");</span>
+<span class='curline'><a href='../S/388.html#L191'>printf</a>            191 src/translate_generated.c   print_indent(indent); printf("    label_fail_%p:\n", op_address);</span>
+<span class='curline'><a href='../S/388.html#L192'>printf</a>            192 src/translate_generated.c   print_indent(indent); printf("      ; /* PROFILEでない場合に必要 */\n");</span>
+<span class='curline'><a href='../S/388.html#L193'>printf</a>            193 src/translate_generated.c   print_indent(indent); printf(" #ifdef PROFILE\n");</span>
+<span class='curline'><a href='../S/388.html#L194'>printf</a>            194 src/translate_generated.c   print_indent(indent); printf("      if (lmn_env.profile_level &gt;= 2) {\n");</span>
+<span class='curline'><a href='../S/388.html#L195'>printf</a>            195 src/translate_generated.c   print_indent(indent); printf("      }\n");</span>
+<span class='curline'><a href='../S/388.html#L196'>printf</a>            196 src/translate_generated.c   print_indent(indent); printf(" #endif\n");</span>
+<span class='curline'><a href='../S/388.html#L197'>printf</a>            197 src/translate_generated.c   print_indent(indent); printf("    }\n");</span>
+<span class='curline'><a href='../S/388.html#L198'>printf</a>            198 src/translate_generated.c   print_indent(indent); printf("    %s;\n", failcode);</span>
+<span class='curline'><a href='../S/388.html#L199'>printf</a>            199 src/translate_generated.c   print_indent(indent); printf("  }\n");</span>
+<span class='curline'><a href='../S/388.html#L208'>printf</a>            208 src/translate_generated.c   print_indent(indent); printf("  if (!lmn_mem_nmems((LmnMembrane*)wt(rc, %d), %d)) %s;\n", (int)targ0, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L214'>printf</a>            214 src/translate_generated.c   print_indent(indent); printf("  if (((LmnMembrane *)wt(rc, %d))-&gt;rulesets.num) %s;\n", (int)targ0, failcode);</span>
+<span class='curline'><a href='../S/388.html#L227'>printf</a>            227 src/translate_generated.c   print_indent(indent); printf("    wt_set(rc, %d, %ld);\n", (int)targ0, targ2.long_data);</span>
+<span class='curline'><a href='../S/388.html#L230'>printf</a>            230 src/translate_generated.c   print_indent(indent); printf("  {\n");</span>
+<span class='curline'><a href='../S/388.html#L231'>printf</a>            231 src/translate_generated.c   print_indent(indent); printf("    double *d;\n");</span>
+<span class='curline'><a href='../S/388.html#L232'>printf</a>            232 src/translate_generated.c   print_indent(indent); printf("    d = LMN_MALLOC(double);\n");</span>
+<span class='curline'><a href='../S/388.html#L233'>printf</a>            233 src/translate_generated.c   print_indent(indent); printf("    *d = %lf;\n", targ2.double_data);</span>
+<span class='curline'><a href='../S/388.html#L234'>printf</a>            234 src/translate_generated.c   print_indent(indent); printf("    wt_set(rc, %d, d);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L235'>printf</a>            235 src/translate_generated.c   print_indent(indent); printf("   }\n");</span>
+<span class='curline'><a href='../S/388.html#L238'>printf</a>            238 src/translate_generated.c   print_indent(indent); printf("    wt_set(rc, %d, lmn_string_make(lmn_id_to_name(TR_GSID(%d))));\n", (int)targ0, targ2.string_data);</span>
+<span class='curline'><a href='../S/388.html#L241'>printf</a>            241 src/translate_generated.c   print_indent(indent); printf("    wt_set(rc, %d, LMN_ATOM(lmn_new_atom(TR_GFID(%d))));\n", (int)targ0, targ2.functor_data);</span>
+<span class='curline'><a href='../S/388.html#L244'>printf</a>            244 src/translate_generated.c   print_indent(indent); printf("  at_set(rc, %d, %d);\n", (int)targ0, targ2_attr);</span>
+<span class='curline'><a href='../S/388.html#L245'>printf</a>            245 src/translate_generated.c   print_indent(indent); printf("  tt_set(rc, %d, TT_ATOM);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L246'>printf</a>            246 src/translate_generated.c   print_indent(indent); printf("  lmn_mem_push_atom((LmnMembrane*)wt(rc, %d), wt(rc, %d), %d);\n", (int)targ1, (int)targ0, targ2_attr);</span>
+<span class='curline'><a href='../S/388.html#L254'>printf</a>            254 src/translate_generated.c   print_indent(indent); printf("  if (!lmn_mem_natoms((LmnMembrane*)wt(rc, %d), %d)) %s;\n", (int)targ0, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L262'>printf</a>            262 src/translate_generated.c   print_indent(indent); printf("  if (!lmn_mem_natoms((LmnMembrane*)wt(rc, %d), wt(rc, %d))) %s;\n", (int)targ0, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L272'>printf</a>            272 src/translate_generated.c   print_indent(indent); printf("  TR_INSTR_ALLOCLINK(rc, %d, %d, %d);\n", (int)targ0, (int)targ1, (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L282'>printf</a>            282 src/translate_generated.c   print_indent(indent); printf("  TR_INSTR_UNIFYLINKS(rc, %d, %d, %d);\n", (int)targ0, (int)targ1, (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L296'>printf</a>            296 src/translate_generated.c   print_indent(indent); printf("  lmn_mem_newlink((LmnMembrane *)wt(rc, %d), wt(rc, %d), at(rc, %d), %d, wt(rc, %d), at(rc, %d), %d);\n", (int)targ4, (int)targ0, (int)targ0, (int)targ1, (int)targ2, (int)targ2, (int)targ3);</span>
+<span class='curline'><a href='../S/388.html#L310'>printf</a>            310 src/translate_generated.c   print_indent(indent); printf("  TR_INSTR_RELINK(rc, %d, %d, %d, %d, %d);\n", (int)targ0, (int)targ1, (int)targ2, (int)targ3, (int)targ4);</span>
+<span class='curline'><a href='../S/388.html#L320'>printf</a>            320 src/translate_generated.c   print_indent(indent); printf("  warry_set(rc, %d, LMN_SATOM_GET_LINK(wt(rc, %d), %d), LMN_SATOM_GET_ATTR(wt(rc, %d), %d), TT_ATOM);\n", (int)targ0, (int)targ1, (int)targ2, (int)targ1, (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L334'>printf</a>            334 src/translate_generated.c   print_indent(indent); printf("  lmn_mem_unify_atom_args((LmnMembrane *)wt(rc, %d), LMN_SATOM(wt(rc, %d)), %d, LMN_SATOM(wt(rc, %d)), %d);\n", (int)targ4, (int)targ0, (int)targ1, (int)targ2, (int)targ3);</span>
+<span class='curline'><a href='../S/388.html#L338'>printf</a>            338 src/translate_generated.c   print_indent(indent); printf("  %s;\n", successcode);</span>
+<span class='curline'><a href='../S/388.html#L343'>printf</a>            343 src/translate_generated.c   print_indent(indent); printf("  %s;\n", failcode);</span>
+<span class='curline'><a href='../S/388.html#L350'>printf</a>            350 src/translate_generated.c   print_indent(indent); printf("  { /* not */\n");</span>
+<span class='curline'><a href='../S/388.html#L358'>printf</a>            358 src/translate_generated.c   print_indent(indent); printf("  label_success_%p: /* not */\n", op_address);</span>
+<span class='curline'><a href='../S/388.html#L359'>printf</a>            359 src/translate_generated.c   print_indent(indent); printf("    %s;\n", failcode);</span>
+<span class='curline'><a href='../S/388.html#L360'>printf</a>            360 src/translate_generated.c   print_indent(indent); printf("  label_fail_%p: /* not */\n", op_address);</span>
+<span class='curline'><a href='../S/388.html#L361'>printf</a>            361 src/translate_generated.c   print_indent(indent); printf("    ;\n");</span>
+<span class='curline'><a href='../S/388.html#L362'>printf</a>            362 src/translate_generated.c   print_indent(indent); printf("  }\n");</span>
+<span class='curline'><a href='../S/388.html#L382'>printf</a>            382 src/translate_generated.c   print_indent(indent); printf("  {\n");</span>
+<span class='curline'><a href='../S/388.html#L383'>printf</a>            383 src/translate_generated.c   print_indent(indent); printf("    LmnMembrane *mp = lmn_mem_make();\n");</span>
+<span class='curline'><a href='../S/388.html#L384'>printf</a>            384 src/translate_generated.c   print_indent(indent); printf("    lmn_mem_add_child_mem((LmnMembrane*)wt(rc, %d), mp);\n", (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L385'>printf</a>            385 src/translate_generated.c   print_indent(indent); printf("    wt_set(rc, %d, mp);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L386'>printf</a>            386 src/translate_generated.c   print_indent(indent); printf("    tt_set(rc, %d, TT_MEM);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L387'>printf</a>            387 src/translate_generated.c   print_indent(indent); printf("    lmn_mem_set_active(mp, TRUE);\n");</span>
+<span class='curline'><a href='../S/388.html#L388'>printf</a>            388 src/translate_generated.c   print_indent(indent); printf("    if (RC_GET_MODE(rc, REACT_MEM_ORIENTED)) {\n");</span>
+<span class='curline'><a href='../S/388.html#L389'>printf</a>            389 src/translate_generated.c   print_indent(indent); printf("      lmn_memstack_push(RC_MEMSTACK(rc), mp);\n");</span>
+<span class='curline'><a href='../S/388.html#L390'>printf</a>            390 src/translate_generated.c   print_indent(indent); printf("    }\n");</span>
+<span class='curline'><a href='../S/388.html#L391'>printf</a>            391 src/translate_generated.c   print_indent(indent); printf("  }\n");</span>
+<span class='curline'><a href='../S/388.html#L397'>printf</a>            397 src/translate_generated.c   print_indent(indent); printf("  wt_set(rc, %d, lmn_mem_make());\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L398'>printf</a>            398 src/translate_generated.c   print_indent(indent); printf("  tt_set(rc, %d, TT_MEM);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L406'>printf</a>            406 src/translate_generated.c   print_indent(indent); printf("  lmn_mem_remove_atom((LmnMembrane*)wt(rc, %d), wt(rc, %d), at(rc, %d));\n", (int)targ1, (int)targ0, (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L412'>printf</a>            412 src/translate_generated.c   print_indent(indent); printf("  lmn_free_atom(wt(rc, %d), at(rc, %d));\n", (int)targ0, (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L420'>printf</a>            420 src/translate_generated.c   print_indent(indent); printf("  lmn_mem_remove_mem((LmnMembrane *)wt(rc, %d), (LmnMembrane *)wt(rc, %d));\n", (int)targ1, (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L426'>printf</a>            426 src/translate_generated.c   print_indent(indent); printf("  lmn_mem_free((LmnMembrane*)wt(rc, %d));\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L434'>printf</a>            434 src/translate_generated.c   print_indent(indent); printf("  lmn_mem_add_child_mem((LmnMembrane *)wt(rc, %d), (LmnMembrane *)wt(rc, %d));\n", (int)targ0, (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L440'>printf</a>            440 src/translate_generated.c   print_indent(indent); printf("  if (RC_GET_MODE(rc, REACT_MEM_ORIENTED)) {\n");</span>
+<span class='curline'><a href='../S/388.html#L441'>printf</a>            441 src/translate_generated.c   print_indent(indent); printf("    lmn_memstack_push(RC_MEMSTACK(rc), (LmnMembrane *)wt(rc, %d)); /* 通常実行時 */\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L442'>printf</a>            442 src/translate_generated.c   print_indent(indent); printf("  }\n");</span>
+<span class='curline'><a href='../S/388.html#L455'>printf</a>            455 src/translate_generated.c   print_indent(indent); printf("  lmn_mem_add_ruleset((LmnMembrane*)wt(rc, %d), lmn_ruleset_from_id(TR_GRID(%d)));\n", (int)targ0, (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L463'>printf</a>            463 src/translate_generated.c   print_indent(indent); printf("  {\n");</span>
+<span class='curline'><a href='../S/388.html#L464'>printf</a>            464 src/translate_generated.c   print_indent(indent); printf("    LmnRuleSet ruleset;\n");</span>
+<span class='curline'><a href='../S/388.html#L465'>printf</a>            465 src/translate_generated.c   print_indent(indent); printf("    if ((ruleset = lmn_get_module_ruleset(TR_GSID(%d)))) {\n", (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L466'>printf</a>            466 src/translate_generated.c   print_indent(indent); printf("      lmn_mem_add_ruleset((LmnMembrane*)wt(rc, %d), ruleset);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L467'>printf</a>            467 src/translate_generated.c   print_indent(indent); printf("    } else {\n");</span>
+<span class='curline'><a href='../S/388.html#L468'>printf</a>            468 src/translate_generated.c   print_indent(indent); printf("      fprintf(stderr, \"Undefined module %%s\\n\", lmn_id_to_name(TR_GSID(%d)));\n", (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L469'>printf</a>            469 src/translate_generated.c   print_indent(indent); printf("    }\n");</span>
+<span class='curline'><a href='../S/388.html#L470'>printf</a>            470 src/translate_generated.c   print_indent(indent); printf("  }\n");</span>
+<span class='curline'><a href='../S/388.html#L490'>printf</a>            490 src/translate_generated.c   print_indent(indent); printf("  warry_set(rc, %d, LMN_SATOM(LMN_SATOM_GET_LINK(wt(rc, %d), %d)), LMN_SATOM_GET_ATTR(wt(rc, %d), %d), TT_ATOM);\n", (int)targ0, (int)targ1, (int)targ2, (int)targ1, (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L502'>printf</a>            502 src/translate_generated.c   print_indent(indent); printf("  {\n");</span>
+<span class='curline'><a href='../S/388.html#L503'>printf</a>            503 src/translate_generated.c   print_indent(indent); printf("    LmnByte attr = LMN_SATOM_GET_ATTR(wt(rc, %d), %d);\n", (int)targ1, (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L504'>printf</a>            504 src/translate_generated.c   print_indent(indent); printf("    if (LMN_ATTR_IS_DATA(attr)) {\n");</span>
+<span class='curline'><a href='../S/388.html#L505'>printf</a>            505 src/translate_generated.c   print_indent(indent); printf("      if (%d != 0) %s;\n", (int)targ3, failcode);</span>
+<span class='curline'><a href='../S/388.html#L506'>printf</a>            506 src/translate_generated.c   print_indent(indent); printf("    } else {\n");</span>
+<span class='curline'><a href='../S/388.html#L507'>printf</a>            507 src/translate_generated.c   print_indent(indent); printf("      if (attr != %d) %s;\n", (int)targ3, failcode);</span>
+<span class='curline'><a href='../S/388.html#L508'>printf</a>            508 src/translate_generated.c   print_indent(indent); printf("    }\n");</span>
+<span class='curline'><a href='../S/388.html#L509'>printf</a>            509 src/translate_generated.c   print_indent(indent); printf("    warry_set(rc, %d, LMN_SATOM_GET_LINK(wt(rc, %d), %d), attr, TT_ATOM);\n", (int)targ0, (int)targ1, (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L510'>printf</a>            510 src/translate_generated.c   print_indent(indent); printf("  }\n");</span>
+<span class='curline'><a href='../S/388.html#L520'>printf</a>            520 src/translate_generated.c   print_indent(indent); printf("    if (LMN_ATTR_IS_DATA(at(rc, %d)) &amp;&amp; at(rc, %d) == %d) {\n", (int)targ0, (int)targ0, targ1_attr);</span>
+<span class='curline'><a href='../S/388.html#L521'>printf</a>            521 src/translate_generated.c   print_indent(indent); printf("      tt_set(rc, %d, TT_ATOM);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L524'>printf</a>            524 src/translate_generated.c   print_indent(indent); printf("        if (wt(rc, %d) != %ld) %s;\n", (int)targ0, targ1.long_data, failcode);</span>
+<span class='curline'><a href='../S/388.html#L527'>printf</a>            527 src/translate_generated.c   print_indent(indent); printf("        if (*(double*)wt(rc, %d) != %lf) %s;\n", (int)targ0, targ1.double_data, failcode);</span>
+<span class='curline'><a href='../S/388.html#L530'>printf</a>            530 src/translate_generated.c   print_indent(indent); printf("        LmnString s = lmn_string_make(lmn_id_to_name(TR_GSID(%d)));\n", targ1.string_data);</span>
+<span class='curline'><a href='../S/388.html#L531'>printf</a>            531 src/translate_generated.c   print_indent(indent); printf("        if(! lmn_string_eq(s, (LmnString)wt(rc, %d))) %s;\n", (int)targ0, failcode);</span>
+<span class='curline'><a href='../S/388.html#L532'>printf</a>            532 src/translate_generated.c   print_indent(indent); printf("        lmn_string_free(s);\n");</span>
+<span class='curline'><a href='../S/388.html#L539'>printf</a>            539 src/translate_generated.c   print_indent(indent); printf("    } else {\n");</span>
+<span class='curline'><a href='../S/388.html#L540'>printf</a>            540 src/translate_generated.c   print_indent(indent); printf("      %s;\n", failcode);</span>
+<span class='curline'><a href='../S/388.html#L541'>printf</a>            541 src/translate_generated.c   print_indent(indent); printf("    }\n");</span>
+<span class='curline'><a href='../S/388.html#L543'>printf</a>            543 src/translate_generated.c   print_indent(indent); printf("    if(LMN_ATTR_IS_DATA(at(rc, %d)) ||\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L544'>printf</a>            544 src/translate_generated.c   print_indent(indent); printf("       LMN_SATOM_GET_FUNCTOR(LMN_SATOM(wt(rc, %d))) != TR_GFID(%d)) %s;\n", (int)targ0, targ1.functor_data, failcode);</span>
+<span class='curline'><a href='../S/388.html#L555'>printf</a>            555 src/translate_generated.c   print_indent(indent); printf("    if(! (LMN_ATTR_IS_DATA(at(rc, %d)) &amp;&amp; at(rc, %d) == %d)){\n", (int)targ0, (int)targ0, targ1_attr);</span>
+<span class='curline'><a href='../S/388.html#L556'>printf</a>            556 src/translate_generated.c   print_indent(indent); printf("      tt_set(rc, %d, TT_ATOM);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L559'>printf</a>            559 src/translate_generated.c   print_indent(indent); printf("        if(wt(rc, %d) == %ld) %s;\n", (int)targ0, targ1.long_data, failcode);</span>
+<span class='curline'><a href='../S/388.html#L562'>printf</a>            562 src/translate_generated.c   print_indent(indent); printf("        if(*(double*)wt(rc, %d) == %lf) %s;\n", (int)targ0, targ1.double_data, failcode);</span>
+<span class='curline'><a href='../S/388.html#L566'>printf</a>            566 src/translate_generated.c   print_indent(indent); printf("        LmnString s = lmn_string_make(lmn_id_to_name(TR_GSID(%d)));\n", targ1.string_data);</span>
+<span class='curline'><a href='../S/388.html#L567'>printf</a>            567 src/translate_generated.c   print_indent(indent); printf("        if(lmn_string_eq(s, (LmnString)wt(rc, %d))) %s;\n", (int)targ0, failcode);</span>
+<span class='curline'><a href='../S/388.html#L568'>printf</a>            568 src/translate_generated.c   print_indent(indent); printf("        lmn_string_free(s);\n");</span>
+<span class='curline'><a href='../S/388.html#L575'>printf</a>            575 src/translate_generated.c   print_indent(indent); printf("    }\n");</span>
+<span class='curline'><a href='../S/388.html#L577'>printf</a>            577 src/translate_generated.c   print_indent(indent); printf("    if(! (LMN_ATTR_IS_DATA(at(rc, %d)) ||\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L578'>printf</a>            578 src/translate_generated.c   print_indent(indent); printf("          LMN_SATOM_GET_FUNCTOR(LMN_SATOM(wt(rc, %d))) != TR_GFID(%d))) %s;\n", (int)targ0, targ1.functor_data, failcode);</span>
+<span class='curline'><a href='../S/388.html#L589'>printf</a>            589 src/translate_generated.c   print_indent(indent); printf("  {\n");</span>
+<span class='curline'><a href='../S/388.html#L590'>printf</a>            590 src/translate_generated.c   print_indent(indent); printf("    Vector *srcvec;\n");</span>
+<span class='curline'><a href='../S/388.html#L591'>printf</a>            591 src/translate_generated.c   print_indent(indent); printf("    Vector *avovec;\n");</span>
+<span class='curline'><a href='../S/388.html#L592'>printf</a>            592 src/translate_generated.c   print_indent(indent); printf("    unsigned long natoms;\n");</span>
+<span class='curline'><a href='../S/388.html#L593'>printf</a>            593 src/translate_generated.c   print_indent(indent); printf("    BOOL b;\n");</span>
+<span class='curline'><a href='../S/388.html#L594'>printf</a>            594 src/translate_generated.c   print_indent(indent); printf("    avovec = links_from_idxs((Vector *)wt(rc, %d), rc_warry(rc));\n", (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L595'>printf</a>            595 src/translate_generated.c   print_indent(indent); printf("    srcvec = links_from_idxs((Vector *)wt(rc, %d), rc_warry(rc));\n", (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L596'>printf</a>            596 src/translate_generated.c   print_indent(indent); printf("    b = lmn_mem_is_ground(srcvec, avovec, &amp;natoms);\n");</span>
+<span class='curline'><a href='../S/388.html#L597'>printf</a>            597 src/translate_generated.c   print_indent(indent); printf("    free_links(srcvec);\n");</span>
+<span class='curline'><a href='../S/388.html#L598'>printf</a>            598 src/translate_generated.c   print_indent(indent); printf("    free_links(avovec);\n");</span>
+<span class='curline'><a href='../S/388.html#L599'>printf</a>            599 src/translate_generated.c   print_indent(indent); printf("    if(! b) %s;\n", failcode);</span>
+<span class='curline'><a href='../S/388.html#L600'>printf</a>            600 src/translate_generated.c   print_indent(indent); printf("    warry_set(rc, %d, natoms, LMN_INT_ATTR, TT_OTHER);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L601'>printf</a>            601 src/translate_generated.c   print_indent(indent); printf("  }\n");</span>
+<span class='curline'><a href='../S/388.html#L607'>printf</a>            607 src/translate_generated.c   print_indent(indent); printf("  if (LMN_ATTR_IS_DATA(at(rc, %d))) {\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L608'>printf</a>            608 src/translate_generated.c   print_indent(indent); printf("    switch (at(rc, %d)) {\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L609'>printf</a>            609 src/translate_generated.c   print_indent(indent); printf("    case LMN_SP_ATOM_ATTR:\n");</span>
+<span class='curline'><a href='../S/388.html#L610'>printf</a>            610 src/translate_generated.c   print_indent(indent); printf("      if (!SP_ATOM_IS_GROUND(wt(rc, %d))) %s;\n", (int)targ0, failcode);</span>
+<span class='curline'><a href='../S/388.html#L611'>printf</a>            611 src/translate_generated.c   print_indent(indent); printf("      break;\n");</span>
+<span class='curline'><a href='../S/388.html#L612'>printf</a>            612 src/translate_generated.c   print_indent(indent); printf("    default:\n");</span>
+<span class='curline'><a href='../S/388.html#L613'>printf</a>            613 src/translate_generated.c   print_indent(indent); printf("      break;\n");</span>
+<span class='curline'><a href='../S/388.html#L614'>printf</a>            614 src/translate_generated.c   print_indent(indent); printf("    }\n");</span>
+<span class='curline'><a href='../S/388.html#L615'>printf</a>            615 src/translate_generated.c   print_indent(indent); printf("  } else if (LMN_SATOM_GET_ARITY(wt(rc, %d)) != 1){\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L616'>printf</a>            616 src/translate_generated.c   print_indent(indent); printf("    %s;\n", failcode);</span>
+<span class='curline'><a href='../S/388.html#L617'>printf</a>            617 src/translate_generated.c   print_indent(indent); printf("  }\n");</span>
+<span class='curline'><a href='../S/388.html#L623'>printf</a>            623 src/translate_generated.c   print_indent(indent); printf("  if(at(rc, %d) != LMN_INT_ATTR) %s;\n", (int)targ0, failcode);</span>
+<span class='curline'><a href='../S/388.html#L629'>printf</a>            629 src/translate_generated.c   print_indent(indent); printf("  if(at(rc, %d) != LMN_DBL_ATTR) %s;\n", (int)targ0, failcode);</span>
+<span class='curline'><a href='../S/388.html#L635'>printf</a>            635 src/translate_generated.c   print_indent(indent); printf("  if(! lmn_is_string(wt(rc, %d), at(rc, %d))) %s;\n", (int)targ0, (int)targ0, failcode);</span>
+<span class='curline'><a href='../S/388.html#L641'>printf</a>            641 src/translate_generated.c   print_indent(indent); printf("  if(at(rc, %d) != LMN_INT_ATTR) %s;\n", (int)targ0, failcode);</span>
+<span class='curline'><a href='../S/388.html#L647'>printf</a>            647 src/translate_generated.c   print_indent(indent); printf("  if(at(rc, %d) != LMN_DBL_ATTR) %s;\n", (int)targ0, failcode);</span>
+<span class='curline'><a href='../S/388.html#L657'>printf</a>            657 src/translate_generated.c   print_indent(indent); printf("  warry_set(rc, %d, lmn_copy_atom(wt(rc, %d), at(rc, %d)), at(rc, %d), TT_ATOM);\n", (int)targ0, (int)targ2, (int)targ2, (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L658'>printf</a>            658 src/translate_generated.c   print_indent(indent); printf("  lmn_mem_push_atom((LmnMembrane *)wt(rc, %d), wt(rc, %d), at(rc, %d));\n", (int)targ1, (int)targ0, (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L666'>printf</a>            666 src/translate_generated.c   print_indent(indent); printf("  if (LMN_ATTR_IS_DATA(at(rc, %d)) ||\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L667'>printf</a>            667 src/translate_generated.c   print_indent(indent); printf("      LMN_ATTR_IS_DATA(at(rc, %d)) ||\n", (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L668'>printf</a>            668 src/translate_generated.c   print_indent(indent); printf("      LMN_SATOM(wt(rc, %d)) != LMN_SATOM(wt(rc, %d))) %s;\n", (int)targ0, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L676'>printf</a>            676 src/translate_generated.c   print_indent(indent); printf("  if (!(LMN_ATTR_IS_DATA(at(rc, %d)) ||\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L677'>printf</a>            677 src/translate_generated.c   print_indent(indent); printf("        LMN_ATTR_IS_DATA(at(rc, %d)) ||\n", (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L678'>printf</a>            678 src/translate_generated.c   print_indent(indent); printf("        LMN_SATOM(wt(rc, %d)) != LMN_SATOM(wt(rc, %d)))) %s;\n", (int)targ0, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L686'>printf</a>            686 src/translate_generated.c   print_indent(indent); printf("  if(wt(rc, %d) != wt(rc, %d)) %s;\n", (int)targ0, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L694'>printf</a>            694 src/translate_generated.c   print_indent(indent); printf("  if(wt(rc, %d) == wt(rc, %d)) %s;\n", (int)targ0, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L700'>printf</a>            700 src/translate_generated.c   print_indent(indent); printf("  {\n");</span>
+<span class='curline'><a href='../S/388.html#L701'>printf</a>            701 src/translate_generated.c   print_indent(indent); printf("    Vector *listvec = vec_make(16);\n");</span>
+<span class='curline'><a href='../S/388.html#L702'>printf</a>            702 src/translate_generated.c   print_indent(indent); printf("    warry_set(rc, %d, listvec, 0, TT_OTHER);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L710'>printf</a>            710 src/translate_generated.c   print_indent(indent); printf("  label_success_%p:\n", op_address);</span>
+<span class='curline'><a href='../S/388.html#L711'>printf</a>            711 src/translate_generated.c   print_indent(indent); printf("    vec_free(listvec);\n");</span>
+<span class='curline'><a href='../S/388.html#L712'>printf</a>            712 src/translate_generated.c   print_indent(indent); printf("    %s;\n", successcode);</span>
+<span class='curline'><a href='../S/388.html#L713'>printf</a>            713 src/translate_generated.c   print_indent(indent); printf("    lmn_fatal(\"translate recursive error\\n\");\n");</span>
+<span class='curline'><a href='../S/388.html#L714'>printf</a>            714 src/translate_generated.c   print_indent(indent); printf("  label_fail_%p:\n", op_address);</span>
+<span class='curline'><a href='../S/388.html#L715'>printf</a>            715 src/translate_generated.c   print_indent(indent); printf("    vec_free(listvec);\n");</span>
+<span class='curline'><a href='../S/388.html#L716'>printf</a>            716 src/translate_generated.c   print_indent(indent); printf("    %s;\n", failcode);</span>
+<span class='curline'><a href='../S/388.html#L717'>printf</a>            717 src/translate_generated.c   print_indent(indent); printf("    lmn_fatal(\"translate recursive error\\n\");\n");</span>
+<span class='curline'><a href='../S/388.html#L718'>printf</a>            718 src/translate_generated.c   print_indent(indent); printf("  }\n");</span>
+<span class='curline'><a href='../S/388.html#L727'>printf</a>            727 src/translate_generated.c   print_indent(indent); printf("  vec_push((Vector *)wt(rc, %d), %d);\n", (int)targ0, (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L737'>printf</a>            737 src/translate_generated.c   print_indent(indent); printf("  switch (at(rc, %d)) {\n", (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L738'>printf</a>            738 src/translate_generated.c   print_indent(indent); printf("    case LIST_AND_MAP:\n");</span>
+<span class='curline'><a href='../S/388.html#L739'>printf</a>            739 src/translate_generated.c   print_indent(indent); printf("      wt_set(rc, %d, vec_get((Vector *)wt(rc, %d), (unsigned int)%d));\n", (int)targ0, (int)targ1, (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L740'>printf</a>            740 src/translate_generated.c   print_indent(indent); printf("      tt_set(rc, %d, TT_OTHER);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L741'>printf</a>            741 src/translate_generated.c   print_indent(indent); printf("      if (%d == 0){\n", (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L742'>printf</a>            742 src/translate_generated.c   print_indent(indent); printf("        at_set(rc, %d, LINK_LIST);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L743'>printf</a>            743 src/translate_generated.c   print_indent(indent); printf("      }else if (%d == 1){\n", (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L744'>printf</a>            744 src/translate_generated.c   print_indent(indent); printf("        at_set(rc, %d, MAP);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L745'>printf</a>            745 src/translate_generated.c   print_indent(indent); printf("      }else{\n");</span>
+<span class='curline'><a href='../S/388.html#L746'>printf</a>            746 src/translate_generated.c   print_indent(indent); printf("        lmn_fatal(\"unexpected attribute @instr_getfromlist\");\n");</span>
+<span class='curline'><a href='../S/388.html#L747'>printf</a>            747 src/translate_generated.c   print_indent(indent); printf("      }\n");</span>
+<span class='curline'><a href='../S/388.html#L748'>printf</a>            748 src/translate_generated.c   print_indent(indent); printf("      break;\n");</span>
+<span class='curline'><a href='../S/388.html#L749'>printf</a>            749 src/translate_generated.c   print_indent(indent); printf("    case LINK_LIST: /* LinkObjをfreeするのはここ？ */\n");</span>
+<span class='curline'><a href='../S/388.html#L750'>printf</a>            750 src/translate_generated.c   print_indent(indent); printf("    {\n");</span>
+<span class='curline'><a href='../S/388.html#L751'>printf</a>            751 src/translate_generated.c   print_indent(indent); printf("      LinkObj lo = (LinkObj)vec_get((Vector *)wt(rc, %d), (unsigned int)%d);\n", (int)targ1, (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L752'>printf</a>            752 src/translate_generated.c   print_indent(indent); printf("      warry_set(rc, %d, lo-&gt;ap, lo-&gt;pos, TT_ATOM);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L753'>printf</a>            753 src/translate_generated.c   print_indent(indent); printf("      break;\n");</span>
+<span class='curline'><a href='../S/388.html#L754'>printf</a>            754 src/translate_generated.c   print_indent(indent); printf("    }\n");</span>
+<span class='curline'><a href='../S/388.html#L755'>printf</a>            755 src/translate_generated.c   print_indent(indent); printf("  }\n");</span>
+<span class='curline'><a href='../S/388.html#L763'>printf</a>            763 src/translate_generated.c   print_indent(indent); printf("  {\n");</span>
+<span class='curline'><a href='../S/388.html#L764'>printf</a>            764 src/translate_generated.c   print_indent(indent); printf("    Vector *srcvec = links_from_idxs((Vector*)wt(rc, %d), rc_warry(rc));\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L765'>printf</a>            765 src/translate_generated.c   print_indent(indent); printf("    Vector *dstvec = links_from_idxs((Vector*)wt(rc, %d), rc_warry(rc));\n", (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L766'>printf</a>            766 src/translate_generated.c   print_indent(indent); printf("    BOOL same = lmn_mem_cmp_ground(srcvec, dstvec);\n");</span>
+<span class='curline'><a href='../S/388.html#L767'>printf</a>            767 src/translate_generated.c   print_indent(indent); printf("    free_links(srcvec);\n");</span>
+<span class='curline'><a href='../S/388.html#L768'>printf</a>            768 src/translate_generated.c   print_indent(indent); printf("    free_links(dstvec);\n");</span>
+<span class='curline'><a href='../S/388.html#L769'>printf</a>            769 src/translate_generated.c   print_indent(indent); printf("    if(! same) %s;\n", failcode);</span>
+<span class='curline'><a href='../S/388.html#L770'>printf</a>            770 src/translate_generated.c   print_indent(indent); printf("  }\n");</span>
+<span class='curline'><a href='../S/388.html#L778'>printf</a>            778 src/translate_generated.c   print_indent(indent); printf("  {\n");</span>
+<span class='curline'><a href='../S/388.html#L779'>printf</a>            779 src/translate_generated.c   print_indent(indent); printf("    Vector *srcvec = links_from_idxs((Vector*)wt(rc, %d), rc_warry(rc));\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L780'>printf</a>            780 src/translate_generated.c   print_indent(indent); printf("    Vector *dstvec = links_from_idxs((Vector*)wt(rc, %d), rc_warry(rc));\n", (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L781'>printf</a>            781 src/translate_generated.c   print_indent(indent); printf("    BOOL same = lmn_mem_cmp_ground(srcvec, dstvec);\n");</span>
+<span class='curline'><a href='../S/388.html#L782'>printf</a>            782 src/translate_generated.c   print_indent(indent); printf("    free_links(srcvec);\n");</span>
+<span class='curline'><a href='../S/388.html#L783'>printf</a>            783 src/translate_generated.c   print_indent(indent); printf("    free_links(dstvec);\n");</span>
+<span class='curline'><a href='../S/388.html#L784'>printf</a>            784 src/translate_generated.c   print_indent(indent); printf("    if(same) %s;\n", failcode);</span>
+<span class='curline'><a href='../S/388.html#L785'>printf</a>            785 src/translate_generated.c   print_indent(indent); printf("  }\n");</span>
+<span class='curline'><a href='../S/388.html#L795'>printf</a>            795 src/translate_generated.c   print_indent(indent); printf("  {\n");</span>
+<span class='curline'><a href='../S/388.html#L796'>printf</a>            796 src/translate_generated.c   print_indent(indent); printf("    Vector *srcvec = links_from_idxs((Vector*)wt(rc, %d), rc_warry(rc));\n", (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L797'>printf</a>            797 src/translate_generated.c   print_indent(indent); printf("    Vector *dstlovec, *retvec;\n");</span>
+<span class='curline'><a href='../S/388.html#L798'>printf</a>            798 src/translate_generated.c   print_indent(indent); printf("    ProcessTbl atommap;\n");</span>
+<span class='curline'><a href='../S/388.html#L799'>printf</a>            799 src/translate_generated.c   print_indent(indent); printf("    lmn_mem_copy_ground((LmnMembrane*)wt(rc, %d), srcvec, &amp;dstlovec, &amp;atommap);\n", (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L800'>printf</a>            800 src/translate_generated.c   print_indent(indent); printf("    free_links(srcvec);\n");</span>
+<span class='curline'><a href='../S/388.html#L801'>printf</a>            801 src/translate_generated.c   print_indent(indent); printf("    /* 返り値の作成 */\n");</span>
+<span class='curline'><a href='../S/388.html#L802'>printf</a>            802 src/translate_generated.c   print_indent(indent); printf("    retvec = vec_make(2);\n");</span>
+<span class='curline'><a href='../S/388.html#L803'>printf</a>            803 src/translate_generated.c   print_indent(indent); printf("    vec_push(retvec, (LmnWord)dstlovec);\n");</span>
+<span class='curline'><a href='../S/388.html#L804'>printf</a>            804 src/translate_generated.c   print_indent(indent); printf("    vec_push(retvec, (LmnWord)atommap);\n");</span>
+<span class='curline'><a href='../S/388.html#L805'>printf</a>            805 src/translate_generated.c   print_indent(indent); printf("    warry_set(rc, %d, retvec, LIST_AND_MAP, TT_OTHER);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L811'>printf</a>            811 src/translate_generated.c   print_indent(indent); printf("  label_always_%p:\n", op_address);</span>
+<span class='curline'><a href='../S/388.html#L812'>printf</a>            812 src/translate_generated.c   print_indent(indent); printf("    free_links(dstlovec);\n");</span>
+<span class='curline'><a href='../S/388.html#L813'>printf</a>            813 src/translate_generated.c   print_indent(indent); printf("    vec_free(retvec);\n");</span>
+<span class='curline'><a href='../S/388.html#L814'>printf</a>            814 src/translate_generated.c   print_indent(indent); printf("    %s;\n", successcode);</span>
+<span class='curline'><a href='../S/388.html#L815'>printf</a>            815 src/translate_generated.c   print_indent(indent); printf("    lmn_fatal(\"translate recursive error\\n\");\n");</span>
+<span class='curline'><a href='../S/388.html#L816'>printf</a>            816 src/translate_generated.c   print_indent(indent); printf("  }\n");</span>
+<span class='curline'><a href='../S/388.html#L825'>printf</a>            825 src/translate_generated.c   print_indent(indent); printf("  {\n");</span>
+<span class='curline'><a href='../S/388.html#L826'>printf</a>            826 src/translate_generated.c   print_indent(indent); printf("    Vector *srcvec = links_from_idxs((Vector*)wt(rc, %d), rc_warry(rc));\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L827'>printf</a>            827 src/translate_generated.c   print_indent(indent); printf("    lmn_mem_remove_ground((LmnMembrane*)wt(rc, %d), srcvec);\n", (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L828'>printf</a>            828 src/translate_generated.c   print_indent(indent); printf("    free_links(srcvec);\n");</span>
+<span class='curline'><a href='../S/388.html#L829'>printf</a>            829 src/translate_generated.c   print_indent(indent); printf("  }\n");</span>
+<span class='curline'><a href='../S/388.html#L835'>printf</a>            835 src/translate_generated.c   print_indent(indent); printf("  {\n");</span>
+<span class='curline'><a href='../S/388.html#L836'>printf</a>            836 src/translate_generated.c   print_indent(indent); printf("    Vector *srcvec = links_from_idxs((Vector*)wt(rc, %d), rc_warry(rc));\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L837'>printf</a>            837 src/translate_generated.c   print_indent(indent); printf("    lmn_mem_free_ground(srcvec);\n");</span>
+<span class='curline'><a href='../S/388.html#L838'>printf</a>            838 src/translate_generated.c   print_indent(indent); printf("    free_links(srcvec);\n");</span>
+<span class='curline'><a href='../S/388.html#L839'>printf</a>            839 src/translate_generated.c   print_indent(indent); printf("  }\n");</span>
+<span class='curline'><a href='../S/388.html#L845'>printf</a>            845 src/translate_generated.c   print_indent(indent); printf("  if (lmn_mem_is_active((LmnMembrane *)wt(rc, %d))) %s;\n", (int)targ0, failcode);</span>
+<span class='curline'><a href='../S/388.html#L855'>printf</a>            855 src/translate_generated.c   print_indent(indent); printf("  warry_set(rc, %d, (long)wt(rc, %d) + (long)wt(rc, %d), LMN_INT_ATTR, TT_ATOM);\n", (int)targ0, (int)targ1, (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L865'>printf</a>            865 src/translate_generated.c   print_indent(indent); printf("  warry_set(rc, %d, (long)wt(rc, %d) - (long)wt(rc, %d), LMN_INT_ATTR, TT_ATOM);\n", (int)targ0, (int)targ1, (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L875'>printf</a>            875 src/translate_generated.c   print_indent(indent); printf("  warry_set(rc, %d, (long)wt(rc, %d) * (long)wt(rc, %d), LMN_INT_ATTR, TT_ATOM);\n", (int)targ0, (int)targ1, (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L885'>printf</a>            885 src/translate_generated.c   print_indent(indent); printf("  warry_set(rc, %d, (long)wt(rc, %d) / (long)wt(rc, %d), LMN_INT_ATTR, TT_ATOM);\n", (int)targ0, (int)targ1, (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L893'>printf</a>            893 src/translate_generated.c   print_indent(indent); printf("  warry_set(rc, %d, -(long)wt(rc, %d), LMN_INT_ATTR, TT_ATOM);\n", (int)targ0, (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L903'>printf</a>            903 src/translate_generated.c   print_indent(indent); printf("  warry_set(rc, %d, (long)wt(rc, %d) %% (long)wt(rc, %d), LMN_INT_ATTR, TT_ATOM);\n", (int)targ0, (int)targ1, (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L913'>printf</a>            913 src/translate_generated.c   print_indent(indent); printf("  warry_set(rc, %d, ~(long)wt(rc, %d), LMN_INT_ATTR, TT_ATOM);\n", (int)targ0, (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L923'>printf</a>            923 src/translate_generated.c   print_indent(indent); printf("  warry_set(rc, %d, (long)wt(rc, %d) &amp; (long)wt(rc, %d), LMN_INT_ATTR, TT_ATOM);\n", (int)targ0, (int)targ1, (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L933'>printf</a>            933 src/translate_generated.c   print_indent(indent); printf("  warry_set(rc, %d, (long)wt(rc, %d) | (long)wt(rc, %d), LMN_INT_ATTR, TT_ATOM);\n", (int)targ0, (int)targ1, (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L943'>printf</a>            943 src/translate_generated.c   print_indent(indent); printf("  warry_set(rc, %d, (long)wt(rc, %d) ^ (long)wt(rc, %d), LMN_INT_ATTR, TT_ATOM);\n", (int)targ0, (int)targ1, (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L951'>printf</a>            951 src/translate_generated.c   print_indent(indent); printf("  if(!((long)wt(rc, %d) &lt; (long)wt(rc, %d))) %s;\n", (int)targ0, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L959'>printf</a>            959 src/translate_generated.c   print_indent(indent); printf("  if(!((long)wt(rc, %d) &lt;= (long)wt(rc, %d))) %s;\n", (int)targ0, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L967'>printf</a>            967 src/translate_generated.c   print_indent(indent); printf("  if(!((long)wt(rc, %d) &gt; (long)wt(rc, %d))) %s;\n", (int)targ0, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L975'>printf</a>            975 src/translate_generated.c   print_indent(indent); printf("  if(!((long)wt(rc, %d) &gt;= (long)wt(rc, %d))) %s;\n", (int)targ0, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L983'>printf</a>            983 src/translate_generated.c   print_indent(indent); printf("  if(!((long)wt(rc, %d) == (long)wt(rc, %d))) %s;\n", (int)targ0, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L991'>printf</a>            991 src/translate_generated.c   print_indent(indent); printf("  if(!((long)wt(rc, %d) != (long)wt(rc, %d))) %s;\n", (int)targ0, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L999'>printf</a>            999 src/translate_generated.c   print_indent(indent); printf("  if(!((long)wt(rc, %d) &lt; (long)wt(rc, %d))) %s;\n", (int)targ0, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L1007'>printf</a>           1007 src/translate_generated.c   print_indent(indent); printf("  if(!((long)wt(rc, %d) &lt;= (long)wt(rc, %d))) %s;\n", (int)targ0, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L1015'>printf</a>           1015 src/translate_generated.c   print_indent(indent); printf("  if(!((long)wt(rc, %d) &gt; (long)wt(rc, %d))) %s;\n", (int)targ0, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L1023'>printf</a>           1023 src/translate_generated.c   print_indent(indent); printf("  if(!((long)wt(rc, %d) &gt;= (long)wt(rc, %d))) %s;\n", (int)targ0, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L1033'>printf</a>           1033 src/translate_generated.c   print_indent(indent); printf("  double *d = LMN_MALLOC(double);\n");</span>
+<span class='curline'><a href='../S/388.html#L1034'>printf</a>           1034 src/translate_generated.c   print_indent(indent); printf("  *d = *(double *)wt(rc, %d) + *(double *)wt(rc, %d);\n", (int)targ1, (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L1035'>printf</a>           1035 src/translate_generated.c   print_indent(indent); printf("  warry_set(rc, %d, d, LMN_DBL_ATTR, TT_ATOM);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L1045'>printf</a>           1045 src/translate_generated.c   print_indent(indent); printf("  double *d = LMN_MALLOC(double);\n");</span>
+<span class='curline'><a href='../S/388.html#L1046'>printf</a>           1046 src/translate_generated.c   print_indent(indent); printf("  *d = *(double *)wt(rc, %d) - *(double *)wt(rc, %d);\n", (int)targ1, (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L1047'>printf</a>           1047 src/translate_generated.c   print_indent(indent); printf("  warry_set(rc, %d, d, LMN_DBL_ATTR, TT_ATOM);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L1057'>printf</a>           1057 src/translate_generated.c   print_indent(indent); printf("  double *d = LMN_MALLOC(double);\n");</span>
+<span class='curline'><a href='../S/388.html#L1058'>printf</a>           1058 src/translate_generated.c   print_indent(indent); printf("  *d = *(double *)wt(rc, %d) * *(double *)wt(rc, %d);\n", (int)targ1, (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L1059'>printf</a>           1059 src/translate_generated.c   print_indent(indent); printf("  warry_set(rc, %d, d, LMN_DBL_ATTR, TT_ATOM);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L1069'>printf</a>           1069 src/translate_generated.c   print_indent(indent); printf("  double *d = LMN_MALLOC(double);\n");</span>
+<span class='curline'><a href='../S/388.html#L1070'>printf</a>           1070 src/translate_generated.c   print_indent(indent); printf("  *d = *(double *)wt(rc, %d) / *(double *)wt(rc, %d);\n", (int)targ1, (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L1071'>printf</a>           1071 src/translate_generated.c   print_indent(indent); printf("  warry_set(rc, %d, d, LMN_DBL_ATTR, TT_ATOM);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L1079'>printf</a>           1079 src/translate_generated.c   print_indent(indent); printf("  double *d = LMN_MALLOC(double);\n");</span>
+<span class='curline'><a href='../S/388.html#L1080'>printf</a>           1080 src/translate_generated.c   print_indent(indent); printf("  *d = -*(double *)wt(rc, %d);\n", (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L1081'>printf</a>           1081 src/translate_generated.c   print_indent(indent); printf("  warry_set(rc, %d, d, LMN_DBL_ATTR, TT_ATOM);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L1089'>printf</a>           1089 src/translate_generated.c   print_indent(indent); printf("  if(!(*(double*)wt(rc, %d) &lt; *(double*)wt(rc, %d))) %s;\n", (int)targ0, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L1097'>printf</a>           1097 src/translate_generated.c   print_indent(indent); printf("  if(!(*(double*)wt(rc, %d) &lt;= *(double*)wt(rc, %d))) %s;\n", (int)targ0, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L1105'>printf</a>           1105 src/translate_generated.c   print_indent(indent); printf("  if(!(*(double*)wt(rc, %d) &gt; *(double*)wt(rc, %d))) %s;\n", (int)targ0, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L1113'>printf</a>           1113 src/translate_generated.c   print_indent(indent); printf("  if(!(*(double*)wt(rc, %d) &gt;= *(double*)wt(rc, %d))) %s;\n", (int)targ0, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L1121'>printf</a>           1121 src/translate_generated.c   print_indent(indent); printf("  if(!(*(double*)wt(rc, %d) == *(double*)wt(rc, %d))) %s;\n", (int)targ0, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L1129'>printf</a>           1129 src/translate_generated.c   print_indent(indent); printf("  if(!(*(double*)wt(rc, %d) != *(double*)wt(rc, %d))) %s;\n", (int)targ0, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L1140'>printf</a>           1140 src/translate_generated.c   print_indent(indent); printf("    warry_set(rc, %d, %ld, LMN_INT_ATTR, TT_ATOM);\n", (int)targ0, targ1.long_data);</span>
+<span class='curline'><a href='../S/388.html#L1143'>printf</a>           1143 src/translate_generated.c   print_indent(indent); printf("    {\n");</span>
+<span class='curline'><a href='../S/388.html#L1144'>printf</a>           1144 src/translate_generated.c   print_indent(indent); printf("      static const double d = %lf;\n", targ1.double_data);</span>
+<span class='curline'><a href='../S/388.html#L1145'>printf</a>           1145 src/translate_generated.c   print_indent(indent); printf("      warry_set(rc, %d, &amp;d, LMN_CONST_DBL_ATTR, TT_ATOM);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L1146'>printf</a>           1146 src/translate_generated.c   print_indent(indent); printf("    }\n");</span>
+<span class='curline'><a href='../S/388.html#L1149'>printf</a>           1149 src/translate_generated.c   print_indent(indent); printf("    warry_set(rc, %d, %d, LMN_CONST_STR_ATTR, TT_ATOM);\n", (int)targ0, targ1.string_data);</span>
+<span class='curline'><a href='../S/388.html#L1161'>printf</a>           1161 src/translate_generated.c   print_indent(indent); printf("  if (LMN_ATTR_IS_DATA(at(rc, %d))) {\n", (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L1162'>printf</a>           1162 src/translate_generated.c   print_indent(indent); printf("    warry_set(rc, %d, lmn_copy_data_atom(wt(rc, %d), at(rc, %d)), at(rc, %d), TT_ATOM);\n", (int)targ0, (int)targ1, (int)targ1, (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L1163'>printf</a>           1163 src/translate_generated.c   print_indent(indent); printf("  } else { /* symbol atom */\n");</span>
+<span class='curline'><a href='../S/388.html#L1164'>printf</a>           1164 src/translate_generated.c   print_indent(indent); printf("    fprintf(stderr, \"symbol atom can't be created in GUARD\\n\");\n");</span>
+<span class='curline'><a href='../S/388.html#L1165'>printf</a>           1165 src/translate_generated.c   print_indent(indent); printf("    exit(EXIT_FAILURE);\n");</span>
+<span class='curline'><a href='../S/388.html#L1166'>printf</a>           1166 src/translate_generated.c   print_indent(indent); printf("  }\n");</span>
+<span class='curline'><a href='../S/388.html#L1174'>printf</a>           1174 src/translate_generated.c   print_indent(indent); printf("  if (!lmn_eq_func(wt(rc, %d), at(rc, %d), wt(rc, %d), at(rc, %d))) %s;\n", (int)targ0, (int)targ0, (int)targ1, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L1182'>printf</a>           1182 src/translate_generated.c   print_indent(indent); printf("  if(LMN_ATTR_IS_DATA(at(rc, %d))){\n", (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L1183'>printf</a>           1183 src/translate_generated.c   print_indent(indent); printf("    wt_set(rc, %d, wt(rc, %d));\n", (int)targ0, (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L1184'>printf</a>           1184 src/translate_generated.c   print_indent(indent); printf("  }else{\n");</span>
+<span class='curline'><a href='../S/388.html#L1185'>printf</a>           1185 src/translate_generated.c   print_indent(indent); printf("    wt_set(rc, %d, LMN_SATOM_GET_FUNCTOR(wt(rc, %d)));\n", (int)targ0, (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L1186'>printf</a>           1186 src/translate_generated.c   print_indent(indent); printf("  }\n");</span>
+<span class='curline'><a href='../S/388.html#L1187'>printf</a>           1187 src/translate_generated.c   print_indent(indent); printf("  at_set(rc, %d, at(rc, %d));\n", (int)targ0, (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L1188'>printf</a>           1188 src/translate_generated.c   print_indent(indent); printf("  tt_set(rc, %d, TT_OTHER);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L1196'>printf</a>           1196 src/translate_generated.c   print_indent(indent); printf("  ((LmnMembrane *)wt(rc, %d))-&gt;name = TR_GSID(%d);\n", (int)targ0, (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L1204'>printf</a>           1204 src/translate_generated.c   print_indent(indent); printf("  TR_INSTR_COPYRULES(rc, %d, %d);\n", (int)targ0, (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L1210'>printf</a>           1210 src/translate_generated.c   print_indent(indent); printf("  lmn_mem_remove_proxies((LmnMembrane *)wt(rc, %d));\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L1218'>printf</a>           1218 src/translate_generated.c   print_indent(indent); printf("  lmn_mem_insert_proxies((LmnMembrane *)wt(rc, %d), (LmnMembrane *)wt(rc, %d));\n", (int)targ0, (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L1226'>printf</a>           1226 src/translate_generated.c   print_indent(indent); printf("  TR_INSTR_DELETECONNECTORS(%d, %d);\n", (int)targ0, (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L1232'>printf</a>           1232 src/translate_generated.c   print_indent(indent); printf("  lmn_mem_remove_toplevel_proxies((LmnMembrane *)wt(rc, %d));\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L1242'>printf</a>           1242 src/translate_generated.c   print_indent(indent); printf("  TR_INSTR_DEREFFUNC(rc, %d, %d, %d);\n", (int)targ0, (int)targ1, (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L1254'>printf</a>           1254 src/translate_generated.c   print_indent(indent); printf("      wt_set(rc, %d, %ld);\n", (int)targ0, targ1.long_data);</span>
+<span class='curline'><a href='../S/388.html#L1255'>printf</a>           1255 src/translate_generated.c   print_indent(indent); printf("      at_set(rc, %d, LMN_INT_ATTR);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L1258'>printf</a>           1258 src/translate_generated.c   print_indent(indent); printf("      {\n");</span>
+<span class='curline'><a href='../S/388.html#L1259'>printf</a>           1259 src/translate_generated.c   print_indent(indent); printf("        const static double x = %lf;\n", targ1.double_data);</span>
+<span class='curline'><a href='../S/388.html#L1260'>printf</a>           1260 src/translate_generated.c   print_indent(indent); printf("        wt_set(rc, %d, &amp;x);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L1261'>printf</a>           1261 src/translate_generated.c   print_indent(indent); printf("        at_set(rc, %d, LMN_CONST_DBL_ATTR);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L1262'>printf</a>           1262 src/translate_generated.c   print_indent(indent); printf("      }\n");</span>
+<span class='curline'><a href='../S/388.html#L1265'>printf</a>           1265 src/translate_generated.c   print_indent(indent); printf("      wt_set(rc, %d, %d);\n", (int)targ0, targ1.string_data);</span>
+<span class='curline'><a href='../S/388.html#L1266'>printf</a>           1266 src/translate_generated.c   print_indent(indent); printf("      at_set(rc, %d, LMN_CONST_STR_ATTR);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L1272'>printf</a>           1272 src/translate_generated.c   print_indent(indent); printf("    wt_set(rc, %d, %d);\n", (int)targ0, targ1.functor_data);</span>
+<span class='curline'><a href='../S/388.html#L1273'>printf</a>           1273 src/translate_generated.c   print_indent(indent); printf("    at_set(rc, %d, %d);\n", (int)targ0, targ1_attr);</span>
+<span class='curline'><a href='../S/388.html#L1275'>printf</a>           1275 src/translate_generated.c   print_indent(indent); printf("  tt_set(rc, %d, TT_OTHER);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L1283'>printf</a>           1283 src/translate_generated.c   print_indent(indent); printf("  if (at(rc, %d) != at(rc, %d)) %s;\n", (int)targ0, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L1284'>printf</a>           1284 src/translate_generated.c   print_indent(indent); printf("  switch (at(rc, %d)) {\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L1285'>printf</a>           1285 src/translate_generated.c   print_indent(indent); printf("  case LMN_INT_ATTR:\n");</span>
+<span class='curline'><a href='../S/388.html#L1286'>printf</a>           1286 src/translate_generated.c   print_indent(indent); printf("    if ((long)wt(rc, %d) != (long)wt(rc, %d)) %s;\n", (int)targ0, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L1287'>printf</a>           1287 src/translate_generated.c   print_indent(indent); printf("    break;\n");</span>
+<span class='curline'><a href='../S/388.html#L1288'>printf</a>           1288 src/translate_generated.c   print_indent(indent); printf("  case LMN_DBL_ATTR:\n");</span>
+<span class='curline'><a href='../S/388.html#L1289'>printf</a>           1289 src/translate_generated.c   print_indent(indent); printf("    if (*(double*)(wt(rc, %d)) !=\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L1290'>printf</a>           1290 src/translate_generated.c   print_indent(indent); printf("        *(double*)(wt(rc, %d))) %s;\n", (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L1291'>printf</a>           1291 src/translate_generated.c   print_indent(indent); printf("    break;\n");</span>
+<span class='curline'><a href='../S/388.html#L1292'>printf</a>           1292 src/translate_generated.c   print_indent(indent); printf("  default:\n");</span>
+<span class='curline'><a href='../S/388.html#L1293'>printf</a>           1293 src/translate_generated.c   print_indent(indent); printf("    if (wt(rc, %d) != wt(rc, %d)) %s;\n", (int)targ0, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L1294'>printf</a>           1294 src/translate_generated.c   print_indent(indent); printf("    break;\n");</span>
+<span class='curline'><a href='../S/388.html#L1295'>printf</a>           1295 src/translate_generated.c   print_indent(indent); printf("  }\n");</span>
+<span class='curline'><a href='../S/388.html#L1303'>printf</a>           1303 src/translate_generated.c   print_indent(indent); printf("  if (at(rc, %d) == at(rc, %d)) {\n", (int)targ0, (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L1304'>printf</a>           1304 src/translate_generated.c   print_indent(indent); printf("    switch (at(rc, %d)) {\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L1305'>printf</a>           1305 src/translate_generated.c   print_indent(indent); printf("    case LMN_INT_ATTR:\n");</span>
+<span class='curline'><a href='../S/388.html#L1306'>printf</a>           1306 src/translate_generated.c   print_indent(indent); printf("      if ((long)wt(rc, %d) == (long)wt(rc, %d)) %s;\n", (int)targ0, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L1307'>printf</a>           1307 src/translate_generated.c   print_indent(indent); printf("      break;\n");</span>
+<span class='curline'><a href='../S/388.html#L1308'>printf</a>           1308 src/translate_generated.c   print_indent(indent); printf("    case LMN_DBL_ATTR:\n");</span>
+<span class='curline'><a href='../S/388.html#L1309'>printf</a>           1309 src/translate_generated.c   print_indent(indent); printf("      if (*(double*)(wt(rc, %d)) ==\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L1310'>printf</a>           1310 src/translate_generated.c   print_indent(indent); printf("          *(double*)(wt(rc, %d))) %s;\n", (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L1311'>printf</a>           1311 src/translate_generated.c   print_indent(indent); printf("      break;\n");</span>
+<span class='curline'><a href='../S/388.html#L1312'>printf</a>           1312 src/translate_generated.c   print_indent(indent); printf("    default:\n");</span>
+<span class='curline'><a href='../S/388.html#L1313'>printf</a>           1313 src/translate_generated.c   print_indent(indent); printf("      if (wt(rc, %d) == wt(rc, %d)) %s;\n", (int)targ0, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L1314'>printf</a>           1314 src/translate_generated.c   print_indent(indent); printf("      break;\n");</span>
+<span class='curline'><a href='../S/388.html#L1315'>printf</a>           1315 src/translate_generated.c   print_indent(indent); printf("    }\n");</span>
+<span class='curline'><a href='../S/388.html#L1316'>printf</a>           1316 src/translate_generated.c   print_indent(indent); printf("  }\n");</span>
+<span class='curline'><a href='../S/388.html#L1324'>printf</a>           1324 src/translate_generated.c   print_indent(indent); printf("  lmn_mem_push_atom((LmnMembrane *)wt(rc, %d), wt(rc, %d), at(rc, %d));\n", (int)targ0, (int)targ1, (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L1332'>printf</a>           1332 src/translate_generated.c   print_indent(indent); printf("  lmn_mem_move_cells((LmnMembrane *)wt(rc, %d), (LmnMembrane *)wt(rc, %d));\n", (int)targ0, (int)targ1);</span>
+<span class='curline'><a href='../S/388.html#L1338'>printf</a>           1338 src/translate_generated.c   print_indent(indent); printf("  lmn_mem_remove_temporary_proxies((LmnMembrane *)wt(rc, %d));\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L1346'>printf</a>           1346 src/translate_generated.c   print_indent(indent); printf("  if (!lmn_mem_nfreelinks((LmnMembrane *)wt(rc, %d), %d)) %s;\n", (int)targ0, (int)targ1, failcode);</span>
+<span class='curline'><a href='../S/388.html#L1356'>printf</a>           1356 src/translate_generated.c   print_indent(indent); printf("  wt_set(rc, %d, lmn_mem_copy_cells((LmnMembrane *)wt(rc, %d), (LmnMembrane *)wt(rc, %d)));\n", (int)targ0, (int)targ1, (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L1357'>printf</a>           1357 src/translate_generated.c   print_indent(indent); printf("  tt_set(rc, %d, TT_OTHER);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L1367'>printf</a>           1367 src/translate_generated.c   print_indent(indent); printf("  TR_INSTR_LOOKUPLINK(rc, %d, %d, %d);\n", (int)targ0, (int)targ1, (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L1373'>printf</a>           1373 src/translate_generated.c   print_indent(indent); printf("  vec_clear(&amp;((LmnMembrane *)wt(rc, %d))-&gt;rulesets);\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L1379'>printf</a>           1379 src/translate_generated.c   print_indent(indent); printf("  lmn_mem_drop((LmnMembrane *)wt(rc, %d));\n", (int)targ0);</span>
+<span class='curline'><a href='../S/388.html#L1387'>printf</a>           1387 src/translate_generated.c   print_indent(indent); printf("  if (LMN_PROXY_GET_MEM(wt(rc, %d)) != (LmnMembrane *)wt(rc, %d)) %s;\n", (int)targ1, (int)targ0, failcode);</span>
+<span class='curline'><a href='../S/388.html#L1397'>printf</a>           1397 src/translate_generated.c   print_indent(indent); printf("  warry_set(rc, %d, wt(rc, %d) + wt(rc, %d), LMN_INT_ATTR, TT_ATOM);\n", (int)targ0, (int)targ1, (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L1407'>printf</a>           1407 src/translate_generated.c   print_indent(indent); printf("  warry_set(rc, %d, wt(rc, %d) - wt(rc, %d), LMN_INT_ATTR, TT_ATOM);\n", (int)targ0, (int)targ1, (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L1417'>printf</a>           1417 src/translate_generated.c   print_indent(indent); printf("  warry_set(rc, %d, wt(rc, %d) * wt(rc, %d), LMN_INT_ATTR, TT_ATOM);\n", (int)targ0, (int)targ1, (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L1427'>printf</a>           1427 src/translate_generated.c   print_indent(indent); printf("  warry_set(rc, %d, wt(rc, %d) / wt(rc, %d), LMN_INT_ATTR, TT_ATOM);\n", (int)targ0, (int)targ1, (int)targ2);</span>
+<span class='curline'><a href='../S/388.html#L1437'>printf</a>           1437 src/translate_generated.c   print_indent(indent); printf("  warry_set(rc, %d, wt(rc, %d) %% wt(rc, %d), LMN_INT_ATTR, TT_ATOM);\n", (int)targ0, (int)targ1, (int)targ2);</span>
+<span class='curline'><a href='../S/404.html#L637'>printf</a>            637 src/utility/st.c   printf("st_pt = %p\n", st);</span>
+<span class='curline'><a href='../S/404.html#L640'>printf</a>            640 src/utility/st.c   printf("st-&gt;num_bins = %d, st-&gt;num_entries = %d\n", nb, ne);</span>
+<span class='curline'><a href='../S/404.html#L645'>printf</a>            645 src/utility/st.c       printf("bucket[%u]\n", i);</span>
+<span class='curline'><a href='../S/404.html#L648'>printf</a>            648 src/utility/st.c         printf("      entry-&gt;key = %ld, -&gt;record = %lu, -&gt;hash = %lu\n",</span>
+<span class='curline'><a href='../S/404.html#L653'>printf</a>            653 src/utility/st.c         if (entry) printf("  next");</span>
+<span class='curline'><a href='../S/407.html#L77'>printf</a>             77 src/utility/util.h   printf("%s%s", __ESC_START__, __ESC_END__);</span>
+<span class='curline'><a href='../S/407.html#L83'>printf</a>             83 src/utility/util.h   printf("%s%d%s", __ESC_START__, code, __ESC_END__);</span>
+<span class='curline'><a href='../S/417.html#L1001'>printf</a>           1001 src/verifier/delta_membrane.c     printf("before commit : "); lmn_dump_mem_dev(d-&gt;root_mem);</span>
+<span class='curline'><a href='../S/417.html#L1053'>printf</a>           1053 src/verifier/delta_membrane.c     printf("after  commit : "); lmn_dump_mem_dev(d-&gt;root_mem);</span>
+<span class='curline'><a href='../S/417.html#L1102'>printf</a>           1102 src/verifier/delta_membrane.c     printf("before revert : "); lmn_dump_cell_stdout(d-&gt;root_mem);</span>
+<span class='curline'><a href='../S/417.html#L1154'>printf</a>           1154 src/verifier/delta_membrane.c     printf("after  revert : "); lmn_dump_cell_stdout(d-&gt;root_mem);</span>
+<span class='curline'><a href='../S/417.html#L1603'>printf</a>           1603 src/verifier/delta_membrane.c     printf("new atom mem= %p, %p ", d-&gt;mem, a);</span>
+<span class='curline'><a href='../S/417.html#L1605'>printf</a>           1605 src/verifier/delta_membrane.c     printf("%s(", LMN_SATOM_STR(a));</span>
+<span class='curline'><a href='../S/417.html#L1607'>printf</a>           1607 src/verifier/delta_membrane.c       if (j&gt;0) printf(",");</span>
+<span class='curline'><a href='../S/417.html#L1608'>printf</a>           1608 src/verifier/delta_membrane.c       printf("%p", LMN_SATOM(LMN_SATOM_GET_LINK(a, j)));</span>
+<span class='curline'><a href='../S/417.html#L1610'>printf</a>           1610 src/verifier/delta_membrane.c     printf(")\n");</span>
+<span class='curline'><a href='../S/417.html#L1615'>printf</a>           1615 src/verifier/delta_membrane.c       printf("del atom %s %p\n", LMN_SATOM_STR(LMN_SATOM(vec_get(&amp;d-&gt;del_atoms, i))), LMN_SATOM(vec_get(&amp;d-&gt;del_atoms, i)));</span>
+<span class='curline'><a href='../S/417.html#L1621'>printf</a>           1621 src/verifier/delta_membrane.c     printf("del mem: %p\n", (LmnMembrane *)vec_get(&amp;d-&gt;del_mems, i));</span>
+<span class='curline'><a href='../S/417.html#L1626'>printf</a>           1626 src/verifier/delta_membrane.c     printf("new mem: %p\n", (LmnMembrane *)vec_get(&amp;d-&gt;new_mems, i));</span>
+<span class='curline'><a href='../S/419.html#L613'>printf</a>            613 src/verifier/dpor.c     printf("explore rec%u, delta_reacted_id=%u\n", mc-&gt;cur_depth, c-&gt;id);</span>
+<span class='curline'><a href='../S/419.html#L621'>printf</a>            621 src/verifier/dpor.c     POR_DEBUG(printf("detected cycle\n"));</span>
+<span class='curline'><a href='../S/419.html#L643'>printf</a>            643 src/verifier/dpor.c           POR_DEBUG(printf("Tr%u, contains\n", succ_c-&gt;id));</span>
+<span class='curline'><a href='../S/419.html#L665'>printf</a>            665 src/verifier/dpor.c     POR_DEBUG(printf("depends on ample cand!\n"));</span>
+<span class='curline'><a href='../S/419.html#L689'>printf</a>            689 src/verifier/dpor.c       printf("AMP[id=%u, delta=%lu]\n", _c_-&gt;id, (LmnWord)_c_-&gt;d);</span>
+<span class='curline'><a href='../S/419.html#L739'>printf</a>            739 src/verifier/dpor.c     printf("gen trans id=%u\n", c-&gt;id);</span>
+<span class='curline'><a href='../S/419.html#L746'>printf</a>            746 src/verifier/dpor.c       printf("detected same trans id=%u\n", ret-&gt;id);</span>
+<span class='curline'><a href='../S/419.html#L747'>printf</a>            747 src/verifier/dpor.c       printf("aborted trans_id=%u\n", c-&gt;id);</span>
+<span class='curline'><a href='../S/419.html#L754'>printf</a>            754 src/verifier/dpor.c         POR_DEBUG(printf("push succ\n\n"));</span>
+<span class='curline'><a href='../S/419.html#L999'>printf</a>            999 src/verifier/dpor.c       printf("\n** check ContextC1 table **\n");</span>
+<span class='curline'><a href='../S/419.html#L1020'>printf</a>           1020 src/verifier/dpor.c       POR_DEBUG(printf("@@ ample cand == succ num\n"));</span>
+<span class='curline'><a href='../S/419.html#L1031'>printf</a>           1031 src/verifier/dpor.c         POR_DEBUG(printf("@@ found trans depended on ample set\n"));</span>
+<span class='curline'><a href='../S/419.html#L1034'>printf</a>           1034 src/verifier/dpor.c         POR_DEBUG(printf("@@ ample set ok\n"));</span>
+<span class='curline'><a href='../S/419.html#L1187'>printf</a>           1187 src/verifier/dpor.c   printf("LHS[id%u, delta%u]:: ", c-&gt;id, id);</span>
+<span class='curline'><a href='../S/419.html#L1189'>printf</a>           1189 src/verifier/dpor.c   printf("\n");</span>
+<span class='curline'><a href='../S/419.html#L1197'>printf</a>           1197 src/verifier/dpor.c   printf("depID&lt;%2lu: ", _k);</span>
+<span class='curline'><a href='../S/419.html#L1199'>printf</a>           1199 src/verifier/dpor.c   printf("&gt; ");</span>
+<span class='curline'><a href='../S/419.html#L1211'>printf</a>           1211 src/verifier/dpor.c   printf("RHS[id%u, delta%u]:: ", c-&gt;id, id);</span>
+<span class='curline'><a href='../S/419.html#L1213'>printf</a>           1213 src/verifier/dpor.c   printf("\n");</span>
+<span class='curline'><a href='../S/419.html#L1221'>printf</a>           1221 src/verifier/dpor.c   printf("depID&lt;%2lu:", _k);</span>
+<span class='curline'><a href='../S/419.html#L1223'>printf</a>           1223 src/verifier/dpor.c   printf("&gt; ");</span>
+<span class='curline'><a href='../S/419.html#L1230'>printf</a>           1230 src/verifier/dpor.c   printf("%s", LHS_FL(f, LHS_MEM_GROOT)   ? "G" : "-");</span>
+<span class='curline'><a href='../S/419.html#L1231'>printf</a>           1231 src/verifier/dpor.c   printf("%s", LHS_FL(f, LHS_MEM_NATOMS)  ? "A" : "-");</span>
+<span class='curline'><a href='../S/419.html#L1232'>printf</a>           1232 src/verifier/dpor.c   printf("%s", LHS_FL(f, LHS_MEM_NMEMS)   ? "M" : "-");</span>
+<span class='curline'><a href='../S/419.html#L1233'>printf</a>           1233 src/verifier/dpor.c   printf("%s", LHS_FL(f, LHS_MEM_NFLINKS) ? "F" : "-");</span>
+<span class='curline'><a href='../S/419.html#L1234'>printf</a>           1234 src/verifier/dpor.c   printf("%s", LHS_FL(f, LHS_MEM_NORULES) ? "R" : "-");</span>
+<span class='curline'><a href='../S/419.html#L1235'>printf</a>           1235 src/verifier/dpor.c   printf("%s", LHS_FL(f, LHS_MEM_STABLE)  ? "S" : "-");</span>
+<span class='curline'><a href='../S/419.html#L1241'>printf</a>           1241 src/verifier/dpor.c   printf("%s", RHS_OP(f, OP_DEP_EXISTS)          ? "E" : "-");</span>
+<span class='curline'><a href='../S/419.html#L1242'>printf</a>           1242 src/verifier/dpor.c   printf("%s", RHS_OP(f, OP_DEP_EXISTS_EX_GROOT) ? "G" : "-");</span>
+<span class='curline'><a href='../S/419.html#L1243'>printf</a>           1243 src/verifier/dpor.c   printf("%s", RHS_OP(f, OP_DEP_NATOMS)          ? "A" : "-");</span>
+<span class='curline'><a href='../S/419.html#L1244'>printf</a>           1244 src/verifier/dpor.c   printf("%s", RHS_OP(f, OP_DEP_NMEMS)           ? "M" : "-");</span>
+<span class='curline'><a href='../S/419.html#L1245'>printf</a>           1245 src/verifier/dpor.c   printf("%s", RHS_OP(f, OP_DEP_NFLINKS)         ? "F" : "-");</span>
+<span class='curline'><a href='../S/419.html#L1246'>printf</a>           1246 src/verifier/dpor.c   printf("%s", RHS_OP(f, OP_DEP_NORULES)         ? "R" : "-");</span>
+<span class='curline'><a href='../S/419.html#L1247'>printf</a>           1247 src/verifier/dpor.c   printf("%s", RHS_OP(f, OP_DEP_STABLE)          ? "S" : "-");</span>
+<span class='curline'><a href='../S/419.html#L1261'>printf</a>           1261 src/verifier/dpor.c     printf("Tr all independent\n");</span>
+<span class='curline'><a href='../S/419.html#L1264'>printf</a>           1264 src/verifier/dpor.c       printf("Tr[%u] = depends\n", i);</span>
+<span class='curline'><a href='../S/421.html#L342'>printf</a>            342 src/verifier/dpor_naive.c     printf("*** C1--3 ok! ample set calculated\n");</span>
+<span class='curline'><a href='../S/421.html#L499'>printf</a>            499 src/verifier/dpor_naive.c     printf("unexpected.\n");</span>
+<span class='curline'><a href='../S/421.html#L616'>printf</a>            616 src/verifier/dpor_naive.c     printf("\nbefore\n");</span>
+<span class='curline'><a href='../S/421.html#L618'>printf</a>            618 src/verifier/dpor_naive.c     printf("\n");</span>
+<span class='curline'><a href='../S/421.html#L676'>printf</a>            676 src/verifier/dpor_naive.c     printf("after\n");</span>
+<span class='curline'><a href='../S/421.html#L678'>printf</a>            678 src/verifier/dpor_naive.c     printf("\n");</span>
+<span class='curline'><a href='../S/421.html#L742'>printf</a>            742 src/verifier/dpor_naive.c          printf("   λ.. C1 violate_id::%lu\n", transition_id(succ_t));</span>
+<span class='curline'><a href='../S/421.html#L746'>printf</a>            746 src/verifier/dpor_naive.c          printf("\n");</span>
+<span class='curline'><a href='../S/430.html#L366'>printf</a>            366 src/verifier/mc_explorer.c   MC_DEBUG(printf("acceptance queue init, num=%lu\n",</span>
+<span class='curline'><a href='../S/436.html#L600'>printf</a>            600 src/verifier/mem_encode.c       printf("_INT%ld_ ", n);</span>
+<span class='curline'><a href='../S/436.html#L607'>printf</a>            607 src/verifier/mem_encode.c       printf("_DBL%lf_", n);</span>
+<span class='curline'><a href='../S/436.html#L614'>printf</a>            614 src/verifier/mem_encode.c       printf("\"%s\"", lmn_id_to_name(n));</span>
+<span class='curline'><a href='../S/436.html#L644'>printf</a>            644 src/verifier/mem_encode.c         printf("%s/%d_%d ", lmn_id_to_name(LMN_FUNCTOR_NAME_ID(f)),</span>
+<span class='curline'><a href='../S/436.html#L655'>printf</a>            655 src/verifier/mem_encode.c           printf("_%d{ ", v_i);</span>
+<span class='curline'><a href='../S/436.html#L660'>printf</a>            660 src/verifier/mem_encode.c           printf("%s_%d{ ", lmn_id_to_name(name), v_i);</span>
+<span class='curline'><a href='../S/436.html#L668'>printf</a>            668 src/verifier/mem_encode.c         printf("}. ");</span>
+<span class='curline'><a href='../S/436.html#L680'>printf</a>            680 src/verifier/mem_encode.c         printf("~%d_%d ", hl_num, v_i++);</span>
+<span class='curline'><a href='../S/436.html#L693'>printf</a>            693 src/verifier/mem_encode.c           printf("$%d's%d ", ref, binstr_get_arg_ref(bs, pos));</span>
+<span class='curline'><a href='../S/436.html#L697'>printf</a>            697 src/verifier/mem_encode.c           printf("#%d ", ref);</span>
+<span class='curline'><a href='../S/436.html#L700'>printf</a>            700 src/verifier/mem_encode.c           printf("~$%d ",ref);</span>
+<span class='curline'><a href='../S/436.html#L712'>printf</a>            712 src/verifier/mem_encode.c         printf("!");</span>
+<span class='curline'><a href='../S/436.html#L714'>printf</a>            714 src/verifier/mem_encode.c         printf("! ");</span>
+<span class='curline'><a href='../S/436.html#L719'>printf</a>            719 src/verifier/mem_encode.c         printf("! ");</span>
+<span class='curline'><a href='../S/436.html#L724'>printf</a>            724 src/verifier/mem_encode.c         printf("_F_ ");</span>
+<span class='curline'><a href='../S/436.html#L738'>printf</a>            738 src/verifier/mem_encode.c         printf("@%d", rs_id);</span>
+<span class='curline'><a href='../S/436.html#L750'>printf</a>            750 src/verifier/mem_encode.c           printf("@%d", rs_id);</span>
+<span class='curline'><a href='../S/436.html#L765'>printf</a>            765 src/verifier/mem_encode.c           printf("@%d/", rs_id);</span>
+<span class='curline'><a href='../S/436.html#L773'>printf</a>            773 src/verifier/mem_encode.c             printf("[%s", lmn_id_to_name(lmn_rule_get_name(lmn_ruleset_get_rule(rs, k))));</span>
+<span class='curline'><a href='../S/436.html#L780'>printf</a>            780 src/verifier/mem_encode.c               printf("\"%s\"", lmn_id_to_name(id));</span>
+<span class='curline'><a href='../S/436.html#L783'>printf</a>            783 src/verifier/mem_encode.c             printf("]");</span>
+<span class='curline'><a href='../S/436.html#L789'>printf</a>            789 src/verifier/mem_encode.c       printf("pos = %d, len = %d\n", pos, len);</span>
+<span class='curline'><a href='../S/436.html#L794'>printf</a>            794 src/verifier/mem_encode.c   printf("\n");</span>
+<span class='curline'><a href='../S/436.html#L1994'>printf</a>           1994 src/verifier/mem_encode.c     printf("tag = %d\n", tag);</span>
+<span class='curline'><a href='../S/456.html#L1080'>printf</a>           1080 src/verifier/statespace.c           printf(".\n");</span>
+<span class='curline'><a href='../S/456.html#L1088'>printf</a>           1088 src/verifier/statespace.c         printf(".\n");</span>
+<span class='curline'><a href='../S/573.html#L136'>printf</a>            136 third_party/google-perftools-1.8.3/src/internal_logging.h   void printf(const char* format, ...)</span>
+<span class='curline'><a href='../S/626.html#L374'>printf</a>            374 third_party/google-perftools-1.8.3/src/tcmalloc.cc   out-&gt;printf(</span>
+<span class='curline'><a href='../S/626.html#L377'>printf</a>            377 third_party/google-perftools-1.8.3/src/tcmalloc.cc   out-&gt;printf(</span>
+<span class='curline'><a href='../S/626.html#L413'>printf</a>            413 third_party/google-perftools-1.8.3/src/tcmalloc.cc     out-&gt;printf("------------------------------------------------\n");</span>
+<span class='curline'><a href='../S/626.html#L414'>printf</a>            414 third_party/google-perftools-1.8.3/src/tcmalloc.cc     out-&gt;printf("Size class breakdown\n");</span>
+<span class='curline'><a href='../S/626.html#L415'>printf</a>            415 third_party/google-perftools-1.8.3/src/tcmalloc.cc     out-&gt;printf("------------------------------------------------\n");</span>
+<span class='curline'><a href='../S/626.html#L422'>printf</a>            422 third_party/google-perftools-1.8.3/src/tcmalloc.cc         out-&gt;printf("class %3d [ %8" PRIuS " bytes ] : "</span>
+<span class='curline'><a href='../S/626.html#L438'>printf</a>            438 third_party/google-perftools-1.8.3/src/tcmalloc.cc     out-&gt;printf("------------------------------------------------\n");</span>
+<span class='curline'><a href='../S/626.html#L439'>printf</a>            439 third_party/google-perftools-1.8.3/src/tcmalloc.cc     out-&gt;printf("PageHeap: %d sizes; %6.1f MiB free; %6.1f MiB unmapped\n",</span>
+<span class='curline'><a href='../S/626.html#L442'>printf</a>            442 third_party/google-perftools-1.8.3/src/tcmalloc.cc     out-&gt;printf("------------------------------------------------\n");</span>
+<span class='curline'><a href='../S/626.html#L453'>printf</a>            453 third_party/google-perftools-1.8.3/src/tcmalloc.cc         out-&gt;printf("%6u pages * %6u spans ~ %6.1f MiB; %6.1f MiB cum"</span>
+<span class='curline'><a href='../S/626.html#L466'>printf</a>            466 third_party/google-perftools-1.8.3/src/tcmalloc.cc     out-&gt;printf("&gt;255   large * %6u spans ~ %6.1f MiB; %6.1f MiB cum"</span>
+<span class='curline'><a href='../S/626.html#L984'>printf</a>            984 third_party/google-perftools-1.8.3/src/tcmalloc.cc   printer.printf("tcmalloc: large alloc %"PRIu64" bytes == %p @ ",</span>
+<span class='curline'><a href='../S/626.html#L988'>printf</a>            988 third_party/google-perftools-1.8.3/src/tcmalloc.cc     printer.printf(" %p", stack.stack[i]);</span>
+<span class='curline'><a href='../S/626.html#L990'>printf</a>            990 third_party/google-perftools-1.8.3/src/tcmalloc.cc   printer.printf("\n");</span>
+<span class='curline'><a href='../S/629.html#L168'>printf</a>            168 third_party/google-perftools-1.8.3/src/tests/addressmap_unittest.cc   printf("PASS\n");</span>
+<span class='curline'><a href='../S/630.html#L255'>printf</a>            255 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   printf("PASS\n");</span>
+<span class='curline'><a href='../S/631.html#L61'>printf</a>             61 third_party/google-perftools-1.8.3/src/tests/current_allocated_bytes_test.cc   printf("PASS\n");</span>
+<span class='curline'><a href='../S/634.html#L130'>printf</a>            130 third_party/google-perftools-1.8.3/src/tests/frag_unittest.cc   printf("PASS\n");</span>
+<span class='curline'><a href='../S/635.html#L114'>printf</a>            114 third_party/google-perftools-1.8.3/src/tests/getpc_test.cc     printf("Test FAILED: actual PC: %p, expected PC: %p\n", actual, expected);</span>
+<span class='curline'><a href='../S/635.html#L117'>printf</a>            117 third_party/google-perftools-1.8.3/src/tests/getpc_test.cc     printf("PASS\n");</span>
+<span class='curline'><a href='../S/639.html#L122'>printf</a>            122 third_party/google-perftools-1.8.3/src/tests/heap-profiler_unittest.cc     printf("USAGE: %s [number of children to fork]\n", argv[0]);</span>
+<span class='curline'><a href='../S/639.html#L151'>printf</a>            151 third_party/google-perftools-1.8.3/src/tests/heap-profiler_unittest.cc         printf("FORK failed!\n");</span>
+<span class='curline'><a href='../S/639.html#L160'>printf</a>            160 third_party/google-perftools-1.8.3/src/tests/heap-profiler_unittest.cc   printf("DONE.\n");</span>
+<span class='curline'><a href='../S/641.html#L94'>printf</a>             94 third_party/google-perftools-1.8.3/src/tests/low_level_alloc_unittest.cc       printf(".");</span>
+<span class='curline'><a href='../S/641.html#L192'>printf</a>            192 third_party/google-perftools-1.8.3/src/tests/low_level_alloc_unittest.cc   printf("\nPASS\n");</span>
+<span class='curline'><a href='../S/642.html#L145'>printf</a>            145 third_party/google-perftools-1.8.3/src/tests/malloc_extension_c_test.c   printf("PASS\n");</span>
+<span class='curline'><a href='../S/643.html#L97'>printf</a>             97 third_party/google-perftools-1.8.3/src/tests/malloc_extension_test.cc   printf("DONE\n");</span>
+<span class='curline'><a href='../S/645.html#L106'>printf</a>            106 third_party/google-perftools-1.8.3/src/tests/markidle_unittest.cc   printf("PASS\n");</span>
+<span class='curline'><a href='../S/647.html#L218'>printf</a>            218 third_party/google-perftools-1.8.3/src/tests/memalign_unittest.cc   printf("PASS\n");</span>
+<span class='curline'><a href='../S/648.html#L60'>printf</a>             60 third_party/google-perftools-1.8.3/src/tests/packed-cache_test.cc   printf("PASS\n");</span>
+<span class='curline'><a href='../S/649.html#L53'>printf</a>             53 third_party/google-perftools-1.8.3/src/tests/page_heap_test.cc   printf("PASS\n");</span>
+<span class='curline'><a href='../S/650.html#L175'>printf</a>            175 third_party/google-perftools-1.8.3/src/tests/pagemap_unittest.cc   printf("PASS\n");</span>
+<span class='curline'><a href='../S/651.html#L388'>printf</a>            388 third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc     printf("Running %s\n", #test);              \</span>
+<span class='curline'><a href='../S/651.html#L401'>printf</a>            401 third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc     printf("Done\n");</span>
+<span class='curline'><a href='../S/652.html#L354'>printf</a>            354 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc     printf("Running %s\n", #test);              \</span>
+<span class='curline'><a href='../S/652.html#L608'>printf</a>            608 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   printf("%s\n", rc == 0 ? "PASS" : "FAIL");</span>
+<span class='curline'><a href='../S/653.html#L120'>printf</a>            120 third_party/google-perftools-1.8.3/src/tests/profiler_unittest.cc       printf("FORK test only makes sense when no filename is specified.\n");</span>
+<span class='curline'><a href='../S/653.html#L125'>printf</a>            125 third_party/google-perftools-1.8.3/src/tests/profiler_unittest.cc         printf("FORK failed!\n");</span>
+<span class='curline'><a href='../S/655.html#L58'>printf</a>             58 third_party/google-perftools-1.8.3/src/tests/raw_printer_test.cc   printf("PASS\n");</span>
+<span class='curline'><a href='../S/656.html#L122'>printf</a>            122 third_party/google-perftools-1.8.3/src/tests/realloc_unittest.cc   printf("PASS\n");</span>
+<span class='curline'><a href='../S/657.html#L315'>printf</a>            315 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   printf("Testing LRand64 Spread\n");</span>
+<span class='curline'><a href='../S/657.html#L317'>printf</a>            317 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc     printf("%d ", i);</span>
+<span class='curline'><a href='../S/661.html#L82'>printf</a>             82 third_party/google-perftools-1.8.3/src/tests/stacktrace_unittest.cc       printf("Adjusting range from %p..%p to %p..%p\n",                  \</span>
+<span class='curline'><a href='../S/661.html#L119'>printf</a>            119 third_party/google-perftools-1.8.3/src/tests/stacktrace_unittest.cc   printf("Obtained %d stack frames.\n", size);</span>
+<span class='curline'><a href='../S/661.html#L126'>printf</a>            126 third_party/google-perftools-1.8.3/src/tests/stacktrace_unittest.cc     printf("Obtained %d stack frames.\n", size);</span>
+<span class='curline'><a href='../S/661.html#L128'>printf</a>            128 third_party/google-perftools-1.8.3/src/tests/stacktrace_unittest.cc       printf("%s %p\n", strings[i], stack[i]);</span>
+<span class='curline'><a href='../S/661.html#L129'>printf</a>            129 third_party/google-perftools-1.8.3/src/tests/stacktrace_unittest.cc     printf("CheckStackTrace() addr: %p\n", &amp;CheckStackTrace);</span>
+<span class='curline'><a href='../S/661.html#L135'>printf</a>            135 third_party/google-perftools-1.8.3/src/tests/stacktrace_unittest.cc     printf("Backtrace %d: expected: %p..%p  actual: %p ... ",</span>
+<span class='curline'><a href='../S/661.html#L139'>printf</a>            139 third_party/google-perftools-1.8.3/src/tests/stacktrace_unittest.cc     printf("OK\n");</span>
+<span class='curline'><a href='../S/661.html#L192'>printf</a>            192 third_party/google-perftools-1.8.3/src/tests/stacktrace_unittest.cc   printf("PASS\n");</span>
+<span class='curline'><a href='../S/662.html#L152'>printf</a>            152 third_party/google-perftools-1.8.3/src/tests/system-alloc_unittest.cc   printf("PASS\n");</span>
+<span class='curline'><a href='../S/663.html#L92'>printf</a>             92 third_party/google-perftools-1.8.3/src/tests/tcmalloc_large_unittest.cc     printf("Test malloc(0) x %d\n", kZeroTimes);</span>
+<span class='curline'><a href='../S/663.html#L104'>printf</a>            104 third_party/google-perftools-1.8.3/src/tests/tcmalloc_large_unittest.cc   printf("Test small malloc\n");</span>
+<span class='curline'><a href='../S/663.html#L110'>printf</a>            110 third_party/google-perftools-1.8.3/src/tests/tcmalloc_large_unittest.cc   printf("Test malloc(0 - N)\n");</span>
+<span class='curline'><a href='../S/663.html#L119'>printf</a>            119 third_party/google-perftools-1.8.3/src/tests/tcmalloc_large_unittest.cc   printf("Test malloc(0 - 1048576 - N)\n");</span>
+<span class='curline'><a href='../S/663.html#L127'>printf</a>            127 third_party/google-perftools-1.8.3/src/tests/tcmalloc_large_unittest.cc   printf("Test malloc(max/2 +- N)\n");</span>
+<span class='curline'><a href='../S/663.html#L135'>printf</a>            135 third_party/google-perftools-1.8.3/src/tests/tcmalloc_large_unittest.cc   printf("PASS\n");</span>
+<span class='curline'><a href='../S/667.html#L78'>printf</a>             78 third_party/google-perftools-1.8.3/src/tests/thread_dealloc_unittest.cc   printf("PASS\n");</span>
+<span class='curline'><a href='../S/671.html#L148'>printf</a>            148 third_party/google-perftools-1.8.3/src/windows/addr2line-pdb.c         printf("%s\n", pSymbol-&gt;Name);</span>
+<span class='curline'><a href='../S/671.html#L150'>printf</a>            150 third_party/google-perftools-1.8.3/src/windows/addr2line-pdb.c         printf("??\n");</span>
+<span class='curline'><a href='../S/671.html#L155'>printf</a>            155 third_party/google-perftools-1.8.3/src/windows/addr2line-pdb.c       printf("%s:%d\n", line.FileName, (int)line.LineNumber);</span>
+<span class='curline'><a href='../S/671.html#L157'>printf</a>            157 third_party/google-perftools-1.8.3/src/windows/addr2line-pdb.c       printf("??:0\n");</span>
+<span class='curline'><a href='../S/682.html#L109'>printf</a>            109 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c     printf("%s: %s\n", description, var);</span>
+<span class='curline'><a href='../S/682.html#L113'>printf</a>            113 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c   printf("s: %s\n", description, (var ? "Available" : "Not available"));</span>
+<span class='curline'><a href='../S/682.html#L120'>printf</a>            120 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c   printf("Load Address: %I64x\n", module_base);</span>
+<span class='curline'><a href='../S/682.html#L125'>printf</a>            125 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c     printf("Error: SymGetModuleInfo64() failed. Error code: %u\n",</span>
+<span class='curline'><a href='../S/682.html#L132'>printf</a>            132 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c       printf(("No symbols available for the module.\n"));</span>
+<span class='curline'><a href='../S/682.html#L135'>printf</a>            135 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c       printf(("Loaded symbols: Exports\n"));</span>
+<span class='curline'><a href='../S/682.html#L138'>printf</a>            138 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c       printf(("Loaded symbols: COFF\n"));</span>
+<span class='curline'><a href='../S/682.html#L141'>printf</a>            141 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c       printf(("Loaded symbols: CodeView\n"));</span>
+<span class='curline'><a href='../S/682.html#L144'>printf</a>            144 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c       printf(("Loaded symbols: SYM\n"));</span>
+<span class='curline'><a href='../S/682.html#L147'>printf</a>            147 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c       printf(("Loaded symbols: Virtual\n"));</span>
+<span class='curline'><a href='../S/682.html#L150'>printf</a>            150 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c       printf(("Loaded symbols: PDB\n"));</span>
+<span class='curline'><a href='../S/682.html#L153'>printf</a>            153 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c       printf(("Loaded symbols: DIA\n"));</span>
+<span class='curline'><a href='../S/682.html#L156'>printf</a>            156 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c       printf(("Loaded symbols: Deferred\n"));  /* not actually loaded */</span>
+<span class='curline'><a href='../S/682.html#L159'>printf</a>            159 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c       printf(("Loaded symbols: Unknown format.\n"));</span>
+<span class='curline'><a href='../S/682.html#L171'>printf</a>            171 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c     printf(("Warning: Unmatched symbols.\n"));</span>
+<span class='curline'><a href='../S/682.html#L266'>printf</a>            266 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c       printf("%016I64x X %s\n", ctx.syms[j].addr, ctx.syms[j].name);</span>
+<span class='curline'><a href='../S/684.html#L635'>printf</a>            635 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc   printf("PERFTOOLS ERROR: Too many modules containing libc in this executable\n");</span>
+<span class='curline'><a href='../S/684.html#L690'>printf</a>            690 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc     printf("PERFTOOLS ERROR: Too many modules in this executable to try"</span>
+<span class='curline'><a href='../S/712.html#L83'>printf</a>             83 third_party/zdelta-2.1/infutil.h #define ZD_WRAP {printf("m=0, WRAP\n");}</span>
+<span class='curline'><a href='../S/712.html#L84'>printf</a>             84 third_party/zdelta-2.1/infutil.h #define ZD_FLUSH {printf("still m=0, FLUSH\n");}</span>
+<span class='curline'><a href='../S/712.html#L85'>printf</a>             85 third_party/zdelta-2.1/infutil.h #define ZD_LEAVE {printf("still m=0, LEAVE\n");}</span>
+<span class='curline'><a href='../S/712.html#L86'>printf</a>             86 third_party/zdelta-2.1/infutil.h #define ZD_RETIF {printf("return inflate_flush();\n");}</span>
+<span class='curline'><a href='../S/716.html#L42'>printf</a>             42 third_party/zdelta-2.1/maketree.c       printf("\n   ");</span>
+<span class='curline'><a href='../S/716.html#L43'>printf</a>             43 third_party/zdelta-2.1/maketree.c     printf(" {{{%u,%u}},%u}", t[i].exop, t[i].bits, t[i].base);</span>
+<span class='curline'><a href='../S/716.html#L78'>printf</a>             78 third_party/zdelta-2.1/maketree.c   printf("local uInt fixed_bl = %d;\n", bl);</span>
+<span class='curline'><a href='../S/716.html#L79'>printf</a>             79 third_party/zdelta-2.1/maketree.c   printf("local uInt fixed_bd = %d;\n", bd);</span>
+<span class='curline'><a href='../S/716.html#L81'>printf</a>             81 third_party/zdelta-2.1/maketree.c   printf("local inflate_huft fixed_tl[] = {");</span>
+<span class='curline'><a href='../S/716.html#L85'>printf</a>             85 third_party/zdelta-2.1/maketree.c   printf("local inflate_huft fixed_td[] = {");</span>
+<span class='curline'><a href='../S/716.html#L89'>printf</a>             89 third_party/zdelta-2.1/maketree.c   printf("#if REFNUM &gt; 1\n");</span>
+<span class='curline'><a href='../S/716.html#L90'>printf</a>             90 third_party/zdelta-2.1/maketree.c   printf("local uInt fixed_bzd = %d;\n", bzd);</span>
+<span class='curline'><a href='../S/716.html#L91'>printf</a>             91 third_party/zdelta-2.1/maketree.c   printf("local inflate_huft fixed_tzd[] = {");</span>
+<span class='curline'><a href='../S/716.html#L94'>printf</a>             94 third_party/zdelta-2.1/maketree.c   printf("#else \n");</span>
+<span class='curline'><a href='../S/716.html#L95'>printf</a>             95 third_party/zdelta-2.1/maketree.c   printf("local uInt fixed_bzd = 1;\n");</span>
+<span class='curline'><a href='../S/716.html#L96'>printf</a>             96 third_party/zdelta-2.1/maketree.c   printf("local inflate_huft fixed_tzd[] = {\n\t{{{0,1}},0}, {{{0,1}},1}\n};");</span>
+<span class='curline'><a href='../S/716.html#L97'>printf</a>             97 third_party/zdelta-2.1/maketree.c   printf("\n#endif\n");</span>
+<span class='curline'><a href='../S/719.html#L239'>printf</a>            239 third_party/zdelta-2.1/trees.c     printf("length %u\n",length);</span>
+</pre>
+</body>
+</html>

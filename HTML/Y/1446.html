@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>allocates</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/641.html#L147'>allocates</a>         147 third_party/google-perftools-1.8.3/src/tests/low_level_alloc_unittest.cc static int32 allocates;</span>
+<span class='curline'><a href='../S/641.html#L153'>allocates</a>         153 third_party/google-perftools-1.8.3/src/tests/low_level_alloc_unittest.cc     allocates++;</span>
+<span class='curline'><a href='../S/641.html#L174'>allocates</a>         174 third_party/google-perftools-1.8.3/src/tests/low_level_alloc_unittest.cc   CHECK_EQ(allocates, 0);</span>
+<span class='curline'><a href='../S/641.html#L177'>allocates</a>         177 third_party/google-perftools-1.8.3/src/tests/low_level_alloc_unittest.cc   CHECK_NE(allocates, 0);   // default arena calls hooks</span>
+<span class='curline'><a href='../S/641.html#L181'>allocates</a>         181 third_party/google-perftools-1.8.3/src/tests/low_level_alloc_unittest.cc     allocates = 0;</span>
+<span class='curline'><a href='../S/641.html#L185'>allocates</a>         185 third_party/google-perftools-1.8.3/src/tests/low_level_alloc_unittest.cc       CHECK_GT(allocates, 5000); // arena calls hooks</span>
+<span class='curline'><a href='../S/641.html#L188'>allocates</a>         188 third_party/google-perftools-1.8.3/src/tests/low_level_alloc_unittest.cc       CHECK_EQ(allocates, 0);    // arena doesn't call hooks</span>
+</pre>
+</body>
+</html>

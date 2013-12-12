@@ -1,0 +1,495 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>value</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/386.html#L644'>value</a>             644 src/translate.c static int print_trans_module_f(st_data_t key, st_data_t value, st_data_t counter_p)</span>
+<span class='curline'><a href='../S/386.html#L651'>value</a>             651 src/translate.c   m_val     = (LmnRuleSet)value;</span>
+<span class='curline'><a href='../S/404.html#L238'>value</a>             238 src/utility/st.c int st_lookup(st_table_t table, register st_data_t key, st_data_t *value)</span>
+<span class='curline'><a href='../S/404.html#L249'>value</a>             249 src/utility/st.c     if (value != 0)</span>
+<span class='curline'><a href='../S/404.html#L250'>value</a>             250 src/utility/st.c       *value = ptr-&gt;record;</span>
+<span class='curline'><a href='../S/404.html#L258'>value</a>             258 src/utility/st.c int st_lookup_with_col(st_table_t table, register st_data_t key, st_data_t *value, long *n_col)</span>
+<span class='curline'><a href='../S/404.html#L270'>value</a>             270 src/utility/st.c     if (value != 0)</span>
+<span class='curline'><a href='../S/404.html#L271'>value</a>             271 src/utility/st.c       *value = ptr-&gt;record;</span>
+<span class='curline'><a href='../S/404.html#L282'>value</a>             282 src/utility/st.c #define ADD_DIRECT(table, key, value, hash_val, bin_pos)                   \</span>
+<span class='curline'><a href='../S/404.html#L287'>value</a>             287 src/utility/st.c     entry-&gt;record = value;                                                 \</span>
+<span class='curline'><a href='../S/404.html#L294'>value</a>             294 src/utility/st.c static inline int st_insert_inner(register st_table_t table, register st_data_t key, st_data_t value)</span>
+<span class='curline'><a href='../S/404.html#L303'>value</a>             303 src/utility/st.c     ADD_DIRECT(table, key, value, hash_val, bin_pos);</span>
+<span class='curline'><a href='../S/404.html#L306'>value</a>             306 src/utility/st.c     ptr-&gt;record = value;</span>
+<span class='curline'><a href='../S/404.html#L314'>value</a>             314 src/utility/st.c int st_insert(register st_table_t table, register st_data_t key, st_data_t value)</span>
+<span class='curline'><a href='../S/404.html#L316'>value</a>             316 src/utility/st.c   int ret = st_insert_inner(table, key, value);</span>
+<span class='curline'><a href='../S/404.html#L323'>value</a>             323 src/utility/st.c static inline int st_insert_safe_inner(register st_table_t table, register st_data_t key, st_data_t value)</span>
+<span class='curline'><a href='../S/404.html#L332'>value</a>             332 src/utility/st.c     ADD_DIRECT(table, key, value, hash_val, bin_pos);</span>
+<span class='curline'><a href='../S/404.html#L341'>value</a>             341 src/utility/st.c int st_insert_safe(register st_table_t table, register st_data_t key, st_data_t value)</span>
+<span class='curline'><a href='../S/404.html#L343'>value</a>             343 src/utility/st.c   int ret = st_insert_safe_inner(table, key, value);</span>
+<span class='curline'><a href='../S/404.html#L353'>value</a>             353 src/utility/st.c static inline void st_add_direct_inner(st_table_t table, st_data_t key, st_data_t value)</span>
+<span class='curline'><a href='../S/404.html#L359'>value</a>             359 src/utility/st.c   ADD_DIRECT(table, key, value, hash_val, bin_pos);</span>
+<span class='curline'><a href='../S/404.html#L362'>value</a>             362 src/utility/st.c void st_add_direct(st_table_t table, st_data_t key, st_data_t value)</span>
+<span class='curline'><a href='../S/404.html#L364'>value</a>             364 src/utility/st.c   st_add_direct_inner(table, key, value);</span>
+<span class='curline'><a href='../S/404.html#L434'>value</a>             434 src/utility/st.c int st_delete(register st_table_t table, register st_data_t key, st_data_t *value)</span>
+<span class='curline'><a href='../S/404.html#L444'>value</a>             444 src/utility/st.c     if (value) *value = 0;</span>
+<span class='curline'><a href='../S/404.html#L450'>value</a>             450 src/utility/st.c     if (value) *value = ptr-&gt;record;</span>
+<span class='curline'><a href='../S/404.html#L460'>value</a>             460 src/utility/st.c         if (value) *value = tmp-&gt;record;</span>
+<span class='curline'><a href='../S/404.html#L470'>value</a>             470 src/utility/st.c int st_delete_safe(register st_table_t table, register st_data_t *key, st_data_t *value, st_data_t never)</span>
+<span class='curline'><a href='../S/404.html#L479'>value</a>             479 src/utility/st.c     if (value != 0)</span>
+<span class='curline'><a href='../S/404.html#L480'>value</a>             480 src/utility/st.c       *value = 0;</span>
+<span class='curline'><a href='../S/404.html#L488'>value</a>             488 src/utility/st.c       if (value != 0)</span>
+<span class='curline'><a href='../S/404.html#L489'>value</a>             489 src/utility/st.c         *value = ptr-&gt;record;</span>
+<span class='curline'><a href='../S/404.html#L498'>value</a>             498 src/utility/st.c static int delete_never(st_data_t key __attribute__((unused)), st_data_t value, st_data_t never) {</span>
+<span class='curline'><a href='../S/404.html#L499'>value</a>             499 src/utility/st.c   if (value == never)</span>
+<span class='curline'><a href='../S/404.html#L623'>value</a>             623 src/utility/st.c static int insert_f(st_data_t key, st_data_t value, st_data_t tbl1)</span>
+<span class='curline'><a href='../S/404.html#L625'>value</a>             625 src/utility/st.c   st_insert((st_table_t)tbl1, key, value);</span>
+<span class='curline'><a href='../S/405.html#L78'>value</a>              78 src/utility/st.h int st_delete(register st_table_t tbl, register st_data_t key, st_data_t *value);</span>
+<span class='curline'><a href='../S/405.html#L79'>value</a>              79 src/utility/st.h int st_delete_safe(register st_table_t tbl, st_data_t *key, st_data_t *value, st_data_t never);</span>
+<span class='curline'><a href='../S/405.html#L80'>value</a>              80 src/utility/st.h int st_insert(st_table_t tbl, st_data_t key, st_data_t value);</span>
+<span class='curline'><a href='../S/405.html#L81'>value</a>              81 src/utility/st.h int st_insert_safe(st_table_t tbl, st_data_t key, st_data_t value);</span>
+<span class='curline'><a href='../S/405.html#L82'>value</a>              82 src/utility/st.h int st_lookup(st_table_t tbl, st_data_t key, st_data_t *value);</span>
+<span class='curline'><a href='../S/405.html#L83'>value</a>              83 src/utility/st.h int st_lookup_with_col(st_table_t tbl, st_data_t key, st_data_t *value, long *n_col);</span>
+<span class='curline'><a href='../S/405.html#L86'>value</a>              86 src/utility/st.h void st_add_direct(st_table_t tbl, st_data_t key, st_data_t value);</span>
+<span class='curline'><a href='../S/411.html#L92'>value</a>              92 src/utility/visitlog.h static inline void proc_tbl_put(ProcessTbl p, LmnWord key, LmnWord value);</span>
+<span class='curline'><a href='../S/411.html#L93'>value</a>              93 src/utility/visitlog.h static inline void proc_tbl_put_atom(ProcessTbl p, LmnSAtom atom, LmnWord value);</span>
+<span class='curline'><a href='../S/411.html#L94'>value</a>              94 src/utility/visitlog.h static inline void proc_tbl_put_mem(ProcessTbl p, LmnMembrane *mem, LmnWord value);</span>
+<span class='curline'><a href='../S/411.html#L95'>value</a>              95 src/utility/visitlog.h static inline int  proc_tbl_put_new(ProcessTbl p, LmnWord key, LmnWord value);</span>
+<span class='curline'><a href='../S/411.html#L96'>value</a>              96 src/utility/visitlog.h static inline int  proc_tbl_put_new_atom(ProcessTbl p, LmnSAtom atom, LmnWord value);</span>
+<span class='curline'><a href='../S/411.html#L97'>value</a>              97 src/utility/visitlog.h static inline int  proc_tbl_put_new_mem(ProcessTbl p, LmnMembrane *mem, LmnWord value);</span>
+<span class='curline'><a href='../S/411.html#L98'>value</a>              98 src/utility/visitlog.h static inline void proc_tbl_put_new_hlink(ProcessTbl p, HyperLink *hl, LmnWord value);</span>
+<span class='curline'><a href='../S/411.html#L102'>value</a>             102 src/utility/visitlog.h static inline int  proc_tbl_get(ProcessTbl p, LmnWord key, LmnWord *value);</span>
+<span class='curline'><a href='../S/411.html#L103'>value</a>             103 src/utility/visitlog.h static inline int  proc_tbl_get_by_atom(ProcessTbl p, LmnSAtom atom, LmnWord *value);</span>
+<span class='curline'><a href='../S/411.html#L104'>value</a>             104 src/utility/visitlog.h static inline int  proc_tbl_get_by_mem(ProcessTbl p, LmnMembrane *mem, LmnWord *value);</span>
+<span class='curline'><a href='../S/411.html#L105'>value</a>             105 src/utility/visitlog.h static inline int  proc_tbl_get_by_hlink(ProcessTbl p, HyperLink *hl, LmnWord *value);</span>
+<span class='curline'><a href='../S/411.html#L118'>value</a>             118 src/utility/visitlog.h static inline void proc_tbl_put(ProcessTbl p, LmnWord key, LmnWord value) {</span>
+<span class='curline'><a href='../S/411.html#L122'>value</a>             122 src/utility/visitlog.h   if (value == ULONG_MAX) lmn_fatal("cannot put ULONG_MAX");</span>
+<span class='curline'><a href='../S/411.html#L125'>value</a>             125 src/utility/visitlog.h   p-&gt;tbl[key] = value;</span>
+<span class='curline'><a href='../S/411.html#L127'>value</a>             127 src/utility/visitlog.h   st_insert(p-&gt;tbl, (st_data_t)key, value);</span>
+<span class='curline'><a href='../S/411.html#L132'>value</a>             132 src/utility/visitlog.h static inline void proc_tbl_put_atom(ProcessTbl p, LmnSAtom atom, LmnWord value) {</span>
+<span class='curline'><a href='../S/411.html#L133'>value</a>             133 src/utility/visitlog.h   proc_tbl_put(p, LMN_SATOM_ID(atom), value);</span>
+<span class='curline'><a href='../S/411.html#L137'>value</a>             137 src/utility/visitlog.h static inline void proc_tbl_put_mem(ProcessTbl p, LmnMembrane *mem, LmnWord value) {</span>
+<span class='curline'><a href='../S/411.html#L138'>value</a>             138 src/utility/visitlog.h   proc_tbl_put(p, lmn_mem_id(mem), value);</span>
+<span class='curline'><a href='../S/411.html#L142'>value</a>             142 src/utility/visitlog.h static inline void proc_tbl_put_new_hlink(ProcessTbl p, HyperLink *hl, LmnWord value)</span>
+<span class='curline'><a href='../S/411.html#L144'>value</a>             144 src/utility/visitlog.h   proc_tbl_put(p, LMN_HL_ID(hl), value);</span>
+<span class='curline'><a href='../S/411.html#L149'>value</a>             149 src/utility/visitlog.h static inline int proc_tbl_put_new(ProcessTbl p, LmnWord key, LmnWord value) {</span>
+<span class='curline'><a href='../S/411.html#L152'>value</a>             152 src/utility/visitlog.h   return st_insert_safe(p-&gt;tbl, (st_data_t)key, value);</span>
+<span class='curline'><a href='../S/411.html#L155'>value</a>             155 src/utility/visitlog.h   if (value == ULONG_MAX) lmn_fatal("cannot put ULONG_MAX");</span>
+<span class='curline'><a href='../S/411.html#L159'>value</a>             159 src/utility/visitlog.h   p-&gt;tbl[key] = value;</span>
+<span class='curline'><a href='../S/411.html#L165'>value</a>             165 src/utility/visitlog.h static inline int proc_tbl_put_new_atom(ProcessTbl p, LmnSAtom atom, LmnWord value) {</span>
+<span class='curline'><a href='../S/411.html#L166'>value</a>             166 src/utility/visitlog.h   return proc_tbl_put_new(p, LMN_SATOM_ID(atom), value);</span>
+<span class='curline'><a href='../S/411.html#L170'>value</a>             170 src/utility/visitlog.h static inline int proc_tbl_put_new_mem(ProcessTbl p, LmnMembrane *mem, LmnWord value) {</span>
+<span class='curline'><a href='../S/411.html#L171'>value</a>             171 src/utility/visitlog.h   return proc_tbl_put_new(p, lmn_mem_id(mem), value);</span>
+<span class='curline'><a href='../S/411.html#L198'>value</a>             198 src/utility/visitlog.h static inline int proc_tbl_get(ProcessTbl p, LmnWord key, LmnWord *value) {</span>
+<span class='curline'><a href='../S/411.html#L201'>value</a>             201 src/utility/visitlog.h     if (value) *value = p-&gt;tbl[key];</span>
+<span class='curline'><a href='../S/411.html#L207'>value</a>             207 src/utility/visitlog.h   return st_lookup(p-&gt;tbl, key, (st_data_t *)value);</span>
+<span class='curline'><a href='../S/411.html#L213'>value</a>             213 src/utility/visitlog.h static inline int proc_tbl_get_by_atom(ProcessTbl p, LmnSAtom atom, LmnWord *value) {</span>
+<span class='curline'><a href='../S/411.html#L214'>value</a>             214 src/utility/visitlog.h   return proc_tbl_get(p, LMN_SATOM_ID(atom), value);</span>
+<span class='curline'><a href='../S/411.html#L219'>value</a>             219 src/utility/visitlog.h static inline int proc_tbl_get_by_mem(ProcessTbl p, LmnMembrane *mem, LmnWord *value) {</span>
+<span class='curline'><a href='../S/411.html#L220'>value</a>             220 src/utility/visitlog.h   return proc_tbl_get(p, lmn_mem_id(mem), value);</span>
+<span class='curline'><a href='../S/411.html#L225'>value</a>             225 src/utility/visitlog.h static inline int proc_tbl_get_by_hlink(ProcessTbl p, HyperLink *hl, LmnWord *value)</span>
+<span class='curline'><a href='../S/411.html#L227'>value</a>             227 src/utility/visitlog.h   return proc_tbl_get(p, LMN_HL_ID(hl), value);</span>
+<span class='curline'><a href='../S/411.html#L276'>value</a>             276 src/utility/visitlog.h static inline void sproc_tbl_put(SimplyProcTbl p, LmnWord key, BYTE value);</span>
+<span class='curline'><a href='../S/411.html#L277'>value</a>             277 src/utility/visitlog.h static inline void sproc_tbl_put_atom(SimplyProcTbl p, LmnSAtom atom, BYTE value);</span>
+<span class='curline'><a href='../S/411.html#L278'>value</a>             278 src/utility/visitlog.h static inline void sproc_tbl_put_mem(SimplyProcTbl p, LmnMembrane *mem, BYTE value);</span>
+<span class='curline'><a href='../S/411.html#L282'>value</a>             282 src/utility/visitlog.h static inline int  sproc_tbl_get(SimplyProcTbl p, LmnWord key, BYTE *value);</span>
+<span class='curline'><a href='../S/411.html#L283'>value</a>             283 src/utility/visitlog.h static inline int  sproc_tbl_get_by_atom(SimplyProcTbl p, LmnSAtom atom, BYTE *value);</span>
+<span class='curline'><a href='../S/411.html#L284'>value</a>             284 src/utility/visitlog.h static inline int  sproc_tbl_get_by_mem(SimplyProcTbl p, LmnMembrane *mem, BYTE *value);</span>
+<span class='curline'><a href='../S/411.html#L313'>value</a>             313 src/utility/visitlog.h static inline void sproc_tbl_put(SimplyProcTbl p, LmnWord key, BYTE value) {</span>
+<span class='curline'><a href='../S/411.html#L316'>value</a>             316 src/utility/visitlog.h   if (value == SPROC_TBL_INIT_V) lmn_fatal("i can't put this value");</span>
+<span class='curline'><a href='../S/411.html#L326'>value</a>             326 src/utility/visitlog.h   p-&gt;tbl[key] = value;</span>
+<span class='curline'><a href='../S/411.html#L328'>value</a>             328 src/utility/visitlog.h   st_insert(p-&gt;tbl, (st_data_t)key, value);</span>
+<span class='curline'><a href='../S/411.html#L332'>value</a>             332 src/utility/visitlog.h static inline void sproc_tbl_put_atom(SimplyProcTbl p, LmnSAtom atom, BYTE value) {</span>
+<span class='curline'><a href='../S/411.html#L333'>value</a>             333 src/utility/visitlog.h   sproc_tbl_put(p, LMN_SATOM_ID(atom), value);</span>
+<span class='curline'><a href='../S/411.html#L336'>value</a>             336 src/utility/visitlog.h static inline void sproc_tbl_put_mem(SimplyProcTbl p, LmnMembrane *mem, BYTE value) {</span>
+<span class='curline'><a href='../S/411.html#L337'>value</a>             337 src/utility/visitlog.h   sproc_tbl_put(p, lmn_mem_id(mem), value);</span>
+<span class='curline'><a href='../S/411.html#L358'>value</a>             358 src/utility/visitlog.h static inline int sproc_tbl_get(SimplyProcTbl p, LmnWord key, BYTE *value) {</span>
+<span class='curline'><a href='../S/411.html#L361'>value</a>             361 src/utility/visitlog.h     if (value) *value = p-&gt;tbl[key];</span>
+<span class='curline'><a href='../S/411.html#L367'>value</a>             367 src/utility/visitlog.h   return st_lookup(p-&gt;tbl, key, (st_data_t *)value);</span>
+<span class='curline'><a href='../S/411.html#L371'>value</a>             371 src/utility/visitlog.h static inline int sproc_tbl_get_by_atom(SimplyProcTbl p, LmnSAtom atom, BYTE *value) {</span>
+<span class='curline'><a href='../S/411.html#L372'>value</a>             372 src/utility/visitlog.h   return sproc_tbl_get(p, LMN_SATOM_ID(atom), value);</span>
+<span class='curline'><a href='../S/411.html#L375'>value</a>             375 src/utility/visitlog.h static inline int sproc_tbl_get_by_mem(SimplyProcTbl p, LmnMembrane *mem, BYTE *value) {</span>
+<span class='curline'><a href='../S/411.html#L376'>value</a>             376 src/utility/visitlog.h   return sproc_tbl_get(p, lmn_mem_id(mem), value);</span>
+<span class='curline'><a href='../S/411.html#L869'>value</a>             869 src/utility/visitlog.h static inline int  visitlog_get_atom(VisitLog visitlog, LmnSAtom atom, LmnWord *value);</span>
+<span class='curline'><a href='../S/411.html#L870'>value</a>             870 src/utility/visitlog.h static inline int  visitlog_get_mem(VisitLog visitlog, LmnMembrane *mem, LmnWord *value);</span>
+<span class='curline'><a href='../S/411.html#L871'>value</a>             871 src/utility/visitlog.h static inline int  visitlog_get_hlink(VisitLog visitlog, HyperLink *hl, LmnWord *value);</span>
+<span class='curline'><a href='../S/411.html#L922'>value</a>             922 src/utility/visitlog.h static inline int visitlog_get_atom(VisitLog visitlog, LmnSAtom atom, LmnWord *value) {</span>
+<span class='curline'><a href='../S/411.html#L923'>value</a>             923 src/utility/visitlog.h   return proc_tbl_get_by_atom(&amp;visitlog-&gt;tbl, atom, value);</span>
+<span class='curline'><a href='../S/411.html#L928'>value</a>             928 src/utility/visitlog.h static inline int visitlog_get_mem(VisitLog visitlog, LmnMembrane *mem, LmnWord *value) {</span>
+<span class='curline'><a href='../S/411.html#L929'>value</a>             929 src/utility/visitlog.h   return proc_tbl_get_by_mem(&amp;visitlog-&gt;tbl, mem, value);</span>
+<span class='curline'><a href='../S/411.html#L934'>value</a>             934 src/utility/visitlog.h static inline int visitlog_get_hlink(VisitLog visitlog, HyperLink *hl, LmnWord *value)</span>
+<span class='curline'><a href='../S/411.html#L936'>value</a>             936 src/utility/visitlog.h   return proc_tbl_get_by_hlink(&amp;visitlog-&gt;tbl, hl, value);</span>
+<span class='curline'><a href='../S/505.html#L121'>value</a>             121 third_party/google-perftools-1.8.3/src/addressmap-inl.h   void Insert(Key key, Value value);</span>
+<span class='curline'><a href='../S/505.html#L165'>value</a>             165 third_party/google-perftools-1.8.3/src/addressmap-inl.h     Value  value;</span>
+<span class='curline'><a href='../S/505.html#L300'>value</a>             300 third_party/google-perftools-1.8.3/src/addressmap-inl.h         return &amp;e-&gt;value;</span>
+<span class='curline'><a href='../S/505.html#L308'>value</a>             308 third_party/google-perftools-1.8.3/src/addressmap-inl.h void AddressMap&lt;Value&gt;::Insert(Key key, Value value) {</span>
+<span class='curline'><a href='../S/505.html#L316'>value</a>             316 third_party/google-perftools-1.8.3/src/addressmap-inl.h       e-&gt;value = value;</span>
+<span class='curline'><a href='../S/505.html#L334'>value</a>             334 third_party/google-perftools-1.8.3/src/addressmap-inl.h   e-&gt;value = value;</span>
+<span class='curline'><a href='../S/505.html#L347'>value</a>             347 third_party/google-perftools-1.8.3/src/addressmap-inl.h         *removed_value = e-&gt;value;</span>
+<span class='curline'><a href='../S/505.html#L375'>value</a>             375 third_party/google-perftools-1.8.3/src/addressmap-inl.h                 key_num &lt; e_num + (*size_func)(e-&gt;value)) {</span>
+<span class='curline'><a href='../S/505.html#L377'>value</a>             377 third_party/google-perftools-1.8.3/src/addressmap-inl.h               return &amp;e-&gt;value;</span>
+<span class='curline'><a href='../S/505.html#L414'>value</a>             414 third_party/google-perftools-1.8.3/src/addressmap-inl.h           callback(e-&gt;key, &amp;e-&gt;value, arg);</span>
+<span class='curline'><a href='../S/507.html#L124'>value</a>             124 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h inline void NoBarrier_Store(volatile Atomic32* ptr, Atomic32 value) {</span>
+<span class='curline'><a href='../S/507.html#L125'>value</a>             125 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h   *ptr = value;</span>
+<span class='curline'><a href='../S/507.html#L132'>value</a>             132 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h inline void Acquire_Store(volatile Atomic32* ptr, Atomic32 value) {</span>
+<span class='curline'><a href='../S/507.html#L133'>value</a>             133 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h   *ptr = value;</span>
+<span class='curline'><a href='../S/507.html#L137'>value</a>             137 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h inline void Release_Store(volatile Atomic32* ptr, Atomic32 value) {</span>
+<span class='curline'><a href='../S/507.html#L139'>value</a>             139 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h   *ptr = value;</span>
+<span class='curline'><a href='../S/507.html#L147'>value</a>             147 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h   Atomic32 value = *ptr;</span>
+<span class='curline'><a href='../S/507.html#L149'>value</a>             149 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h   return value;</span>
+<span class='curline'><a href='../S/507.html#L191'>value</a>             191 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h inline void NoBarrier_Store(volatile Atomic64* ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/507.html#L195'>value</a>             195 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h inline void Acquire_Store(volatile Atomic64* ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/507.html#L196'>value</a>             196 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h   NoBarrier_AtomicExchange(ptr, value);</span>
+<span class='curline'><a href='../S/507.html#L200'>value</a>             200 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h inline void Release_Store(volatile Atomic64* ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/507.html#L210'>value</a>             210 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h   Atomic64 value = NoBarrier_Load(ptr);</span>
+<span class='curline'><a href='../S/507.html#L211'>value</a>             211 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h   return value;</span>
+<span class='curline'><a href='../S/508.html#L124'>value</a>             124 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h inline void NoBarrier_Store(volatile Atomic32* ptr, Atomic32 value) {</span>
+<span class='curline'><a href='../S/508.html#L125'>value</a>             125 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h   *ptr = value;</span>
+<span class='curline'><a href='../S/508.html#L132'>value</a>             132 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h inline void Acquire_Store(volatile Atomic32* ptr, Atomic32 value) {</span>
+<span class='curline'><a href='../S/508.html#L133'>value</a>             133 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h   *ptr = value;</span>
+<span class='curline'><a href='../S/508.html#L137'>value</a>             137 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h inline void Release_Store(volatile Atomic32* ptr, Atomic32 value) {</span>
+<span class='curline'><a href='../S/508.html#L139'>value</a>             139 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h   *ptr = value;</span>
+<span class='curline'><a href='../S/508.html#L147'>value</a>             147 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h   Atomic32 value = *ptr;</span>
+<span class='curline'><a href='../S/508.html#L149'>value</a>             149 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h   return value;</span>
+<span class='curline'><a href='../S/508.html#L191'>value</a>             191 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h inline void NoBarrier_Store(volatile Atomic64* ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/508.html#L195'>value</a>             195 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h inline void Acquire_Store(volatile Atomic64* ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/508.html#L199'>value</a>             199 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h inline void Release_Store(volatile Atomic64* ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/509.html#L133'>value</a>             133 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h   Atomic32 value = NoBarrier_CompareAndSwap(ptr, old_value, new_value);</span>
+<span class='curline'><a href='../S/509.html#L135'>value</a>             135 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h   return value;</span>
+<span class='curline'><a href='../S/509.html#L145'>value</a>             145 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h inline void NoBarrier_Store(volatile Atomic32* ptr, Atomic32 value) {</span>
+<span class='curline'><a href='../S/509.html#L146'>value</a>             146 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h   *ptr = value;</span>
+<span class='curline'><a href='../S/509.html#L149'>value</a>             149 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h inline void Acquire_Store(volatile Atomic32* ptr, Atomic32 value) {</span>
+<span class='curline'><a href='../S/509.html#L150'>value</a>             150 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h   *ptr = value;</span>
+<span class='curline'><a href='../S/509.html#L154'>value</a>             154 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h inline void Release_Store(volatile Atomic32* ptr, Atomic32 value) {</span>
+<span class='curline'><a href='../S/509.html#L156'>value</a>             156 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h   *ptr = value;</span>
+<span class='curline'><a href='../S/509.html#L164'>value</a>             164 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h   Atomic32 value = *ptr;</span>
+<span class='curline'><a href='../S/509.html#L166'>value</a>             166 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h   return value;</span>
+<span class='curline'><a href='../S/509.html#L249'>value</a>             249 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h inline void NoBarrier_Store(volatile Atomic64* ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/509.html#L260'>value</a>             260 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h       : "r"(value), "r" (ptr)</span>
+<span class='curline'><a href='../S/509.html#L307'>value</a>             307 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h inline void NoBarrier_Store(volatile Atomic64* ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/509.html#L318'>value</a>             318 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h inline void Acquire_Store(volatile Atomic64* ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/509.html#L319'>value</a>             319 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h   NoBarrier_Store(ptr, value);</span>
+<span class='curline'><a href='../S/509.html#L323'>value</a>             323 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h inline void Release_Store(volatile Atomic64* ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/509.html#L325'>value</a>             325 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h   NoBarrier_Store(ptr, value);</span>
+<span class='curline'><a href='../S/509.html#L329'>value</a>             329 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h   Atomic64 value = NoBarrier_Load(ptr);</span>
+<span class='curline'><a href='../S/509.html#L331'>value</a>             331 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h   return value;</span>
+<span class='curline'><a href='../S/509.html#L342'>value</a>             342 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h   Atomic64 value = NoBarrier_CompareAndSwap(ptr, old_value, new_value);</span>
+<span class='curline'><a href='../S/509.html#L344'>value</a>             344 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h   return value;</span>
+<span class='curline'><a href='../S/510.html#L67'>value</a>              67 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h static inline Atomic32 OSAtomicAdd32(Atomic32 amount, Atomic32 *value) {</span>
+<span class='curline'><a href='../S/510.html#L74'>value</a>              74 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h 		: "=&amp;r" (t), "+m" (*value)</span>
+<span class='curline'><a href='../S/510.html#L75'>value</a>              75 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h 		: "r" (amount), "r" (value)</span>
+<span class='curline'><a href='../S/510.html#L80'>value</a>              80 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h static inline Atomic32 OSAtomicAdd32Barrier(Atomic32 amount, Atomic32 *value) {</span>
+<span class='curline'><a href='../S/510.html#L83'>value</a>              83 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   t = OSAtomicAdd32(amount, value);</span>
+<span class='curline'><a href='../S/510.html#L95'>value</a>              95 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h                                             Atomic32 *value) {</span>
+<span class='curline'><a href='../S/510.html#L104'>value</a>             104 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h                 : "=&amp;r" (prev), "+m" (*value)</span>
+<span class='curline'><a href='../S/510.html#L105'>value</a>             105 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h                 : "r" (value), "r" (old_value), "r" (new_value)</span>
+<span class='curline'><a href='../S/510.html#L112'>value</a>             112 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h                                                        Atomic32 *value) {</span>
+<span class='curline'><a href='../S/510.html#L114'>value</a>             114 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   t = OSAtomicCompareAndSwap32(old_value, new_value, value);</span>
+<span class='curline'><a href='../S/510.html#L126'>value</a>             126 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h                                                        Atomic32 *value) {</span>
+<span class='curline'><a href='../S/510.html#L128'>value</a>             128 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   return OSAtomicCompareAndSwap32(old_value, new_value, value);</span>
+<span class='curline'><a href='../S/510.html#L208'>value</a>             208 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h static inline Atomic64 OSAtomicAdd64(Atomic64 amount, Atomic64 *value) {</span>
+<span class='curline'><a href='../S/510.html#L215'>value</a>             215 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h 		: "=&amp;r" (t), "+m" (*value)</span>
+<span class='curline'><a href='../S/510.html#L216'>value</a>             216 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h 		: "r" (amount), "r" (value)</span>
+<span class='curline'><a href='../S/510.html#L221'>value</a>             221 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h static inline Atomic64 OSAtomicAdd64Barrier(Atomic64 amount, Atomic64 *value) {</span>
+<span class='curline'><a href='../S/510.html#L224'>value</a>             224 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   t = OSAtomicAdd64(amount, value);</span>
+<span class='curline'><a href='../S/510.html#L236'>value</a>             236 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h                                             Atomic64 *value) {</span>
+<span class='curline'><a href='../S/510.html#L245'>value</a>             245 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h                 : "=&amp;r" (prev), "+m" (*value)</span>
+<span class='curline'><a href='../S/510.html#L246'>value</a>             246 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h                 : "r" (value), "r" (old_value), "r" (new_value)</span>
+<span class='curline'><a href='../S/510.html#L253'>value</a>             253 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h                                                        Atomic64 *value) {</span>
+<span class='curline'><a href='../S/510.html#L255'>value</a>             255 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   t = OSAtomicCompareAndSwap64(old_value, new_value, value);</span>
+<span class='curline'><a href='../S/510.html#L267'>value</a>             267 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h                                                        Atomic64 *value) {</span>
+<span class='curline'><a href='../S/510.html#L269'>value</a>             269 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   return OSAtomicCompareAndSwap64(old_value, new_value, value);</span>
+<span class='curline'><a href='../S/510.html#L337'>value</a>             337 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h inline void NoBarrier_Store(volatile Atomic32 *ptr, Atomic32 value) {</span>
+<span class='curline'><a href='../S/510.html#L338'>value</a>             338 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   *ptr = value;</span>
+<span class='curline'><a href='../S/510.html#L341'>value</a>             341 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h inline void Acquire_Store(volatile Atomic32 *ptr, Atomic32 value) {</span>
+<span class='curline'><a href='../S/510.html#L342'>value</a>             342 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   *ptr = value;</span>
+<span class='curline'><a href='../S/510.html#L349'>value</a>             349 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h inline void Release_Store(volatile Atomic32 *ptr, Atomic32 value) {</span>
+<span class='curline'><a href='../S/510.html#L351'>value</a>             351 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   *ptr = value;</span>
+<span class='curline'><a href='../S/510.html#L359'>value</a>             359 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   Atomic32 value = *ptr;</span>
+<span class='curline'><a href='../S/510.html#L361'>value</a>             361 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   return value;</span>
+<span class='curline'><a href='../S/510.html#L376'>value</a>             376 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h inline void NoBarrier_Store(volatile Atomic64 *ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/510.html#L377'>value</a>             377 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   *ptr = value;</span>
+<span class='curline'><a href='../S/510.html#L380'>value</a>             380 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h inline void Acquire_Store(volatile Atomic64 *ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/510.html#L381'>value</a>             381 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   *ptr = value;</span>
+<span class='curline'><a href='../S/510.html#L388'>value</a>             388 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h inline void Release_Store(volatile Atomic64 *ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/510.html#L390'>value</a>             390 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   *ptr = value;</span>
+<span class='curline'><a href='../S/510.html#L398'>value</a>             398 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   Atomic64 value = *ptr;</span>
+<span class='curline'><a href='../S/510.html#L400'>value</a>             400 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   return value;</span>
+<span class='curline'><a href='../S/511.html#L165'>value</a>             165 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h inline void NoBarrier_Store(volatile Atomic32* ptr, Atomic32 value) {</span>
+<span class='curline'><a href='../S/511.html#L166'>value</a>             166 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   *ptr = value;</span>
+<span class='curline'><a href='../S/511.html#L169'>value</a>             169 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h inline void Acquire_Store(volatile Atomic32 *ptr, Atomic32 value) {</span>
+<span class='curline'><a href='../S/511.html#L170'>value</a>             170 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   *ptr = value;</span>
+<span class='curline'><a href='../S/511.html#L174'>value</a>             174 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h inline void Release_Store(volatile Atomic32 *ptr, Atomic32 value) {</span>
+<span class='curline'><a href='../S/511.html#L176'>value</a>             176 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   *ptr = value;</span>
+<span class='curline'><a href='../S/511.html#L184'>value</a>             184 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   Atomic32 value = *ptr;</span>
+<span class='curline'><a href='../S/511.html#L186'>value</a>             186 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   return value;</span>
+<span class='curline'><a href='../S/511.html#L256'>value</a>             256 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h inline void NoBarrier_Store(volatile Atomic64* ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/511.html#L257'>value</a>             257 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   *ptr = value;</span>
+<span class='curline'><a href='../S/511.html#L260'>value</a>             260 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h inline void Acquire_Store(volatile Atomic64 *ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/511.html#L261'>value</a>             261 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   *ptr = value;</span>
+<span class='curline'><a href='../S/511.html#L265'>value</a>             265 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h inline void Release_Store(volatile Atomic64 *ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/511.html#L267'>value</a>             267 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   *ptr = value;</span>
+<span class='curline'><a href='../S/511.html#L275'>value</a>             275 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   Atomic64 value = *ptr;</span>
+<span class='curline'><a href='../S/511.html#L277'>value</a>             277 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   return value;</span>
+<span class='curline'><a href='../S/511.html#L291'>value</a>             291 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h inline void NoBarrier_Store(volatile Atomic64* ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/511.html#L304'>value</a>             304 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h inline void NoBarrier_Store(volatile Atomic64* ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/511.html#L309'>value</a>             309 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h                        : "m" (value)</span>
+<span class='curline'><a href='../S/511.html#L318'>value</a>             318 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   Atomic64 value;</span>
+<span class='curline'><a href='../S/511.html#L322'>value</a>             322 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h                        : "=m" (value)</span>
+<span class='curline'><a href='../S/511.html#L329'>value</a>             329 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   return value;</span>
+<span class='curline'><a href='../S/511.html#L334'>value</a>             334 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h inline void Acquire_Store(volatile Atomic64 *ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/511.html#L335'>value</a>             335 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   NoBarrier_Store(ptr, value);</span>
+<span class='curline'><a href='../S/511.html#L339'>value</a>             339 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h inline void Release_Store(volatile Atomic64 *ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/511.html#L341'>value</a>             341 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   NoBarrier_Store(ptr, value);</span>
+<span class='curline'><a href='../S/511.html#L345'>value</a>             345 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   Atomic64 value = NoBarrier_Load(ptr);</span>
+<span class='curline'><a href='../S/511.html#L347'>value</a>             347 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   return value;</span>
+<span class='curline'><a href='../S/512.html#L161'>value</a>             161 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   Atomic32 value = 0;</span>
+<span class='curline'><a href='../S/512.html#L162'>value</a>             162 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   base::subtle::NoBarrier_AtomicExchange(&amp;value, 0);</span>
+<span class='curline'><a href='../S/512.html#L186'>value</a>             186 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h inline void NoBarrier_Store(volatile Atomic32* ptr, Atomic32 value) {</span>
+<span class='curline'><a href='../S/512.html#L187'>value</a>             187 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   *ptr = value;</span>
+<span class='curline'><a href='../S/512.html#L190'>value</a>             190 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h inline void Acquire_Store(volatile Atomic32* ptr, Atomic32 value) {</span>
+<span class='curline'><a href='../S/512.html#L191'>value</a>             191 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   NoBarrier_AtomicExchange(ptr, value);</span>
+<span class='curline'><a href='../S/512.html#L195'>value</a>             195 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h inline void Release_Store(volatile Atomic32* ptr, Atomic32 value) {</span>
+<span class='curline'><a href='../S/512.html#L196'>value</a>             196 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   *ptr = value; // works w/o barrier for current Intel chips as of June 2005</span>
+<span class='curline'><a href='../S/512.html#L205'>value</a>             205 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   Atomic32 value = *ptr;</span>
+<span class='curline'><a href='../S/512.html#L206'>value</a>             206 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   return value;</span>
+<span class='curline'><a href='../S/512.html#L309'>value</a>             309 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h inline void NoBarrier_Store(volatile Atomic64* ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/512.html#L310'>value</a>             310 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   *ptr = value;</span>
+<span class='curline'><a href='../S/512.html#L313'>value</a>             313 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h inline void Acquire_Store(volatile Atomic64* ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/512.html#L314'>value</a>             314 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   NoBarrier_AtomicExchange(ptr, value);</span>
+<span class='curline'><a href='../S/512.html#L318'>value</a>             318 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h inline void Release_Store(volatile Atomic64* ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/512.html#L319'>value</a>             319 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   *ptr = value; // works w/o barrier for current Intel chips as of June 2005</span>
+<span class='curline'><a href='../S/512.html#L334'>value</a>             334 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   Atomic64 value = *ptr;</span>
+<span class='curline'><a href='../S/512.html#L335'>value</a>             335 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   return value;</span>
+<span class='curline'><a href='../S/512.html#L437'>value</a>             437 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h inline void NoBarrier_Store(volatile Atomic64* ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/512.html#L440'>value</a>             440 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h     mov mm0, value;  // Use mmx reg for 64-bit atomic moves</span>
+<span class='curline'><a href='../S/512.html#L449'>value</a>             449 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h inline void Acquire_Store(volatile Atomic64* ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/512.html#L450'>value</a>             450 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   NoBarrier_AtomicExchange(ptr, value);</span>
+<span class='curline'><a href='../S/512.html#L454'>value</a>             454 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h inline void Release_Store(volatile Atomic64* ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/512.html#L455'>value</a>             455 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   NoBarrier_Store(ptr, value);</span>
+<span class='curline'><a href='../S/512.html#L460'>value</a>             460 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   Atomic64 value;</span>
+<span class='curline'><a href='../S/512.html#L463'>value</a>             463 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h     mov value, mm0;</span>
+<span class='curline'><a href='../S/512.html#L466'>value</a>             466 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   return value;</span>
+<span class='curline'><a href='../S/512.html#L474'>value</a>             474 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   Atomic64 value = NoBarrier_Load(ptr);</span>
+<span class='curline'><a href='../S/512.html#L475'>value</a>             475 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   return value;</span>
+<span class='curline'><a href='../S/514.html#L131'>value</a>             131 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h inline void NoBarrier_Store(volatile Atomic32* ptr, Atomic32 value) {</span>
+<span class='curline'><a href='../S/514.html#L132'>value</a>             132 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h   *ptr = value;</span>
+<span class='curline'><a href='../S/514.html#L143'>value</a>             143 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h inline void Acquire_Store(volatile Atomic32* ptr, Atomic32 value) {</span>
+<span class='curline'><a href='../S/514.html#L144'>value</a>             144 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h   *ptr = value;</span>
+<span class='curline'><a href='../S/514.html#L159'>value</a>             159 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h inline void Acquire_Store(volatile Atomic32* ptr, Atomic32 value) {</span>
+<span class='curline'><a href='../S/514.html#L161'>value</a>             161 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h     *ptr = value;</span>
+<span class='curline'><a href='../S/514.html#L164'>value</a>             164 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h     NoBarrier_AtomicExchange(ptr, value);</span>
+<span class='curline'><a href='../S/514.html#L170'>value</a>             170 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h inline void Release_Store(volatile Atomic32* ptr, Atomic32 value) {</span>
+<span class='curline'><a href='../S/514.html#L172'>value</a>             172 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h   *ptr = value; // An x86 store acts as a release barrier.</span>
+<span class='curline'><a href='../S/514.html#L181'>value</a>             181 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h   Atomic32 value = *ptr; // An x86 load acts as a acquire barrier.</span>
+<span class='curline'><a href='../S/514.html#L184'>value</a>             184 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h   return value;</span>
+<span class='curline'><a href='../S/514.html#L239'>value</a>             239 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h inline void NoBarrier_Store(volatile Atomic64* ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/514.html#L240'>value</a>             240 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h   *ptr = value;</span>
+<span class='curline'><a href='../S/514.html#L243'>value</a>             243 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h inline void Acquire_Store(volatile Atomic64* ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/514.html#L244'>value</a>             244 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h   *ptr = value;</span>
+<span class='curline'><a href='../S/514.html#L248'>value</a>             248 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h inline void Release_Store(volatile Atomic64* ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/514.html#L251'>value</a>             251 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h   *ptr = value; // An x86 store acts as a release barrier</span>
+<span class='curline'><a href='../S/514.html#L274'>value</a>             274 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h   Atomic64 value = *ptr; // An x86 load acts as a acquire barrier,</span>
+<span class='curline'><a href='../S/514.html#L278'>value</a>             278 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h   return value;</span>
+<span class='curline'><a href='../S/514.html#L358'>value</a>             358 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h inline void NoBarrier_Store(volatile Atomic64* ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/514.html#L363'>value</a>             363 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h                        : "m" (value)</span>
+<span class='curline'><a href='../S/514.html#L370'>value</a>             370 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h inline void Acquire_Store(volatile Atomic64* ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/514.html#L371'>value</a>             371 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h   NoBarrier_Store(ptr, value);</span>
+<span class='curline'><a href='../S/514.html#L375'>value</a>             375 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h inline void Release_Store(volatile Atomic64* ptr, Atomic64 value) {</span>
+<span class='curline'><a href='../S/514.html#L377'>value</a>             377 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h   NoBarrier_Store(ptr, value);</span>
+<span class='curline'><a href='../S/514.html#L381'>value</a>             381 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h   Atomic64 value;</span>
+<span class='curline'><a href='../S/514.html#L385'>value</a>             385 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h                        : "=m" (value)</span>
+<span class='curline'><a href='../S/514.html#L391'>value</a>             391 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h   return value;</span>
+<span class='curline'><a href='../S/514.html#L395'>value</a>             395 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h   Atomic64 value = NoBarrier_Load(ptr);</span>
+<span class='curline'><a href='../S/514.html#L397'>value</a>             397 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h   return value;</span>
+<span class='curline'><a href='../S/515.html#L194'>value</a>             194 third_party/google-perftools-1.8.3/src/base/atomicops.h inline void NoBarrier_Store(volatile AtomicWord *ptr, AtomicWord value) {</span>
+<span class='curline'><a href='../S/515.html#L196'>value</a>             196 third_party/google-perftools-1.8.3/src/base/atomicops.h       reinterpret_cast&lt;volatile AtomicWordCastType*&gt;(ptr), value);</span>
+<span class='curline'><a href='../S/515.html#L199'>value</a>             199 third_party/google-perftools-1.8.3/src/base/atomicops.h inline void Acquire_Store(volatile AtomicWord* ptr, AtomicWord value) {</span>
+<span class='curline'><a href='../S/515.html#L201'>value</a>             201 third_party/google-perftools-1.8.3/src/base/atomicops.h       reinterpret_cast&lt;volatile AtomicWordCastType*&gt;(ptr), value);</span>
+<span class='curline'><a href='../S/515.html#L204'>value</a>             204 third_party/google-perftools-1.8.3/src/base/atomicops.h inline void Release_Store(volatile AtomicWord* ptr, AtomicWord value) {</span>
+<span class='curline'><a href='../S/515.html#L206'>value</a>             206 third_party/google-perftools-1.8.3/src/base/atomicops.h       reinterpret_cast&lt;volatile AtomicWordCastType*&gt;(ptr), value);</span>
+<span class='curline'><a href='../S/515.html#L262'>value</a>             262 third_party/google-perftools-1.8.3/src/base/atomicops.h void NoBarrier_Store(volatile Atomic32* ptr, Atomic32 value);</span>
+<span class='curline'><a href='../S/515.html#L263'>value</a>             263 third_party/google-perftools-1.8.3/src/base/atomicops.h void Acquire_Store(volatile Atomic32* ptr, Atomic32 value);</span>
+<span class='curline'><a href='../S/515.html#L264'>value</a>             264 third_party/google-perftools-1.8.3/src/base/atomicops.h void Release_Store(volatile Atomic32* ptr, Atomic32 value);</span>
+<span class='curline'><a href='../S/515.html#L283'>value</a>             283 third_party/google-perftools-1.8.3/src/base/atomicops.h void NoBarrier_Store(volatile Atomic64* ptr, Atomic64 value);</span>
+<span class='curline'><a href='../S/515.html#L284'>value</a>             284 third_party/google-perftools-1.8.3/src/base/atomicops.h void Acquire_Store(volatile Atomic64* ptr, Atomic64 value);</span>
+<span class='curline'><a href='../S/515.html#L285'>value</a>             285 third_party/google-perftools-1.8.3/src/base/atomicops.h void Release_Store(volatile Atomic64* ptr, Atomic64 value);</span>
+<span class='curline'><a href='../S/515.html#L316'>value</a>             316 third_party/google-perftools-1.8.3/src/base/atomicops.h inline void Acquire_Store(volatile AtomicWord* ptr, AtomicWord value) {</span>
+<span class='curline'><a href='../S/515.html#L317'>value</a>             317 third_party/google-perftools-1.8.3/src/base/atomicops.h   return base::subtle::Acquire_Store(ptr, value);</span>
+<span class='curline'><a href='../S/515.html#L320'>value</a>             320 third_party/google-perftools-1.8.3/src/base/atomicops.h inline void Release_Store(volatile AtomicWord* ptr, AtomicWord value) {</span>
+<span class='curline'><a href='../S/515.html#L321'>value</a>             321 third_party/google-perftools-1.8.3/src/base/atomicops.h   return base::subtle::Release_Store(ptr, value);</span>
+<span class='curline'><a href='../S/515.html#L345'>value</a>             345 third_party/google-perftools-1.8.3/src/base/atomicops.h inline void Acquire_Store(volatile Atomic32* ptr, Atomic32 value) {</span>
+<span class='curline'><a href='../S/515.html#L346'>value</a>             346 third_party/google-perftools-1.8.3/src/base/atomicops.h   base::subtle::Acquire_Store(ptr, value);</span>
+<span class='curline'><a href='../S/515.html#L348'>value</a>             348 third_party/google-perftools-1.8.3/src/base/atomicops.h inline void Release_Store(volatile Atomic32* ptr, Atomic32 value) {</span>
+<span class='curline'><a href='../S/515.html#L349'>value</a>             349 third_party/google-perftools-1.8.3/src/base/atomicops.h   return base::subtle::Release_Store(ptr, value);</span>
+<span class='curline'><a href='../S/515.html#L373'>value</a>             373 third_party/google-perftools-1.8.3/src/base/atomicops.h     volatile base::subtle::Atomic64* ptr, base::subtle::Atomic64 value) {</span>
+<span class='curline'><a href='../S/515.html#L374'>value</a>             374 third_party/google-perftools-1.8.3/src/base/atomicops.h   base::subtle::Acquire_Store(ptr, value);</span>
+<span class='curline'><a href='../S/515.html#L377'>value</a>             377 third_party/google-perftools-1.8.3/src/base/atomicops.h     volatile base::subtle::Atomic64* ptr, base::subtle::Atomic64 value) {</span>
+<span class='curline'><a href='../S/515.html#L378'>value</a>             378 third_party/google-perftools-1.8.3/src/base/atomicops.h   return base::subtle::Release_Store(ptr, value);</span>
+<span class='curline'><a href='../S/517.html#L63'>value</a>              63 third_party/google-perftools-1.8.3/src/base/commandlineflags.h #define DEFINE_VARIABLE(type, name, value, meaning) \</span>
+<span class='curline'><a href='../S/517.html#L65'>value</a>              65 third_party/google-perftools-1.8.3/src/base/commandlineflags.h   PERFTOOLS_DLL_DECL type FLAGS_##name(value);                                \</span>
+<span class='curline'><a href='../S/517.html#L73'>value</a>              73 third_party/google-perftools-1.8.3/src/base/commandlineflags.h #define DEFINE_bool(name, value, meaning) \</span>
+<span class='curline'><a href='../S/517.html#L74'>value</a>              74 third_party/google-perftools-1.8.3/src/base/commandlineflags.h   DEFINE_VARIABLE(bool, name, value, meaning)</span>
+<span class='curline'><a href='../S/517.html#L79'>value</a>              79 third_party/google-perftools-1.8.3/src/base/commandlineflags.h #define DEFINE_int32(name, value, meaning) \</span>
+<span class='curline'><a href='../S/517.html#L80'>value</a>              80 third_party/google-perftools-1.8.3/src/base/commandlineflags.h   DEFINE_VARIABLE(int32, name, value, meaning)</span>
+<span class='curline'><a href='../S/517.html#L85'>value</a>              85 third_party/google-perftools-1.8.3/src/base/commandlineflags.h #define DEFINE_int64(name, value, meaning) \</span>
+<span class='curline'><a href='../S/517.html#L86'>value</a>              86 third_party/google-perftools-1.8.3/src/base/commandlineflags.h   DEFINE_VARIABLE(int64, name, value, meaning)</span>
+<span class='curline'><a href='../S/517.html#L90'>value</a>              90 third_party/google-perftools-1.8.3/src/base/commandlineflags.h #define DEFINE_uint64(name, value, meaning) \</span>
+<span class='curline'><a href='../S/517.html#L91'>value</a>              91 third_party/google-perftools-1.8.3/src/base/commandlineflags.h   DEFINE_VARIABLE(uint64, name, value, meaning)</span>
+<span class='curline'><a href='../S/517.html#L96'>value</a>              96 third_party/google-perftools-1.8.3/src/base/commandlineflags.h #define DEFINE_double(name, value, meaning) \</span>
+<span class='curline'><a href='../S/517.html#L97'>value</a>              97 third_party/google-perftools-1.8.3/src/base/commandlineflags.h   DEFINE_VARIABLE(double, name, value, meaning)</span>
+<span class='curline'><a href='../S/517.html#L106'>value</a>             106 third_party/google-perftools-1.8.3/src/base/commandlineflags.h #define DEFINE_string(name, value, meaning) \</span>
+<span class='curline'><a href='../S/517.html#L108'>value</a>             108 third_party/google-perftools-1.8.3/src/base/commandlineflags.h   std::string FLAGS_##name(value);                                                   \</span>
+<span class='curline'><a href='../S/519.html#L145'>value</a>             145 third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c   char value[100] = "1";    /* something that is not "0" */</span>
+<span class='curline'><a href='../S/519.html#L147'>value</a>             147 third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c                                     value, sizeof(value));</span>
+<span class='curline'><a href='../S/519.html#L149'>value</a>             149 third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c   return (res &gt; 0 &amp;&amp; strcmp(value, "0") != 0);</span>
+<span class='curline'><a href='../S/521.html#L258'>value</a>             258 third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc     ElfW(Xword) value = dynamic_entry-&gt;d_un.d_val;</span>
+<span class='curline'><a href='../S/521.html#L267'>value</a>             267 third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc         value += relocation;</span>
+<span class='curline'><a href='../S/521.html#L271'>value</a>             271 third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc       value += relocation;</span>
+<span class='curline'><a href='../S/521.html#L275'>value</a>             275 third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc         hash_ = reinterpret_cast&lt;ElfW(Word) *&gt;(value);</span>
+<span class='curline'><a href='../S/521.html#L278'>value</a>             278 third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc         dynsym_ = reinterpret_cast&lt;ElfW(Sym) *&gt;(value);</span>
+<span class='curline'><a href='../S/521.html#L281'>value</a>             281 third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc         dynstr_ = reinterpret_cast&lt;const char *&gt;(value);</span>
+<span class='curline'><a href='../S/521.html#L284'>value</a>             284 third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc         versym_ = reinterpret_cast&lt;ElfW(Versym) *&gt;(value);</span>
+<span class='curline'><a href='../S/521.html#L287'>value</a>             287 third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc         verdef_ = reinterpret_cast&lt;ElfW(Verdef) *&gt;(value);</span>
+<span class='curline'><a href='../S/536.html#L60'>value</a>              60 third_party/google-perftools-1.8.3/src/base/spinlock_internal.h void SpinLockDelay(volatile Atomic32 *w, int32 value, int loop);</span>
+<span class='curline'><a href='../S/537.html#L73'>value</a>              73 third_party/google-perftools-1.8.3/src/base/spinlock_linux-inl.h void SpinLockDelay(volatile Atomic32 *w, int32 value, int loop) {</span>
+<span class='curline'><a href='../S/537.html#L87'>value</a>              87 third_party/google-perftools-1.8.3/src/base/spinlock_linux-inl.h                 value, reinterpret_cast&lt;struct kernel_timespec *&gt;(&amp;tm));</span>
+<span class='curline'><a href='../S/538.html#L44'>value</a>              44 third_party/google-perftools-1.8.3/src/base/spinlock_posix-inl.h void SpinLockDelay(volatile Atomic32 *w, int32 value, int loop) {</span>
+<span class='curline'><a href='../S/539.html#L40'>value</a>              40 third_party/google-perftools-1.8.3/src/base/spinlock_win32-inl.h void SpinLockDelay(volatile Atomic32 *w, int32 value, int loop) {</span>
+<span class='curline'><a href='../S/542.html#L238'>value</a>             238 third_party/google-perftools-1.8.3/src/base/sysinfo.cc static bool ReadIntFromFile(const char *file, int *value) {</span>
+<span class='curline'><a href='../S/542.html#L248'>value</a>             248 third_party/google-perftools-1.8.3/src/base/sysinfo.cc       *value = temp_value;</span>
+<span class='curline'><a href='../S/555.html#L344'>value</a>             344 third_party/google-perftools-1.8.3/src/debugallocation.cc   bool IsValidMagicValue(int value) const {</span>
+<span class='curline'><a href='../S/555.html#L345'>value</a>             345 third_party/google-perftools-1.8.3/src/debugallocation.cc     return kMagicMMap == value  ||  kMagicMalloc == value;</span>
+<span class='curline'><a href='../S/555.html#L1004'>value</a>            1004 third_party/google-perftools-1.8.3/src/debugallocation.cc   virtual bool GetNumericProperty(const char* name, size_t* value) {</span>
+<span class='curline'><a href='../S/555.html#L1005'>value</a>            1005 third_party/google-perftools-1.8.3/src/debugallocation.cc     bool result = TCMallocImplementation::GetNumericProperty(name, value);</span>
+<span class='curline'><a href='../S/555.html#L1009'>value</a>            1009 third_party/google-perftools-1.8.3/src/debugallocation.cc       if (*value &gt;= qsize) {</span>
+<span class='curline'><a href='../S/555.html#L1010'>value</a>            1010 third_party/google-perftools-1.8.3/src/debugallocation.cc         *value -= qsize;</span>
+<span class='curline'><a href='../S/555.html#L1269'>value</a>            1269 third_party/google-perftools-1.8.3/src/debugallocation.cc static intptr_t RoundUp(intptr_t value, intptr_t alignment) {</span>
+<span class='curline'><a href='../S/555.html#L1270'>value</a>            1270 third_party/google-perftools-1.8.3/src/debugallocation.cc   return (value + alignment - 1) &amp; ~(alignment - 1);</span>
+<span class='curline'><a href='../S/555.html#L1406'>value</a>            1406 third_party/google-perftools-1.8.3/src/debugallocation.cc extern "C" PERFTOOLS_DLL_DECL int tc_mallopt(int cmd, int value) __THROW {</span>
+<span class='curline'><a href='../S/555.html#L1407'>value</a>            1407 third_party/google-perftools-1.8.3/src/debugallocation.cc   return BASE_MALLOPT(cmd, value);</span>
+<span class='curline'><a href='../S/559.html#L195'>value</a>             195 third_party/google-perftools-1.8.3/src/google/malloc_extension.h   virtual bool GetNumericProperty(const char* property, size_t* value);</span>
+<span class='curline'><a href='../S/559.html#L202'>value</a>             202 third_party/google-perftools-1.8.3/src/google/malloc_extension.h   virtual bool SetNumericProperty(const char* property, size_t value);</span>
+<span class='curline'><a href='../S/560.html#L74'>value</a>              74 third_party/google-perftools-1.8.3/src/google/malloc_extension_c.h PERFTOOLS_DLL_DECL int MallocExtension_GetNumericProperty(const char* property, size_t* value);</span>
+<span class='curline'><a href='../S/560.html#L75'>value</a>              75 third_party/google-perftools-1.8.3/src/google/malloc_extension_c.h PERFTOOLS_DLL_DECL int MallocExtension_SetNumericProperty(const char* property, size_t value);</span>
+<span class='curline'><a href='../S/565.html#L94'>value</a>              94 third_party/google-perftools-1.8.3/src/google/tcmalloc.h   PERFTOOLS_DLL_DECL int tc_mallopt(int cmd, int value) __THROW;</span>
+<span class='curline'><a href='../S/568.html#L454'>value</a>             454 third_party/google-perftools-1.8.3/src/heap-checker.cc inline void set_thread_disable_counter(int value) {</span>
+<span class='curline'><a href='../S/568.html#L455'>value</a>             455 third_party/google-perftools-1.8.3/src/heap-checker.cc   thread_disable_counter = value;</span>
+<span class='curline'><a href='../S/568.html#L474'>value</a>             474 third_party/google-perftools-1.8.3/src/heap-checker.cc inline void set_thread_disable_counter(int value) {</span>
+<span class='curline'><a href='../S/568.html#L476'>value</a>             476 third_party/google-perftools-1.8.3/src/heap-checker.cc     main_thread_counter = value;</span>
+<span class='curline'><a href='../S/568.html#L479'>value</a>             479 third_party/google-perftools-1.8.3/src/heap-checker.cc   intptr_t pointer_sized_value = value;</span>
+<span class='curline'><a href='../S/568.html#L2290'>value</a>            2290 third_party/google-perftools-1.8.3/src/heap-checker.cc   RangeValue value;</span>
+<span class='curline'><a href='../S/568.html#L2291'>value</a>            2291 third_party/google-perftools-1.8.3/src/heap-checker.cc   value.start_address = AsInt(start_address);</span>
+<span class='curline'><a href='../S/568.html#L2292'>value</a>            2292 third_party/google-perftools-1.8.3/src/heap-checker.cc   value.max_depth = max_depth;</span>
+<span class='curline'><a href='../S/568.html#L2293'>value</a>            2293 third_party/google-perftools-1.8.3/src/heap-checker.cc   if (disabled_ranges-&gt;insert(make_pair(AsInt(end_address), value)).second) {</span>
+<span class='curline'><a href='../S/568.html#L2299'>value</a>            2299 third_party/google-perftools-1.8.3/src/heap-checker.cc     if (val.max_depth != value.max_depth  ||</span>
+<span class='curline'><a href='../S/568.html#L2300'>value</a>            2300 third_party/google-perftools-1.8.3/src/heap-checker.cc         val.start_address != value.start_address) {</span>
+<span class='curline'><a href='../S/575.html#L85'>value</a>              85 third_party/google-perftools-1.8.3/src/libc_override_gcc_and_weak.h   int mallopt(int cmd, int value) __THROW         ALIAS(tc_mallopt);</span>
+<span class='curline'><a href='../S/580.html#L115'>value</a>             115 third_party/google-perftools-1.8.3/src/malloc_extension.cc bool MallocExtension::GetNumericProperty(const char* property, size_t* value) {</span>
+<span class='curline'><a href='../S/580.html#L119'>value</a>             119 third_party/google-perftools-1.8.3/src/malloc_extension.cc bool MallocExtension::SetNumericProperty(const char* property, size_t value) {</span>
+<span class='curline'><a href='../S/580.html#L356'>value</a>             356 third_party/google-perftools-1.8.3/src/malloc_extension.cc        (const char* property, size_t* value), (property, value));</span>
+<span class='curline'><a href='../S/580.html#L358'>value</a>             358 third_party/google-perftools-1.8.3/src/malloc_extension.cc        (const char* property, size_t value), (property, value));</span>
+<span class='curline'><a href='../S/581.html#L113'>value</a>             113 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h   bool Add(T value);</span>
+<span class='curline'><a href='../S/581.html#L118'>value</a>             118 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h   bool Remove(T value);</span>
+<span class='curline'><a href='../S/582.html#L206'>value</a>             206 third_party/google-perftools-1.8.3/src/malloc_hook.cc   AtomicWord value = bit_cast&lt;AtomicWord&gt;(value_as_t);</span>
+<span class='curline'><a href='../S/582.html#L207'>value</a>             207 third_party/google-perftools-1.8.3/src/malloc_hook.cc   if (value == 0) {</span>
+<span class='curline'><a href='../S/582.html#L221'>value</a>             221 third_party/google-perftools-1.8.3/src/malloc_hook.cc   base::subtle::Release_Store(&amp;priv_data[index], value);</span>
+<span class='curline'><a href='../S/590.html#L156'>value</a>             156 third_party/google-perftools-1.8.3/src/packed-cache-inl.h   void Put(K key, V value) {</span>
+<span class='curline'><a href='../S/590.html#L158'>value</a>             158 third_party/google-perftools-1.8.3/src/packed-cache-inl.h     ASSERT(value == (value &amp; kValueMask));</span>
+<span class='curline'><a href='../S/590.html#L159'>value</a>             159 third_party/google-perftools-1.8.3/src/packed-cache-inl.h     array_[Hash(key)] = KeyToUpper(key) | value;</span>
+<span class='curline'><a href='../S/590.html#L177'>value</a>             177 third_party/google-perftools-1.8.3/src/packed-cache-inl.h   void Clear(V value) {</span>
+<span class='curline'><a href='../S/590.html#L178'>value</a>             178 third_party/google-perftools-1.8.3/src/packed-cache-inl.h     ASSERT(value == (value &amp; kValueMask));</span>
+<span class='curline'><a href='../S/590.html#L181'>value</a>             181 third_party/google-perftools-1.8.3/src/packed-cache-inl.h       array_[i] = kUseWholeKeys ? (value | KeyToUpper(i)) : value;</span>
+<span class='curline'><a href='../S/606.html#L47'>value</a>              47 third_party/google-perftools-1.8.3/src/span.cc   span-&gt;value[span-&gt;nexthistory] = v;</span>
+<span class='curline'><a href='../S/607.html#L60'>value</a>              60 third_party/google-perftools-1.8.3/src/span.h   int value[64];</span>
+<span class='curline'><a href='../S/626.html#L235'>value</a>             235 third_party/google-perftools-1.8.3/src/tcmalloc.cc   int tc_mallopt(int cmd, int value) __THROW</span>
+<span class='curline'><a href='../S/626.html#L625'>value</a>             625 third_party/google-perftools-1.8.3/src/tcmalloc.cc   virtual bool GetNumericProperty(const char* name, size_t* value) {</span>
+<span class='curline'><a href='../S/626.html#L631'>value</a>             631 third_party/google-perftools-1.8.3/src/tcmalloc.cc       *value = stats.pageheap.system_bytes</span>
+<span class='curline'><a href='../S/626.html#L643'>value</a>             643 third_party/google-perftools-1.8.3/src/tcmalloc.cc       *value = stats.pageheap.system_bytes;</span>
+<span class='curline'><a href='../S/626.html#L652'>value</a>             652 third_party/google-perftools-1.8.3/src/tcmalloc.cc       *value = stats.free_bytes + stats.unmapped_bytes;</span>
+<span class='curline'><a href='../S/626.html#L658'>value</a>             658 third_party/google-perftools-1.8.3/src/tcmalloc.cc       *value = Static::pageheap()-&gt;stats().free_bytes;</span>
+<span class='curline'><a href='../S/626.html#L664'>value</a>             664 third_party/google-perftools-1.8.3/src/tcmalloc.cc       *value = Static::pageheap()-&gt;stats().unmapped_bytes;</span>
+<span class='curline'><a href='../S/626.html#L670'>value</a>             670 third_party/google-perftools-1.8.3/src/tcmalloc.cc       *value = ThreadCache::overall_thread_cache_size();</span>
+<span class='curline'><a href='../S/626.html#L677'>value</a>             677 third_party/google-perftools-1.8.3/src/tcmalloc.cc       *value = stats.thread_bytes;</span>
+<span class='curline'><a href='../S/626.html#L684'>value</a>             684 third_party/google-perftools-1.8.3/src/tcmalloc.cc   virtual bool SetNumericProperty(const char* name, size_t value) {</span>
+<span class='curline'><a href='../S/626.html#L689'>value</a>             689 third_party/google-perftools-1.8.3/src/tcmalloc.cc       ThreadCache::set_overall_thread_cache_size(value);</span>
+<span class='curline'><a href='../S/626.html#L1307'>value</a>            1307 third_party/google-perftools-1.8.3/src/tcmalloc.cc inline int do_mallopt(int cmd, int value) {</span>
+<span class='curline'><a href='../S/626.html#L1627'>value</a>            1627 third_party/google-perftools-1.8.3/src/tcmalloc.cc extern "C" PERFTOOLS_DLL_DECL int tc_mallopt(int cmd, int value) __THROW {</span>
+<span class='curline'><a href='../S/626.html#L1628'>value</a>            1628 third_party/google-perftools-1.8.3/src/tcmalloc.cc   return do_mallopt(cmd, value);</span>
+<span class='curline'><a href='../S/630.html#L115'>value</a>             115 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   AtomicType value = 0;</span>
+<span class='curline'><a href='../S/630.html#L116'>value</a>             116 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   AtomicType prev = base::subtle::NoBarrier_CompareAndSwap(&amp;value, 0, 1);</span>
+<span class='curline'><a href='../S/630.html#L117'>value</a>             117 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   ASSERT_EQ(1, value);</span>
+<span class='curline'><a href='../S/630.html#L124'>value</a>             124 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   value = k_test_val;</span>
+<span class='curline'><a href='../S/630.html#L125'>value</a>             125 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   prev = base::subtle::NoBarrier_CompareAndSwap(&amp;value, 0, 5);</span>
+<span class='curline'><a href='../S/630.html#L126'>value</a>             126 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   ASSERT_EQ(k_test_val, value);</span>
+<span class='curline'><a href='../S/630.html#L129'>value</a>             129 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   value = k_test_val;</span>
+<span class='curline'><a href='../S/630.html#L130'>value</a>             130 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   prev = base::subtle::NoBarrier_CompareAndSwap(&amp;value, k_test_val, 5);</span>
+<span class='curline'><a href='../S/630.html#L131'>value</a>             131 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   ASSERT_EQ(5, value);</span>
+<span class='curline'><a href='../S/630.html#L138'>value</a>             138 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   AtomicType value = 0;</span>
+<span class='curline'><a href='../S/630.html#L139'>value</a>             139 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   AtomicType new_value = base::subtle::NoBarrier_AtomicExchange(&amp;value, 1);</span>
+<span class='curline'><a href='../S/630.html#L140'>value</a>             140 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   ASSERT_EQ(1, value);</span>
+<span class='curline'><a href='../S/630.html#L147'>value</a>             147 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   value = k_test_val;</span>
+<span class='curline'><a href='../S/630.html#L148'>value</a>             148 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   new_value = base::subtle::NoBarrier_AtomicExchange(&amp;value, k_test_val);</span>
+<span class='curline'><a href='../S/630.html#L149'>value</a>             149 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   ASSERT_EQ(k_test_val, value);</span>
+<span class='curline'><a href='../S/630.html#L152'>value</a>             152 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   value = k_test_val;</span>
+<span class='curline'><a href='../S/630.html#L153'>value</a>             153 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   new_value = base::subtle::NoBarrier_AtomicExchange(&amp;value, 5);</span>
+<span class='curline'><a href='../S/630.html#L154'>value</a>             154 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   ASSERT_EQ(5, value);</span>
+<span class='curline'><a href='../S/630.html#L164'>value</a>             164 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   AtomicType value = test_val - 1;</span>
+<span class='curline'><a href='../S/630.html#L165'>value</a>             165 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   AtomicType new_value = base::subtle::NoBarrier_AtomicIncrement(&amp;value, 1);</span>
+<span class='curline'><a href='../S/630.html#L166'>value</a>             166 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   ASSERT_EQ(test_val, value);</span>
+<span class='curline'><a href='../S/630.html#L167'>value</a>             167 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   ASSERT_EQ(value, new_value);</span>
+<span class='curline'><a href='../S/630.html#L169'>value</a>             169 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   base::subtle::NoBarrier_AtomicIncrement(&amp;value, -1);</span>
+<span class='curline'><a href='../S/630.html#L170'>value</a>             170 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   ASSERT_EQ(test_val - 1, value);</span>
+<span class='curline'><a href='../S/630.html#L180'>value</a>             180 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   AtomicType value;</span>
+<span class='curline'><a href='../S/630.html#L182'>value</a>             182 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   base::subtle::NoBarrier_Store(&amp;value, kVal1);</span>
+<span class='curline'><a href='../S/630.html#L183'>value</a>             183 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   ASSERT_EQ(kVal1, value);</span>
+<span class='curline'><a href='../S/630.html#L184'>value</a>             184 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   base::subtle::NoBarrier_Store(&amp;value, kVal2);</span>
+<span class='curline'><a href='../S/630.html#L185'>value</a>             185 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   ASSERT_EQ(kVal2, value);</span>
+<span class='curline'><a href='../S/630.html#L187'>value</a>             187 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   base::subtle::Acquire_Store(&amp;value, kVal1);</span>
+<span class='curline'><a href='../S/630.html#L188'>value</a>             188 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   ASSERT_EQ(kVal1, value);</span>
+<span class='curline'><a href='../S/630.html#L189'>value</a>             189 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   base::subtle::Acquire_Store(&amp;value, kVal2);</span>
+<span class='curline'><a href='../S/630.html#L190'>value</a>             190 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   ASSERT_EQ(kVal2, value);</span>
+<span class='curline'><a href='../S/630.html#L192'>value</a>             192 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   base::subtle::Release_Store(&amp;value, kVal1);</span>
+<span class='curline'><a href='../S/630.html#L193'>value</a>             193 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   ASSERT_EQ(kVal1, value);</span>
+<span class='curline'><a href='../S/630.html#L194'>value</a>             194 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   base::subtle::Release_Store(&amp;value, kVal2);</span>
+<span class='curline'><a href='../S/630.html#L195'>value</a>             195 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   ASSERT_EQ(kVal2, value);</span>
+<span class='curline'><a href='../S/630.html#L205'>value</a>             205 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   AtomicType value;</span>
+<span class='curline'><a href='../S/630.html#L207'>value</a>             207 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   value = kVal1;</span>
+<span class='curline'><a href='../S/630.html#L208'>value</a>             208 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   ASSERT_EQ(kVal1, base::subtle::NoBarrier_Load(&amp;value));</span>
+<span class='curline'><a href='../S/630.html#L209'>value</a>             209 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   value = kVal2;</span>
+<span class='curline'><a href='../S/630.html#L210'>value</a>             210 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   ASSERT_EQ(kVal2, base::subtle::NoBarrier_Load(&amp;value));</span>
+<span class='curline'><a href='../S/630.html#L212'>value</a>             212 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   value = kVal1;</span>
+<span class='curline'><a href='../S/630.html#L213'>value</a>             213 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   ASSERT_EQ(kVal1, base::subtle::Acquire_Load(&amp;value));</span>
+<span class='curline'><a href='../S/630.html#L214'>value</a>             214 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   value = kVal2;</span>
+<span class='curline'><a href='../S/630.html#L215'>value</a>             215 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   ASSERT_EQ(kVal2, base::subtle::Acquire_Load(&amp;value));</span>
+<span class='curline'><a href='../S/630.html#L217'>value</a>             217 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   value = kVal1;</span>
+<span class='curline'><a href='../S/630.html#L218'>value</a>             218 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   ASSERT_EQ(kVal1, base::subtle::Release_Load(&amp;value));</span>
+<span class='curline'><a href='../S/630.html#L219'>value</a>             219 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   value = kVal2;</span>
+<span class='curline'><a href='../S/630.html#L220'>value</a>             220 third_party/google-perftools-1.8.3/src/tests/atomicops_unittest.cc   ASSERT_EQ(kVal2, base::subtle::Release_Load(&amp;value));</span>
+<span class='curline'><a href='../S/632.html#L232'>value</a>             232 third_party/google-perftools-1.8.3/src/tests/debugallocation_test.cc   size_t value;</span>
+<span class='curline'><a href='../S/632.html#L234'>value</a>             234 third_party/google-perftools-1.8.3/src/tests/debugallocation_test.cc             "generic.current_allocated_bytes", &amp;value));</span>
+<span class='curline'><a href='../S/632.html#L235'>value</a>             235 third_party/google-perftools-1.8.3/src/tests/debugallocation_test.cc   return value;</span>
+<span class='curline'><a href='../S/644.html#L218'>value</a>             218 third_party/google-perftools-1.8.3/src/tests/malloc_hook_test.cc     int value = (i &lt;&lt; shift) + thread_num;</span>
+<span class='curline'><a href='../S/644.html#L219'>value</a>             219 third_party/google-perftools-1.8.3/src/tests/malloc_hook_test.cc     EXPECT_TRUE(TestHookList_Add(list, value));</span>
+<span class='curline'><a href='../S/644.html#L226'>value</a>             226 third_party/google-perftools-1.8.3/src/tests/malloc_hook_test.cc          value_index &lt; num_values &amp;&amp; values[value_index] != value;</span>
+<span class='curline'><a href='../S/644.html#L233'>value</a>             233 third_party/google-perftools-1.8.3/src/tests/malloc_hook_test.cc     EXPECT_TRUE(TestHookList_Remove(list, value));</span>
+<span class='curline'><a href='../S/644.html#L237'>value</a>             237 third_party/google-perftools-1.8.3/src/tests/malloc_hook_test.cc          value_index &lt; num_values &amp;&amp; values[value_index] != value;</span>
+<span class='curline'><a href='../S/651.html#L43'>value</a>              43 third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc   void SetJoinable(bool value) { joinable_ = value; }</span>
+<span class='curline'><a href='../S/674.html#L94'>value</a>              94 third_party/google-perftools-1.8.3/src/windows/google/tcmalloc.h   PERFTOOLS_DLL_DECL int tc_mallopt(int cmd, int value) __THROW;</span>
+<span class='curline'><a href='../S/686.html#L155'>value</a>             155 third_party/google-perftools-1.8.3/src/windows/port.h inline int perftools_pthread_setspecific(pthread_key_t key, const void *value) {</span>
+<span class='curline'><a href='../S/686.html#L156'>value</a>             156 third_party/google-perftools-1.8.3/src/windows/port.h   if (TlsSetValue(key, (LPVOID)value))</span>
+<span class='curline'><a href='../S/719.html#L195'>value</a>             195 third_party/zdelta-2.1/trees.c local unsigned bi_reverse OF((unsigned value, int length));</span>
+<span class='curline'><a href='../S/719.html#L230'>value</a>             230 third_party/zdelta-2.1/trees.c local void send_bits      OF((deflate_state *s, int value, int length));</span>
+<span class='curline'><a href='../S/719.html#L232'>value</a>             232 third_party/zdelta-2.1/trees.c local void send_bits(s, value, length)</span>
+<span class='curline'><a href='../S/719.html#L234'>value</a>             234 third_party/zdelta-2.1/trees.c      int value;  /* value to send */</span>
+<span class='curline'><a href='../S/719.html#L237'>value</a>             237 third_party/zdelta-2.1/trees.c   Tracevv((stderr," l %2d v %4x ", length, value));</span>
+<span class='curline'><a href='../S/719.html#L248'>value</a>             248 third_party/zdelta-2.1/trees.c     s-&gt;bi_buf |= (value &lt;&lt; s-&gt;bi_valid);</span>
+<span class='curline'><a href='../S/719.html#L250'>value</a>             250 third_party/zdelta-2.1/trees.c     s-&gt;bi_buf = (ush)value &gt;&gt; (Buf_size - s-&gt;bi_valid);</span>
+<span class='curline'><a href='../S/719.html#L253'>value</a>             253 third_party/zdelta-2.1/trees.c     s-&gt;bi_buf |= value &lt;&lt; s-&gt;bi_valid;</span>
+<span class='curline'><a href='../S/719.html#L259'>value</a>             259 third_party/zdelta-2.1/trees.c #define send_bits(s, value, length) \</span>
+<span class='curline'><a href='../S/719.html#L262'>value</a>             262 third_party/zdelta-2.1/trees.c     int val = value;\</span>
+<span class='curline'><a href='../S/719.html#L268'>value</a>             268 third_party/zdelta-2.1/trees.c     s-&gt;bi_buf |= (value) &lt;&lt; s-&gt;bi_valid;\</span>
+</pre>
+</body>
+</html>

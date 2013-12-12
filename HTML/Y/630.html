@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>PVOID</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/512.html#L220'>PVOID</a>             220 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h COMPILE_ASSERT(sizeof(Atomic64) == sizeof(PVOID), atomic_word_is_atomic);</span>
+<span class='curline'><a href='../S/512.html#L227'>PVOID</a>             227 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h inline PVOID FastInterlockedCompareExchangePointer(volatile PVOID* ptr,</span>
+<span class='curline'><a href='../S/512.html#L228'>PVOID</a>             228 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h                                                    PVOID newval, PVOID oldval) {</span>
+<span class='curline'><a href='../S/512.html#L229'>PVOID</a>             229 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   return ::InterlockedCompareExchangePointer(const_cast&lt;PVOID*&gt;(ptr),</span>
+<span class='curline'><a href='../S/512.html#L232'>PVOID</a>             232 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h inline PVOID FastInterlockedExchangePointer(volatile PVOID* ptr, PVOID newval) {</span>
+<span class='curline'><a href='../S/512.html#L233'>PVOID</a>             233 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   return ::InterlockedExchangePointer(const_cast&lt;PVOID*&gt;(ptr), newval);</span>
+<span class='curline'><a href='../S/512.html#L242'>PVOID</a>             242 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h PVOID _InterlockedCompareExchangePointer(volatile PVOID* ptr,</span>
+<span class='curline'><a href='../S/512.html#L243'>PVOID</a>             243 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h                                          PVOID newval, PVOID oldval);</span>
+<span class='curline'><a href='../S/512.html#L245'>PVOID</a>             245 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h inline PVOID FastInterlockedCompareExchangePointer(volatile PVOID* ptr,</span>
+<span class='curline'><a href='../S/512.html#L246'>PVOID</a>             246 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h                                                    PVOID newval, PVOID oldval) {</span>
+<span class='curline'><a href='../S/512.html#L247'>PVOID</a>             247 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   return _InterlockedCompareExchangePointer(const_cast&lt;PVOID*&gt;(ptr),</span>
+<span class='curline'><a href='../S/512.html#L251'>PVOID</a>             251 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h PVOID _InterlockedExchangePointer(volatile PVOID* ptr, PVOID newval);</span>
+<span class='curline'><a href='../S/512.html#L253'>PVOID</a>             253 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h inline PVOID FastInterlockedExchangePointer(volatile PVOID* ptr, PVOID newval) {</span>
+<span class='curline'><a href='../S/512.html#L254'>PVOID</a>             254 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   return _InterlockedExchangePointer(const_cast&lt;PVOID*&gt;(ptr), newval);</span>
+<span class='curline'><a href='../S/512.html#L265'>PVOID</a>             265 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h inline PVOID FastInterlockedCompareExchangePointer(volatile PVOID* ptr,</span>
+<span class='curline'><a href='../S/512.html#L266'>PVOID</a>             266 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h                                                    PVOID newval, PVOID oldval) {</span>
+<span class='curline'><a href='../S/512.html#L269'>PVOID</a>             269 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h inline PVOID FastInterlockedExchangePointer(volatile PVOID* ptr, PVOID newval) {</span>
+<span class='curline'><a href='../S/512.html#L283'>PVOID</a>             283 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   PVOID result = FastInterlockedCompareExchangePointer(</span>
+<span class='curline'><a href='../S/512.html#L284'>PVOID</a>             284 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h     reinterpret_cast&lt;volatile PVOID*&gt;(ptr),</span>
+<span class='curline'><a href='../S/512.html#L285'>PVOID</a>             285 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h     reinterpret_cast&lt;PVOID&gt;(new_value), reinterpret_cast&lt;PVOID&gt;(old_value));</span>
+<span class='curline'><a href='../S/512.html#L291'>PVOID</a>             291 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   PVOID result = FastInterlockedExchangePointer(</span>
+<span class='curline'><a href='../S/512.html#L292'>PVOID</a>             292 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h     reinterpret_cast&lt;volatile PVOID*&gt;(ptr),</span>
+<span class='curline'><a href='../S/512.html#L293'>PVOID</a>             293 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h     reinterpret_cast&lt;PVOID&gt;(new_value));</span>
+<span class='curline'><a href='../S/617.html#L64'>PVOID</a>              64 third_party/google-perftools-1.8.3/src/stacktrace_win32-inl.h     OUT PVOID *backtrace,</span>
+<span class='curline'><a href='../S/682.html#L88'>PVOID</a>              88 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c                                  PVOID user_context) {</span>
+<span class='curline'><a href='../S/685.html#L144'>PVOID</a>             144 third_party/google-perftools-1.8.3/src/windows/port.cc static void NTAPI on_tls_callback(HINSTANCE h, DWORD dwReason, PVOID pv) {</span>
+<span class='curline'><a href='../S/685.html#L159'>PVOID</a>             159 third_party/google-perftools-1.8.3/src/windows/port.cc     HINSTANCE h, DWORD dwReason, PVOID pv) = on_tls_callback;</span>
+<span class='curline'><a href='../S/685.html#L169'>PVOID</a>             169 third_party/google-perftools-1.8.3/src/windows/port.cc BOOL WINAPI DllMain(HINSTANCE h, DWORD dwReason, PVOID pv) {</span>
+</pre>
+</body>
+</html>

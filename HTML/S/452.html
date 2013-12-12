@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>src/verifier/propsym_parser.h</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/733.html'>src</a>/<a href='../files/737.html'>verifier</a>/propsym_parser.h</h2>
+<em class='comment'>/* [&lt;][&gt;][^][v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/123.html' title='Multiple included from 2 places.'>INCLUDED FROM</a></h2>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>/* A Bison parser, made by GNU Bison 2.3.  */</em>
+<a id='L2' name='L2' />
+<a id='L3' name='L3' /><em class='comment'>/* Skeleton interface for Bison's Yacc-like parsers in C</em>
+<a id='L4' name='L4' /><em class='comment'></em>
+<a id='L5' name='L5' /><em class='comment'>   Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004, 2005, 2006</em>
+<a id='L6' name='L6' /><em class='comment'>   Free Software Foundation, Inc.</em>
+<a id='L7' name='L7' /><em class='comment'></em>
+<a id='L8' name='L8' /><em class='comment'>   This program is free software; you can redistribute it and/or modify</em>
+<a id='L9' name='L9' /><em class='comment'>   it under the terms of the GNU General Public License as published by</em>
+<a id='L10' name='L10' /><em class='comment'>   the Free Software Foundation; either version 2, or (at your option)</em>
+<a id='L11' name='L11' /><em class='comment'>   any later version.</em>
+<a id='L12' name='L12' /><em class='comment'></em>
+<a id='L13' name='L13' /><em class='comment'>   This program is distributed in the hope that it will be useful,</em>
+<a id='L14' name='L14' /><em class='comment'>   but WITHOUT ANY WARRANTY; without even the implied warranty of</em>
+<a id='L15' name='L15' /><em class='comment'>   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</em>
+<a id='L16' name='L16' /><em class='comment'>   GNU General Public License for more details.</em>
+<a id='L17' name='L17' /><em class='comment'></em>
+<a id='L18' name='L18' /><em class='comment'>   You should have received a copy of the GNU General Public License</em>
+<a id='L19' name='L19' /><em class='comment'>   along with this program; if not, write to the Free Software</em>
+<a id='L20' name='L20' /><em class='comment'>   Foundation, Inc., 51 Franklin Street, Fifth Floor,</em>
+<a id='L21' name='L21' /><em class='comment'>   Boston, MA 02110-1301, USA.  */</em>
+<a id='L22' name='L22' />
+<a id='L23' name='L23' /><em class='comment'>/* As a special exception, you may create a larger work that contains</em>
+<a id='L24' name='L24' /><em class='comment'>   part or all of the Bison parser skeleton and distribute that work</em>
+<a id='L25' name='L25' /><em class='comment'>   under terms of your choice, so long as that work isn't itself a</em>
+<a id='L26' name='L26' /><em class='comment'>   parser generator using the skeleton or a modified version thereof</em>
+<a id='L27' name='L27' /><em class='comment'>   as a parser skeleton.  Alternatively, if you modify or redistribute</em>
+<a id='L28' name='L28' /><em class='comment'>   the parser skeleton itself, you may (at your option) remove this</em>
+<a id='L29' name='L29' /><em class='comment'>   special exception, which will cause the skeleton and the resulting</em>
+<a id='L30' name='L30' /><em class='comment'>   Bison output files to be licensed under the GNU General Public</em>
+<a id='L31' name='L31' /><em class='comment'>   License without this special exception.</em>
+<a id='L32' name='L32' /><em class='comment'></em>
+<a id='L33' name='L33' /><em class='comment'>   This special exception was added by the Free Software Foundation in</em>
+<a id='L34' name='L34' /><em class='comment'>   version 2.2 of Bison.  */</em>
+<a id='L35' name='L35' />
+<a id='L36' name='L36' /><em class='comment'>/* Tokens.  */</em>
+<a id='L37' name='L37' /><em class='sharp'>#ifndef</em> <a href='../D/3059.html' title='Multiple defined in 6 places.'>YYTOKENTYPE</a>
+<a id='L38' name='L38' /><em class='sharp'># define</em> <a href='../R/2741.html' title='Multiple refered from 6 places.'>YYTOKENTYPE</a>
+<a id='L39' name='L39' />   <em class='comment'>/* Put the tokens into the symbol table, so that GDB and other debuggers</em>
+<a id='L40' name='L40' /><em class='comment'>      know about them.  */</em>
+<a id='L41' name='L41' />   <strong class='reserved'>enum</strong> yytokentype <em class='brace'>{</em>
+<a id='L42' name='L42' />     <a href='../R/2847.html' title='Multiple refered from 8 places.'>_EOF</a> = 0,
+<a id='L43' name='L43' />     <a href='../R/2276.html' title='Multiple refered from 14 places.'>SYMBOL</a> = 258,
+<a id='L44' name='L44' />     <a href='../R/582.html' title='Multiple refered from 11 places.'>EQUAL</a> = 259,
+<a id='L45' name='L45' />     <a href='../R/1209.html' title='Multiple refered from 8 places.'>LINE_TERM</a> = 260,
+<a id='L46' name='L46' />     <a href='../R/2610.html' title='Multiple refered from 4 places.'>VERT</a> = 261,
+<a id='L47' name='L47' />     <a href='../R/2108.html' title='Multiple refered from 6 places.'>RULE_SEP</a> = 262,
+<a id='L48' name='L48' />     <a href='../R/837.html' title='Multiple refered from 7 places.'>HEAD</a> = 263,
+<a id='L49' name='L49' />     <a href='../R/723.html' title='Multiple refered from 4 places.'>GUARD</a> = 264,
+<a id='L50' name='L50' />     <a href='../S/453.html#L64' title='Refered from 64 in src/verifier/propsym_parser.y.'>BODY</a> = 265
+<a id='L51' name='L51' />   <em class='brace'>}</em>;
+<a id='L52' name='L52' /><em class='sharp'>#endif</em>
+<a id='L53' name='L53' /><em class='comment'>/* Tokens.  */</em>
+<a id='L54' name='L54' /><em class='sharp'>#define</em> <a href='../R/2847.html' title='Multiple refered from 8 places.'>_EOF</a> 0
+<a id='L55' name='L55' /><em class='sharp'>#define</em> <a href='../R/2276.html' title='Multiple refered from 14 places.'>SYMBOL</a> 258
+<a id='L56' name='L56' /><em class='sharp'>#define</em> <a href='../R/582.html' title='Multiple refered from 11 places.'>EQUAL</a> 259
+<a id='L57' name='L57' /><em class='sharp'>#define</em> <a href='../R/1209.html' title='Multiple refered from 8 places.'>LINE_TERM</a> 260
+<a id='L58' name='L58' /><em class='sharp'>#define</em> <a href='../R/2610.html' title='Multiple refered from 4 places.'>VERT</a> 261
+<a id='L59' name='L59' /><em class='sharp'>#define</em> <a href='../R/2108.html' title='Multiple refered from 6 places.'>RULE_SEP</a> 262
+<a id='L60' name='L60' /><em class='sharp'>#define</em> <a href='../R/837.html' title='Multiple refered from 7 places.'>HEAD</a> 263
+<a id='L61' name='L61' /><em class='sharp'>#define</em> <a href='../R/723.html' title='Multiple refered from 4 places.'>GUARD</a> 264
+<a id='L62' name='L62' /><em class='sharp'>#define</em> <a href='../S/453.html#L64' title='Refered from 64 in src/verifier/propsym_parser.y.'>BODY</a> 265
+<a id='L63' name='L63' />
+<a id='L64' name='L64' />
+<a id='L65' name='L65' />
+<a id='L66' name='L66' />
+<a id='L67' name='L67' /><em class='sharp'>#if</em> ! <strong class='reserved'>defined</strong> <a href='../D/3052.html' title='Multiple defined in 9 places.'>YYSTYPE</a> &amp;&amp; ! <strong class='reserved'>defined</strong> <a href='../D/3053.html' title='Multiple defined in 6 places.'>YYSTYPE_IS_DECLARED</a>
+<a id='L68' name='L68' /><strong class='reserved'>typedef</strong> <strong class='reserved'>union</strong> <a href='../D/3052.html' title='Multiple defined in 9 places.'>YYSTYPE</a>
+<a id='L69' name='L69' /><em class='sharp'>#line</em> 55 "propsym_parser.y"
+<a id='L70' name='L70' /><em class='brace'>{</em>
+<a id='L71' name='L71' />  <strong class='reserved'>int</strong> <a href='../Y/1289.html' title='Multiple used in 56 places.'>_int</a>;
+<a id='L72' name='L72' />  <strong class='reserved'>char</strong> *<a href='../Y/5114.html' title='Multiple used in 121 places.'>str</a>;
+<a id='L73' name='L73' />  <strong class='reserved'>struct</strong> <a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5622.html' title='Multiple used in 63 places.'>vector</a>;
+<a id='L74' name='L74' />  <strong class='reserved'>struct</strong> <a href='../D/2623.html' title='Multiple defined in 2 places.'>SymbolDefinition</a> *<a href='../Y/1998.html' title='Multiple used in 13 places.'>definition</a>;
+<a id='L75' name='L75' /><em class='brace'>}</em>
+<a id='L76' name='L76' /><em class='comment'>/* Line 1529 of yacc.c.  */</em>
+<a id='L77' name='L77' /><em class='sharp'>#line</em> 78 "propsym_parser.h"
+<a id='L78' name='L78' />        <a href='../R/2736.html' title='Multiple refered from 99 places.'>YYSTYPE</a>;
+<a id='L79' name='L79' /><em class='sharp'># define</em> yystype <a href='../D/3052.html' title='Multiple defined in 9 places.'>YYSTYPE</a> <em class='comment'>/* obsolescent; will be withdrawn */</em>
+<a id='L80' name='L80' /><em class='sharp'># define</em> <a href='../R/2737.html' title='Multiple refered from 6 places.'>YYSTYPE_IS_DECLARED</a> 1
+<a id='L81' name='L81' /><em class='sharp'># define</em> <a href='../R/2738.html' title='Multiple refered from 3 places.'>YYSTYPE_IS_TRIVIAL</a> 1
+<a id='L82' name='L82' /><em class='sharp'>#endif</em>
+<a id='L83' name='L83' />
+<a id='L84' name='L84' />
+<a id='L85' name='L85' />
+<a id='L86' name='L86' /><em class='sharp'>#if</em> ! <strong class='reserved'>defined</strong> <a href='../D/3027.html' title='Multiple defined in 12 places.'>YYLTYPE</a> &amp;&amp; ! <strong class='reserved'>defined</strong> <a href='../D/3028.html' title='Multiple defined in 6 places.'>YYLTYPE_IS_DECLARED</a>
+<a id='L87' name='L87' /><strong class='reserved'>typedef</strong> <strong class='reserved'>struct</strong> <a href='../R/2718.html' title='Multiple refered from 108 places.'>YYLTYPE</a>
+<a id='L88' name='L88' /><em class='brace'>{</em>
+<a id='L89' name='L89' />  <strong class='reserved'>int</strong> <a href='../Y/2381.html' title='Multiple used in 18 places.'>first_line</a>;
+<a id='L90' name='L90' />  <strong class='reserved'>int</strong> <a href='../Y/2378.html' title='Multiple used in 18 places.'>first_column</a>;
+<a id='L91' name='L91' />  <strong class='reserved'>int</strong> <a href='../Y/3187.html' title='Multiple used in 21 places.'>last_line</a>;
+<a id='L92' name='L92' />  <strong class='reserved'>int</strong> <a href='../Y/3181.html' title='Multiple used in 21 places.'>last_column</a>;
+<a id='L93' name='L93' /><em class='brace'>}</em> <a href='../R/2718.html' title='Multiple refered from 108 places.'>YYLTYPE</a>;
+<a id='L94' name='L94' /><em class='sharp'># define</em> yyltype <a href='../D/3027.html' title='Multiple defined in 12 places.'>YYLTYPE</a> <em class='comment'>/* obsolescent; will be withdrawn */</em>
+<a id='L95' name='L95' /><em class='sharp'># define</em> <a href='../R/2719.html' title='Multiple refered from 6 places.'>YYLTYPE_IS_DECLARED</a> 1
+<a id='L96' name='L96' /><em class='sharp'># define</em> <a href='../R/2720.html' title='Multiple refered from 9 places.'>YYLTYPE_IS_TRIVIAL</a> 1
+<a id='L97' name='L97' /><em class='sharp'>#endif</em>
+<a id='L98' name='L98' />
+<a id='L99' name='L99' />
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^][v]<a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

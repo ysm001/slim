@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>propositional_exp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/445.html#L80'>propositional_exp</a>   80 src/verifier/nc_parser.y %type &lt;PLFormula&gt; propositional_exp;</span>
+<span class='curline'><a href='../S/445.html#L147'>propositional_exp</a>  147 src/verifier/nc_parser.y   COLON_COLON propositional_exp IMPLICATION next {</span>
+<span class='curline'><a href='../S/445.html#L159'>propositional_exp</a>  159 src/verifier/nc_parser.y propositional_exp:</span>
+<span class='curline'><a href='../S/445.html#L160'>propositional_exp</a>  160 src/verifier/nc_parser.y   propositional_term AND propositional_exp { $$ = and_node_make($1, $3); }</span>
+<span class='curline'><a href='../S/445.html#L161'>propositional_exp</a>  161 src/verifier/nc_parser.y | propositional_term OR propositional_exp { $$ = or_node_make($1, $3); }</span>
+<span class='curline'><a href='../S/445.html#L171'>propositional_exp</a>  171 src/verifier/nc_parser.y   LPAREN propositional_exp RPAREN { $$ = $2; }</span>
+</pre>
+</body>
+</html>

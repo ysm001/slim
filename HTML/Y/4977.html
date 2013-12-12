@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>srcvec</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/325.html#L64'>srcvec</a>             64 src/ext/integer.c   Vector *srcvec;</span>
+<span class='curline'><a href='../S/325.html#L70'>srcvec</a>             70 src/ext/integer.c   srcvec = vec_make(16);</span>
+<span class='curline'><a href='../S/325.html#L71'>srcvec</a>             71 src/ext/integer.c   vec_push(srcvec, (LmnWord)LinkObj_make(a2, t2));</span>
+<span class='curline'><a href='../S/325.html#L78'>srcvec</a>             78 src/ext/integer.c     lmn_mem_copy_ground(mem, srcvec, &amp;dstlovec, &amp;atommap);</span>
+<span class='curline'><a href='../S/325.html#L92'>srcvec</a>             92 src/ext/integer.c   lmn_mem_delete_ground(mem, srcvec);</span>
+<span class='curline'><a href='../S/325.html#L94'>srcvec</a>             94 src/ext/integer.c   for (i = 0; i &lt; vec_num(srcvec); i++) LMN_FREE(vec_get(srcvec, i));</span>
+<span class='curline'><a href='../S/325.html#L95'>srcvec</a>             95 src/ext/integer.c   vec_free(srcvec);</span>
+<span class='curline'><a href='../S/344.html#L520'>srcvec</a>            520 src/interpret_generated.c     Vector *srcvec;</span>
+<span class='curline'><a href='../S/344.html#L525'>srcvec</a>            525 src/interpret_generated.c     srcvec = links_from_idxs((Vector *)wt(rc, targ1), rc_warry(rc));</span>
+<span class='curline'><a href='../S/344.html#L526'>srcvec</a>            526 src/interpret_generated.c     b = lmn_mem_is_ground(srcvec, avovec, &amp;natoms);</span>
+<span class='curline'><a href='../S/344.html#L527'>srcvec</a>            527 src/interpret_generated.c     free_links(srcvec);</span>
+<span class='curline'><a href='../S/344.html#L678'>srcvec</a>            678 src/interpret_generated.c     Vector *srcvec = links_from_idxs((Vector*)wt(rc, targ0), rc_warry(rc));</span>
+<span class='curline'><a href='../S/344.html#L680'>srcvec</a>            680 src/interpret_generated.c     BOOL same = lmn_mem_cmp_ground(srcvec, dstvec);</span>
+<span class='curline'><a href='../S/344.html#L681'>srcvec</a>            681 src/interpret_generated.c     free_links(srcvec);</span>
+<span class='curline'><a href='../S/344.html#L693'>srcvec</a>            693 src/interpret_generated.c     Vector *srcvec = links_from_idxs((Vector*)wt(rc, targ0), rc_warry(rc));</span>
+<span class='curline'><a href='../S/344.html#L695'>srcvec</a>            695 src/interpret_generated.c     BOOL same = lmn_mem_cmp_ground(srcvec, dstvec);</span>
+<span class='curline'><a href='../S/344.html#L696'>srcvec</a>            696 src/interpret_generated.c     free_links(srcvec);</span>
+<span class='curline'><a href='../S/344.html#L710'>srcvec</a>            710 src/interpret_generated.c     Vector *srcvec = links_from_idxs((Vector*)wt(rc, targ1), rc_warry(rc));</span>
+<span class='curline'><a href='../S/344.html#L713'>srcvec</a>            713 src/interpret_generated.c     lmn_mem_copy_ground((LmnMembrane*)wt(rc, targ2), srcvec, &amp;dstlovec, &amp;atommap);</span>
+<span class='curline'><a href='../S/344.html#L714'>srcvec</a>            714 src/interpret_generated.c     free_links(srcvec);</span>
+<span class='curline'><a href='../S/344.html#L729'>srcvec</a>            729 src/interpret_generated.c     Vector *srcvec = links_from_idxs((Vector*)wt(rc, targ0), rc_warry(rc));</span>
+<span class='curline'><a href='../S/344.html#L730'>srcvec</a>            730 src/interpret_generated.c     lmn_mem_remove_ground((LmnMembrane*)wt(rc, targ1), srcvec);</span>
+<span class='curline'><a href='../S/344.html#L731'>srcvec</a>            731 src/interpret_generated.c     free_links(srcvec);</span>
+<span class='curline'><a href='../S/344.html#L739'>srcvec</a>            739 src/interpret_generated.c     Vector *srcvec = links_from_idxs((Vector*)wt(rc, targ0), rc_warry(rc));</span>
+<span class='curline'><a href='../S/344.html#L740'>srcvec</a>            740 src/interpret_generated.c     lmn_mem_free_ground(srcvec);</span>
+<span class='curline'><a href='../S/344.html#L741'>srcvec</a>            741 src/interpret_generated.c     free_links(srcvec);</span>
+<span class='curline'><a href='../S/357.html#L1003'>srcvec</a>           1003 src/membrane.c                          Vector *srcvec,</span>
+<span class='curline'><a href='../S/357.html#L1019'>srcvec</a>           1019 src/membrane.c   for (i = 0; i &lt; vec_num(srcvec); i++) {</span>
+<span class='curline'><a href='../S/357.html#L1020'>srcvec</a>           1020 src/membrane.c     LinkObj l = (LinkObj)vec_get(srcvec, i);</span>
+<span class='curline'><a href='../S/357.html#L1085'>srcvec</a>           1085 src/membrane.c BOOL lmn_mem_cmp_ground(const Vector *srcvec, const Vector *dstvec)</span>
+<span class='curline'><a href='../S/357.html#L1099'>srcvec</a>           1099 src/membrane.c   start1 = LinkObj_make(((LinkObj)vec_get(srcvec,0))-&gt;ap,</span>
+<span class='curline'><a href='../S/357.html#L1100'>srcvec</a>           1100 src/membrane.c                         ((LinkObj)vec_get(srcvec,0))-&gt;pos);</span>
+<span class='curline'><a href='../S/357.html#L1126'>srcvec</a>           1126 src/membrane.c     for (i = 0; i &lt; srcvec-&gt;num; i++) {</span>
+<span class='curline'><a href='../S/357.html#L1127'>srcvec</a>           1127 src/membrane.c       LinkObj lobj = (LinkObj)vec_get(srcvec, i);</span>
+<span class='curline'><a href='../S/357.html#L1222'>srcvec</a>           1222 src/membrane.c BOOL lmn_mem_is_ground(Vector *srcvec, Vector *avovec, unsigned long *natoms)</span>
+<span class='curline'><a href='../S/357.html#L1227'>srcvec</a>           1227 src/membrane.c   b = ground_atoms(srcvec, avovec, &amp;atoms, natoms);</span>
+<span class='curline'><a href='../S/357.html#L1248'>srcvec</a>           1248 src/membrane.c BOOL ground_atoms(Vector        *srcvec,</span>
+<span class='curline'><a href='../S/357.html#L1269'>srcvec</a>           1269 src/membrane.c     LinkObj l = (LinkObj)vec_get(srcvec, 0);</span>
+<span class='curline'><a href='../S/357.html#L1306'>srcvec</a>           1306 src/membrane.c         for (i = 0; i &lt; vec_num(srcvec); i++) {</span>
+<span class='curline'><a href='../S/357.html#L1307'>srcvec</a>           1307 src/membrane.c           LinkObj a = (LinkObj)vec_get(srcvec, i);</span>
+<span class='curline'><a href='../S/357.html#L1342'>srcvec</a>           1342 src/membrane.c   result = (reached_root_count == vec_num(srcvec));</span>
+<span class='curline'><a href='../S/357.html#L1363'>srcvec</a>           1363 src/membrane.c BOOL ground_atoms_old(Vector *srcvec,</span>
+<span class='curline'><a href='../S/357.html#L1382'>srcvec</a>           1382 src/membrane.c   for (i = 0; i &lt; vec_num(srcvec); i++) {</span>
+<span class='curline'><a href='../S/357.html#L1383'>srcvec</a>           1383 src/membrane.c     LinkObj l = (LinkObj)vec_get(srcvec, i);</span>
+<span class='curline'><a href='../S/357.html#L1459'>srcvec</a>           1459 src/membrane.c   if (ok &amp;&amp; n_reach_root == vec_num(srcvec)) {</span>
+<span class='curline'><a href='../S/357.html#L1482'>srcvec</a>           1482 src/membrane.c void lmn_mem_remove_ground(LmnMembrane *mem, Vector *srcvec)</span>
+<span class='curline'><a href='../S/357.html#L1487'>srcvec</a>           1487 src/membrane.c   ground_atoms(srcvec, NULL, &amp;atoms, &amp;t);</span>
+<span class='curline'><a href='../S/357.html#L1493'>srcvec</a>           1493 src/membrane.c   for (i = 0; i &lt; vec_num(srcvec); i++) {</span>
+<span class='curline'><a href='../S/357.html#L1494'>srcvec</a>           1494 src/membrane.c     LinkObj l = (LinkObj)vec_get(srcvec, i);</span>
+<span class='curline'><a href='../S/357.html#L1512'>srcvec</a>           1512 src/membrane.c void lmn_mem_free_ground(Vector *srcvec)</span>
+<span class='curline'><a href='../S/357.html#L1518'>srcvec</a>           1518 src/membrane.c   if (ground_atoms(srcvec, NULL, &amp;atoms, &amp;t)) {</span>
+<span class='curline'><a href='../S/357.html#L1525'>srcvec</a>           1525 src/membrane.c   for (i = 0; i &lt; vec_num(srcvec); i++) {</span>
+<span class='curline'><a href='../S/357.html#L1526'>srcvec</a>           1526 src/membrane.c     LinkObj l = (LinkObj)vec_get(srcvec, i);</span>
+<span class='curline'><a href='../S/357.html#L1531'>srcvec</a>           1531 src/membrane.c void lmn_mem_delete_ground(LmnMembrane *mem, Vector *srcvec)</span>
+<span class='curline'><a href='../S/357.html#L1536'>srcvec</a>           1536 src/membrane.c   if (!ground_atoms(srcvec, NULL, &amp;atoms, &amp;t)) {</span>
+<span class='curline'><a href='../S/357.html#L1545'>srcvec</a>           1545 src/membrane.c   for (i = 0; i &lt; vec_num(srcvec); i++) {</span>
+<span class='curline'><a href='../S/357.html#L1546'>srcvec</a>           1546 src/membrane.c     LinkObj l = (LinkObj)vec_get(srcvec, i);</span>
+<span class='curline'><a href='../S/358.html#L276'>srcvec</a>            276 src/membrane.h BOOL lmn_mem_cmp_ground(const Vector *srcvec, const Vector *dstvec);</span>
+<span class='curline'><a href='../S/358.html#L277'>srcvec</a>            277 src/membrane.h BOOL lmn_mem_is_ground(Vector *srcvec, Vector *avovec, unsigned long *natoms);</span>
+<span class='curline'><a href='../S/358.html#L279'>srcvec</a>            279 src/membrane.h                          Vector *srcvec,</span>
+<span class='curline'><a href='../S/358.html#L282'>srcvec</a>            282 src/membrane.h void lmn_mem_remove_ground(LmnMembrane *mem, Vector *srcvec);</span>
+<span class='curline'><a href='../S/358.html#L283'>srcvec</a>            283 src/membrane.h void lmn_mem_free_ground(Vector *srcvec);</span>
+<span class='curline'><a href='../S/358.html#L284'>srcvec</a>            284 src/membrane.h void lmn_mem_delete_ground(LmnMembrane *mem, Vector *srcvec);</span>
+<span class='curline'><a href='../S/358.html#L285'>srcvec</a>            285 src/membrane.h BOOL ground_atoms(Vector *srcvec,</span>
+<span class='curline'><a href='../S/358.html#L289'>srcvec</a>            289 src/membrane.h BOOL ground_atoms_old(Vector *srcvec,</span>
+<span class='curline'><a href='../S/384.html#L1824'>srcvec</a>           1824 src/task.c           Vector *srcvec, *avovec;</span>
+<span class='curline'><a href='../S/384.html#L1833'>srcvec</a>           1833 src/task.c           srcvec = links_from_idxs((Vector *)wt(rc, srclisti), rc_warry(rc));</span>
+<span class='curline'><a href='../S/384.html#L1839'>srcvec</a>           1839 src/task.c             b = ground_atoms(srcvec, avovec, &amp;atoms, &amp;natoms);</span>
+<span class='curline'><a href='../S/384.html#L1841'>srcvec</a>           1841 src/task.c             free_links(srcvec);</span>
+<span class='curline'><a href='../S/384.html#L1859'>srcvec</a>           1859 src/task.c             b = lmn_mem_is_ground(srcvec, avovec, &amp;natoms);</span>
+<span class='curline'><a href='../S/384.html#L1861'>srcvec</a>           1861 src/task.c             free_links(srcvec);</span>
+<span class='curline'><a href='../S/384.html#L1906'>srcvec</a>           1906 src/task.c             Vector *srcvec;</span>
+<span class='curline'><a href='../S/384.html#L1909'>srcvec</a>           1909 src/task.c             srcvec = (Vector *)wt(rc, n);</span>
+<span class='curline'><a href='../S/384.html#L1910'>srcvec</a>           1910 src/task.c             attr = (LmnLinkAttr)at(rc, vec_get(srcvec, 0));</span>
+<span class='curline'><a href='../S/384.html#L1918'>srcvec</a>           1918 src/task.c                   char *s = int_to_str(wt(rc, vec_get(srcvec, 0)));</span>
+<span class='curline'><a href='../S/384.html#L1926'>srcvec</a>           1926 src/task.c                   sprintf(buf, "%f", *(double*)wt(rc, vec_get(srcvec, 0)));</span>
+<span class='curline'><a href='../S/384.html#L1936'>srcvec</a>           1936 src/task.c                           LMN_HL_ID(LMN_HL_ATOM_ROOT_HL(LMN_SATOM(wt(rc, vec_get(srcvec, 0))))));</span>
+<span class='curline'><a href='../S/384.html#L1942'>srcvec</a>           1942 src/task.c                               (LmnWord)wt(rc, vec_get(srcvec, 0)),</span>
+<span class='curline'><a href='../S/384.html#L1943'>srcvec</a>           1943 src/task.c                               (LmnLinkAttr)at(rc, vec_get(srcvec, 0)));</span>
+<span class='curline'><a href='../S/384.html#L1947'>srcvec</a>           1947 src/task.c                             (LmnWord)wt(rc, vec_get(srcvec, 0)),</span>
+<span class='curline'><a href='../S/384.html#L1948'>srcvec</a>           1948 src/task.c                             (LmnLinkAttr)at(rc, vec_get(srcvec, 0)));</span>
+<span class='curline'><a href='../S/384.html#L2104'>srcvec</a>           2104 src/task.c           Vector *srcvec, *dstvec;</span>
+<span class='curline'><a href='../S/384.html#L2110'>srcvec</a>           2110 src/task.c           srcvec = links_from_idxs((Vector *)wt(rc, srci), rc_warry(rc));</span>
+<span class='curline'><a href='../S/384.html#L2113'>srcvec</a>           2113 src/task.c           ret_flag = lmn_mem_cmp_ground(srcvec, dstvec);</span>
+<span class='curline'><a href='../S/384.html#L2115'>srcvec</a>           2115 src/task.c           free_links(srcvec);</span>
+<span class='curline'><a href='../S/384.html#L2127'>srcvec</a>           2127 src/task.c           Vector *srcvec, *dstlovec, *retvec; /* 変数番号のリスト */</span>
+<span class='curline'><a href='../S/384.html#L2135'>srcvec</a>           2135 src/task.c           srcvec = links_from_idxs((Vector *)wt(rc, srclist), rc_warry(rc));</span>
+<span class='curline'><a href='../S/384.html#L2137'>srcvec</a>           2137 src/task.c                               srcvec,</span>
+<span class='curline'><a href='../S/384.html#L2140'>srcvec</a>           2140 src/task.c           free_links(srcvec);</span>
+<span class='curline'><a href='../S/384.html#L2160'>srcvec</a>           2160 src/task.c           Vector *srcvec; /* 変数番号のリスト */</span>
+<span class='curline'><a href='../S/384.html#L2169'>srcvec</a>           2169 src/task.c           srcvec = links_from_idxs((Vector *)wt(rc, listi), rc_warry(rc));</span>
+<span class='curline'><a href='../S/384.html#L2173'>srcvec</a>           2173 src/task.c             lmn_mem_remove_ground((LmnMembrane *)wt(rc, memi), srcvec);</span>
+<span class='curline'><a href='../S/384.html#L2176'>srcvec</a>           2176 src/task.c             lmn_mem_free_ground(srcvec);</span>
+<span class='curline'><a href='../S/384.html#L2180'>srcvec</a>           2180 src/task.c           free_links(srcvec);</span>
+<span class='curline'><a href='../S/384.html#L3743'>srcvec</a>           3743 src/task.c           Vector *srcvec, *dstlovec, *retvec; /* 変数番号のリスト */</span>
+<span class='curline'><a href='../S/384.html#L3751'>srcvec</a>           3751 src/task.c           srcvec = links_from_idxs((Vector *)wt(rc, srclist), rc_warry(rc));</span>
+<span class='curline'><a href='../S/384.html#L3755'>srcvec</a>           3755 src/task.c                                 srcvec,</span>
+<span class='curline'><a href='../S/384.html#L3758'>srcvec</a>           3758 src/task.c           free_links(srcvec);</span>
+<span class='curline'><a href='../S/384.html#L3778'>srcvec</a>           3778 src/task.c           Vector *srcvec; /* 変数番号のリスト */</span>
+<span class='curline'><a href='../S/384.html#L3786'>srcvec</a>           3786 src/task.c           srcvec = links_from_idxs((Vector *)wt(rc, listi), rc_warry(rc));</span>
+<span class='curline'><a href='../S/384.html#L3790'>srcvec</a>           3790 src/task.c              dmem_root_remove_ground(RC_ND_MEM_DELTA_ROOT(rc), (LmnMembrane *)wt(rc, memi), srcvec);</span>
+<span class='curline'><a href='../S/384.html#L3798'>srcvec</a>           3798 src/task.c           free_links(srcvec);</span>
+<span class='curline'><a href='../S/417.html#L839'>srcvec</a>            839 src/verifier/delta_membrane.c                              Vector *srcvec)</span>
+<span class='curline'><a href='../S/417.html#L844'>srcvec</a>            844 src/verifier/delta_membrane.c   ground_atoms(srcvec, NULL, &amp;atoms, &amp;t);</span>
+<span class='curline'><a href='../S/417.html#L853'>srcvec</a>            853 src/verifier/delta_membrane.c   for (i = 0; i &lt; vec_num(srcvec); i++) {</span>
+<span class='curline'><a href='../S/417.html#L854'>srcvec</a>            854 src/verifier/delta_membrane.c     LinkObj l = (LinkObj)vec_get(srcvec, i);</span>
+<span class='curline'><a href='../S/417.html#L874'>srcvec</a>            874 src/verifier/delta_membrane.c void dmem_root_free_ground(struct MemDeltaRoot *root_d, Vector *srcvec)</span>
+<span class='curline'><a href='../S/417.html#L879'>srcvec</a>            879 src/verifier/delta_membrane.c   ground_atoms(srcvec, NULL, &amp;atoms, &amp;t);</span>
+<span class='curline'><a href='../S/417.html#L888'>srcvec</a>            888 src/verifier/delta_membrane.c                            Vector *srcvec,</span>
+<span class='curline'><a href='../S/417.html#L907'>srcvec</a>            907 src/verifier/delta_membrane.c   for (i = 0; i &lt; vec_num(srcvec); i++) {</span>
+<span class='curline'><a href='../S/417.html#L908'>srcvec</a>            908 src/verifier/delta_membrane.c     LinkObj l = (LinkObj)vec_get(srcvec, i);</span>
+<span class='curline'><a href='../S/418.html#L170'>srcvec</a>            170 src/verifier/delta_membrane.h                            Vector *srcvec,</span>
+<span class='curline'><a href='../S/418.html#L173'>srcvec</a>            173 src/verifier/delta_membrane.h void dmem_root_free_ground(struct MemDeltaRoot *root_d, Vector *srcvec);</span>
+<span class='curline'><a href='../S/418.html#L174'>srcvec</a>            174 src/verifier/delta_membrane.h void dmem_root_remove_ground(struct MemDeltaRoot *root_d, LmnMembrane *mem, Vector *srcvec);</span>
+</pre>
+</body>
+</html>

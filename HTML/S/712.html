@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>third_party/zdelta-2.1/infutil.h</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/738.html'>third_party</a>/<a href='../files/747.html'>zdelta-2.1</a>/infutil.h</h2>
+<em class='comment'>/* [&lt;][&gt;][^][v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/318.html' title='Multiple included from 4 places.'>INCLUDED FROM</a></h2>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>/* infutil.h -- types and macros common to blocks and codes</em>
+<a id='L2' name='L2' /><em class='comment'> * Copyright (C) 1995-1998 Mark Adler</em>
+<a id='L3' name='L3' /><em class='comment'> * For conditions of distribution and use, see copyright notice in zlib.h </em>
+<a id='L4' name='L4' /><em class='comment'> */</em>
+<a id='L5' name='L5' />
+<a id='L6' name='L6' /><em class='comment'>/* WARNING: this file should *not* be used by applications. It is</em>
+<a id='L7' name='L7' /><em class='comment'>   part of the implementation of the compression library and is</em>
+<a id='L8' name='L8' /><em class='comment'>   subject to change. Applications should only use zdlib.h.</em>
+<a id='L9' name='L9' /><em class='comment'>         </em>
+<a id='L10' name='L10' /><em class='comment'>   file modified by Dimitre Trendafilov (2002)   </em>
+<a id='L11' name='L11' /><em class='comment'> */</em>
+<a id='L12' name='L12' />
+<a id='L13' name='L13' /><em class='comment'>/* zdelta:</em>
+<a id='L14' name='L14' /><em class='comment'> *</em>
+<a id='L15' name='L15' /><em class='comment'> * modified: </em>
+<a id='L16' name='L16' /><em class='comment'> *          struct inflate_block_state</em>
+<a id='L17' name='L17' /><em class='comment'> * added:</em>
+<a id='L18' name='L18' /><em class='comment'> *          --</em>
+<a id='L19' name='L19' /><em class='comment'> * removed:</em>
+<a id='L20' name='L20' /><em class='comment'> *          --</em>
+<a id='L21' name='L21' /><em class='comment'> */</em>
+<a id='L22' name='L22' /><em class='sharp'>#ifndef</em> <a href='../S/712.html#L23' title='Defined at 23 in third_party/zdelta-2.1/infutil.h.'>_INFUTIL_H</a>
+<a id='L23' name='L23' /><em class='sharp'>#define</em> <a href='../S/712.html#L22' title='Refered from 22 in third_party/zdelta-2.1/infutil.h.'>_INFUTIL_H</a>
+<a id='L24' name='L24' />
+<a id='L25' name='L25' /><em class='sharp'>#include</em> &lt;stdio.h&gt;
+<a id='L26' name='L26' />
+<a id='L27' name='L27' /><strong class='reserved'>typedef</strong> <strong class='reserved'>enum</strong> <em class='brace'>{</em>
+<a id='L28' name='L28' />      <a href='../R/2477.html' title='Multiple refered from 21 places.'>TYPE</a>,     <em class='comment'>/* get type bits (3, including end bit) */</em>
+<a id='L29' name='L29' />      <a href='../R/1198.html' title='Multiple refered from 2 places.'>LENS</a>,     <em class='comment'>/* get lengths for stored */</em>
+<a id='L30' name='L30' />      <a href='../R/2261.html' title='Multiple refered from 2 places.'>STORED</a>,   <em class='comment'>/* processing stored block */</em>
+<a id='L31' name='L31' />      <a href='../R/2364.html' title='Multiple refered from 2 places.'>TABLE</a>,    <em class='comment'>/* get table lengths */</em>
+<a id='L32' name='L32' />      <a href='../R/284.html' title='Multiple refered from 3 places.'>BTREE</a>,    <em class='comment'>/* get bit lengths tree for a dynamic block */</em>
+<a id='L33' name='L33' />      <a href='../R/495.html' title='Multiple refered from 3 places.'>DTREE</a>,    <em class='comment'>/* get length, distance trees for a dynamic block */</em>
+<a id='L34' name='L34' />      <a href='../R/339.html' title='Multiple refered from 4 places.'>CODES</a>,    <em class='comment'>/* processing fixed or dynamic block */</em>
+<a id='L35' name='L35' />      <a href='../R/494.html' title='Multiple refered from 4 places.'>DRY</a>,      <em class='comment'>/* output remaining window bytes */</em>
+<a id='L36' name='L36' />      <a href='../R/489.html' title='Multiple refered from 5 places.'>DONE</a>,     <em class='comment'>/* finished last block, done */</em>
+<a id='L37' name='L37' />      <a href='../R/199.html' title='Multiple refered from 15 places.'>BAD</a><em class='brace'>}</em>      <em class='comment'>/* got a data error--stuck here */</em>
+<a id='L38' name='L38' /><a href='../S/712.html#L44' title='Refered from 44 in third_party/zdelta-2.1/infutil.h.'>inflate_block_mode</a>;
+<a id='L39' name='L39' />
+<a id='L40' name='L40' /><em class='comment'>/* inflate blocks semi-private state */</em>
+<a id='L41' name='L41' /><strong class='reserved'>struct</strong> <a href='../R/3596.html' title='Multiple refered from 3 places.'>inflate_blocks_state</a> <em class='brace'>{</em>
+<a id='L42' name='L42' />
+<a id='L43' name='L43' />  <em class='comment'>/* mode */</em>
+<a id='L44' name='L44' />  <a href='../S/712.html#L38' title='Defined at 38 in third_party/zdelta-2.1/infutil.h.'>inflate_block_mode</a>  <a href='../Y/3574.html' title='Multiple used in 97 places.'>mode</a>;     <em class='comment'>/* current inflate_block mode */</em>
+<a id='L45' name='L45' />
+<a id='L46' name='L46' />  <em class='comment'>/* mode dependent information */</em>
+<a id='L47' name='L47' />  <strong class='reserved'>union</strong> <em class='brace'>{</em>
+<a id='L48' name='L48' />    <a href='../D/5483.html' title='Multiple defined in 2 places.'>uInt</a> <a href='../Y/3202.html' title='Multiple used in 7 places.'>left</a>;          <em class='comment'>/* if STORED, bytes left to copy */</em>
+<a id='L49' name='L49' />    <strong class='reserved'>struct</strong> <em class='brace'>{</em>
+<a id='L50' name='L50' />      <a href='../D/5483.html' title='Multiple defined in 2 places.'>uInt</a> <a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>;               <em class='comment'>/* table lengths (14 bits) */</em>
+<a id='L51' name='L51' />      <a href='../D/5483.html' title='Multiple defined in 2 places.'>uInt</a> <a href='../Y/2798.html' title='Multiple used in 87 places.'>index</a>;               <em class='comment'>/* index into blens (or border) */</em>
+<a id='L52' name='L52' />      <a href='../D/5484.html' title='Multiple defined in 2 places.'>uIntf</a> *<a href='../Y/1635.html' title='Multiple used in 14 places.'>blens</a>;             <em class='comment'>/* bit lengths of codes */</em>
+<a id='L53' name='L53' />      <a href='../D/5483.html' title='Multiple defined in 2 places.'>uInt</a> <a href='../Y/1597.html' title='Multiple used in 8 places.'>bb</a>;                  <em class='comment'>/* bit length tree depth */</em>
+<a id='L54' name='L54' />      <a href='../S/710.html#L27' title='Defined at 27 in third_party/zdelta-2.1/inftrees.h.'>inflate_huft</a> *<a href='../Y/5309.html' title='Multiple used in 7 places.'>tb</a>;         <em class='comment'>/* bit length decoding tree */</em>
+<a id='L55' name='L55' />    <em class='brace'>}</em> <a href='../Y/5468.html' title='Multiple used in 33 places.'>trees</a>;            <em class='comment'>/* if DTREE, decoding info for trees */</em>
+<a id='L56' name='L56' />    <strong class='reserved'>struct</strong> <em class='brace'>{</em>
+<a id='L57' name='L57' />      <a href='../S/704.html#L26' title='Defined at 26 in third_party/zdelta-2.1/infcodes.h.'>inflate_codes_statef</a> 
+<a id='L58' name='L58' />         *<a href='../Y/1827.html' title='Multiple used in 7 places.'>codes</a>;
+<a id='L59' name='L59' />    <em class='brace'>}</em> <a href='../Y/1993.html' title='Multiple used in 7 places.'>decode</a>;           <em class='comment'>/* if CODES, current state */</em>
+<a id='L60' name='L60' />  <em class='brace'>}</em> <a href='../Y/5151.html' title='Multiple used in 87 places.'>sub</a>;                <em class='comment'>/* submode */</em>
+<a id='L61' name='L61' />  <a href='../D/5483.html' title='Multiple defined in 2 places.'>uInt</a> <a href='../Y/3180.html' title='Multiple used in 25 places.'>last</a>;            <em class='comment'>/* true if this block is the last block */</em>
+<a id='L62' name='L62' />
+<a id='L63' name='L63' />  <em class='comment'>/* mode independent information */</em>
+<a id='L64' name='L64' />  <a href='../D/5483.html' title='Multiple defined in 2 places.'>uInt</a> <a href='../Y/1626.html' title='Multiple used in 4 places.'>bitk</a>;            <em class='comment'>/* bits in bit buffer */</em>
+<a id='L65' name='L65' />  <a href='../D/5485.html' title='Multiple defined in 2 places.'>uLong</a> <a href='../Y/1624.html' title='Multiple used in 4 places.'>bitb</a>;           <em class='comment'>/* bit buffer */</em>
+<a id='L66' name='L66' />  <a href='../S/710.html#L27' title='Defined at 27 in third_party/zdelta-2.1/inftrees.h.'>inflate_huft</a> *<a href='../Y/2731.html' title='Multiple used in 6 places.'>hufts</a>;  <em class='comment'>/* single malloc for tree space */</em>
+<a id='L67' name='L67' />  <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a> *<a href='../Y/5685.html' title='Multiple used in 41 places.'>window</a>;        <em class='comment'>/* sliding window */</em>
+<a id='L68' name='L68' />  <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a> *<a href='../S/521.html#L388' title='Defined at 388 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>end</a>;           <em class='comment'>/* one byte after sliding window */</em>
+<a id='L69' name='L69' />  <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a> *<a href='../S/686.html#L364' title='Defined at 364 in third_party/google-perftools-1.8.3/src/windows/port.h.'>read</a>;          <em class='comment'>/* window read pointer */</em>
+<a id='L70' name='L70' />  <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a> *<a href='../S/686.html#L367' title='Defined at 367 in third_party/google-perftools-1.8.3/src/windows/port.h.'>write</a>;         <em class='comment'>/* window write pointer */</em>
+<a id='L71' name='L71' />  <a href='../Y/1766.html' title='Multiple used in 4 places.'>check_func</a> <a href='../Y/1773.html' title='Multiple used in 8 places.'>checkfn</a>;   <em class='comment'>/* check function */</em>
+<a id='L72' name='L72' />  <a href='../D/5485.html' title='Multiple defined in 2 places.'>uLong</a> <a href='../Y/1765.html' title='Multiple used in 82 places.'>check</a>;          <em class='comment'>/* check on output */</em>
+<a id='L73' name='L73' />
+<a id='L74' name='L74' />  <em class='comment'>/* zdelta data */</em>
+<a id='L75' name='L75' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../Y/4656.html' title='Multiple used in 27 places.'>rwptr</a>[<a href='../S/730.html#L94' title='Defined at 94 in third_party/zdelta-2.1/zutil.h.'>ZD_RPN</a>*<a href='../S/726.html#L63' title='Defined at 63 in third_party/zdelta-2.1/zdlib.h.'>REFNUM</a>];
+<a id='L76' name='L76' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../Y/5018.html' title='Multiple used in 16 places.'>stable</a>[<a href='../S/730.html#L94' title='Defined at 94 in third_party/zdelta-2.1/zutil.h.'>ZD_RPN</a>*<a href='../S/726.html#L63' title='Defined at 63 in third_party/zdelta-2.1/zdlib.h.'>REFNUM</a>];
+<a id='L77' name='L77' /><em class='brace'>}</em>;
+<a id='L78' name='L78' />
+<a id='L79' name='L79' />
+<a id='L80' name='L80' /><em class='comment'>/* defines for inflate input/output */</em>
+<a id='L81' name='L81' /><em class='comment'>/*   update pointers and return */</em>
+<a id='L82' name='L82' /><em class='sharp'>#ifdef</em> ZDEBUG
+<a id='L83' name='L83' /><em class='sharp'>#define</em> <a href='../S/712.html#L110' title='Refered from 110 in third_party/zdelta-2.1/infutil.h.'>ZD_WRAP</a> <em class='brace'>{</em><a href='../S/572.html#L176' title='Defined at 176 in third_party/google-perftools-1.8.3/src/internal_logging.cc.'>printf</a>("m=0, WRAP\n");<em class='brace'>}</em>
+<a id='L84' name='L84' /><em class='sharp'>#define</em> <a href='../S/712.html#L110' title='Refered from 110 in third_party/zdelta-2.1/infutil.h.'>ZD_FLUSH</a> <em class='brace'>{</em><a href='../S/572.html#L176' title='Defined at 176 in third_party/google-perftools-1.8.3/src/internal_logging.cc.'>printf</a>("still m=0, FLUSH\n");<em class='brace'>}</em>
+<a id='L85' name='L85' /><em class='sharp'>#define</em> <a href='../S/712.html#L111' title='Refered from 111 in third_party/zdelta-2.1/infutil.h.'>ZD_LEAVE</a> <em class='brace'>{</em><a href='../S/572.html#L176' title='Defined at 176 in third_party/google-perftools-1.8.3/src/internal_logging.cc.'>printf</a>("still m=0, LEAVE\n");<em class='brace'>}</em>
+<a id='L86' name='L86' /><em class='sharp'>#define</em> <a href='../S/712.html#L98' title='Refered from 98 in third_party/zdelta-2.1/infutil.h.'>ZD_RETIF</a> <em class='brace'>{</em><a href='../S/572.html#L176' title='Defined at 176 in third_party/google-perftools-1.8.3/src/internal_logging.cc.'>printf</a>("return inflate_flush();\n");<em class='brace'>}</em>
+<a id='L87' name='L87' /><em class='sharp'>#else</em>
+<a id='L88' name='L88' /><em class='sharp'>#define</em> <a href='../S/712.html#L110' title='Refered from 110 in third_party/zdelta-2.1/infutil.h.'>ZD_WRAP</a>
+<a id='L89' name='L89' /><em class='sharp'>#define</em> <a href='../S/712.html#L110' title='Refered from 110 in third_party/zdelta-2.1/infutil.h.'>ZD_FLUSH</a>
+<a id='L90' name='L90' /><em class='sharp'>#define</em> <a href='../S/712.html#L111' title='Refered from 111 in third_party/zdelta-2.1/infutil.h.'>ZD_LEAVE</a>
+<a id='L91' name='L91' /><em class='sharp'>#define</em> <a href='../S/712.html#L98' title='Refered from 98 in third_party/zdelta-2.1/infutil.h.'>ZD_RETIF</a>
+<a id='L92' name='L92' /><em class='sharp'>#endif</em>
+<a id='L93' name='L93' />
+<a id='L94' name='L94' /><em class='sharp'>#define</em> <a href='../S/712.html#L97' title='Refered from 97 in third_party/zdelta-2.1/infutil.h.'>UPDBITS</a> <em class='brace'>{</em><a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>-&gt;<a href='../Y/1624.html' title='Multiple used in 4 places.'>bitb</a>=<a href='../Y/1569.html' title='Multiple used in 469 places.'>b</a>;<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>-&gt;<a href='../Y/1626.html' title='Multiple used in 4 places.'>bitk</a>=<a href='../Y/2960.html' title='Multiple used in 158 places.'>k</a>;<em class='brace'>}</em>
+<a id='L95' name='L95' /><em class='sharp'>#define</em> <a href='../S/712.html#L97' title='Refered from 97 in third_party/zdelta-2.1/infutil.h.'>UPDIN</a> <em class='brace'>{</em><a href='../Y/5884.html' title='Multiple used in 223 places.'>z</a>-&gt;<a href='../Y/1563.html' title='Multiple used in 25 places.'>avail_in</a>=<a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>;<a href='../Y/5884.html' title='Multiple used in 223 places.'>z</a>-&gt;<a href='../Y/5440.html' title='Multiple used in 18 places.'>total_in</a>+=<a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>-<a href='../Y/5884.html' title='Multiple used in 223 places.'>z</a>-&gt;<a href='../Y/3799.html' title='Multiple used in 20 places.'>next_in</a>;<a href='../Y/5884.html' title='Multiple used in 223 places.'>z</a>-&gt;<a href='../Y/3799.html' title='Multiple used in 20 places.'>next_in</a>=<a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>;<em class='brace'>}</em>
+<a id='L96' name='L96' /><em class='sharp'>#define</em> <a href='../R/2582.html' title='Multiple refered from 2 places.'>UPDOUT</a> <em class='brace'>{</em><a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>-&gt;<a href='../S/686.html#L367' title='Defined at 367 in third_party/google-perftools-1.8.3/src/windows/port.h.'>write</a>=<a href='../Y/4398.html' title='Multiple used in 128 places.'>q</a>;<em class='brace'>}</em>
+<a id='L97' name='L97' /><em class='sharp'>#define</em> <a href='../R/2577.html' title='Multiple refered from 10 places.'>UPDATE</a> <em class='brace'>{</em><a href='../S/712.html#L94' title='Defined at 94 in third_party/zdelta-2.1/infutil.h.'>UPDBITS</a> <a href='../S/712.html#L95' title='Defined at 95 in third_party/zdelta-2.1/infutil.h.'>UPDIN</a> <a href='../S/712.html#L96' title='Defined at 96 in third_party/zdelta-2.1/infutil.h.'>UPDOUT</a><em class='brace'>}</em>
+<a id='L98' name='L98' /><em class='sharp'>#define</em> <a href='../R/1193.html' title='Multiple refered from 23 places.'>LEAVE</a> <em class='brace'>{</em><a href='../D/2854.html' title='Multiple defined in 2 places.'>UPDATE</a> <a href='../D/3153.html' title='Multiple defined in 2 places.'>ZD_RETIF</a> <strong class='reserved'>return</strong> <a href='../S/711.html#L35' title='Defined at 35 in third_party/zdelta-2.1/infutil.c.'>inflate_flush</a>(<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>,<a href='../Y/5884.html' title='Multiple used in 223 places.'>z</a>,<a href='../Y/4406.html' title='Multiple used in 354 places.'>r</a>);<em class='brace'>}</em>
+<a id='L99' name='L99' /><em class='comment'>/*   get bytes and bits */</em>
+<a id='L100' name='L100' /><em class='sharp'>#define</em> <a href='../S/712.html#L114' title='Refered from 114 in third_party/zdelta-2.1/infutil.h.'>LOADIN</a> <em class='brace'>{</em><a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>=<a href='../Y/5884.html' title='Multiple used in 223 places.'>z</a>-&gt;<a href='../Y/3799.html' title='Multiple used in 20 places.'>next_in</a>;<a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>=<a href='../Y/5884.html' title='Multiple used in 223 places.'>z</a>-&gt;<a href='../Y/1563.html' title='Multiple used in 25 places.'>avail_in</a>;<a href='../Y/1569.html' title='Multiple used in 469 places.'>b</a>=<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>-&gt;<a href='../Y/1624.html' title='Multiple used in 4 places.'>bitb</a>;<a href='../Y/2960.html' title='Multiple used in 158 places.'>k</a>=<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>-&gt;<a href='../Y/1626.html' title='Multiple used in 4 places.'>bitk</a>;<em class='brace'>}</em>
+<a id='L101' name='L101' /><em class='sharp'>#define</em> <a href='../R/1702.html' title='Multiple refered from 8 places.'>NEEDBYTE</a> <em class='brace'>{</em><strong class='reserved'>if</strong>(<a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>)<a href='../Y/4406.html' title='Multiple used in 354 places.'>r</a>=<a href='../S/726.html#L53' title='Defined at 53 in third_party/zdelta-2.1/zdlib.h.'>ZD_OK</a>;<strong class='reserved'>else</strong> <a href='../S/712.html#L98' title='Defined at 98 in third_party/zdelta-2.1/infutil.h.'>LEAVE</a><em class='brace'>}</em>
+<a id='L102' name='L102' /><em class='sharp'>#define</em> <a href='../R/1708.html' title='Multiple refered from 9 places.'>NEXTBYTE</a> (<a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>--,*<a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>++)
+<a id='L103' name='L103' /><em class='sharp'>#define</em> <a href='../R/1701.html' title='Multiple refered from 11 places.'>NEEDBITS</a>(<a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a>) <em class='brace'>{</em><strong class='reserved'>while</strong>(<a href='../Y/2960.html' title='Multiple used in 158 places.'>k</a>&lt;(<a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a>))<em class='brace'>{</em><a href='../D/1901.html' title='Multiple defined in 2 places.'>NEEDBYTE</a>;<a href='../Y/1569.html' title='Multiple used in 469 places.'>b</a>|=((<a href='../D/5485.html' title='Multiple defined in 2 places.'>uLong</a>)<a href='../D/1907.html' title='Multiple defined in 2 places.'>NEXTBYTE</a>)&lt;&lt;<a href='../Y/2960.html' title='Multiple used in 158 places.'>k</a>;<a href='../Y/2960.html' title='Multiple used in 158 places.'>k</a>+=8;<em class='brace'>}</em><em class='brace'>}</em>
+<a id='L104' name='L104' /><em class='sharp'>#define</em> <a href='../R/498.html' title='Multiple refered from 22 places.'>DUMPBITS</a>(<a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a>) <em class='brace'>{</em><a href='../Y/1569.html' title='Multiple used in 469 places.'>b</a>&gt;&gt;=(<a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a>);<a href='../Y/2960.html' title='Multiple used in 158 places.'>k</a>-=(<a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a>);<em class='brace'>}</em>
+<a id='L105' name='L105' /><em class='comment'>/*   output bytes */</em>
+<a id='L106' name='L106' /><em class='sharp'>#define</em> <a href='../R/2661.html' title='Multiple refered from 2 places.'>WAVAIL</a> (<a href='../D/5483.html' title='Multiple defined in 2 places.'>uInt</a>)(<a href='../Y/4398.html' title='Multiple used in 128 places.'>q</a>&lt;<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>-&gt;<a href='../S/686.html#L364' title='Defined at 364 in third_party/google-perftools-1.8.3/src/windows/port.h.'>read</a>?<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>-&gt;<a href='../S/686.html#L364' title='Defined at 364 in third_party/google-perftools-1.8.3/src/windows/port.h.'>read</a>-<a href='../Y/4398.html' title='Multiple used in 128 places.'>q</a>-1:<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>-&gt;<a href='../S/521.html#L388' title='Defined at 388 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>end</a>-<a href='../Y/4398.html' title='Multiple used in 128 places.'>q</a>)
+<a id='L107' name='L107' /><em class='sharp'>#define</em> <a href='../R/1400.html' title='Multiple refered from 2 places.'>LOADOUT</a> <em class='brace'>{</em><a href='../Y/4398.html' title='Multiple used in 128 places.'>q</a>=<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>-&gt;<a href='../S/686.html#L367' title='Defined at 367 in third_party/google-perftools-1.8.3/src/windows/port.h.'>write</a>;<a href='../Y/3356.html' title='Multiple used in 420 places.'>m</a>=(<a href='../D/5483.html' title='Multiple defined in 2 places.'>uInt</a>)<a href='../S/712.html#L106' title='Defined at 106 in third_party/zdelta-2.1/infutil.h.'>WAVAIL</a>;<em class='brace'>}</em>
+<a id='L108' name='L108' /><em class='sharp'>#define</em> <a href='../S/712.html#L110' title='Refered from 110 in third_party/zdelta-2.1/infutil.h.'>WRAP</a> <em class='brace'>{</em><strong class='reserved'>if</strong>(<a href='../Y/4398.html' title='Multiple used in 128 places.'>q</a>==<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>-&gt;<a href='../S/521.html#L388' title='Defined at 388 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>end</a>&amp;&amp;<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>-&gt;<a href='../S/686.html#L364' title='Defined at 364 in third_party/google-perftools-1.8.3/src/windows/port.h.'>read</a>!=<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>-&gt;<a href='../Y/5685.html' title='Multiple used in 41 places.'>window</a>)<em class='brace'>{</em><a href='../Y/4398.html' title='Multiple used in 128 places.'>q</a>=<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>-&gt;<a href='../Y/5685.html' title='Multiple used in 41 places.'>window</a>;<a href='../Y/3356.html' title='Multiple used in 420 places.'>m</a>=(<a href='../D/5483.html' title='Multiple defined in 2 places.'>uInt</a>)<a href='../S/712.html#L106' title='Defined at 106 in third_party/zdelta-2.1/infutil.h.'>WAVAIL</a>;<em class='brace'>}</em><em class='brace'>}</em>
+<a id='L109' name='L109' /><em class='sharp'>#define</em> <a href='../R/653.html' title='Multiple refered from 3 places.'>FLUSH</a> <em class='brace'>{</em><a href='../S/712.html#L96' title='Defined at 96 in third_party/zdelta-2.1/infutil.h.'>UPDOUT</a> <a href='../Y/4406.html' title='Multiple used in 354 places.'>r</a>=<a href='../S/711.html#L35' title='Defined at 35 in third_party/zdelta-2.1/infutil.c.'>inflate_flush</a>(<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>,<a href='../Y/5884.html' title='Multiple used in 223 places.'>z</a>,<a href='../Y/4406.html' title='Multiple used in 354 places.'>r</a>); <a href='../S/712.html#L107' title='Defined at 107 in third_party/zdelta-2.1/infutil.h.'>LOADOUT</a><em class='brace'>}</em>
+<a id='L110' name='L110' /><em class='sharp'>#define</em> <a href='../R/1703.html' title='Multiple refered from 4 places.'>NEEDOUT</a> <em class='brace'>{</em><strong class='reserved'>if</strong>(<a href='../Y/3356.html' title='Multiple used in 420 places.'>m</a>==0)<em class='brace'>{</em><a href='../D/3164.html' title='Multiple defined in 2 places.'>ZD_WRAP</a> <a href='../S/712.html#L108' title='Defined at 108 in third_party/zdelta-2.1/infutil.h.'>WRAP</a> <strong class='reserved'>if</strong>(<a href='../Y/3356.html' title='Multiple used in 420 places.'>m</a>==0)<em class='brace'>{</em><a href='../D/3136.html' title='Multiple defined in 2 places.'>ZD_FLUSH</a> <a href='../S/712.html#L109' title='Defined at 109 in third_party/zdelta-2.1/infutil.h.'>FLUSH</a> <a href='../S/712.html#L108' title='Defined at 108 in third_party/zdelta-2.1/infutil.h.'>WRAP</a> \
+<a id='L111' name='L111' />                 <strong class='reserved'>if</strong>(<a href='../Y/3356.html' title='Multiple used in 420 places.'>m</a>==0)<em class='brace'>{</em><a href='../D/3142.html' title='Multiple defined in 2 places.'>ZD_LEAVE</a> <a href='../S/712.html#L98' title='Defined at 98 in third_party/zdelta-2.1/infutil.h.'>LEAVE</a><em class='brace'>}</em><em class='brace'>}</em><em class='brace'>}</em><a href='../Y/4406.html' title='Multiple used in 354 places.'>r</a>=<a href='../S/726.html#L53' title='Defined at 53 in third_party/zdelta-2.1/zdlib.h.'>ZD_OK</a>;<em class='brace'>}</em>
+<a id='L112' name='L112' /><em class='sharp'>#define</em> <a href='../R/1812.html' title='Multiple refered from 3 places.'>OUTBYTE</a>(<a href='../Y/1366.html' title='Multiple used in 517 places.'>a</a>) <em class='brace'>{</em>*<a href='../Y/4398.html' title='Multiple used in 128 places.'>q</a>++=(<a href='../D/340.html' title='Multiple defined in 2 places.'>Byte</a>)(<a href='../Y/1366.html' title='Multiple used in 517 places.'>a</a>);<a href='../Y/3356.html' title='Multiple used in 420 places.'>m</a>--;<em class='brace'>}</em>
+<a id='L113' name='L113' /><em class='comment'>/*   load local pointers */</em>
+<a id='L114' name='L114' /><em class='sharp'>#define</em> <a href='../R/1398.html' title='Multiple refered from 5 places.'>LOAD</a> <em class='brace'>{</em><a href='../S/712.html#L100' title='Defined at 100 in third_party/zdelta-2.1/infutil.h.'>LOADIN</a> <a href='../S/712.html#L107' title='Defined at 107 in third_party/zdelta-2.1/infutil.h.'>LOADOUT</a><em class='brace'>}</em>
+<a id='L115' name='L115' />
+<a id='L116' name='L116' />
+<a id='L117' name='L117' /><em class='comment'>/* masks for lower bits (size given to avoid silly warnings with Visual C++) */</em>
+<a id='L118' name='L118' /><strong class='reserved'>extern</strong> <a href='../D/5483.html' title='Multiple defined in 2 places.'>uInt</a> <a href='../Y/2801.html' title='Multiple used in 17 places.'>inflate_mask</a>[17];
+<a id='L119' name='L119' />
+<a id='L120' name='L120' /><em class='comment'>/* copy as much as possible from the sliding window to the output area */</em>
+<a id='L121' name='L121' /><strong class='reserved'>extern</strong> <strong class='reserved'>int</strong> <a href='../S/711.html#L35' title='Defined at 35 in third_party/zdelta-2.1/infutil.c.'>inflate_flush</a> <a href='../D/1965.html' title='Multiple defined in 6 places.'>OF</a>((
+<a id='L122' name='L122' />    <a href='../S/702.html#L25' title='Defined at 25 in third_party/zdelta-2.1/infblock.h.'>inflate_blocks_statef</a> *,
+<a id='L123' name='L123' />    <a href='../S/726.html#L126' title='Defined at 126 in third_party/zdelta-2.1/zdlib.h.'>zd_streamp</a> ,
+<a id='L124' name='L124' />    <strong class='reserved'>int</strong>));
+<a id='L125' name='L125' />
+<a id='L126' name='L126' /><strong class='reserved'>struct</strong> <a href='../R/5293.html' title='Multiple refered from 5 places.'>zd_internal_state</a>      <em class='brace'>{</em><strong class='reserved'>int</strong> <a href='../Y/2107.html' title='Multiple used in 25 places.'>dummy</a>;<em class='brace'>}</em>;  <em class='comment'>/* for buggy compilers */</em>
+<a id='L127' name='L127' />
+<a id='L128' name='L128' /><em class='sharp'>#endif</em>
+<a id='L129' name='L129' />
+<a id='L130' name='L130' />
+<a id='L131' name='L131' />
+<a id='L132' name='L132' />
+<a id='L133' name='L133' />
+<a id='L134' name='L134' />
+<a id='L135' name='L135' />
+<a id='L136' name='L136' />
+<a id='L137' name='L137' />
+<a id='L138' name='L138' />
+<a id='L139' name='L139' />
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^][v]<a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

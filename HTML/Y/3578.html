@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>modified_atoms</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/417.html#L240'>modified_atoms</a>    240 src/verifier/delta_membrane.c   vec_init(&amp;p-&gt;modified_atoms, 32);</span>
+<span class='curline'><a href='../S/417.html#L266'>modified_atoms</a>    266 src/verifier/delta_membrane.c   vec_destroy(&amp;p-&gt;modified_atoms);</span>
+<span class='curline'><a href='../S/417.html#L1035'>modified_atoms</a>   1035 src/verifier/delta_membrane.c   for (i = 0; i &lt; vec_num(&amp;d-&gt;modified_atoms); i+=2) {</span>
+<span class='curline'><a href='../S/417.html#L1036'>modified_atoms</a>   1036 src/verifier/delta_membrane.c     LmnSAtom src = LMN_SATOM(vec_get(&amp;d-&gt;modified_atoms, i));</span>
+<span class='curline'><a href='../S/417.html#L1037'>modified_atoms</a>   1037 src/verifier/delta_membrane.c     LmnSAtom new = LMN_SATOM(vec_get(&amp;d-&gt;modified_atoms, i+1));</span>
+<span class='curline'><a href='../S/417.html#L1133'>modified_atoms</a>   1133 src/verifier/delta_membrane.c   for (i = vec_num(&amp;d-&gt;modified_atoms)-1; i &gt;= 0 ; i-=2) {</span>
+<span class='curline'><a href='../S/417.html#L1134'>modified_atoms</a>   1134 src/verifier/delta_membrane.c     LmnSAtom src = LMN_SATOM(vec_get(&amp;d-&gt;modified_atoms, i-1));</span>
+<span class='curline'><a href='../S/417.html#L1135'>modified_atoms</a>   1135 src/verifier/delta_membrane.c     LmnSAtom new = LMN_SATOM(vec_get(&amp;d-&gt;modified_atoms, i));</span>
+<span class='curline'><a href='../S/417.html#L1927'>modified_atoms</a>   1927 src/verifier/delta_membrane.c     vec_push(&amp;d-&gt;root_d-&gt;modified_atoms, (vec_data_t)src);</span>
+<span class='curline'><a href='../S/417.html#L1928'>modified_atoms</a>   1928 src/verifier/delta_membrane.c     vec_push(&amp;d-&gt;root_d-&gt;modified_atoms, (vec_data_t)new_atom);</span>
+<span class='curline'><a href='../S/418.html#L56'>modified_atoms</a>     56 src/verifier/delta_membrane.h   Vector modified_atoms;</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>MC</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/435.html#L127'>MC</a>                127 src/verifier/mc_worker.h #define mc_obj(MC)                ((MC)-&gt;obj)</span>
+<span class='curline'><a href='../S/435.html#L128'>MC</a>                128 src/verifier/mc_worker.h #define mc_obj_set(MC, O)         ((MC)-&gt;obj = (O))</span>
+<span class='curline'><a href='../S/435.html#L129'>MC</a>                129 src/verifier/mc_worker.h #define mc_type(MC)               ((MC)-&gt;type)</span>
+<span class='curline'><a href='../S/435.html#L130'>MC</a>                130 src/verifier/mc_worker.h #define mc_type_set(MC, T)        ((MC)-&gt;type = (T))</span>
+<span class='curline'><a href='../S/435.html#L131'>MC</a>                131 src/verifier/mc_worker.h #define mc_init_f(MC)                                                          \</span>
+<span class='curline'><a href='../S/435.html#L132'>MC</a>                132 src/verifier/mc_worker.h   if ((MC)-&gt;init) {                                                            \</span>
+<span class='curline'><a href='../S/435.html#L133'>MC</a>                133 src/verifier/mc_worker.h     (*(MC)-&gt;init)((MC)-&gt;owner);                                                \</span>
+<span class='curline'><a href='../S/435.html#L135'>MC</a>                135 src/verifier/mc_worker.h #define mc_init_f_set(MC, FP)     ((MC)-&gt;init = (FP))</span>
+<span class='curline'><a href='../S/435.html#L136'>MC</a>                136 src/verifier/mc_worker.h #define mc_finalize_f_set(MC, FP) ((MC)-&gt;finalize = (FP))</span>
+<span class='curline'><a href='../S/435.html#L137'>MC</a>                137 src/verifier/mc_worker.h #define mc_finalize_f(MC)                                                      \</span>
+<span class='curline'><a href='../S/435.html#L138'>MC</a>                138 src/verifier/mc_worker.h   if ((MC)-&gt;finalize) {                                                        \</span>
+<span class='curline'><a href='../S/435.html#L139'>MC</a>                139 src/verifier/mc_worker.h     (*(MC)-&gt;finalize)((MC)-&gt;owner);                                            \</span>
+</pre>
+</body>
+</html>

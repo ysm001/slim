@@ -1,0 +1,353 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>third_party/google-perftools-1.8.3/src/memory_region_map.h</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/738.html'>third_party</a>/<a href='../files/739.html'>google-perftools-1.8.3</a>/<a href='../files/740.html'>src</a>/memory_region_map.h</h2>
+<em class='comment'>/* [&lt;][&gt;][^][v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/211.html' title='Multiple included from 4 places.'>INCLUDED FROM</a></h2>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>/* Copyright (c) 2006, Google Inc.</em>
+<a id='L2' name='L2' /><em class='comment'> * All rights reserved.</em>
+<a id='L3' name='L3' /><em class='comment'> * </em>
+<a id='L4' name='L4' /><em class='comment'> * Redistribution and use in source and binary forms, with or without</em>
+<a id='L5' name='L5' /><em class='comment'> * modification, are permitted provided that the following conditions are</em>
+<a id='L6' name='L6' /><em class='comment'> * met:</em>
+<a id='L7' name='L7' /><em class='comment'> * </em>
+<a id='L8' name='L8' /><em class='comment'> *     * Redistributions of source code must retain the above copyright</em>
+<a id='L9' name='L9' /><em class='comment'> * notice, this list of conditions and the following disclaimer.</em>
+<a id='L10' name='L10' /><em class='comment'> *     * Redistributions in binary form must reproduce the above</em>
+<a id='L11' name='L11' /><em class='comment'> * copyright notice, this list of conditions and the following disclaimer</em>
+<a id='L12' name='L12' /><em class='comment'> * in the documentation and/or other materials provided with the</em>
+<a id='L13' name='L13' /><em class='comment'> * distribution.</em>
+<a id='L14' name='L14' /><em class='comment'> *     * Neither the name of Google Inc. nor the names of its</em>
+<a id='L15' name='L15' /><em class='comment'> * contributors may be used to endorse or promote products derived from</em>
+<a id='L16' name='L16' /><em class='comment'> * this software without specific prior written permission.</em>
+<a id='L17' name='L17' /><em class='comment'> * </em>
+<a id='L18' name='L18' /><em class='comment'> * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L19' name='L19' /><em class='comment'> * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L20' name='L20' /><em class='comment'> * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L21' name='L21' /><em class='comment'> * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L22' name='L22' /><em class='comment'> * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L23' name='L23' /><em class='comment'> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L24' name='L24' /><em class='comment'> * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L25' name='L25' /><em class='comment'> * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L26' name='L26' /><em class='comment'> * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L27' name='L27' /><em class='comment'> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L28' name='L28' /><em class='comment'> * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L29' name='L29' /><em class='comment'> *</em>
+<a id='L30' name='L30' /><em class='comment'> * ---</em>
+<a id='L31' name='L31' /><em class='comment'> * Author: Maxim Lifantsev</em>
+<a id='L32' name='L32' /><em class='comment'> */</em>
+<a id='L33' name='L33' />
+<a id='L34' name='L34' /><em class='sharp'>#ifndef</em> <a href='../S/589.html#L35' title='Defined at 35 in third_party/google-perftools-1.8.3/src/memory_region_map.h.'>BASE_MEMORY_REGION_MAP_H_</a>
+<a id='L35' name='L35' /><em class='sharp'>#define</em> <a href='../S/589.html#L34' title='Refered from 34 in third_party/google-perftools-1.8.3/src/memory_region_map.h.'>BASE_MEMORY_REGION_MAP_H_</a>
+<a id='L36' name='L36' />
+<a id='L37' name='L37' /><em class='sharp'>#include</em> &lt;<a href='../I/6.html'>config.h</a>&gt;
+<a id='L38' name='L38' />
+<a id='L39' name='L39' /><em class='sharp'>#ifdef</em> <a href='../D/930.html' title='Multiple defined in 3 places.'>HAVE_PTHREAD</a>
+<a id='L40' name='L40' /><em class='sharp'>#include</em> &lt;pthread.h&gt;
+<a id='L41' name='L41' /><em class='sharp'>#endif</em>
+<a id='L42' name='L42' /><em class='sharp'>#include</em> &lt;stddef.h&gt;
+<a id='L43' name='L43' /><em class='sharp'>#include</em> &lt;set&gt;
+<a id='L44' name='L44' /><em class='sharp'>#include</em> "<a href='540.html'>base/stl_allocator.h</a>"
+<a id='L45' name='L45' /><em class='sharp'>#include</em> "<a href='534.html'>base/spinlock.h</a>"
+<a id='L46' name='L46' /><em class='sharp'>#include</em> "<a href='544.html'>base/thread_annotations.h</a>"
+<a id='L47' name='L47' /><em class='sharp'>#include</em> "<a href='531.html'>base/low_level_alloc.h</a>"
+<a id='L48' name='L48' />
+<a id='L49' name='L49' /><em class='comment'>// TODO(maxim): add a unittest:</em>
+<a id='L50' name='L50' /><em class='comment'>//  execute a bunch of mmaps and compare memory map what strace logs</em>
+<a id='L51' name='L51' /><em class='comment'>//  execute a bunch of mmap/munmup and compare memory map with</em>
+<a id='L52' name='L52' /><em class='comment'>//  own accounting of what those mmaps generated</em>
+<a id='L53' name='L53' />
+<a id='L54' name='L54' /><em class='comment'>// Thread-safe class to collect and query the map of all memory regions</em>
+<a id='L55' name='L55' /><em class='comment'>// in a process that have been created with mmap, munmap, mremap, sbrk.</em>
+<a id='L56' name='L56' /><em class='comment'>// For each memory region, we keep track of (and provide to users)</em>
+<a id='L57' name='L57' /><em class='comment'>// the stack trace that allocated that memory region.</em>
+<a id='L58' name='L58' /><em class='comment'>// The recorded stack trace depth is bounded by</em>
+<a id='L59' name='L59' /><em class='comment'>// a user-supplied max_stack_depth parameter of Init().</em>
+<a id='L60' name='L60' /><em class='comment'>// After initialization with Init()</em>
+<a id='L61' name='L61' /><em class='comment'>// (which can happened even before global object constructor execution)</em>
+<a id='L62' name='L62' /><em class='comment'>// we collect the map by installing and monitoring MallocHook-s</em>
+<a id='L63' name='L63' /><em class='comment'>// to mmap, munmap, mremap, sbrk.</em>
+<a id='L64' name='L64' /><em class='comment'>// At any time one can query this map via provided interface.</em>
+<a id='L65' name='L65' /><em class='comment'>// For more details on the design of MemoryRegionMap</em>
+<a id='L66' name='L66' /><em class='comment'>// see the comment at the top of our .cc file.</em>
+<a id='L67' name='L67' /><a href='../Y/1792.html' title='Multiple used in 90 places.'>class</a> <a href='../Y/517.html' title='Multiple used in 61 places.'>MemoryRegionMap</a> <em class='brace'>{</em>
+<a id='L68' name='L68' /> <a href='../Y/4261.html' title='Multiple used in 50 places.'>private</a>:
+<a id='L69' name='L69' />  <em class='comment'>// Max call stack recording depth supported by Init().  Set it to be</em>
+<a id='L70' name='L70' />  <em class='comment'>// high enough for all our clients.  Note: we do not define storage</em>
+<a id='L71' name='L71' />  <em class='comment'>// for this (doing that requires special handling in windows), so</em>
+<a id='L72' name='L72' />  <em class='comment'>// don't take the address of it!</em>
+<a id='L73' name='L73' />  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> <a href='../Y/3068.html' title='Multiple used in 25 places.'>kMaxStackDepth</a> = 32;
+<a id='L74' name='L74' />
+<a id='L75' name='L75' /> <a href='../Y/4390.html' title='Multiple used in 61 places.'>public</a>:
+<a id='L76' name='L76' />  <em class='comment'>// interface ================================================================</em>
+<a id='L77' name='L77' />
+<a id='L78' name='L78' />  <em class='comment'>// Every client of MemoryRegionMap must call Init() before first use,</em>
+<a id='L79' name='L79' />  <em class='comment'>// and Shutdown() after last use.  This allows us to reference count</em>
+<a id='L80' name='L80' />  <em class='comment'>// this (singleton) class properly.  MemoryRegionMap assumes it's the</em>
+<a id='L81' name='L81' />  <em class='comment'>// only client of MallocHooks, so a client can only register other</em>
+<a id='L82' name='L82' />  <em class='comment'>// MallocHooks after calling Init() and must unregister them before</em>
+<a id='L83' name='L83' />  <em class='comment'>// calling Shutdown().</em>
+<a id='L84' name='L84' />
+<a id='L85' name='L85' />  <em class='comment'>// Initialize this module to record memory allocation stack traces.</em>
+<a id='L86' name='L86' />  <em class='comment'>// Stack traces that have more than "max_stack_depth" frames</em>
+<a id='L87' name='L87' />  <em class='comment'>// are automatically shrunk to "max_stack_depth" when they are recorded.</em>
+<a id='L88' name='L88' />  <em class='comment'>// Init() can be called more than once w/o harm, largest max_stack_depth</em>
+<a id='L89' name='L89' />  <em class='comment'>// will be the effective one.</em>
+<a id='L90' name='L90' />  <em class='comment'>// It will install mmap, munmap, mremap, sbrk hooks</em>
+<a id='L91' name='L91' />  <em class='comment'>// and initialize arena_ and our hook and locks, hence one can use</em>
+<a id='L92' name='L92' />  <em class='comment'>// MemoryRegionMap::Lock()/Unlock() to manage the locks.</em>
+<a id='L93' name='L93' />  <em class='comment'>// Uses Lock/Unlock inside.</em>
+<a id='L94' name='L94' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../D/1261.html' title='Multiple defined in 10 places.'>Init</a>(<strong class='reserved'>int</strong> <a href='../Y/3471.html' title='Multiple used in 5 places.'>max_stack_depth</a>);
+<a id='L95' name='L95' />
+<a id='L96' name='L96' />  <em class='comment'>// Try to shutdown this module undoing what Init() did.</em>
+<a id='L97' name='L97' />  <em class='comment'>// Returns true iff could do full shutdown (or it was not attempted).</em>
+<a id='L98' name='L98' />  <em class='comment'>// Full shutdown is attempted when the number of Shutdown() calls equals</em>
+<a id='L99' name='L99' />  <em class='comment'>// the number of Init() calls.</em>
+<a id='L100' name='L100' />  <strong class='reserved'>static</strong> <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../D/2573.html' title='Multiple defined in 2 places.'>Shutdown</a>();
+<a id='L101' name='L101' />
+<a id='L102' name='L102' />  <em class='comment'>// Locks to protect our internal data structures.</em>
+<a id='L103' name='L103' />  <em class='comment'>// These also protect use of arena_ if our Init() has been done.</em>
+<a id='L104' name='L104' />  <em class='comment'>// The lock is recursive.</em>
+<a id='L105' name='L105' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/588.html#L256' title='Defined at 256 in third_party/google-perftools-1.8.3/src/memory_region_map.cc.'>Lock</a>() <a href='../S/544.html#L115' title='Defined at 115 in third_party/google-perftools-1.8.3/src/base/thread_annotations.h.'>EXCLUSIVE_LOCK_FUNCTION</a>(<a href='../Y/3314.html' title='Multiple used in 57 places.'>lock_</a>);
+<a id='L106' name='L106' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/588.html#L278' title='Defined at 278 in third_party/google-perftools-1.8.3/src/memory_region_map.cc.'>Unlock</a>() <a href='../S/544.html#L127' title='Defined at 127 in third_party/google-perftools-1.8.3/src/base/thread_annotations.h.'>UNLOCK_FUNCTION</a>(<a href='../Y/3314.html' title='Multiple used in 57 places.'>lock_</a>);
+<a id='L107' name='L107' />
+<a id='L108' name='L108' />  <em class='comment'>// Returns true when the lock is held by this thread (for use in RAW_CHECK-s).</em>
+<a id='L109' name='L109' />  <strong class='reserved'>static</strong> <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../S/588.html#L290' title='Defined at 290 in third_party/google-perftools-1.8.3/src/memory_region_map.cc.'>LockIsHeld</a>();
+<a id='L110' name='L110' />
+<a id='L111' name='L111' />  <em class='comment'>// Locker object that acquires the MemoryRegionMap::Lock</em>
+<a id='L112' name='L112' />  <em class='comment'>// for the duration of its lifetime (a C++ scope).</em>
+<a id='L113' name='L113' />  <a href='../Y/1792.html' title='Multiple used in 90 places.'>class</a> <a href='../Y/452.html' title='Multiple used in 8 places.'>LockHolder</a> <em class='brace'>{</em>
+<a id='L114' name='L114' />   <a href='../Y/4390.html' title='Multiple used in 61 places.'>public</a>:
+<a id='L115' name='L115' />    <a href='../Y/452.html' title='Multiple used in 8 places.'>LockHolder</a>() <em class='brace'>{</em> <a href='../S/588.html#L256' title='Defined at 256 in third_party/google-perftools-1.8.3/src/memory_region_map.cc.'>Lock</a>(); <em class='brace'>}</em>
+<a id='L116' name='L116' />    ~<a href='../Y/452.html' title='Multiple used in 8 places.'>LockHolder</a>() <em class='brace'>{</em> <a href='../S/588.html#L278' title='Defined at 278 in third_party/google-perftools-1.8.3/src/memory_region_map.cc.'>Unlock</a>(); <em class='brace'>}</em>
+<a id='L117' name='L117' />   <a href='../Y/4261.html' title='Multiple used in 50 places.'>private</a>:
+<a id='L118' name='L118' />    <a href='../S/516.html#L126' title='Defined at 126 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>DISALLOW_COPY_AND_ASSIGN</a>(<a href='../Y/452.html' title='Multiple used in 8 places.'>LockHolder</a>);
+<a id='L119' name='L119' />  <em class='brace'>}</em>;
+<a id='L120' name='L120' />
+<a id='L121' name='L121' />  <em class='comment'>// A memory region that we know about through malloc_hook-s.</em>
+<a id='L122' name='L122' />  <em class='comment'>// This is essentially an interface through which MemoryRegionMap</em>
+<a id='L123' name='L123' />  <em class='comment'>// exports the collected data to its clients.  Thread-compatible.</em>
+<a id='L124' name='L124' />  <strong class='reserved'>struct</strong> <a href='../R/2142.html' title='Multiple refered from 29 places.'>Region</a> <em class='brace'>{</em>
+<a id='L125' name='L125' />    <a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a> <a href='../Y/5039.html' title='Multiple used in 55 places.'>start_addr</a>;  <em class='comment'>// region start address</em>
+<a id='L126' name='L126' />    <a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a> <a href='../Y/2190.html' title='Multiple used in 48 places.'>end_addr</a>;  <em class='comment'>// region end address</em>
+<a id='L127' name='L127' />    <strong class='reserved'>int</strong> <a href='../Y/1727.html' title='Multiple used in 8 places.'>call_stack_depth</a>;  <em class='comment'>// number of caller stack frames that we saved</em>
+<a id='L128' name='L128' />    <strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/1726.html' title='Multiple used in 15 places.'>call_stack</a>[<a href='../Y/3068.html' title='Multiple used in 25 places.'>kMaxStackDepth</a>];  <em class='comment'>// caller address stack array</em>
+<a id='L129' name='L129' />                                             <em class='comment'>// filled to call_stack_depth size</em>
+<a id='L130' name='L130' />    <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../Y/2922.html' title='Multiple used in 5 places.'>is_stack</a>;  <em class='comment'>// does this region contain a thread's stack:</em>
+<a id='L131' name='L131' />                    <em class='comment'>// a user of MemoryRegionMap supplies this info</em>
+<a id='L132' name='L132' />
+<a id='L133' name='L133' />    <em class='comment'>// Convenience accessor for call_stack[0],</em>
+<a id='L134' name='L134' />    <em class='comment'>// i.e. (the program counter of) the immediate caller</em>
+<a id='L135' name='L135' />    <em class='comment'>// of this region's allocation function,</em>
+<a id='L136' name='L136' />    <em class='comment'>// but it also returns NULL when call_stack_depth is 0,</em>
+<a id='L137' name='L137' />    <em class='comment'>// i.e whe we weren't able to get the call stack.</em>
+<a id='L138' name='L138' />    <em class='comment'>// This usually happens in recursive calls, when the stack-unwinder</em>
+<a id='L139' name='L139' />    <em class='comment'>// calls mmap() which in turn calls the stack-unwinder.</em>
+<a id='L140' name='L140' />    <a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a> <a href='../Y/1739.html' title='Multiple used in 26 places.'>caller</a>() <strong class='reserved'>const</strong> <em class='brace'>{</em>
+<a id='L141' name='L141' />      <strong class='reserved'>return</strong> <a href='../Y/4495.html' title='Multiple used in 76 places.'>reinterpret_cast</a>&lt;<a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a>&gt;(<a href='../Y/1727.html' title='Multiple used in 8 places.'>call_stack_depth</a> &gt;= 1
+<a id='L142' name='L142' />                                         ? <a href='../Y/1726.html' title='Multiple used in 15 places.'>call_stack</a>[0] : <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>);
+<a id='L143' name='L143' />    <em class='brace'>}</em>
+<a id='L144' name='L144' />
+<a id='L145' name='L145' />    <em class='comment'>// Return true iff this region overlaps region x.</em>
+<a id='L146' name='L146' />    <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../Y/598.html' title='Multiple used in 3 places.'>Overlaps</a>(<strong class='reserved'>const</strong> <a href='../D/2388.html' title='Multiple defined in 3 places.'>Region</a>&amp; <a href='../Y/5713.html' title='Multiple used in 222 places.'>x</a>) <strong class='reserved'>const</strong> <em class='brace'>{</em>
+<a id='L147' name='L147' />      <strong class='reserved'>return</strong> <a href='../Y/5039.html' title='Multiple used in 55 places.'>start_addr</a> &lt; <a href='../Y/5713.html' title='Multiple used in 222 places.'>x</a>.<a href='../Y/2190.html' title='Multiple used in 48 places.'>end_addr</a>  &amp;&amp;  <a href='../Y/2190.html' title='Multiple used in 48 places.'>end_addr</a> &gt; <a href='../Y/5713.html' title='Multiple used in 222 places.'>x</a>.<a href='../Y/5039.html' title='Multiple used in 55 places.'>start_addr</a>;
+<a id='L148' name='L148' />    <em class='brace'>}</em>
+<a id='L149' name='L149' />
+<a id='L150' name='L150' />   <a href='../Y/4261.html' title='Multiple used in 50 places.'>private</a>:  <em class='comment'>// helpers for MemoryRegionMap</em>
+<a id='L151' name='L151' />    <a href='../Y/2470.html' title='Multiple used in 15 places.'>friend</a> <a href='../Y/1792.html' title='Multiple used in 90 places.'>class</a> <a href='../Y/517.html' title='Multiple used in 61 places.'>MemoryRegionMap</a>;
+<a id='L152' name='L152' />
+<a id='L153' name='L153' />    <em class='comment'>// The ways we create Region-s:</em>
+<a id='L154' name='L154' />    <strong class='reserved'>void</strong> <a href='../S/568.html#L1537' title='Defined at 1537 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>Create</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>) <em class='brace'>{</em>
+<a id='L155' name='L155' />      <a href='../Y/5039.html' title='Multiple used in 55 places.'>start_addr</a> = <a href='../Y/4495.html' title='Multiple used in 76 places.'>reinterpret_cast</a>&lt;<a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a>&gt;(<a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>);
+<a id='L156' name='L156' />      <a href='../Y/2190.html' title='Multiple used in 48 places.'>end_addr</a> = <a href='../Y/5039.html' title='Multiple used in 55 places.'>start_addr</a> + <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>;
+<a id='L157' name='L157' />      <a href='../Y/2922.html' title='Multiple used in 5 places.'>is_stack</a> = <a href='../Y/2331.html' title='Multiple used in 24 places.'>false</a>;  <em class='comment'>// not a stack till marked such</em>
+<a id='L158' name='L158' />      <a href='../Y/1727.html' title='Multiple used in 8 places.'>call_stack_depth</a> = 0;
+<a id='L159' name='L159' />      <a href='../Y/37.html' title='Multiple used in 6 places.'>AssertIsConsistent</a>();
+<a id='L160' name='L160' />    <em class='brace'>}</em>
+<a id='L161' name='L161' />    <strong class='reserved'>void</strong> <a href='../Y/4778.html' title='Multiple used in 2 places.'>set_call_stack_depth</a>(<strong class='reserved'>int</strong> <a href='../Y/2023.html' title='Multiple used in 103 places.'>depth</a>) <em class='brace'>{</em>
+<a id='L162' name='L162' />      <a href='../D/2265.html' title='Multiple defined in 2 places.'>RAW_DCHECK</a>(<a href='../Y/1727.html' title='Multiple used in 8 places.'>call_stack_depth</a> == 0, "");  <em class='comment'>// only one such set is allowed</em>
+<a id='L163' name='L163' />      <a href='../Y/1727.html' title='Multiple used in 8 places.'>call_stack_depth</a> = <a href='../Y/2023.html' title='Multiple used in 103 places.'>depth</a>;
+<a id='L164' name='L164' />      <a href='../Y/37.html' title='Multiple used in 6 places.'>AssertIsConsistent</a>();
+<a id='L165' name='L165' />    <em class='brace'>}</em>
+<a id='L166' name='L166' />
+<a id='L167' name='L167' />    <em class='comment'>// The ways we modify Region-s:</em>
+<a id='L168' name='L168' />    <strong class='reserved'>void</strong> <a href='../Y/4786.html' title='Multiple used in 2 places.'>set_is_stack</a>() <em class='brace'>{</em> <a href='../Y/2922.html' title='Multiple used in 5 places.'>is_stack</a> = <a href='../Y/5473.html' title='Multiple used in 20 places.'>true</a>; <em class='brace'>}</em>
+<a id='L169' name='L169' />    <strong class='reserved'>void</strong> <a href='../Y/4792.html' title='Multiple used in 3 places.'>set_start_addr</a>(<a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a> <a href='../Y/1406.html' title='Multiple used in 83 places.'>addr</a>) <em class='brace'>{</em>
+<a id='L170' name='L170' />      <a href='../Y/5039.html' title='Multiple used in 55 places.'>start_addr</a> = <a href='../Y/1406.html' title='Multiple used in 83 places.'>addr</a>;
+<a id='L171' name='L171' />      <a href='../Y/37.html' title='Multiple used in 6 places.'>AssertIsConsistent</a>();
+<a id='L172' name='L172' />    <em class='brace'>}</em>
+<a id='L173' name='L173' />    <strong class='reserved'>void</strong> <a href='../Y/4780.html' title='Multiple used in 3 places.'>set_end_addr</a>(<a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a> <a href='../Y/1406.html' title='Multiple used in 83 places.'>addr</a>) <em class='brace'>{</em>
+<a id='L174' name='L174' />      <a href='../Y/2190.html' title='Multiple used in 48 places.'>end_addr</a> = <a href='../Y/1406.html' title='Multiple used in 83 places.'>addr</a>;
+<a id='L175' name='L175' />      <a href='../Y/37.html' title='Multiple used in 6 places.'>AssertIsConsistent</a>();
+<a id='L176' name='L176' />    <em class='brace'>}</em>
+<a id='L177' name='L177' />
+<a id='L178' name='L178' />    <em class='comment'>// Verifies that *this contains consistent data, crashes if not the case.</em>
+<a id='L179' name='L179' />    <strong class='reserved'>void</strong> <a href='../Y/37.html' title='Multiple used in 6 places.'>AssertIsConsistent</a>() <strong class='reserved'>const</strong> <em class='brace'>{</em>
+<a id='L180' name='L180' />      <a href='../D/2265.html' title='Multiple defined in 2 places.'>RAW_DCHECK</a>(<a href='../Y/5039.html' title='Multiple used in 55 places.'>start_addr</a> &lt; <a href='../Y/2190.html' title='Multiple used in 48 places.'>end_addr</a>, "");
+<a id='L181' name='L181' />      <a href='../D/2265.html' title='Multiple defined in 2 places.'>RAW_DCHECK</a>(<a href='../Y/1727.html' title='Multiple used in 8 places.'>call_stack_depth</a> &gt;= 0  &amp;&amp;
+<a id='L182' name='L182' />                 <a href='../Y/1727.html' title='Multiple used in 8 places.'>call_stack_depth</a> &lt;= <a href='../Y/3068.html' title='Multiple used in 25 places.'>kMaxStackDepth</a>, "");
+<a id='L183' name='L183' />    <em class='brace'>}</em>
+<a id='L184' name='L184' />
+<a id='L185' name='L185' />    <em class='comment'>// Post-default construction helper to make a Region suitable</em>
+<a id='L186' name='L186' />    <em class='comment'>// for searching in RegionSet regions_.</em>
+<a id='L187' name='L187' />    <strong class='reserved'>void</strong> <a href='../Y/792.html' title='Multiple used in 4 places.'>SetRegionSetKey</a>(<a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a> <a href='../Y/1406.html' title='Multiple used in 83 places.'>addr</a>) <em class='brace'>{</em>
+<a id='L188' name='L188' />      <em class='comment'>// make sure *this has no usable data:</em>
+<a id='L189' name='L189' />      <strong class='reserved'>if</strong> (<a href='../D/506.html' title='Multiple defined in 2 places.'>DEBUG_MODE</a>) <a href='../Y/3518.html' title='Multiple used in 105 places.'>memset</a>(<a href='../Y/5352.html' title='Multiple used in 5 places.'>this</a>, 0xFF, <strong class='reserved'>sizeof</strong>(*<a href='../Y/5352.html' title='Multiple used in 5 places.'>this</a>));
+<a id='L190' name='L190' />      <a href='../Y/2190.html' title='Multiple used in 48 places.'>end_addr</a> = <a href='../Y/1406.html' title='Multiple used in 83 places.'>addr</a>;
+<a id='L191' name='L191' />    <em class='brace'>}</em>
+<a id='L192' name='L192' />
+<a id='L193' name='L193' />    <em class='comment'>// Note: call_stack[kMaxStackDepth] as a member lets us make Region</em>
+<a id='L194' name='L194' />    <em class='comment'>// a simple self-contained struct with correctly behaving bit-vise copying.</em>
+<a id='L195' name='L195' />    <em class='comment'>// This simplifies the code of this module but wastes some memory:</em>
+<a id='L196' name='L196' />    <em class='comment'>// in most-often use case of this module (leak checking)</em>
+<a id='L197' name='L197' />    <em class='comment'>// only one call_stack element out of kMaxStackDepth is actually needed.</em>
+<a id='L198' name='L198' />    <em class='comment'>// Making the storage for call_stack variable-sized,</em>
+<a id='L199' name='L199' />    <em class='comment'>// substantially complicates memory management for the Region-s:</em>
+<a id='L200' name='L200' />    <em class='comment'>// as they need to be created and manipulated for some time</em>
+<a id='L201' name='L201' />    <em class='comment'>// w/o any memory allocations, yet are also given out to the users.</em>
+<a id='L202' name='L202' />  <em class='brace'>}</em>;
+<a id='L203' name='L203' />
+<a id='L204' name='L204' />  <em class='comment'>// Find the region that covers addr and write its data into *result if found,</em>
+<a id='L205' name='L205' />  <em class='comment'>// in which case *result gets filled so that it stays fully functional</em>
+<a id='L206' name='L206' />  <em class='comment'>// even when the underlying region gets removed from MemoryRegionMap.</em>
+<a id='L207' name='L207' />  <em class='comment'>// Returns success. Uses Lock/Unlock inside.</em>
+<a id='L208' name='L208' />  <strong class='reserved'>static</strong> <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../S/588.html#L312' title='Defined at 312 in third_party/google-perftools-1.8.3/src/memory_region_map.cc.'>FindRegion</a>(<a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a> <a href='../Y/1406.html' title='Multiple used in 83 places.'>addr</a>, <a href='../D/2388.html' title='Multiple defined in 3 places.'>Region</a>* <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>);
+<a id='L209' name='L209' />
+<a id='L210' name='L210' />  <em class='comment'>// Find the region that contains stack_top, mark that region as</em>
+<a id='L211' name='L211' />  <em class='comment'>// a stack region, and write its data into *result if found,</em>
+<a id='L212' name='L212' />  <em class='comment'>// in which case *result gets filled so that it stays fully functional</em>
+<a id='L213' name='L213' />  <em class='comment'>// even when the underlying region gets removed from MemoryRegionMap.</em>
+<a id='L214' name='L214' />  <em class='comment'>// Returns success. Uses Lock/Unlock inside.</em>
+<a id='L215' name='L215' />  <strong class='reserved'>static</strong> <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../S/588.html#L320' title='Defined at 320 in third_party/google-perftools-1.8.3/src/memory_region_map.cc.'>FindAndMarkStackRegion</a>(<a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a> <a href='../Y/5030.html' title='Multiple used in 4 places.'>stack_top</a>, <a href='../D/2388.html' title='Multiple defined in 3 places.'>Region</a>* <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>);
+<a id='L216' name='L216' />
+<a id='L217' name='L217' /> <a href='../Y/4261.html' title='Multiple used in 50 places.'>private</a>:  <em class='comment'>// our internal types ==============================================</em>
+<a id='L218' name='L218' />
+<a id='L219' name='L219' />  <em class='comment'>// Region comparator for sorting with STL</em>
+<a id='L220' name='L220' />  <strong class='reserved'>struct</strong> RegionCmp <em class='brace'>{</em>
+<a id='L221' name='L221' />    <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../Y/3992.html' title='Multiple used in 30 places.'>operator</a>()(<strong class='reserved'>const</strong> <a href='../D/2388.html' title='Multiple defined in 3 places.'>Region</a>&amp; <a href='../Y/5713.html' title='Multiple used in 222 places.'>x</a>, <strong class='reserved'>const</strong> <a href='../D/2388.html' title='Multiple defined in 3 places.'>Region</a>&amp; <a href='../Y/5720.html' title='Multiple used in 30 places.'>y</a>) <strong class='reserved'>const</strong> <em class='brace'>{</em>
+<a id='L222' name='L222' />      <strong class='reserved'>return</strong> <a href='../Y/5713.html' title='Multiple used in 222 places.'>x</a>.<a href='../Y/2190.html' title='Multiple used in 48 places.'>end_addr</a> &lt; <a href='../Y/5720.html' title='Multiple used in 30 places.'>y</a>.<a href='../Y/2190.html' title='Multiple used in 48 places.'>end_addr</a>;
+<a id='L223' name='L223' />    <em class='brace'>}</em>
+<a id='L224' name='L224' />  <em class='brace'>}</em>;
+<a id='L225' name='L225' />
+<a id='L226' name='L226' />  <em class='comment'>// We allocate STL objects in our own arena.</em>
+<a id='L227' name='L227' />  <strong class='reserved'>struct</strong> <a href='../S/589.html#L238' title='Refered from 238 in third_party/google-perftools-1.8.3/src/memory_region_map.h.'>MyAllocator</a> <em class='brace'>{</em>
+<a id='L228' name='L228' />    <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> *<a href='../D/166.html' title='Multiple defined in 3 places.'>Allocate</a>(<a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>) <em class='brace'>{</em>
+<a id='L229' name='L229' />      <strong class='reserved'>return</strong> <a href='../Y/455.html' title='Multiple used in 54 places.'>LowLevelAlloc</a>::<a href='../S/530.html#L509' title='Defined at 509 in third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc.'>AllocWithArena</a>(<a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>, <a href='../S/530.html#L219' title='Defined at 219 in third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc.'>arena_</a>);
+<a id='L230' name='L230' />    <em class='brace'>}</em>
+<a id='L231' name='L231' />    <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../D/792.html' title='Multiple defined in 3 places.'>Free</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong> *<a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <em class='comment'>/* n */</em>) <em class='brace'>{</em>
+<a id='L232' name='L232' />      <a href='../Y/455.html' title='Multiple used in 54 places.'>LowLevelAlloc</a>::<a href='../D/792.html' title='Multiple defined in 3 places.'>Free</a>(<a href='../Y/1849.html' title='Multiple used in 43 places.'>const_cast</a>&lt;<strong class='reserved'>void</strong>*&gt;(<a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>));
+<a id='L233' name='L233' />    <em class='brace'>}</em>
+<a id='L234' name='L234' />  <em class='brace'>}</em>;
+<a id='L235' name='L235' />
+<a id='L236' name='L236' />  <em class='comment'>// Set of the memory regions</em>
+<a id='L237' name='L237' />  <strong class='reserved'>typedef</strong> <a href='../Y/5100.html' title='Multiple used in 181 places.'>std</a>::<a href='../Y/4774.html' title='Multiple used in 124 places.'>set</a>&lt;<a href='../R/2142.html' title='Multiple refered from 29 places.'>Region</a>, RegionCmp,
+<a id='L238' name='L238' />              <a href='../S/568.html#L388' title='Defined at 388 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>STL_Allocator</a>&lt;<a href='../R/2142.html' title='Multiple refered from 29 places.'>Region</a>, <a href='../S/589.html#L227' title='Defined at 227 in third_party/google-perftools-1.8.3/src/memory_region_map.h.'>MyAllocator</a>&gt; &gt; <a href='../R/2144.html' title='Multiple refered from 13 places.'>RegionSet</a>;
+<a id='L239' name='L239' />
+<a id='L240' name='L240' /> <a href='../Y/4390.html' title='Multiple used in 61 places.'>public</a>:  <em class='comment'>// more in-depth interface ==========================================</em>
+<a id='L241' name='L241' />
+<a id='L242' name='L242' />  <em class='comment'>// STL iterator with values of Region</em>
+<a id='L243' name='L243' />  <strong class='reserved'>typedef</strong> <a href='../S/589.html#L238' title='Defined at 238 in third_party/google-perftools-1.8.3/src/memory_region_map.h.'>RegionSet</a>::<a href='../Y/1850.html' title='Multiple used in 15 places.'>const_iterator</a> <a href='../R/2143.html' title='Multiple refered from 8 places.'>RegionIterator</a>;
+<a id='L244' name='L244' />
+<a id='L245' name='L245' />  <em class='comment'>// Return the begin/end iterators to all the regions.</em>
+<a id='L246' name='L246' />  <em class='comment'>// These need Lock/Unlock protection around their whole usage (loop).</em>
+<a id='L247' name='L247' />  <em class='comment'>// Even when the same thread causes modifications during such a loop</em>
+<a id='L248' name='L248' />  <em class='comment'>// (which are permitted due to recursive locking)</em>
+<a id='L249' name='L249' />  <em class='comment'>// the loop iterator will still be valid as long as its region</em>
+<a id='L250' name='L250' />  <em class='comment'>// has not been deleted, but EndRegionLocked should be</em>
+<a id='L251' name='L251' />  <em class='comment'>// re-evaluated whenever the set of regions has changed.</em>
+<a id='L252' name='L252' />  <strong class='reserved'>static</strong> <a href='../S/589.html#L243' title='Defined at 243 in third_party/google-perftools-1.8.3/src/memory_region_map.h.'>RegionIterator</a> <a href='../S/588.html#L337' title='Defined at 337 in third_party/google-perftools-1.8.3/src/memory_region_map.cc.'>BeginRegionLocked</a>();
+<a id='L253' name='L253' />  <strong class='reserved'>static</strong> <a href='../S/589.html#L243' title='Defined at 243 in third_party/google-perftools-1.8.3/src/memory_region_map.h.'>RegionIterator</a> <a href='../S/588.html#L343' title='Defined at 343 in third_party/google-perftools-1.8.3/src/memory_region_map.cc.'>EndRegionLocked</a>();
+<a id='L254' name='L254' />
+<a id='L255' name='L255' />  <em class='comment'>// Effectively private type from our .cc =================================</em>
+<a id='L256' name='L256' />  <em class='comment'>// public to let us declare global objects:</em>
+<a id='L257' name='L257' />  <strong class='reserved'>union</strong> <a href='../Y/683.html' title='Multiple used in 3 places.'>RegionSetRep</a>;
+<a id='L258' name='L258' />
+<a id='L259' name='L259' /> <a href='../Y/4261.html' title='Multiple used in 50 places.'>private</a>:
+<a id='L260' name='L260' />  <em class='comment'>// representation ===========================================================</em>
+<a id='L261' name='L261' />
+<a id='L262' name='L262' />  <em class='comment'>// Counter of clients of this module that have called Init().</em>
+<a id='L263' name='L263' />  <strong class='reserved'>static</strong> <strong class='reserved'>int</strong> <a href='../Y/1805.html' title='Multiple used in 7 places.'>client_count_</a>;
+<a id='L264' name='L264' />
+<a id='L265' name='L265' />  <em class='comment'>// Maximal number of caller stack frames to save (&gt;= 0).</em>
+<a id='L266' name='L266' />  <strong class='reserved'>static</strong> <strong class='reserved'>int</strong> <a href='../Y/3472.html' title='Multiple used in 5 places.'>max_stack_depth_</a>;
+<a id='L267' name='L267' />
+<a id='L268' name='L268' />  <em class='comment'>// Arena used for our allocations in regions_.</em>
+<a id='L269' name='L269' />  <strong class='reserved'>static</strong> <a href='../Y/455.html' title='Multiple used in 54 places.'>LowLevelAlloc</a>::<a href='../Y/35.html' title='Multiple used in 33 places.'>Arena</a>* <a href='../S/530.html#L219' title='Defined at 219 in third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc.'>arena_</a>;
+<a id='L270' name='L270' />
+<a id='L271' name='L271' />  <em class='comment'>// Set of the mmap/sbrk/mremap-ed memory regions</em>
+<a id='L272' name='L272' />  <em class='comment'>// To be accessed *only* when Lock() is held.</em>
+<a id='L273' name='L273' />  <em class='comment'>// Hence we protect the non-recursive lock used inside of arena_</em>
+<a id='L274' name='L274' />  <em class='comment'>// with our recursive Lock(). This lets a user prevent deadlocks</em>
+<a id='L275' name='L275' />  <em class='comment'>// when threads are stopped by ListAllProcessThreads at random spots</em>
+<a id='L276' name='L276' />  <em class='comment'>// simply by acquiring our recursive Lock() before that.</em>
+<a id='L277' name='L277' />  <strong class='reserved'>static</strong> <a href='../S/589.html#L238' title='Defined at 238 in third_party/google-perftools-1.8.3/src/memory_region_map.h.'>RegionSet</a>* <a href='../Y/4489.html' title='Multiple used in 29 places.'>regions_</a>;
+<a id='L278' name='L278' />
+<a id='L279' name='L279' />  <em class='comment'>// Lock to protect regions_ variable and the data behind.</em>
+<a id='L280' name='L280' />  <strong class='reserved'>static</strong> <a href='../Y/802.html' title='Multiple used in 48 places.'>SpinLock</a> <a href='../Y/3314.html' title='Multiple used in 57 places.'>lock_</a>;
+<a id='L281' name='L281' />  <em class='comment'>// Lock to protect the recursive lock itself.</em>
+<a id='L282' name='L282' />  <strong class='reserved'>static</strong> <a href='../Y/802.html' title='Multiple used in 48 places.'>SpinLock</a> <a href='../Y/4071.html' title='Multiple used in 6 places.'>owner_lock_</a>;
+<a id='L283' name='L283' />
+<a id='L284' name='L284' />  <em class='comment'>// Recursion count for the recursive lock.</em>
+<a id='L285' name='L285' />  <strong class='reserved'>static</strong> <strong class='reserved'>int</strong> <a href='../Y/4460.html' title='Multiple used in 10 places.'>recursion_count_</a>;
+<a id='L286' name='L286' />  <em class='comment'>// The thread id of the thread that's inside the recursive lock.</em>
+<a id='L287' name='L287' />  <strong class='reserved'>static</strong> <a href='../S/686.html#L120' title='Defined at 120 in third_party/google-perftools-1.8.3/src/windows/port.h.'>pthread_t</a> <a href='../Y/3316.html' title='Multiple used in 6 places.'>lock_owner_tid_</a>;
+<a id='L288' name='L288' />
+<a id='L289' name='L289' />  <em class='comment'>// helpers ==================================================================</em>
+<a id='L290' name='L290' />
+<a id='L291' name='L291' />  <em class='comment'>// Helper for FindRegion and FindAndMarkStackRegion:</em>
+<a id='L292' name='L292' />  <em class='comment'>// returns the region covering 'addr' or NULL; assumes our lock_ is held.</em>
+<a id='L293' name='L293' />  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <a href='../D/2388.html' title='Multiple defined in 3 places.'>Region</a>* <a href='../S/588.html#L296' title='Defined at 296 in third_party/google-perftools-1.8.3/src/memory_region_map.cc.'>DoFindRegionLocked</a>(<a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a> <a href='../Y/1406.html' title='Multiple used in 83 places.'>addr</a>);
+<a id='L294' name='L294' />
+<a id='L295' name='L295' />  <em class='comment'>// Verifying wrapper around regions_-&gt;insert(region)</em>
+<a id='L296' name='L296' />  <em class='comment'>// To be called to do InsertRegionLocked's work only!</em>
+<a id='L297' name='L297' />  <strong class='reserved'>inline</strong> <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/588.html#L349' title='Defined at 349 in third_party/google-perftools-1.8.3/src/memory_region_map.cc.'>DoInsertRegionLocked</a>(<strong class='reserved'>const</strong> <a href='../D/2388.html' title='Multiple defined in 3 places.'>Region</a>&amp; <a href='../Y/4487.html' title='Multiple used in 113 places.'>region</a>);
+<a id='L298' name='L298' />  <em class='comment'>// Handle regions saved by InsertRegionLocked into a tmp static array</em>
+<a id='L299' name='L299' />  <em class='comment'>// by calling insert_func on them.</em>
+<a id='L300' name='L300' />  <strong class='reserved'>inline</strong> <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/588.html#L393' title='Defined at 393 in third_party/google-perftools-1.8.3/src/memory_region_map.cc.'>HandleSavedRegionsLocked</a>(
+<a id='L301' name='L301' />                       <strong class='reserved'>void</strong> (*<a href='../Y/2841.html' title='Multiple used in 3 places.'>insert_func</a>)(<strong class='reserved'>const</strong> <a href='../D/2388.html' title='Multiple defined in 3 places.'>Region</a>&amp; <a href='../Y/4487.html' title='Multiple used in 113 places.'>region</a>));
+<a id='L302' name='L302' />  <em class='comment'>// Wrapper around DoInsertRegionLocked</em>
+<a id='L303' name='L303' />  <em class='comment'>// that handles the case of recursive allocator calls.</em>
+<a id='L304' name='L304' />  <strong class='reserved'>inline</strong> <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/588.html#L405' title='Defined at 405 in third_party/google-perftools-1.8.3/src/memory_region_map.cc.'>InsertRegionLocked</a>(<strong class='reserved'>const</strong> <a href='../D/2388.html' title='Multiple defined in 3 places.'>Region</a>&amp; <a href='../Y/4487.html' title='Multiple used in 113 places.'>region</a>);
+<a id='L305' name='L305' />
+<a id='L306' name='L306' />  <em class='comment'>// Record addition of a memory region at address "start" of size "size"</em>
+<a id='L307' name='L307' />  <em class='comment'>// (called from our mmap/mremap/sbrk hooks).</em>
+<a id='L308' name='L308' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/588.html#L448' title='Defined at 448 in third_party/google-perftools-1.8.3/src/memory_region_map.cc.'>RecordRegionAddition</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>);
+<a id='L309' name='L309' />  <em class='comment'>// Record deletion of a memory region at address "start" of size "size"</em>
+<a id='L310' name='L310' />  <em class='comment'>// (called from our munmap/mremap/sbrk hooks).</em>
+<a id='L311' name='L311' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/588.html#L471' title='Defined at 471 in third_party/google-perftools-1.8.3/src/memory_region_map.cc.'>RecordRegionRemoval</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>);
+<a id='L312' name='L312' />
+<a id='L313' name='L313' />  <em class='comment'>// Hooks for MallocHook</em>
+<a id='L314' name='L314' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../D/1874.html' title='Multiple defined in 3 places.'>MmapHook</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>,
+<a id='L315' name='L315' />                       <strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>,
+<a id='L316' name='L316' />                       <strong class='reserved'>int</strong> <a href='../Y/4326.html' title='Multiple used in 43 places.'>prot</a>, <strong class='reserved'>int</strong> <a href='../Y/2400.html' title='Multiple used in 235 places.'>flags</a>,
+<a id='L317' name='L317' />                       <strong class='reserved'>int</strong> <a href='../Y/2340.html' title='Multiple used in 181 places.'>fd</a>, <a href='../S/686.html#L268' title='Defined at 268 in third_party/google-perftools-1.8.3/src/windows/port.h.'>off_t</a> <a href='../Y/3919.html' title='Multiple used in 128 places.'>offset</a>);
+<a id='L318' name='L318' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../D/1889.html' title='Multiple defined in 3 places.'>MunmapHook</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>);
+<a id='L319' name='L319' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../D/1884.html' title='Multiple defined in 3 places.'>MremapHook</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>, <strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/3929.html' title='Multiple used in 18 places.'>old_addr</a>,
+<a id='L320' name='L320' />                         <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/3946.html' title='Multiple used in 32 places.'>old_size</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../S/404.html#L85' title='Defined at 85 in src/utility/st.c.'>new_size</a>, <strong class='reserved'>int</strong> <a href='../Y/2400.html' title='Multiple used in 235 places.'>flags</a>,
+<a id='L321' name='L321' />                         <strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/3717.html' title='Multiple used in 13 places.'>new_addr</a>);
+<a id='L322' name='L322' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../D/2553.html' title='Multiple defined in 3 places.'>SbrkHook</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>, <a href='../Y/4386.html' title='Multiple used in 22 places.'>ptrdiff_t</a> <a href='../Y/2795.html' title='Multiple used in 142 places.'>increment</a>);
+<a id='L323' name='L323' />
+<a id='L324' name='L324' />  <em class='comment'>// Log all memory regions; Useful for debugging only.</em>
+<a id='L325' name='L325' />  <em class='comment'>// Assumes Lock() is held</em>
+<a id='L326' name='L326' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/588.html#L634' title='Defined at 634 in third_party/google-perftools-1.8.3/src/memory_region_map.cc.'>LogAllLocked</a>();
+<a id='L327' name='L327' />
+<a id='L328' name='L328' />  <a href='../S/516.html#L126' title='Defined at 126 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>DISALLOW_COPY_AND_ASSIGN</a>(<a href='../Y/517.html' title='Multiple used in 61 places.'>MemoryRegionMap</a>);
+<a id='L329' name='L329' /><em class='brace'>}</em>;
+<a id='L330' name='L330' />
+<a id='L331' name='L331' /><em class='sharp'>#endif</em>  <em class='comment'>// BASE_MEMORY_REGION_MAP_H_</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^][v]<a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

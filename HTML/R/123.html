@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>AllocList</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/530.html#L78'>AllocList</a>          78 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     AllocList *next[kMaxLevel];   // actually has levels elements.</span>
+<span class='curline'><a href='../S/530.html#L84'>AllocList</a>          84 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc using low_level_alloc_internal::AllocList;</span>
+<span class='curline'><a href='../S/530.html#L127'>AllocList</a>         127 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   int max_fit = (size-OFFSETOF_MEMBER(AllocList, next)) / sizeof (AllocList *);</span>
+<span class='curline'><a href='../S/530.html#L139'>AllocList</a>         139 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc static AllocList *LLA_SkiplistSearch(AllocList *head,</span>
+<span class='curline'><a href='../S/530.html#L140'>AllocList</a>         140 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc                                      AllocList *e, AllocList **prev) {</span>
+<span class='curline'><a href='../S/530.html#L141'>AllocList</a>         141 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   AllocList *p = head;</span>
+<span class='curline'><a href='../S/530.html#L143'>AllocList</a>         143 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     for (AllocList *n; (n = p-&gt;next[level]) != 0 &amp;&amp; n &lt; e; p = n) {</span>
+<span class='curline'><a href='../S/530.html#L153'>AllocList</a>         153 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc static void LLA_SkiplistInsert(AllocList *head, AllocList *e,</span>
+<span class='curline'><a href='../S/530.html#L154'>AllocList</a>         154 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc                                AllocList **prev) {</span>
+<span class='curline'><a href='../S/530.html#L168'>AllocList</a>         168 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc static void LLA_SkiplistDelete(AllocList *head, AllocList *e,</span>
+<span class='curline'><a href='../S/530.html#L169'>AllocList</a>         169 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc                                AllocList **prev) {</span>
+<span class='curline'><a href='../S/530.html#L170'>AllocList</a>         170 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   AllocList *found = LLA_SkiplistSearch(head, e, prev);</span>
+<span class='curline'><a href='../S/530.html#L190'>AllocList</a>         190 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   AllocList freelist;     // head of free list; sorted by addr (under mu)</span>
+<span class='curline'><a href='../S/530.html#L258'>AllocList</a>         258 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc inline static intptr_t Magic(intptr_t magic, AllocList::Header *ptr) {</span>
+<span class='curline'><a href='../S/530.html#L322'>AllocList</a>         322 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       AllocList *region = arena-&gt;freelist.next[0];</span>
+<span class='curline'><a href='../S/530.html#L361'>AllocList</a>         361 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc static AllocList *Next(int i, AllocList *prev, LowLevelAlloc::Arena *arena) {</span>
+<span class='curline'><a href='../S/530.html#L363'>AllocList</a>         363 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   AllocList *next = prev-&gt;next[i];</span>
+<span class='curline'><a href='../S/530.html#L379'>AllocList</a>         379 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc static void Coalesce(AllocList *a) {</span>
+<span class='curline'><a href='../S/530.html#L380'>AllocList</a>         380 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   AllocList *n = a-&gt;next[0];</span>
+<span class='curline'><a href='../S/530.html#L387'>AllocList</a>         387 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     AllocList *prev[kMaxLevel];</span>
+<span class='curline'><a href='../S/530.html#L398'>AllocList</a>         398 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   AllocList *f = reinterpret_cast&lt;AllocList *&gt;(</span>
+<span class='curline'><a href='../S/530.html#L405'>AllocList</a>         405 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   AllocList *prev[kMaxLevel];</span>
+<span class='curline'><a href='../S/530.html#L416'>AllocList</a>         416 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     AllocList *f = reinterpret_cast&lt;AllocList *&gt;(</span>
+<span class='curline'><a href='../S/530.html#L437'>AllocList</a>         437 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     AllocList *s;       // will point to region that satisfies request</span>
+<span class='curline'><a href='../S/530.html#L446'>AllocList</a>         446 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc         AllocList *before = &amp;arena-&gt;freelist;  // predecessor of s</span>
+<span class='curline'><a href='../S/530.html#L470'>AllocList</a>         470 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       s = reinterpret_cast&lt;AllocList *&gt;(new_pages);</span>
+<span class='curline'><a href='../S/530.html#L477'>AllocList</a>         477 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     AllocList *prev[kMaxLevel];</span>
+<span class='curline'><a href='../S/530.html#L481'>AllocList</a>         481 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       AllocList *n = reinterpret_cast&lt;AllocList *&gt;</span>
+</pre>
+</body>
+</html>

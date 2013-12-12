@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>wait_cycles</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/533.html#L82'>wait_cycles</a>        82 third_party/google-perftools-1.8.3/src/base/spinlock.cc                             Atomic32* wait_cycles) {</span>
+<span class='curline'><a href='../S/533.html#L90'>wait_cycles</a>        90 third_party/google-perftools-1.8.3/src/base/spinlock.cc   *wait_cycles = spin_loop_wait_cycles;</span>
+<span class='curline'><a href='../S/533.html#L100'>wait_cycles</a>       100 third_party/google-perftools-1.8.3/src/base/spinlock.cc   Atomic32 wait_cycles;</span>
+<span class='curline'><a href='../S/533.html#L101'>wait_cycles</a>       101 third_party/google-perftools-1.8.3/src/base/spinlock.cc   Atomic32 lock_value = SpinLoop(wait_start_time, &amp;wait_cycles);</span>
+<span class='curline'><a href='../S/533.html#L125'>wait_cycles</a>       125 third_party/google-perftools-1.8.3/src/base/spinlock.cc                                                           wait_cycles);</span>
+<span class='curline'><a href='../S/533.html#L135'>wait_cycles</a>       135 third_party/google-perftools-1.8.3/src/base/spinlock.cc     lock_value = SpinLoop(wait_start_time, &amp;wait_cycles);</span>
+<span class='curline'><a href='../S/533.html#L151'>wait_cycles</a>       151 third_party/google-perftools-1.8.3/src/base/spinlock.cc void SpinLock::SlowUnlock(uint64 wait_cycles) {</span>
+<span class='curline'><a href='../S/533.html#L167'>wait_cycles</a>       167 third_party/google-perftools-1.8.3/src/base/spinlock.cc   if (wait_cycles &gt; kSpinLockSleeper) {</span>
+<span class='curline'><a href='../S/533.html#L169'>wait_cycles</a>       169 third_party/google-perftools-1.8.3/src/base/spinlock.cc                                     wait_cycles &lt;&lt; PROFILE_TIMESTAMP_SHIFT);</span>
+<span class='curline'><a href='../S/533.html#L174'>wait_cycles</a>       174 third_party/google-perftools-1.8.3/src/base/spinlock.cc   int32 wait_cycles = ((CycleClock::Now() - wait_start_time) &gt;&gt;</span>
+<span class='curline'><a href='../S/533.html#L180'>wait_cycles</a>       180 third_party/google-perftools-1.8.3/src/base/spinlock.cc   wait_cycles |= kSpinLockSleeper;</span>
+<span class='curline'><a href='../S/533.html#L181'>wait_cycles</a>       181 third_party/google-perftools-1.8.3/src/base/spinlock.cc   return wait_cycles;</span>
+<span class='curline'><a href='../S/534.html#L98'>wait_cycles</a>        98 third_party/google-perftools-1.8.3/src/base/spinlock.h     uint64 wait_cycles =</span>
+<span class='curline'><a href='../S/534.html#L102'>wait_cycles</a>       102 third_party/google-perftools-1.8.3/src/base/spinlock.h     if (wait_cycles != kSpinLockHeld) {</span>
+<span class='curline'><a href='../S/534.html#L106'>wait_cycles</a>       106 third_party/google-perftools-1.8.3/src/base/spinlock.h       SlowUnlock(wait_cycles);</span>
+<span class='curline'><a href='../S/534.html#L126'>wait_cycles</a>       126 third_party/google-perftools-1.8.3/src/base/spinlock.h   void SlowUnlock(uint64 wait_cycles);</span>
+<span class='curline'><a href='../S/534.html#L127'>wait_cycles</a>       127 third_party/google-perftools-1.8.3/src/base/spinlock.h   Atomic32 SpinLoop(int64 initial_wait_timestamp, Atomic32* wait_cycles);</span>
+<span class='curline'><a href='../S/541.html#L48'>wait_cycles</a>        48 third_party/google-perftools-1.8.3/src/base/synchronization_profiling.h                                       int64 wait_cycles) {}</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>children</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/334.html#L90'>children</a>           90 src/hyperlink.c   hl-&gt;children = NULL;</span>
+<span class='curline'><a href='../S/334.html#L153'>children</a>          153 src/hyperlink.c   HashSet *children = hl-&gt;children;</span>
+<span class='curline'><a href='../S/334.html#L154'>children</a>          154 src/hyperlink.c   if (children) {</span>
+<span class='curline'><a href='../S/334.html#L157'>children</a>          157 src/hyperlink.c     for (it = hashset_iterator(children); !hashsetiter_isend(&amp;it); hashsetiter_next(&amp;it)) {</span>
+<span class='curline'><a href='../S/334.html#L185'>children</a>          185 src/hyperlink.c     while (hl-&gt;children) {</span>
+<span class='curline'><a href='../S/334.html#L193'>children</a>          193 src/hyperlink.c       hashset_delete(parent-&gt;children, (HashKeyType)hl);</span>
+<span class='curline'><a href='../S/334.html#L196'>children</a>          196 src/hyperlink.c         hashset_free(parent-&gt;children);</span>
+<span class='curline'><a href='../S/334.html#L197'>children</a>          197 src/hyperlink.c         parent-&gt;children = NULL;</span>
+<span class='curline'><a href='../S/334.html#L214'>children</a>          214 src/hyperlink.c   HashSet *children;</span>
+<span class='curline'><a href='../S/334.html#L220'>children</a>          220 src/hyperlink.c   children = hl-&gt;children;</span>
+<span class='curline'><a href='../S/334.html#L229'>children</a>          229 src/hyperlink.c     hashset_delete(parent-&gt;children, (HashKeyType)hl);</span>
+<span class='curline'><a href='../S/334.html#L233'>children</a>          233 src/hyperlink.c       hashset_free(parent-&gt;children);</span>
+<span class='curline'><a href='../S/334.html#L234'>children</a>          234 src/hyperlink.c       parent-&gt;children = NULL;</span>
+<span class='curline'><a href='../S/334.html#L237'>children</a>          237 src/hyperlink.c     if (children) { // 子表があるとき</span>
+<span class='curline'><a href='../S/334.html#L239'>children</a>          239 src/hyperlink.c       for (it = hashset_iterator(children);</span>
+<span class='curline'><a href='../S/334.html#L244'>children</a>          244 src/hyperlink.c           hashset_add(parent-&gt;children, (HashKeyType)tmp);</span>
+<span class='curline'><a href='../S/334.html#L245'>children</a>          245 src/hyperlink.c           hashset_delete(children, (HashKeyType)tmp);</span>
+<span class='curline'><a href='../S/334.html#L256'>children</a>          256 src/hyperlink.c     if (children) { /* 子表があるとき */</span>
+<span class='curline'><a href='../S/334.html#L261'>children</a>          261 src/hyperlink.c       for (it = hashset_iterator(children);</span>
+<span class='curline'><a href='../S/334.html#L271'>children</a>          271 src/hyperlink.c       hashset_delete(children, (HashKeyType)newroot); /* rootの子表から新rootを除去 */</span>
+<span class='curline'><a href='../S/334.html#L274'>children</a>          274 src/hyperlink.c       if (!newroot-&gt;children) {</span>
+<span class='curline'><a href='../S/334.html#L275'>children</a>          275 src/hyperlink.c         newroot-&gt;children = hashset_make(hashset_num(children));</span>
+<span class='curline'><a href='../S/334.html#L278'>children</a>          278 src/hyperlink.c       for (it = hashset_iterator(children);</span>
+<span class='curline'><a href='../S/334.html#L283'>children</a>          283 src/hyperlink.c           hashset_add(newroot-&gt;children, (HashKeyType)tmp);</span>
+<span class='curline'><a href='../S/334.html#L284'>children</a>          284 src/hyperlink.c           hashset_delete(children, (HashKeyType)tmp);</span>
+<span class='curline'><a href='../S/334.html#L291'>children</a>          291 src/hyperlink.c         hashset_free(newroot-&gt;children);</span>
+<span class='curline'><a href='../S/334.html#L292'>children</a>          292 src/hyperlink.c         newroot-&gt;children = NULL;</span>
+<span class='curline'><a href='../S/334.html#L297'>children</a>          297 src/hyperlink.c   if (children) {</span>
+<span class='curline'><a href='../S/334.html#L298'>children</a>          298 src/hyperlink.c     hashset_free(children);</span>
+<span class='curline'><a href='../S/334.html#L324'>children</a>          324 src/hyperlink.c void hyperlink_path_compression(HyperLink *root, Vector *children)</span>
+<span class='curline'><a href='../S/334.html#L328'>children</a>          328 src/hyperlink.c   n = vec_num(children);</span>
+<span class='curline'><a href='../S/334.html#L332'>children</a>          332 src/hyperlink.c     hl = (HyperLink *)vec_get(children, i);</span>
+<span class='curline'><a href='../S/334.html#L340'>children</a>          340 src/hyperlink.c       old_parent_children = old_parent-&gt;children;</span>
+<span class='curline'><a href='../S/334.html#L344'>children</a>          344 src/hyperlink.c         ((HyperLink *)vec_get(children, j))-&gt;rank -= sub_rank;</span>
+<span class='curline'><a href='../S/334.html#L349'>children</a>          349 src/hyperlink.c         old_parent-&gt;children = NULL;</span>
+<span class='curline'><a href='../S/334.html#L354'>children</a>          354 src/hyperlink.c       hashset_add(root-&gt;children, (HashKeyType)hl);</span>
+<span class='curline'><a href='../S/334.html#L380'>children</a>          380 src/hyperlink.c     Vector children;</span>
+<span class='curline'><a href='../S/334.html#L381'>children</a>          381 src/hyperlink.c     vec_init(&amp;children, lmn_hyperlink_element_num(parent_hl));</span>
+<span class='curline'><a href='../S/334.html#L384'>children</a>          384 src/hyperlink.c       vec_push(&amp;children, (LmnWord)current_hl);</span>
+<span class='curline'><a href='../S/334.html#L389'>children</a>          389 src/hyperlink.c     if (!vec_is_empty(&amp;children)) {</span>
+<span class='curline'><a href='../S/334.html#L390'>children</a>          390 src/hyperlink.c       hyperlink_path_compression(parent_hl, &amp;children); /* parent_hlはrootになっている */</span>
+<span class='curline'><a href='../S/334.html#L393'>children</a>          393 src/hyperlink.c     vec_destroy(&amp;children);</span>
+<span class='curline'><a href='../S/334.html#L404'>children</a>          404 src/hyperlink.c   if (!parent-&gt;children) {</span>
+<span class='curline'><a href='../S/334.html#L405'>children</a>          405 src/hyperlink.c     parent-&gt;children = hashset_make(2);</span>
+<span class='curline'><a href='../S/334.html#L407'>children</a>          407 src/hyperlink.c   hashset_add(parent-&gt;children, (HashKeyType)child);</span>
+<span class='curline'><a href='../S/334.html#L498'>children</a>          498 src/hyperlink.c   HashSet *children;</span>
+<span class='curline'><a href='../S/334.html#L541'>children</a>          541 src/hyperlink.c       if ((children = hl-&gt;children)) {</span>
+<span class='curline'><a href='../S/334.html#L550'>children</a>          550 src/hyperlink.c         for (hsit = hashset_iterator(children); !hashsetiter_isend(&amp;hsit); hashsetiter_next(&amp;hsit)) {</span>
+<span class='curline'><a href='../S/334.html#L1020'>children</a>         1020 src/hyperlink.c   for (it = hashset_iterator(root-&gt;children); !hashsetiter_isend(&amp;it); hashsetiter_next(&amp;it)) {</span>
+<span class='curline'><a href='../S/334.html#L1024'>children</a>         1024 src/hyperlink.c     if (hl-&gt;children &amp;&amp; hl-&gt;rank &gt; 0) { /* hlが子を持つならば */</span>
+<span class='curline'><a href='../S/335.html#L71'>children</a>           71 src/hyperlink.h   struct HashSet *children; /* 子表 */</span>
+<span class='curline'><a href='../S/357.html#L942'>children</a>          942 src/membrane.c             if (orihl-&gt;children) {</span>
+<span class='curline'><a href='../S/357.html#L944'>children</a>          944 src/membrane.c               for (it = hashset_iterator(orihl-&gt;children);</span>
+</pre>
+</body>
+</html>

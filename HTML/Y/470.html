@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>MEM</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/358.html#L569'>MEM</a>               569 src/membrane.h #define EACH_ATOMLIST_WITH_FUNC(MEM, ENT, F, CODE)                             \</span>
+<span class='curline'><a href='../S/358.html#L572'>MEM</a>               572 src/membrane.h     for (__iter = atomlist_iter_initializer((MEM)-&gt;atomset);                   \</span>
+<span class='curline'><a href='../S/358.html#L573'>MEM</a>               573 src/membrane.h          atomlist_iter_condition(MEM, __iter);                                 \</span>
+<span class='curline'><a href='../S/358.html#L575'>MEM</a>               575 src/membrane.h       (ENT) = atomlist_iter_get_entry(MEM, __iter);                            \</span>
+<span class='curline'><a href='../S/358.html#L581'>MEM</a>               581 src/membrane.h #define EACH_ATOMLIST(MEM, ENT, CODE)                                          \</span>
+<span class='curline'><a href='../S/358.html#L584'>MEM</a>               584 src/membrane.h     for (__iter = atomlist_iter_initializer((MEM)-&gt;atomset);                   \</span>
+<span class='curline'><a href='../S/358.html#L585'>MEM</a>               585 src/membrane.h          atomlist_iter_condition(MEM, __iter);                                 \</span>
+<span class='curline'><a href='../S/358.html#L587'>MEM</a>               587 src/membrane.h       (ENT) = atomlist_iter_get_entry(MEM, __iter);                            \</span>
+<span class='curline'><a href='../S/358.html#L607'>MEM</a>               607 src/membrane.h #define EACH_FUNC_ATOM(MEM, F, V, CODE)                                        \</span>
+<span class='curline'><a href='../S/358.html#L609'>MEM</a>               609 src/membrane.h     AtomListEntry *__ent  = lmn_mem_get_atomlist((MEM), (F));                  \</span>
+<span class='curline'><a href='../S/358.html#L621'>MEM</a>               621 src/membrane.h #define ALL_ATOMS(MEM, V, CODE)                                                \</span>
+<span class='curline'><a href='../S/358.html#L624'>MEM</a>               624 src/membrane.h     EACH_ATOMLIST((MEM), __ent, ({                                             \</span>
+<span class='curline'><a href='../S/364.html#L126'>MEM</a>               126 src/react_context.h #define RC_SET_GROOT_MEM(RC, MEM)      ((RC)-&gt;global_root = (MEM))</span>
+<span class='curline'><a href='../S/377.html#L65'>MEM</a>                65 src/string.c   #define LINK_STR(MEM, TO_ATOM, TO_ATTR, STR_ATOM)                        \</span>
+<span class='curline'><a href='../S/377.html#L66'>MEM</a>                66 src/string.c           lmn_mem_newlink((MEM),                                           \</span>
+<span class='curline'><a href='../S/417.html#L155'>MEM</a>               155 src/verifier/delta_membrane.c #define DMEM_ORG_EACH_FUNC_ATOM(D, MEM, F, V, CODE)                        \</span>
+<span class='curline'><a href='../S/417.html#L157'>MEM</a>               157 src/verifier/delta_membrane.c     AtomListEntry *__ent  = lmn_mem_get_atomlist((MEM), (F));              \</span>
+<span class='curline'><a href='../S/417.html#L165'>MEM</a>               165 src/verifier/delta_membrane.c             !((D) &amp;&amp; dmem_is_removed_atom((D), (MEM), (V)))) {             \</span>
+<span class='curline'><a href='../S/417.html#L172'>MEM</a>               172 src/verifier/delta_membrane.c #define DMEM_EACH_FUNC_ATOM(D, MEM, F, V, CODE)                            \</span>
+<span class='curline'><a href='../S/417.html#L175'>MEM</a>               175 src/verifier/delta_membrane.c     DMEM_ORG_EACH_FUNC_ATOM(D, MEM, F, V, CODE);                           \</span>
+<span class='curline'><a href='../S/417.html#L180'>MEM</a>               180 src/verifier/delta_membrane.c             !dmem_is_removed_atom((D), (MEM), (V))) {                      \</span>
+<span class='curline'><a href='../S/417.html#L187'>MEM</a>               187 src/verifier/delta_membrane.c #define DMEM_ALL_ATOMS(D, MEM, V, CODE)                                    \</span>
+<span class='curline'><a href='../S/417.html#L189'>MEM</a>               189 src/verifier/delta_membrane.c     if (!(D)) { ALL_ATOMS(MEM, V, CODE); }                                 \</span>
+<span class='curline'><a href='../S/417.html#L193'>MEM</a>               193 src/verifier/delta_membrane.c         DMEM_ORG_EACH_FUNC_ATOM(D, MEM, i_atomlist, V, CODE);              \</span>
+<span class='curline'><a href='../S/417.html#L197'>MEM</a>               197 src/verifier/delta_membrane.c         if (!dmem_is_removed_atom((D), (MEM), (V))) {                      \</span>
+<span class='curline'><a href='../S/417.html#L204'>MEM</a>               204 src/verifier/delta_membrane.c #define DMEM_ALL_MEMS(D, MEM, V, CODE)                                     \</span>
+<span class='curline'><a href='../S/417.html#L208'>MEM</a>               208 src/verifier/delta_membrane.c     for ((V) = (MEM)-&gt;child_head; (V); (V) = __next) {                     \</span>
+<span class='curline'><a href='../S/417.html#L210'>MEM</a>               210 src/verifier/delta_membrane.c       if (!(D) || !dmem_is_removed_mem((D), (MEM), (V))) {                 \</span>
+</pre>
+</body>
+</html>

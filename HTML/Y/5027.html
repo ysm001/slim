@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>stack_end</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/568.html#L676'>stack_end</a>         676 third_party/google-perftools-1.8.3/src/heap-checker.cc           uintptr_t stack_end = end;</span>
+<span class='curline'><a href='../S/568.html#L682'>stack_end</a>         682 third_party/google-perftools-1.8.3/src/heap-checker.cc             if (top &lt; r-&gt;start_addr  &amp;&amp;  r-&gt;start_addr &lt; stack_end) {</span>
+<span class='curline'><a href='../S/568.html#L683'>stack_end</a>         683 third_party/google-perftools-1.8.3/src/heap-checker.cc               stack_end = r-&gt;start_addr;</span>
+<span class='curline'><a href='../S/568.html#L689'>stack_end</a>         689 third_party/google-perftools-1.8.3/src/heap-checker.cc           if (stack_start != start  ||  stack_end != end) {</span>
+<span class='curline'><a href='../S/568.html#L691'>stack_end</a>         691 third_party/google-perftools-1.8.3/src/heap-checker.cc                         top_ptr, AsPtr(stack_start), AsPtr(stack_end));</span>
+<span class='curline'><a href='../S/568.html#L696'>stack_end</a>         696 third_party/google-perftools-1.8.3/src/heap-checker.cc                         top_ptr, stack_end - top);</span>
+<span class='curline'><a href='../S/568.html#L698'>stack_end</a>         698 third_party/google-perftools-1.8.3/src/heap-checker.cc               AllocObject(top_ptr, stack_end - top, THREAD_DATA));</span>
+<span class='curline'><a href='../S/568.html#L711'>stack_end</a>         711 third_party/google-perftools-1.8.3/src/heap-checker.cc           if (stack_end != end) {</span>
+<span class='curline'><a href='../S/568.html#L712'>stack_end</a>         712 third_party/google-perftools-1.8.3/src/heap-checker.cc             lib-&gt;second.push_back(AllocObject(AsPtr(stack_end), end - stack_end,</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>rlim</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/665.html#L67'>rlim</a>               67 third_party/google-perftools-1.8.3/src/tests/testutil.cc   struct rlimit rlim;</span>
+<span class='curline'><a href='../S/665.html#L68'>rlim</a>               68 third_party/google-perftools-1.8.3/src/tests/testutil.cc   if (getrlimit(USE_RESOURCE, &amp;rlim) == 0) {</span>
+<span class='curline'><a href='../S/665.html#L69'>rlim</a>               69 third_party/google-perftools-1.8.3/src/tests/testutil.cc     if (rlim.rlim_cur == RLIM_INFINITY || rlim.rlim_cur &gt; kMaxMem) {</span>
+<span class='curline'><a href='../S/665.html#L70'>rlim</a>               70 third_party/google-perftools-1.8.3/src/tests/testutil.cc       rlim.rlim_cur = kMaxMem;</span>
+<span class='curline'><a href='../S/665.html#L71'>rlim</a>               71 third_party/google-perftools-1.8.3/src/tests/testutil.cc       setrlimit(USE_RESOURCE, &amp;rlim); // ignore result</span>
+</pre>
+</body>
+</html>

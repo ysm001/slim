@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>ebuf_</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/542.html#L583'>ebuf_</a>             583 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   ebuf_ = ibuf_ + Buffer::kBufSize - 1;</span>
+<span class='curline'><a href='../S/542.html#L682'>ebuf_</a>             682 third_party/google-perftools-1.8.3/src/base/sysinfo.cc       while (etext_ &lt; ebuf_) {</span>
+<span class='curline'><a href='../S/542.html#L683'>ebuf_</a>             683 third_party/google-perftools-1.8.3/src/base/sysinfo.cc         NO_INTR(nread = read(fd_, etext_, ebuf_ - etext_));</span>
+<span class='curline'><a href='../S/542.html#L692'>ebuf_</a>             692 third_party/google-perftools-1.8.3/src/base/sysinfo.cc       if (etext_ != ebuf_ &amp;&amp; nread == 0) {</span>
+<span class='curline'><a href='../S/542.html#L693'>ebuf_</a>             693 third_party/google-perftools-1.8.3/src/base/sysinfo.cc         memset(etext_, 0, ebuf_ - etext_);</span>
+<span class='curline'><a href='../S/543.html#L196'>ebuf_</a>             196 third_party/google-perftools-1.8.3/src/base/sysinfo.h   char *ebuf_;        // end of buffer (1 char for a nul)</span>
+</pre>
+</body>
+</html>

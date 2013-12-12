@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>loff_t</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/525.html#L1509'>loff_t</a>           1509 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     LSS_INLINE int LSS_NAME(fadvise64)(int fd, loff_t offset,</span>
+<span class='curline'><a href='../S/525.html#L1510'>loff_t</a>           1510 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h                                        loff_t len, int advice) {</span>
+<span class='curline'><a href='../S/525.html#L1524'>loff_t</a>           1524 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h                                        loff_t offset, loff_t len) {</span>
+<span class='curline'><a href='../S/525.html#L1525'>loff_t</a>           1525 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       union { loff_t off; unsigned w[2]; } o = { offset }, l = { len };</span>
+<span class='curline'><a href='../S/525.html#L1709'>loff_t</a>           1709 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     LSS_INLINE _syscall4(int, fadvise64, int, fd, loff_t, offset, loff_t, len,</span>
+<span class='curline'><a href='../S/525.html#L2411'>loff_t</a>           2411 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h                          loff_t, offset, loff_t, len)</span>
+<span class='curline'><a href='../S/525.html#L2611'>loff_t</a>           2611 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h                          loff_t *, res, uint, wh)</span>
+<span class='curline'><a href='../S/525.html#L3024'>loff_t</a>           3024 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h                          loff_t,         o)</span>
+<span class='curline'><a href='../S/525.html#L3027'>loff_t</a>           3027 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h                          loff_t,         o)</span>
+<span class='curline'><a href='../S/525.html#L3029'>loff_t</a>           3029 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h                          loff_t,         o, unsigned, c)</span>
+<span class='curline'><a href='../S/525.html#L3048'>loff_t</a>           3048 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h                                          loff_t off) {</span>
+<span class='curline'><a href='../S/525.html#L3049'>loff_t</a>           3049 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       union { loff_t off; unsigned arg[2]; } o = { off };</span>
+<span class='curline'><a href='../S/525.html#L3053'>loff_t</a>           3053 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h                                           size_t count, loff_t off) {</span>
+<span class='curline'><a href='../S/525.html#L3054'>loff_t</a>           3054 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       union { loff_t off; unsigned arg[2]; } o = { off };</span>
+<span class='curline'><a href='../S/525.html#L3057'>loff_t</a>           3057 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     LSS_INLINE int LSS_NAME(readahead)(int fd, loff_t off, int len) {</span>
+<span class='curline'><a href='../S/525.html#L3058'>loff_t</a>           3058 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       union { loff_t off; unsigned arg[2]; } o = { off };</span>
+</pre>
+</body>
+</html>

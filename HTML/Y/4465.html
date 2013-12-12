@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>ref</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/415.html#L213'>ref</a>               213 src/verifier/binstr_compress.c LmnBinStr lmn_bscomp_d_encode(const LmnBinStr org, const LmnBinStr ref)</span>
+<span class='curline'><a href='../S/415.html#L229'>ref</a>               229 src/verifier/binstr_compress.c   ref_8len = (ref-&gt;len + 1) / TAG_IN_BYTE;</span>
+<span class='curline'><a href='../S/415.html#L239'>ref</a>               239 src/verifier/binstr_compress.c     ret = zd_compress(ref-&gt;v, ref_8len, org-&gt;v, org_8len, dif-&gt;v, &amp;dif_8len);</span>
+<span class='curline'><a href='../S/415.html#L271'>ref</a>               271 src/verifier/binstr_compress.c LmnBinStr lmn_bscomp_d_decode(const LmnBinStr ref, const LmnBinStr dif)</span>
+<span class='curline'><a href='../S/415.html#L285'>ref</a>               285 src/verifier/binstr_compress.c   ref_8len = (ref-&gt;len + 1) / TAG_IN_BYTE;</span>
+<span class='curline'><a href='../S/415.html#L297'>ref</a>               297 src/verifier/binstr_compress.c     ret = zd_uncompress(ref-&gt;v, ref_8len, org-&gt;v, &amp;org_8len, dif-&gt;v, dif_8len);</span>
+<span class='curline'><a href='../S/416.html#L50'>ref</a>                50 src/verifier/binstr_compress.h LmnBinStr lmn_bscomp_d_encode(LmnBinStr org, LmnBinStr ref);</span>
+<span class='curline'><a href='../S/416.html#L51'>ref</a>                51 src/verifier/binstr_compress.h LmnBinStr lmn_bscomp_d_decode(LmnBinStr ref, LmnBinStr dif);</span>
+<span class='curline'><a href='../S/436.html#L686'>ref</a>               686 src/verifier/mem_encode.c         unsigned int ref;</span>
+<span class='curline'><a href='../S/436.html#L688'>ref</a>               688 src/verifier/mem_encode.c         ref = binstr_get_ref_num(bs, pos);</span>
+<span class='curline'><a href='../S/436.html#L691'>ref</a>               691 src/verifier/mem_encode.c         switch (log[ref].type) {</span>
+<span class='curline'><a href='../S/436.html#L693'>ref</a>               693 src/verifier/mem_encode.c           printf("$%d's%d ", ref, binstr_get_arg_ref(bs, pos));</span>
+<span class='curline'><a href='../S/436.html#L697'>ref</a>               697 src/verifier/mem_encode.c           printf("#%d ", ref);</span>
+<span class='curline'><a href='../S/436.html#L700'>ref</a>               700 src/verifier/mem_encode.c           printf("~$%d ",ref);</span>
+<span class='curline'><a href='../S/436.html#L944'>ref</a>               944 src/verifier/mem_encode.c   LmnWord ref;</span>
+<span class='curline'><a href='../S/436.html#L950'>ref</a>               950 src/verifier/mem_encode.c   if (visitlog_get_hlink(log, hl_root, &amp;ref)) {</span>
+<span class='curline'><a href='../S/436.html#L952'>ref</a>               952 src/verifier/mem_encode.c            bsptr_push(p, (BYTE*)&amp;ref, BS_PROC_REF_SIZE);</span>
+<span class='curline'><a href='../S/436.html#L1903'>ref</a>              1903 src/verifier/mem_encode.c       unsigned int ref;</span>
+<span class='curline'><a href='../S/436.html#L1904'>ref</a>              1904 src/verifier/mem_encode.c       ref  = binstr_get_ref_num(bs-&gt;v, pos);</span>
+<span class='curline'><a href='../S/436.html#L1907'>ref</a>              1907 src/verifier/mem_encode.c       switch (log[ref].type) {</span>
+<span class='curline'><a href='../S/436.html#L1914'>ref</a>              1914 src/verifier/mem_encode.c           atom = (LmnSAtom)log[ref].v;</span>
+<span class='curline'><a href='../S/436.html#L1922'>ref</a>              1922 src/verifier/mem_encode.c           LmnMembrane *ref_mem = (LmnMembrane *)log[ref].v;</span>
+<span class='curline'><a href='../S/436.html#L1943'>ref</a>              1943 src/verifier/mem_encode.c           ref_hl_atom = (LmnAtom)log[ref].v;</span>
+<span class='curline'><a href='../S/436.html#L2867'>ref</a>              2867 src/verifier/mem_encode.c                                        BsDecodeLog *ref_log, unsigned int ref,</span>
+<span class='curline'><a href='../S/436.html#L2872'>ref</a>              2872 src/verifier/mem_encode.c                                       unsigned int ref,      LmnMeqLog   log);</span>
+<span class='curline'><a href='../S/436.html#L2876'>ref</a>              2876 src/verifier/mem_encode.c                                         unsigned int ref,      LmnMeqLog   visitlog);</span>
+<span class='curline'><a href='../S/436.html#L2885'>ref</a>              2885 src/verifier/mem_encode.c   unsigned int ref;</span>
+<span class='curline'><a href='../S/436.html#L2888'>ref</a>              2888 src/verifier/mem_encode.c   ref      = binstr_get_ref_num(bs-&gt;v, *i_bs);</span>
+<span class='curline'><a href='../S/436.html#L2893'>ref</a>              2893 src/verifier/mem_encode.c     return mem_eq_enc_mem_ref(bs, i_bs, atom, attr, ref_log, i_ref, ref, log);</span>
+<span class='curline'><a href='../S/436.html#L2896'>ref</a>              2896 src/verifier/mem_encode.c     return mem_eq_enc_hlink_ref(bs, i_bs, atom, attr, ref_log, i_ref, ref, log);</span>
+<span class='curline'><a href='../S/436.html#L2899'>ref</a>              2899 src/verifier/mem_encode.c     return mem_eq_enc_atom_ref(bs, i_bs, atom, attr, ref_log, ref, log);</span>
+<span class='curline'><a href='../S/436.html#L2903'>ref</a>              2903 src/verifier/mem_encode.c   switch (ref_log[ref].type) {</span>
+<span class='curline'><a href='../S/436.html#L2905'>ref</a>              2905 src/verifier/mem_encode.c     ret = mem_eq_enc_atom_ref(bs, i_bs, atom, attr, ref_log, ref, log);</span>
+<span class='curline'><a href='../S/436.html#L2908'>ref</a>              2908 src/verifier/mem_encode.c     ret = mem_eq_enc_mem_ref(bs, i_bs, atom, attr, ref_log, i_ref, ref, log);</span>
+<span class='curline'><a href='../S/436.html#L2911'>ref</a>              2911 src/verifier/mem_encode.c     ret = mem_eq_enc_hlink_ref(bs, i_bs, atom, attr, ref_log, i_ref, ref, log);</span>
+<span class='curline'><a href='../S/436.html#L2926'>ref</a>              2926 src/verifier/mem_encode.c                                        BsDecodeLog *ref_log, unsigned int ref,</span>
+<span class='curline'><a href='../S/436.html#L2939'>ref</a>              2939 src/verifier/mem_encode.c     return (ref_log[ref].v == (LmnWord)atom) &amp;&amp;</span>
+<span class='curline'><a href='../S/436.html#L2943'>ref</a>              2943 src/verifier/mem_encode.c            ref == tracelog_get_atomMatched(log, (LmnSAtom)atom);</span>
+<span class='curline'><a href='../S/436.html#L2956'>ref</a>              2956 src/verifier/mem_encode.c                                       unsigned int ref,      LmnMeqLog    log)</span>
+<span class='curline'><a href='../S/436.html#L2970'>ref</a>              2970 src/verifier/mem_encode.c     if (ref != tracelog_get_memMatched(log, in_mem)) return FALSE;</span>
+<span class='curline'><a href='../S/436.html#L2972'>ref</a>              2972 src/verifier/mem_encode.c     if (ref_log[ref].v != (LmnWord)in_mem) return FALSE;</span>
+<span class='curline'><a href='../S/436.html#L2995'>ref</a>              2995 src/verifier/mem_encode.c                                         unsigned int ref,      LmnMeqLog    log)</span>
+<span class='curline'><a href='../S/436.html#L3005'>ref</a>              3005 src/verifier/mem_encode.c     return ref == tracelog_get_hlinkMatched(log, hl_root);</span>
+<span class='curline'><a href='../S/436.html#L3008'>ref</a>              3008 src/verifier/mem_encode.c     return lmn_hyperlink_eq_hl((HyperLink *)ref_log[ref].v, hl_root);</span>
+<span class='curline'><a href='../S/454.html#L317'>ref</a>               317 src/verifier/state.c     LmnBinStr ref;</span>
+<span class='curline'><a href='../S/454.html#L319'>ref</a>               319 src/verifier/state.c     ref = state_binstr_reconstructor(state_D_ref(s));</span>
+<span class='curline'><a href='../S/454.html#L320'>ref</a>               320 src/verifier/state.c     ret = lmn_bscomp_d_decode(ref, state_binstr(s));</span>
+<span class='curline'><a href='../S/454.html#L322'>ref</a>               322 src/verifier/state.c       lmn_binstr_free(ref);</span>
+<span class='curline'><a href='../S/454.html#L553'>ref</a>               553 src/verifier/state.c   LmnBinStr ref, dif;</span>
+<span class='curline'><a href='../S/454.html#L555'>ref</a>               555 src/verifier/state.c   ref = state_D_fetch(ref_s);</span>
+<span class='curline'><a href='../S/454.html#L556'>ref</a>               556 src/verifier/state.c   if (ref) {</span>
+<span class='curline'><a href='../S/454.html#L557'>ref</a>               557 src/verifier/state.c     dif = lmn_bscomp_d_encode(org, ref);</span>
+<span class='curline'><a href='../S/454.html#L560'>ref</a>               560 src/verifier/state.c     ref = state_binstr_reconstructor(ref_s);</span>
+<span class='curline'><a href='../S/454.html#L561'>ref</a>               561 src/verifier/state.c     dif = lmn_bscomp_d_encode(org, ref);</span>
+<span class='curline'><a href='../S/454.html#L563'>ref</a>               563 src/verifier/state.c       lmn_binstr_free(ref);</span>
+<span class='curline'><a href='../S/723.html#L33'>ref</a>                33 third_party/zdelta-2.1/zdc.c   Bytef        *ref[REFNUM];</span>
+<span class='curline'><a href='../S/723.html#L54'>ref</a>                54 third_party/zdelta-2.1/zdc.c     ref[i] = ref_buf[i].buffer;  ref_s[i] = ref_buf[i].pos-ref_buf[i].buffer; </span>
+<span class='curline'><a href='../S/723.html#L59'>ref</a>                59 third_party/zdelta-2.1/zdc.c   if(zd_compressN1((const Bytef**) ref, ref_s, ref_n, </span>
+<span class='curline'><a href='../S/725.html#L29'>ref</a>                29 third_party/zdelta-2.1/zdelta.c int ZEXPORT zd_compress(const Bytef *ref,  uLong rsize,</span>
+<span class='curline'><a href='../S/725.html#L37'>ref</a>                37 third_party/zdelta-2.1/zdelta.c   strm.base[0]  = (Bytef*) ref;</span>
+<span class='curline'><a href='../S/725.html#L76'>ref</a>                76 third_party/zdelta-2.1/zdelta.c int ZEXPORT zd_compress1(const Bytef *ref, uLong rsize,</span>
+<span class='curline'><a href='../S/725.html#L90'>ref</a>                90 third_party/zdelta-2.1/zdelta.c   strm.base[0]  = (Bytef*) ref;</span>
+<span class='curline'><a href='../S/725.html#L151'>ref</a>               151 third_party/zdelta-2.1/zdelta.c int ZEXPORT zd_compressN(const Bytef *ref[], uLong rsize[], int rnum, </span>
+<span class='curline'><a href='../S/725.html#L164'>ref</a>               164 third_party/zdelta-2.1/zdelta.c     strm.base[i]  = (Bytef*) ref[i];</span>
+<span class='curline'><a href='../S/725.html#L206'>ref</a>               206 third_party/zdelta-2.1/zdelta.c int ZEXPORT zd_compressN1(const Bytef *ref[], uLong rsize[], int rnum, </span>
+<span class='curline'><a href='../S/725.html#L223'>ref</a>               223 third_party/zdelta-2.1/zdelta.c     strm.base[i]  = (Bytef*) ref[i];</span>
+<span class='curline'><a href='../S/725.html#L287'>ref</a>               287 third_party/zdelta-2.1/zdelta.c int ZEXPORT zd_uncompress(const Bytef *ref, uLong rsize,</span>
+<span class='curline'><a href='../S/725.html#L296'>ref</a>               296 third_party/zdelta-2.1/zdelta.c   strm.base[0]       = (Bytef*) ref;</span>
+<span class='curline'><a href='../S/725.html#L333'>ref</a>               333 third_party/zdelta-2.1/zdelta.c int ZEXPORT zd_uncompress1(const Bytef *ref, uLong rsize,</span>
+<span class='curline'><a href='../S/725.html#L346'>ref</a>               346 third_party/zdelta-2.1/zdelta.c   strm.base[0]       = (Bytef*) ref;</span>
+<span class='curline'><a href='../S/725.html#L411'>ref</a>               411 third_party/zdelta-2.1/zdelta.c int ZEXPORT zd_uncompressN(Bytef *ref[], uLong rsize[], int rnum,</span>
+<span class='curline'><a href='../S/725.html#L424'>ref</a>               424 third_party/zdelta-2.1/zdelta.c     strm.base[i]  = (Bytef*) ref[i];</span>
+<span class='curline'><a href='../S/725.html#L464'>ref</a>               464 third_party/zdelta-2.1/zdelta.c int ZEXPORT zd_uncompressN1(const Bytef *ref[], uLong rsize[], int rnum,</span>
+<span class='curline'><a href='../S/725.html#L481'>ref</a>               481 third_party/zdelta-2.1/zdelta.c     strm.base[i]  = (Bytef*) ref[i];</span>
+<span class='curline'><a href='../S/726.html#L454'>ref</a>               454 third_party/zdelta-2.1/zdlib.h ZEXTERN int ZEXPORT zd_compress OF ((const Bytef *ref, uLong rsize,</span>
+<span class='curline'><a href='../S/726.html#L482'>ref</a>               482 third_party/zdelta-2.1/zdlib.h ZEXTERN int ZEXPORT zd_compress1 OF ((const Bytef *ref, uLong rsize,</span>
+<span class='curline'><a href='../S/726.html#L511'>ref</a>               511 third_party/zdelta-2.1/zdlib.h ZEXTERN int ZEXPORT zd_compressN OF ((const Bytef *ref[],uLong rsize[],int rw,</span>
+<span class='curline'><a href='../S/726.html#L539'>ref</a>               539 third_party/zdelta-2.1/zdlib.h ZEXTERN int ZEXPORT zd_uncompress OF ((const Bytef *ref, uLong rsize,</span>
+<span class='curline'><a href='../S/726.html#L567'>ref</a>               567 third_party/zdelta-2.1/zdlib.h ZEXTERN int ZEXPORT zd_uncompress1 OF ((const Bytef *ref, uLong rsize,</span>
+<span class='curline'><a href='../S/726.html#L596'>ref</a>               596 third_party/zdelta-2.1/zdlib.h zd_uncompressN OF((Bytef *ref[],uLong rsize[],int rw,</span>
+<span class='curline'><a href='../S/726.html#L626'>ref</a>               626 third_party/zdelta-2.1/zdlib.h ZEXTERN int ZEXPORT zd_compressN1 OF ((const Bytef *ref[],uLong rsize[],int rw,</span>
+<span class='curline'><a href='../S/726.html#L658'>ref</a>               658 third_party/zdelta-2.1/zdlib.h   zd_uncompressN1 OF ((const Bytef **ref, uLong* rsize,int rw,</span>
+<span class='curline'><a href='../S/727.html#L33'>ref</a>                33 third_party/zdelta-2.1/zdu.c   Bytef *ref[4];</span>
+<span class='curline'><a href='../S/727.html#L55'>ref</a>                55 third_party/zdelta-2.1/zdu.c     ref[i] = ref_buf[i].buffer; </span>
+<span class='curline'><a href='../S/727.html#L61'>ref</a>                61 third_party/zdelta-2.1/zdu.c   if(zd_uncompressN1((const Bytef**)ref, ref_s, ref_n,</span>
+</pre>
+</body>
+</html>

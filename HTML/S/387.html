@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>src/translate.h</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/733.html'>src</a>/translate.h</h2>
+<em class='comment'>/* [&lt;][&gt;][^][v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/69.html' title='Multiple included from 5 places.'>INCLUDED FROM</a></h2>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>/*</em>
+<a id='L2' name='L2' /><em class='comment'> * translate.h</em>
+<a id='L3' name='L3' /><em class='comment'> *</em>
+<a id='L4' name='L4' /><em class='comment'> *   Copyright (c) 2008, Ueda Laboratory LMNtal Group &lt;lmntal@ueda.info.waseda.ac.jp&gt;</em>
+<a id='L5' name='L5' /><em class='comment'> *   All rights reserved.</em>
+<a id='L6' name='L6' /><em class='comment'> *</em>
+<a id='L7' name='L7' /><em class='comment'> *   Redistribution and use in source and binary forms, with or without</em>
+<a id='L8' name='L8' /><em class='comment'> *   modification, are permitted provided that the following conditions are</em>
+<a id='L9' name='L9' /><em class='comment'> *   met:</em>
+<a id='L10' name='L10' /><em class='comment'> *</em>
+<a id='L11' name='L11' /><em class='comment'> *    1. Redistributions of source code must retain the above copyright</em>
+<a id='L12' name='L12' /><em class='comment'> *       notice, this list of conditions and the following disclaimer.</em>
+<a id='L13' name='L13' /><em class='comment'> *</em>
+<a id='L14' name='L14' /><em class='comment'> *    2. Redistributions in binary form must reproduce the above copyright</em>
+<a id='L15' name='L15' /><em class='comment'> *       notice, this list of conditions and the following disclaimer in</em>
+<a id='L16' name='L16' /><em class='comment'> *       the documentation and/or other materials provided with the</em>
+<a id='L17' name='L17' /><em class='comment'> *       distribution.</em>
+<a id='L18' name='L18' /><em class='comment'> *</em>
+<a id='L19' name='L19' /><em class='comment'> *    3. Neither the name of the Ueda Laboratory LMNtal Group nor the</em>
+<a id='L20' name='L20' /><em class='comment'> *       names of its contributors may be used to endorse or promote</em>
+<a id='L21' name='L21' /><em class='comment'> *       products derived from this software without specific prior</em>
+<a id='L22' name='L22' /><em class='comment'> *       written permission.</em>
+<a id='L23' name='L23' /><em class='comment'> *</em>
+<a id='L24' name='L24' /><em class='comment'> *   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L25' name='L25' /><em class='comment'> *   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L26' name='L26' /><em class='comment'> *   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L27' name='L27' /><em class='comment'> *   A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L28' name='L28' /><em class='comment'> *   OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L29' name='L29' /><em class='comment'> *   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L30' name='L30' /><em class='comment'> *   LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L31' name='L31' /><em class='comment'> *   DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L32' name='L32' /><em class='comment'> *   THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L33' name='L33' /><em class='comment'> *   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L34' name='L34' /><em class='comment'> *   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L35' name='L35' /><em class='comment'> *</em>
+<a id='L36' name='L36' /><em class='comment'> * $Id: translate.h,v 1.4 2008/09/29 04:47:03 taisuke Exp $</em>
+<a id='L37' name='L37' /><em class='comment'> */</em>
+<a id='L38' name='L38' />
+<a id='L39' name='L39' /><em class='sharp'>#ifndef</em> <a href='../S/387.html#L40' title='Defined at 40 in src/translate.h.'>LMN_TRANSLATE_H</a>
+<a id='L40' name='L40' /><em class='sharp'>#define</em> <a href='../S/387.html#L39' title='Refered from 39 in src/translate.h.'>LMN_TRANSLATE_H</a>
+<a id='L41' name='L41' />
+<a id='L42' name='L42' /><em class='sharp'>#include</em> "<a href='347.html'>lmntal.h</a>"
+<a id='L43' name='L43' /><em class='sharp'>#include</em> "<a href='311.html'>atom.h</a>"
+<a id='L44' name='L44' /><em class='sharp'>#include</em> "<a href='358.html'>membrane.h</a>"
+<a id='L45' name='L45' /><em class='sharp'>#include</em> "<a href='366.html'>rule.h</a>"
+<a id='L46' name='L46' /><em class='sharp'>#include</em> "<a href='331.html'>functor.h</a>"
+<a id='L47' name='L47' /><em class='sharp'>#include</em> &lt;stdarg.h&gt;
+<a id='L48' name='L48' />
+<a id='L49' name='L49' /><em class='comment'>/* この辺の読み込みマクロはインタプリタ出力時も使えるはず */</em>
+<a id='L50' name='L50' /><em class='comment'>/* translate.c内でも使えるはず */</em>
+<a id='L51' name='L51' />
+<a id='L52' name='L52' />
+<a id='L53' name='L53' /><em class='sharp'>#define</em> <a href='../R/2085.html' title='Multiple refered from 12 places.'>READ_VAL_FUNC</a>(<a href='../Y/364.html' title='Multiple used in 44 places.'>I</a>,<a href='../Y/938.html' title='Multiple used in 34 places.'>X</a>)                      \
+<a id='L54' name='L54' />  <strong class='reserved'>do</strong><em class='brace'>{</em>                                           \
+<a id='L55' name='L55' />    <a href='../S/385.html#L57' title='Defined at 57 in src/task.h.'>READ_VAL</a>(<a href='../S/347.html#L110' title='Defined at 110 in src/lmntal.h.'>LmnLinkAttr</a>, <a href='../Y/364.html' title='Multiple used in 44 places.'>I</a>, <a href='../Y/938.html' title='Multiple used in 34 places.'>X</a>##<a href='../Y/1256.html' title='Multiple used in 2 places.'>_attr</a>);         \
+<a id='L56' name='L56' />    <strong class='reserved'>switch</strong>(<a href='../Y/938.html' title='Multiple used in 34 places.'>X</a>##<a href='../Y/1256.html' title='Multiple used in 2 places.'>_attr</a>)<em class='brace'>{</em>                                           \
+<a id='L57' name='L57' />    <strong class='reserved'>case</strong> <a href='../S/311.html#L175' title='Defined at 175 in src/atom.h.'>LMN_INT_ATTR</a>: <a href='../S/385.html#L57' title='Defined at 57 in src/task.h.'>READ_VAL</a>(<strong class='reserved'>long</strong>, <a href='../Y/364.html' title='Multiple used in 44 places.'>I</a>, <a href='../Y/938.html' title='Multiple used in 34 places.'>X</a>.<a href='../Y/3332.html' title='Multiple used in 12 places.'>long_data</a>); <strong class='reserved'>break</strong>;           \
+<a id='L58' name='L58' />    <strong class='reserved'>case</strong> <a href='../S/311.html#L176' title='Defined at 176 in src/atom.h.'>LMN_DBL_ATTR</a>: <a href='../S/385.html#L57' title='Defined at 57 in src/task.h.'>READ_VAL</a>(<strong class='reserved'>double</strong>, <a href='../Y/364.html' title='Multiple used in 44 places.'>I</a>, <a href='../Y/938.html' title='Multiple used in 34 places.'>X</a>.<a href='../Y/2084.html' title='Multiple used in 10 places.'>double_data</a>); <strong class='reserved'>break</strong>;       \
+<a id='L59' name='L59' />    <strong class='reserved'>case</strong> <a href='../S/311.html#L178' title='Defined at 178 in src/atom.h.'>LMN_STRING_ATTR</a>: <a href='../S/385.html#L57' title='Defined at 57 in src/task.h.'>READ_VAL</a>(<a href='../S/347.html#L126' title='Defined at 126 in src/lmntal.h.'>lmn_interned_str</a>, <a href='../Y/364.html' title='Multiple used in 44 places.'>I</a>, <a href='../Y/938.html' title='Multiple used in 34 places.'>X</a>.<a href='../Y/5137.html' title='Multiple used in 12 places.'>string_data</a>); <strong class='reserved'>break</strong>; \
+<a id='L60' name='L60' />    <strong class='reserved'>default</strong>: <a href='../S/385.html#L57' title='Defined at 57 in src/task.h.'>READ_VAL</a>(<a href='../S/347.html#L118' title='Defined at 118 in src/lmntal.h.'>LmnFunctor</a>, <a href='../Y/364.html' title='Multiple used in 44 places.'>I</a>, <a href='../Y/938.html' title='Multiple used in 34 places.'>X</a>.<a href='../Y/2496.html' title='Multiple used in 12 places.'>functor_data</a>); <strong class='reserved'>break</strong>;            \
+<a id='L61' name='L61' />    <em class='brace'>}</em>                                                                   \
+<a id='L62' name='L62' />  <em class='brace'>}</em><strong class='reserved'>while</strong>(0)
+<a id='L63' name='L63' />
+<a id='L64' name='L64' /><em class='sharp'>#define</em> <a href='../R/2086.html' title='Multiple refered from 4 places.'>READ_VAL_LIST</a>(<a href='../Y/364.html' title='Multiple used in 44 places.'>I</a>,<a href='../Y/938.html' title='Multiple used in 34 places.'>X</a>)                      \
+<a id='L65' name='L65' />  <strong class='reserved'>do</strong><em class='brace'>{</em>                                                               \
+<a id='L66' name='L66' />    <a href='../S/385.html#L57' title='Defined at 57 in src/task.h.'>READ_VAL</a>(<a href='../S/347.html#L130' title='Defined at 130 in src/lmntal.h.'>LmnInstrVar</a>, <a href='../Y/364.html' title='Multiple used in 44 places.'>I</a>, <a href='../Y/938.html' title='Multiple used in 34 places.'>X</a>##<a href='../Y/1302.html' title='Multiple used in 3 places.'>_num</a>);                                  \
+<a id='L67' name='L67' />    <a href='../Y/938.html' title='Multiple used in 34 places.'>X</a> = <a href='../D/4497.html' title='Multiple defined in 2 places.'>malloc</a>(<strong class='reserved'>sizeof</strong>(<a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a>)*<a href='../Y/938.html' title='Multiple used in 34 places.'>X</a>##<a href='../Y/1302.html' title='Multiple used in 3 places.'>_num</a>);                                \
+<a id='L68' name='L68' />    <em class='brace'>{</em> <strong class='reserved'>int</strong> <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>; <strong class='reserved'>for</strong>(<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>=0; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>&lt;<a href='../Y/938.html' title='Multiple used in 34 places.'>X</a>##<a href='../Y/1302.html' title='Multiple used in 3 places.'>_num</a>; ++<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>)<em class='brace'>{</em> <a href='../S/385.html#L57' title='Defined at 57 in src/task.h.'>READ_VAL</a>(<a href='../S/347.html#L130' title='Defined at 130 in src/lmntal.h.'>LmnInstrVar</a>, <a href='../Y/364.html' title='Multiple used in 44 places.'>I</a>, <a href='../Y/938.html' title='Multiple used in 34 places.'>X</a>[<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>]); <em class='brace'>}</em> <em class='brace'>}</em> \
+<a id='L69' name='L69' />  <em class='brace'>}</em><strong class='reserved'>while</strong>(0)
+<a id='L70' name='L70' />
+<a id='L71' name='L71' /><strong class='reserved'>struct</strong> <a href='../S/387.html#L80' title='Refered from 80 in src/translate.h.'>trans_rule</a>
+<a id='L72' name='L72' /><em class='brace'>{</em>
+<a id='L73' name='L73' />  <a href='../S/347.html#L126' title='Defined at 126 in src/lmntal.h.'>lmn_interned_str</a> <a href='../Y/3665.html' title='Multiple used in 438 places.'>name</a>;
+<a id='L74' name='L74' />  <a href='../Y/446.html' title='Multiple used in 11 places.'>LmnTranslated</a> <a href='../Y/2492.html' title='Multiple used in 11 places.'>function</a>;
+<a id='L75' name='L75' /><em class='brace'>}</em>;
+<a id='L76' name='L76' />
+<a id='L77' name='L77' /><strong class='reserved'>struct</strong> <a href='../R/5015.html' title='Multiple refered from 3 places.'>trans_ruleset</a>
+<a id='L78' name='L78' /><em class='brace'>{</em>
+<a id='L79' name='L79' />  <strong class='reserved'>int</strong> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>;
+<a id='L80' name='L80' />  <strong class='reserved'>struct</strong> <a href='../S/387.html#L71' title='Defined at 71 in src/translate.h.'>trans_rule</a> *<a href='../Y/4634.html' title='Multiple used in 35 places.'>rules</a>;
+<a id='L81' name='L81' /><em class='brace'>}</em>;
+<a id='L82' name='L82' />
+<a id='L83' name='L83' /><strong class='reserved'>struct</strong> <a href='../R/5013.html' title='Multiple refered from 2 places.'>trans_module</a>
+<a id='L84' name='L84' /><em class='brace'>{</em>
+<a id='L85' name='L85' />  <a href='../S/347.html#L126' title='Defined at 126 in src/lmntal.h.'>lmn_interned_str</a> <a href='../Y/3665.html' title='Multiple used in 438 places.'>name</a>;
+<a id='L86' name='L86' />  <strong class='reserved'>int</strong> <a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>; <em class='comment'>/* ruleset id */</em>
+<a id='L87' name='L87' /><em class='brace'>}</em>;
+<a id='L88' name='L88' />
+<a id='L89' name='L89' /><strong class='reserved'>struct</strong> <a href='../R/5012.html' title='Multiple refered from 2 places.'>trans_maindata</a>
+<a id='L90' name='L90' /><em class='brace'>{</em>
+<a id='L91' name='L91' />  <strong class='reserved'>int</strong> <a href='../Y/1876.html' title='Multiple used in 2 places.'>count_of_symbol</a>;
+<a id='L92' name='L92' />  <strong class='reserved'>const</strong> <strong class='reserved'>char</strong> **<a href='../Y/5199.html' title='Multiple used in 2 places.'>symbol_table</a>;
+<a id='L93' name='L93' />  <strong class='reserved'>int</strong> <a href='../Y/1872.html' title='Multiple used in 2 places.'>count_of_functor</a>;
+<a id='L94' name='L94' />  <a href='../D/1657.html' title='Multiple defined in 2 places.'>LmnFunctorEntry</a> *<a href='../Y/2501.html' title='Multiple used in 2 places.'>functor_table</a>;
+<a id='L95' name='L95' />  <strong class='reserved'>int</strong> <a href='../Y/1875.html' title='Multiple used in 2 places.'>count_of_ruleset</a>;
+<a id='L96' name='L96' />  <strong class='reserved'>struct</strong> <a href='../S/387.html#L77' title='Defined at 77 in src/translate.h.'>trans_ruleset</a> *<a href='../Y/4642.html' title='Multiple used in 24 places.'>ruleset_table</a>;
+<a id='L97' name='L97' />  <strong class='reserved'>int</strong> <a href='../Y/1874.html' title='Multiple used in 2 places.'>count_of_module</a>;
+<a id='L98' name='L98' />  <strong class='reserved'>struct</strong> <a href='../S/387.html#L83' title='Defined at 83 in src/translate.h.'>trans_module</a> *<a href='../Y/3595.html' title='Multiple used in 11 places.'>module_table</a>;
+<a id='L99' name='L99' />  <strong class='reserved'>int</strong> *<a href='../Y/5194.html' title='Multiple used in 9 places.'>symbol_exchange</a>;
+<a id='L100' name='L100' />  <strong class='reserved'>int</strong> *<a href='../Y/2497.html' title='Multiple used in 3 places.'>functor_exchange</a>;
+<a id='L101' name='L101' />  <strong class='reserved'>int</strong> *<a href='../Y/4637.html' title='Multiple used in 3 places.'>ruleset_exchange</a>;
+<a id='L102' name='L102' /><em class='brace'>}</em>;
+<a id='L103' name='L103' />
+<a id='L104' name='L104' /><em class='comment'>/* 自動生成される 1つ命令を変換して出力し,次変換する位置を返す */</em>
+<a id='L105' name='L105' /><strong class='reserved'>const</strong> <a href='../S/347.html#L101' title='Defined at 101 in src/lmntal.h.'>BYTE</a> *<a href='../S/388.html#L10' title='Defined at 10 in src/translate_generated.c.'>translate_instruction_generated</a>(<strong class='reserved'>const</strong> <a href='../S/347.html#L101' title='Defined at 101 in src/lmntal.h.'>BYTE</a> *<a href='../Y/2853.html' title='Multiple used in 1140 places.'>instr</a>, <em class='comment'>/* 変換する場所 */</em>
+<a id='L106' name='L106' />                                            <a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/2957.html' title='Multiple used in 22 places.'>jump_points</a>, <em class='comment'>/* 変換対象の場所 */</em>
+<a id='L107' name='L107' />                                            <strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2652.html' title='Multiple used in 96 places.'>header</a>, <em class='comment'>/* その場所が属する */</em>
+<a id='L108' name='L108' />                                            <strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/5173.html' title='Multiple used in 17 places.'>successcode</a>, <em class='comment'>/* 成功時実行するコード */</em>
+<a id='L109' name='L109' />                                            <strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2321.html' title='Multiple used in 72 places.'>failcode</a>, <em class='comment'>/* */</em>
+<a id='L110' name='L110' />                                            <strong class='reserved'>int</strong> <a href='../Y/2797.html' title='Multiple used in 436 places.'>indent</a>, <em class='comment'>/* */</em>
+<a id='L111' name='L111' />                                            <strong class='reserved'>int</strong> *<a href='../Y/2376.html' title='Multiple used in 24 places.'>finishflag</a>); <em class='comment'>/* 変換の結果(正なら成功+継続,0なら成功+終了,負なら失敗 */</em>
+<a id='L112' name='L112' />
+<a id='L113' name='L113' /><em class='comment'>/* 手動生成 1つ命令を変換して出力し,次変換する位置を返す */</em>
+<a id='L114' name='L114' /><strong class='reserved'>const</strong> <a href='../S/347.html#L101' title='Defined at 101 in src/lmntal.h.'>BYTE</a> *<a href='../S/386.html#L311' title='Defined at 311 in src/translate.c.'>translate_instruction</a>(<strong class='reserved'>const</strong> <a href='../S/347.html#L101' title='Defined at 101 in src/lmntal.h.'>BYTE</a> *<a href='../Y/2853.html' title='Multiple used in 1140 places.'>instr</a>,
+<a id='L115' name='L115' />                                            <a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/2957.html' title='Multiple used in 22 places.'>jump_points</a>,
+<a id='L116' name='L116' />                                            <strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2652.html' title='Multiple used in 96 places.'>header</a>,
+<a id='L117' name='L117' />                                            <strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/5173.html' title='Multiple used in 17 places.'>successcode</a>,
+<a id='L118' name='L118' />                                            <strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2321.html' title='Multiple used in 72 places.'>failcode</a>,
+<a id='L119' name='L119' />                                            <strong class='reserved'>int</strong> <a href='../Y/2797.html' title='Multiple used in 436 places.'>indent</a>,
+<a id='L120' name='L120' />                                            <strong class='reserved'>int</strong> *<a href='../Y/2376.html' title='Multiple used in 24 places.'>finishflag</a>);
+<a id='L121' name='L121' />
+<a id='L122' name='L122' /><em class='comment'>/* 1ブロック相当を変換して出力し,読み込み終わった次の位置を返す */</em>
+<a id='L123' name='L123' /><em class='comment'>/* findatomのような再帰的な変換が必要な場合に呼び出す */</em>
+<a id='L124' name='L124' /><strong class='reserved'>const</strong> <a href='../S/347.html#L101' title='Defined at 101 in src/lmntal.h.'>BYTE</a> *<a href='../S/386.html#L391' title='Defined at 391 in src/translate.c.'>translate_instructions</a>(<strong class='reserved'>const</strong> <a href='../S/347.html#L101' title='Defined at 101 in src/lmntal.h.'>BYTE</a> *<a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>,
+<a id='L125' name='L125' />                                   <a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/2957.html' title='Multiple used in 22 places.'>jump_points</a>,
+<a id='L126' name='L126' />                                   <strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2652.html' title='Multiple used in 96 places.'>header</a>,
+<a id='L127' name='L127' />                                   <strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/5173.html' title='Multiple used in 17 places.'>successcode</a>,
+<a id='L128' name='L128' />                                   <strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2321.html' title='Multiple used in 72 places.'>failcode</a>,
+<a id='L129' name='L129' />                                   <strong class='reserved'>int</strong> <a href='../Y/2797.html' title='Multiple used in 436 places.'>indent</a>);
+<a id='L130' name='L130' />
+<a id='L131' name='L131' /><em class='comment'>/* 出力ファイル内で一時的に使うconst vectorをconst LmnWord[]から作る vectorの中を触るので注意 */</em>
+<a id='L132' name='L132' /><em class='comment'>/* この戻り値の要素を書き換えるのも配列を拡張するのもvec_freeするのもダメ */</em>
+<a id='L133' name='L133' /><a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> <a href='../S/386.html#L255' title='Defined at 255 in src/translate.c.'>vec_const_temporary_from_array</a>(<strong class='reserved'>int</strong> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>, <strong class='reserved'>const</strong> <a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a> *<a href='../Y/5654.html' title='Multiple used in 512 places.'>w</a>);
+<a id='L134' name='L134' />
+<a id='L135' name='L135' /><em class='comment'>/* vにwが含まれる場合そのindexを返す. 含まれない場合wをvの最後に追加してそのindexを返す */</em>
+<a id='L136' name='L136' /><strong class='reserved'>int</strong> <a href='../S/386.html#L264' title='Defined at 264 in src/translate.c.'>vec_inserted_index</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>, <a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a> <a href='../Y/5654.html' title='Multiple used in 512 places.'>w</a>);
+<a id='L137' name='L137' />
+<a id='L138' name='L138' /><em class='comment'>/* トランスレート時に使う targX (X=argi)の名前でlistとlist_numを出力 */</em>
+<a id='L139' name='L139' /><strong class='reserved'>void</strong> <a href='../S/386.html#L63' title='Defined at 63 in src/translate.c.'>tr_print_list</a>(<strong class='reserved'>int</strong> <a href='../Y/2797.html' title='Multiple used in 436 places.'>indent</a>, <strong class='reserved'>int</strong> <a href='../Y/1498.html' title='Multiple used in 4 places.'>argi</a>, <strong class='reserved'>int</strong> <a href='../Y/3271.html' title='Multiple used in 20 places.'>list_num</a>, <strong class='reserved'>const</strong> <a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a> *<a href='../Y/3268.html' title='Multiple used in 131 places.'>list</a>);
+<a id='L140' name='L140' />
+<a id='L141' name='L141' /><em class='comment'>/* 単にn*2個空白を出力 */</em>
+<a id='L142' name='L142' /><strong class='reserved'>void</strong> <a href='../S/386.html#L294' title='Defined at 294 in src/translate.c.'>print_indent</a>(<strong class='reserved'>int</strong> <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>);
+<a id='L143' name='L143' />
+<a id='L144' name='L144' /><em class='comment'>/* 必要なサイズ分のバッファを勝手にmallocしてsprintf free必須 */</em>
+<a id='L145' name='L145' /><strong class='reserved'>char</strong> *<a href='../S/386.html#L274' title='Defined at 274 in src/translate.c.'>automalloc_sprintf</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2426.html' title='Multiple used in 34 places.'>format</a>, ...);
+<a id='L146' name='L146' />
+<a id='L147' name='L147' /><em class='comment'>/* 変換途中で見つけたcommitからルール名を拾う */</em>
+<a id='L148' name='L148' /><strong class='reserved'>void</strong> <a href='../S/386.html#L58' title='Defined at 58 in src/translate.c.'>set_translating_rule_name</a>(<a href='../S/347.html#L126' title='Defined at 126 in src/lmntal.h.'>lmn_interned_str</a> <a href='../Y/4630.html' title='Multiple used in 20 places.'>rule_name</a>);
+<a id='L149' name='L149' />
+<a id='L150' name='L150' /><em class='comment'>/* 0番はなし,1番はsystemruleset,2番はinitialruleset,3番はinitialsystemruleset,普通のルールセットは4番から */</em>
+<a id='L151' name='L151' /><em class='sharp'>#define</em> <a href='../R/647.html' title='Multiple refered from 5 places.'>FIRST_ID_OF_NORMAL_RULESET</a> 4
+<a id='L152' name='L152' />
+<a id='L153' name='L153' /><em class='comment'>/* ファンクタを中間バイト列から読み込む時に使用する構造体 */</em>
+<a id='L154' name='L154' /><em class='comment'>/* READ_DATA_ATOM等を吸収するために使いたい */</em>
+<a id='L155' name='L155' /><strong class='reserved'>union</strong> <a href='../R/1465.html' title='Multiple refered from 12 places.'>LmnFunctorLiteral</a><em class='brace'>{</em>
+<a id='L156' name='L156' />  <strong class='reserved'>long</strong> <a href='../Y/3332.html' title='Multiple used in 12 places.'>long_data</a>;
+<a id='L157' name='L157' />  <strong class='reserved'>double</strong> <a href='../Y/2084.html' title='Multiple used in 10 places.'>double_data</a>;
+<a id='L158' name='L158' />  <a href='../S/347.html#L126' title='Defined at 126 in src/lmntal.h.'>lmn_interned_str</a> <a href='../Y/5137.html' title='Multiple used in 12 places.'>string_data</a>;
+<a id='L159' name='L159' />  <a href='../S/347.html#L118' title='Defined at 118 in src/lmntal.h.'>LmnFunctor</a> <a href='../Y/2496.html' title='Multiple used in 12 places.'>functor_data</a>;
+<a id='L160' name='L160' /><em class='brace'>}</em>;
+<a id='L161' name='L161' />
+<a id='L162' name='L162' /><em class='comment'>/* 現在ロードしている情報をfilepath.so の名前で使えるように出力する */</em>
+<a id='L163' name='L163' /><strong class='reserved'>void</strong> <a href='../S/386.html#L689' title='Defined at 689 in src/translate.c.'>translate</a>(<strong class='reserved'>char</strong> *<a href='../Y/2364.html' title='Multiple used in 7 places.'>filepath</a>);
+<a id='L164' name='L164' />
+<a id='L165' name='L165' /><em class='sharp'>#endif</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^][v]<a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

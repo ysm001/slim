@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>hook</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/561.html#L102'>hook</a>              102 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static bool AddNewHook(NewHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L103'>hook</a>              103 third_party/google-perftools-1.8.3/src/google/malloc_hook.h     return MallocHook_AddNewHook(hook);</span>
+<span class='curline'><a href='../S/561.html#L105'>hook</a>              105 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static bool RemoveNewHook(NewHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L106'>hook</a>              106 third_party/google-perftools-1.8.3/src/google/malloc_hook.h     return MallocHook_RemoveNewHook(hook);</span>
+<span class='curline'><a href='../S/561.html#L113'>hook</a>              113 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static bool AddDeleteHook(DeleteHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L114'>hook</a>              114 third_party/google-perftools-1.8.3/src/google/malloc_hook.h     return MallocHook_AddDeleteHook(hook);</span>
+<span class='curline'><a href='../S/561.html#L116'>hook</a>              116 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static bool RemoveDeleteHook(DeleteHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L117'>hook</a>              117 third_party/google-perftools-1.8.3/src/google/malloc_hook.h     return MallocHook_RemoveDeleteHook(hook);</span>
+<span class='curline'><a href='../S/561.html#L126'>hook</a>              126 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static bool AddPreMmapHook(PreMmapHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L127'>hook</a>              127 third_party/google-perftools-1.8.3/src/google/malloc_hook.h     return MallocHook_AddPreMmapHook(hook);</span>
+<span class='curline'><a href='../S/561.html#L129'>hook</a>              129 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static bool RemovePreMmapHook(PreMmapHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L130'>hook</a>              130 third_party/google-perftools-1.8.3/src/google/malloc_hook.h     return MallocHook_RemovePreMmapHook(hook);</span>
+<span class='curline'><a href='../S/561.html#L150'>hook</a>              150 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static bool SetMmapReplacement(MmapReplacement hook) {</span>
+<span class='curline'><a href='../S/561.html#L151'>hook</a>              151 third_party/google-perftools-1.8.3/src/google/malloc_hook.h     return MallocHook_SetMmapReplacement(hook);</span>
+<span class='curline'><a href='../S/561.html#L153'>hook</a>              153 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static bool RemoveMmapReplacement(MmapReplacement hook) {</span>
+<span class='curline'><a href='../S/561.html#L154'>hook</a>              154 third_party/google-perftools-1.8.3/src/google/malloc_hook.h     return MallocHook_RemoveMmapReplacement(hook);</span>
+<span class='curline'><a href='../S/561.html#L168'>hook</a>              168 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static bool AddMmapHook(MmapHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L169'>hook</a>              169 third_party/google-perftools-1.8.3/src/google/malloc_hook.h     return MallocHook_AddMmapHook(hook);</span>
+<span class='curline'><a href='../S/561.html#L171'>hook</a>              171 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static bool RemoveMmapHook(MmapHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L172'>hook</a>              172 third_party/google-perftools-1.8.3/src/google/malloc_hook.h     return MallocHook_RemoveMmapHook(hook);</span>
+<span class='curline'><a href='../S/561.html#L192'>hook</a>              192 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static bool SetMunmapReplacement(MunmapReplacement hook) {</span>
+<span class='curline'><a href='../S/561.html#L193'>hook</a>              193 third_party/google-perftools-1.8.3/src/google/malloc_hook.h     return MallocHook_SetMunmapReplacement(hook);</span>
+<span class='curline'><a href='../S/561.html#L195'>hook</a>              195 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static bool RemoveMunmapReplacement(MunmapReplacement hook) {</span>
+<span class='curline'><a href='../S/561.html#L196'>hook</a>              196 third_party/google-perftools-1.8.3/src/google/malloc_hook.h     return MallocHook_RemoveMunmapReplacement(hook);</span>
+<span class='curline'><a href='../S/561.html#L204'>hook</a>              204 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static bool AddMunmapHook(MunmapHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L205'>hook</a>              205 third_party/google-perftools-1.8.3/src/google/malloc_hook.h     return MallocHook_AddMunmapHook(hook);</span>
+<span class='curline'><a href='../S/561.html#L207'>hook</a>              207 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static bool RemoveMunmapHook(MunmapHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L208'>hook</a>              208 third_party/google-perftools-1.8.3/src/google/malloc_hook.h     return MallocHook_RemoveMunmapHook(hook);</span>
+<span class='curline'><a href='../S/561.html#L214'>hook</a>              214 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static bool AddMremapHook(MremapHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L215'>hook</a>              215 third_party/google-perftools-1.8.3/src/google/malloc_hook.h     return MallocHook_AddMremapHook(hook);</span>
+<span class='curline'><a href='../S/561.html#L217'>hook</a>              217 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static bool RemoveMremapHook(MremapHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L218'>hook</a>              218 third_party/google-perftools-1.8.3/src/google/malloc_hook.h     return MallocHook_RemoveMremapHook(hook);</span>
+<span class='curline'><a href='../S/561.html#L234'>hook</a>              234 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static bool AddPreSbrkHook(PreSbrkHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L235'>hook</a>              235 third_party/google-perftools-1.8.3/src/google/malloc_hook.h     return MallocHook_AddPreSbrkHook(hook);</span>
+<span class='curline'><a href='../S/561.html#L237'>hook</a>              237 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static bool RemovePreSbrkHook(PreSbrkHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L238'>hook</a>              238 third_party/google-perftools-1.8.3/src/google/malloc_hook.h     return MallocHook_RemovePreSbrkHook(hook);</span>
+<span class='curline'><a href='../S/561.html#L247'>hook</a>              247 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static bool AddSbrkHook(SbrkHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L248'>hook</a>              248 third_party/google-perftools-1.8.3/src/google/malloc_hook.h     return MallocHook_AddSbrkHook(hook);</span>
+<span class='curline'><a href='../S/561.html#L250'>hook</a>              250 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static bool RemoveSbrkHook(SbrkHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L251'>hook</a>              251 third_party/google-perftools-1.8.3/src/google/malloc_hook.h     return MallocHook_RemoveSbrkHook(hook);</span>
+<span class='curline'><a href='../S/561.html#L275'>hook</a>              275 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static NewHook SetNewHook(NewHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L276'>hook</a>              276 third_party/google-perftools-1.8.3/src/google/malloc_hook.h     return MallocHook_SetNewHook(hook);</span>
+<span class='curline'><a href='../S/561.html#L280'>hook</a>              280 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static DeleteHook SetDeleteHook(DeleteHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L281'>hook</a>              281 third_party/google-perftools-1.8.3/src/google/malloc_hook.h     return MallocHook_SetDeleteHook(hook);</span>
+<span class='curline'><a href='../S/561.html#L285'>hook</a>              285 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static PreMmapHook SetPreMmapHook(PreMmapHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L286'>hook</a>              286 third_party/google-perftools-1.8.3/src/google/malloc_hook.h     return MallocHook_SetPreMmapHook(hook);</span>
+<span class='curline'><a href='../S/561.html#L290'>hook</a>              290 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static MmapHook SetMmapHook(MmapHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L291'>hook</a>              291 third_party/google-perftools-1.8.3/src/google/malloc_hook.h     return MallocHook_SetMmapHook(hook);</span>
+<span class='curline'><a href='../S/561.html#L295'>hook</a>              295 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static MunmapHook SetMunmapHook(MunmapHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L296'>hook</a>              296 third_party/google-perftools-1.8.3/src/google/malloc_hook.h     return MallocHook_SetMunmapHook(hook);</span>
+<span class='curline'><a href='../S/561.html#L300'>hook</a>              300 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static MremapHook SetMremapHook(MremapHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L301'>hook</a>              301 third_party/google-perftools-1.8.3/src/google/malloc_hook.h     return MallocHook_SetMremapHook(hook);</span>
+<span class='curline'><a href='../S/561.html#L305'>hook</a>              305 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static PreSbrkHook SetPreSbrkHook(PreSbrkHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L306'>hook</a>              306 third_party/google-perftools-1.8.3/src/google/malloc_hook.h     return MallocHook_SetPreSbrkHook(hook);</span>
+<span class='curline'><a href='../S/561.html#L310'>hook</a>              310 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static SbrkHook SetSbrkHook(SbrkHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L311'>hook</a>              311 third_party/google-perftools-1.8.3/src/google/malloc_hook.h     return MallocHook_SetSbrkHook(hook);</span>
+<span class='curline'><a href='../S/562.html#L72'>hook</a>               72 third_party/google-perftools-1.8.3/src/google/malloc_hook_c.h int MallocHook_AddNewHook(MallocHook_NewHook hook);</span>
+<span class='curline'><a href='../S/562.html#L74'>hook</a>               74 third_party/google-perftools-1.8.3/src/google/malloc_hook_c.h int MallocHook_RemoveNewHook(MallocHook_NewHook hook);</span>
+<span class='curline'><a href='../S/562.html#L78'>hook</a>               78 third_party/google-perftools-1.8.3/src/google/malloc_hook_c.h int MallocHook_AddDeleteHook(MallocHook_DeleteHook hook);</span>
+<span class='curline'><a href='../S/562.html#L80'>hook</a>               80 third_party/google-perftools-1.8.3/src/google/malloc_hook_c.h int MallocHook_RemoveDeleteHook(MallocHook_DeleteHook hook);</span>
+<span class='curline'><a href='../S/562.html#L89'>hook</a>               89 third_party/google-perftools-1.8.3/src/google/malloc_hook_c.h int MallocHook_AddPreMmapHook(MallocHook_PreMmapHook hook);</span>
+<span class='curline'><a href='../S/562.html#L91'>hook</a>               91 third_party/google-perftools-1.8.3/src/google/malloc_hook_c.h int MallocHook_RemovePreMmapHook(MallocHook_PreMmapHook hook);</span>
+<span class='curline'><a href='../S/562.html#L101'>hook</a>              101 third_party/google-perftools-1.8.3/src/google/malloc_hook_c.h int MallocHook_AddMmapHook(MallocHook_MmapHook hook);</span>
+<span class='curline'><a href='../S/562.html#L103'>hook</a>              103 third_party/google-perftools-1.8.3/src/google/malloc_hook_c.h int MallocHook_RemoveMmapHook(MallocHook_MmapHook hook);</span>
+<span class='curline'><a href='../S/562.html#L112'>hook</a>              112 third_party/google-perftools-1.8.3/src/google/malloc_hook_c.h int MallocHook_SetMmapReplacement(MallocHook_MmapReplacement hook);</span>
+<span class='curline'><a href='../S/562.html#L113'>hook</a>              113 third_party/google-perftools-1.8.3/src/google/malloc_hook_c.h int MallocHook_RemoveMmapReplacement(MallocHook_MmapReplacement hook);</span>
+<span class='curline'><a href='../S/562.html#L117'>hook</a>              117 third_party/google-perftools-1.8.3/src/google/malloc_hook_c.h int MallocHook_AddMunmapHook(MallocHook_MunmapHook hook);</span>
+<span class='curline'><a href='../S/562.html#L119'>hook</a>              119 third_party/google-perftools-1.8.3/src/google/malloc_hook_c.h int MallocHook_RemoveMunmapHook(MallocHook_MunmapHook hook);</span>
+<span class='curline'><a href='../S/562.html#L124'>hook</a>              124 third_party/google-perftools-1.8.3/src/google/malloc_hook_c.h int MallocHook_SetMunmapReplacement(MallocHook_MunmapReplacement hook);</span>
+<span class='curline'><a href='../S/562.html#L125'>hook</a>              125 third_party/google-perftools-1.8.3/src/google/malloc_hook_c.h int MallocHook_RemoveMunmapReplacement(MallocHook_MunmapReplacement hook);</span>
+<span class='curline'><a href='../S/562.html#L134'>hook</a>              134 third_party/google-perftools-1.8.3/src/google/malloc_hook_c.h int MallocHook_AddMremapHook(MallocHook_MremapHook hook);</span>
+<span class='curline'><a href='../S/562.html#L136'>hook</a>              136 third_party/google-perftools-1.8.3/src/google/malloc_hook_c.h int MallocHook_RemoveMremapHook(MallocHook_MremapHook hook);</span>
+<span class='curline'><a href='../S/562.html#L140'>hook</a>              140 third_party/google-perftools-1.8.3/src/google/malloc_hook_c.h int MallocHook_AddPreSbrkHook(MallocHook_PreSbrkHook hook);</span>
+<span class='curline'><a href='../S/562.html#L142'>hook</a>              142 third_party/google-perftools-1.8.3/src/google/malloc_hook_c.h int MallocHook_RemovePreSbrkHook(MallocHook_PreSbrkHook hook);</span>
+<span class='curline'><a href='../S/562.html#L146'>hook</a>              146 third_party/google-perftools-1.8.3/src/google/malloc_hook_c.h int MallocHook_AddSbrkHook(MallocHook_SbrkHook hook);</span>
+<span class='curline'><a href='../S/562.html#L148'>hook</a>              148 third_party/google-perftools-1.8.3/src/google/malloc_hook_c.h int MallocHook_RemoveSbrkHook(MallocHook_SbrkHook hook);</span>
+<span class='curline'><a href='../S/562.html#L152'>hook</a>              152 third_party/google-perftools-1.8.3/src/google/malloc_hook_c.h MallocHook_NewHook MallocHook_SetNewHook(MallocHook_NewHook hook);</span>
+<span class='curline'><a href='../S/562.html#L154'>hook</a>              154 third_party/google-perftools-1.8.3/src/google/malloc_hook_c.h MallocHook_DeleteHook MallocHook_SetDeleteHook(MallocHook_DeleteHook hook);</span>
+<span class='curline'><a href='../S/562.html#L156'>hook</a>              156 third_party/google-perftools-1.8.3/src/google/malloc_hook_c.h MallocHook_PreMmapHook MallocHook_SetPreMmapHook(MallocHook_PreMmapHook hook);</span>
+<span class='curline'><a href='../S/562.html#L158'>hook</a>              158 third_party/google-perftools-1.8.3/src/google/malloc_hook_c.h MallocHook_MmapHook MallocHook_SetMmapHook(MallocHook_MmapHook hook);</span>
+<span class='curline'><a href='../S/562.html#L160'>hook</a>              160 third_party/google-perftools-1.8.3/src/google/malloc_hook_c.h MallocHook_MunmapHook MallocHook_SetMunmapHook(MallocHook_MunmapHook hook);</span>
+<span class='curline'><a href='../S/562.html#L162'>hook</a>              162 third_party/google-perftools-1.8.3/src/google/malloc_hook_c.h MallocHook_MremapHook MallocHook_SetMremapHook(MallocHook_MremapHook hook);</span>
+<span class='curline'><a href='../S/562.html#L164'>hook</a>              164 third_party/google-perftools-1.8.3/src/google/malloc_hook_c.h MallocHook_PreSbrkHook MallocHook_SetPreSbrkHook(MallocHook_PreSbrkHook hook);</span>
+<span class='curline'><a href='../S/562.html#L166'>hook</a>              166 third_party/google-perftools-1.8.3/src/google/malloc_hook_c.h MallocHook_SbrkHook MallocHook_SetSbrkHook(MallocHook_SbrkHook hook);</span>
+<span class='curline'><a href='../S/581.html#L164'>hook</a>              164 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h   MallocHook::NewHook hook = MallocHook::GetNewHook();</span>
+<span class='curline'><a href='../S/581.html#L165'>hook</a>              165 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h   if (hook != NULL) (*hook)(p, s);</span>
+<span class='curline'><a href='../S/581.html#L179'>hook</a>              179 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h   MallocHook::DeleteHook hook = MallocHook::GetDeleteHook();</span>
+<span class='curline'><a href='../S/581.html#L180'>hook</a>              180 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h   if (hook != NULL) (*hook)(p);</span>
+<span class='curline'><a href='../S/581.html#L199'>hook</a>              199 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h   MallocHook::PreMmapHook hook = MallocHook::GetPreMmapHook();</span>
+<span class='curline'><a href='../S/581.html#L200'>hook</a>              200 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h   if (hook != NULL) (*hook)(start, size,</span>
+<span class='curline'><a href='../S/581.html#L222'>hook</a>              222 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h   MallocHook::MmapHook hook = MallocHook::GetMmapHook();</span>
+<span class='curline'><a href='../S/581.html#L223'>hook</a>              223 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h   if (hook != NULL) (*hook)(result,</span>
+<span class='curline'><a href='../S/581.html#L256'>hook</a>              256 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h   MallocHook::MunmapHook hook = MallocHook::GetMunmapHook();</span>
+<span class='curline'><a href='../S/581.html#L257'>hook</a>              257 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h   if (hook != NULL) (*hook)(p, size);</span>
+<span class='curline'><a href='../S/581.html#L284'>hook</a>              284 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h   MallocHook::MremapHook hook = MallocHook::GetMremapHook();</span>
+<span class='curline'><a href='../S/581.html#L285'>hook</a>              285 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h   if (hook != NULL) (*hook)(result,</span>
+<span class='curline'><a href='../S/581.html#L301'>hook</a>              301 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h   MallocHook::PreSbrkHook hook = MallocHook::GetPreSbrkHook();</span>
+<span class='curline'><a href='../S/581.html#L302'>hook</a>              302 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h   if (hook != NULL &amp;&amp; increment != 0) (*hook)(increment);</span>
+<span class='curline'><a href='../S/581.html#L317'>hook</a>              317 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h   MallocHook::SbrkHook hook = MallocHook::GetSbrkHook();</span>
+<span class='curline'><a href='../S/581.html#L318'>hook</a>              318 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h   if (hook != NULL &amp;&amp; increment != 0) (*hook)(result, increment);</span>
+<span class='curline'><a href='../S/582.html#L327'>hook</a>              327 third_party/google-perftools-1.8.3/src/malloc_hook.cc int MallocHook_AddNewHook(MallocHook_NewHook hook) {</span>
+<span class='curline'><a href='../S/582.html#L328'>hook</a>              328 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_VLOG(10, "AddNewHook(%p)", hook);</span>
+<span class='curline'><a href='../S/582.html#L329'>hook</a>              329 third_party/google-perftools-1.8.3/src/malloc_hook.cc   return new_hooks_.Add(hook);</span>
+<span class='curline'><a href='../S/582.html#L333'>hook</a>              333 third_party/google-perftools-1.8.3/src/malloc_hook.cc int MallocHook_RemoveNewHook(MallocHook_NewHook hook) {</span>
+<span class='curline'><a href='../S/582.html#L334'>hook</a>              334 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_VLOG(10, "RemoveNewHook(%p)", hook);</span>
+<span class='curline'><a href='../S/582.html#L335'>hook</a>              335 third_party/google-perftools-1.8.3/src/malloc_hook.cc   return new_hooks_.Remove(hook);</span>
+<span class='curline'><a href='../S/582.html#L339'>hook</a>              339 third_party/google-perftools-1.8.3/src/malloc_hook.cc int MallocHook_AddDeleteHook(MallocHook_DeleteHook hook) {</span>
+<span class='curline'><a href='../S/582.html#L340'>hook</a>              340 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_VLOG(10, "AddDeleteHook(%p)", hook);</span>
+<span class='curline'><a href='../S/582.html#L341'>hook</a>              341 third_party/google-perftools-1.8.3/src/malloc_hook.cc   return delete_hooks_.Add(hook);</span>
+<span class='curline'><a href='../S/582.html#L345'>hook</a>              345 third_party/google-perftools-1.8.3/src/malloc_hook.cc int MallocHook_RemoveDeleteHook(MallocHook_DeleteHook hook) {</span>
+<span class='curline'><a href='../S/582.html#L346'>hook</a>              346 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_VLOG(10, "RemoveDeleteHook(%p)", hook);</span>
+<span class='curline'><a href='../S/582.html#L347'>hook</a>              347 third_party/google-perftools-1.8.3/src/malloc_hook.cc   return delete_hooks_.Remove(hook);</span>
+<span class='curline'><a href='../S/582.html#L351'>hook</a>              351 third_party/google-perftools-1.8.3/src/malloc_hook.cc int MallocHook_AddPreMmapHook(MallocHook_PreMmapHook hook) {</span>
+<span class='curline'><a href='../S/582.html#L352'>hook</a>              352 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_VLOG(10, "AddPreMmapHook(%p)", hook);</span>
+<span class='curline'><a href='../S/582.html#L353'>hook</a>              353 third_party/google-perftools-1.8.3/src/malloc_hook.cc   return premmap_hooks_.Add(hook);</span>
+<span class='curline'><a href='../S/582.html#L357'>hook</a>              357 third_party/google-perftools-1.8.3/src/malloc_hook.cc int MallocHook_RemovePreMmapHook(MallocHook_PreMmapHook hook) {</span>
+<span class='curline'><a href='../S/582.html#L358'>hook</a>              358 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_VLOG(10, "RemovePreMmapHook(%p)", hook);</span>
+<span class='curline'><a href='../S/582.html#L359'>hook</a>              359 third_party/google-perftools-1.8.3/src/malloc_hook.cc   return premmap_hooks_.Remove(hook);</span>
+<span class='curline'><a href='../S/582.html#L363'>hook</a>              363 third_party/google-perftools-1.8.3/src/malloc_hook.cc int MallocHook_SetMmapReplacement(MallocHook_MmapReplacement hook) {</span>
+<span class='curline'><a href='../S/582.html#L364'>hook</a>              364 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_VLOG(10, "SetMmapReplacement(%p)", hook);</span>
+<span class='curline'><a href='../S/582.html#L368'>hook</a>              368 third_party/google-perftools-1.8.3/src/malloc_hook.cc   return mmap_replacement_.Add(hook);</span>
+<span class='curline'><a href='../S/582.html#L372'>hook</a>              372 third_party/google-perftools-1.8.3/src/malloc_hook.cc int MallocHook_RemoveMmapReplacement(MallocHook_MmapReplacement hook) {</span>
+<span class='curline'><a href='../S/582.html#L373'>hook</a>              373 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_VLOG(10, "RemoveMmapReplacement(%p)", hook);</span>
+<span class='curline'><a href='../S/582.html#L374'>hook</a>              374 third_party/google-perftools-1.8.3/src/malloc_hook.cc   return mmap_replacement_.Remove(hook);</span>
+<span class='curline'><a href='../S/582.html#L378'>hook</a>              378 third_party/google-perftools-1.8.3/src/malloc_hook.cc int MallocHook_AddMmapHook(MallocHook_MmapHook hook) {</span>
+<span class='curline'><a href='../S/582.html#L379'>hook</a>              379 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_VLOG(10, "AddMmapHook(%p)", hook);</span>
+<span class='curline'><a href='../S/582.html#L380'>hook</a>              380 third_party/google-perftools-1.8.3/src/malloc_hook.cc   return mmap_hooks_.Add(hook);</span>
+<span class='curline'><a href='../S/582.html#L384'>hook</a>              384 third_party/google-perftools-1.8.3/src/malloc_hook.cc int MallocHook_RemoveMmapHook(MallocHook_MmapHook hook) {</span>
+<span class='curline'><a href='../S/582.html#L385'>hook</a>              385 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_VLOG(10, "RemoveMmapHook(%p)", hook);</span>
+<span class='curline'><a href='../S/582.html#L386'>hook</a>              386 third_party/google-perftools-1.8.3/src/malloc_hook.cc   return mmap_hooks_.Remove(hook);</span>
+<span class='curline'><a href='../S/582.html#L390'>hook</a>              390 third_party/google-perftools-1.8.3/src/malloc_hook.cc int MallocHook_AddMunmapHook(MallocHook_MunmapHook hook) {</span>
+<span class='curline'><a href='../S/582.html#L391'>hook</a>              391 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_VLOG(10, "AddMunmapHook(%p)", hook);</span>
+<span class='curline'><a href='../S/582.html#L392'>hook</a>              392 third_party/google-perftools-1.8.3/src/malloc_hook.cc   return munmap_hooks_.Add(hook);</span>
+<span class='curline'><a href='../S/582.html#L396'>hook</a>              396 third_party/google-perftools-1.8.3/src/malloc_hook.cc int MallocHook_RemoveMunmapHook(MallocHook_MunmapHook hook) {</span>
+<span class='curline'><a href='../S/582.html#L397'>hook</a>              397 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_VLOG(10, "RemoveMunmapHook(%p)", hook);</span>
+<span class='curline'><a href='../S/582.html#L398'>hook</a>              398 third_party/google-perftools-1.8.3/src/malloc_hook.cc   return munmap_hooks_.Remove(hook);</span>
+<span class='curline'><a href='../S/582.html#L402'>hook</a>              402 third_party/google-perftools-1.8.3/src/malloc_hook.cc int MallocHook_SetMunmapReplacement(MallocHook_MunmapReplacement hook) {</span>
+<span class='curline'><a href='../S/582.html#L403'>hook</a>              403 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_VLOG(10, "SetMunmapReplacement(%p)", hook);</span>
+<span class='curline'><a href='../S/582.html#L408'>hook</a>              408 third_party/google-perftools-1.8.3/src/malloc_hook.cc   return munmap_replacement_.Add(hook);</span>
+<span class='curline'><a href='../S/582.html#L412'>hook</a>              412 third_party/google-perftools-1.8.3/src/malloc_hook.cc int MallocHook_RemoveMunmapReplacement(MallocHook_MunmapReplacement hook) {</span>
+<span class='curline'><a href='../S/582.html#L413'>hook</a>              413 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_VLOG(10, "RemoveMunmapReplacement(%p)", hook);</span>
+<span class='curline'><a href='../S/582.html#L414'>hook</a>              414 third_party/google-perftools-1.8.3/src/malloc_hook.cc   return munmap_replacement_.Remove(hook);</span>
+<span class='curline'><a href='../S/582.html#L418'>hook</a>              418 third_party/google-perftools-1.8.3/src/malloc_hook.cc int MallocHook_AddMremapHook(MallocHook_MremapHook hook) {</span>
+<span class='curline'><a href='../S/582.html#L419'>hook</a>              419 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_VLOG(10, "AddMremapHook(%p)", hook);</span>
+<span class='curline'><a href='../S/582.html#L420'>hook</a>              420 third_party/google-perftools-1.8.3/src/malloc_hook.cc   return mremap_hooks_.Add(hook);</span>
+<span class='curline'><a href='../S/582.html#L424'>hook</a>              424 third_party/google-perftools-1.8.3/src/malloc_hook.cc int MallocHook_RemoveMremapHook(MallocHook_MremapHook hook) {</span>
+<span class='curline'><a href='../S/582.html#L425'>hook</a>              425 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_VLOG(10, "RemoveMremapHook(%p)", hook);</span>
+<span class='curline'><a href='../S/582.html#L426'>hook</a>              426 third_party/google-perftools-1.8.3/src/malloc_hook.cc   return mremap_hooks_.Remove(hook);</span>
+<span class='curline'><a href='../S/582.html#L430'>hook</a>              430 third_party/google-perftools-1.8.3/src/malloc_hook.cc int MallocHook_AddPreSbrkHook(MallocHook_PreSbrkHook hook) {</span>
+<span class='curline'><a href='../S/582.html#L431'>hook</a>              431 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_VLOG(10, "AddPreSbrkHook(%p)", hook);</span>
+<span class='curline'><a href='../S/582.html#L432'>hook</a>              432 third_party/google-perftools-1.8.3/src/malloc_hook.cc   return presbrk_hooks_.Add(hook);</span>
+<span class='curline'><a href='../S/582.html#L436'>hook</a>              436 third_party/google-perftools-1.8.3/src/malloc_hook.cc int MallocHook_RemovePreSbrkHook(MallocHook_PreSbrkHook hook) {</span>
+<span class='curline'><a href='../S/582.html#L437'>hook</a>              437 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_VLOG(10, "RemovePreSbrkHook(%p)", hook);</span>
+<span class='curline'><a href='../S/582.html#L438'>hook</a>              438 third_party/google-perftools-1.8.3/src/malloc_hook.cc   return presbrk_hooks_.Remove(hook);</span>
+<span class='curline'><a href='../S/582.html#L442'>hook</a>              442 third_party/google-perftools-1.8.3/src/malloc_hook.cc int MallocHook_AddSbrkHook(MallocHook_SbrkHook hook) {</span>
+<span class='curline'><a href='../S/582.html#L443'>hook</a>              443 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_VLOG(10, "AddSbrkHook(%p)", hook);</span>
+<span class='curline'><a href='../S/582.html#L444'>hook</a>              444 third_party/google-perftools-1.8.3/src/malloc_hook.cc   return sbrk_hooks_.Add(hook);</span>
+<span class='curline'><a href='../S/582.html#L448'>hook</a>              448 third_party/google-perftools-1.8.3/src/malloc_hook.cc int MallocHook_RemoveSbrkHook(MallocHook_SbrkHook hook) {</span>
+<span class='curline'><a href='../S/582.html#L449'>hook</a>              449 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_VLOG(10, "RemoveSbrkHook(%p)", hook);</span>
+<span class='curline'><a href='../S/582.html#L450'>hook</a>              450 third_party/google-perftools-1.8.3/src/malloc_hook.cc   return sbrk_hooks_.Remove(hook);</span>
+<span class='curline'><a href='../S/582.html#L455'>hook</a>              455 third_party/google-perftools-1.8.3/src/malloc_hook.cc MallocHook_NewHook MallocHook_SetNewHook(MallocHook_NewHook hook) {</span>
+<span class='curline'><a href='../S/582.html#L456'>hook</a>              456 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_VLOG(10, "SetNewHook(%p)", hook);</span>
+<span class='curline'><a href='../S/582.html#L457'>hook</a>              457 third_party/google-perftools-1.8.3/src/malloc_hook.cc   return new_hook_.Exchange(hook);</span>
+<span class='curline'><a href='../S/582.html#L461'>hook</a>              461 third_party/google-perftools-1.8.3/src/malloc_hook.cc MallocHook_DeleteHook MallocHook_SetDeleteHook(MallocHook_DeleteHook hook) {</span>
+<span class='curline'><a href='../S/582.html#L462'>hook</a>              462 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_VLOG(10, "SetDeleteHook(%p)", hook);</span>
+<span class='curline'><a href='../S/582.html#L463'>hook</a>              463 third_party/google-perftools-1.8.3/src/malloc_hook.cc   return delete_hook_.Exchange(hook);</span>
+<span class='curline'><a href='../S/582.html#L467'>hook</a>              467 third_party/google-perftools-1.8.3/src/malloc_hook.cc MallocHook_PreMmapHook MallocHook_SetPreMmapHook(MallocHook_PreMmapHook hook) {</span>
+<span class='curline'><a href='../S/582.html#L468'>hook</a>              468 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_VLOG(10, "SetPreMmapHook(%p)", hook);</span>
+<span class='curline'><a href='../S/582.html#L469'>hook</a>              469 third_party/google-perftools-1.8.3/src/malloc_hook.cc   return premmap_hook_.Exchange(hook);</span>
+<span class='curline'><a href='../S/582.html#L473'>hook</a>              473 third_party/google-perftools-1.8.3/src/malloc_hook.cc MallocHook_MmapHook MallocHook_SetMmapHook(MallocHook_MmapHook hook) {</span>
+<span class='curline'><a href='../S/582.html#L474'>hook</a>              474 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_VLOG(10, "SetMmapHook(%p)", hook);</span>
+<span class='curline'><a href='../S/582.html#L475'>hook</a>              475 third_party/google-perftools-1.8.3/src/malloc_hook.cc   return mmap_hook_.Exchange(hook);</span>
+<span class='curline'><a href='../S/582.html#L479'>hook</a>              479 third_party/google-perftools-1.8.3/src/malloc_hook.cc MallocHook_MunmapHook MallocHook_SetMunmapHook(MallocHook_MunmapHook hook) {</span>
+<span class='curline'><a href='../S/582.html#L480'>hook</a>              480 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_VLOG(10, "SetMunmapHook(%p)", hook);</span>
+<span class='curline'><a href='../S/582.html#L481'>hook</a>              481 third_party/google-perftools-1.8.3/src/malloc_hook.cc   return munmap_hook_.Exchange(hook);</span>
+<span class='curline'><a href='../S/582.html#L485'>hook</a>              485 third_party/google-perftools-1.8.3/src/malloc_hook.cc MallocHook_MremapHook MallocHook_SetMremapHook(MallocHook_MremapHook hook) {</span>
+<span class='curline'><a href='../S/582.html#L486'>hook</a>              486 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_VLOG(10, "SetMremapHook(%p)", hook);</span>
+<span class='curline'><a href='../S/582.html#L487'>hook</a>              487 third_party/google-perftools-1.8.3/src/malloc_hook.cc   return mremap_hook_.Exchange(hook);</span>
+<span class='curline'><a href='../S/582.html#L491'>hook</a>              491 third_party/google-perftools-1.8.3/src/malloc_hook.cc MallocHook_PreSbrkHook MallocHook_SetPreSbrkHook(MallocHook_PreSbrkHook hook) {</span>
+<span class='curline'><a href='../S/582.html#L492'>hook</a>              492 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_VLOG(10, "SetPreSbrkHook(%p)", hook);</span>
+<span class='curline'><a href='../S/582.html#L493'>hook</a>              493 third_party/google-perftools-1.8.3/src/malloc_hook.cc   return presbrk_hook_.Exchange(hook);</span>
+<span class='curline'><a href='../S/582.html#L497'>hook</a>              497 third_party/google-perftools-1.8.3/src/malloc_hook.cc MallocHook_SbrkHook MallocHook_SetSbrkHook(MallocHook_SbrkHook hook) {</span>
+<span class='curline'><a href='../S/582.html#L498'>hook</a>              498 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_VLOG(10, "SetSbrkHook(%p)", hook);</span>
+<span class='curline'><a href='../S/582.html#L499'>hook</a>              499 third_party/google-perftools-1.8.3/src/malloc_hook.cc   return sbrk_hook_.Exchange(hook);</span>
+</pre>
+</body>
+</html>

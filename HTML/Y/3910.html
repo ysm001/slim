@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>object</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/549.html#L97'>object</a>             97 third_party/google-perftools-1.8.3/src/central_freelist.cc Span* MapObjectToSpan(void* object) {</span>
+<span class='curline'><a href='../S/549.html#L98'>object</a>             98 third_party/google-perftools-1.8.3/src/central_freelist.cc   const PageID p = reinterpret_cast&lt;uintptr_t&gt;(object) &gt;&gt; kPageShift;</span>
+<span class='curline'><a href='../S/549.html#L103'>object</a>            103 third_party/google-perftools-1.8.3/src/central_freelist.cc void CentralFreeList::ReleaseToSpans(void* object) {</span>
+<span class='curline'><a href='../S/549.html#L104'>object</a>            104 third_party/google-perftools-1.8.3/src/central_freelist.cc   Span* span = MapObjectToSpan(object);</span>
+<span class='curline'><a href='../S/549.html#L120'>object</a>            120 third_party/google-perftools-1.8.3/src/central_freelist.cc       ASSERT(p != object);</span>
+<span class='curline'><a href='../S/549.html#L145'>object</a>            145 third_party/google-perftools-1.8.3/src/central_freelist.cc     *(reinterpret_cast&lt;void**&gt;(object)) = span-&gt;objects;</span>
+<span class='curline'><a href='../S/549.html#L146'>object</a>            146 third_party/google-perftools-1.8.3/src/central_freelist.cc     span-&gt;objects = object;</span>
+<span class='curline'><a href='../S/550.html#L122'>object</a>            122 third_party/google-perftools-1.8.3/src/central_freelist.h   void ReleaseToSpans(void* object) EXCLUSIVE_LOCKS_REQUIRED(lock_);</span>
+<span class='curline'><a href='../S/568.html#L1094'>object</a>           1094 third_party/google-perftools-1.8.3/src/heap-checker.cc     for (IgnoredObjectsMap::const_iterator object = ignored_objects-&gt;begin();</span>
+<span class='curline'><a href='../S/568.html#L1095'>object</a>           1095 third_party/google-perftools-1.8.3/src/heap-checker.cc          object != ignored_objects-&gt;end(); ++object) {</span>
+<span class='curline'><a href='../S/568.html#L1096'>object</a>           1096 third_party/google-perftools-1.8.3/src/heap-checker.cc       const void* ptr = AsPtr(object-&gt;first);</span>
+<span class='curline'><a href='../S/568.html#L1098'>object</a>           1098 third_party/google-perftools-1.8.3/src/heap-checker.cc                   ptr, object-&gt;second);</span>
+<span class='curline'><a href='../S/568.html#L1100'>object</a>           1100 third_party/google-perftools-1.8.3/src/heap-checker.cc         push_back(AllocObject(ptr, object-&gt;second, MUST_BE_ON_HEAP));</span>
+<span class='curline'><a href='../S/568.html#L1105'>object</a>           1105 third_party/google-perftools-1.8.3/src/heap-checker.cc             object-&gt;second == object_size)) {</span>
+<span class='curline'><a href='../S/568.html#L1107'>object</a>           1107 third_party/google-perftools-1.8.3/src/heap-checker.cc                        " IgnoreObject() has disappeared", ptr, object-&gt;second);</span>
+<span class='curline'><a href='../S/568.html#L1384'>object</a>           1384 third_party/google-perftools-1.8.3/src/heap-checker.cc     const char* object =</span>
+<span class='curline'><a href='../S/568.html#L1389'>object</a>           1389 third_party/google-perftools-1.8.3/src/heap-checker.cc     if (place == MUST_BE_ON_HEAP  &amp;&amp;  heap_profile-&gt;MarkAsLive(object)) {</span>
+<span class='curline'><a href='../S/568.html#L1394'>object</a>           1394 third_party/google-perftools-1.8.3/src/heap-checker.cc                 object, size);</span>
+<span class='curline'><a href='../S/568.html#L1395'>object</a>           1395 third_party/google-perftools-1.8.3/src/heap-checker.cc     const char* const whole_object = object;</span>
+<span class='curline'><a href='../S/568.html#L1398'>object</a>           1398 third_party/google-perftools-1.8.3/src/heap-checker.cc     const size_t remainder = AsInt(object) % pointer_source_alignment;</span>
+<span class='curline'><a href='../S/568.html#L1400'>object</a>           1400 third_party/google-perftools-1.8.3/src/heap-checker.cc       object += pointer_source_alignment - remainder;</span>
+<span class='curline'><a href='../S/568.html#L1408'>object</a>           1408 third_party/google-perftools-1.8.3/src/heap-checker.cc     const char* const max_object = object + size - sizeof(void*);</span>
+<span class='curline'><a href='../S/568.html#L1409'>object</a>           1409 third_party/google-perftools-1.8.3/src/heap-checker.cc     while (object &lt;= max_object) {</span>
+<span class='curline'><a href='../S/568.html#L1411'>object</a>           1411 third_party/google-perftools-1.8.3/src/heap-checker.cc       const uintptr_t addr = *reinterpret_cast&lt;const uintptr_t*&gt;(object);</span>
+<span class='curline'><a href='../S/568.html#L1441'>object</a>           1441 third_party/google-perftools-1.8.3/src/heap-checker.cc                       ptr, object_size, object, whole_object, whole_size);</span>
+<span class='curline'><a href='../S/568.html#L1459'>object</a>           1459 third_party/google-perftools-1.8.3/src/heap-checker.cc       object += pointer_source_alignment;</span>
+<span class='curline'><a href='../S/568.html#L1509'>object</a>           1509 third_party/google-perftools-1.8.3/src/heap-checker.cc       IgnoredObjectsMap::iterator object = ignored_objects-&gt;find(AsInt(ptr));</span>
+<span class='curline'><a href='../S/568.html#L1510'>object</a>           1510 third_party/google-perftools-1.8.3/src/heap-checker.cc       if (object != ignored_objects-&gt;end()  &amp;&amp;  object_size == object-&gt;second) {</span>
+<span class='curline'><a href='../S/568.html#L1511'>object</a>           1511 third_party/google-perftools-1.8.3/src/heap-checker.cc         ignored_objects-&gt;erase(object);</span>
+<span class='curline'><a href='../S/664.html#L420'>object</a>            420 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     Object object;</span>
+<span class='curline'><a href='../S/664.html#L421'>object</a>            421 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     object.size = rnd_.Skewed(FLAGS_lgmaxsize);</span>
+<span class='curline'><a href='../S/664.html#L422'>object</a>            422 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     object.ptr = static_cast&lt;char*&gt;(rnd_.alloc(object.size));</span>
+<span class='curline'><a href='../S/664.html#L423'>object</a>            423 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     CHECK(object.ptr);</span>
+<span class='curline'><a href='../S/664.html#L424'>object</a>            424 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     object.generation = 0;</span>
+<span class='curline'><a href='../S/664.html#L425'>object</a>            425 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     FillContents(&amp;object);</span>
+<span class='curline'><a href='../S/664.html#L426'>object</a>            426 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     heap_.push_back(object);</span>
+<span class='curline'><a href='../S/664.html#L427'>object</a>            427 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     heap_size_ += object.size;</span>
+<span class='curline'><a href='../S/664.html#L443'>object</a>            443 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     Object object = heap_[index];</span>
+<span class='curline'><a href='../S/664.html#L444'>object</a>            444 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     CheckContents(object);</span>
+<span class='curline'><a href='../S/664.html#L445'>object</a>            445 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     free(object.ptr);</span>
+<span class='curline'><a href='../S/664.html#L446'>object</a>            446 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     heap_size_ -= object.size;</span>
+<span class='curline'><a href='../S/664.html#L471'>object</a>            471 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     Object object = heap_[index];</span>
+<span class='curline'><a href='../S/664.html#L472'>object</a>            472 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     CheckContents(object);</span>
+<span class='curline'><a href='../S/664.html#L481'>object</a>            481 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc       thread-&gt;passed_.push_back(object);</span>
+<span class='curline'><a href='../S/664.html#L483'>object</a>            483 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc       heap_size_ -= object.size;</span>
+<span class='curline'><a href='../S/664.html#L508'>object</a>            508 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc       const Object&amp; object = copy[i];</span>
+<span class='curline'><a href='../S/664.html#L509'>object</a>            509 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc       CheckContents(object);</span>
+<span class='curline'><a href='../S/664.html#L510'>object</a>            510 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc       heap_.push_back(object);</span>
+<span class='curline'><a href='../S/664.html#L511'>object</a>            511 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc       heap_size_ += object.size;</span>
+<span class='curline'><a href='../S/664.html#L516'>object</a>            516 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   void FillContents(Object* object) {</span>
+<span class='curline'><a href='../S/664.html#L517'>object</a>            517 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     ACMRandom r(reinterpret_cast&lt;intptr_t&gt;(object-&gt;ptr) &amp; 0x7fffffff);</span>
+<span class='curline'><a href='../S/664.html#L518'>object</a>            518 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     for (int i = 0; i &lt; object-&gt;generation; ++i) {</span>
+<span class='curline'><a href='../S/664.html#L522'>object</a>            522 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     memset(object-&gt;ptr, c, object-&gt;size);</span>
+<span class='curline'><a href='../S/664.html#L526'>object</a>            526 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   void CheckContents(const Object&amp; object) {</span>
+<span class='curline'><a href='../S/664.html#L527'>object</a>            527 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     ACMRandom r(reinterpret_cast&lt;intptr_t&gt;(object.ptr) &amp; 0x7fffffff);</span>
+<span class='curline'><a href='../S/664.html#L528'>object</a>            528 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     for (int i = 0; i &lt; object.generation; ++i) {</span>
+<span class='curline'><a href='../S/664.html#L534'>object</a>            534 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     const int limit1 = object.size &lt; 32 ? object.size : 32;</span>
+<span class='curline'><a href='../S/664.html#L535'>object</a>            535 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     const int start2 = limit1 &gt; object.size - 32 ? limit1 : object.size - 32;</span>
+<span class='curline'><a href='../S/664.html#L537'>object</a>            537 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc       CHECK_EQ(object.ptr[i], expected);</span>
+<span class='curline'><a href='../S/664.html#L539'>object</a>            539 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     for (int i = start2; i &lt; object.size; ++i) {</span>
+<span class='curline'><a href='../S/664.html#L540'>object</a>            540 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc       CHECK_EQ(object.ptr[i], expected);</span>
+</pre>
+</body>
+</html>

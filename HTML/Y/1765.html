@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>check</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/421.html#L1015'>check</a>            1015 src/verifier/dpor_naive.c       Transition check;</span>
+<span class='curline'><a href='../S/421.html#L1022'>check</a>            1022 src/verifier/dpor_naive.c       check = transition(s, j);</span>
+<span class='curline'><a href='../S/421.html#L1023'>check</a>            1023 src/verifier/dpor_naive.c       checked_id   = transition_id(check);</span>
+<span class='curline'><a href='../S/421.html#L1027'>check</a>            1027 src/verifier/dpor_naive.c         if (transition_id(check) == (unsigned long)vec_get(ids_independent_of_id_key, k)) {</span>
+<span class='curline'><a href='../S/421.html#L1035'>check</a>            1035 src/verifier/dpor_naive.c         if (!vec_contains(mc_por.ample_candidate, (vec_data_t)transition_id(check))) {</span>
+<span class='curline'><a href='../S/421.html#L1036'>check</a>            1036 src/verifier/dpor_naive.c           vec_push(mc_por.ample_candidate, (vec_data_t)transition_id(check));</span>
+<span class='curline'><a href='../S/421.html#L1037'>check</a>            1037 src/verifier/dpor_naive.c           set_ample(transition_next_state(check));</span>
+<span class='curline'><a href='../S/432.html#L248'>check</a>             248 src/verifier/mc_generator.c   w-&gt;check    = dfs_worker_check;</span>
+<span class='curline'><a href='../S/432.html#L593'>check</a>             593 src/verifier/mc_generator.c   w-&gt;check    = bfs_worker_check;</span>
+<span class='curline'><a href='../S/434.html#L91'>check</a>              91 src/verifier/mc_worker.c   w-&gt;check     = NULL;</span>
+<span class='curline'><a href='../S/435.html#L163'>check</a>             163 src/verifier/mc_worker.h   BOOL            (*check)( );   /* 終了検知関数 */</span>
+<span class='curline'><a href='../S/435.html#L219'>check</a>             219 src/verifier/mc_worker.h   if (w-&gt;check) {</span>
+<span class='curline'><a href='../S/435.html#L220'>check</a>             220 src/verifier/mc_worker.h     return (*(w)-&gt;check)(w);</span>
+<span class='curline'><a href='../S/454.html#L332'>check</a>             332 src/verifier/state.c static int state_equals_with_compress(State *check, State *stored)</span>
+<span class='curline'><a href='../S/454.html#L343'>check</a>             343 src/verifier/state.c     return (state_hash(check) == state_hash(stored));</span>
+<span class='curline'><a href='../S/454.html#L347'>check</a>             347 src/verifier/state.c   if (s_is_d(check)) {</span>
+<span class='curline'><a href='../S/454.html#L348'>check</a>             348 src/verifier/state.c     bs1 = state_D_fetch(check);</span>
+<span class='curline'><a href='../S/454.html#L350'>check</a>             350 src/verifier/state.c     bs1 = state_binstr(check);</span>
+<span class='curline'><a href='../S/454.html#L359'>check</a>             359 src/verifier/state.c   if (is_encoded(check) &amp;&amp; is_encoded(stored)) {</span>
+<span class='curline'><a href='../S/454.html#L362'>check</a>             362 src/verifier/state.c       check-&gt;state_name == stored-&gt;state_name &amp;&amp;</span>
+<span class='curline'><a href='../S/454.html#L365'>check</a>             365 src/verifier/state.c   else if (state_mem(check) &amp;&amp; bs2) {</span>
+<span class='curline'><a href='../S/454.html#L368'>check</a>             368 src/verifier/state.c       check-&gt;state_name == stored-&gt;state_name &amp;&amp;</span>
+<span class='curline'><a href='../S/454.html#L369'>check</a>             369 src/verifier/state.c       lmn_mem_equals_enc(bs2, state_mem(check));</span>
+<span class='curline'><a href='../S/454.html#L376'>check</a>             376 src/verifier/state.c       check-&gt;state_name == stored-&gt;state_name &amp;&amp;</span>
+<span class='curline'><a href='../S/577.html#L214'>check</a>             214 third_party/google-perftools-1.8.3/src/libc_override_osx.h   tcmalloc_introspection.check = &amp;mi_check;</span>
+<span class='curline'><a href='../S/637.html#L406'>check</a>             406 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc static bool RunSilent(HeapLeakChecker* check,</span>
+<span class='curline'><a href='../S/637.html#L415'>check</a>             415 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   const bool retval = (check-&gt;*func)();</span>
+<span class='curline'><a href='../S/637.html#L420'>check</a>             420 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc #define RUN_SILENT(check, func)  RunSilent(&amp;(check), &amp;HeapLeakChecker::func)</span>
+<span class='curline'><a href='../S/637.html#L424'>check</a>             424 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc static void VerifyLeaks(HeapLeakChecker* check, CheckType type,</span>
+<span class='curline'><a href='../S/637.html#L428'>check</a>             428 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     type == NO_LEAKS ? RUN_SILENT(*check, BriefNoLeaks)</span>
+<span class='curline'><a href='../S/637.html#L429'>check</a>             429 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc                      : RUN_SILENT(*check, BriefSameHeap);</span>
+<span class='curline'><a href='../S/637.html#L433'>check</a>             433 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     CHECK_EQ(check-&gt;BytesLeaked(), leaked_bytes);</span>
+<span class='curline'><a href='../S/637.html#L434'>check</a>             434 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     CHECK_EQ(check-&gt;ObjectsLeaked(), leaked_objects);</span>
+<span class='curline'><a href='../S/637.html#L444'>check</a>             444 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   HeapLeakChecker check("death_simple");</span>
+<span class='curline'><a href='../S/637.html#L452'>check</a>             452 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   VerifyLeaks(&amp;check, NO_LEAKS, 300 + 100 * sizeof(int), 2);</span>
+<span class='curline'><a href='../S/637.html#L474'>check</a>             474 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   HeapLeakChecker check("death_loop");</span>
+<span class='curline'><a href='../S/637.html#L483'>check</a>             483 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   VerifyLeaks(&amp;check, NO_LEAKS, 4 * sizeof(void*), 2);</span>
+<span class='curline'><a href='../S/637.html#L494'>check</a>             494 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   HeapLeakChecker check("death_inverse");</span>
+<span class='curline'><a href='../S/637.html#L500'>check</a>             500 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   VerifyLeaks(&amp;check, SAME_HEAP,</span>
+<span class='curline'><a href='../S/637.html#L512'>check</a>             512 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   HeapLeakChecker check("death_noleaks");</span>
+<span class='curline'><a href='../S/637.html#L514'>check</a>             514 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   CHECK_EQ(check.BriefNoLeaks(), true);</span>
+<span class='curline'><a href='../S/637.html#L527'>check</a>             527 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   HeapLeakChecker check("death_count_less");</span>
+<span class='curline'><a href='../S/637.html#L534'>check</a>             534 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   VerifyLeaks(&amp;check, SAME_HEAP,</span>
+<span class='curline'><a href='../S/637.html#L546'>check</a>             546 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   HeapLeakChecker check("death_count_more");</span>
+<span class='curline'><a href='../S/637.html#L555'>check</a>             555 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   VerifyLeaks(&amp;check, SAME_HEAP,</span>
+<span class='curline'><a href='../S/637.html#L578'>check</a>             578 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   { HeapLeakChecker check("trivial");</span>
+<span class='curline'><a href='../S/637.html#L583'>check</a>             583 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     CHECK(check.BriefSameHeap());</span>
+<span class='curline'><a href='../S/637.html#L586'>check</a>             586 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   { HeapLeakChecker check("simple");</span>
+<span class='curline'><a href='../S/637.html#L594'>check</a>             594 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     CHECK(check.BriefSameHeap());</span>
+<span class='curline'><a href='../S/637.html#L600'>check</a>             600 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   { HeapLeakChecker check("trivial_p");</span>
+<span class='curline'><a href='../S/637.html#L605'>check</a>             605 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     CHECK(check.BriefSameHeap());</span>
+<span class='curline'><a href='../S/637.html#L608'>check</a>             608 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   { HeapLeakChecker check("simple_p");</span>
+<span class='curline'><a href='../S/637.html#L616'>check</a>             616 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     CHECK(check.SameHeap());</span>
+<span class='curline'><a href='../S/637.html#L630'>check</a>             630 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   HeapLeakChecker check("trick");</span>
+<span class='curline'><a href='../S/637.html#L642'>check</a>             642 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   VerifyLeaks(&amp;check, NO_LEAKS, (280+120)*sizeof(int), 2);</span>
+<span class='curline'><a href='../S/637.html#L654'>check</a>             654 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   HeapLeakChecker check("death_trick");</span>
+<span class='curline'><a href='../S/637.html#L663'>check</a>             663 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     CHECK_EQ(RUN_SILENT(check, SameHeap), false);</span>
+<span class='curline'><a href='../S/637.html#L666'>check</a>             666 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     WARN_IF(RUN_SILENT(check, SameHeap) != false,</span>
+<span class='curline'><a href='../S/637.html#L706'>check</a>             706 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   HeapLeakChecker check("disabling");</span>
+<span class='curline'><a href='../S/637.html#L717'>check</a>             717 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   CHECK(check.SameHeap());</span>
+<span class='curline'><a href='../S/637.html#L738'>check</a>             738 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   HeapLeakChecker check("stl");</span>
+<span class='curline'><a href='../S/637.html#L740'>check</a>             740 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   CHECK_EQ(check.BriefSameHeap(), true);</span>
+<span class='curline'><a href='../S/637.html#L764'>check</a>             764 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   HeapLeakChecker check("death_inverse_stl");</span>
+<span class='curline'><a href='../S/637.html#L771'>check</a>             771 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     CHECK_EQ(RUN_SILENT(check, BriefNoLeaks), false);</span>
+<span class='curline'><a href='../S/637.html#L772'>check</a>             772 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     CHECK_GE(check.BytesLeaked(), 100 * sizeof(int));</span>
+<span class='curline'><a href='../S/637.html#L773'>check</a>             773 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     CHECK_GE(check.ObjectsLeaked(), 100);</span>
+<span class='curline'><a href='../S/637.html#L777'>check</a>             777 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     WARN_IF(RUN_SILENT(check, BriefNoLeaks) != false,</span>
+<span class='curline'><a href='../S/637.html#L786'>check</a>             786 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   HeapLeakChecker check((string("direct_stl-") + name).c_str());</span>
+<span class='curline'><a href='../S/637.html#L801'>check</a>             801 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   CHECK(check.BriefSameHeap());  // just in case</span>
+<span class='curline'><a href='../S/701.html#L116'>check</a>             116 third_party/zdelta-2.1/infblock.c     *c = s-&gt;check;</span>
+<span class='curline'><a href='../S/701.html#L126'>check</a>             126 third_party/zdelta-2.1/infblock.c     z-&gt;adler = s-&gt;check = (*s-&gt;checkfn)(0L, (const Bytef *)ZD_NULL, 0);</span>
+<span class='curline'><a href='../S/708.html#L55'>check</a>              55 third_party/zdelta-2.1/inflate.c     } check;            /* if CHECK, check values to compare */</span>
+<span class='curline'><a href='../S/708.html#L234'>check</a>             234 third_party/zdelta-2.1/inflate.c     inflate_blocks_reset(z-&gt;state-&gt;blocks, z, &amp;z-&gt;state-&gt;sub.check.was);</span>
+<span class='curline'><a href='../S/708.html#L243'>check</a>             243 third_party/zdelta-2.1/inflate.c     z-&gt;state-&gt;sub.check.need = (uLong)NEXTBYTE &lt;&lt; 24;</span>
+<span class='curline'><a href='../S/708.html#L247'>check</a>             247 third_party/zdelta-2.1/inflate.c     z-&gt;state-&gt;sub.check.need += (uLong)NEXTBYTE &lt;&lt; 16;</span>
+<span class='curline'><a href='../S/708.html#L251'>check</a>             251 third_party/zdelta-2.1/inflate.c     z-&gt;state-&gt;sub.check.need += (uLong)NEXTBYTE &lt;&lt; 8;</span>
+<span class='curline'><a href='../S/708.html#L255'>check</a>             255 third_party/zdelta-2.1/inflate.c     z-&gt;state-&gt;sub.check.need += (uLong)NEXTBYTE;</span>
+<span class='curline'><a href='../S/708.html#L256'>check</a>             256 third_party/zdelta-2.1/inflate.c     if (z-&gt;state-&gt;sub.check.was != z-&gt;state-&gt;sub.check.need)</span>
+<span class='curline'><a href='../S/711.html#L59'>check</a>              59 third_party/zdelta-2.1/infutil.c     z-&gt;adler = s-&gt;check = (*s-&gt;checkfn)(s-&gt;check, q, n);</span>
+<span class='curline'><a href='../S/711.html#L85'>check</a>              85 third_party/zdelta-2.1/infutil.c       z-&gt;adler = s-&gt;check = (*s-&gt;checkfn)(s-&gt;check, q, n);</span>
+<span class='curline'><a href='../S/712.html#L72'>check</a>              72 third_party/zdelta-2.1/infutil.h   uLong check;          /* check on output */</span>
+<span class='curline'><a href='../S/730.html#L239'>check</a>             239 third_party/zdelta-2.1/zutil.h typedef uLong (ZEXPORT *check_func) OF((uLong check, const Bytef *buf,</span>
+</pre>
+</body>
+</html>

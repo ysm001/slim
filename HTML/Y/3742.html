@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>new_mems</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/417.html#L215'>new_mems</a>          215 src/verifier/delta_membrane.c       for (i = 0; i &lt; vec_num(&amp;(D)-&gt;new_mems); i++) {                      \</span>
+<span class='curline'><a href='../S/417.html#L216'>new_mems</a>          216 src/verifier/delta_membrane.c         (V) = (LmnMembrane *)vec_get(&amp;(D)-&gt;new_mems, i);                   \</span>
+<span class='curline'><a href='../S/417.html#L238'>new_mems</a>          238 src/verifier/delta_membrane.c   vec_init(&amp;p-&gt;new_mems,       16);</span>
+<span class='curline'><a href='../S/417.html#L270'>new_mems</a>          270 src/verifier/delta_membrane.c   for (i = 0; i &lt; vec_num(&amp;p-&gt;new_mems); i++) {</span>
+<span class='curline'><a href='../S/417.html#L275'>new_mems</a>          275 src/verifier/delta_membrane.c     mem = (LmnMembrane *)vec_get(&amp;p-&gt;new_mems, i);</span>
+<span class='curline'><a href='../S/417.html#L287'>new_mems</a>          287 src/verifier/delta_membrane.c   vec_destroy(&amp;p-&gt;new_mems);</span>
+<span class='curline'><a href='../S/417.html#L1015'>new_mems</a>         1015 src/verifier/delta_membrane.c   for (i = 0; i &lt; vec_num(&amp;d-&gt;new_mems); i++) {</span>
+<span class='curline'><a href='../S/417.html#L1020'>new_mems</a>         1020 src/verifier/delta_membrane.c     mem = (LmnMembrane *)vec_get(&amp;d-&gt;new_mems, i);</span>
+<span class='curline'><a href='../S/417.html#L1105'>new_mems</a>         1105 src/verifier/delta_membrane.c   for (i = vec_num(&amp;d-&gt;new_mems)-1; i &gt;= 0; i--) {</span>
+<span class='curline'><a href='../S/417.html#L1110'>new_mems</a>         1110 src/verifier/delta_membrane.c     mem = (LmnMembrane *)vec_get(&amp;d-&gt;new_mems, i);</span>
+<span class='curline'><a href='../S/417.html#L1500'>new_mems</a>         1500 src/verifier/delta_membrane.c   vec_push(&amp;d-&gt;new_mems, (vec_data_t)m);</span>
+<span class='curline'><a href='../S/417.html#L1625'>new_mems</a>         1625 src/verifier/delta_membrane.c   for (i = 0; i &lt; vec_num(&amp;d-&gt;new_mems); i++) {</span>
+<span class='curline'><a href='../S/417.html#L1626'>new_mems</a>         1626 src/verifier/delta_membrane.c     printf("new mem: %p\n", (LmnMembrane *)vec_get(&amp;d-&gt;new_mems, i));</span>
+<span class='curline'><a href='../S/417.html#L1627'>new_mems</a>         1627 src/verifier/delta_membrane.c     lmn_dump_mem_dev((LmnMembrane *)vec_get(&amp;d-&gt;new_mems, i));</span>
+<span class='curline'><a href='../S/417.html#L1813'>new_mems</a>         1813 src/verifier/delta_membrane.c   vec_init(&amp;p-&gt;new_mems, 16);</span>
+<span class='curline'><a href='../S/417.html#L1837'>new_mems</a>         1837 src/verifier/delta_membrane.c   vec_destroy(&amp;p-&gt;new_mems);</span>
+<span class='curline'><a href='../S/417.html#L1989'>new_mems</a>         1989 src/verifier/delta_membrane.c   vec_push(&amp;d-&gt;new_mems, (vec_data_t)child);</span>
+<span class='curline'><a href='../S/417.html#L2177'>new_mems</a>         2177 src/verifier/delta_membrane.c   for (i = 0; i &lt; vec_num(&amp;d-&gt;new_mems); i++) {</span>
+<span class='curline'><a href='../S/417.html#L2180'>new_mems</a>         2180 src/verifier/delta_membrane.c     lmn_mem_add_child_mem(d-&gt;mem, (LmnMembrane *)vec_get(&amp;d-&gt;new_mems, i));</span>
+<span class='curline'><a href='../S/417.html#L2256'>new_mems</a>         2256 src/verifier/delta_membrane.c   for (i = 0; i &lt; vec_num(&amp;d-&gt;new_mems); i++) {</span>
+<span class='curline'><a href='../S/417.html#L2257'>new_mems</a>         2257 src/verifier/delta_membrane.c     lmn_mem_remove_mem(d-&gt;mem, (LmnMembrane *)vec_get(&amp;d-&gt;new_mems, i));</span>
+<span class='curline'><a href='../S/418.html#L58'>new_mems</a>           58 src/verifier/delta_membrane.h   struct Vector new_mems;</span>
+<span class='curline'><a href='../S/418.html#L79'>new_mems</a>           79 src/verifier/delta_membrane.h   Vector new_mems;</span>
+<span class='curline'><a href='../S/419.html#L277'>new_mems</a>          277 src/verifier/dpor.c   if (vec_num(&amp;d-&gt;new_mems) &gt; 0 || vec_num(&amp;d-&gt;del_mems) &gt; 0) {</span>
+<span class='curline'><a href='../S/419.html#L278'>new_mems</a>          278 src/verifier/dpor.c     int n = vec_num(&amp;d-&gt;new_mems) - vec_num(&amp;d-&gt;del_mems);</span>
+</pre>
+</body>
+</html>

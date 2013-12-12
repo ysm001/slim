@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>PreSbrkHook</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/561.html#L234'>PreSbrkHook</a>       234 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static bool AddPreSbrkHook(PreSbrkHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L237'>PreSbrkHook</a>       237 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static bool RemovePreSbrkHook(PreSbrkHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L304'>PreSbrkHook</a>       304 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static PreSbrkHook GetPreSbrkHook();</span>
+<span class='curline'><a href='../S/561.html#L305'>PreSbrkHook</a>       305 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static PreSbrkHook SetPreSbrkHook(PreSbrkHook hook) {</span>
+<span class='curline'><a href='../S/581.html#L97'>PreSbrkHook</a>        97 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h extern AtomicPtr&lt;MallocHook::PreSbrkHook&gt; presbrk_hook_;</span>
+<span class='curline'><a href='../S/581.html#L149'>PreSbrkHook</a>       149 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h extern HookList&lt;MallocHook::PreSbrkHook&gt; presbrk_hooks_;</span>
+<span class='curline'><a href='../S/581.html#L292'>PreSbrkHook</a>       292 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h inline MallocHook::PreSbrkHook MallocHook::GetPreSbrkHook() {</span>
+<span class='curline'><a href='../S/581.html#L301'>PreSbrkHook</a>       301 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h   MallocHook::PreSbrkHook hook = MallocHook::GetPreSbrkHook();</span>
+<span class='curline'><a href='../S/582.html#L194'>PreSbrkHook</a>       194 third_party/google-perftools-1.8.3/src/malloc_hook.cc AtomicPtr&lt;MallocHook::PreSbrkHook&gt; presbrk_hook_ = { 0 };</span>
+<span class='curline'><a href='../S/582.html#L288'>PreSbrkHook</a>       288 third_party/google-perftools-1.8.3/src/malloc_hook.cc HookList&lt;MallocHook::PreSbrkHook&gt; presbrk_hooks_ =</span>
+<span class='curline'><a href='../S/582.html#L585'>PreSbrkHook</a>       585 third_party/google-perftools-1.8.3/src/malloc_hook.cc   INVOKE_HOOKS(PreSbrkHook, presbrk_hooks_, (increment));</span>
+</pre>
+</body>
+</html>

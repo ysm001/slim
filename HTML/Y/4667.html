@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>s2_mem</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/454.html#L420'>s2_mem</a>            420 src/verifier/state.c     LmnMembrane *s2_mem;</span>
+<span class='curline'><a href='../S/454.html#L429'>s2_mem</a>            429 src/verifier/state.c     s2_mem = lmn_binstr_decode(state_binstr(s2));</span>
+<span class='curline'><a href='../S/454.html#L431'>s2_mem</a>            431 src/verifier/state.c     s2_mid = lmn_mem_encode(s2_mem);</span>
+<span class='curline'><a href='../S/454.html#L435'>s2_mem</a>            435 src/verifier/state.c     meq_check = (lmn_mem_equals(state_mem(s1), s2_mem));    /* C. 膜同士のグラフ同型性判定 */</span>
+<span class='curline'><a href='../S/454.html#L448'>s2_mem</a>            448 src/verifier/state.c       sp1_check = (lmn_mem_equals(state_mem(s1), s2_mem) != 0);</span>
+<span class='curline'><a href='../S/454.html#L449'>s2_mem</a>            449 src/verifier/state.c       sp2_check = (lmn_mem_equals_enc(s1_bs, s2_mem) != 0);</span>
+<span class='curline'><a href='../S/454.html#L450'>s2_mem</a>            450 src/verifier/state.c       sp3_check = (lmn_mem_equals_enc(s1_mid, s2_mem) != 0);</span>
+<span class='curline'><a href='../S/454.html#L470'>s2_mem</a>            470 src/verifier/state.c     lmn_mem_free_rec(s2_mem);</span>
+</pre>
+</body>
+</html>

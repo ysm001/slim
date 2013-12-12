@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>third_party/google-perftools-1.8.3/src/stacktrace.cc</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/738.html'>third_party</a>/<a href='../files/739.html'>google-perftools-1.8.3</a>/<a href='../files/740.html'>src</a>/stacktrace.cc</h2>
+<em class='comment'>/* [&lt;][&gt;][^][v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>// Copyright (c) 2005, Google Inc.</em>
+<a id='L2' name='L2' /><em class='comment'>// All rights reserved.</em>
+<a id='L3' name='L3' /><em class='comment'>// </em>
+<a id='L4' name='L4' /><em class='comment'>// Redistribution and use in source and binary forms, with or without</em>
+<a id='L5' name='L5' /><em class='comment'>// modification, are permitted provided that the following conditions are</em>
+<a id='L6' name='L6' /><em class='comment'>// met:</em>
+<a id='L7' name='L7' /><em class='comment'>// </em>
+<a id='L8' name='L8' /><em class='comment'>//     * Redistributions of source code must retain the above copyright</em>
+<a id='L9' name='L9' /><em class='comment'>// notice, this list of conditions and the following disclaimer.</em>
+<a id='L10' name='L10' /><em class='comment'>//     * Redistributions in binary form must reproduce the above</em>
+<a id='L11' name='L11' /><em class='comment'>// copyright notice, this list of conditions and the following disclaimer</em>
+<a id='L12' name='L12' /><em class='comment'>// in the documentation and/or other materials provided with the</em>
+<a id='L13' name='L13' /><em class='comment'>// distribution.</em>
+<a id='L14' name='L14' /><em class='comment'>//     * Neither the name of Google Inc. nor the names of its</em>
+<a id='L15' name='L15' /><em class='comment'>// contributors may be used to endorse or promote products derived from</em>
+<a id='L16' name='L16' /><em class='comment'>// this software without specific prior written permission.</em>
+<a id='L17' name='L17' /><em class='comment'>// </em>
+<a id='L18' name='L18' /><em class='comment'>// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L19' name='L19' /><em class='comment'>// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L20' name='L20' /><em class='comment'>// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L21' name='L21' /><em class='comment'>// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L22' name='L22' /><em class='comment'>// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L23' name='L23' /><em class='comment'>// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L24' name='L24' /><em class='comment'>// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L25' name='L25' /><em class='comment'>// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L26' name='L26' /><em class='comment'>// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L27' name='L27' /><em class='comment'>// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L28' name='L28' /><em class='comment'>// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L29' name='L29' />
+<a id='L30' name='L30' /><em class='comment'>// ---</em>
+<a id='L31' name='L31' /><em class='comment'>// Author: Sanjay Ghemawat</em>
+<a id='L32' name='L32' /><em class='comment'>//</em>
+<a id='L33' name='L33' /><em class='comment'>// Produce stack trace.</em>
+<a id='L34' name='L34' /><em class='comment'>//</em>
+<a id='L35' name='L35' /><em class='comment'>// There are three different ways we can try to get the stack trace:</em>
+<a id='L36' name='L36' /><em class='comment'>//</em>
+<a id='L37' name='L37' /><em class='comment'>// 1) Our hand-coded stack-unwinder.  This depends on a certain stack</em>
+<a id='L38' name='L38' /><em class='comment'>//    layout, which is used by gcc (and those systems using a</em>
+<a id='L39' name='L39' /><em class='comment'>//    gcc-compatible ABI) on x86 systems, at least since gcc 2.95.</em>
+<a id='L40' name='L40' /><em class='comment'>//    It uses the frame pointer to do its work.</em>
+<a id='L41' name='L41' /><em class='comment'>//</em>
+<a id='L42' name='L42' /><em class='comment'>// 2) The libunwind library.  This is still in development, and as a</em>
+<a id='L43' name='L43' /><em class='comment'>//    separate library adds a new dependency, abut doesn't need a frame</em>
+<a id='L44' name='L44' /><em class='comment'>//    pointer.  It also doesn't call malloc.</em>
+<a id='L45' name='L45' /><em class='comment'>//</em>
+<a id='L46' name='L46' /><em class='comment'>// 3) The gdb unwinder -- also the one used by the c++ exception code.</em>
+<a id='L47' name='L47' /><em class='comment'>//    It's obviously well-tested, but has a fatal flaw: it can call</em>
+<a id='L48' name='L48' /><em class='comment'>//    malloc() from the unwinder.  This is a problem because we're</em>
+<a id='L49' name='L49' /><em class='comment'>//    trying to use the unwinder to instrument malloc().</em>
+<a id='L50' name='L50' /><em class='comment'>//</em>
+<a id='L51' name='L51' /><em class='comment'>// Note: if you add a new implementation here, make sure it works</em>
+<a id='L52' name='L52' /><em class='comment'>// correctly when GetStackTrace() is called with max_depth == 0.</em>
+<a id='L53' name='L53' /><em class='comment'>// Some code may do that.</em>
+<a id='L54' name='L54' />
+<a id='L55' name='L55' /><em class='sharp'>#include</em> &lt;<a href='../I/6.html'>config.h</a>&gt;
+<a id='L56' name='L56' /><em class='sharp'>#include</em> &lt;<a href='564.html'>google/stacktrace.h</a>&gt;
+<a id='L57' name='L57' /><em class='sharp'>#include</em> "<a href='612.html'>stacktrace_config.h</a>"
+<a id='L58' name='L58' />
+<a id='L59' name='L59' /><em class='sharp'>#if</em> <strong class='reserved'>defined</strong>(<a href='../D/2503.html' title='Multiple defined in 6 places.'>STACKTRACE_INL_HEADER</a>)
+<a id='L60' name='L60' />
+<a id='L61' name='L61' /><em class='sharp'>#define</em> <a href='../R/1066.html' title='Multiple refered from 12 places.'>IS_STACK_FRAMES</a> 0
+<a id='L62' name='L62' /><em class='sharp'>#define</em> <a href='../R/1067.html' title='Multiple refered from 2 places.'>IS_WITH_CONTEXT</a> 0
+<a id='L63' name='L63' /><em class='sharp'>#define</em> <a href='../R/705.html' title='Multiple refered from 6 places.'>GET_STACK_TRACE_OR_FRAMES</a> \
+<a id='L64' name='L64' />   <a href='../D/869.html' title='Multiple defined in 4 places.'>GetStackTrace</a>(<strong class='reserved'>void</strong> **<a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>, <strong class='reserved'>int</strong> <a href='../Y/3446.html' title='Multiple used in 38 places.'>max_depth</a>, <strong class='reserved'>int</strong> <a href='../Y/4890.html' title='Multiple used in 41 places.'>skip_count</a>)
+<a id='L65' name='L65' /><em class='sharp'>#include</em> STACKTRACE_INL_HEADER
+<a id='L66' name='L66' /><em class='sharp'>#undef</em> <a href='../R/1066.html' title='Multiple refered from 12 places.'>IS_STACK_FRAMES</a>
+<a id='L67' name='L67' /><em class='sharp'>#undef</em> <a href='../R/1067.html' title='Multiple refered from 2 places.'>IS_WITH_CONTEXT</a>
+<a id='L68' name='L68' /><em class='sharp'>#undef</em> <a href='../R/705.html' title='Multiple refered from 6 places.'>GET_STACK_TRACE_OR_FRAMES</a>
+<a id='L69' name='L69' />
+<a id='L70' name='L70' /><em class='sharp'>#define</em> <a href='../R/1066.html' title='Multiple refered from 12 places.'>IS_STACK_FRAMES</a> 1
+<a id='L71' name='L71' /><em class='sharp'>#define</em> <a href='../R/1067.html' title='Multiple refered from 2 places.'>IS_WITH_CONTEXT</a> 0
+<a id='L72' name='L72' /><em class='sharp'>#define</em> <a href='../R/705.html' title='Multiple refered from 6 places.'>GET_STACK_TRACE_OR_FRAMES</a> \
+<a id='L73' name='L73' />  <a href='../D/868.html' title='Multiple defined in 2 places.'>GetStackFrames</a>(<strong class='reserved'>void</strong> **<a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>, <strong class='reserved'>int</strong> *<a href='../Y/4888.html' title='Multiple used in 15 places.'>sizes</a>, <strong class='reserved'>int</strong> <a href='../Y/3446.html' title='Multiple used in 38 places.'>max_depth</a>, <strong class='reserved'>int</strong> <a href='../Y/4890.html' title='Multiple used in 41 places.'>skip_count</a>)
+<a id='L74' name='L74' /><em class='sharp'>#include</em> STACKTRACE_INL_HEADER
+<a id='L75' name='L75' /><em class='sharp'>#undef</em> <a href='../R/1066.html' title='Multiple refered from 12 places.'>IS_STACK_FRAMES</a>
+<a id='L76' name='L76' /><em class='sharp'>#undef</em> <a href='../R/1067.html' title='Multiple refered from 2 places.'>IS_WITH_CONTEXT</a>
+<a id='L77' name='L77' /><em class='sharp'>#undef</em> <a href='../R/705.html' title='Multiple refered from 6 places.'>GET_STACK_TRACE_OR_FRAMES</a>
+<a id='L78' name='L78' />
+<a id='L79' name='L79' /><em class='sharp'>#define</em> <a href='../R/1066.html' title='Multiple refered from 12 places.'>IS_STACK_FRAMES</a> 0
+<a id='L80' name='L80' /><em class='sharp'>#define</em> <a href='../R/1067.html' title='Multiple refered from 2 places.'>IS_WITH_CONTEXT</a> 1
+<a id='L81' name='L81' /><em class='sharp'>#define</em> <a href='../R/705.html' title='Multiple refered from 6 places.'>GET_STACK_TRACE_OR_FRAMES</a> \
+<a id='L82' name='L82' />  <a href='../Y/316.html' title='Multiple used in 3 places.'>GetStackTraceWithContext</a>(<strong class='reserved'>void</strong> **<a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>, <strong class='reserved'>int</strong> <a href='../Y/3446.html' title='Multiple used in 38 places.'>max_depth</a>, \
+<a id='L83' name='L83' />                           <strong class='reserved'>int</strong> <a href='../Y/4890.html' title='Multiple used in 41 places.'>skip_count</a>, <strong class='reserved'>const</strong> <strong class='reserved'>void</strong> *<a href='../Y/5512.html' title='Multiple used in 4 places.'>ucp</a>)
+<a id='L84' name='L84' /><em class='sharp'>#include</em> STACKTRACE_INL_HEADER
+<a id='L85' name='L85' /><em class='sharp'>#undef</em> <a href='../R/1066.html' title='Multiple refered from 12 places.'>IS_STACK_FRAMES</a>
+<a id='L86' name='L86' /><em class='sharp'>#undef</em> <a href='../R/1067.html' title='Multiple refered from 2 places.'>IS_WITH_CONTEXT</a>
+<a id='L87' name='L87' /><em class='sharp'>#undef</em> <a href='../R/705.html' title='Multiple refered from 6 places.'>GET_STACK_TRACE_OR_FRAMES</a>
+<a id='L88' name='L88' />
+<a id='L89' name='L89' /><em class='sharp'>#define</em> <a href='../R/1066.html' title='Multiple refered from 12 places.'>IS_STACK_FRAMES</a> 1
+<a id='L90' name='L90' /><em class='sharp'>#define</em> <a href='../R/1067.html' title='Multiple refered from 2 places.'>IS_WITH_CONTEXT</a> 1
+<a id='L91' name='L91' /><em class='sharp'>#define</em> <a href='../R/705.html' title='Multiple refered from 6 places.'>GET_STACK_TRACE_OR_FRAMES</a> \
+<a id='L92' name='L92' />  <a href='../Y/315.html' title='Multiple used in 2 places.'>GetStackFramesWithContext</a>(<strong class='reserved'>void</strong> **<a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>, <strong class='reserved'>int</strong> *<a href='../Y/4888.html' title='Multiple used in 15 places.'>sizes</a>, <strong class='reserved'>int</strong> <a href='../Y/3446.html' title='Multiple used in 38 places.'>max_depth</a>, \
+<a id='L93' name='L93' />                            <strong class='reserved'>int</strong> <a href='../Y/4890.html' title='Multiple used in 41 places.'>skip_count</a>, <strong class='reserved'>const</strong> <strong class='reserved'>void</strong> *<a href='../Y/5512.html' title='Multiple used in 4 places.'>ucp</a>)
+<a id='L94' name='L94' /><em class='sharp'>#include</em> STACKTRACE_INL_HEADER
+<a id='L95' name='L95' /><em class='sharp'>#undef</em> <a href='../R/1066.html' title='Multiple refered from 12 places.'>IS_STACK_FRAMES</a>
+<a id='L96' name='L96' /><em class='sharp'>#undef</em> <a href='../R/1067.html' title='Multiple refered from 2 places.'>IS_WITH_CONTEXT</a>
+<a id='L97' name='L97' /><em class='sharp'>#undef</em> <a href='../R/705.html' title='Multiple refered from 6 places.'>GET_STACK_TRACE_OR_FRAMES</a>
+<a id='L98' name='L98' />
+<a id='L99' name='L99' /><em class='sharp'>#elif</em> 0
+<a id='L100' name='L100' /><em class='comment'>// This is for the benefit of code analysis tools that may have</em>
+<a id='L101' name='L101' /><em class='comment'>// trouble with the computed #include above.</em>
+<a id='L102' name='L102' /><em class='sharp'># include</em> "<a href='618.html'>stacktrace_x86-inl.h</a>"
+<a id='L103' name='L103' /><em class='sharp'># include</em> "<a href='614.html'>stacktrace_libunwind-inl.h</a>"
+<a id='L104' name='L104' /><em class='sharp'># include</em> "<a href='613.html'>stacktrace_generic-inl.h</a>"
+<a id='L105' name='L105' /><em class='sharp'># include</em> "<a href='616.html'>stacktrace_powerpc-inl.h</a>"
+<a id='L106' name='L106' /><em class='sharp'># include</em> "<a href='617.html'>stacktrace_win32-inl.h</a>"
+<a id='L107' name='L107' /><em class='sharp'># include</em> "<a href='611.html'>stacktrace_arm-inl.h</a>"
+<a id='L108' name='L108' /><em class='sharp'>#else</em>
+<a id='L109' name='L109' /><em class='sharp'># error</em> Cannot calculate stack trace: will need to write <strong class='reserved'>for</strong> your environment
+<a id='L110' name='L110' /><em class='sharp'>#endif</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^][v]<a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

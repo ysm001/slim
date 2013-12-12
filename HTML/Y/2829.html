@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>inlines</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/341.html#L121'>inlines</a>           121 src/il_parser.y %type &lt;inline_list&gt; inlines;</span>
+<span class='curline'><a href='../S/341.html#L139'>inlines</a>           139 src/il_parser.y | ruleSetList module_def KW_INLINE inlines { $$ = il_make($1, $2, $4); }</span>
+<span class='curline'><a href='../S/341.html#L140'>inlines</a>           140 src/il_parser.y | ruleSetList KW_INLINE inlines { $$ = il_make($1, module_list_make(), $3); }</span>
+<span class='curline'><a href='../S/341.html#L156'>inlines</a>           156 src/il_parser.y inlines:</span>
+<span class='curline'><a href='../S/341.html#L158'>inlines</a>           158 src/il_parser.y | inlines DQUOTED_STRING { inline_list_push($1, $2); $$ = $1; }</span>
+<span class='curline'><a href='../S/380.html#L62'>inlines</a>            62 src/syntax.c     InlineList inlines;</span>
+<span class='curline'><a href='../S/380.html#L716'>inlines</a>           716 src/syntax.c     il-&gt;inlines = inline_list;</span>
+<span class='curline'><a href='../S/380.html#L741'>inlines</a>           741 src/syntax.c     return il-&gt;inlines;</span>
+</pre>
+</body>
+</html>

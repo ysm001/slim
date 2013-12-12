@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>yy_buffer_stack</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/336.html#L285'>yy_buffer_stack</a>   285 src/il_lexer.c #define YY_CURRENT_BUFFER ( yyg-&gt;yy_buffer_stack \</span>
+<span class='curline'><a href='../S/336.html#L286'>yy_buffer_stack</a>   286 src/il_lexer.c                           ? yyg-&gt;yy_buffer_stack[yyg-&gt;yy_buffer_stack_top] \</span>
+<span class='curline'><a href='../S/336.html#L292'>yy_buffer_stack</a>   292 src/il_lexer.c #define YY_CURRENT_BUFFER_LVALUE yyg-&gt;yy_buffer_stack[yyg-&gt;yy_buffer_stack_top]</span>
+<span class='curline'><a href='../S/336.html#L658'>yy_buffer_stack</a>   658 src/il_lexer.c     YY_BUFFER_STATE * yy_buffer_stack; /**&lt; Stack as an array. */</span>
+<span class='curline'><a href='../S/336.html#L1892'>yy_buffer_stack</a>  1892 src/il_lexer.c 	if (!yyg-&gt;yy_buffer_stack) {</span>
+<span class='curline'><a href='../S/336.html#L1899'>yy_buffer_stack</a>  1899 src/il_lexer.c 		yyg-&gt;yy_buffer_stack = (struct yy_buffer_state**)ilalloc</span>
+<span class='curline'><a href='../S/336.html#L1902'>yy_buffer_stack</a>  1902 src/il_lexer.c 		if ( ! yyg-&gt;yy_buffer_stack )</span>
+<span class='curline'><a href='../S/336.html#L1905'>yy_buffer_stack</a>  1905 src/il_lexer.c 		memset(yyg-&gt;yy_buffer_stack, 0, num_to_alloc * sizeof(struct yy_buffer_state*));</span>
+<span class='curline'><a href='../S/336.html#L1918'>yy_buffer_stack</a>  1918 src/il_lexer.c 		yyg-&gt;yy_buffer_stack = (struct yy_buffer_state**)ilrealloc</span>
+<span class='curline'><a href='../S/336.html#L1919'>yy_buffer_stack</a>  1919 src/il_lexer.c 								(yyg-&gt;yy_buffer_stack,</span>
+<span class='curline'><a href='../S/336.html#L1922'>yy_buffer_stack</a>  1922 src/il_lexer.c 		if ( ! yyg-&gt;yy_buffer_stack )</span>
+<span class='curline'><a href='../S/336.html#L1926'>yy_buffer_stack</a>  1926 src/il_lexer.c 		memset(yyg-&gt;yy_buffer_stack + yyg-&gt;yy_buffer_stack_max, 0, grow_size * sizeof(struct yy_buffer_state*));</span>
+<span class='curline'><a href='../S/336.html#L2284'>yy_buffer_stack</a>  2284 src/il_lexer.c     yyg-&gt;yy_buffer_stack = 0;</span>
+<span class='curline'><a href='../S/336.html#L2323'>yy_buffer_stack</a>  2323 src/il_lexer.c 	ilfree(yyg-&gt;yy_buffer_stack ,yyscanner);</span>
+<span class='curline'><a href='../S/336.html#L2324'>yy_buffer_stack</a>  2324 src/il_lexer.c 	yyg-&gt;yy_buffer_stack = NULL;</span>
+<span class='curline'><a href='../S/440.html#L285'>yy_buffer_stack</a>   285 src/verifier/nc_lexer.c #define YY_CURRENT_BUFFER ( yyg-&gt;yy_buffer_stack \</span>
+<span class='curline'><a href='../S/440.html#L286'>yy_buffer_stack</a>   286 src/verifier/nc_lexer.c                           ? yyg-&gt;yy_buffer_stack[yyg-&gt;yy_buffer_stack_top] \</span>
+<span class='curline'><a href='../S/440.html#L292'>yy_buffer_stack</a>   292 src/verifier/nc_lexer.c #define YY_CURRENT_BUFFER_LVALUE yyg-&gt;yy_buffer_stack[yyg-&gt;yy_buffer_stack_top]</span>
+<span class='curline'><a href='../S/440.html#L571'>yy_buffer_stack</a>   571 src/verifier/nc_lexer.c     YY_BUFFER_STATE * yy_buffer_stack; /**&lt; Stack as an array. */</span>
+<span class='curline'><a href='../S/440.html#L1724'>yy_buffer_stack</a>  1724 src/verifier/nc_lexer.c 	if (!yyg-&gt;yy_buffer_stack) {</span>
+<span class='curline'><a href='../S/440.html#L1731'>yy_buffer_stack</a>  1731 src/verifier/nc_lexer.c 		yyg-&gt;yy_buffer_stack = (struct yy_buffer_state**)ncalloc</span>
+<span class='curline'><a href='../S/440.html#L1734'>yy_buffer_stack</a>  1734 src/verifier/nc_lexer.c 		if ( ! yyg-&gt;yy_buffer_stack )</span>
+<span class='curline'><a href='../S/440.html#L1737'>yy_buffer_stack</a>  1737 src/verifier/nc_lexer.c 		memset(yyg-&gt;yy_buffer_stack, 0, num_to_alloc * sizeof(struct yy_buffer_state*));</span>
+<span class='curline'><a href='../S/440.html#L1750'>yy_buffer_stack</a>  1750 src/verifier/nc_lexer.c 		yyg-&gt;yy_buffer_stack = (struct yy_buffer_state**)ncrealloc</span>
+<span class='curline'><a href='../S/440.html#L1751'>yy_buffer_stack</a>  1751 src/verifier/nc_lexer.c 								(yyg-&gt;yy_buffer_stack,</span>
+<span class='curline'><a href='../S/440.html#L1754'>yy_buffer_stack</a>  1754 src/verifier/nc_lexer.c 		if ( ! yyg-&gt;yy_buffer_stack )</span>
+<span class='curline'><a href='../S/440.html#L1758'>yy_buffer_stack</a>  1758 src/verifier/nc_lexer.c 		memset(yyg-&gt;yy_buffer_stack + yyg-&gt;yy_buffer_stack_max, 0, grow_size * sizeof(struct yy_buffer_state*));</span>
+<span class='curline'><a href='../S/440.html#L2116'>yy_buffer_stack</a>  2116 src/verifier/nc_lexer.c     yyg-&gt;yy_buffer_stack = 0;</span>
+<span class='curline'><a href='../S/440.html#L2155'>yy_buffer_stack</a>  2155 src/verifier/nc_lexer.c 	ncfree(yyg-&gt;yy_buffer_stack ,yyscanner);</span>
+<span class='curline'><a href='../S/440.html#L2156'>yy_buffer_stack</a>  2156 src/verifier/nc_lexer.c 	yyg-&gt;yy_buffer_stack = NULL;</span>
+<span class='curline'><a href='../S/448.html#L285'>yy_buffer_stack</a>   285 src/verifier/propsym_lexer.c #define YY_CURRENT_BUFFER ( yyg-&gt;yy_buffer_stack \</span>
+<span class='curline'><a href='../S/448.html#L286'>yy_buffer_stack</a>   286 src/verifier/propsym_lexer.c                           ? yyg-&gt;yy_buffer_stack[yyg-&gt;yy_buffer_stack_top] \</span>
+<span class='curline'><a href='../S/448.html#L292'>yy_buffer_stack</a>   292 src/verifier/propsym_lexer.c #define YY_CURRENT_BUFFER_LVALUE yyg-&gt;yy_buffer_stack[yyg-&gt;yy_buffer_stack_top]</span>
+<span class='curline'><a href='../S/448.html#L559'>yy_buffer_stack</a>   559 src/verifier/propsym_lexer.c     YY_BUFFER_STATE * yy_buffer_stack; /**&lt; Stack as an array. */</span>
+<span class='curline'><a href='../S/448.html#L1661'>yy_buffer_stack</a>  1661 src/verifier/propsym_lexer.c 	if (!yyg-&gt;yy_buffer_stack) {</span>
+<span class='curline'><a href='../S/448.html#L1668'>yy_buffer_stack</a>  1668 src/verifier/propsym_lexer.c 		yyg-&gt;yy_buffer_stack = (struct yy_buffer_state**)propsymalloc</span>
+<span class='curline'><a href='../S/448.html#L1671'>yy_buffer_stack</a>  1671 src/verifier/propsym_lexer.c 		if ( ! yyg-&gt;yy_buffer_stack )</span>
+<span class='curline'><a href='../S/448.html#L1674'>yy_buffer_stack</a>  1674 src/verifier/propsym_lexer.c 		memset(yyg-&gt;yy_buffer_stack, 0, num_to_alloc * sizeof(struct yy_buffer_state*));</span>
+<span class='curline'><a href='../S/448.html#L1687'>yy_buffer_stack</a>  1687 src/verifier/propsym_lexer.c 		yyg-&gt;yy_buffer_stack = (struct yy_buffer_state**)propsymrealloc</span>
+<span class='curline'><a href='../S/448.html#L1688'>yy_buffer_stack</a>  1688 src/verifier/propsym_lexer.c 								(yyg-&gt;yy_buffer_stack,</span>
+<span class='curline'><a href='../S/448.html#L1691'>yy_buffer_stack</a>  1691 src/verifier/propsym_lexer.c 		if ( ! yyg-&gt;yy_buffer_stack )</span>
+<span class='curline'><a href='../S/448.html#L1695'>yy_buffer_stack</a>  1695 src/verifier/propsym_lexer.c 		memset(yyg-&gt;yy_buffer_stack + yyg-&gt;yy_buffer_stack_max, 0, grow_size * sizeof(struct yy_buffer_state*));</span>
+<span class='curline'><a href='../S/448.html#L2053'>yy_buffer_stack</a>  2053 src/verifier/propsym_lexer.c     yyg-&gt;yy_buffer_stack = 0;</span>
+<span class='curline'><a href='../S/448.html#L2097'>yy_buffer_stack</a>  2097 src/verifier/propsym_lexer.c 	propsymfree(yyg-&gt;yy_buffer_stack ,yyscanner);</span>
+<span class='curline'><a href='../S/448.html#L2098'>yy_buffer_stack</a>  2098 src/verifier/propsym_lexer.c 	yyg-&gt;yy_buffer_stack = NULL;</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>MASK</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/701.html#L260'>MASK</a>              260 third_party/zdelta-2.1/infblock.c     s-&gt;sub.trees.table = t = (uInt)b &amp; MASK(LBL+DBL+ZBL+BBL);</span>
+<span class='curline'><a href='../S/701.html#L263'>MASK</a>              263 third_party/zdelta-2.1/infblock.c     if( ((t              ) &amp; MASK(LBL)) &gt; (L_CODES-1) || </span>
+<span class='curline'><a href='../S/701.html#L264'>MASK</a>              264 third_party/zdelta-2.1/infblock.c 	((t &gt;&gt; (LBL)     ) &amp; MASK(DBL)) &gt; (D_CODES-1) || </span>
+<span class='curline'><a href='../S/701.html#L265'>MASK</a>              265 third_party/zdelta-2.1/infblock.c 	((t &gt;&gt; (LBL+DBL) ) &amp; MASK(ZBL)) &gt; (ZD_CODES-1) )</span>
+<span class='curline'><a href='../S/701.html#L273'>MASK</a>              273 third_party/zdelta-2.1/infblock.c     Tracev((stderr, "\n # len codes     :%u",((t)               &amp;MASK(LBL))));</span>
+<span class='curline'><a href='../S/701.html#L274'>MASK</a>              274 third_party/zdelta-2.1/infblock.c     Tracev((stderr, "\n # lit/dist codes:%u",((t&gt;&gt;LBL)          &amp;MASK(DBL))));</span>
+<span class='curline'><a href='../S/701.html#L275'>MASK</a>              275 third_party/zdelta-2.1/infblock.c     Tracev((stderr, "\n # zdelta codes  :%u",((t&gt;&gt;(LBL+DBL))    &amp;MASK(ZBL))));</span>
+<span class='curline'><a href='../S/701.html#L276'>MASK</a>              276 third_party/zdelta-2.1/infblock.c     Tracev((stderr, "\n # bl codes      :%u",((t&gt;&gt;(LBL+DBL+ZBL))&amp;MASK(BBL))));</span>
+<span class='curline'><a href='../S/701.html#L279'>MASK</a>              279 third_party/zdelta-2.1/infblock.c     t = 259 + (t&amp;MASK(LBL))+((t&gt;&gt;(LBL))&amp;MASK(DBL))+((t&gt;&gt;(LBL+DBL))&amp;MASK(ZBL));</span>
+<span class='curline'><a href='../S/701.html#L319'>MASK</a>              319 third_party/zdelta-2.1/infblock.c 	   s-&gt;sub.trees.index &lt; 259 + (t &amp; MASK(LBL)) + </span>
+<span class='curline'><a href='../S/701.html#L320'>MASK</a>              320 third_party/zdelta-2.1/infblock.c 	   ((t &gt;&gt; LBL) &amp; MASK(DBL)) + ((t &gt;&gt; (LBL+DBL)) &amp; MASK(ZBL)) )</span>
+<span class='curline'><a href='../S/701.html#L323'>MASK</a>              323 third_party/zdelta-2.1/infblock.c 	   s-&gt;sub.trees.index &lt; 258 + (t &amp; MASK(LBL)) + </span>
+<span class='curline'><a href='../S/701.html#L324'>MASK</a>              324 third_party/zdelta-2.1/infblock.c 	   ((t &gt;&gt; LBL) &amp; MASK(DBL)) + ((t &gt;&gt; (LBL+DBL)) &amp; MASK(ZBL)) )</span>
+<span class='curline'><a href='../S/701.html#L353'>MASK</a>              353 third_party/zdelta-2.1/infblock.c 	if (i + j &gt; 259 + (t &amp; MASK(LBL)) + ((t &gt;&gt; LBL) &amp; MASK(DBL)) + </span>
+<span class='curline'><a href='../S/701.html#L354'>MASK</a>              354 third_party/zdelta-2.1/infblock.c 	    ((t &gt;&gt; (LBL+DBL) ) &amp; MASK(ZBL)) || (c == 16 &amp;&amp; i &lt; 1)) </span>
+<span class='curline'><a href='../S/701.html#L356'>MASK</a>              356 third_party/zdelta-2.1/infblock.c 	if (i + j &gt; 258 + (t &amp; MASK(LBL)) + ((t &gt;&gt; LBL) &amp; MASK(DBL)) + </span>
+<span class='curline'><a href='../S/701.html#L357'>MASK</a>              357 third_party/zdelta-2.1/infblock.c 	    ((t &gt;&gt; (LBL+DBL) ) &amp; MASK(ZBL)) || (c == 16 &amp;&amp; i &lt; 1)) </span>
+<span class='curline'><a href='../S/701.html#L389'>MASK</a>              389 third_party/zdelta-2.1/infblock.c       t = inflate_trees_dynamic(1   + (t &amp; MASK(LBL)), </span>
+<span class='curline'><a href='../S/701.html#L390'>MASK</a>              390 third_party/zdelta-2.1/infblock.c 				257 + ((t&gt;&gt;LBL) &amp; MASK(DBL)),</span>
+<span class='curline'><a href='../S/701.html#L391'>MASK</a>              391 third_party/zdelta-2.1/infblock.c 				1   + ((t&gt;&gt;(LBL+DBL)) &amp; MASK(ZBL)),</span>
+</pre>
+</body>
+</html>

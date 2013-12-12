@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>rwptr</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/699.html#L775'>rwptr</a>             775 third_party/zdelta-2.1/deflate.c     s-&gt;rwptr[i] = s-&gt;rwptr_save[i] = 0;</span>
+<span class='curline'><a href='../S/699.html#L919'>rwptr</a>             919 third_party/zdelta-2.1/deflate.c   if(s-&gt;rwptr[2*rw]  &gt; (- ZD_UNREACHABLE)) s-&gt;rwptr[2*rw]   -=wsize;</span>
+<span class='curline'><a href='../S/699.html#L920'>rwptr</a>             920 third_party/zdelta-2.1/deflate.c   if(s-&gt;rwptr[2*rw+1]&gt; (- ZD_UNREACHABLE)) s-&gt;rwptr[2*rw+1] -=wsize;</span>
+<span class='curline'><a href='../S/699.html#L1087'>rwptr</a>            1087 third_party/zdelta-2.1/deflate.c   if(s-&gt;rwptr[2*rw] &lt; s-&gt;rwptr[2*rw+1]){</span>
+<span class='curline'><a href='../S/699.html#L1088'>rwptr</a>            1088 third_party/zdelta-2.1/deflate.c     min = s-&gt;rwptr[2*rw], max = s-&gt;rwptr[2*rw+1];</span>
+<span class='curline'><a href='../S/699.html#L1092'>rwptr</a>            1092 third_party/zdelta-2.1/deflate.c     min = s-&gt;rwptr[2*rw+1], max = s-&gt;rwptr[2*rw];</span>
+<span class='curline'><a href='../S/699.html#L1184'>rwptr</a>            1184 third_party/zdelta-2.1/deflate.c     s-&gt;match_sign     = (best_match &lt; s-&gt;rwptr[best_ptr] ? ZD_MINUS:ZD_PLUS);</span>
+<span class='curline'><a href='../S/699.html#L1378'>rwptr</a>            1378 third_party/zdelta-2.1/deflate.c      s-&gt;rwptr[ptr] = pos + len;                  \</span>
+<span class='curline'><a href='../S/699.html#L1382'>rwptr</a>            1382 third_party/zdelta-2.1/deflate.c   s-&gt;rwptr[ptr] = pos + len;                     \</span>
+<span class='curline'><a href='../S/699.html#L1422'>rwptr</a>            1422 third_party/zdelta-2.1/deflate.c        (s-&gt;rwptr[2*rw]&gt;(int)s-&gt;w_size ||</span>
+<span class='curline'><a href='../S/699.html#L1423'>rwptr</a>            1423 third_party/zdelta-2.1/deflate.c 	s-&gt;rwptr[2*rw+1]&gt;(int)s-&gt;w_size)) </span>
+<span class='curline'><a href='../S/700.html#L324'>rwptr</a>             324 third_party/zdelta-2.1/deflate.h   long rwptr[ZD_RPN*REFNUM];   </span>
+<span class='curline'><a href='../S/701.html#L133'>rwptr</a>             133 third_party/zdelta-2.1/infblock.c     s-&gt;rwptr[i]  = 0;</span>
+<span class='curline'><a href='../S/703.html#L133'>rwptr</a>             133 third_party/zdelta-2.1/infcodes.c   ulg *rwptr = s-&gt;rwptr;         /* zdelta: reference window ptr */</span>
+<span class='curline'><a href='../S/703.html#L259'>rwptr</a>             259 third_party/zdelta-2.1/infcodes.c 	c-&gt;bp = rwptr[best_ptr] + c-&gt;dist;</span>
+<span class='curline'><a href='../S/703.html#L261'>rwptr</a>             261 third_party/zdelta-2.1/infcodes.c 	c-&gt;bp = rwptr[best_ptr] - c-&gt;dist;</span>
+<span class='curline'><a href='../S/703.html#L269'>rwptr</a>             269 third_party/zdelta-2.1/infcodes.c 	  rwptr[best_ptr] = c-&gt;bp + c-&gt;len;</span>
+<span class='curline'><a href='../S/703.html#L273'>rwptr</a>             273 third_party/zdelta-2.1/infcodes.c 	rwptr[best_ptr] = c-&gt;bp + c-&gt;len;</span>
+<span class='curline'><a href='../S/705.html#L71'>rwptr</a>              71 third_party/zdelta-2.1/inffast.c   ulg *rwptr = s-&gt;rwptr;         /* zdelta: reference window ptr */</span>
+<span class='curline'><a href='../S/705.html#L140'>rwptr</a>             140 third_party/zdelta-2.1/inffast.c 		    ptr = rwptr[best_ptr] + d;</span>
+<span class='curline'><a href='../S/705.html#L142'>rwptr</a>             142 third_party/zdelta-2.1/inffast.c 		    ptr = rwptr[best_ptr] - d;</span>
+<span class='curline'><a href='../S/705.html#L154'>rwptr</a>             154 third_party/zdelta-2.1/inffast.c 		      rwptr[best_ptr] = ptr + c;</span>
+<span class='curline'><a href='../S/705.html#L158'>rwptr</a>             158 third_party/zdelta-2.1/inffast.c 		    rwptr[best_ptr] = ptr + c;</span>
+<span class='curline'><a href='../S/712.html#L75'>rwptr</a>              75 third_party/zdelta-2.1/infutil.h   unsigned long rwptr[ZD_RPN*REFNUM];</span>
+<span class='curline'><a href='../S/719.html#L1031'>rwptr</a>            1031 third_party/zdelta-2.1/trees.c     s-&gt;rwptr[0]  = s-&gt;rwptr_save[0];</span>
+<span class='curline'><a href='../S/719.html#L1032'>rwptr</a>            1032 third_party/zdelta-2.1/trees.c     s-&gt;rwptr[1]  = s-&gt;rwptr_save[1];</span>
+<span class='curline'><a href='../S/719.html#L1187'>rwptr</a>            1187 third_party/zdelta-2.1/trees.c     s-&gt;rwptr_save[i]  = s-&gt;rwptr[i];</span>
+</pre>
+</body>
+</html>

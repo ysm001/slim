@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>process</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/671.html#L59'>process</a>            59 third_party/google-perftools-1.8.3/src/windows/addr2line-pdb.c   HANDLE process;</span>
+<span class='curline'><a href='../S/671.html#L92'>process</a>            92 third_party/google-perftools-1.8.3/src/windows/addr2line-pdb.c   process = GetCurrentProcess();</span>
+<span class='curline'><a href='../S/671.html#L94'>process</a>            94 third_party/google-perftools-1.8.3/src/windows/addr2line-pdb.c   if (!SymInitialize(process, NULL, FALSE)) {</span>
+<span class='curline'><a href='../S/671.html#L101'>process</a>           101 third_party/google-perftools-1.8.3/src/windows/addr2line-pdb.c   if (SymGetSearchPath(process, search, SEARCH_CAP)) {</span>
+<span class='curline'><a href='../S/671.html#L104'>process</a>           104 third_party/google-perftools-1.8.3/src/windows/addr2line-pdb.c       SymCleanup(process);</span>
+<span class='curline'><a href='../S/671.html#L114'>process</a>           114 third_party/google-perftools-1.8.3/src/windows/addr2line-pdb.c   if (!SymSetSearchPath(process, search)) {</span>
+<span class='curline'><a href='../S/671.html#L121'>process</a>           121 third_party/google-perftools-1.8.3/src/windows/addr2line-pdb.c   module_base = SymLoadModuleEx(process, NULL, filename, NULL, 0, 0, NULL, 0);</span>
+<span class='curline'><a href='../S/671.html#L127'>process</a>           127 third_party/google-perftools-1.8.3/src/windows/addr2line-pdb.c     SymCleanup(process);</span>
+<span class='curline'><a href='../S/671.html#L147'>process</a>           147 third_party/google-perftools-1.8.3/src/windows/addr2line-pdb.c       if (SymFromAddr(process, (DWORD64)addr, NULL, pSymbol)) {</span>
+<span class='curline'><a href='../S/671.html#L154'>process</a>           154 third_party/google-perftools-1.8.3/src/windows/addr2line-pdb.c     if (SymGetLineFromAddr64(process, (DWORD64)addr, &amp;dummy, &amp;line)) {</span>
+<span class='curline'><a href='../S/671.html#L160'>process</a>           160 third_party/google-perftools-1.8.3/src/windows/addr2line-pdb.c   SymUnloadModule64(process, module_base);</span>
+<span class='curline'><a href='../S/671.html#L161'>process</a>           161 third_party/google-perftools-1.8.3/src/windows/addr2line-pdb.c   SymCleanup(process);</span>
+<span class='curline'><a href='../S/682.html#L116'>process</a>           116 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c static void ShowSymbolInfo(HANDLE process, ULONG64 module_base) {</span>
+<span class='curline'><a href='../S/682.html#L123'>process</a>           123 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c   getmoduleinfo_rv = SymGetModuleInfo64(process, module_base, &amp;module_info);</span>
+<span class='curline'><a href='../S/682.html#L189'>process</a>           189 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c   HANDLE process;</span>
+<span class='curline'><a href='../S/682.html#L215'>process</a>           215 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c   process = GetCurrentProcess();</span>
+<span class='curline'><a href='../S/682.html#L217'>process</a>           217 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c   if (!SymInitialize(process, NULL, FALSE)) {</span>
+<span class='curline'><a href='../S/682.html#L224'>process</a>           224 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c   if (SymGetSearchPath(process, search, SEARCH_CAP)) {</span>
+<span class='curline'><a href='../S/682.html#L227'>process</a>           227 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c       SymCleanup(process);</span>
+<span class='curline'><a href='../S/682.html#L237'>process</a>           237 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c   if (!SymSetSearchPath(process, search)) {</span>
+<span class='curline'><a href='../S/682.html#L244'>process</a>           244 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c   module_base = SymLoadModuleEx(process, NULL, filename, NULL, 0, 0, NULL, 0);</span>
+<span class='curline'><a href='../S/682.html#L250'>process</a>           250 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c     SymCleanup(process);</span>
+<span class='curline'><a href='../S/682.html#L254'>process</a>           254 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c   ShowSymbolInfo(process, module_base);</span>
+<span class='curline'><a href='../S/682.html#L258'>process</a>           258 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c   if (!SymEnumSymbols(process, module_base, NULL, EnumSymProc, &amp;ctx)) {</span>
+<span class='curline'><a href='../S/682.html#L270'>process</a>           270 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c   SymUnloadModule64(process, module_base);</span>
+<span class='curline'><a href='../S/682.html#L271'>process</a>           271 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c   SymCleanup(process);</span>
+<span class='curline'><a href='../S/684.html#L354'>process</a>           354 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc   static LPVOID WINAPI Perftools_VirtualAllocEx(HANDLE process, LPVOID address,</span>
+<span class='curline'><a href='../S/684.html#L357'>process</a>           357 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc   static BOOL WINAPI Perftools_VirtualFreeEx(HANDLE process, LPVOID address,</span>
+<span class='curline'><a href='../S/684.html#L932'>process</a>           932 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc LPVOID WINAPI WindowsInfo::Perftools_VirtualAllocEx(HANDLE process,</span>
+<span class='curline'><a href='../S/684.html#L938'>process</a>           938 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc                        process, address, size, type, protect);</span>
+<span class='curline'><a href='../S/684.html#L944'>process</a>           944 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc BOOL WINAPI WindowsInfo::Perftools_VirtualFreeEx(HANDLE process, LPVOID address,</span>
+<span class='curline'><a href='../S/684.html#L949'>process</a>           949 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc               process, address, size, type);</span>
+</pre>
+</body>
+</html>

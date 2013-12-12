@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>l2</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/357.html#L1118'>l2</a>               1118 src/membrane.c     LinkObj l1, l2;</span>
+<span class='curline'><a href='../S/357.html#L1122'>l2</a>               1122 src/membrane.c     l2 = (LinkObj )vec_pop(&amp;stack2);</span>
+<span class='curline'><a href='../S/357.html#L1136'>l2</a>               1136 src/membrane.c       if (l2-&gt;ap == LMN_SATOM_GET_LINK(lobj-&gt;ap, lobj-&gt;pos)</span>
+<span class='curline'><a href='../S/357.html#L1137'>l2</a>               1137 src/membrane.c           &amp;&amp; l2-&gt;pos == LMN_SATOM_GET_ATTR(lobj-&gt;ap, lobj-&gt;pos)) {</span>
+<span class='curline'><a href='../S/357.html#L1143'>l2</a>               1143 src/membrane.c       LMN_FREE(l1); LMN_FREE(l2);</span>
+<span class='curline'><a href='../S/357.html#L1148'>l2</a>               1148 src/membrane.c       LMN_FREE(l1); LMN_FREE(l2);</span>
+<span class='curline'><a href='../S/357.html#L1152'>l2</a>               1152 src/membrane.c     if (l1-&gt;pos != l2-&gt;pos) { /* 引数検査 */</span>
+<span class='curline'><a href='../S/357.html#L1153'>l2</a>               1153 src/membrane.c       LMN_FREE(l1); LMN_FREE(l2);</span>
+<span class='curline'><a href='../S/357.html#L1158'>l2</a>               1158 src/membrane.c     if (LMN_SATOM_GET_FUNCTOR(l1-&gt;ap) != LMN_SATOM_GET_FUNCTOR(l2-&gt;ap)) {</span>
+<span class='curline'><a href='../S/357.html#L1160'>l2</a>               1160 src/membrane.c       LMN_FREE(l1); LMN_FREE(l2);</span>
+<span class='curline'><a href='../S/357.html#L1167'>l2</a>               1167 src/membrane.c       hashtbl_put(&amp;map, l1-&gt;ap, l2-&gt;ap);</span>
+<span class='curline'><a href='../S/357.html#L1169'>l2</a>               1169 src/membrane.c     else if (hashtbl_get(&amp;map, l1-&gt;ap) != l2-&gt;ap) {</span>
+<span class='curline'><a href='../S/357.html#L1171'>l2</a>               1171 src/membrane.c       LMN_FREE(l1); LMN_FREE(l2);</span>
+<span class='curline'><a href='../S/357.html#L1187'>l2</a>               1187 src/membrane.c         n2 = LinkObj_make(LMN_SATOM_GET_LINK(l2-&gt;ap, i),</span>
+<span class='curline'><a href='../S/357.html#L1188'>l2</a>               1188 src/membrane.c                           LMN_ATTR_GET_VALUE(LMN_SATOM_GET_ATTR(l2-&gt;ap, i)));</span>
+<span class='curline'><a href='../S/357.html#L1195'>l2</a>               1195 src/membrane.c                               LMN_SATOM_GET_LINK(l2-&gt;ap, i),</span>
+<span class='curline'><a href='../S/357.html#L1196'>l2</a>               1196 src/membrane.c                               LMN_SATOM_GET_ATTR(l2-&gt;ap, i))) {</span>
+<span class='curline'><a href='../S/357.html#L1198'>l2</a>               1198 src/membrane.c           LMN_FREE(l2);</span>
+<span class='curline'><a href='../S/357.html#L1206'>l2</a>               1206 src/membrane.c     LMN_FREE(l2);</span>
+<span class='curline'><a href='../S/357.html#L2655'>l2</a>               2655 src/membrane.c       LmnSAtom l1, l2;</span>
+<span class='curline'><a href='../S/357.html#L2670'>l2</a>               2670 src/membrane.c       l2 = LMN_SATOM(LMN_SATOM_GET_LINK(a2, i));</span>
+<span class='curline'><a href='../S/357.html#L2672'>l2</a>               2672 src/membrane.c       if ((vec_contains(v_log1, (LmnWord)l1) != vec_contains(v_log2, (LmnWord)l2))) {</span>
+<span class='curline'><a href='../S/357.html#L2676'>l2</a>               2676 src/membrane.c       } else if (vec_contains(v_log1, (LmnWord)l1) &amp;&amp; vec_contains(v_log2, (LmnWord)l2)) {</span>
+<span class='curline'><a href='../S/357.html#L2719'>l2</a>               2719 src/membrane.c       if (!mem_trace_links(l1, l2, v_log1, v_log2, next_depth, (next_depth &gt; current_depth))) {</span>
+</pre>
+</body>
+</html>

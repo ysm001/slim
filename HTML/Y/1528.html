@@ -1,0 +1,292 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>atom1</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/311.html#L206'>atom1</a>             206 src/atom.h                                    LmnAtom atom1,LmnLinkAttr attr1);</span>
+<span class='curline'><a href='../S/311.html#L208'>atom1</a>             208 src/atom.h     static inline BOOL lmn_data_atom_eq(LmnAtom atom1, LmnLinkAttr attr1,</span>
+<span class='curline'><a href='../S/311.html#L351'>atom1</a>             351 src/atom.h                                    LmnAtom     atom1, LmnLinkAttr attr1) {</span>
+<span class='curline'><a href='../S/311.html#L356'>atom1</a>             356 src/atom.h         return atom0 == atom1;</span>
+<span class='curline'><a href='../S/311.html#L358'>atom1</a>             358 src/atom.h         return *(double *)atom0 == *(double *)atom1;</span>
+<span class='curline'><a href='../S/311.html#L360'>atom1</a>             360 src/atom.h         return SP_ATOM_EQ(atom0, atom1);</span>
+<span class='curline'><a href='../S/311.html#L362'>atom1</a>             362 src/atom.h         return lmn_hyperlink_eq(LMN_SATOM(atom0), attr0, LMN_SATOM(atom1), attr1);</span>
+<span class='curline'><a href='../S/311.html#L364'>atom1</a>             364 src/atom.h         return LMN_SATOM_GET_FUNCTOR(atom0) == LMN_SATOM_GET_FUNCTOR(atom1);</span>
+<span class='curline'><a href='../S/311.html#L381'>atom1</a>             381 src/atom.h     static inline BOOL lmn_data_atom_eq(LmnAtom atom1, LmnLinkAttr attr1,</span>
+<span class='curline'><a href='../S/311.html#L389'>atom1</a>             389 src/atom.h           return atom1 == atom2;</span>
+<span class='curline'><a href='../S/311.html#L391'>atom1</a>             391 src/atom.h           return *(double*)atom1 == *(double*)atom2;</span>
+<span class='curline'><a href='../S/311.html#L393'>atom1</a>             393 src/atom.h           return SP_ATOM_EQ(atom1, atom2);</span>
+<span class='curline'><a href='../S/311.html#L395'>atom1</a>             395 src/atom.h           return lmn_hyperlink_eq(LMN_SATOM(atom1), attr1, LMN_SATOM(atom2), attr2);</span>
+<span class='curline'><a href='../S/334.html#L481'>atom1</a>             481 src/hyperlink.c BOOL lmn_hyperlink_eq(LmnSAtom atom1, LmnLinkAttr attr1, LmnSAtom atom2, LmnLinkAttr attr2)</span>
+<span class='curline'><a href='../S/334.html#L485'>atom1</a>             485 src/hyperlink.c          lmn_hyperlink_eq_hl(lmn_hyperlink_at_to_hl(atom1),</span>
+<span class='curline'><a href='../S/335.html#L102'>atom1</a>             102 src/hyperlink.h BOOL lmn_hyperlink_eq(LmnSAtom atom1, LmnLinkAttr attr1, LmnSAtom atom2, LmnLinkAttr attr2);</span>
+<span class='curline'><a href='../S/357.html#L345'>atom1</a>             345 src/membrane.c void lmn_mem_unify_symbol_atom_args(LmnSAtom atom1, int pos1,</span>
+<span class='curline'><a href='../S/357.html#L351'>atom1</a>             351 src/membrane.c   ap1   = LMN_SATOM_GET_LINK(atom1, pos1);</span>
+<span class='curline'><a href='../S/357.html#L352'>atom1</a>             352 src/membrane.c   attr1 = LMN_SATOM_GET_ATTR(atom1, pos1);</span>
+<span class='curline'><a href='../S/357.html#L364'>atom1</a>             364 src/membrane.c                              LmnSAtom atom1, int pos1,</span>
+<span class='curline'><a href='../S/357.html#L370'>atom1</a>             370 src/membrane.c   ap1   = LMN_SATOM_GET_LINK(atom1, pos1);</span>
+<span class='curline'><a href='../S/357.html#L371'>atom1</a>             371 src/membrane.c   attr1 = LMN_SATOM_GET_ATTR(atom1, pos1);</span>
+<span class='curline'><a href='../S/357.html#L396'>atom1</a>             396 src/membrane.c                             LmnSAtom atom1, int pos1)</span>
+<span class='curline'><a href='../S/357.html#L398'>atom1</a>             398 src/membrane.c   LMN_SATOM_SET_LINK(atom0, pos0, atom1);</span>
+<span class='curline'><a href='../S/357.html#L399'>atom1</a>             399 src/membrane.c   LMN_SATOM_SET_LINK(atom1, pos1, atom0);</span>
+<span class='curline'><a href='../S/357.html#L401'>atom1</a>             401 src/membrane.c   LMN_SATOM_SET_ATTR(atom1, pos1, LMN_ATTR_MAKE_LINK(pos0));</span>
+<span class='curline'><a href='../S/357.html#L407'>atom1</a>             407 src/membrane.c                          LmnSAtom atom1, LmnLinkAttr attr1, int pos1)</span>
+<span class='curline'><a href='../S/357.html#L410'>atom1</a>             410 src/membrane.c   LMN_SATOM_SET_LINK(atom0, pos0, atom1);</span>
+<span class='curline'><a href='../S/357.html#L411'>atom1</a>             411 src/membrane.c   LMN_SATOM_SET_LINK(atom1, pos1, atom0);</span>
+<span class='curline'><a href='../S/357.html#L419'>atom1</a>             419 src/membrane.c       lmn_mem_delete_atom(mem, LMN_ATOM(atom1), attr1);</span>
+<span class='curline'><a href='../S/357.html#L422'>atom1</a>             422 src/membrane.c       LMN_SATOM_SET_ATTR(atom1, pos1, attr0);</span>
+<span class='curline'><a href='../S/357.html#L427'>atom1</a>             427 src/membrane.c     LMN_SATOM_SET_ATTR(atom1, pos1, LMN_ATTR_MAKE_LINK(pos0));</span>
+<span class='curline'><a href='../S/357.html#L436'>atom1</a>             436 src/membrane.c                                                 LmnAtom atom1,</span>
+<span class='curline'><a href='../S/357.html#L439'>atom1</a>             439 src/membrane.c   LMN_SATOM_SET_LINK(atom0, pos, atom1);</span>
+<span class='curline'><a href='../S/357.html#L442'>atom1</a>             442 src/membrane.c     LMN_SATOM_SET_LINK(LMN_SATOM(atom1), LMN_ATTR_GET_VALUE(attr), atom0);</span>
+<span class='curline'><a href='../S/357.html#L443'>atom1</a>             443 src/membrane.c     LMN_SATOM_SET_ATTR(LMN_SATOM(atom1), LMN_ATTR_GET_VALUE(attr), LMN_ATTR_MAKE_LINK(pos));</span>
+<span class='curline'><a href='../S/357.html#L450'>atom1</a>             450 src/membrane.c                      LmnAtom atom1, LmnLinkAttr attr1, int pos1)</span>
+<span class='curline'><a href='../S/357.html#L454'>atom1</a>             454 src/membrane.c       lmn_mem_link_data_atoms(mem, atom0, attr0, atom1, attr1);</span>
+<span class='curline'><a href='../S/357.html#L457'>atom1</a>             457 src/membrane.c       LMN_SATOM_SET_LINK(LMN_SATOM(atom1), pos1, atom0);</span>
+<span class='curline'><a href='../S/357.html#L458'>atom1</a>             458 src/membrane.c       LMN_SATOM_SET_ATTR(LMN_SATOM(atom1), pos1, attr0);</span>
+<span class='curline'><a href='../S/357.html#L462'>atom1</a>             462 src/membrane.c     LMN_SATOM_SET_LINK(LMN_SATOM(atom0), pos0, atom1);</span>
+<span class='curline'><a href='../S/357.html#L467'>atom1</a>             467 src/membrane.c       lmn_newlink_in_symbols(LMN_SATOM(atom0), pos0, LMN_SATOM(atom1), pos1);</span>
+<span class='curline'><a href='../S/357.html#L469'>atom1</a>             469 src/membrane.c       lmn_newlink_with_ex(mem, LMN_SATOM(atom0), attr0, pos0, LMN_SATOM(atom1), attr1, pos1);</span>
+<span class='curline'><a href='../S/357.html#L475'>atom1</a>             475 src/membrane.c                         LmnSAtom atom1, int pos1)</span>
+<span class='curline'><a href='../S/357.html#L479'>atom1</a>             479 src/membrane.c                                LMN_SATOM_GET_LINK(LMN_SATOM(atom1), pos1),</span>
+<span class='curline'><a href='../S/357.html#L480'>atom1</a>             480 src/membrane.c                                LMN_SATOM_GET_ATTR(LMN_SATOM(atom1), pos1));</span>
+<span class='curline'><a href='../S/357.html#L486'>atom1</a>             486 src/membrane.c                               LmnAtom atom1, LmnLinkAttr attr1, int pos1)</span>
+<span class='curline'><a href='../S/357.html#L495'>atom1</a>             495 src/membrane.c                                LMN_SATOM_GET_LINK(LMN_SATOM(atom1), pos1),</span>
+<span class='curline'><a href='../S/357.html#L496'>atom1</a>             496 src/membrane.c                                LMN_SATOM_GET_ATTR(LMN_SATOM(atom1), pos1));</span>
+<span class='curline'><a href='../S/357.html#L2061'>atom1</a>            2061 src/membrane.c   LmnAtom pair1, pair2, atom1, atom2;</span>
+<span class='curline'><a href='../S/357.html#L2075'>atom1</a>            2075 src/membrane.c   atom1 = LMN_SATOM_GET_LINK(pair1, 1);</span>
+<span class='curline'><a href='../S/357.html#L2134'>atom1</a>            2134 src/membrane.c     if (!lmn_data_atom_eq(atom1, attr1, atom2, attr2)) {</span>
+<span class='curline'><a href='../S/357.html#L2147'>atom1</a>            2147 src/membrane.c     LmnFunctor f_new = LMN_SATOM_GET_FUNCTOR(atom1);</span>
+<span class='curline'><a href='../S/357.html#L2152'>atom1</a>            2152 src/membrane.c       BOOL ret = mem_isomor_trace(atom1, nxtM1, log1,</span>
+<span class='curline'><a href='../S/357.html#L2182'>atom1</a>            2182 src/membrane.c     LmnAtom atom1, atom2;</span>
+<span class='curline'><a href='../S/357.html#L2189'>atom1</a>            2189 src/membrane.c     atom1 = LMN_SATOM_GET_LINK(cur1, to_i);</span>
+<span class='curline'><a href='../S/357.html#L2194'>atom1</a>            2194 src/membrane.c       if (!lmn_data_atom_eq(atom1, attr1, atom2, attr2)) {</span>
+<span class='curline'><a href='../S/357.html#L2201'>atom1</a>            2201 src/membrane.c       LmnFunctor f_new = LMN_SATOM_GET_FUNCTOR(atom1);</span>
+<span class='curline'><a href='../S/357.html#L2210'>atom1</a>            2210 src/membrane.c       if (tracelog_contains_atom(log1, (LmnSAtom)atom1)) {</span>
+<span class='curline'><a href='../S/357.html#L2213'>atom1</a>            2213 src/membrane.c             LMN_SATOM_ID(atom2) != tracelog_get_atomMatched(log1, (LmnSAtom)atom1))</span>
+<span class='curline'><a href='../S/357.html#L2227'>atom1</a>            2227 src/membrane.c         switch (mem_isomor_trace(atom1, mem1, log1,</span>
+<span class='curline'><a href='../S/358.html#L532'>atom1</a>             532 src/membrane.h                      LmnAtom atom1, LmnLinkAttr attr1, int pos1);</span>
+<span class='curline'><a href='../S/358.html#L534'>atom1</a>             534 src/membrane.h                             LmnSAtom atom1, int pos1);</span>
+<span class='curline'><a href='../S/358.html#L537'>atom1</a>             537 src/membrane.h                          LmnSAtom atom1, LmnLinkAttr attr1, int pos1);</span>
+<span class='curline'><a href='../S/358.html#L542'>atom1</a>             542 src/membrane.h                              LmnSAtom atom1, int pos1,</span>
+<span class='curline'><a href='../S/358.html#L544'>atom1</a>             544 src/membrane.h void lmn_mem_unify_symbol_atom_args(LmnSAtom atom1, int pos1,</span>
+<span class='curline'><a href='../S/358.html#L547'>atom1</a>             547 src/membrane.h                         LmnSAtom atom1, int pos1);</span>
+<span class='curline'><a href='../S/358.html#L550'>atom1</a>             550 src/membrane.h                               LmnAtom atom1, LmnLinkAttr attr1, int pos1);</span>
+<span class='curline'><a href='../S/373.html#L134'>atom1</a>             134 src/so.h       #define TR_INSTR_RELINK(rc, atom1,pos1,atom2,pos2,memi)                     \</span>
+<span class='curline'><a href='../S/373.html#L141'>atom1</a>             141 src/so.h           if(LMN_ATTR_IS_DATA_WITHOUT_EX(at(rc, atom1)) &amp;&amp; LMN_ATTR_IS_DATA_WITHOUT_EX(attr)) {\</span>
+<span class='curline'><a href='../S/373.html#L144'>atom1</a>             144 src/so.h           else if (LMN_ATTR_IS_DATA_WITHOUT_EX(at(rc, atom1))) {                  \</span>
+<span class='curline'><a href='../S/373.html#L145'>atom1</a>             145 src/so.h             LMN_SATOM_SET_LINK(ap, attr, wt(rc, atom1));                          \</span>
+<span class='curline'><a href='../S/373.html#L146'>atom1</a>             146 src/so.h             LMN_SATOM_SET_ATTR(ap, attr, at(rc, atom1));                          \</span>
+<span class='curline'><a href='../S/373.html#L149'>atom1</a>             149 src/so.h             LMN_SATOM_SET_LINK(LMN_SATOM(wt(rc, atom1)), pos1, ap);               \</span>
+<span class='curline'><a href='../S/373.html#L150'>atom1</a>             150 src/so.h             LMN_SATOM_SET_ATTR(LMN_SATOM(wt(rc, atom1)), pos1, attr);             \</span>
+<span class='curline'><a href='../S/373.html#L152'>atom1</a>             152 src/so.h           else if (!LMN_ATTR_IS_EX(at(rc, atom1)) &amp;&amp; !LMN_ATTR_IS_EX(attr)) {     \</span>
+<span class='curline'><a href='../S/373.html#L153'>atom1</a>             153 src/so.h             LMN_SATOM_SET_LINK(ap, attr, wt(rc, atom1));                          \</span>
+<span class='curline'><a href='../S/373.html#L155'>atom1</a>             155 src/so.h             LMN_SATOM_SET_LINK(LMN_SATOM(wt(rc, atom1)), pos1, ap);               \</span>
+<span class='curline'><a href='../S/373.html#L156'>atom1</a>             156 src/so.h             LMN_SATOM_SET_ATTR(LMN_SATOM(wt(rc, atom1)), pos1, attr);             \</span>
+<span class='curline'><a href='../S/373.html#L157'>atom1</a>             157 src/so.h           } else if (LMN_ATTR_IS_EX(at(rc, atom1))) {                             \</span>
+<span class='curline'><a href='../S/373.html#L159'>atom1</a>             159 src/so.h                                 LMN_SATOM(wt(rc, atom1)),                         \</span>
+<span class='curline'><a href='../S/373.html#L160'>atom1</a>             160 src/so.h                                 at(rc, atom1),                                    \</span>
+<span class='curline'><a href='../S/373.html#L167'>atom1</a>             167 src/so.h                                 LMN_SATOM(wt(rc, atom1)),                         \</span>
+<span class='curline'><a href='../S/373.html#L168'>atom1</a>             168 src/so.h                                 at(rc, atom1),                                    \</span>
+<span class='curline'><a href='../S/384.html#L1417'>atom1</a>            1417 src/task.c           LmnInstrVar atom1, atom2, pos1, pos2, memi;</span>
+<span class='curline'><a href='../S/384.html#L1419'>atom1</a>            1419 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L1426'>atom1</a>            1426 src/task.c                           wt(rc, atom1), at(rc, atom1), pos1,</span>
+<span class='curline'><a href='../S/384.html#L1432'>atom1</a>            1432 src/task.c           LmnInstrVar atom1, atom2, pos1, pos2, memi;</span>
+<span class='curline'><a href='../S/384.html#L1436'>atom1</a>            1436 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L1445'>atom1</a>            1445 src/task.c           if (LMN_ATTR_IS_DATA_WITHOUT_EX(at(rc, atom1)) &amp;&amp; LMN_ATTR_IS_DATA_WITHOUT_EX(attr)) {</span>
+<span class='curline'><a href='../S/384.html#L1451'>atom1</a>            1451 src/task.c           else if (LMN_ATTR_IS_DATA_WITHOUT_EX(at(rc, atom1))) {</span>
+<span class='curline'><a href='../S/384.html#L1453'>atom1</a>            1453 src/task.c             LMN_SATOM_SET_LINK(ap, attr, wt(rc, atom1));</span>
+<span class='curline'><a href='../S/384.html#L1454'>atom1</a>            1454 src/task.c             LMN_SATOM_SET_ATTR(ap, attr, at(rc, atom1));</span>
+<span class='curline'><a href='../S/384.html#L1458'>atom1</a>            1458 src/task.c             LMN_SATOM_SET_LINK(LMN_SATOM(wt(rc, atom1)), pos1, ap);</span>
+<span class='curline'><a href='../S/384.html#L1459'>atom1</a>            1459 src/task.c             LMN_SATOM_SET_ATTR(LMN_SATOM(wt(rc, atom1)), pos1, attr);</span>
+<span class='curline'><a href='../S/384.html#L1461'>atom1</a>            1461 src/task.c           else if (!LMN_ATTR_IS_EX(at(rc, atom1)) &amp;&amp; !LMN_ATTR_IS_EX(attr)) {</span>
+<span class='curline'><a href='../S/384.html#L1463'>atom1</a>            1463 src/task.c             LMN_SATOM_SET_LINK(ap, attr, wt(rc, atom1));</span>
+<span class='curline'><a href='../S/384.html#L1465'>atom1</a>            1465 src/task.c             LMN_SATOM_SET_LINK(LMN_SATOM(wt(rc, atom1)), pos1, ap);</span>
+<span class='curline'><a href='../S/384.html#L1466'>atom1</a>            1466 src/task.c             LMN_SATOM_SET_ATTR(LMN_SATOM(wt(rc, atom1)), pos1, attr);</span>
+<span class='curline'><a href='../S/384.html#L1467'>atom1</a>            1467 src/task.c           } else if (LMN_ATTR_IS_EX(at(rc, atom1))) {</span>
+<span class='curline'><a href='../S/384.html#L1469'>atom1</a>            1469 src/task.c                                 LMN_SATOM(wt(rc, atom1)),</span>
+<span class='curline'><a href='../S/384.html#L1470'>atom1</a>            1470 src/task.c                                 at(rc, atom1),</span>
+<span class='curline'><a href='../S/384.html#L1477'>atom1</a>            1477 src/task.c                                 LMN_SATOM(wt(rc, atom1)),</span>
+<span class='curline'><a href='../S/384.html#L1478'>atom1</a>            1478 src/task.c                                 at(rc, atom1),</span>
+<span class='curline'><a href='../S/384.html#L1534'>atom1</a>            1534 src/task.c           LmnInstrVar atom1, pos1, atom2, pos2, memi;</span>
+<span class='curline'><a href='../S/384.html#L1536'>atom1</a>            1536 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L1543'>atom1</a>            1543 src/task.c                                   LMN_SATOM(wt(rc, atom1)), pos1,</span>
+<span class='curline'><a href='../S/384.html#L1724'>atom1</a>            1724 src/task.c           LmnInstrVar atom1, atom2, posi;</span>
+<span class='curline'><a href='../S/384.html#L1725'>atom1</a>            1725 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L1729'>atom1</a>            1729 src/task.c           warry_set(rc, atom1,</span>
+<span class='curline'><a href='../S/384.html#L1737'>atom1</a>            1737 src/task.c           LmnInstrVar atom1, atom2, pos1, pos2;</span>
+<span class='curline'><a href='../S/384.html#L1740'>atom1</a>            1740 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L1753'>atom1</a>            1753 src/task.c           warry_set(rc, atom1,</span>
+<span class='curline'><a href='../S/384.html#L2031'>atom1</a>            2031 src/task.c             LmnSAtom atom1, atom2;</span>
+<span class='curline'><a href='../S/384.html#L2034'>atom1</a>            2034 src/task.c             atom1 = LMN_SATOM(LMN_SATOM_GET_LINK(atom, 0));</span>
+<span class='curline'><a href='../S/384.html#L2037'>atom1</a>            2037 src/task.c             lmn_hyperlink_unify(lmn_hyperlink_at_to_hl(atom1), lmn_hyperlink_at_to_hl(atom2));</span>
+<span class='curline'><a href='../S/384.html#L2040'>atom1</a>            2040 src/task.c             lmn_mem_delete_atom(m, (LmnWord)atom1, (LmnWord)attr1);</span>
+<span class='curline'><a href='../S/384.html#L2060'>atom1</a>            2060 src/task.c           LmnInstrVar atom1, length1, arg1, atom2, length2, arg2;</span>
+<span class='curline'><a href='../S/384.html#L2063'>atom1</a>            2063 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L2074'>atom1</a>            2074 src/task.c           if (!hashtbl_contains(RC_HLINK_SPC(rc), (HashKeyType)atom1)) {</span>
+<span class='curline'><a href='../S/384.html#L2075'>atom1</a>            2075 src/task.c             spc1 = lmn_sameproccxt_spc_make(atom1, length1);</span>
+<span class='curline'><a href='../S/384.html#L2076'>atom1</a>            2076 src/task.c             hashtbl_put(RC_HLINK_SPC(rc), (HashKeyType)atom1, (HashValueType)spc1);</span>
+<span class='curline'><a href='../S/384.html#L2079'>atom1</a>            2079 src/task.c             spc1 = (SameProcCxt *)hashtbl_get(RC_HLINK_SPC(rc), (HashKeyType)atom1);</span>
+<span class='curline'><a href='../S/384.html#L2083'>atom1</a>            2083 src/task.c             LMN_SPC_PC(spc1, arg1) = lmn_sameproccxt_pc_make(atom1, arg1, NULL);</span>
+<span class='curline'><a href='../S/384.html#L2253'>atom1</a>            2253 src/task.c           LmnInstrVar atom1, memi, atom2;</span>
+<span class='curline'><a href='../S/384.html#L2255'>atom1</a>            2255 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L2259'>atom1</a>            2259 src/task.c           warry_set(rc, atom1,</span>
+<span class='curline'><a href='../S/384.html#L2263'>atom1</a>            2263 src/task.c           lmn_mem_push_atom((LmnMembrane *)wt(rc, memi), wt(rc, atom1), at(rc, atom1));</span>
+<span class='curline'><a href='../S/384.html#L2268'>atom1</a>            2268 src/task.c           LmnInstrVar atom1, atom2;</span>
+<span class='curline'><a href='../S/384.html#L2269'>atom1</a>            2269 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L2274'>atom1</a>            2274 src/task.c           if (LMN_ATTR_IS_DATA(at(rc, atom1)) || LMN_ATTR_IS_DATA(at(rc, atom2)) ||</span>
+<span class='curline'><a href='../S/384.html#L2275'>atom1</a>            2275 src/task.c               LMN_SATOM(wt(rc, atom1)) != LMN_SATOM(wt(rc, atom2)))</span>
+<span class='curline'><a href='../S/384.html#L2281'>atom1</a>            2281 src/task.c           LmnInstrVar atom1, atom2;</span>
+<span class='curline'><a href='../S/384.html#L2282'>atom1</a>            2282 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L2285'>atom1</a>            2285 src/task.c           if (!(LMN_ATTR_IS_DATA(at(rc, atom1)) || LMN_ATTR_IS_DATA(at(rc, atom2)) ||</span>
+<span class='curline'><a href='../S/384.html#L2286'>atom1</a>            2286 src/task.c                 LMN_SATOM(wt(rc, atom1)) != LMN_SATOM(wt(rc, atom2))))</span>
+<span class='curline'><a href='../S/384.html#L2388'>atom1</a>            2388 src/task.c           LmnInstrVar dstatom, atom1, atom2;</span>
+<span class='curline'><a href='../S/384.html#L2390'>atom1</a>            2390 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L2393'>atom1</a>            2393 src/task.c                     ((long)wt(rc, atom1) + (long)wt(rc, atom2)),</span>
+<span class='curline'><a href='../S/384.html#L2400'>atom1</a>            2400 src/task.c           LmnInstrVar dstatom, atom1, atom2;</span>
+<span class='curline'><a href='../S/384.html#L2402'>atom1</a>            2402 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L2406'>atom1</a>            2406 src/task.c                     ((long)wt(rc, atom1) - (long)wt(rc, atom2)),</span>
+<span class='curline'><a href='../S/384.html#L2413'>atom1</a>            2413 src/task.c           LmnInstrVar dstatom, atom1, atom2;</span>
+<span class='curline'><a href='../S/384.html#L2415'>atom1</a>            2415 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L2419'>atom1</a>            2419 src/task.c                     ((long)wt(rc, atom1) * (long)wt(rc, atom2)),</span>
+<span class='curline'><a href='../S/384.html#L2426'>atom1</a>            2426 src/task.c           LmnInstrVar dstatom, atom1, atom2;</span>
+<span class='curline'><a href='../S/384.html#L2428'>atom1</a>            2428 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L2432'>atom1</a>            2432 src/task.c                     ((long)wt(rc, atom1) / (long)wt(rc, atom2)),</span>
+<span class='curline'><a href='../S/384.html#L2451'>atom1</a>            2451 src/task.c           LmnInstrVar dstatom, atom1, atom2;</span>
+<span class='curline'><a href='../S/384.html#L2453'>atom1</a>            2453 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L2457'>atom1</a>            2457 src/task.c                     ((long)wt(rc, atom1) % (long)wt(rc, atom2)),</span>
+<span class='curline'><a href='../S/384.html#L2475'>atom1</a>            2475 src/task.c           LmnInstrVar dstatom, atom1, atom2;</span>
+<span class='curline'><a href='../S/384.html#L2477'>atom1</a>            2477 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L2481'>atom1</a>            2481 src/task.c                     ((long)wt(rc, atom1) &amp; (long)wt(rc, atom2)),</span>
+<span class='curline'><a href='../S/384.html#L2488'>atom1</a>            2488 src/task.c           LmnInstrVar dstatom, atom1, atom2;</span>
+<span class='curline'><a href='../S/384.html#L2490'>atom1</a>            2490 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L2494'>atom1</a>            2494 src/task.c                     ((long)wt(rc, atom1) | (long)wt(rc, atom2)),</span>
+<span class='curline'><a href='../S/384.html#L2502'>atom1</a>            2502 src/task.c           LmnInstrVar dstatom, atom1, atom2;</span>
+<span class='curline'><a href='../S/384.html#L2504'>atom1</a>            2504 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L2508'>atom1</a>            2508 src/task.c                    ((long)wt(rc, atom1) ^ (long)wt(rc, atom2)),</span>
+<span class='curline'><a href='../S/384.html#L2515'>atom1</a>            2515 src/task.c           LmnInstrVar atom1, atom2;</span>
+<span class='curline'><a href='../S/384.html#L2516'>atom1</a>            2516 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L2519'>atom1</a>            2519 src/task.c           if (!((long)wt(rc, atom1) &lt; (long)wt(rc, atom2))) return FALSE;</span>
+<span class='curline'><a href='../S/384.html#L2524'>atom1</a>            2524 src/task.c           LmnInstrVar atom1, atom2;</span>
+<span class='curline'><a href='../S/384.html#L2525'>atom1</a>            2525 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L2528'>atom1</a>            2528 src/task.c           if (!((long)wt(rc, atom1) &lt;= (long)wt(rc, atom2))) return FALSE;</span>
+<span class='curline'><a href='../S/384.html#L2533'>atom1</a>            2533 src/task.c           LmnInstrVar atom1, atom2;</span>
+<span class='curline'><a href='../S/384.html#L2534'>atom1</a>            2534 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L2537'>atom1</a>            2537 src/task.c           if (!((long)wt(rc, atom1) &gt; (long)wt(rc, atom2))) return FALSE;</span>
+<span class='curline'><a href='../S/384.html#L2542'>atom1</a>            2542 src/task.c           LmnInstrVar atom1, atom2;</span>
+<span class='curline'><a href='../S/384.html#L2543'>atom1</a>            2543 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L2546'>atom1</a>            2546 src/task.c           if (!((long)wt(rc, atom1) &gt;= (long)wt(rc, atom2))) return FALSE;</span>
+<span class='curline'><a href='../S/384.html#L2551'>atom1</a>            2551 src/task.c           LmnInstrVar atom1, atom2;</span>
+<span class='curline'><a href='../S/384.html#L2552'>atom1</a>            2552 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L2555'>atom1</a>            2555 src/task.c           if (!((long)wt(rc, atom1) == (long)wt(rc, atom2))) return FALSE;</span>
+<span class='curline'><a href='../S/384.html#L2560'>atom1</a>            2560 src/task.c           LmnInstrVar atom1, atom2;</span>
+<span class='curline'><a href='../S/384.html#L2561'>atom1</a>            2561 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L2564'>atom1</a>            2564 src/task.c           if (!((long)wt(rc, atom1) != (long)wt(rc, atom2))) return FALSE;</span>
+<span class='curline'><a href='../S/384.html#L2605'>atom1</a>            2605 src/task.c           LmnInstrVar dstatom, atom1, atom2;</span>
+<span class='curline'><a href='../S/384.html#L2608'>atom1</a>            2608 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L2612'>atom1</a>            2612 src/task.c           *d = *(double *)wt(rc, atom1) + *(double *)wt(rc, atom2);</span>
+<span class='curline'><a href='../S/384.html#L2618'>atom1</a>            2618 src/task.c           LmnInstrVar dstatom, atom1, atom2;</span>
+<span class='curline'><a href='../S/384.html#L2621'>atom1</a>            2621 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L2625'>atom1</a>            2625 src/task.c           *d = *(double *)wt(rc, atom1) - *(double *)wt(rc, atom2);</span>
+<span class='curline'><a href='../S/384.html#L2631'>atom1</a>            2631 src/task.c           LmnInstrVar dstatom, atom1, atom2;</span>
+<span class='curline'><a href='../S/384.html#L2635'>atom1</a>            2635 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L2639'>atom1</a>            2639 src/task.c           *d = *(double *)wt(rc, atom1) * *(double *)wt(rc, atom2);</span>
+<span class='curline'><a href='../S/384.html#L2645'>atom1</a>            2645 src/task.c           LmnInstrVar dstatom, atom1, atom2;</span>
+<span class='curline'><a href='../S/384.html#L2649'>atom1</a>            2649 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L2653'>atom1</a>            2653 src/task.c           *d = *(double *)wt(rc, atom1) / *(double *)wt(rc, atom2);</span>
+<span class='curline'><a href='../S/384.html#L2671'>atom1</a>            2671 src/task.c           LmnInstrVar atom1, atom2;</span>
+<span class='curline'><a href='../S/384.html#L2672'>atom1</a>            2672 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L2675'>atom1</a>            2675 src/task.c           if (!(*(double*)wt(rc, atom1) &lt; *(double*)wt(rc, atom2))) return FALSE;</span>
+<span class='curline'><a href='../S/384.html#L2680'>atom1</a>            2680 src/task.c           LmnInstrVar atom1, atom2;</span>
+<span class='curline'><a href='../S/384.html#L2681'>atom1</a>            2681 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L2684'>atom1</a>            2684 src/task.c           if (!(*(double*)wt(rc, atom1) &lt;= *(double*)wt(rc, atom2))) return FALSE;</span>
+<span class='curline'><a href='../S/384.html#L2689'>atom1</a>            2689 src/task.c           LmnInstrVar atom1, atom2;</span>
+<span class='curline'><a href='../S/384.html#L2690'>atom1</a>            2690 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L2693'>atom1</a>            2693 src/task.c           if(!(*(double*)wt(rc, atom1) &gt; *(double*)wt(rc, atom2))) return FALSE;</span>
+<span class='curline'><a href='../S/384.html#L2698'>atom1</a>            2698 src/task.c           LmnInstrVar atom1, atom2;</span>
+<span class='curline'><a href='../S/384.html#L2699'>atom1</a>            2699 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L2702'>atom1</a>            2702 src/task.c           if(!(*(double*)wt(rc, atom1) &gt;= *(double*)wt(rc, atom2))) return FALSE;</span>
+<span class='curline'><a href='../S/384.html#L2707'>atom1</a>            2707 src/task.c           LmnInstrVar atom1, atom2;</span>
+<span class='curline'><a href='../S/384.html#L2708'>atom1</a>            2708 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L2711'>atom1</a>            2711 src/task.c           if(!(*(double*)wt(rc, atom1) == *(double*)wt(rc, atom2))) return FALSE;</span>
+<span class='curline'><a href='../S/384.html#L2716'>atom1</a>            2716 src/task.c           LmnInstrVar atom1, atom2;</span>
+<span class='curline'><a href='../S/384.html#L2717'>atom1</a>            2717 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L2720'>atom1</a>            2720 src/task.c           if(!(*(double*)wt(rc, atom1) != *(double*)wt(rc, atom2))) return FALSE;</span>
+<span class='curline'><a href='../S/384.html#L2769'>atom1</a>            2769 src/task.c           LmnInstrVar atom1, atom2;</span>
+<span class='curline'><a href='../S/384.html#L2771'>atom1</a>            2771 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L2774'>atom1</a>            2774 src/task.c           if (!lmn_eq_func(wt(rc, atom1), at(rc, atom1),</span>
+<span class='curline'><a href='../S/384.html#L3444'>atom1</a>            3444 src/task.c           LmnInstrVar atom1, memi, atom2;</span>
+<span class='curline'><a href='../S/384.html#L3446'>atom1</a>            3446 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L3450'>atom1</a>            3450 src/task.c           warry_set(rc, atom1,</span>
+<span class='curline'><a href='../S/384.html#L3455'>atom1</a>            3455 src/task.c                               (LmnMembrane *)wt(rc, memi), wt(rc, atom1), at(rc, atom1));</span>
+<span class='curline'><a href='../S/384.html#L3507'>atom1</a>            3507 src/task.c           LmnInstrVar atom1, atom2, pos1, pos2, memi;</span>
+<span class='curline'><a href='../S/384.html#L3509'>atom1</a>            3509 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L3517'>atom1</a>            3517 src/task.c                             wt(rc, atom1), at(rc, atom1), pos1,</span>
+<span class='curline'><a href='../S/384.html#L3523'>atom1</a>            3523 src/task.c           LmnInstrVar atom1, atom2, pos1, pos2, memi;</span>
+<span class='curline'><a href='../S/384.html#L3525'>atom1</a>            3525 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L3533'>atom1</a>            3533 src/task.c                            wt(rc, atom1), at(rc, atom1), pos1,</span>
+<span class='curline'><a href='../S/384.html#L3551'>atom1</a>            3551 src/task.c           LmnInstrVar atom1, pos1, atom2, pos2, memi;</span>
+<span class='curline'><a href='../S/384.html#L3553'>atom1</a>            3553 src/task.c           READ_VAL(LmnInstrVar, instr, atom1);</span>
+<span class='curline'><a href='../S/384.html#L3561'>atom1</a>            3561 src/task.c                                     LMN_SATOM(wt(rc, atom1)), pos1,</span>
+<span class='curline'><a href='../S/411.html#L597'>atom1</a>             597 src/utility/visitlog.h static inline int  tracelog_put_atom(TraceLog l, LmnSAtom atom1, LmnWord atom2_id,</span>
+<span class='curline'><a href='../S/411.html#L672'>atom1</a>             672 src/utility/visitlog.h static inline int tracelog_put_atom(TraceLog l, LmnSAtom atom1, LmnWord  atom2_id,</span>
+<span class='curline'><a href='../S/411.html#L674'>atom1</a>             674 src/utility/visitlog.h   int ret = tracelog_put(l, LMN_SATOM_ID(atom1), atom2_id, owner1);</span>
+<span class='curline'><a href='../S/411.html#L675'>atom1</a>             675 src/utility/visitlog.h   TLOG_SET_TRV_ATOM(TLOG_FLAG(l-&gt;tbl[LMN_SATOM_ID(atom1)]));</span>
+<span class='curline'><a href='../S/417.html#L125'>atom1</a>             125 src/verifier/delta_membrane.c                                LmnSAtom atom1,</span>
+<span class='curline'><a href='../S/417.html#L131'>atom1</a>             131 src/verifier/delta_membrane.c                                  LmnSAtom atom1,</span>
+<span class='curline'><a href='../S/417.html#L359'>atom1</a>             359 src/verifier/delta_membrane.c                        LmnAtom atom1, LmnLinkAttr attr1, int pos1)</span>
+<span class='curline'><a href='../S/417.html#L362'>atom1</a>             362 src/verifier/delta_membrane.c       lmn_mem_newlink(m, atom0, attr0, pos0, atom1, attr1, pos1);</span>
+<span class='curline'><a href='../S/417.html#L366'>atom1</a>             366 src/verifier/delta_membrane.c       dmem_link_data_atoms(d, m, atom0, attr0, atom1, attr1);</span>
+<span class='curline'><a href='../S/417.html#L368'>atom1</a>             368 src/verifier/delta_membrane.c       LMN_SATOM_SET_LINK(LMN_SATOM(atom1), pos1, atom0);</span>
+<span class='curline'><a href='../S/417.html#L369'>atom1</a>             369 src/verifier/delta_membrane.c       LMN_SATOM_SET_ATTR(LMN_SATOM(atom1), pos1, attr0);</span>
+<span class='curline'><a href='../S/417.html#L371'>atom1</a>             371 src/verifier/delta_membrane.c       LMN_SATOM_SET_LINK(LMN_SATOM(atom0), pos0, atom1);</span>
+<span class='curline'><a href='../S/417.html#L374'>atom1</a>             374 src/verifier/delta_membrane.c       lmn_newlink_in_symbols(LMN_SATOM(atom0), pos0, LMN_SATOM(atom1), pos1);</span>
+<span class='curline'><a href='../S/417.html#L390'>atom1</a>             390 src/verifier/delta_membrane.c                                LmnSAtom atom1, int pos1,</span>
+<span class='curline'><a href='../S/417.html#L397'>atom1</a>             397 src/verifier/delta_membrane.c     ap1 = dmem_root_get_link(d, atom1, pos1);</span>
+<span class='curline'><a href='../S/417.html#L399'>atom1</a>             399 src/verifier/delta_membrane.c     attr1 = LMN_SATOM_GET_ATTR(atom1, pos1);</span>
+<span class='curline'><a href='../S/417.html#L434'>atom1</a>             434 src/verifier/delta_membrane.c                          dmem_root_modified_atom(d, atom1),</span>
+<span class='curline'><a href='../S/417.html#L444'>atom1</a>             444 src/verifier/delta_membrane.c                            LmnAtom atom1, LmnLinkAttr attr1,</span>
+<span class='curline'><a href='../S/417.html#L448'>atom1</a>             448 src/verifier/delta_membrane.c     if (dmem_root_is_new_atom(d, LMN_SATOM(atom1))) {</span>
+<span class='curline'><a href='../S/417.html#L449'>atom1</a>             449 src/verifier/delta_membrane.c       LMN_SATOM_SET_LINK(atom1, LMN_ATTR_GET_VALUE(attr1), atom2);</span>
+<span class='curline'><a href='../S/417.html#L450'>atom1</a>             450 src/verifier/delta_membrane.c       LMN_SATOM_SET_ATTR(atom1, LMN_ATTR_GET_VALUE(attr1), attr2);</span>
+<span class='curline'><a href='../S/417.html#L453'>atom1</a>             453 src/verifier/delta_membrane.c                        LMN_SATOM(atom1), LMN_ATTR_GET_VALUE(attr1),</span>
+<span class='curline'><a href='../S/417.html#L457'>atom1</a>             457 src/verifier/delta_membrane.c   else if (dmem_root_is_new_atom(d, LMN_SATOM(atom1))) {</span>
+<span class='curline'><a href='../S/417.html#L458'>atom1</a>             458 src/verifier/delta_membrane.c     LMN_SATOM_SET_LINK(atom1, LMN_ATTR_GET_VALUE(attr1), atom2);</span>
+<span class='curline'><a href='../S/417.html#L459'>atom1</a>             459 src/verifier/delta_membrane.c     LMN_SATOM_SET_ATTR(atom1, LMN_ATTR_GET_VALUE(attr1), attr2);</span>
+<span class='curline'><a href='../S/417.html#L461'>atom1</a>             461 src/verifier/delta_membrane.c       LMN_SATOM_SET_LINK(atom2, LMN_ATTR_GET_VALUE(attr2), atom1);</span>
+<span class='curline'><a href='../S/417.html#L466'>atom1</a>             466 src/verifier/delta_membrane.c                        atom1, attr1);</span>
+<span class='curline'><a href='../S/417.html#L471'>atom1</a>             471 src/verifier/delta_membrane.c                      LMN_SATOM(atom1), LMN_ATTR_GET_VALUE(attr1),</span>
+<span class='curline'><a href='../S/417.html#L473'>atom1</a>             473 src/verifier/delta_membrane.c     LMN_SATOM_SET_LINK(atom2, LMN_ATTR_GET_VALUE(attr2), atom1);</span>
+<span class='curline'><a href='../S/417.html#L480'>atom1</a>             480 src/verifier/delta_membrane.c     copy1 = dmem_modify_atom(dmem_root_get_mem_delta(d, m), m, LMN_SATOM(atom1));</span>
+<span class='curline'><a href='../S/417.html#L494'>atom1</a>             494 src/verifier/delta_membrane.c                       LmnAtom atom1,</span>
+<span class='curline'><a href='../S/417.html#L515'>atom1</a>             515 src/verifier/delta_membrane.c       lmn_mem_relink_atom_args(m, atom1, attr1, pos1,</span>
+<span class='curline'><a href='../S/417.html#L525'>atom1</a>             525 src/verifier/delta_membrane.c         lmn_newlink_in_symbols(LMN_SATOM(atom1), pos1, LMN_SATOM(ap), LMN_ATTR_GET_VALUE(attr));</span>
+<span class='curline'><a href='../S/417.html#L528'>atom1</a>             528 src/verifier/delta_membrane.c         LMN_SATOM_SET_LINK(atom1, pos1, dmem_root_modified_atom(root_d, LMN_SATOM(ap)));</span>
+<span class='curline'><a href='../S/417.html#L529'>atom1</a>             529 src/verifier/delta_membrane.c         LMN_SATOM_SET_ATTR(atom1, pos1, attr);</span>
+<span class='curline'><a href='../S/417.html#L535'>atom1</a>             535 src/verifier/delta_membrane.c                          atom1,</span>
+<span class='curline'><a href='../S/417.html#L539'>atom1</a>             539 src/verifier/delta_membrane.c       lmn_newlink_in_symbols(LMN_SATOM(atom1), pos1, LMN_SATOM(ap), LMN_ATTR_GET_VALUE(attr));</span>
+<span class='curline'><a href='../S/417.html#L546'>atom1</a>             546 src/verifier/delta_membrane.c                 dmem_root_modified_atom(root_d, LMN_SATOM(atom1)), pos1,</span>
+<span class='curline'><a href='../S/417.html#L2051'>atom1</a>            2051 src/verifier/delta_membrane.c                                LmnSAtom atom1, int pos1,</span>
+<span class='curline'><a href='../S/417.html#L2060'>atom1</a>            2060 src/verifier/delta_membrane.c   atom1 = dmem_modify_atom(d, m, LMN_SATOM(atom1));</span>
+<span class='curline'><a href='../S/417.html#L2063'>atom1</a>            2063 src/verifier/delta_membrane.c     LMN_SATOM_SET_LINK(LMN_SATOM(atom1), pos1, ap0);</span>
+<span class='curline'><a href='../S/417.html#L2064'>atom1</a>            2064 src/verifier/delta_membrane.c     LMN_SATOM_SET_ATTR(LMN_SATOM(atom1), pos1, attr);</span>
+<span class='curline'><a href='../S/417.html#L2073'>atom1</a>            2073 src/verifier/delta_membrane.c         LMN_SATOM_SET_LINK(ap, LMN_ATTR_GET_VALUE(attr), atom1);</span>
+<span class='curline'><a href='../S/417.html#L2080'>atom1</a>            2080 src/verifier/delta_membrane.c         LMN_SATOM_SET_LINK(ap, LMN_ATTR_GET_VALUE(attr), atom1);</span>
+<span class='curline'><a href='../S/417.html#L2085'>atom1</a>            2085 src/verifier/delta_membrane.c       LMN_SATOM_SET_LINK(ap, LMN_ATTR_GET_VALUE(attr), atom1);</span>
+<span class='curline'><a href='../S/417.html#L2089'>atom1</a>            2089 src/verifier/delta_membrane.c     LMN_SATOM_SET_LINK(atom1, pos1, LMN_ATOM(ap));</span>
+<span class='curline'><a href='../S/417.html#L2090'>atom1</a>            2090 src/verifier/delta_membrane.c     LMN_SATOM_SET_ATTR(atom1, pos1, attr);</span>
+<span class='curline'><a href='../S/417.html#L2096'>atom1</a>            2096 src/verifier/delta_membrane.c                                  LmnSAtom atom1,</span>
+<span class='curline'><a href='../S/417.html#L2105'>atom1</a>            2105 src/verifier/delta_membrane.c   ap1 = LMN_SATOM_GET_LINK(atom1, pos1);</span>
+<span class='curline'><a href='../S/417.html#L2107'>atom1</a>            2107 src/verifier/delta_membrane.c   attr1 = LMN_SATOM_GET_ATTR(atom1, pos1);</span>
+<span class='curline'><a href='../S/418.html#L133'>atom1</a>             133 src/verifier/delta_membrane.h                        LmnAtom atom1, LmnLinkAttr attr1, int pos1);</span>
+<span class='curline'><a href='../S/418.html#L138'>atom1</a>             138 src/verifier/delta_membrane.h                                LmnSAtom atom1, int pos1,</span>
+<span class='curline'><a href='../S/418.html#L141'>atom1</a>             141 src/verifier/delta_membrane.h                            LmnAtom atom1, LmnLinkAttr attr1,</span>
+<span class='curline'><a href='../S/418.html#L144'>atom1</a>             144 src/verifier/delta_membrane.h                       LmnAtom atom1, LmnLinkAttr attr1, int pos1,</span>
+</pre>
+</body>
+</html>

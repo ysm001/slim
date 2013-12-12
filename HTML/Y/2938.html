@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>item</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/572.html#L67'>item</a>               67 third_party/google-perftools-1.8.3/src/internal_logging.cc   bool Add(const LogItem&amp; item);</span>
+<span class='curline'><a href='../S/572.html#L122'>item</a>              122 third_party/google-perftools-1.8.3/src/internal_logging.cc bool Logger::Add(const LogItem&amp; item) {</span>
+<span class='curline'><a href='../S/572.html#L129'>item</a>              129 third_party/google-perftools-1.8.3/src/internal_logging.cc   switch (item.tag_) {</span>
+<span class='curline'><a href='../S/572.html#L131'>item</a>              131 third_party/google-perftools-1.8.3/src/internal_logging.cc       return AddStr(item.u_.str, strlen(item.u_.str));</span>
+<span class='curline'><a href='../S/572.html#L133'>item</a>              133 third_party/google-perftools-1.8.3/src/internal_logging.cc       return AddNum(item.u_.unum, 10);</span>
+<span class='curline'><a href='../S/572.html#L135'>item</a>              135 third_party/google-perftools-1.8.3/src/internal_logging.cc       if (item.u_.snum &lt; 0) {</span>
+<span class='curline'><a href='../S/572.html#L139'>item</a>              139 third_party/google-perftools-1.8.3/src/internal_logging.cc             &amp;&amp; AddNum(- static_cast&lt;uint64_t&gt;(item.u_.snum), 10);</span>
+<span class='curline'><a href='../S/572.html#L141'>item</a>              141 third_party/google-perftools-1.8.3/src/internal_logging.cc         return AddNum(static_cast&lt;uint64_t&gt;(item.u_.snum), 10);</span>
+<span class='curline'><a href='../S/572.html#L145'>item</a>              145 third_party/google-perftools-1.8.3/src/internal_logging.cc           &amp;&amp; AddNum(reinterpret_cast&lt;uintptr_t&gt;(item.u_.ptr), 16);</span>
+</pre>
+</body>
+</html>

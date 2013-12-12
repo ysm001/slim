@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>futex_private_flag</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/537.html#L45'>futex_private_flag</a>   45 third_party/google-perftools-1.8.3/src/base/spinlock_linux-inl.h static int futex_private_flag = FUTEX_PRIVATE_FLAG;</span>
+<span class='curline'><a href='../S/537.html#L61'>futex_private_flag</a>   61 third_party/google-perftools-1.8.3/src/base/spinlock_linux-inl.h         sys_futex(&amp;x, FUTEX_WAKE | futex_private_flag, 1, 0) &lt; 0) {</span>
+<span class='curline'><a href='../S/537.html#L62'>futex_private_flag</a>   62 third_party/google-perftools-1.8.3/src/base/spinlock_linux-inl.h       futex_private_flag = 0;</span>
+<span class='curline'><a href='../S/537.html#L86'>futex_private_flag</a>   86 third_party/google-perftools-1.8.3/src/base/spinlock_linux-inl.h                 FUTEX_WAIT | futex_private_flag,</span>
+<span class='curline'><a href='../S/537.html#L98'>futex_private_flag</a>   98 third_party/google-perftools-1.8.3/src/base/spinlock_linux-inl.h               FUTEX_WAKE | futex_private_flag, all? INT_MAX : 1, 0);</span>
+</pre>
+</body>
+</html>

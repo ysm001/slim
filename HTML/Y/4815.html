@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>severity</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/529.html#L197'>severity</a>          197 third_party/google-perftools-1.8.3/src/base/logging.h inline void LogPrintf(int severity, const char* pat, va_list ap) {</span>
+<span class='curline'><a href='../S/529.html#L207'>severity</a>          207 third_party/google-perftools-1.8.3/src/base/logging.h   if ((severity) == FATAL)</span>
+<span class='curline'><a href='../S/529.html#L214'>severity</a>          214 third_party/google-perftools-1.8.3/src/base/logging.h #define VLOG_IS_ON(severity) (FLAGS_verbose &gt;= severity)</span>
+<span class='curline'><a href='../S/529.html#L217'>severity</a>          217 third_party/google-perftools-1.8.3/src/base/logging.h #define LOG_PRINTF(severity, pat) do {          \</span>
+<span class='curline'><a href='../S/529.html#L218'>severity</a>          218 third_party/google-perftools-1.8.3/src/base/logging.h   if (VLOG_IS_ON(severity)) {                   \</span>
+<span class='curline'><a href='../S/529.html#L221'>severity</a>          221 third_party/google-perftools-1.8.3/src/base/logging.h     LogPrintf(severity, pat, ap);               \</span>
+</pre>
+</body>
+</html>

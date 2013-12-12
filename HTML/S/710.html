@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>third_party/zdelta-2.1/inftrees.h</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/738.html'>third_party</a>/<a href='../files/747.html'>zdelta-2.1</a>/inftrees.h</h2>
+<em class='comment'>/* [&lt;][&gt;][^][v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/316.html' title='Multiple included from 6 places.'>INCLUDED FROM</a></h2>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>/* inftrees.h -- header to use inftrees.c</em>
+<a id='L2' name='L2' /><em class='comment'> * Copyright (C) 1995-1998 Mark Adler</em>
+<a id='L3' name='L3' /><em class='comment'> * For conditions of distribution and use, see copyright notice in zlib.h </em>
+<a id='L4' name='L4' /><em class='comment'> */</em>
+<a id='L5' name='L5' />
+<a id='L6' name='L6' /><em class='comment'>/* WARNING: this file should *not* be used by applications. It is</em>
+<a id='L7' name='L7' /><em class='comment'>   part of the implementation of the compression library and is</em>
+<a id='L8' name='L8' /><em class='comment'>   subject to change. Applications should only use zdlib.h.</em>
+<a id='L9' name='L9' /><em class='comment'>         </em>
+<a id='L10' name='L10' /><em class='comment'>   file modified by Dimitre Trendafilov (2002)   </em>
+<a id='L11' name='L11' /><em class='comment'> */</em>
+<a id='L12' name='L12' />
+<a id='L13' name='L13' /><em class='comment'>/* zdelta:</em>
+<a id='L14' name='L14' /><em class='comment'> *</em>
+<a id='L15' name='L15' /><em class='comment'> * modified: </em>
+<a id='L16' name='L16' /><em class='comment'> *          inflate_trees_fixed</em>
+<a id='L17' name='L17' /><em class='comment'> *          inflate_trees_dynamic</em>
+<a id='L18' name='L18' /><em class='comment'> * added:</em>
+<a id='L19' name='L19' /><em class='comment'> *          --</em>
+<a id='L20' name='L20' /><em class='comment'> * removed:</em>
+<a id='L21' name='L21' /><em class='comment'> *          --</em>
+<a id='L22' name='L22' /><em class='comment'> */</em>
+<a id='L23' name='L23' />
+<a id='L24' name='L24' /><em class='comment'>/* Huffman code lookup table entry--this entry is four bytes for machines</em>
+<a id='L25' name='L25' /><em class='comment'>   that have 16-bit pointers (e.g. PC's in the small or medium model). */</em>
+<a id='L26' name='L26' />
+<a id='L27' name='L27' /><strong class='reserved'>typedef</strong> <strong class='reserved'>struct</strong> <a href='../S/710.html#L29' title='Defined at 29 in third_party/zdelta-2.1/inftrees.h.'>inflate_huft_s</a> <a href='../D/735.html' title='Multiple defined in 5 places.'>FAR</a> <a href='../R/3606.html' title='Multiple refered from 60 places.'>inflate_huft</a>;
+<a id='L28' name='L28' />
+<a id='L29' name='L29' /><strong class='reserved'>struct</strong> <a href='../R/3607.html' title='Multiple refered from 2 places.'>inflate_huft_s</a> <em class='brace'>{</em>
+<a id='L30' name='L30' />  <strong class='reserved'>union</strong> <em class='brace'>{</em>
+<a id='L31' name='L31' />    <strong class='reserved'>struct</strong> <em class='brace'>{</em>
+<a id='L32' name='L32' />      <a href='../D/340.html' title='Multiple defined in 2 places.'>Byte</a> <a href='../Y/180.html' title='Multiple used in 6 places.'>Exop</a>;        <em class='comment'>/* number of extra bits or operation */</em>
+<a id='L33' name='L33' />      <a href='../D/340.html' title='Multiple defined in 2 places.'>Byte</a> <a href='../Y/46.html' title='Multiple used in 6 places.'>Bits</a>;        <em class='comment'>/* number of bits in this code or subcode */</em>
+<a id='L34' name='L34' />    <em class='brace'>}</em> <a href='../Y/5678.html' title='Multiple used in 11 places.'>what</a>;
+<a id='L35' name='L35' />    <a href='../D/5483.html' title='Multiple defined in 2 places.'>uInt</a> <a href='../Y/4094.html' title='Multiple used in 2 places.'>pad</a>;           <em class='comment'>/* pad structure to a power of 2 (4 bytes for */</em>
+<a id='L36' name='L36' />  <em class='brace'>}</em> <a href='../Y/5695.html' title='Multiple used in 11 places.'>word</a>;               <em class='comment'>/*  16-bit, 8 bytes for 32-bit int's) */</em>
+<a id='L37' name='L37' />  <a href='../D/5483.html' title='Multiple defined in 2 places.'>uInt</a> <a href='../D/3379.html' title='Multiple defined in 6 places.'>base</a>;            <em class='comment'>/* literal, length base, distance base,</em>
+<a id='L38' name='L38' /><em class='comment'>                           or table offset */</em>
+<a id='L39' name='L39' /><em class='brace'>}</em>;
+<a id='L40' name='L40' />
+<a id='L41' name='L41' /><em class='sharp'>#define</em> <a href='../R/2089.html' title='Multiple refered from 15 places.'>REFMATCH</a>   (1&lt;&lt;14)
+<a id='L42' name='L42' /><em class='sharp'>#define</em> <a href='../R/1722.html' title='Multiple refered from 10 places.'>NREFMATCH</a>  ((1&lt;&lt;15) | <a href='../S/710.html#L41' title='Defined at 41 in third_party/zdelta-2.1/inftrees.h.'>REFMATCH</a>)
+<a id='L43' name='L43' />
+<a id='L44' name='L44' /><em class='sharp'>#define</em> <a href='../R/503.html' title='Multiple refered from 21 places.'>D_CODES</a>  288     <em class='comment'>/* number of literal/distance codes */</em>
+<a id='L45' name='L45' /><em class='sharp'>#define</em> <a href='../R/1434.html' title='Multiple refered from 14 places.'>L_CODES</a>  111     <em class='comment'>/* number of length codes           */</em>
+<a id='L46' name='L46' /><em class='sharp'>#if</em> <a href='../S/726.html#L63' title='Defined at 63 in third_party/zdelta-2.1/zdlib.h.'>REFNUM</a>&gt;1 || <a href='../S/709.html#L23' title='Defined at 23 in third_party/zdelta-2.1/inftrees.c.'>BUILDFIXED</a> || <a href='../Y/289.html' title='Multiple used in 8 places.'>GEN_TREES_H</a>
+<a id='L47' name='L47' /><em class='sharp'># define</em> <a href='../R/2800.html' title='Multiple refered from 14 places.'>ZD_CODES</a>    8     <em class='comment'>/* number of zdelta codes           */</em>
+<a id='L48' name='L48' /><em class='sharp'>#else</em>
+<a id='L49' name='L49' /><em class='sharp'># define</em> <a href='../R/2800.html' title='Multiple refered from 14 places.'>ZD_CODES</a>    2     <em class='comment'>/* number of zdelta codes           */</em>
+<a id='L50' name='L50' /><em class='sharp'>#endif</em>
+<a id='L51' name='L51' /><em class='sharp'>#define</em> <a href='../R/1540.html' title='Multiple refered from 3 places.'>MAX_CODES</a> <a href='../D/594.html' title='Multiple defined in 2 places.'>D_CODES</a>
+<a id='L52' name='L52' />
+<a id='L53' name='L53' />
+<a id='L54' name='L54' />
+<a id='L55' name='L55' /><em class='comment'>/* Maximum size of dynamic tree.  The maximum found in a long but non-</em>
+<a id='L56' name='L56' /><em class='comment'>   exhaustive search was 1004 huft structures (850 for length/literals</em>
+<a id='L57' name='L57' /><em class='comment'>   and 154 for distances, the latter actually the result of an</em>
+<a id='L58' name='L58' /><em class='comment'>   exhaustive search).  The actual maximum is not known, but the</em>
+<a id='L59' name='L59' /><em class='comment'>   value below is more than safe. */</em>
+<a id='L60' name='L60' /><em class='sharp'>#define</em> <a href='../R/1522.html' title='Multiple refered from 2 places.'>MANY</a> 1440
+<a id='L61' name='L61' />
+<a id='L62' name='L62' /><strong class='reserved'>extern</strong> <strong class='reserved'>int</strong> <a href='../S/709.html#L345' title='Defined at 345 in third_party/zdelta-2.1/inftrees.c.'>inflate_trees_bits</a> <a href='../D/1965.html' title='Multiple defined in 6 places.'>OF</a>((
+<a id='L63' name='L63' />    <a href='../D/5484.html' title='Multiple defined in 2 places.'>uIntf</a> *,                    <em class='comment'>/* 19 code lengths                       */</em>
+<a id='L64' name='L64' />    <a href='../D/5484.html' title='Multiple defined in 2 places.'>uIntf</a> *,                    <em class='comment'>/* bits tree desired/actual depth        */</em>
+<a id='L65' name='L65' />    <a href='../S/710.html#L27' title='Defined at 27 in third_party/zdelta-2.1/inftrees.h.'>inflate_huft</a> * <a href='../D/735.html' title='Multiple defined in 5 places.'>FAR</a> *,       <em class='comment'>/* bits tree result                      */</em>
+<a id='L66' name='L66' />    <a href='../S/710.html#L27' title='Defined at 27 in third_party/zdelta-2.1/inftrees.h.'>inflate_huft</a> *,             <em class='comment'>/* space for trees                       */</em>
+<a id='L67' name='L67' />    <a href='../S/726.html#L126' title='Defined at 126 in third_party/zdelta-2.1/zdlib.h.'>zd_streamp</a>));                <em class='comment'>/* for messages                          */</em>
+<a id='L68' name='L68' />
+<a id='L69' name='L69' /><strong class='reserved'>extern</strong> <strong class='reserved'>int</strong> <a href='../S/709.html#L501' title='Defined at 501 in third_party/zdelta-2.1/inftrees.c.'>inflate_trees_dynamic</a> <a href='../D/1965.html' title='Multiple defined in 6 places.'>OF</a>((
+<a id='L70' name='L70' />    <a href='../D/5483.html' title='Multiple defined in 2 places.'>uInt</a>,                       <em class='comment'>/* number of literal/length codes        */</em>
+<a id='L71' name='L71' />    <a href='../D/5483.html' title='Multiple defined in 2 places.'>uInt</a>,                       <em class='comment'>/* number of distance codes              */</em>
+<a id='L72' name='L72' />    <a href='../D/5483.html' title='Multiple defined in 2 places.'>uInt</a>,                       <em class='comment'>/* number of zdelta codes                */</em>
+<a id='L73' name='L73' />    <a href='../D/5484.html' title='Multiple defined in 2 places.'>uIntf</a> *,                    <em class='comment'>/* that many (total) code lengths        */</em>
+<a id='L74' name='L74' />    <a href='../D/5484.html' title='Multiple defined in 2 places.'>uIntf</a> *,                    <em class='comment'>/* literal desired/actual bit depth      */</em>
+<a id='L75' name='L75' />    <a href='../D/5484.html' title='Multiple defined in 2 places.'>uIntf</a> *,                    <em class='comment'>/* distance desired/actual bit depth     */</em>
+<a id='L76' name='L76' />    <a href='../D/5484.html' title='Multiple defined in 2 places.'>uIntf</a> *,                    <em class='comment'>/* zdelta codes desired/actual bit depth */</em>
+<a id='L77' name='L77' />    <a href='../S/710.html#L27' title='Defined at 27 in third_party/zdelta-2.1/inftrees.h.'>inflate_huft</a> * <a href='../D/735.html' title='Multiple defined in 5 places.'>FAR</a> *,       <em class='comment'>/* literal/length tree result            */</em>
+<a id='L78' name='L78' />    <a href='../S/710.html#L27' title='Defined at 27 in third_party/zdelta-2.1/inftrees.h.'>inflate_huft</a> * <a href='../D/735.html' title='Multiple defined in 5 places.'>FAR</a> *,       <em class='comment'>/* distance tree result                  */</em>
+<a id='L79' name='L79' />    <a href='../S/710.html#L27' title='Defined at 27 in third_party/zdelta-2.1/inftrees.h.'>inflate_huft</a> * <a href='../D/735.html' title='Multiple defined in 5 places.'>FAR</a> *,       <em class='comment'>/* zdelta codes tree result              */</em>
+<a id='L80' name='L80' />    <a href='../S/710.html#L27' title='Defined at 27 in third_party/zdelta-2.1/inftrees.h.'>inflate_huft</a> *,             <em class='comment'>/* space for trees                       */</em>
+<a id='L81' name='L81' />    <a href='../S/726.html#L126' title='Defined at 126 in third_party/zdelta-2.1/zdlib.h.'>zd_streamp</a>));                <em class='comment'>/* for messages                          */</em>
+<a id='L82' name='L82' />
+<a id='L83' name='L83' /><strong class='reserved'>extern</strong> <strong class='reserved'>int</strong> <a href='../S/709.html#L397' title='Defined at 397 in third_party/zdelta-2.1/inftrees.c.'>inflate_trees_fixed</a> <a href='../D/1965.html' title='Multiple defined in 6 places.'>OF</a>((
+<a id='L84' name='L84' />    <a href='../D/5484.html' title='Multiple defined in 2 places.'>uIntf</a> *,                    <em class='comment'>/* literal desired/actual bit depth      */</em>
+<a id='L85' name='L85' />    <a href='../D/5484.html' title='Multiple defined in 2 places.'>uIntf</a> *,                    <em class='comment'>/* distance desired/actual bit depth     */</em>
+<a id='L86' name='L86' />    <a href='../D/5484.html' title='Multiple defined in 2 places.'>uIntf</a> *,                    <em class='comment'>/* zdelta flags desired/actual bit depth */</em>
+<a id='L87' name='L87' />    <a href='../S/710.html#L27' title='Defined at 27 in third_party/zdelta-2.1/inftrees.h.'>inflate_huft</a> * <a href='../D/735.html' title='Multiple defined in 5 places.'>FAR</a> *,       <em class='comment'>/* literal/length tree result            */</em>
+<a id='L88' name='L88' />    <a href='../S/710.html#L27' title='Defined at 27 in third_party/zdelta-2.1/inftrees.h.'>inflate_huft</a> * <a href='../D/735.html' title='Multiple defined in 5 places.'>FAR</a> *,       <em class='comment'>/* distance tree result                  */</em>
+<a id='L89' name='L89' />    <a href='../S/710.html#L27' title='Defined at 27 in third_party/zdelta-2.1/inftrees.h.'>inflate_huft</a> * <a href='../D/735.html' title='Multiple defined in 5 places.'>FAR</a> *,       <em class='comment'>/* zdekt flags tree result               */</em>
+<a id='L90' name='L90' />    <a href='../S/726.html#L126' title='Defined at 126 in third_party/zdelta-2.1/zdlib.h.'>zd_streamp</a>));                <em class='comment'>/* for memory allocation                 */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^][v]<a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

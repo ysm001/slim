@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>TYPE</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/347.html#L216'>TYPE</a>              216 src/lmntal.h   #define LMN_NALLOC(TYPE, NUM)          ((TYPE *)lmn_malloc(sizeof(TYPE) * (NUM)))</span>
+<span class='curline'><a href='../S/347.html#L217'>TYPE</a>              217 src/lmntal.h   #define LMN_CALLOC(TYPE, NUM)          ((TYPE *)lmn_calloc((NUM), sizeof(TYPE)))</span>
+<span class='curline'><a href='../S/347.html#L218'>TYPE</a>              218 src/lmntal.h   #define LMN_MALLOC(TYPE)               ((TYPE *)lmn_malloc(sizeof(TYPE)))</span>
+<span class='curline'><a href='../S/347.html#L219'>TYPE</a>              219 src/lmntal.h   #define LMN_REALLOC(TYPE, P, NUM)      ((TYPE *)lmn_realloc((P), (NUM) * sizeof(TYPE)))</span>
+<span class='curline'><a href='../S/351.html#L324'>TYPE</a>              324 src/load.c     #define WRITE(TYPE, VALUE, CONTEXT)                              \</span>
+<span class='curline'><a href='../S/351.html#L326'>TYPE</a>              326 src/load.c         while ((CONTEXT)-&gt;loc + sizeof(TYPE) &gt;= (CONTEXT)-&gt;cap) {    \</span>
+<span class='curline'><a href='../S/351.html#L329'>TYPE</a>              329 src/load.c         *(TYPE*)((CONTEXT)-&gt;byte_seq + (CONTEXT)-&gt;loc) = (VALUE);    \</span>
+<span class='curline'><a href='../S/351.html#L335'>TYPE</a>              335 src/load.c     #define MOVE(TYPE, CONTEXT)  (CONTEXT)-&gt;loc += sizeof(TYPE)</span>
+<span class='curline'><a href='../S/351.html#L338'>TYPE</a>              338 src/load.c     #define WRITE_MOVE(TYPE, VALUE, CONTEXT)                         \</span>
+<span class='curline'><a href='../S/351.html#L341'>TYPE</a>              341 src/load.c           while ((CONTEXT)-&gt;loc + sizeof(TYPE) &gt;= (CONTEXT)-&gt;cap) {  \</span>
+<span class='curline'><a href='../S/351.html#L344'>TYPE</a>              344 src/load.c           *(TYPE*)((CONTEXT)-&gt;byte_seq + (CONTEXT)-&gt;loc) = (VALUE);  \</span>
+<span class='curline'><a href='../S/351.html#L346'>TYPE</a>              346 src/load.c         (CONTEXT)-&gt;loc += sizeof(TYPE);                              \</span>
+<span class='curline'><a href='../S/351.html#L350'>TYPE</a>              350 src/load.c     #define WRITE_HERE(TYPE, VALUE, CONTEXT, LOC)                    \</span>
+<span class='curline'><a href='../S/351.html#L353'>TYPE</a>              353 src/load.c           while ((LOC) + sizeof(TYPE) &gt;= (CONTEXT)-&gt;cap) {           \</span>
+<span class='curline'><a href='../S/351.html#L356'>TYPE</a>              356 src/load.c           *(TYPE*)((CONTEXT)-&gt;byte_seq + (LOC)) = (VALUE);           \</span>
+<span class='curline'><a href='../S/701.html#L121'>TYPE</a>              121 third_party/zdelta-2.1/infblock.c   s-&gt;mode = TYPE;</span>
+<span class='curline'><a href='../S/701.html#L163'>TYPE</a>              163 third_party/zdelta-2.1/infblock.c   s-&gt;mode = TYPE;</span>
+<span class='curline'><a href='../S/701.html#L190'>TYPE</a>              190 third_party/zdelta-2.1/infblock.c   case TYPE:</span>
+<span class='curline'><a href='../S/701.html#L241'>TYPE</a>              241 third_party/zdelta-2.1/infblock.c     s-&gt;mode = s-&gt;sub.left ? STORED : (s-&gt;last ? DRY : TYPE);</span>
+<span class='curline'><a href='../S/701.html#L256'>TYPE</a>              256 third_party/zdelta-2.1/infblock.c     s-&gt;mode = s-&gt;last ? DRY : TYPE;</span>
+<span class='curline'><a href='../S/701.html#L422'>TYPE</a>              422 third_party/zdelta-2.1/infblock.c       s-&gt;mode = TYPE;</span>
+</pre>
+</body>
+</html>

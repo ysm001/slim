@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>on_stack_list</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/413.html#L52'>on_stack_list</a>      52 src/verifier/automata.c static void automata_analysis_dfs1(Automata a, BYTE *on_stack_list, AutomataState s);</span>
+<span class='curline'><a href='../S/413.html#L319'>on_stack_list</a>     319 src/verifier/automata.c   BYTE *on_stack_list;</span>
+<span class='curline'><a href='../S/413.html#L323'>on_stack_list</a>     323 src/verifier/automata.c   on_stack_list = LMN_CALLOC(BYTE, vec_num(&amp;a-&gt;states));</span>
+<span class='curline'><a href='../S/413.html#L324'>on_stack_list</a>     324 src/verifier/automata.c   on_stack_list[(unsigned int)atmstate_id(init_s)] = 0xffU;</span>
+<span class='curline'><a href='../S/413.html#L326'>on_stack_list</a>     326 src/verifier/automata.c   automata_analysis_dfs1(a, on_stack_list, init_s);</span>
+<span class='curline'><a href='../S/413.html#L327'>on_stack_list</a>     327 src/verifier/automata.c   LMN_FREE(on_stack_list);</span>
+<span class='curline'><a href='../S/413.html#L435'>on_stack_list</a>     435 src/verifier/automata.c static void automata_analysis_dfs1(Automata a, BYTE *on_stack_list, AutomataState s)</span>
+<span class='curline'><a href='../S/413.html#L442'>on_stack_list</a>     442 src/verifier/automata.c     if (!on_stack_list[(unsigned int)atmstate_id(succ)]) {</span>
+<span class='curline'><a href='../S/413.html#L443'>on_stack_list</a>     443 src/verifier/automata.c       on_stack_list[(unsigned int)atmstate_id(succ)] = 0xffU;</span>
+<span class='curline'><a href='../S/413.html#L444'>on_stack_list</a>     444 src/verifier/automata.c       automata_analysis_dfs1(a, on_stack_list, succ);</span>
+</pre>
+</body>
+</html>

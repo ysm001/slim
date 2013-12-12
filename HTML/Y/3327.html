@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>log</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/436.html#L626'>log</a>               626 src/verifier/mem_encode.c   BsDecodeLog *log;</span>
+<span class='curline'><a href='../S/436.html#L629'>log</a>               629 src/verifier/mem_encode.c   log = LMN_NALLOC(BsDecodeLog, len * TAG_IN_BYTE);</span>
+<span class='curline'><a href='../S/436.html#L642'>log</a>               642 src/verifier/mem_encode.c         log[v_i].v    = (LmnWord)f;</span>
+<span class='curline'><a href='../S/436.html#L643'>log</a>               643 src/verifier/mem_encode.c         log[v_i].type = BS_LOG_TYPE_ATOM;</span>
+<span class='curline'><a href='../S/436.html#L651'>log</a>               651 src/verifier/mem_encode.c         log[v_i].v    = 0; /* とりえあずゼロクリア */</span>
+<span class='curline'><a href='../S/436.html#L652'>log</a>               652 src/verifier/mem_encode.c         log[v_i].type = BS_LOG_TYPE_MEM;</span>
+<span class='curline'><a href='../S/436.html#L678'>log</a>               678 src/verifier/mem_encode.c         log[v_i].v    = 0; /* とりあえずゼロクリア */</span>
+<span class='curline'><a href='../S/436.html#L679'>log</a>               679 src/verifier/mem_encode.c         log[v_i].type = BS_LOG_TYPE_HLINK;</span>
+<span class='curline'><a href='../S/436.html#L691'>log</a>               691 src/verifier/mem_encode.c         switch (log[ref].type) {</span>
+<span class='curline'><a href='../S/436.html#L795'>log</a>               795 src/verifier/mem_encode.c   LMN_FREE(log);</span>
+<span class='curline'><a href='../S/436.html#L941'>log</a>               941 src/verifier/mem_encode.c static inline int bsptr_push_hlink(BinStrPtr p, LmnAtom atom, VisitLog log)</span>
+<span class='curline'><a href='../S/436.html#L950'>log</a>               950 src/verifier/mem_encode.c   if (visitlog_get_hlink(log, hl_root, &amp;ref)) {</span>
+<span class='curline'><a href='../S/436.html#L955'>log</a>               955 src/verifier/mem_encode.c     return visitlog_put_hlink(log, hl_root) &amp;&amp;  /* 訪問済みにした */</span>
+<span class='curline'><a href='../S/436.html#L966'>log</a>               966 src/verifier/mem_encode.c                                        VisitLog log)</span>
+<span class='curline'><a href='../S/436.html#L976'>log</a>               976 src/verifier/mem_encode.c     return bsptr_push_hlink(p, atom, log);</span>
+<span class='curline'><a href='../S/436.html#L1013'>log</a>              1013 src/verifier/mem_encode.c                                              VisitLog log)</span>
+<span class='curline'><a href='../S/436.html#L1016'>log</a>              1016 src/verifier/mem_encode.c          bsptr_push_data_atom(p, atom, attr, log);</span>
+<span class='curline'><a href='../S/436.html#L1591'>log</a>              1591 src/verifier/mem_encode.c                               BsDecodeLog *log,</span>
+<span class='curline'><a href='../S/436.html#L1598'>log</a>              1598 src/verifier/mem_encode.c                              BsDecodeLog *log,</span>
+<span class='curline'><a href='../S/436.html#L1605'>log</a>              1605 src/verifier/mem_encode.c                               BsDecodeLog *log,</span>
+<span class='curline'><a href='../S/436.html#L1621'>log</a>              1621 src/verifier/mem_encode.c   BsDecodeLog *log;</span>
+<span class='curline'><a href='../S/436.html#L1629'>log</a>              1629 src/verifier/mem_encode.c   log    = LMN_NALLOC(BsDecodeLog, bs-&gt;len * TAG_IN_BYTE);</span>
+<span class='curline'><a href='../S/436.html#L1635'>log</a>              1635 src/verifier/mem_encode.c   binstr_decode_cell(bs, 0, log, &amp;nvisit, groot, NULL, 0);</span>
+<span class='curline'><a href='../S/436.html#L1636'>log</a>              1636 src/verifier/mem_encode.c   LMN_FREE(log);</span>
+<span class='curline'><a href='../S/436.html#L1676'>log</a>              1676 src/verifier/mem_encode.c                               BsDecodeLog *log,</span>
+<span class='curline'><a href='../S/436.html#L1724'>log</a>              1724 src/verifier/mem_encode.c         pos = binstr_decode_mol(bs, pos, log, nvisit, mem, from_atom, from_arg);</span>
+<span class='curline'><a href='../S/436.html#L1726'>log</a>              1726 src/verifier/mem_encode.c         pos = binstr_decode_mol(bs, pos, log, nvisit, mem, NULL, from_arg);</span>
+<span class='curline'><a href='../S/436.html#L1777'>log</a>              1777 src/verifier/mem_encode.c                              BsDecodeLog *log,</span>
+<span class='curline'><a href='../S/436.html#L1795'>log</a>              1795 src/verifier/mem_encode.c     return binstr_decode_atom(bs, pos, log, nvisit, mem, from_atom, from_arg);</span>
+<span class='curline'><a href='../S/436.html#L1808'>log</a>              1808 src/verifier/mem_encode.c       log[(*nvisit)].v    = (LmnWord)new_mem;</span>
+<span class='curline'><a href='../S/436.html#L1809'>log</a>              1809 src/verifier/mem_encode.c       log[(*nvisit)].type = BS_LOG_TYPE_MEM;</span>
+<span class='curline'><a href='../S/436.html#L1818'>log</a>              1818 src/verifier/mem_encode.c         pos = binstr_decode_cell(bs, pos, log, nvisit, new_mem, in, 1);</span>
+<span class='curline'><a href='../S/436.html#L1820'>log</a>              1820 src/verifier/mem_encode.c         pos = binstr_decode_cell(bs, pos, log, nvisit, new_mem, from_atom, from_arg);</span>
+<span class='curline'><a href='../S/436.html#L1867'>log</a>              1867 src/verifier/mem_encode.c       pos = binstr_decode_mol(bs, pos, log, nvisit, lmn_mem_parent(mem), out, 1);</span>
+<span class='curline'><a href='../S/436.html#L1881'>log</a>              1881 src/verifier/mem_encode.c         pos = binstr_decode_mol(bs, pos, log, nvisit, parent, out, 1);</span>
+<span class='curline'><a href='../S/436.html#L1883'>log</a>              1883 src/verifier/mem_encode.c         pos = binstr_decode_mol(bs, pos, log, nvisit, parent, NULL, 1);</span>
+<span class='curline'><a href='../S/436.html#L1890'>log</a>              1890 src/verifier/mem_encode.c       log[(*nvisit)].v    = (LmnWord)hl_atom;</span>
+<span class='curline'><a href='../S/436.html#L1891'>log</a>              1891 src/verifier/mem_encode.c       log[(*nvisit)].type = BS_LOG_TYPE_HLINK;</span>
+<span class='curline'><a href='../S/436.html#L1907'>log</a>              1907 src/verifier/mem_encode.c       switch (log[ref].type) {</span>
+<span class='curline'><a href='../S/436.html#L1914'>log</a>              1914 src/verifier/mem_encode.c           atom = (LmnSAtom)log[ref].v;</span>
+<span class='curline'><a href='../S/436.html#L1922'>log</a>              1922 src/verifier/mem_encode.c           LmnMembrane *ref_mem = (LmnMembrane *)log[ref].v;</span>
+<span class='curline'><a href='../S/436.html#L1924'>log</a>              1924 src/verifier/mem_encode.c             pos = binstr_decode_mol(bs, pos, log, nvisit, ref_mem, NULL, from_arg);</span>
+<span class='curline'><a href='../S/436.html#L1934'>log</a>              1934 src/verifier/mem_encode.c             pos = binstr_decode_mol(bs, pos, log, nvisit, ref_mem, in, 1);</span>
+<span class='curline'><a href='../S/436.html#L1943'>log</a>              1943 src/verifier/mem_encode.c           ref_hl_atom = (LmnAtom)log[ref].v;</span>
+<span class='curline'><a href='../S/436.html#L2008'>log</a>              2008 src/verifier/mem_encode.c                               BsDecodeLog *log,</span>
+<span class='curline'><a href='../S/436.html#L2023'>log</a>              2023 src/verifier/mem_encode.c   log[(*nvisit)].v    = (LmnWord)atom;    /* アドレスを記録(*nvisitは初期値1) */</span>
+<span class='curline'><a href='../S/436.html#L2024'>log</a>              2024 src/verifier/mem_encode.c   log[(*nvisit)].type = BS_LOG_TYPE_ATOM;</span>
+<span class='curline'><a href='../S/436.html#L2044'>log</a>              2044 src/verifier/mem_encode.c         pos = binstr_decode_mol(bs, pos, log, nvisit, mem, NULL, i);</span>
+<span class='curline'><a href='../S/436.html#L2046'>log</a>              2046 src/verifier/mem_encode.c         pos = binstr_decode_mol(bs, pos, log, nvisit, mem, atom, i);</span>
+<span class='curline'><a href='../S/436.html#L2185'>log</a>              2185 src/verifier/mem_encode.c                      BsDecodeLog *ref_log, int *i_ref, LmnMeqLog   log);</span>
+<span class='curline'><a href='../S/436.html#L2189'>log</a>              2189 src/verifier/mem_encode.c                     BsDecodeLog *ref_log, int     *i_ref, LmnMeqLog   log);</span>
+<span class='curline'><a href='../S/436.html#L2191'>log</a>              2191 src/verifier/mem_encode.c BOOL mem_eq_enc_end(LmnMembrane *mem, BOOL rule_flag, LmnMeqLog log);</span>
+<span class='curline'><a href='../S/436.html#L2195'>log</a>              2195 src/verifier/mem_encode.c                      BsDecodeLog *ref_log, int     *i_ref, LmnMeqLog   log);</span>
+<span class='curline'><a href='../S/436.html#L2198'>log</a>              2198 src/verifier/mem_encode.c                           LmnAtom      atom, LmnLinkAttr attr, LmnMeqLog log);</span>
+<span class='curline'><a href='../S/436.html#L2207'>log</a>              2207 src/verifier/mem_encode.c                                   LmnMeqLog   log);</span>
+<span class='curline'><a href='../S/436.html#L2216'>log</a>              2216 src/verifier/mem_encode.c                                          LmnMeqLog   log);</span>
+<span class='curline'><a href='../S/436.html#L2224'>log</a>              2224 src/verifier/mem_encode.c                                          LmnMeqLog   log);</span>
+<span class='curline'><a href='../S/436.html#L2229'>log</a>              2229 src/verifier/mem_encode.c                                       LmnMeqLog    log);</span>
+<span class='curline'><a href='../S/436.html#L2276'>log</a>              2276 src/verifier/mem_encode.c   struct LmnMeqLog log;</span>
+<span class='curline'><a href='../S/436.html#L2292'>log</a>              2292 src/verifier/mem_encode.c   tracelog_init_with_size(&amp;log, tbl_size);</span>
+<span class='curline'><a href='../S/436.html#L2293'>log</a>              2293 src/verifier/mem_encode.c   tracelog_put_mem(&amp;log, mem, TLOG_MATCHED_ID_NONE);</span>
+<span class='curline'><a href='../S/436.html#L2294'>log</a>              2294 src/verifier/mem_encode.c   t = mem_eq_enc_mols(bs, &amp;i_bs, mem, ref_log, &amp;i_ref, &amp;log);</span>
+<span class='curline'><a href='../S/436.html#L2295'>log</a>              2295 src/verifier/mem_encode.c   tracelog_destroy(&amp;log);</span>
+<span class='curline'><a href='../S/436.html#L2301'>log</a>              2301 src/verifier/mem_encode.c   visitlog_init_with_size(&amp;log, tbl_size);</span>
+<span class='curline'><a href='../S/436.html#L2302'>log</a>              2302 src/verifier/mem_encode.c   t = mem_eq_enc_mols(bs, &amp;i_bs, mem, ref_log, &amp;i_ref, &amp;log)</span>
+<span class='curline'><a href='../S/436.html#L2304'>log</a>              2304 src/verifier/mem_encode.c       &amp;&amp; visitlog_element_num(&amp;log) == process_num(mem);</span>
+<span class='curline'><a href='../S/436.html#L2305'>log</a>              2305 src/verifier/mem_encode.c   visitlog_destroy(&amp;log);</span>
+<span class='curline'><a href='../S/436.html#L2326'>log</a>              2326 src/verifier/mem_encode.c                            LmnMeqLog   log)</span>
+<span class='curline'><a href='../S/436.html#L2354'>log</a>              2354 src/verifier/mem_encode.c           if (visitlog_get_atom(log, atom, NULL)) continue;</span>
+<span class='curline'><a href='../S/436.html#L2355'>log</a>              2355 src/verifier/mem_encode.c           visitlog_set_checkpoint(log);</span>
+<span class='curline'><a href='../S/436.html#L2357'>log</a>              2357 src/verifier/mem_encode.c           if (tracelog_contains_atom(log, atom)) continue;</span>
+<span class='curline'><a href='../S/436.html#L2358'>log</a>              2358 src/verifier/mem_encode.c           tracelog_set_btpoint(log);</span>
+<span class='curline'><a href='../S/436.html#L2373'>log</a>              2373 src/verifier/mem_encode.c                               log) &amp;&amp;</span>
+<span class='curline'><a href='../S/436.html#L2379'>log</a>              2379 src/verifier/mem_encode.c                               log)) {</span>
+<span class='curline'><a href='../S/436.html#L2381'>log</a>              2381 src/verifier/mem_encode.c             visitlog_commit_checkpoint(log);</span>
+<span class='curline'><a href='../S/436.html#L2383'>log</a>              2383 src/verifier/mem_encode.c             tracelog_continue_trace(log);</span>
+<span class='curline'><a href='../S/436.html#L2392'>log</a>              2392 src/verifier/mem_encode.c             visitlog_revert_checkpoint(log);</span>
+<span class='curline'><a href='../S/436.html#L2394'>log</a>              2394 src/verifier/mem_encode.c             tracelog_backtrack(log);</span>
+<span class='curline'><a href='../S/436.html#L2418'>log</a>              2418 src/verifier/mem_encode.c               visitlog_get_mem(log, m, NULL)) continue;</span>
+<span class='curline'><a href='../S/436.html#L2419'>log</a>              2419 src/verifier/mem_encode.c           visitlog_set_checkpoint(log);</span>
+<span class='curline'><a href='../S/436.html#L2422'>log</a>              2422 src/verifier/mem_encode.c               tracelog_contains_mem(log, m)) continue;</span>
+<span class='curline'><a href='../S/436.html#L2423'>log</a>              2423 src/verifier/mem_encode.c           tracelog_set_btpoint(log);</span>
+<span class='curline'><a href='../S/436.html#L2432'>log</a>              2432 src/verifier/mem_encode.c           if (mem_eq_enc_mem(bs, &amp;tmp_i_bs, m, ref_log, &amp;tmp_i_ref, log) &amp;&amp;</span>
+<span class='curline'><a href='../S/436.html#L2433'>log</a>              2433 src/verifier/mem_encode.c               mem_eq_enc_mols(bs, &amp;tmp_i_bs, mem, ref_log, &amp;tmp_i_ref, log)) {</span>
+<span class='curline'><a href='../S/436.html#L2435'>log</a>              2435 src/verifier/mem_encode.c             visitlog_commit_checkpoint(log);</span>
+<span class='curline'><a href='../S/436.html#L2437'>log</a>              2437 src/verifier/mem_encode.c             tracelog_continue_trace(log);</span>
+<span class='curline'><a href='../S/436.html#L2446'>log</a>              2446 src/verifier/mem_encode.c             visitlog_revert_checkpoint(log);</span>
+<span class='curline'><a href='../S/436.html#L2448'>log</a>              2448 src/verifier/mem_encode.c             tracelog_backtrack(log);</span>
+<span class='curline'><a href='../S/436.html#L2485'>log</a>              2485 src/verifier/mem_encode.c               !mem_eq_enc_data_atom(sub_tag, bs, &amp;tmp_i_bs, LMN_ATOM(data), data_attr, log)) {</span>
+<span class='curline'><a href='../S/436.html#L2493'>log</a>              2493 src/verifier/mem_encode.c           visitlog_set_checkpoint(log);</span>
+<span class='curline'><a href='../S/436.html#L2495'>log</a>              2495 src/verifier/mem_encode.c           tracelog_set_btpoint(log);</span>
+<span class='curline'><a href='../S/436.html#L2500'>log</a>              2500 src/verifier/mem_encode.c                                     ref_log, &amp;tmp_i_ref, log) &amp;&amp;</span>
+<span class='curline'><a href='../S/436.html#L2501'>log</a>              2501 src/verifier/mem_encode.c               mem_eq_enc_mols(bs, &amp;tmp_i_bs, mem, ref_log, &amp;tmp_i_ref, log)) {</span>
+<span class='curline'><a href='../S/436.html#L2503'>log</a>              2503 src/verifier/mem_encode.c             visitlog_commit_checkpoint(log);</span>
+<span class='curline'><a href='../S/436.html#L2505'>log</a>              2505 src/verifier/mem_encode.c             tracelog_continue_trace(log);</span>
+<span class='curline'><a href='../S/436.html#L2514'>log</a>              2514 src/verifier/mem_encode.c             visitlog_revert_checkpoint(log);</span>
+<span class='curline'><a href='../S/436.html#L2516'>log</a>              2516 src/verifier/mem_encode.c             tracelog_backtrack(log);</span>
+<span class='curline'><a href='../S/436.html#L2525'>log</a>              2525 src/verifier/mem_encode.c       return mem_eq_enc_end(mem, rule_flag, log);</span>
+<span class='curline'><a href='../S/436.html#L2547'>log</a>              2547 src/verifier/mem_encode.c   return mem_eq_enc_end(mem, rule_flag, log);</span>
+<span class='curline'><a href='../S/436.html#L2553'>log</a>              2553 src/verifier/mem_encode.c static inline BOOL mem_eq_enc_end(LmnMembrane *mem, BOOL rule_flag, LmnMeqLog log)</span>
+<span class='curline'><a href='../S/436.html#L2561'>log</a>              2561 src/verifier/mem_encode.c     return tracelog_eq_traversed_proc_num(log,</span>
+<span class='curline'><a href='../S/436.html#L2576'>log</a>              2576 src/verifier/mem_encode.c                             BsDecodeLog *ref_log, int     *i_ref, LmnMeqLog   log)</span>
+<span class='curline'><a href='../S/436.html#L2593'>log</a>              2593 src/verifier/mem_encode.c   if (!visitlog_put_atom(log, LMN_SATOM(atom))) return FALSE;</span>
+<span class='curline'><a href='../S/436.html#L2597'>log</a>              2597 src/verifier/mem_encode.c   if (!tracelog_put_atom(log, LMN_SATOM(atom), *i_ref, mem)) return FALSE;</span>
+<span class='curline'><a href='../S/436.html#L2611'>log</a>              2611 src/verifier/mem_encode.c                         log)) {</span>
+<span class='curline'><a href='../S/436.html#L2628'>log</a>              2628 src/verifier/mem_encode.c                            BsDecodeLog *ref_log, int     *i_ref, LmnMeqLog   log)</span>
+<span class='curline'><a href='../S/436.html#L2652'>log</a>              2652 src/verifier/mem_encode.c   visitlog_put_mem(log, in_mem);</span>
+<span class='curline'><a href='../S/436.html#L2656'>log</a>              2656 src/verifier/mem_encode.c   tracelog_put_mem(log, in_mem, *i_ref);</span>
+<span class='curline'><a href='../S/436.html#L2657'>log</a>              2657 src/verifier/mem_encode.c   tracelog_put_atom(log, LMN_SATOM(in), TLOG_MATCHED_ID_NONE, in_mem);</span>
+<span class='curline'><a href='../S/436.html#L2670'>log</a>              2670 src/verifier/mem_encode.c                      log) &amp;&amp;</span>
+<span class='curline'><a href='../S/436.html#L2676'>log</a>              2676 src/verifier/mem_encode.c                       log)) {</span>
+<span class='curline'><a href='../S/436.html#L2689'>log</a>              2689 src/verifier/mem_encode.c                                   LmnMeqLog   log)</span>
+<span class='curline'><a href='../S/436.html#L2692'>log</a>              2692 src/verifier/mem_encode.c   if (!visitlog_put_mem(log, mem)) return FALSE;</span>
+<span class='curline'><a href='../S/436.html#L2696'>log</a>              2696 src/verifier/mem_encode.c   if (!tracelog_put_mem(log, mem, *i_ref)) return FALSE;</span>
+<span class='curline'><a href='../S/436.html#L2700'>log</a>              2700 src/verifier/mem_encode.c   if (mem_eq_enc_mols(bs, i_bs, mem, ref_log, i_ref, log)) {</span>
+<span class='curline'><a href='../S/436.html#L2715'>log</a>              2715 src/verifier/mem_encode.c                                         LmnMeqLog    log)</span>
+<span class='curline'><a href='../S/436.html#L2731'>log</a>              2731 src/verifier/mem_encode.c       visitlog_put_data(log);</span>
+<span class='curline'><a href='../S/436.html#L2742'>log</a>              2742 src/verifier/mem_encode.c       visitlog_put_data(log);</span>
+<span class='curline'><a href='../S/436.html#L2753'>log</a>              2753 src/verifier/mem_encode.c       visitlog_put_data(log);</span>
+<span class='curline'><a href='../S/436.html#L2777'>log</a>              2777 src/verifier/mem_encode.c                                   LmnMeqLog   log)</span>
+<span class='curline'><a href='../S/436.html#L2785'>log</a>              2785 src/verifier/mem_encode.c     return mem_eq_enc_atom(bs, i_bs, mem, atom, attr, ref_log, i_ref, log);</span>
+<span class='curline'><a href='../S/436.html#L2788'>log</a>              2788 src/verifier/mem_encode.c                                  bs, i_bs, mem, atom, attr, ref_log, i_ref, log);</span>
+<span class='curline'><a href='../S/436.html#L2791'>log</a>              2791 src/verifier/mem_encode.c                                  bs, i_bs, mem, atom, attr, ref_log, i_ref, log);</span>
+<span class='curline'><a href='../S/436.html#L2794'>log</a>              2794 src/verifier/mem_encode.c     return mem_eq_enc_visited(tag, bs, i_bs, atom, attr, ref_log, i_ref, log);</span>
+<span class='curline'><a href='../S/436.html#L2796'>log</a>              2796 src/verifier/mem_encode.c     return mem_eq_enc_escape_mem(bs, i_bs, mem, atom, attr, ref_log, i_ref, log);</span>
+<span class='curline'><a href='../S/436.html#L2798'>log</a>              2798 src/verifier/mem_encode.c     return mem_eq_enc_hlink(bs, i_bs, mem, atom, attr, ref_log, i_ref, log);</span>
+<span class='curline'><a href='../S/436.html#L2804'>log</a>              2804 src/verifier/mem_encode.c     return mem_eq_enc_data_atom(tag, bs, i_bs, atom, attr, log);</span>
+<span class='curline'><a href='../S/436.html#L2868'>log</a>              2868 src/verifier/mem_encode.c                                        LmnMeqLog   log);</span>
+<span class='curline'><a href='../S/436.html#L2872'>log</a>              2872 src/verifier/mem_encode.c                                       unsigned int ref,      LmnMeqLog   log);</span>
+<span class='curline'><a href='../S/436.html#L2883'>log</a>              2883 src/verifier/mem_encode.c                                       LmnMeqLog    log)</span>
+<span class='curline'><a href='../S/436.html#L2893'>log</a>              2893 src/verifier/mem_encode.c     return mem_eq_enc_mem_ref(bs, i_bs, atom, attr, ref_log, i_ref, ref, log);</span>
+<span class='curline'><a href='../S/436.html#L2896'>log</a>              2896 src/verifier/mem_encode.c     return mem_eq_enc_hlink_ref(bs, i_bs, atom, attr, ref_log, i_ref, ref, log);</span>
+<span class='curline'><a href='../S/436.html#L2899'>log</a>              2899 src/verifier/mem_encode.c     return mem_eq_enc_atom_ref(bs, i_bs, atom, attr, ref_log, ref, log);</span>
+<span class='curline'><a href='../S/436.html#L2905'>log</a>              2905 src/verifier/mem_encode.c     ret = mem_eq_enc_atom_ref(bs, i_bs, atom, attr, ref_log, ref, log);</span>
+<span class='curline'><a href='../S/436.html#L2908'>log</a>              2908 src/verifier/mem_encode.c     ret = mem_eq_enc_mem_ref(bs, i_bs, atom, attr, ref_log, i_ref, ref, log);</span>
+<span class='curline'><a href='../S/436.html#L2911'>log</a>              2911 src/verifier/mem_encode.c     ret = mem_eq_enc_hlink_ref(bs, i_bs, atom, attr, ref_log, i_ref, ref, log);</span>
+<span class='curline'><a href='../S/436.html#L2927'>log</a>              2927 src/verifier/mem_encode.c                                        LmnMeqLog   log)</span>
+<span class='curline'><a href='../S/436.html#L2943'>log</a>              2943 src/verifier/mem_encode.c            ref == tracelog_get_atomMatched(log, (LmnSAtom)atom);</span>
+<span class='curline'><a href='../S/436.html#L2956'>log</a>              2956 src/verifier/mem_encode.c                                       unsigned int ref,      LmnMeqLog    log)</span>
+<span class='curline'><a href='../S/436.html#L2969'>log</a>              2969 src/verifier/mem_encode.c     tracelog_put_atom(log, LMN_SATOM(in), TLOG_MATCHED_ID_NONE, in_mem);</span>
+<span class='curline'><a href='../S/436.html#L2970'>log</a>              2970 src/verifier/mem_encode.c     if (ref != tracelog_get_memMatched(log, in_mem)) return FALSE;</span>
+<span class='curline'><a href='../S/436.html#L2987'>log</a>              2987 src/verifier/mem_encode.c                           log);</span>
+<span class='curline'><a href='../S/436.html#L2995'>log</a>              2995 src/verifier/mem_encode.c                                         unsigned int ref,      LmnMeqLog    log)</span>
+<span class='curline'><a href='../S/436.html#L3005'>log</a>              3005 src/verifier/mem_encode.c     return ref == tracelog_get_hlinkMatched(log, hl_root);</span>
+<span class='curline'><a href='../S/436.html#L3007'>log</a>              3007 src/verifier/mem_encode.c     visitlog_put_data(log);</span>
+<span class='curline'><a href='../S/436.html#L3027'>log</a>              3027 src/verifier/mem_encode.c                                          LmnMeqLog   log)</span>
+<span class='curline'><a href='../S/436.html#L3036'>log</a>              3036 src/verifier/mem_encode.c     tracelog_put_atom(log, LMN_SATOM(atom), TLOG_MATCHED_ID_NONE, LMN_PROXY_GET_MEM(atom));</span>
+<span class='curline'><a href='../S/436.html#L3045'>log</a>              3045 src/verifier/mem_encode.c                           log);</span>
+<span class='curline'><a href='../S/436.html#L3056'>log</a>              3056 src/verifier/mem_encode.c                                     LmnMeqLog   log)</span>
+<span class='curline'><a href='../S/436.html#L3069'>log</a>              3069 src/verifier/mem_encode.c       if (!tracelog_contains_hlink(log, hl_root)) {</span>
+<span class='curline'><a href='../S/436.html#L3070'>log</a>              3070 src/verifier/mem_encode.c         tracelog_put_hlink(log, hl_root, *i_ref);</span>
+<span class='curline'><a href='../S/436.html#L3075'>log</a>              3075 src/verifier/mem_encode.c       if (visitlog_put_hlink(log, hl_root)) {</span>
+<span class='curline'><a href='../S/551.html#L42'>log</a>                42 third_party/google-perftools-1.8.3/src/common.cc   int log = 0;</span>
+<span class='curline'><a href='../S/551.html#L48'>log</a>                48 third_party/google-perftools-1.8.3/src/common.cc       log += shift;</span>
+<span class='curline'><a href='../S/551.html#L52'>log</a>                52 third_party/google-perftools-1.8.3/src/common.cc   return log;</span>
+<span class='curline'><a href='../S/577.html#L216'>log</a>               216 third_party/google-perftools-1.8.3/src/libc_override_osx.h   tcmalloc_introspection.log = &amp;mi_log;</span>
+<span class='curline'><a href='../S/603.html#L67'>log</a>                67 third_party/google-perftools-1.8.3/src/sampler.cc     log_table_[i] = (log(1.0 + static_cast&lt;double&gt;(i+0.5)/(1&lt;&lt;kFastlogNumBits))</span>
+<span class='curline'><a href='../S/603.html#L68'>log</a>                68 third_party/google-perftools-1.8.3/src/sampler.cc                      / log(2.0));</span>
+<span class='curline'><a href='../S/603.html#L126'>log</a>               126 third_party/google-perftools-1.8.3/src/sampler.cc   return static_cast&lt;size_t&gt;(min(0.0, (FastLog2(q) - 26)) * (-log(2.0)</span>
+<span class='curline'><a href='../S/657.html#L177'>log</a>               177 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc     ad_sum += (2*i + 1) * log(random_sample[i] * (1 - random_sample[n-1-i]));</span>
+<span class='curline'><a href='../S/657.html#L337'>log</a>               337 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc     double truelog = log(e) / log(2.0);  // log_2(e)</span>
+<span class='curline'><a href='../S/657.html#L532'>log</a>               532 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc     double sample_scaling = - log(2.0) * sample_parameter;</span>
+<span class='curline'><a href='../S/657.html#L543'>log</a>               543 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc     LOG(INFO) &lt;&lt; StringPrintf("log2(q) = %f\n", log(q)/log(2.0));</span>
+<span class='curline'><a href='../S/699.html#L1018'>log</a>              1018 third_party/zdelta-2.1/deflate.c   int log = 0;                  \</span>
+<span class='curline'><a href='../S/699.html#L1020'>log</a>              1020 third_party/zdelta-2.1/deflate.c   while(d&gt;&gt;=1 &gt; 0) log++;       \</span>
+<span class='curline'><a href='../S/699.html#L1021'>log</a>              1021 third_party/zdelta-2.1/deflate.c   benefit = (strategy*len - 11 - log); \</span>
+</pre>
+</body>
+</html>

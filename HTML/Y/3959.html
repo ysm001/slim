@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>oldact</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/525.html#L2438'>oldact</a>           2438 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h                                        struct kernel_sigaction *oldact) {</span>
+<span class='curline'><a href='../S/525.html#L2448'>oldact</a>           2448 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         return LSS_NAME(rt_sigaction)(signum, &amp;a, oldact,</span>
+<span class='curline'><a href='../S/525.html#L2451'>oldact</a>           2451 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         return LSS_NAME(rt_sigaction)(signum, act, oldact,</span>
+<span class='curline'><a href='../S/525.html#L2638'>oldact</a>           2638 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h                                        struct kernel_sigaction *oldact) {</span>
+<span class='curline'><a href='../S/525.html#L2662'>oldact</a>           2662 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       rc = LSS_NAME(rt_sigaction)(signum, act ? &amp;a : act, oldact,</span>
+<span class='curline'><a href='../S/525.html#L2676'>oldact</a>           2676 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         if (!oldact) {</span>
+<span class='curline'><a href='../S/525.html#L2681'>oldact</a>           2681 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         if (rc == 0 &amp;&amp; oldact) {</span>
+<span class='curline'><a href='../S/525.html#L2683'>oldact</a>           2683 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h             memcpy(oldact, act, sizeof(*act));</span>
+<span class='curline'><a href='../S/525.html#L2685'>oldact</a>           2685 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h             memset(oldact, 0, sizeof(*oldact));</span>
+<span class='curline'><a href='../S/525.html#L2687'>oldact</a>           2687 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h           oldact-&gt;sa_handler_    = ptr_oa-&gt;sa_handler_;</span>
+<span class='curline'><a href='../S/525.html#L2688'>oldact</a>           2688 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h           oldact-&gt;sa_flags       = ptr_oa-&gt;sa_flags;</span>
+<span class='curline'><a href='../S/525.html#L2689'>oldact</a>           2689 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h           memcpy(&amp;oldact-&gt;sa_mask, &amp;ptr_oa-&gt;sa_mask, sizeof(ptr_oa-&gt;sa_mask));</span>
+<span class='curline'><a href='../S/525.html#L2691'>oldact</a>           2691 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h           oldact-&gt;sa_restorer    = ptr_oa-&gt;sa_restorer;</span>
+</pre>
+</body>
+</html>

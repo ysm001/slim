@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>third_party/google-perftools-1.8.3/src/base/cycleclock.h</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/738.html'>third_party</a>/<a href='../files/739.html'>google-perftools-1.8.3</a>/<a href='../files/740.html'>src</a>/<a href='../files/741.html'>base</a>/cycleclock.h</h2>
+<em class='comment'>/* [&lt;][&gt;][^][v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/142.html' title='Multiple included from 2 places.'>INCLUDED FROM</a></h2>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>// Copyright (c) 2004, Google Inc.</em>
+<a id='L2' name='L2' /><em class='comment'>// All rights reserved.</em>
+<a id='L3' name='L3' /><em class='comment'>// </em>
+<a id='L4' name='L4' /><em class='comment'>// Redistribution and use in source and binary forms, with or without</em>
+<a id='L5' name='L5' /><em class='comment'>// modification, are permitted provided that the following conditions are</em>
+<a id='L6' name='L6' /><em class='comment'>// met:</em>
+<a id='L7' name='L7' /><em class='comment'>// </em>
+<a id='L8' name='L8' /><em class='comment'>//     * Redistributions of source code must retain the above copyright</em>
+<a id='L9' name='L9' /><em class='comment'>// notice, this list of conditions and the following disclaimer.</em>
+<a id='L10' name='L10' /><em class='comment'>//     * Redistributions in binary form must reproduce the above</em>
+<a id='L11' name='L11' /><em class='comment'>// copyright notice, this list of conditions and the following disclaimer</em>
+<a id='L12' name='L12' /><em class='comment'>// in the documentation and/or other materials provided with the</em>
+<a id='L13' name='L13' /><em class='comment'>// distribution.</em>
+<a id='L14' name='L14' /><em class='comment'>//     * Neither the name of Google Inc. nor the names of its</em>
+<a id='L15' name='L15' /><em class='comment'>// contributors may be used to endorse or promote products derived from</em>
+<a id='L16' name='L16' /><em class='comment'>// this software without specific prior written permission.</em>
+<a id='L17' name='L17' /><em class='comment'>// </em>
+<a id='L18' name='L18' /><em class='comment'>// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L19' name='L19' /><em class='comment'>// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L20' name='L20' /><em class='comment'>// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L21' name='L21' /><em class='comment'>// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L22' name='L22' /><em class='comment'>// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L23' name='L23' /><em class='comment'>// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L24' name='L24' /><em class='comment'>// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L25' name='L25' /><em class='comment'>// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L26' name='L26' /><em class='comment'>// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L27' name='L27' /><em class='comment'>// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L28' name='L28' /><em class='comment'>// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L29' name='L29' />
+<a id='L30' name='L30' /><em class='comment'>// ----------------------------------------------------------------------</em>
+<a id='L31' name='L31' /><em class='comment'>// CycleClock</em>
+<a id='L32' name='L32' /><em class='comment'>//    A CycleClock tells you the current time in Cycles.  The "time"</em>
+<a id='L33' name='L33' /><em class='comment'>//    is actually time since power-on.  This is like time() but doesn't</em>
+<a id='L34' name='L34' /><em class='comment'>//    involve a system call and is much more precise.</em>
+<a id='L35' name='L35' /><em class='comment'>//</em>
+<a id='L36' name='L36' /><em class='comment'>// NOTE: Not all cpu/platform/kernel combinations guarantee that this</em>
+<a id='L37' name='L37' /><em class='comment'>// clock increments at a constant rate or is synchronized across all logical</em>
+<a id='L38' name='L38' /><em class='comment'>// cpus in a system.</em>
+<a id='L39' name='L39' /><em class='comment'>//</em>
+<a id='L40' name='L40' /><em class='comment'>// Also, in some out of order CPU implementations, the CycleClock is not </em>
+<a id='L41' name='L41' /><em class='comment'>// serializing. So if you're trying to count at cycles granularity, your</em>
+<a id='L42' name='L42' /><em class='comment'>// data might be inaccurate due to out of order instruction execution.</em>
+<a id='L43' name='L43' /><em class='comment'>// ----------------------------------------------------------------------</em>
+<a id='L44' name='L44' />
+<a id='L45' name='L45' /><em class='sharp'>#ifndef</em> <a href='../S/518.html#L46' title='Defined at 46 in third_party/google-perftools-1.8.3/src/base/cycleclock.h.'>GOOGLE_BASE_CYCLECLOCK_H_</a>
+<a id='L46' name='L46' /><em class='sharp'>#define</em> <a href='../S/518.html#L45' title='Refered from 45 in third_party/google-perftools-1.8.3/src/base/cycleclock.h.'>GOOGLE_BASE_CYCLECLOCK_H_</a>
+<a id='L47' name='L47' />
+<a id='L48' name='L48' /><em class='sharp'>#include</em> "<a href='516.html'>base/basictypes.h</a>"   <em class='comment'>// make sure we get the def for int64</em>
+<a id='L49' name='L49' /><em class='sharp'>#include</em> "<a href='506.html'>base/arm_instruction_set_select.h</a>"
+<a id='L50' name='L50' /><em class='sharp'>#if</em> <strong class='reserved'>defined</strong>(<a href='../Y/1051.html' title='Multiple used in 15 places.'>__MACH__</a>) &amp;&amp; <strong class='reserved'>defined</strong>(<a href='../Y/1005.html' title='Multiple used in 13 places.'>__APPLE__</a>)
+<a id='L51' name='L51' /><em class='sharp'># include</em> &lt;mach/mach_time.h&gt;
+<a id='L52' name='L52' /><em class='sharp'>#endif</em>
+<a id='L53' name='L53' /><em class='comment'>// For MSVC, we want to use '_asm rdtsc' when possible (since it works</em>
+<a id='L54' name='L54' /><em class='comment'>// with even ancient MSVC compilers), and when not possible the</em>
+<a id='L55' name='L55' /><em class='comment'>// __rdtsc intrinsic, declared in &lt;intrin.h&gt;.  Unfortunately, in some</em>
+<a id='L56' name='L56' /><em class='comment'>// environments, &lt;windows.h&gt; and &lt;intrin.h&gt; have conflicting</em>
+<a id='L57' name='L57' /><em class='comment'>// declarations of some other intrinsics, breaking compilation.</em>
+<a id='L58' name='L58' /><em class='comment'>// Therefore, we simply declare __rdtsc ourselves. See also</em>
+<a id='L59' name='L59' /><em class='comment'>// http://connect.microsoft.com/VisualStudio/feedback/details/262047</em>
+<a id='L60' name='L60' /><em class='sharp'>#if</em> <strong class='reserved'>defined</strong>(<a href='../Y/982.html' title='Multiple used in 81 places.'>_MSC_VER</a>) &amp;&amp; !<strong class='reserved'>defined</strong>(<a href='../Y/983.html' title='Multiple used in 3 places.'>_M_IX86</a>)
+<a id='L61' name='L61' /><strong class='reserved'>extern</strong> "C" <a href='../S/516.html#L71' title='Defined at 71 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>uint64</a> <a href='../Y/1199.html' title='Multiple used in 2 places.'>__rdtsc</a>();
+<a id='L62' name='L62' /><em class='sharp'>#pragma</em> intrinsic(__rdtsc)
+<a id='L63' name='L63' /><em class='sharp'>#endif</em>
+<a id='L64' name='L64' /><em class='sharp'>#if</em> <strong class='reserved'>defined</strong>(<a href='../S/506.html#L71' title='Defined at 71 in third_party/google-perftools-1.8.3/src/base/arm_instruction_set_select.h.'>ARMV3</a>) || <strong class='reserved'>defined</strong>(<a href='../Y/1169.html' title='Multiple used in 29 places.'>__mips__</a>)
+<a id='L65' name='L65' /><em class='sharp'>#include</em> &lt;sys/time.h&gt;
+<a id='L66' name='L66' /><em class='sharp'>#endif</em>
+<a id='L67' name='L67' />
+<a id='L68' name='L68' /><em class='comment'>// NOTE: only i386 and x86_64 have been well tested.</em>
+<a id='L69' name='L69' /><em class='comment'>// PPC, sparc, alpha, and ia64 are based on</em>
+<a id='L70' name='L70' /><em class='comment'>//    http://peter.kuscsik.com/wordpress/?p=14</em>
+<a id='L71' name='L71' /><em class='comment'>// with modifications by m3b.  See also</em>
+<a id='L72' name='L72' /><em class='comment'>//    https://setisvn.ssl.berkeley.edu/svn/lib/fftw-3.0.1/kernel/cycle.h</em>
+<a id='L73' name='L73' /><strong class='reserved'>struct</strong> <a href='../R/424.html' title='Multiple refered from 4 places.'>CycleClock</a> <em class='brace'>{</em>
+<a id='L74' name='L74' />  <em class='comment'>// This should return the number of cycles since power-on.  Thread-safe.</em>
+<a id='L75' name='L75' />  <strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../S/516.html#L60' title='Defined at 60 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>int64</a> <a href='../Y/568.html' title='Multiple used in 5 places.'>Now</a>() <em class='brace'>{</em>
+<a id='L76' name='L76' /><em class='sharp'>#if</em> <strong class='reserved'>defined</strong>(<a href='../Y/1051.html' title='Multiple used in 15 places.'>__MACH__</a>) &amp;&amp; <strong class='reserved'>defined</strong>(<a href='../Y/1005.html' title='Multiple used in 13 places.'>__APPLE__</a>)
+<a id='L77' name='L77' />    <em class='comment'>// this goes at the top because we need ALL Macs, regardless of</em>
+<a id='L78' name='L78' />    <em class='comment'>// architecture, to return the number of "mach time units" that</em>
+<a id='L79' name='L79' />    <em class='comment'>// have passed since startup.  See sysinfo.cc where</em>
+<a id='L80' name='L80' />    <em class='comment'>// InitializeSystemInfo() sets the supposed cpu clock frequency of</em>
+<a id='L81' name='L81' />    <em class='comment'>// macs to the number of mach time units per second, not actual</em>
+<a id='L82' name='L82' />    <em class='comment'>// CPU clock frequency (which can change in the face of CPU</em>
+<a id='L83' name='L83' />    <em class='comment'>// frequency scaling).  Also note that when the Mac sleeps, this</em>
+<a id='L84' name='L84' />    <em class='comment'>// counter pauses; it does not continue counting, nor does it</em>
+<a id='L85' name='L85' />    <em class='comment'>// reset to zero.</em>
+<a id='L86' name='L86' />    <strong class='reserved'>return</strong> mach_absolute_time();
+<a id='L87' name='L87' /><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(<a href='../Y/1146.html' title='Multiple used in 35 places.'>__i386__</a>)
+<a id='L88' name='L88' />    <a href='../S/516.html#L60' title='Defined at 60 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>int64</a> <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a>;
+<a id='L89' name='L89' />    <strong class='reserved'>__asm__</strong> <strong class='reserved'>volatile</strong> ("rdtsc" : "=A" (<a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a>) );
+<a id='L90' name='L90' />    <strong class='reserved'>return</strong> <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a>;
+<a id='L91' name='L91' /><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(<a href='../Y/1243.html' title='Multiple used in 34 places.'>__x86_64__</a>) || <strong class='reserved'>defined</strong>(<a href='../Y/1114.html' title='Multiple used in 3 places.'>__amd64__</a>)
+<a id='L92' name='L92' />    <a href='../S/516.html#L71' title='Defined at 71 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>uint64</a> <a href='../Y/3336.html' title='Multiple used in 3 places.'>low</a>, <a href='../Y/2698.html' title='Multiple used in 3 places.'>high</a>;
+<a id='L93' name='L93' />    <strong class='reserved'>__asm__</strong> <strong class='reserved'>volatile</strong> ("rdtsc" : "=a" (<a href='../Y/3336.html' title='Multiple used in 3 places.'>low</a>), "=d" (<a href='../Y/2698.html' title='Multiple used in 3 places.'>high</a>));
+<a id='L94' name='L94' />    <strong class='reserved'>return</strong> (<a href='../Y/2698.html' title='Multiple used in 3 places.'>high</a> &lt;&lt; 32) | <a href='../Y/3336.html' title='Multiple used in 3 places.'>low</a>;
+<a id='L95' name='L95' /><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(<a href='../Y/1181.html' title='Multiple used in 3 places.'>__powerpc__</a>) || <strong class='reserved'>defined</strong>(<a href='../Y/1183.html' title='Multiple used in 4 places.'>__ppc__</a>)
+<a id='L96' name='L96' />    <em class='comment'>// This returns a time-base, which is not always precisely a cycle-count.</em>
+<a id='L97' name='L97' />    <a href='../S/516.html#L60' title='Defined at 60 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>int64</a> <a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>, <a href='../Y/5316.html' title='Multiple used in 3 places.'>tbu0</a>, <a href='../Y/5317.html' title='Multiple used in 4 places.'>tbu1</a>;
+<a id='L98' name='L98' />    <strong class='reserved'>asm</strong>("mftbu %0" : "=r" (<a href='../Y/5316.html' title='Multiple used in 3 places.'>tbu0</a>));
+<a id='L99' name='L99' />    <strong class='reserved'>asm</strong>("mftb  %0" : "=r" (<a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>));
+<a id='L100' name='L100' />    <strong class='reserved'>asm</strong>("mftbu %0" : "=r" (<a href='../Y/5317.html' title='Multiple used in 4 places.'>tbu1</a>));
+<a id='L101' name='L101' />    <a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a> &amp;= -<a href='../Y/5080.html' title='Multiple used in 31 places.'>static_cast</a>&lt;<a href='../S/516.html#L60' title='Defined at 60 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>int64</a>&gt;(<a href='../Y/5316.html' title='Multiple used in 3 places.'>tbu0</a> == <a href='../Y/5317.html' title='Multiple used in 4 places.'>tbu1</a>);
+<a id='L102' name='L102' />    <em class='comment'>// high 32 bits in tbu1; low 32 bits in tbl  (tbu0 is garbage)</em>
+<a id='L103' name='L103' />    <strong class='reserved'>return</strong> (<a href='../Y/5317.html' title='Multiple used in 4 places.'>tbu1</a> &lt;&lt; 32) | <a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>;
+<a id='L104' name='L104' /><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__sparc__)
+<a id='L105' name='L105' />    <a href='../S/516.html#L60' title='Defined at 60 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>int64</a> <a href='../Y/5375.html' title='Multiple used in 3 places.'>tick</a>;
+<a id='L106' name='L106' />    <strong class='reserved'>asm</strong>(".byte 0x83, 0x41, 0x00, 0x00");
+<a id='L107' name='L107' />    <strong class='reserved'>asm</strong>("mov   %%g1, %0" : "=r" (<a href='../Y/5375.html' title='Multiple used in 3 places.'>tick</a>));
+<a id='L108' name='L108' />    <strong class='reserved'>return</strong> <a href='../Y/5375.html' title='Multiple used in 3 places.'>tick</a>;
+<a id='L109' name='L109' /><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__ia64__)
+<a id='L110' name='L110' />    <a href='../S/516.html#L60' title='Defined at 60 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>int64</a> <a href='../Y/2937.html' title='Multiple used in 3 places.'>itc</a>;
+<a id='L111' name='L111' />    <strong class='reserved'>asm</strong>("mov %0 = ar.itc" : "=r" (<a href='../Y/2937.html' title='Multiple used in 3 places.'>itc</a>));
+<a id='L112' name='L112' />    <strong class='reserved'>return</strong> <a href='../Y/2937.html' title='Multiple used in 3 places.'>itc</a>;
+<a id='L113' name='L113' /><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(<a href='../Y/982.html' title='Multiple used in 81 places.'>_MSC_VER</a>) &amp;&amp; <strong class='reserved'>defined</strong>(<a href='../Y/983.html' title='Multiple used in 3 places.'>_M_IX86</a>)
+<a id='L114' name='L114' />    <em class='comment'>// Older MSVC compilers (like 7.x) don't seem to support the</em>
+<a id='L115' name='L115' />    <em class='comment'>// __rdtsc intrinsic properly, so I prefer to use _asm instead</em>
+<a id='L116' name='L116' />    <em class='comment'>// when I know it will work.  Otherwise, I'll use __rdtsc and hope</em>
+<a id='L117' name='L117' />    <em class='comment'>// the code is being compiled with a non-ancient compiler.</em>
+<a id='L118' name='L118' />    _asm rdtsc
+<a id='L119' name='L119' /><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(<a href='../Y/982.html' title='Multiple used in 81 places.'>_MSC_VER</a>)
+<a id='L120' name='L120' />    <strong class='reserved'>return</strong> <a href='../Y/1199.html' title='Multiple used in 2 places.'>__rdtsc</a>();
+<a id='L121' name='L121' /><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(<a href='../S/506.html#L71' title='Defined at 71 in third_party/google-perftools-1.8.3/src/base/arm_instruction_set_select.h.'>ARMV3</a>)
+<a id='L122' name='L122' /><em class='sharp'>#if</em> <strong class='reserved'>defined</strong>(<a href='../S/506.html#L51' title='Defined at 51 in third_party/google-perftools-1.8.3/src/base/arm_instruction_set_select.h.'>ARMV6</a>)  <em class='comment'>// V6 is the earliest arch that has a standard cyclecount</em>
+<a id='L123' name='L123' />    <a href='../S/516.html#L70' title='Defined at 70 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>uint32</a> <a href='../Y/4177.html' title='Multiple used in 3 places.'>pmccntr</a>;
+<a id='L124' name='L124' />    <a href='../S/516.html#L70' title='Defined at 70 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>uint32</a> <a href='../Y/4179.html' title='Multiple used in 3 places.'>pmuseren</a>;
+<a id='L125' name='L125' />    <a href='../S/516.html#L70' title='Defined at 70 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>uint32</a> <a href='../Y/4178.html' title='Multiple used in 3 places.'>pmcntenset</a>;
+<a id='L126' name='L126' />    <em class='comment'>// Read the user mode perf monitor counter access permissions.</em>
+<a id='L127' name='L127' />    <strong class='reserved'>asm</strong>("mrc p15, 0, %0, c9, c14, 0" : "=r" (<a href='../Y/4179.html' title='Multiple used in 3 places.'>pmuseren</a>));
+<a id='L128' name='L128' />    <strong class='reserved'>if</strong> (<a href='../Y/4179.html' title='Multiple used in 3 places.'>pmuseren</a> &amp; 1) <em class='brace'>{</em>  <em class='comment'>// Allows reading perfmon counters for user mode code.</em>
+<a id='L129' name='L129' />      <strong class='reserved'>asm</strong>("mrc p15, 0, %0, c9, c12, 1" : "=r" (<a href='../Y/4178.html' title='Multiple used in 3 places.'>pmcntenset</a>));
+<a id='L130' name='L130' />      <strong class='reserved'>if</strong> (<a href='../Y/4178.html' title='Multiple used in 3 places.'>pmcntenset</a> &amp; 0x80000000ul) <em class='brace'>{</em>  <em class='comment'>// Is it counting?</em>
+<a id='L131' name='L131' />        <strong class='reserved'>asm</strong>("mrc p15, 0, %0, c9, c13, 0" : "=r" (<a href='../Y/4177.html' title='Multiple used in 3 places.'>pmccntr</a>));
+<a id='L132' name='L132' />        <em class='comment'>// The counter is set up to count every 64th cycle</em>
+<a id='L133' name='L133' />        <strong class='reserved'>return</strong> <a href='../Y/5080.html' title='Multiple used in 31 places.'>static_cast</a>&lt;<a href='../S/516.html#L60' title='Defined at 60 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>int64</a>&gt;(<a href='../Y/4177.html' title='Multiple used in 3 places.'>pmccntr</a>) * 64;  <em class='comment'>// Should optimize to &lt;&lt; 6</em>
+<a id='L134' name='L134' />      <em class='brace'>}</em>
+<a id='L135' name='L135' />    <em class='brace'>}</em>
+<a id='L136' name='L136' /><em class='sharp'>#endif</em>
+<a id='L137' name='L137' />    <strong class='reserved'>struct</strong> <a href='../Y/5389.html' title='Multiple used in 5 places.'>timeval</a> <a href='../Y/5479.html' title='Multiple used in 9 places.'>tv</a>;
+<a id='L138' name='L138' />    <a href='../Y/2558.html' title='Multiple used in 3 places.'>gettimeofday</a>(&amp;<a href='../Y/5479.html' title='Multiple used in 9 places.'>tv</a>, <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>);
+<a id='L139' name='L139' />    <strong class='reserved'>return</strong> <a href='../Y/5080.html' title='Multiple used in 31 places.'>static_cast</a>&lt;<a href='../S/516.html#L60' title='Defined at 60 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>int64</a>&gt;(<a href='../Y/5479.html' title='Multiple used in 9 places.'>tv</a>.<a href='../Y/5482.html' title='Multiple used in 20 places.'>tv_sec</a>) * 1000000 + <a href='../Y/5479.html' title='Multiple used in 9 places.'>tv</a>.<a href='../Y/5484.html' title='Multiple used in 11 places.'>tv_usec</a>;
+<a id='L140' name='L140' /><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(<a href='../Y/1169.html' title='Multiple used in 29 places.'>__mips__</a>)
+<a id='L141' name='L141' />    <em class='comment'>// mips apparently only allows rdtsc for superusers, so we fall</em>
+<a id='L142' name='L142' />    <em class='comment'>// back to gettimeofday.  It's possible clock_gettime would be better.</em>
+<a id='L143' name='L143' />    <strong class='reserved'>struct</strong> <a href='../Y/5389.html' title='Multiple used in 5 places.'>timeval</a> <a href='../Y/5479.html' title='Multiple used in 9 places.'>tv</a>;
+<a id='L144' name='L144' />    <a href='../Y/2558.html' title='Multiple used in 3 places.'>gettimeofday</a>(&amp;<a href='../Y/5479.html' title='Multiple used in 9 places.'>tv</a>, <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>);
+<a id='L145' name='L145' />    <strong class='reserved'>return</strong> <a href='../Y/5080.html' title='Multiple used in 31 places.'>static_cast</a>&lt;<a href='../S/516.html#L60' title='Defined at 60 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>int64</a>&gt;(<a href='../Y/5479.html' title='Multiple used in 9 places.'>tv</a>.<a href='../Y/5482.html' title='Multiple used in 20 places.'>tv_sec</a>) * 1000000 + <a href='../Y/5479.html' title='Multiple used in 9 places.'>tv</a>.<a href='../Y/5484.html' title='Multiple used in 11 places.'>tv_usec</a>;
+<a id='L146' name='L146' /><em class='sharp'>#else</em>
+<a id='L147' name='L147' /><em class='comment'>// The soft failover to a generic implementation is automatic only for ARM.</em>
+<a id='L148' name='L148' /><em class='comment'>// For other platforms the developer is expected to make an attempt to create</em>
+<a id='L149' name='L149' /><em class='comment'>// a fast implementation and use generic version if nothing better is available.</em>
+<a id='L150' name='L150' /><em class='sharp'>#error</em> You need to define CycleTimer <strong class='reserved'>for</strong> your O/S and CPU
+<a id='L151' name='L151' /><em class='sharp'>#endif</em>
+<a id='L152' name='L152' />  <em class='brace'>}</em>
+<a id='L153' name='L153' /><em class='brace'>}</em>;
+<a id='L154' name='L154' />
+<a id='L155' name='L155' />
+<a id='L156' name='L156' /><em class='sharp'>#endif</em>  <em class='comment'>// GOOGLE_BASE_CYCLECLOCK_H_</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^][v]<a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

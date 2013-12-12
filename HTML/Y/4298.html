@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>prop_defs</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/353.html#L628'>prop_defs</a>         628 src/main.c         PVector prop_defs;</span>
+<span class='curline'><a href='../S/353.html#L632'>prop_defs</a>         632 src/main.c         prop_defs = NULL;</span>
+<span class='curline'><a href='../S/353.html#L637'>prop_defs</a>         637 src/main.c           ret = mc_load_property(&amp;automata, &amp;prop_defs);</span>
+<span class='curline'><a href='../S/353.html#L651'>prop_defs</a>         651 src/main.c         run_mc(start_rulesets, automata, prop_defs);</span>
+<span class='curline'><a href='../S/353.html#L655'>prop_defs</a>         655 src/main.c           propsyms_free(prop_defs);</span>
+<span class='curline'><a href='../S/413.html#L642'>prop_defs</a>         642 src/verifier/automata.c BOOL eval_formula(LmnMembrane *mem, Vector *prop_defs, PLFormula f)</span>
+<span class='curline'><a href='../S/413.html#L646'>prop_defs</a>         646 src/verifier/automata.c     return !eval_formula(mem, prop_defs, f-&gt;arg0);</span>
+<span class='curline'><a href='../S/413.html#L648'>prop_defs</a>         648 src/verifier/automata.c     return eval_formula(mem, prop_defs, f-&gt;arg0) &amp;&amp; eval_formula(mem, prop_defs, f-&gt;arg1);</span>
+<span class='curline'><a href='../S/413.html#L650'>prop_defs</a>         650 src/verifier/automata.c     return eval_formula(mem, prop_defs, f-&gt;arg0) || eval_formula(mem, prop_defs, f-&gt;arg1);</span>
+<span class='curline'><a href='../S/413.html#L654'>prop_defs</a>         654 src/verifier/automata.c     return proposition_eval(propsym_get_proposition(propsyms_get(prop_defs, f-&gt;sym_id)), mem);</span>
+<span class='curline'><a href='../S/414.html#L114'>prop_defs</a>         114 src/verifier/automata.h BOOL               eval_formula(LmnMembrane *mem, Vector *prop_defs, PLFormula f);</span>
+<span class='curline'><a href='../S/428.html#L962'>prop_defs</a>         962 src/verifier/mc.c int mc_load_property(Automata *a, PVector *prop_defs)</span>
+<span class='curline'><a href='../S/428.html#L968'>prop_defs</a>         968 src/verifier/mc.c   *prop_defs = NULL;</span>
+<span class='curline'><a href='../S/428.html#L981'>prop_defs</a>         981 src/verifier/mc.c   if (propsym_load_file(prop_fp, *a, prop_defs)) goto PROP_LOAD_ERROR;</span>
+<span class='curline'><a href='../S/428.html#L1004'>prop_defs</a>        1004 src/verifier/mc.c   LMN_FREE(*prop_defs);</span>
+<span class='curline'><a href='../S/429.html#L103'>prop_defs</a>         103 src/verifier/mc.h int mc_load_property(Automata *a, PVector *prop_defs);</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.cc</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/738.html'>third_party</a>/<a href='../files/739.html'>google-perftools-1.8.3</a>/<a href='../files/740.html'>src</a>/<a href='../files/741.html'>base</a>/atomicops-internals-x86.cc</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L75'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L75' title='Defined at 75.'>AtomicOps_Internalx86CPUFeaturesInit</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>/* Copyright (c) 2007, Google Inc.</em>
+<a id='L2' name='L2' /><em class='comment'> * All rights reserved.</em>
+<a id='L3' name='L3' /><em class='comment'> * </em>
+<a id='L4' name='L4' /><em class='comment'> * Redistribution and use in source and binary forms, with or without</em>
+<a id='L5' name='L5' /><em class='comment'> * modification, are permitted provided that the following conditions are</em>
+<a id='L6' name='L6' /><em class='comment'> * met:</em>
+<a id='L7' name='L7' /><em class='comment'> * </em>
+<a id='L8' name='L8' /><em class='comment'> *     * Redistributions of source code must retain the above copyright</em>
+<a id='L9' name='L9' /><em class='comment'> * notice, this list of conditions and the following disclaimer.</em>
+<a id='L10' name='L10' /><em class='comment'> *     * Redistributions in binary form must reproduce the above</em>
+<a id='L11' name='L11' /><em class='comment'> * copyright notice, this list of conditions and the following disclaimer</em>
+<a id='L12' name='L12' /><em class='comment'> * in the documentation and/or other materials provided with the</em>
+<a id='L13' name='L13' /><em class='comment'> * distribution.</em>
+<a id='L14' name='L14' /><em class='comment'> *     * Neither the name of Google Inc. nor the names of its</em>
+<a id='L15' name='L15' /><em class='comment'> * contributors may be used to endorse or promote products derived from</em>
+<a id='L16' name='L16' /><em class='comment'> * this software without specific prior written permission.</em>
+<a id='L17' name='L17' /><em class='comment'> * </em>
+<a id='L18' name='L18' /><em class='comment'> * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L19' name='L19' /><em class='comment'> * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L20' name='L20' /><em class='comment'> * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L21' name='L21' /><em class='comment'> * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L22' name='L22' /><em class='comment'> * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L23' name='L23' /><em class='comment'> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L24' name='L24' /><em class='comment'> * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L25' name='L25' /><em class='comment'> * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L26' name='L26' /><em class='comment'> * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L27' name='L27' /><em class='comment'> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L28' name='L28' /><em class='comment'> * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L29' name='L29' /><em class='comment'> *</em>
+<a id='L30' name='L30' /><em class='comment'> * ---</em>
+<a id='L31' name='L31' /><em class='comment'> * This module gets enough CPU information to optimize the</em>
+<a id='L32' name='L32' /><em class='comment'> * atomicops module on x86.</em>
+<a id='L33' name='L33' /><em class='comment'> */</em>
+<a id='L34' name='L34' />
+<a id='L35' name='L35' /><em class='sharp'>#include</em> "<a href='515.html'>base/atomicops.h</a>"
+<a id='L36' name='L36' /><em class='sharp'>#include</em> "<a href='516.html'>base/basictypes.h</a>"
+<a id='L37' name='L37' /><em class='sharp'>#include</em> "<a href='524.html'>base/googleinit.h</a>"
+<a id='L38' name='L38' /><em class='sharp'>#include</em> "<a href='529.html'>base/logging.h</a>"
+<a id='L39' name='L39' /><em class='sharp'>#include</em> &lt;<a href='372.html'>string.h</a>&gt;
+<a id='L40' name='L40' />
+<a id='L41' name='L41' /><em class='comment'>// This file only makes sense with atomicops-internals-x86.h -- it</em>
+<a id='L42' name='L42' /><em class='comment'>// depends on structs that are defined in that file.  If atomicops.h</em>
+<a id='L43' name='L43' /><em class='comment'>// doesn't sub-include that file, then we aren't needed, and shouldn't</em>
+<a id='L44' name='L44' /><em class='comment'>// try to do anything.</em>
+<a id='L45' name='L45' /><em class='sharp'>#ifdef</em> <a href='../S/514.html#L39' title='Defined at 39 in third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h.'>BASE_ATOMICOPS_INTERNALS_X86_H_</a>
+<a id='L46' name='L46' />
+<a id='L47' name='L47' /><em class='comment'>// Inline cpuid instruction.  In PIC compilations, %ebx contains the address</em>
+<a id='L48' name='L48' /><em class='comment'>// of the global offset table.  To avoid breaking such executables, this code</em>
+<a id='L49' name='L49' /><em class='comment'>// must preserve that register's value across cpuid instructions.</em>
+<a id='L50' name='L50' /><em class='sharp'>#if</em> <strong class='reserved'>defined</strong>(<a href='../Y/1146.html' title='Multiple used in 35 places.'>__i386__</a>)
+<a id='L51' name='L51' /><em class='sharp'>#define</em> <a href='../R/3160.html' title='Multiple refered from 3 places.'>cpuid</a>(<a href='../Y/1366.html' title='Multiple used in 517 places.'>a</a>, <a href='../Y/1569.html' title='Multiple used in 469 places.'>b</a>, <a href='../Y/1702.html' title='Multiple used in 562 places.'>c</a>, <a href='../Y/1949.html' title='Multiple used in 724 places.'>d</a>, <a href='../Y/2832.html' title='Multiple used in 4 places.'>inp</a>) \
+<a id='L52' name='L52' />  <strong class='reserved'>asm</strong> ("mov %%ebx, %%edi\n"    \
+<a id='L53' name='L53' />       "cpuid\n"               \
+<a id='L54' name='L54' />       "xchg %%edi, %%ebx\n"   \
+<a id='L55' name='L55' />       : "=a" (<a href='../Y/1366.html' title='Multiple used in 517 places.'>a</a>), "=D" (<a href='../Y/1569.html' title='Multiple used in 469 places.'>b</a>), "=c" (<a href='../Y/1702.html' title='Multiple used in 562 places.'>c</a>), "=d" (<a href='../Y/1949.html' title='Multiple used in 724 places.'>d</a>) : "a" (<a href='../Y/2832.html' title='Multiple used in 4 places.'>inp</a>))
+<a id='L56' name='L56' /><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong> (<a href='../Y/1243.html' title='Multiple used in 34 places.'>__x86_64__</a>)
+<a id='L57' name='L57' /><em class='sharp'>#define</em> <a href='../R/3160.html' title='Multiple refered from 3 places.'>cpuid</a>(<a href='../Y/1366.html' title='Multiple used in 517 places.'>a</a>, <a href='../Y/1569.html' title='Multiple used in 469 places.'>b</a>, <a href='../Y/1702.html' title='Multiple used in 562 places.'>c</a>, <a href='../Y/1949.html' title='Multiple used in 724 places.'>d</a>, <a href='../Y/2832.html' title='Multiple used in 4 places.'>inp</a>) \
+<a id='L58' name='L58' />  <strong class='reserved'>asm</strong> ("mov %%rbx, %%rdi\n"    \
+<a id='L59' name='L59' />       "cpuid\n"               \
+<a id='L60' name='L60' />       "xchg %%rdi, %%rbx\n"   \
+<a id='L61' name='L61' />       : "=a" (<a href='../Y/1366.html' title='Multiple used in 517 places.'>a</a>), "=D" (<a href='../Y/1569.html' title='Multiple used in 469 places.'>b</a>), "=c" (<a href='../Y/1702.html' title='Multiple used in 562 places.'>c</a>), "=d" (<a href='../Y/1949.html' title='Multiple used in 724 places.'>d</a>) : "a" (<a href='../Y/2832.html' title='Multiple used in 4 places.'>inp</a>))
+<a id='L62' name='L62' /><em class='sharp'>#endif</em>
+<a id='L63' name='L63' />
+<a id='L64' name='L64' /><em class='sharp'>#if</em> <strong class='reserved'>defined</strong>(<a href='../D/3532.html' title='Multiple defined in 2 places.'>cpuid</a>)        <em class='comment'>// initialize the struct only on x86</em>
+<a id='L65' name='L65' />
+<a id='L66' name='L66' /><em class='comment'>// Set the flags so that code will run correctly and conservatively</em>
+<a id='L67' name='L67' /><em class='comment'>// until InitGoogle() is called.</em>
+<a id='L68' name='L68' /><strong class='reserved'>struct</strong> <a href='../S/514.html#L53' title='Defined at 53 in third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h.'>AtomicOps_x86CPUFeatureStruct</a> <a href='../Y/39.html' title='Multiple used in 14 places.'>AtomicOps_Internalx86CPUFeatures</a> = <em class='brace'>{</em>
+<a id='L69' name='L69' />  <strong class='reserved'>false</strong>,          <em class='comment'>// bug can't exist before process spawns multiple threads</em>
+<a id='L70' name='L70' />  <strong class='reserved'>false</strong>,          <em class='comment'>// no SSE2</em>
+<a id='L71' name='L71' />  <strong class='reserved'>false</strong>,          <em class='comment'>// no cmpxchg16b</em>
+<a id='L72' name='L72' /><em class='brace'>}</em>;
+<a id='L73' name='L73' />
+<a id='L74' name='L74' /><em class='comment'>// Initialize the AtomicOps_Internalx86CPUFeatures struct.</em>
+<a id='L75' name='L75' /><strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/513.html#L120' title='Refered from 120 in third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.cc.'>AtomicOps_Internalx86CPUFeaturesInit</a>() <em class='brace'>{</em>
+<a id='L76' name='L76' />  <a href='../S/516.html#L70' title='Defined at 70 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>uint32</a> <a href='../Y/2149.html' title='Multiple used in 8 places.'>eax</a>;
+<a id='L77' name='L77' />  <a href='../S/516.html#L70' title='Defined at 70 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>uint32</a> <a href='../Y/2152.html' title='Multiple used in 5 places.'>ebx</a>;
+<a id='L78' name='L78' />  <a href='../S/516.html#L70' title='Defined at 70 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>uint32</a> <a href='../Y/2153.html' title='Multiple used in 6 places.'>ecx</a>;
+<a id='L79' name='L79' />  <a href='../S/516.html#L70' title='Defined at 70 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>uint32</a> <a href='../Y/2155.html' title='Multiple used in 6 places.'>edx</a>;
+<a id='L80' name='L80' />
+<a id='L81' name='L81' />  <em class='comment'>// Get vendor string (issue CPUID with eax = 0)</em>
+<a id='L82' name='L82' />  <a href='../D/3532.html' title='Multiple defined in 2 places.'>cpuid</a>(<a href='../Y/2149.html' title='Multiple used in 8 places.'>eax</a>, <a href='../Y/2152.html' title='Multiple used in 5 places.'>ebx</a>, <a href='../Y/2153.html' title='Multiple used in 6 places.'>ecx</a>, <a href='../Y/2155.html' title='Multiple used in 6 places.'>edx</a>, 0);
+<a id='L83' name='L83' />  <strong class='reserved'>char</strong> <a href='../Y/5623.html' title='Multiple used in 6 places.'>vendor</a>[13];
+<a id='L84' name='L84' />  <a href='../Y/3502.html' title='Multiple used in 35 places.'>memcpy</a>(<a href='../Y/5623.html' title='Multiple used in 6 places.'>vendor</a>, &amp;<a href='../Y/2152.html' title='Multiple used in 5 places.'>ebx</a>, 4);
+<a id='L85' name='L85' />  <a href='../Y/3502.html' title='Multiple used in 35 places.'>memcpy</a>(<a href='../Y/5623.html' title='Multiple used in 6 places.'>vendor</a> + 4, &amp;<a href='../Y/2155.html' title='Multiple used in 6 places.'>edx</a>, 4);
+<a id='L86' name='L86' />  <a href='../Y/3502.html' title='Multiple used in 35 places.'>memcpy</a>(<a href='../Y/5623.html' title='Multiple used in 6 places.'>vendor</a> + 8, &amp;<a href='../Y/2153.html' title='Multiple used in 6 places.'>ecx</a>, 4);
+<a id='L87' name='L87' />  <a href='../Y/5623.html' title='Multiple used in 6 places.'>vendor</a>[12] = 0;
+<a id='L88' name='L88' />
+<a id='L89' name='L89' />  <em class='comment'>// get feature flags in ecx/edx, and family/model in eax</em>
+<a id='L90' name='L90' />  <a href='../D/3532.html' title='Multiple defined in 2 places.'>cpuid</a>(<a href='../Y/2149.html' title='Multiple used in 8 places.'>eax</a>, <a href='../Y/2152.html' title='Multiple used in 5 places.'>ebx</a>, <a href='../Y/2153.html' title='Multiple used in 6 places.'>ecx</a>, <a href='../Y/2155.html' title='Multiple used in 6 places.'>edx</a>, 1);
+<a id='L91' name='L91' />
+<a id='L92' name='L92' />  <strong class='reserved'>int</strong> <a href='../Y/2332.html' title='Multiple used in 4 places.'>family</a> = (<a href='../Y/2149.html' title='Multiple used in 8 places.'>eax</a> &gt;&gt; 8) &amp; 0xf;        <em class='comment'>// family and model fields</em>
+<a id='L93' name='L93' />  <strong class='reserved'>int</strong> <a href='../Y/3576.html' title='Multiple used in 3 places.'>model</a> = (<a href='../Y/2149.html' title='Multiple used in 8 places.'>eax</a> &gt;&gt; 4) &amp; 0xf;
+<a id='L94' name='L94' />  <strong class='reserved'>if</strong> (<a href='../Y/2332.html' title='Multiple used in 4 places.'>family</a> == 0xf) <em class='brace'>{</em>                  <em class='comment'>// use extended family and model fields</em>
+<a id='L95' name='L95' />    <a href='../Y/2332.html' title='Multiple used in 4 places.'>family</a> += (<a href='../Y/2149.html' title='Multiple used in 8 places.'>eax</a> &gt;&gt; 20) &amp; 0xff;
+<a id='L96' name='L96' />    <a href='../Y/3576.html' title='Multiple used in 3 places.'>model</a> += ((<a href='../Y/2149.html' title='Multiple used in 8 places.'>eax</a> &gt;&gt; 16) &amp; 0xf) &lt;&lt; 4;
+<a id='L97' name='L97' />  <em class='brace'>}</em>
+<a id='L98' name='L98' />
+<a id='L99' name='L99' />  <em class='comment'>// Opteron Rev E has a bug in which on very rare occasions a locked</em>
+<a id='L100' name='L100' />  <em class='comment'>// instruction doesn't act as a read-acquire barrier if followed by a</em>
+<a id='L101' name='L101' />  <em class='comment'>// non-locked read-modify-write instruction.  Rev F has this bug in </em>
+<a id='L102' name='L102' />  <em class='comment'>// pre-release versions, but not in versions released to customers,</em>
+<a id='L103' name='L103' />  <em class='comment'>// so we test only for Rev E, which is family 15, model 32..63 inclusive.</em>
+<a id='L104' name='L104' />  <strong class='reserved'>if</strong> (<a href='../Y/5124.html' title='Multiple used in 47 places.'>strcmp</a>(<a href='../Y/5623.html' title='Multiple used in 6 places.'>vendor</a>, "AuthenticAMD") == 0 &amp;&amp;       <em class='comment'>// AMD</em>
+<a id='L105' name='L105' />      <a href='../Y/2332.html' title='Multiple used in 4 places.'>family</a> == 15 &amp;&amp;
+<a id='L106' name='L106' />      32 &lt;= <a href='../Y/3576.html' title='Multiple used in 3 places.'>model</a> &amp;&amp; <a href='../Y/3576.html' title='Multiple used in 3 places.'>model</a> &lt;= 63) <em class='brace'>{</em>
+<a id='L107' name='L107' />    <a href='../Y/39.html' title='Multiple used in 14 places.'>AtomicOps_Internalx86CPUFeatures</a>.<a href='../Y/2618.html' title='Multiple used in 9 places.'>has_amd_lock_mb_bug</a> = <strong class='reserved'>true</strong>;
+<a id='L108' name='L108' />  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L109' name='L109' />    <a href='../Y/39.html' title='Multiple used in 14 places.'>AtomicOps_Internalx86CPUFeatures</a>.<a href='../Y/2618.html' title='Multiple used in 9 places.'>has_amd_lock_mb_bug</a> = <strong class='reserved'>false</strong>;
+<a id='L110' name='L110' />  <em class='brace'>}</em>
+<a id='L111' name='L111' />
+<a id='L112' name='L112' />  <em class='comment'>// edx bit 26 is SSE2 which we use to tell use whether we can use mfence</em>
+<a id='L113' name='L113' />  <a href='../Y/39.html' title='Multiple used in 14 places.'>AtomicOps_Internalx86CPUFeatures</a>.<a href='../Y/2625.html' title='Multiple used in 4 places.'>has_sse2</a> = ((<a href='../Y/2155.html' title='Multiple used in 6 places.'>edx</a> &gt;&gt; 26) &amp; 1);
+<a id='L114' name='L114' />
+<a id='L115' name='L115' />  <em class='comment'>// ecx bit 13 indicates whether the cmpxchg16b instruction is supported</em>
+<a id='L116' name='L116' />  <a href='../Y/39.html' title='Multiple used in 14 places.'>AtomicOps_Internalx86CPUFeatures</a>.<a href='../Y/2621.html' title='Multiple used in 2 places.'>has_cmpxchg16b</a> = ((<a href='../Y/2153.html' title='Multiple used in 6 places.'>ecx</a> &gt;&gt; 13) &amp; 1);
+<a id='L117' name='L117' /><em class='brace'>}</em>
+<a id='L118' name='L118' />
+<a id='L119' name='L119' /><a href='../S/524.html#L58' title='Defined at 58 in third_party/google-perftools-1.8.3/src/base/googleinit.h.'>REGISTER_MODULE_INITIALIZER</a>(atomicops_x86, <em class='brace'>{</em>
+<a id='L120' name='L120' />  <a href='../S/513.html#L75' title='Defined at 75 in third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.cc.'>AtomicOps_Internalx86CPUFeaturesInit</a>();
+<a id='L121' name='L121' /><em class='brace'>}</em>);
+<a id='L122' name='L122' />
+<a id='L123' name='L123' /><em class='sharp'>#endif</em>
+<a id='L124' name='L124' />
+<a id='L125' name='L125' /><em class='sharp'>#endif</em>  <em class='comment'>/* ifdef BASE_ATOMICOPS_INTERNALS_X86_H_ */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L75'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

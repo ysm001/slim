@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>lock_owner_tid_</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/588.html#L147'>lock_owner_tid_</a>   147 third_party/google-perftools-1.8.3/src/memory_region_map.cc pthread_t MemoryRegionMap::lock_owner_tid_;  // GUARDED_BY(owner_lock_)</span>
+<span class='curline'><a href='../S/588.html#L259'>lock_owner_tid_</a>   259 third_party/google-perftools-1.8.3/src/memory_region_map.cc     if (recursion_count_ &gt; 0 &amp;&amp; current_thread_is(lock_owner_tid_)) {</span>
+<span class='curline'><a href='../S/588.html#L273'>lock_owner_tid_</a>   273 third_party/google-perftools-1.8.3/src/memory_region_map.cc       lock_owner_tid_ = pthread_self();</span>
+<span class='curline'><a href='../S/588.html#L283'>lock_owner_tid_</a>   283 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RAW_CHECK(current_thread_is(lock_owner_tid_), "unlock by non-holder");</span>
+<span class='curline'><a href='../S/588.html#L292'>lock_owner_tid_</a>   292 third_party/google-perftools-1.8.3/src/memory_region_map.cc   return lock_.IsHeld()  &amp;&amp;  current_thread_is(lock_owner_tid_);</span>
+<span class='curline'><a href='../S/589.html#L287'>lock_owner_tid_</a>   287 third_party/google-perftools-1.8.3/src/memory_region_map.h   static pthread_t lock_owner_tid_;</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>ProfileHandlerToken</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/596.html#L61'>ProfileHandlerToken</a>   61 third_party/google-perftools-1.8.3/src/profile-handler.cc   ProfileHandlerToken(ProfileHandlerCallback cb, void* cb_arg)</span>
+<span class='curline'><a href='../S/596.html#L94'>ProfileHandlerToken</a>   94 third_party/google-perftools-1.8.3/src/profile-handler.cc   ProfileHandlerToken* RegisterCallback(ProfileHandlerCallback callback,</span>
+<span class='curline'><a href='../S/596.html#L100'>ProfileHandlerToken</a>  100 third_party/google-perftools-1.8.3/src/profile-handler.cc   void UnregisterCallback(ProfileHandlerToken* token)</span>
+<span class='curline'><a href='../S/596.html#L181'>ProfileHandlerToken</a>  181 third_party/google-perftools-1.8.3/src/profile-handler.cc   typedef list&lt;ProfileHandlerToken*&gt; CallbackList;</span>
+<span class='curline'><a href='../S/596.html#L339'>ProfileHandlerToken</a>  339 third_party/google-perftools-1.8.3/src/profile-handler.cc ProfileHandlerToken* ProfileHandler::RegisterCallback(</span>
+<span class='curline'><a href='../S/596.html#L342'>ProfileHandlerToken</a>  342 third_party/google-perftools-1.8.3/src/profile-handler.cc   ProfileHandlerToken* token = new ProfileHandlerToken(callback, callback_arg);</span>
+<span class='curline'><a href='../S/596.html#L359'>ProfileHandlerToken</a>  359 third_party/google-perftools-1.8.3/src/profile-handler.cc void ProfileHandler::UnregisterCallback(ProfileHandlerToken* token) {</span>
+<span class='curline'><a href='../S/596.html#L515'>ProfileHandlerToken</a>  515 third_party/google-perftools-1.8.3/src/profile-handler.cc extern "C" ProfileHandlerToken* ProfileHandlerRegisterCallback(</span>
+<span class='curline'><a href='../S/596.html#L520'>ProfileHandlerToken</a>  520 third_party/google-perftools-1.8.3/src/profile-handler.cc extern "C" void ProfileHandlerUnregisterCallback(ProfileHandlerToken* token) {</span>
+<span class='curline'><a href='../S/596.html#L541'>ProfileHandlerToken</a>  541 third_party/google-perftools-1.8.3/src/profile-handler.cc extern "C" ProfileHandlerToken* ProfileHandlerRegisterCallback(</span>
+<span class='curline'><a href='../S/596.html#L546'>ProfileHandlerToken</a>  546 third_party/google-perftools-1.8.3/src/profile-handler.cc extern "C" void ProfileHandlerUnregisterCallback(ProfileHandlerToken* token) {</span>
+<span class='curline'><a href='../S/597.html#L61'>ProfileHandlerToken</a>   61 third_party/google-perftools-1.8.3/src/profile-handler.h struct ProfileHandlerToken;</span>
+<span class='curline'><a href='../S/597.html#L112'>ProfileHandlerToken</a>  112 third_party/google-perftools-1.8.3/src/profile-handler.h ProfileHandlerToken* ProfileHandlerRegisterCallback(</span>
+<span class='curline'><a href='../S/597.html#L122'>ProfileHandlerToken</a>  122 third_party/google-perftools-1.8.3/src/profile-handler.h void ProfileHandlerUnregisterCallback(ProfileHandlerToken* token);</span>
+<span class='curline'><a href='../S/600.html#L116'>ProfileHandlerToken</a>  116 third_party/google-perftools-1.8.3/src/profiler.cc   ProfileHandlerToken* prof_handler_token_;</span>
+<span class='curline'><a href='../S/651.html#L362'>ProfileHandlerToken</a>  362 third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc   ProfileHandlerToken* RegisterCallback(void* callback_arg) {</span>
+<span class='curline'><a href='../S/651.html#L363'>ProfileHandlerToken</a>  363 third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc     ProfileHandlerToken* token = ProfileHandlerRegisterCallback(</span>
+<span class='curline'><a href='../S/651.html#L371'>ProfileHandlerToken</a>  371 third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc   void UnregisterCallback(ProfileHandlerToken* token) {</span>
+<span class='curline'><a href='../S/651.html#L410'>ProfileHandlerToken</a>  410 third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc   ProfileHandlerToken* token = RegisterCallback(&amp;tick_count);</span>
+<span class='curline'><a href='../S/651.html#L420'>ProfileHandlerToken</a>  420 third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc   ProfileHandlerToken* token1 = RegisterCallback(&amp;first_tick_count);</span>
+<span class='curline'><a href='../S/651.html#L427'>ProfileHandlerToken</a>  427 third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc   ProfileHandlerToken* token2 = RegisterCallback(&amp;second_tick_count);</span>
+</pre>
+</body>
+</html>

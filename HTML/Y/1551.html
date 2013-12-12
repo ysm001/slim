@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>atomset_size</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/357.html#L142'>atomset_size</a>      142 src/membrane.c   mem-&gt;atomset_size  =  32;</span>
+<span class='curline'><a href='../S/357.html#L149'>atomset_size</a>      149 src/membrane.c   mem-&gt;atomset       =  LMN_CALLOC(struct AtomListEntry *, mem-&gt;atomset_size);</span>
+<span class='curline'><a href='../S/357.html#L151'>atomset_size</a>      151 src/membrane.c   hashtbl_init(&amp;mem-&gt;atomset, mem-&gt;atomset_size);</span>
+<span class='curline'><a href='../S/357.html#L247'>atomset_size</a>      247 src/membrane.c       while (mem-&gt;atomset_size - 1 &lt; mem-&gt;max_functor) {</span>
+<span class='curline'><a href='../S/357.html#L248'>atomset_size</a>      248 src/membrane.c         int org_size = mem-&gt;atomset_size;</span>
+<span class='curline'><a href='../S/357.html#L249'>atomset_size</a>      249 src/membrane.c         mem-&gt;atomset_size *= 2;</span>
+<span class='curline'><a href='../S/357.html#L250'>atomset_size</a>      250 src/membrane.c         LMN_ASSERT(mem-&gt;atomset_size &gt; 0);</span>
+<span class='curline'><a href='../S/357.html#L251'>atomset_size</a>      251 src/membrane.c         mem-&gt;atomset = LMN_REALLOC(struct AtomListEntry*, mem-&gt;atomset, mem-&gt;atomset_size);</span>
+<span class='curline'><a href='../S/357.html#L252'>atomset_size</a>      252 src/membrane.c         memset(mem-&gt;atomset + org_size, 0, (mem-&gt;atomset_size - org_size) * sizeof(struct AtomListEntry *));</span>
+<span class='curline'><a href='../S/357.html#L287'>atomset_size</a>      287 src/membrane.c   ret += sizeof(struct AtomListEntry*) * mem-&gt;atomset_size;</span>
+<span class='curline'><a href='../S/358.html#L200'>atomset_size</a>      200 src/membrane.h   unsigned int         atomset_size;</span>
+<span class='curline'><a href='../S/358.html#L344'>atomset_size</a>      344 src/membrane.h   if ((f &lt; mem-&gt;atomset_size) &amp;&amp; mem-&gt;atomset[f]) {</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>cpuinfo_cycles_per_second</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/542.html#L204'>cpuinfo_cycles_per_second</a>  204 third_party/google-perftools-1.8.3/src/base/sysinfo.cc static double cpuinfo_cycles_per_second = 1.0;  // 0.0 might be dangerous</span>
+<span class='curline'><a href='../S/542.html#L275'>cpuinfo_cycles_per_second</a>  275 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     cpuinfo_cycles_per_second = EstimateCyclesPerSecond(100);</span>
+<span class='curline'><a href='../S/542.html#L294'>cpuinfo_cycles_per_second</a>  294 third_party/google-perftools-1.8.3/src/base/sysinfo.cc       cpuinfo_cycles_per_second = freq * 1000.0;</span>
+<span class='curline'><a href='../S/542.html#L305'>cpuinfo_cycles_per_second</a>  305 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     cpuinfo_cycles_per_second = freq * 1000.0;</span>
+<span class='curline'><a href='../S/542.html#L315'>cpuinfo_cycles_per_second</a>  315 third_party/google-perftools-1.8.3/src/base/sysinfo.cc       cpuinfo_cycles_per_second = EstimateCyclesPerSecond(1000);</span>
+<span class='curline'><a href='../S/542.html#L351'>cpuinfo_cycles_per_second</a>  351 third_party/google-perftools-1.8.3/src/base/sysinfo.cc         cpuinfo_cycles_per_second = strtod(freqstr+1, &amp;err) * 1000000.0;</span>
+<span class='curline'><a href='../S/542.html#L352'>cpuinfo_cycles_per_second</a>  352 third_party/google-perftools-1.8.3/src/base/sysinfo.cc         if (freqstr[1] != '\0' &amp;&amp; *err == '\0' &amp;&amp; cpuinfo_cycles_per_second &gt; 0)</span>
+<span class='curline'><a href='../S/542.html#L372'>cpuinfo_cycles_per_second</a>  372 third_party/google-perftools-1.8.3/src/base/sysinfo.cc       cpuinfo_cycles_per_second = bogo_clock;</span>
+<span class='curline'><a href='../S/542.html#L375'>cpuinfo_cycles_per_second</a>  375 third_party/google-perftools-1.8.3/src/base/sysinfo.cc       cpuinfo_cycles_per_second = EstimateCyclesPerSecond(1000);</span>
+<span class='curline'><a href='../S/542.html#L378'>cpuinfo_cycles_per_second</a>  378 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   if (cpuinfo_cycles_per_second == 0.0) {</span>
+<span class='curline'><a href='../S/542.html#L379'>cpuinfo_cycles_per_second</a>  379 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     cpuinfo_cycles_per_second = 1.0;   // maybe unnecessary, but safe</span>
+<span class='curline'><a href='../S/542.html#L407'>cpuinfo_cycles_per_second</a>  407 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     cpuinfo_cycles_per_second = EstimateCyclesPerSecond(1000);</span>
+<span class='curline'><a href='../S/542.html#L409'>cpuinfo_cycles_per_second</a>  409 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     cpuinfo_cycles_per_second = hz;</span>
+<span class='curline'><a href='../S/542.html#L425'>cpuinfo_cycles_per_second</a>  425 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     cpuinfo_cycles_per_second = (int64)data * (int64)(1000 * 1000); // was mhz</span>
+<span class='curline'><a href='../S/542.html#L427'>cpuinfo_cycles_per_second</a>  427 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     cpuinfo_cycles_per_second = EstimateCyclesPerSecond(500); // TODO &lt;500?</span>
+<span class='curline'><a href='../S/542.html#L448'>cpuinfo_cycles_per_second</a>  448 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   cpuinfo_cycles_per_second = mach_time_units_per_nanosecond * 1e9;</span>
+<span class='curline'><a href='../S/542.html#L460'>cpuinfo_cycles_per_second</a>  460 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   cpuinfo_cycles_per_second = EstimateCyclesPerSecond(1000);</span>
+<span class='curline'><a href='../S/542.html#L466'>cpuinfo_cycles_per_second</a>  466 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   return cpuinfo_cycles_per_second;</span>
+</pre>
+</body>
+</html>

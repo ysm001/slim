@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>kHashbits</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/590.html#L140'>kHashbits</a>         140 third_party/google-perftools-1.8.3/src/packed-cache-inl.h   static const int kHashbits = 12;</span>
+<span class='curline'><a href='../S/590.html#L142'>kHashbits</a>         142 third_party/google-perftools-1.8.3/src/packed-cache-inl.h   static const int kHashbits = 16;</span>
+<span class='curline'><a href='../S/590.html#L150'>kHashbits</a>         150 third_party/google-perftools-1.8.3/src/packed-cache-inl.h     COMPILE_ASSERT(kHashbits &lt;= kKeybits, hash_function);</span>
+<span class='curline'><a href='../S/590.html#L151'>kHashbits</a>         151 third_party/google-perftools-1.8.3/src/packed-cache-inl.h     COMPILE_ASSERT(kKeybits - kHashbits + kValuebits &lt;= kTbits,</span>
+<span class='curline'><a href='../S/590.html#L179'>kHashbits</a>         179 third_party/google-perftools-1.8.3/src/packed-cache-inl.h     for (int i = 0; i &lt; 1 &lt;&lt; kHashbits; i++) {</span>
+<span class='curline'><a href='../S/590.html#L202'>kHashbits</a>         202 third_party/google-perftools-1.8.3/src/packed-cache-inl.h       const int shift = kHashbits - kValuebits;</span>
+<span class='curline'><a href='../S/590.html#L209'>kHashbits</a>         209 third_party/google-perftools-1.8.3/src/packed-cache-inl.h     return static_cast&lt;size_t&gt;(key) &amp; N_ONES_(size_t, kHashbits);</span>
+<span class='curline'><a href='../S/590.html#L220'>kHashbits</a>         220 third_party/google-perftools-1.8.3/src/packed-cache-inl.h   static const int kUpperbits = kUseWholeKeys ? kKeybits : kKeybits - kHashbits;</span>
+<span class='curline'><a href='../S/590.html#L233'>kHashbits</a>         233 third_party/google-perftools-1.8.3/src/packed-cache-inl.h   volatile T array_[1 &lt;&lt; kHashbits];</span>
+<span class='curline'><a href='../S/648.html#L37'>kHashbits</a>          37 third_party/google-perftools-1.8.3/src/tests/packed-cache_test.cc static const int kHashbits = PackedCache&lt;64, uint64&gt;::kHashbits;</span>
+<span class='curline'><a href='../S/648.html#L51'>kHashbits</a>          51 third_party/google-perftools-1.8.3/src/tests/packed-cache_test.cc   cache.Put(1 &lt;&lt; kHashbits, 22);</span>
+<span class='curline'><a href='../S/648.html#L54'>kHashbits</a>          54 third_party/google-perftools-1.8.3/src/tests/packed-cache_test.cc   CHECK_EQ(cache.GetOrDefault(1 &lt;&lt; kHashbits, 1), 22);</span>
+</pre>
+</body>
+</html>

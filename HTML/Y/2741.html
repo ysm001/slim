@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>i0</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/382.html#L67'>i0</a>                 67 src/system_ruleset.c       LmnSAtom i0;</span>
+<span class='curline'><a href='../S/382.html#L72'>i0</a>                 72 src/system_ruleset.c       i0 = LMN_SATOM(LMN_SATOM_GET_LINK(o0, 0));</span>
+<span class='curline'><a href='../S/382.html#L74'>i0</a>                 74 src/system_ruleset.c       m0 = LMN_PROXY_GET_MEM(i0);</span>
+<span class='curline'><a href='../S/382.html#L82'>i0</a>                 82 src/system_ruleset.c         lmn_mem_unify_atom_args(m0, i0, 1, i1, 1);</span>
+<span class='curline'><a href='../S/382.html#L83'>i0</a>                 83 src/system_ruleset.c         remove_from_atomlist(i0, ent);</span>
+<span class='curline'><a href='../S/382.html#L105'>i0</a>                105 src/system_ruleset.c     LmnSAtom i0, i1;</span>
+<span class='curline'><a href='../S/382.html#L109'>i0</a>                109 src/system_ruleset.c     i0 = LMN_SATOM(LMN_SATOM_GET_LINK(o0, 0));</span>
+<span class='curline'><a href='../S/382.html#L111'>i0</a>                111 src/system_ruleset.c     if (LMN_ATTR_IS_DATA(LMN_SATOM_GET_ATTR(i0, 1))) return FALSE;</span>
+<span class='curline'><a href='../S/382.html#L112'>i0</a>                112 src/system_ruleset.c     i1 = LMN_SATOM(LMN_SATOM_GET_LINK(i0, 1));</span>
+<span class='curline'><a href='../S/382.html#L120'>i0</a>                120 src/system_ruleset.c       remove_from_atomlist(i0, ent);</span>
+<span class='curline'><a href='../S/384.html#L3104'>i0</a>               3104 src/task.c           LmnInstrVar desti, i0, i1;</span>
+<span class='curline'><a href='../S/384.html#L3107'>i0</a>               3107 src/task.c           READ_VAL(LmnInstrVar, instr, i0);</span>
+<span class='curline'><a href='../S/384.html#L3109'>i0</a>               3109 src/task.c           LMN_ASSERT(at(rc, i0) == LMN_INT_ATTR);</span>
+<span class='curline'><a href='../S/384.html#L3111'>i0</a>               3111 src/task.c           warry_set(rc, desti, wt(rc, i0) + wt(rc, i1), LMN_INT_ATTR, TT_ATOM);</span>
+<span class='curline'><a href='../S/384.html#L3116'>i0</a>               3116 src/task.c           LmnInstrVar desti, i0, i1;</span>
+<span class='curline'><a href='../S/384.html#L3119'>i0</a>               3119 src/task.c           READ_VAL(LmnInstrVar, instr, i0);</span>
+<span class='curline'><a href='../S/384.html#L3121'>i0</a>               3121 src/task.c           LMN_ASSERT(at(rc, i0) == LMN_INT_ATTR);</span>
+<span class='curline'><a href='../S/384.html#L3123'>i0</a>               3123 src/task.c           warry_set(rc, desti, wt(rc, i0) - wt(rc, i1), LMN_INT_ATTR, TT_ATOM);</span>
+<span class='curline'><a href='../S/384.html#L3128'>i0</a>               3128 src/task.c           LmnInstrVar desti, i0, i1;</span>
+<span class='curline'><a href='../S/384.html#L3131'>i0</a>               3131 src/task.c           READ_VAL(LmnInstrVar, instr, i0);</span>
+<span class='curline'><a href='../S/384.html#L3133'>i0</a>               3133 src/task.c           LMN_ASSERT(at(rc, i0) == LMN_INT_ATTR);</span>
+<span class='curline'><a href='../S/384.html#L3135'>i0</a>               3135 src/task.c           warry_set(rc, desti, wt(rc, i0) * wt(rc, i1), LMN_INT_ATTR, TT_ATOM);</span>
+<span class='curline'><a href='../S/384.html#L3140'>i0</a>               3140 src/task.c           LmnInstrVar desti, i0, i1;</span>
+<span class='curline'><a href='../S/384.html#L3143'>i0</a>               3143 src/task.c           READ_VAL(LmnInstrVar, instr, i0);</span>
+<span class='curline'><a href='../S/384.html#L3145'>i0</a>               3145 src/task.c           LMN_ASSERT(at(rc, i0) == LMN_INT_ATTR);</span>
+<span class='curline'><a href='../S/384.html#L3147'>i0</a>               3147 src/task.c           warry_set(rc, desti, wt(rc, i0) / wt(rc, i1), LMN_INT_ATTR, TT_ATOM);</span>
+<span class='curline'><a href='../S/384.html#L3152'>i0</a>               3152 src/task.c           LmnInstrVar desti, i0, i1;</span>
+<span class='curline'><a href='../S/384.html#L3155'>i0</a>               3155 src/task.c           READ_VAL(LmnInstrVar, instr, i0);</span>
+<span class='curline'><a href='../S/384.html#L3157'>i0</a>               3157 src/task.c           LMN_ASSERT(at(rc, i0) == LMN_INT_ATTR);</span>
+<span class='curline'><a href='../S/384.html#L3159'>i0</a>               3159 src/task.c           warry_set(rc, desti, wt(rc, i0) % wt(rc, i1), LMN_INT_ATTR, TT_ATOM);</span>
+<span class='curline'><a href='../S/637.html#L1226'>i0</a>               1226 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   Inner i0;</span>
+<span class='curline'><a href='../S/637.html#L1233'>i0</a>               1233 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   Nesting() : i0(this), i1(this), i2(this), i3(this) {}</span>
+<span class='curline'><a href='../S/637.html#L1237'>i0</a>               1237 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc REGISTER_OBJ_MAKER(nesting_i0, Nesting::Inner* p = &amp;((new Nesting())-&gt;i0);)</span>
+</pre>
+</body>
+</html>

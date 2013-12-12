@@ -1,0 +1,561 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>src/verifier/mhash.c</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/733.html'>src</a>/<a href='../files/737.html'>verifier</a>/mhash.c</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L82'>[^]</a><a href='#L513'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L82' title='Defined at 82.'>mhash_sub</a></li>
+<li><a href='#L115' title='Defined at 115.'>mhash_membrane</a></li>
+<li><a href='#L203' title='Defined at 203.'>molecule</a></li>
+<li><a href='#L227' title='Defined at 227.'>do_molecule</a></li>
+<li><a href='#L290' title='Defined at 290.'>mhash_unit</a></li>
+<li><a href='#L362' title='Defined at 362.'>memunit</a></li>
+<li><a href='#L413' title='Defined at 413.'>memlink</a></li>
+<li><a href='#L441' title='Defined at 441.'>mhash_symbol</a></li>
+<li><a href='#L449' title='Defined at 449.'>mhash_data</a></li>
+<li><a href='#L488' title='Defined at 488.'>mhash_rulesets</a></li>
+<li><a href='#L513' title='Defined at 513.'>mhash_multiply_rhistories_f</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>/*</em>
+<a id='L2' name='L2' /><em class='comment'> * mhash.c</em>
+<a id='L3' name='L3' /><em class='comment'> *</em>
+<a id='L4' name='L4' /><em class='comment'> *   Copyright (c) 2008, Ueda Laboratory LMNtal Group &lt;lmntal@ueda.info.waseda.ac.jp&gt;</em>
+<a id='L5' name='L5' /><em class='comment'> *   All rights reserved.</em>
+<a id='L6' name='L6' /><em class='comment'> *</em>
+<a id='L7' name='L7' /><em class='comment'> *   Redistribution and use in source and binary forms, with or without</em>
+<a id='L8' name='L8' /><em class='comment'> *   modification, are permitted provided that the following conditions are</em>
+<a id='L9' name='L9' /><em class='comment'> *   met:</em>
+<a id='L10' name='L10' /><em class='comment'> *</em>
+<a id='L11' name='L11' /><em class='comment'> *    1. Redistributions of source code must retain the above copyright</em>
+<a id='L12' name='L12' /><em class='comment'> *       notice, this list of conditions and the following disclaimer.</em>
+<a id='L13' name='L13' /><em class='comment'> *</em>
+<a id='L14' name='L14' /><em class='comment'> *    2. Redistributions in binary form must reproduce the above copyright</em>
+<a id='L15' name='L15' /><em class='comment'> *       notice, this list of conditions and the following disclaimer in</em>
+<a id='L16' name='L16' /><em class='comment'> *       the documentation and/or other materials provided with the</em>
+<a id='L17' name='L17' /><em class='comment'> *       distribution.</em>
+<a id='L18' name='L18' /><em class='comment'> *</em>
+<a id='L19' name='L19' /><em class='comment'> *    3. Neither the name of the Ueda Laboratory LMNtal Group nor the</em>
+<a id='L20' name='L20' /><em class='comment'> *       names of its contributors may be used to endorse or promote</em>
+<a id='L21' name='L21' /><em class='comment'> *       products derived from this software without specific prior</em>
+<a id='L22' name='L22' /><em class='comment'> *       written permission.</em>
+<a id='L23' name='L23' /><em class='comment'> *</em>
+<a id='L24' name='L24' /><em class='comment'> *   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L25' name='L25' /><em class='comment'> *   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L26' name='L26' /><em class='comment'> *   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L27' name='L27' /><em class='comment'> *   A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L28' name='L28' /><em class='comment'> *   OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L29' name='L29' /><em class='comment'> *   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L30' name='L30' /><em class='comment'> *   LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L31' name='L31' /><em class='comment'> *   DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L32' name='L32' /><em class='comment'> *   THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L33' name='L33' /><em class='comment'> *   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L34' name='L34' /><em class='comment'> *   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L35' name='L35' /><em class='comment'> *</em>
+<a id='L36' name='L36' /><em class='comment'> * cf. devel/sample/khiroto/mhash.lmn</em>
+<a id='L37' name='L37' /><em class='comment'> *</em>
+<a id='L38' name='L38' /><em class='comment'> * 初期値によってはオーバーフローが生じてしまい、</em>
+<a id='L39' name='L39' /><em class='comment'> * 計算結果が計算順序に因ってしまうことがあるので</em>
+<a id='L40' name='L40' /><em class='comment'> * 注意すること</em>
+<a id='L41' name='L41' /><em class='comment'> */</em>
+<a id='L42' name='L42' />
+<a id='L43' name='L43' />
+<a id='L44' name='L44' /><em class='sharp'>#include</em> "<a href='439.html'>mhash.h</a>"
+<a id='L45' name='L45' /><em class='sharp'>#include</em> "<a href='311.html'>atom.h</a>"
+<a id='L46' name='L46' /><em class='sharp'>#include</em> "<a href='358.html'>membrane.h</a>"
+<a id='L47' name='L47' /><em class='sharp'>#include</em> "<a href='366.html'>rule.h</a>"
+<a id='L48' name='L48' /><em class='sharp'>#include</em> "<a href='331.html'>functor.h</a>"
+<a id='L49' name='L49' /><em class='sharp'>#include</em> "<a href='405.html'>st.h</a>"
+<a id='L50' name='L50' /><em class='sharp'>#include</em> "<a href='411.html'>visitlog.h</a>"
+<a id='L51' name='L51' /><em class='sharp'>#include</em> "<a href='372.html'>slim_header/string.h</a>"
+<a id='L52' name='L52' /><em class='sharp'>#ifdef</em> <a href='../Y/611.html' title='Multiple used in 97 places.'>PROFILE</a>
+<a id='L53' name='L53' /><em class='sharp'># include</em> "<a href='368.html'>runtime_status.h</a>"
+<a id='L54' name='L54' /><em class='sharp'>#endif</em>
+<a id='L55' name='L55' />
+<a id='L56' name='L56' />
+<a id='L57' name='L57' /><em class='comment'>/* #define MHASH_C 31 /\* 深さを深くした場合、31は小さすぎるかも *\/ */</em>
+<a id='L58' name='L58' /><em class='sharp'>#define</em> <a href='../S/438.html#L342' title='Refered from 342 in src/verifier/mhash.c.'>MHASH_C</a>                  (101)
+<a id='L59' name='L59' /><em class='sharp'>#define</em> <a href='../S/438.html#L422' title='Refered from 422 in src/verifier/mhash.c.'>MHASH_B</a>                   (13)
+<a id='L60' name='L60' /><em class='sharp'>#define</em> <a href='../S/438.html#L343' title='Refered from 343 in src/verifier/mhash.c.'>MHASH_E</a>                    (3)
+<a id='L61' name='L61' /><em class='sharp'>#define</em> <a href='../S/438.html#L209' title='Refered from 209 in src/verifier/mhash.c.'>MHASH_ADD_0</a>                (0)
+<a id='L62' name='L62' /><em class='sharp'>#define</em> <a href='../S/438.html#L210' title='Refered from 210 in src/verifier/mhash.c.'>MHASH_MUL_0</a>               (41)
+<a id='L63' name='L63' /><em class='sharp'>#define</em> <a href='../S/438.html#L134' title='Refered from 134 in src/verifier/mhash.c.'>MHASH_MEM_ADD_0</a>         (3412)
+<a id='L64' name='L64' /><em class='sharp'>#define</em> <a href='../S/438.html#L135' title='Refered from 135 in src/verifier/mhash.c.'>MHASH_MEM_MUL_0</a>         (3412)
+<a id='L65' name='L65' /><em class='sharp'>#define</em> <a href='../S/438.html#L124' title='Refered from 124 in src/verifier/mhash.c.'>MHASH_CALCULATING_MEM</a>      (1)
+<a id='L66' name='L66' /><em class='sharp'>#define</em> <a href='../R/1584.html' title='Multiple refered from 2 places.'>MHASH_TREE_D</a>               (2)
+<a id='L67' name='L67' />
+<a id='L68' name='L68' /><strong class='reserved'>typedef</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../R/4264.html' title='Multiple refered from 42 places.'>mhash_t</a>;
+<a id='L69' name='L69' />
+<a id='L70' name='L70' /><strong class='reserved'>static</strong> <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../S/438.html#L82' title='Defined at 82 in src/verifier/mhash.c.'>mhash_sub</a>(<a href='../D/1669.html' title='Multiple defined in 2 places.'>LmnMembrane</a> *<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>, <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../Y/5313.html' title='Multiple used in 17 places.'>tbl_size</a>);
+<a id='L71' name='L71' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../S/438.html#L115' title='Defined at 115 in src/verifier/mhash.c.'>mhash_membrane</a>(<a href='../D/1669.html' title='Multiple defined in 2 places.'>LmnMembrane</a> *<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>,
+<a id='L72' name='L72' />                                     <a href='../D/1669.html' title='Multiple defined in 2 places.'>LmnMembrane</a> *<a href='../Y/1722.html' title='Multiple used in 23 places.'>calc_mem</a>,
+<a id='L73' name='L73' />                                     <a href='../D/2229.html' title='Multiple defined in 2 places.'>ProcessTbl</a>  <a href='../Y/1908.html' title='Multiple used in 46 places.'>ctx</a>);
+<a id='L74' name='L74' />
+<a id='L75' name='L75' /><a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../R/4257.html' title='Multiple refered from 2 places.'>mhash</a>(<a href='../D/1669.html' title='Multiple defined in 2 places.'>LmnMembrane</a> *<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>)
+<a id='L76' name='L76' /><em class='brace'>{</em>
+<a id='L77' name='L77' />  <strong class='reserved'>return</strong> <a href='../S/438.html#L82' title='Defined at 82 in src/verifier/mhash.c.'>mhash_sub</a>(<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>, <a href='../S/407.html#L147' title='Defined at 147 in src/utility/util.h.'>round2up</a>(<a href='../D/3781.html' title='Multiple defined in 3 places.'>env_next_id</a>()));
+<a id='L78' name='L78' />  <em class='comment'>//return mhash_sub(mem, 1024);</em>
+<a id='L79' name='L79' />  <em class='comment'>//return 10;</em>
+<a id='L80' name='L80' /><em class='brace'>}</em>
+<a id='L81' name='L81' />
+<a id='L82' name='L82' /><strong class='reserved'>static</strong> <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../R/4262.html' title='Multiple refered from 2 places.'>mhash_sub</a>(<a href='../D/1669.html' title='Multiple defined in 2 places.'>LmnMembrane</a> *<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>, <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../Y/5313.html' title='Multiple used in 17 places.'>tbl_size</a>)
+<a id='L83' name='L83' /><em class='brace'>{</em>
+<a id='L84' name='L84' />  <strong class='reserved'>struct</strong> <a href='../D/2229.html' title='Multiple defined in 2 places.'>ProcessTbl</a> <a href='../Y/1702.html' title='Multiple used in 562 places.'>c</a>;
+<a id='L85' name='L85' />  <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../Y/5268.html' title='Multiple used in 639 places.'>t</a>;
+<a id='L86' name='L86' />
+<a id='L87' name='L87' /><em class='sharp'>#ifdef</em> <a href='../Y/611.html' title='Multiple used in 97 places.'>PROFILE</a>
+<a id='L88' name='L88' />  <strong class='reserved'>if</strong> (<a href='../Y/3291.html' title='Multiple used in 489 places.'>lmn_env</a>.<a href='../Y/4284.html' title='Multiple used in 93 places.'>profile_level</a> &gt;= 3)  <a href='../S/368.html#L281' title='Defined at 281 in src/runtime_status.h.'>profile_start_timer</a>(<a href='../S/368.html#L77' title='Defined at 77 in src/runtime_status.h.'>PROFILE_TIME__STATE_HASH_MEM</a>);
+<a id='L89' name='L89' /><em class='sharp'>#endif</em>
+<a id='L90' name='L90' />
+<a id='L91' name='L91' />  <a href='../S/410.html#L48' title='Defined at 48 in src/utility/visitlog.c.'>proc_tbl_init_with_size</a>((<a href='../D/2229.html' title='Multiple defined in 2 places.'>ProcessTbl</a>)&amp;<a href='../Y/1702.html' title='Multiple used in 562 places.'>c</a>, <a href='../Y/5313.html' title='Multiple used in 17 places.'>tbl_size</a>);
+<a id='L92' name='L92' />  <a href='../Y/5268.html' title='Multiple used in 639 places.'>t</a> = <a href='../S/438.html#L115' title='Defined at 115 in src/verifier/mhash.c.'>mhash_membrane</a>(<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>, <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>, (<a href='../D/2229.html' title='Multiple defined in 2 places.'>ProcessTbl</a>)&amp;<a href='../Y/1702.html' title='Multiple used in 562 places.'>c</a>);
+<a id='L93' name='L93' />  <a href='../S/410.html#L72' title='Defined at 72 in src/utility/visitlog.c.'>proc_tbl_destroy</a>((<a href='../D/2229.html' title='Multiple defined in 2 places.'>ProcessTbl</a>)&amp;<a href='../Y/1702.html' title='Multiple used in 562 places.'>c</a>);
+<a id='L94' name='L94' />
+<a id='L95' name='L95' /><em class='sharp'>#ifdef</em> <a href='../Y/611.html' title='Multiple used in 97 places.'>PROFILE</a>
+<a id='L96' name='L96' />  <strong class='reserved'>if</strong> (<a href='../Y/3291.html' title='Multiple used in 489 places.'>lmn_env</a>.<a href='../Y/4284.html' title='Multiple used in 93 places.'>profile_level</a> &gt;= 3) <a href='../S/368.html#L287' title='Defined at 287 in src/runtime_status.h.'>profile_finish_timer</a>(<a href='../S/368.html#L77' title='Defined at 77 in src/runtime_status.h.'>PROFILE_TIME__STATE_HASH_MEM</a>);
+<a id='L97' name='L97' /><em class='sharp'>#endif</em>
+<a id='L98' name='L98' />  <strong class='reserved'>return</strong> <a href='../Y/5268.html' title='Multiple used in 639 places.'>t</a>;
+<a id='L99' name='L99' /><em class='brace'>}</em>
+<a id='L100' name='L100' />
+<a id='L101' name='L101' />
+<a id='L102' name='L102' />
+<a id='L103' name='L103' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../S/438.html#L203' title='Defined at 203 in src/verifier/mhash.c.'>molecule</a>(<a href='../S/347.html#L109' title='Defined at 109 in src/lmntal.h.'>LmnSAtom</a>    <a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>,
+<a id='L104' name='L104' />                               <a href='../D/1669.html' title='Multiple defined in 2 places.'>LmnMembrane</a> *<a href='../Y/1722.html' title='Multiple used in 23 places.'>calc_mem</a>,
+<a id='L105' name='L105' />                               <a href='../D/2229.html' title='Multiple defined in 2 places.'>ProcessTbl</a>  <a href='../Y/1908.html' title='Multiple used in 46 places.'>ctx</a>);
+<a id='L106' name='L106' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../S/438.html#L362' title='Defined at 362 in src/verifier/mhash.c.'>memunit</a>(<a href='../D/1669.html' title='Multiple defined in 2 places.'>LmnMembrane</a> *<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>,
+<a id='L107' name='L107' />                              <a href='../S/347.html#L109' title='Defined at 109 in src/lmntal.h.'>LmnSAtom</a>    <a href='../Y/2475.html' title='Multiple used in 3 places.'>from_in_proxy</a>,
+<a id='L108' name='L108' />                              <a href='../D/1669.html' title='Multiple defined in 2 places.'>LmnMembrane</a> *<a href='../Y/1722.html' title='Multiple used in 23 places.'>calc_mem</a>,
+<a id='L109' name='L109' />                              <a href='../D/2229.html' title='Multiple defined in 2 places.'>ProcessTbl</a>  <a href='../Y/1908.html' title='Multiple used in 46 places.'>ctx</a>,
+<a id='L110' name='L110' />                              <strong class='reserved'>int</strong>         <a href='../Y/2023.html' title='Multiple used in 103 places.'>depth</a>);
+<a id='L111' name='L111' /><strong class='reserved'>static</strong> <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../S/438.html#L488' title='Defined at 488 in src/verifier/mhash.c.'>mhash_rulesets</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/4643.html' title='Multiple used in 91 places.'>rulesets</a>);
+<a id='L112' name='L112' />
+<a id='L113' name='L113' /><em class='comment'>/* 膜memのハッシュ値を返す.</em>
+<a id='L114' name='L114' /><em class='comment'> * 計算の根となる膜をcalc_memとして渡す.  */</em>
+<a id='L115' name='L115' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../R/4259.html' title='Multiple refered from 5 places.'>mhash_membrane</a>(<a href='../D/1669.html' title='Multiple defined in 2 places.'>LmnMembrane</a> *<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>,
+<a id='L116' name='L116' />                                     <a href='../D/1669.html' title='Multiple defined in 2 places.'>LmnMembrane</a> *<a href='../Y/1722.html' title='Multiple used in 23 places.'>calc_mem</a>,
+<a id='L117' name='L117' />                                     <a href='../D/2229.html' title='Multiple defined in 2 places.'>ProcessTbl</a>  <a href='../Y/1908.html' title='Multiple used in 46 places.'>ctx</a>)
+<a id='L118' name='L118' /><em class='brace'>{</em>
+<a id='L119' name='L119' />  <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../Y/5268.html' title='Multiple used in 639 places.'>t</a>;
+<a id='L120' name='L120' />
+<a id='L121' name='L121' />  <strong class='reserved'>if</strong> (<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a> == <a href='../Y/1722.html' title='Multiple used in 23 places.'>calc_mem</a>) <em class='brace'>{</em>
+<a id='L122' name='L122' />    <em class='comment'>/* 膜memを起点にしたトレースでmem自身に到達可能な場合の無限ループを防ぐため,</em>
+<a id='L123' name='L123' /><em class='comment'>     * 計算中の膜calc_mem( ==mem )のハッシュ値が必要になる場合は定数を返す. */</em>
+<a id='L124' name='L124' />    <strong class='reserved'>return</strong> <a href='../S/438.html#L65' title='Defined at 65 in src/verifier/mhash.c.'>MHASH_CALCULATING_MEM</a>;
+<a id='L125' name='L125' />  <em class='brace'>}</em>
+<a id='L126' name='L126' />  <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (<a href='../S/411.html#L219' title='Defined at 219 in src/utility/visitlog.h.'>proc_tbl_get_by_mem</a>(<a href='../Y/1908.html' title='Multiple used in 46 places.'>ctx</a>, <a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>, &amp;<a href='../Y/5268.html' title='Multiple used in 639 places.'>t</a>)) <em class='brace'>{</em>
+<a id='L127' name='L127' />    <em class='comment'>/* memのハッシュ値を計算済みなら, それを返す */</em>
+<a id='L128' name='L128' />    <strong class='reserved'>return</strong> (<a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a>)<a href='../Y/5268.html' title='Multiple used in 639 places.'>t</a>;
+<a id='L129' name='L129' />  <em class='brace'>}</em>
+<a id='L130' name='L130' />  <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L131' name='L131' />    <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a>, <a href='../Y/2638.html' title='Multiple used in 7 places.'>hash_sum</a>, <a href='../Y/2635.html' title='Multiple used in 7 places.'>hash_mul</a>;
+<a id='L132' name='L132' />
+<a id='L133' name='L133' />    <em class='comment'>/* initialize */</em>
+<a id='L134' name='L134' />    <a href='../Y/2638.html' title='Multiple used in 7 places.'>hash_sum</a> = <a href='../S/438.html#L63' title='Defined at 63 in src/verifier/mhash.c.'>MHASH_MEM_ADD_0</a>;
+<a id='L135' name='L135' />    <a href='../Y/2635.html' title='Multiple used in 7 places.'>hash_mul</a> = <a href='../S/438.html#L64' title='Defined at 64 in src/verifier/mhash.c.'>MHASH_MEM_MUL_0</a>;
+<a id='L136' name='L136' />
+<a id='L137' name='L137' />    <em class='brace'>{</em> <em class='comment'>/** 1. atoms */</em>
+<a id='L138' name='L138' />      <a href='../D/219.html' title='Multiple defined in 2 places.'>AtomListEntry</a> *<a href='../Y/2207.html' title='Multiple used in 134 places.'>ent</a>;
+<a id='L139' name='L139' />      <a href='../S/347.html#L118' title='Defined at 118 in src/lmntal.h.'>LmnFunctor</a>    <a href='../D/3802.html' title='Multiple defined in 5 places.'>f</a>;
+<a id='L140' name='L140' />
+<a id='L141' name='L141' />      <a href='../S/358.html#L569' title='Defined at 569 in src/membrane.h.'>EACH_ATOMLIST_WITH_FUNC</a>(<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>, <a href='../Y/2207.html' title='Multiple used in 134 places.'>ent</a>, <a href='../D/3802.html' title='Multiple defined in 5 places.'>f</a>, (<em class='brace'>{</em>
+<a id='L142' name='L142' />        <a href='../S/347.html#L109' title='Defined at 109 in src/lmntal.h.'>LmnSAtom</a> <a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>;
+<a id='L143' name='L143' />        <em class='comment'>/* プロキシは除く */</em>
+<a id='L144' name='L144' />        <strong class='reserved'>if</strong> (<a href='../S/311.html#L159' title='Defined at 159 in src/atom.h.'>LMN_IS_PROXY_FUNCTOR</a>(<a href='../D/3802.html' title='Multiple defined in 5 places.'>f</a>) || <a href='../S/311.html#L170' title='Defined at 170 in src/atom.h.'>LMN_IS_EX_FUNCTOR</a>(<a href='../D/3802.html' title='Multiple defined in 5 places.'>f</a>)) <strong class='reserved'>continue</strong>;
+<a id='L145' name='L145' />        <a href='../S/358.html#L596' title='Defined at 596 in src/membrane.h.'>EACH_ATOM</a>(<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>, <a href='../Y/2207.html' title='Multiple used in 134 places.'>ent</a>, (<em class='brace'>{</em>
+<a id='L146' name='L146' />          <em class='comment'>/* 各連結分子のハッシュ値の値を求める. */</em>
+<a id='L147' name='L147' />          <strong class='reserved'>if</strong> (!<a href='../S/411.html#L213' title='Defined at 213 in src/utility/visitlog.h.'>proc_tbl_get_by_atom</a>(<a href='../Y/1908.html' title='Multiple used in 46 places.'>ctx</a>, <a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>, <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>)) <em class='brace'>{</em>
+<a id='L148' name='L148' />            <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../Y/5393.html' title='Multiple used in 121 places.'>tmp</a> = <a href='../S/438.html#L203' title='Defined at 203 in src/verifier/mhash.c.'>molecule</a>(<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>, <a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>, <a href='../Y/1908.html' title='Multiple used in 46 places.'>ctx</a>);
+<a id='L149' name='L149' />            <a href='../Y/2638.html' title='Multiple used in 7 places.'>hash_sum</a> += <a href='../Y/5393.html' title='Multiple used in 121 places.'>tmp</a>;
+<a id='L150' name='L150' />            <a href='../Y/2635.html' title='Multiple used in 7 places.'>hash_mul</a> *= <a href='../Y/5393.html' title='Multiple used in 121 places.'>tmp</a>;
+<a id='L151' name='L151' />          <em class='brace'>}</em>
+<a id='L152' name='L152' />        <em class='brace'>}</em>));
+<a id='L153' name='L153' />      <em class='brace'>}</em>));
+<a id='L154' name='L154' />    <em class='brace'>}</em>
+<a id='L155' name='L155' />
+<a id='L156' name='L156' />    <em class='brace'>{</em> <em class='comment'>/** 2. membranes */</em>
+<a id='L157' name='L157' />      <a href='../D/1669.html' title='Multiple defined in 2 places.'>LmnMembrane</a> *<a href='../Y/1782.html' title='Multiple used in 26 places.'>child_mem</a>;
+<a id='L158' name='L158' />      <strong class='reserved'>for</strong> (<a href='../Y/1782.html' title='Multiple used in 26 places.'>child_mem</a> = <a href='../S/358.html#L239' title='Defined at 239 in src/membrane.h.'>lmn_mem_child_head</a>(<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>);
+<a id='L159' name='L159' />           <a href='../Y/1782.html' title='Multiple used in 26 places.'>child_mem</a>;
+<a id='L160' name='L160' />           <a href='../Y/1782.html' title='Multiple used in 26 places.'>child_mem</a> = <a href='../S/358.html#L240' title='Defined at 240 in src/membrane.h.'>lmn_mem_next</a>(<a href='../Y/1782.html' title='Multiple used in 26 places.'>child_mem</a>)) <em class='brace'>{</em>
+<a id='L161' name='L161' />        <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../Y/5393.html' title='Multiple used in 121 places.'>tmp</a> = <a href='../S/438.html#L115' title='Defined at 115 in src/verifier/mhash.c.'>mhash_membrane</a>(<a href='../Y/1782.html' title='Multiple used in 26 places.'>child_mem</a>, <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>, <a href='../Y/1908.html' title='Multiple used in 46 places.'>ctx</a>);
+<a id='L162' name='L162' />        <a href='../Y/2638.html' title='Multiple used in 7 places.'>hash_sum</a> += <a href='../Y/5393.html' title='Multiple used in 121 places.'>tmp</a>;
+<a id='L163' name='L163' />        <a href='../Y/2635.html' title='Multiple used in 7 places.'>hash_mul</a> *= <a href='../Y/5393.html' title='Multiple used in 121 places.'>tmp</a>;
+<a id='L164' name='L164' />      <em class='brace'>}</em>
+<a id='L165' name='L165' />
+<a id='L166' name='L166' />      <em class='comment'>/* hiroto論文にない膜名の情報を追加. TODO: こんなんで大丈夫かな. */</em>
+<a id='L167' name='L167' />      <a href='../Y/2638.html' title='Multiple used in 7 places.'>hash_sum</a> += (<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>-&gt;<a href='../Y/3665.html' title='Multiple used in 438 places.'>name</a> + 1);
+<a id='L168' name='L168' />      <a href='../Y/2635.html' title='Multiple used in 7 places.'>hash_mul</a> *= (<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>-&gt;<a href='../Y/3665.html' title='Multiple used in 438 places.'>name</a> + 1);
+<a id='L169' name='L169' />    <em class='brace'>}</em>
+<a id='L170' name='L170' />
+<a id='L171' name='L171' />    <em class='brace'>{</em> <em class='comment'>/** 3. rulesets */</em>
+<a id='L172' name='L172' />      <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../Y/5393.html' title='Multiple used in 121 places.'>tmp</a>;
+<a id='L173' name='L173' />
+<a id='L174' name='L174' />      <em class='comment'>/* hiroto論文にないルールセット情報の加算処理.</em>
+<a id='L175' name='L175' /><em class='comment'>       * ルールセットの個数/種類が異なるだけの同型な膜に対してハッシュ値が散らばるようになった.</em>
+<a id='L176' name='L176' /><em class='comment'>       * TODO:</em>
+<a id='L177' name='L177' /><em class='comment'>       *  例えばbenchmarksetの問題ではそんな構造があまりないので少し遅くなったが,</em>
+<a id='L178' name='L178' /><em class='comment'>       *  ルールセットの束のハッシュ値は, 状態間で変化がほとんどない. 使い回しできれば速くなる.*/</em>
+<a id='L179' name='L179' />
+<a id='L180' name='L180' />      <a href='../Y/5393.html' title='Multiple used in 121 places.'>tmp</a> = <a href='../S/438.html#L488' title='Defined at 488 in src/verifier/mhash.c.'>mhash_rulesets</a>(<a href='../S/358.html#L218' title='Defined at 218 in src/membrane.h.'>lmn_mem_get_rulesets</a>(<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>));
+<a id='L181' name='L181' />      <a href='../Y/2638.html' title='Multiple used in 7 places.'>hash_sum</a> += <a href='../Y/5393.html' title='Multiple used in 121 places.'>tmp</a>;
+<a id='L182' name='L182' />      <a href='../Y/2635.html' title='Multiple used in 7 places.'>hash_mul</a> *= <a href='../Y/5393.html' title='Multiple used in 121 places.'>tmp</a>;
+<a id='L183' name='L183' />    <em class='brace'>}</em>
+<a id='L184' name='L184' />
+<a id='L185' name='L185' />    <em class='comment'>/* finalzie */</em>
+<a id='L186' name='L186' />    <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a> = <a href='../Y/2638.html' title='Multiple used in 7 places.'>hash_sum</a> ^ <a href='../Y/2635.html' title='Multiple used in 7 places.'>hash_mul</a>;
+<a id='L187' name='L187' />    <a href='../S/411.html#L137' title='Defined at 137 in src/utility/visitlog.h.'>proc_tbl_put_mem</a>(<a href='../Y/1908.html' title='Multiple used in 46 places.'>ctx</a>, <a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>, <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a>);
+<a id='L188' name='L188' />    <strong class='reserved'>return</strong> <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a>;
+<a id='L189' name='L189' />  <em class='brace'>}</em>
+<a id='L190' name='L190' /><em class='brace'>}</em>
+<a id='L191' name='L191' />
+<a id='L192' name='L192' />
+<a id='L193' name='L193' />
+<a id='L194' name='L194' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../S/438.html#L227' title='Defined at 227 in src/verifier/mhash.c.'>do_molecule</a>(<a href='../S/347.html#L108' title='Defined at 108 in src/lmntal.h.'>LmnAtom</a>     <a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>,
+<a id='L195' name='L195' />                               <a href='../S/347.html#L110' title='Defined at 110 in src/lmntal.h.'>LmnLinkAttr</a> <a href='../Y/1554.html' title='Multiple used in 342 places.'>attr</a>,
+<a id='L196' name='L196' />                               <a href='../D/1669.html' title='Multiple defined in 2 places.'>LmnMembrane</a> *<a href='../Y/1722.html' title='Multiple used in 23 places.'>calc_mem</a>,
+<a id='L197' name='L197' />                               <a href='../D/2229.html' title='Multiple defined in 2 places.'>ProcessTbl</a>  <a href='../Y/1908.html' title='Multiple used in 46 places.'>ctx</a>,
+<a id='L198' name='L198' />                               <strong class='reserved'>int</strong>         <a href='../Y/2750.html' title='Multiple used in 3 places.'>i_parent</a>,
+<a id='L199' name='L199' />                               <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a>     *<a href='../Y/5178.html' title='Multiple used in 20 places.'>sum</a>,
+<a id='L200' name='L200' />                               <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a>     *<a href='../Y/3619.html' title='Multiple used in 17 places.'>mul</a>);
+<a id='L201' name='L201' />
+<a id='L202' name='L202' /><em class='comment'>/* 膜calc_memに所属しているアトムatomをrootにした連結分子のハッシュ値を返す. */</em>
+<a id='L203' name='L203' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../R/4283.html' title='Multiple refered from 2 places.'>molecule</a>(<a href='../S/347.html#L109' title='Defined at 109 in src/lmntal.h.'>LmnSAtom</a>    <a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>,
+<a id='L204' name='L204' />                               <a href='../D/1669.html' title='Multiple defined in 2 places.'>LmnMembrane</a> *<a href='../Y/1722.html' title='Multiple used in 23 places.'>calc_mem</a>,
+<a id='L205' name='L205' />                               <a href='../D/2229.html' title='Multiple defined in 2 places.'>ProcessTbl</a>  <a href='../Y/1908.html' title='Multiple used in 46 places.'>ctx</a>)
+<a id='L206' name='L206' /><em class='brace'>{</em>
+<a id='L207' name='L207' />  <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../Y/5178.html' title='Multiple used in 20 places.'>sum</a>, <a href='../Y/3619.html' title='Multiple used in 17 places.'>mul</a>;
+<a id='L208' name='L208' />
+<a id='L209' name='L209' />  <a href='../Y/5178.html' title='Multiple used in 20 places.'>sum</a> = <a href='../S/438.html#L61' title='Defined at 61 in src/verifier/mhash.c.'>MHASH_ADD_0</a>;
+<a id='L210' name='L210' />  <a href='../Y/3619.html' title='Multiple used in 17 places.'>mul</a> = <a href='../S/438.html#L62' title='Defined at 62 in src/verifier/mhash.c.'>MHASH_MUL_0</a>;
+<a id='L211' name='L211' />  <a href='../S/438.html#L227' title='Defined at 227 in src/verifier/mhash.c.'>do_molecule</a>(<a href='../S/311.html#L92' title='Defined at 92 in src/atom.h.'>LMN_ATOM</a>(<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>), <a href='../S/311.html#L148' title='Defined at 148 in src/atom.h.'>LMN_ATTR_MAKE_LINK</a>(0), <a href='../Y/1722.html' title='Multiple used in 23 places.'>calc_mem</a>, <a href='../Y/1908.html' title='Multiple used in 46 places.'>ctx</a>, -1,
+<a id='L212' name='L212' />              &amp;<a href='../Y/5178.html' title='Multiple used in 20 places.'>sum</a>, &amp;<a href='../Y/3619.html' title='Multiple used in 17 places.'>mul</a>);
+<a id='L213' name='L213' />
+<a id='L214' name='L214' />  <strong class='reserved'>return</strong> <a href='../Y/5178.html' title='Multiple used in 20 places.'>sum</a> ^ <a href='../Y/3619.html' title='Multiple used in 17 places.'>mul</a>;
+<a id='L215' name='L215' /><em class='brace'>}</em>
+<a id='L216' name='L216' />
+<a id='L217' name='L217' />
+<a id='L218' name='L218' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../S/438.html#L290' title='Defined at 290 in src/verifier/mhash.c.'>mhash_unit</a>(<a href='../S/347.html#L108' title='Defined at 108 in src/lmntal.h.'>LmnAtom</a>     <a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>,
+<a id='L219' name='L219' />                                 <a href='../S/347.html#L110' title='Defined at 110 in src/lmntal.h.'>LmnLinkAttr</a> <a href='../Y/1554.html' title='Multiple used in 342 places.'>attr</a>,
+<a id='L220' name='L220' />                                 <a href='../D/1669.html' title='Multiple defined in 2 places.'>LmnMembrane</a> *<a href='../Y/1722.html' title='Multiple used in 23 places.'>calc_mem</a>,
+<a id='L221' name='L221' />                                 <a href='../D/2229.html' title='Multiple defined in 2 places.'>ProcessTbl</a>  <a href='../Y/1908.html' title='Multiple used in 46 places.'>ctx</a>,
+<a id='L222' name='L222' />                                 <strong class='reserved'>int</strong>         <a href='../Y/2023.html' title='Multiple used in 103 places.'>depth</a>);
+<a id='L223' name='L223' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../S/438.html#L449' title='Defined at 449 in src/verifier/mhash.c.'>mhash_data</a>(<a href='../S/347.html#L108' title='Defined at 108 in src/lmntal.h.'>LmnAtom</a> <a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>, <a href='../S/347.html#L110' title='Defined at 110 in src/lmntal.h.'>LmnLinkAttr</a> <a href='../Y/1554.html' title='Multiple used in 342 places.'>attr</a>);
+<a id='L224' name='L224' />
+<a id='L225' name='L225' /><em class='comment'>/* アトムatomのハッシュ値を求め, 連結分子のハッシュ値sum, mulに掛け合わせる.</em>
+<a id='L226' name='L226' /><em class='comment'> * atomのリンク先アトムに対して再帰する. */</em>
+<a id='L227' name='L227' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../R/3322.html' title='Multiple refered from 3 places.'>do_molecule</a>(<a href='../S/347.html#L108' title='Defined at 108 in src/lmntal.h.'>LmnAtom</a>     <a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>,
+<a id='L228' name='L228' />                               <a href='../S/347.html#L110' title='Defined at 110 in src/lmntal.h.'>LmnLinkAttr</a> <a href='../Y/1554.html' title='Multiple used in 342 places.'>attr</a>,
+<a id='L229' name='L229' />                               <a href='../D/1669.html' title='Multiple defined in 2 places.'>LmnMembrane</a> *<a href='../Y/1722.html' title='Multiple used in 23 places.'>calc_mem</a>,
+<a id='L230' name='L230' />                               <a href='../D/2229.html' title='Multiple defined in 2 places.'>ProcessTbl</a>  <a href='../Y/1908.html' title='Multiple used in 46 places.'>ctx</a>,
+<a id='L231' name='L231' />                               <strong class='reserved'>int</strong>         <a href='../Y/2750.html' title='Multiple used in 3 places.'>i_parent</a>,
+<a id='L232' name='L232' />                               <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a>     *<a href='../Y/5178.html' title='Multiple used in 20 places.'>sum</a>,
+<a id='L233' name='L233' />                               <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a>     *<a href='../Y/3619.html' title='Multiple used in 17 places.'>mul</a>)
+<a id='L234' name='L234' /><em class='brace'>{</em>
+<a id='L235' name='L235' />  <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../Y/5268.html' title='Multiple used in 639 places.'>t</a>;
+<a id='L236' name='L236' />
+<a id='L237' name='L237' />  <strong class='reserved'>if</strong> (<a href='../S/311.html#L145' title='Defined at 145 in src/atom.h.'>LMN_ATTR_IS_DATA</a>(<a href='../Y/1554.html' title='Multiple used in 342 places.'>attr</a>)) <em class='brace'>{</em>
+<a id='L238' name='L238' />    <em class='comment'>/* データアトム(+ ハイパーリンク)の場合 */</em>
+<a id='L239' name='L239' />    <a href='../Y/5268.html' title='Multiple used in 639 places.'>t</a> = <a href='../S/438.html#L449' title='Defined at 449 in src/verifier/mhash.c.'>mhash_data</a>(<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>, <a href='../Y/1554.html' title='Multiple used in 342 places.'>attr</a>);
+<a id='L240' name='L240' />    (*<a href='../Y/5178.html' title='Multiple used in 20 places.'>sum</a>) += <a href='../Y/5268.html' title='Multiple used in 639 places.'>t</a>;
+<a id='L241' name='L241' />    (*<a href='../Y/3619.html' title='Multiple used in 17 places.'>mul</a>) *= <a href='../Y/5268.html' title='Multiple used in 639 places.'>t</a>;
+<a id='L242' name='L242' />  <em class='brace'>}</em>
+<a id='L243' name='L243' />  <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (<a href='../S/311.html#L122' title='Defined at 122 in src/atom.h.'>LMN_SATOM_GET_FUNCTOR</a>(<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>) != <a href='../S/331.html#L103' title='Defined at 103 in src/functor.h.'>LMN_IN_PROXY_FUNCTOR</a> &amp;&amp;
+<a id='L244' name='L244' />           <a href='../S/411.html#L165' title='Defined at 165 in src/utility/visitlog.h.'>proc_tbl_put_new_atom</a>(<a href='../Y/1908.html' title='Multiple used in 46 places.'>ctx</a>, (<a href='../S/347.html#L109' title='Defined at 109 in src/lmntal.h.'>LmnSAtom</a>)<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>, 1)) <em class='brace'>{</em>
+<a id='L245' name='L245' />    <em class='comment'>/* シンボルアトムの場合:</em>
+<a id='L246' name='L246' /><em class='comment'>     *  (連結分子計算は膜の外部に出て行かないものとしているため, proxyならば打切り)</em>
+<a id='L247' name='L247' /><em class='comment'>     * 連結分子中の各アトムをルートにして深さDまでのTreeをハッシュ計算の単位とする. */</em>
+<a id='L248' name='L248' />    <a href='../Y/5268.html' title='Multiple used in 639 places.'>t</a> = <a href='../S/438.html#L290' title='Defined at 290 in src/verifier/mhash.c.'>mhash_unit</a>(<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>, <a href='../Y/1554.html' title='Multiple used in 342 places.'>attr</a>, <a href='../Y/1722.html' title='Multiple used in 23 places.'>calc_mem</a>, <a href='../Y/1908.html' title='Multiple used in 46 places.'>ctx</a>, 0);
+<a id='L249' name='L249' />    (*<a href='../Y/5178.html' title='Multiple used in 20 places.'>sum</a>) += <a href='../Y/5268.html' title='Multiple used in 639 places.'>t</a>;
+<a id='L250' name='L250' />    (*<a href='../Y/3619.html' title='Multiple used in 17 places.'>mul</a>) *= <a href='../Y/5268.html' title='Multiple used in 639 places.'>t</a>;
+<a id='L251' name='L251' />
+<a id='L252' name='L252' />    <strong class='reserved'>if</strong> (<a href='../S/311.html#L160' title='Defined at 160 in src/atom.h.'>LMN_IS_SYMBOL_FUNCTOR</a>(<a href='../S/311.html#L122' title='Defined at 122 in src/atom.h.'>LMN_SATOM_GET_FUNCTOR</a>(<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>))) <em class='brace'>{</em>
+<a id='L253' name='L253' />      <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> <a href='../Y/1507.html' title='Multiple used in 90 places.'>arity</a> = <a href='../S/311.html#L124' title='Defined at 124 in src/atom.h.'>LMN_SATOM_GET_ARITY</a>(<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>);
+<a id='L254' name='L254' />      <strong class='reserved'>int</strong> <a href='../Y/2746.html' title='Multiple used in 16 places.'>i_arg</a>;
+<a id='L255' name='L255' />
+<a id='L256' name='L256' />      <strong class='reserved'>for</strong> (<a href='../Y/2746.html' title='Multiple used in 16 places.'>i_arg</a> = 0; <a href='../Y/2746.html' title='Multiple used in 16 places.'>i_arg</a> &lt; <a href='../Y/1507.html' title='Multiple used in 90 places.'>arity</a>; <a href='../Y/2746.html' title='Multiple used in 16 places.'>i_arg</a>++) <em class='brace'>{</em>
+<a id='L257' name='L257' />        <a href='../S/347.html#L110' title='Defined at 110 in src/lmntal.h.'>LmnLinkAttr</a> <a href='../Y/5421.html' title='Multiple used in 4 places.'>to_attr</a>;
+<a id='L258' name='L258' />        <strong class='reserved'>if</strong> (<a href='../Y/2746.html' title='Multiple used in 16 places.'>i_arg</a> == <a href='../Y/2750.html' title='Multiple used in 3 places.'>i_parent</a>) <strong class='reserved'>continue</strong>;
+<a id='L259' name='L259' />
+<a id='L260' name='L260' />        <a href='../Y/5421.html' title='Multiple used in 4 places.'>to_attr</a> = <a href='../S/311.html#L131' title='Defined at 131 in src/atom.h.'>LMN_SATOM_GET_ATTR</a>(<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>, <a href='../Y/2746.html' title='Multiple used in 16 places.'>i_arg</a>);
+<a id='L261' name='L261' />        <a href='../S/438.html#L227' title='Defined at 227 in src/verifier/mhash.c.'>do_molecule</a>(<a href='../S/311.html#L133' title='Defined at 133 in src/atom.h.'>LMN_SATOM_GET_LINK</a>(<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>, <a href='../Y/2746.html' title='Multiple used in 16 places.'>i_arg</a>),
+<a id='L262' name='L262' />                    <a href='../Y/5421.html' title='Multiple used in 4 places.'>to_attr</a>,
+<a id='L263' name='L263' />                    <a href='../Y/1722.html' title='Multiple used in 23 places.'>calc_mem</a>,
+<a id='L264' name='L264' />                    <a href='../Y/1908.html' title='Multiple used in 46 places.'>ctx</a>,
+<a id='L265' name='L265' />                    <a href='../S/311.html#L150' title='Defined at 150 in src/atom.h.'>LMN_ATTR_GET_VALUE</a>(<a href='../Y/5421.html' title='Multiple used in 4 places.'>to_attr</a>),
+<a id='L266' name='L266' />                    <a href='../Y/5178.html' title='Multiple used in 20 places.'>sum</a>,
+<a id='L267' name='L267' />                    <a href='../Y/3619.html' title='Multiple used in 17 places.'>mul</a>);
+<a id='L268' name='L268' />      <em class='brace'>}</em>
+<a id='L269' name='L269' />    <em class='brace'>}</em>
+<a id='L270' name='L270' />  <em class='brace'>}</em>
+<a id='L271' name='L271' /><em class='brace'>}</em>
+<a id='L272' name='L272' />
+<a id='L273' name='L273' />
+<a id='L274' name='L274' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../S/438.html#L441' title='Defined at 441 in src/verifier/mhash.c.'>mhash_symbol</a>(<a href='../S/347.html#L109' title='Defined at 109 in src/lmntal.h.'>LmnSAtom</a> <a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>);
+<a id='L275' name='L275' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../S/438.html#L449' title='Defined at 449 in src/verifier/mhash.c.'>mhash_data</a>(<a href='../S/347.html#L108' title='Defined at 108 in src/lmntal.h.'>LmnAtom</a> <a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>, <a href='../S/347.html#L110' title='Defined at 110 in src/lmntal.h.'>LmnLinkAttr</a> <a href='../Y/1554.html' title='Multiple used in 342 places.'>attr</a>);
+<a id='L276' name='L276' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../S/438.html#L413' title='Defined at 413 in src/verifier/mhash.c.'>memlink</a>(<a href='../S/347.html#L109' title='Defined at 109 in src/lmntal.h.'>LmnSAtom</a>    <a href='../Y/2790.html' title='Multiple used in 15 places.'>in_proxy</a>,
+<a id='L277' name='L277' />                              <a href='../D/1669.html' title='Multiple defined in 2 places.'>LmnMembrane</a> *<a href='../Y/1722.html' title='Multiple used in 23 places.'>calc_mem</a>,
+<a id='L278' name='L278' />                              <a href='../D/2229.html' title='Multiple defined in 2 places.'>ProcessTbl</a>  <a href='../Y/1908.html' title='Multiple used in 46 places.'>ctx</a>);
+<a id='L279' name='L279' />
+<a id='L280' name='L280' /><em class='comment'>/* アトムatomを起点にした深さdepthからDまでのTree構造のハッシュ値を返す.</em>
+<a id='L281' name='L281' /><em class='comment'> * Treeの頂点は,</em>
+<a id='L282' name='L282' /><em class='comment'> *   1. Symbol Atom (except proxies)</em>
+<a id='L283' name='L283' /><em class='comment'> *   2. InSide Proxy Atom</em>
+<a id='L284' name='L284' /><em class='comment'> *   3. Data   Atom</em>
+<a id='L285' name='L285' /><em class='comment'> *   4. OutSide Proxy Atomによって到達した子膜</em>
+<a id='L286' name='L286' /><em class='comment'> * とする.</em>
+<a id='L287' name='L287' /><em class='comment'> * 2のように所属膜calc_memの親膜へリンクが抜ける場合や,</em>
+<a id='L288' name='L288' /><em class='comment'> * 3のようにデータアトムを訪問した場合は, 深さDに到達していなくともatomを枝としたトレースを打ち切る.</em>
+<a id='L289' name='L289' /><em class='comment'> * 4のように子膜を頂点とする場合は, 子膜のInSideProxyアトムをトレースする.  */</em>
+<a id='L290' name='L290' /><strong class='reserved'>static</strong> <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../R/4265.html' title='Multiple refered from 4 places.'>mhash_unit</a>(<a href='../S/347.html#L108' title='Defined at 108 in src/lmntal.h.'>LmnAtom</a>     <a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>,
+<a id='L291' name='L291' />                          <a href='../S/347.html#L110' title='Defined at 110 in src/lmntal.h.'>LmnLinkAttr</a> <a href='../Y/1554.html' title='Multiple used in 342 places.'>attr</a>,
+<a id='L292' name='L292' />                          <a href='../D/1669.html' title='Multiple defined in 2 places.'>LmnMembrane</a> *<a href='../Y/1722.html' title='Multiple used in 23 places.'>calc_mem</a>,
+<a id='L293' name='L293' />                          <a href='../D/2229.html' title='Multiple defined in 2 places.'>ProcessTbl</a>  <a href='../Y/1908.html' title='Multiple used in 46 places.'>ctx</a>,
+<a id='L294' name='L294' />                          <strong class='reserved'>int</strong>         <a href='../Y/2023.html' title='Multiple used in 103 places.'>depth</a>)
+<a id='L295' name='L295' /><em class='brace'>{</em>
+<a id='L296' name='L296' />  <strong class='reserved'>if</strong> (<a href='../S/311.html#L145' title='Defined at 145 in src/atom.h.'>LMN_ATTR_IS_DATA</a>(<a href='../Y/1554.html' title='Multiple used in 342 places.'>attr</a>)) <em class='brace'>{</em>
+<a id='L297' name='L297' />    <em class='comment'>/* 3. データアトムの場合:</em>
+<a id='L298' name='L298' /><em class='comment'>     *   slim内のデータアトムはatom以外に接続先アトムを持たない仕様にしているため,</em>
+<a id='L299' name='L299' /><em class='comment'>     *   深さDに到達していようがいまいがトレースを打ち切る. */</em>
+<a id='L300' name='L300' />    <strong class='reserved'>return</strong> <a href='../S/438.html#L449' title='Defined at 449 in src/verifier/mhash.c.'>mhash_data</a>(<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>, <a href='../Y/1554.html' title='Multiple used in 342 places.'>attr</a>);
+<a id='L301' name='L301' />  <em class='brace'>}</em>
+<a id='L302' name='L302' />  <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (<a href='../S/311.html#L122' title='Defined at 122 in src/atom.h.'>LMN_SATOM_GET_FUNCTOR</a>(<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>) == <a href='../S/331.html#L104' title='Defined at 104 in src/functor.h.'>LMN_OUT_PROXY_FUNCTOR</a>) <em class='brace'>{</em>
+<a id='L303' name='L303' />    <em class='comment'>/* 4. OutSideProxyアトムの(子膜に入る)場合 */</em>
+<a id='L304' name='L304' />    <a href='../S/347.html#L109' title='Defined at 109 in src/lmntal.h.'>LmnSAtom</a> <a href='../Y/2790.html' title='Multiple used in 15 places.'>in_proxy</a> = <a href='../S/311.html#L93' title='Defined at 93 in src/atom.h.'>LMN_SATOM</a>(<a href='../S/311.html#L133' title='Defined at 133 in src/atom.h.'>LMN_SATOM_GET_LINK</a>(<a href='../S/311.html#L93' title='Defined at 93 in src/atom.h.'>LMN_SATOM</a>(<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>), 0));
+<a id='L305' name='L305' />    <strong class='reserved'>if</strong> (<a href='../Y/2023.html' title='Multiple used in 103 places.'>depth</a> == <a href='../S/438.html#L66' title='Defined at 66 in src/verifier/mhash.c.'>MHASH_TREE_D</a>) <em class='brace'>{</em>
+<a id='L306' name='L306' />      <em class='comment'>/* 深さDに到達した場合</em>
+<a id='L307' name='L307' /><em class='comment'>       *   子膜のハッシュ値とリンク接続値を掛け合わせた値を計算してトレースを打ち切る. */</em>
+<a id='L308' name='L308' />      <strong class='reserved'>return</strong> <a href='../S/438.html#L413' title='Defined at 413 in src/verifier/mhash.c.'>memlink</a>(<a href='../Y/2790.html' title='Multiple used in 15 places.'>in_proxy</a>, <a href='../Y/1722.html' title='Multiple used in 23 places.'>calc_mem</a>, <a href='../Y/1908.html' title='Multiple used in 46 places.'>ctx</a>);
+<a id='L309' name='L309' />    <em class='brace'>}</em>
+<a id='L310' name='L310' />    <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L311' name='L311' />      <em class='comment'>/* 深さDに到達していない場合:</em>
+<a id='L312' name='L312' /><em class='comment'>       *   子膜全体のハッシュ値を返す. */</em>
+<a id='L313' name='L313' />      <strong class='reserved'>return</strong> <a href='../S/438.html#L362' title='Defined at 362 in src/verifier/mhash.c.'>memunit</a>(<a href='../S/311.html#L156' title='Defined at 156 in src/atom.h.'>LMN_PROXY_GET_MEM</a>(<a href='../Y/2790.html' title='Multiple used in 15 places.'>in_proxy</a>),
+<a id='L314' name='L314' />                     <a href='../Y/2790.html' title='Multiple used in 15 places.'>in_proxy</a>, <a href='../Y/1722.html' title='Multiple used in 23 places.'>calc_mem</a>, <a href='../Y/1908.html' title='Multiple used in 46 places.'>ctx</a>,
+<a id='L315' name='L315' />                     <a href='../Y/2023.html' title='Multiple used in 103 places.'>depth</a>);
+<a id='L316' name='L316' />    <em class='brace'>}</em>
+<a id='L317' name='L317' />  <em class='brace'>}</em>
+<a id='L318' name='L318' />  <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (<a href='../S/311.html#L122' title='Defined at 122 in src/atom.h.'>LMN_SATOM_GET_FUNCTOR</a>(<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>) == <a href='../S/331.html#L103' title='Defined at 103 in src/functor.h.'>LMN_IN_PROXY_FUNCTOR</a>) <em class='brace'>{</em>
+<a id='L319' name='L319' />    <em class='comment'>/* 2. InSideProxyアトムの(親膜に抜ける)場合</em>
+<a id='L320' name='L320' /><em class='comment'>     *   プロキシアトムのハッシュ値を返してトレースを打ち切る. */</em>
+<a id='L321' name='L321' />    <strong class='reserved'>return</strong> <a href='../S/438.html#L441' title='Defined at 441 in src/verifier/mhash.c.'>mhash_symbol</a>(<a href='../S/311.html#L93' title='Defined at 93 in src/atom.h.'>LMN_SATOM</a>(<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>));
+<a id='L322' name='L322' />  <em class='brace'>}</em>
+<a id='L323' name='L323' />  <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (<a href='../Y/2023.html' title='Multiple used in 103 places.'>depth</a> == <a href='../S/438.html#L66' title='Defined at 66 in src/verifier/mhash.c.'>MHASH_TREE_D</a>) <em class='brace'>{</em>
+<a id='L324' name='L324' />    <em class='comment'>/* 1. シンボルアトムの場合 (深さDに到達)</em>
+<a id='L325' name='L325' /><em class='comment'>     *   シンボルアトムのハッシュ値に, 接続先リンク番号を掛け合わせた値をハッシュ値として返す. */</em>
+<a id='L326' name='L326' />    <strong class='reserved'>return</strong> <a href='../S/438.html#L441' title='Defined at 441 in src/verifier/mhash.c.'>mhash_symbol</a>((<a href='../S/347.html#L109' title='Defined at 109 in src/lmntal.h.'>LmnSAtom</a>)<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>) * (<a href='../S/311.html#L150' title='Defined at 150 in src/atom.h.'>LMN_ATTR_GET_VALUE</a>(<a href='../Y/1554.html' title='Multiple used in 342 places.'>attr</a>) + 1);
+<a id='L327' name='L327' />  <em class='brace'>}</em>
+<a id='L328' name='L328' />  <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L329' name='L329' />    <em class='comment'>/* 1. シンボルアトムの場合 (深さDに未到達)</em>
+<a id='L330' name='L330' /><em class='comment'>     *   atomのハッシュ値を掛け合わせ, 再帰的に深さDまでトレースする. */</em>
+<a id='L331' name='L331' />    <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../Y/2628.html' title='Multiple used in 59 places.'>hash</a>;
+<a id='L332' name='L332' />    <strong class='reserved'>int</strong> <a href='../Y/2746.html' title='Multiple used in 16 places.'>i_arg</a>;
+<a id='L333' name='L333' />    <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> <a href='../Y/1507.html' title='Multiple used in 90 places.'>arity</a>  = <a href='../S/311.html#L124' title='Defined at 124 in src/atom.h.'>LMN_SATOM_GET_ARITY</a>(<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>);
+<a id='L334' name='L334' />    <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> <a href='../Y/2749.html' title='Multiple used in 2 places.'>i_from</a> = (<a href='../Y/2023.html' title='Multiple used in 103 places.'>depth</a> == 0) ? -1 : (<strong class='reserved'>int</strong>)<a href='../S/311.html#L150' title='Defined at 150 in src/atom.h.'>LMN_ATTR_GET_VALUE</a>(<a href='../Y/1554.html' title='Multiple used in 342 places.'>attr</a>);
+<a id='L335' name='L335' />
+<a id='L336' name='L336' />    <a href='../Y/2628.html' title='Multiple used in 59 places.'>hash</a> = <a href='../S/438.html#L441' title='Defined at 441 in src/verifier/mhash.c.'>mhash_symbol</a>((<a href='../S/347.html#L109' title='Defined at 109 in src/lmntal.h.'>LmnSAtom</a>)<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>);
+<a id='L337' name='L337' />    <strong class='reserved'>for</strong> (<a href='../Y/2746.html' title='Multiple used in 16 places.'>i_arg</a> = 0; <a href='../Y/2746.html' title='Multiple used in 16 places.'>i_arg</a> &lt; <a href='../Y/1507.html' title='Multiple used in 90 places.'>arity</a>; <a href='../Y/2746.html' title='Multiple used in 16 places.'>i_arg</a>++) <em class='brace'>{</em>
+<a id='L338' name='L338' />      <strong class='reserved'>if</strong> (<a href='../Y/2746.html' title='Multiple used in 16 places.'>i_arg</a> == <a href='../Y/2749.html' title='Multiple used in 2 places.'>i_from</a>) <strong class='reserved'>continue</strong>;
+<a id='L339' name='L339' />
+<a id='L340' name='L340' />      <em class='comment'>/* TODO: ここでtに定数を掛けたほうがいいかも</em>
+<a id='L341' name='L341' /><em class='comment'>       *       再帰的にCを掛けているので、係数が重なる危険性がある */</em>
+<a id='L342' name='L342' />      <a href='../Y/2628.html' title='Multiple used in 59 places.'>hash</a> = <a href='../S/438.html#L58' title='Defined at 58 in src/verifier/mhash.c.'>MHASH_C</a> * <a href='../Y/2628.html' title='Multiple used in 59 places.'>hash</a> +
+<a id='L343' name='L343' />             <a href='../S/438.html#L60' title='Defined at 60 in src/verifier/mhash.c.'>MHASH_E</a> * <a href='../S/438.html#L290' title='Defined at 290 in src/verifier/mhash.c.'>mhash_unit</a>(<a href='../S/311.html#L133' title='Defined at 133 in src/atom.h.'>LMN_SATOM_GET_LINK</a>(<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>, <a href='../Y/2746.html' title='Multiple used in 16 places.'>i_arg</a>),
+<a id='L344' name='L344' />                                  <a href='../S/311.html#L131' title='Defined at 131 in src/atom.h.'>LMN_SATOM_GET_ATTR</a>(<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>, <a href='../Y/2746.html' title='Multiple used in 16 places.'>i_arg</a>),
+<a id='L345' name='L345' />                                  <a href='../Y/1722.html' title='Multiple used in 23 places.'>calc_mem</a>,
+<a id='L346' name='L346' />                                  <a href='../Y/1908.html' title='Multiple used in 46 places.'>ctx</a>,
+<a id='L347' name='L347' />                                  <a href='../Y/2023.html' title='Multiple used in 103 places.'>depth</a> + 1);
+<a id='L348' name='L348' />    <em class='brace'>}</em>
+<a id='L349' name='L349' />
+<a id='L350' name='L350' />    <strong class='reserved'>return</strong> <a href='../Y/2628.html' title='Multiple used in 59 places.'>hash</a>;
+<a id='L351' name='L351' />  <em class='brace'>}</em>
+<a id='L352' name='L352' /><em class='brace'>}</em>
+<a id='L353' name='L353' />
+<a id='L354' name='L354' />
+<a id='L355' name='L355' /><em class='comment'>/* mhash_unit計算中に, アトムfrom_in_proxyを経て訪問した子膜child_memのハッシュ値を返す.</em>
+<a id='L356' name='L356' /><em class='comment'> * 子膜全体を1つの頂点として計算するため, 深さDに至るまでのトレースをInSide Proxyアトムから行う.</em>
+<a id='L357' name='L357' /><em class='comment'> * ----------------------------------- $calc_mem --------------+</em>
+<a id='L358' name='L358' /><em class='comment'> * ------ $child_mem -----------+                              |</em>
+<a id='L359' name='L359' /><em class='comment'> * ?--0--1-[$from_in_proxy]-0---|---0-[from_out_proxy]-1--...  |</em>
+<a id='L360' name='L360' /><em class='comment'> * -----------------------------+                              |</em>
+<a id='L361' name='L361' /><em class='comment'> * ------------------------------------------------------------+  */</em>
+<a id='L362' name='L362' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../R/4255.html' title='Multiple refered from 2 places.'>memunit</a>(<a href='../D/1669.html' title='Multiple defined in 2 places.'>LmnMembrane</a> *<a href='../Y/1782.html' title='Multiple used in 26 places.'>child_mem</a>,
+<a id='L363' name='L363' />                              <a href='../S/347.html#L109' title='Defined at 109 in src/lmntal.h.'>LmnSAtom</a>    <a href='../Y/2475.html' title='Multiple used in 3 places.'>from_in_proxy</a>,
+<a id='L364' name='L364' />                              <a href='../D/1669.html' title='Multiple defined in 2 places.'>LmnMembrane</a> *<a href='../Y/1722.html' title='Multiple used in 23 places.'>calc_mem</a>,
+<a id='L365' name='L365' />                              <a href='../D/2229.html' title='Multiple defined in 2 places.'>ProcessTbl</a>  <a href='../Y/1908.html' title='Multiple used in 46 places.'>ctx</a>,
+<a id='L366' name='L366' />                              <strong class='reserved'>int</strong>         <a href='../Y/2023.html' title='Multiple used in 103 places.'>depth</a>)
+<a id='L367' name='L367' /><em class='brace'>{</em>
+<a id='L368' name='L368' />  <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../Y/2628.html' title='Multiple used in 59 places.'>hash</a>, <a href='../Y/1779.html' title='Multiple used in 4 places.'>child_h</a>;
+<a id='L369' name='L369' />  <a href='../D/219.html' title='Multiple defined in 2 places.'>AtomListEntry</a> *<a href='../Y/2843.html' title='Multiple used in 4 places.'>insides</a>;
+<a id='L370' name='L370' />  <a href='../S/347.html#L109' title='Defined at 109 in src/lmntal.h.'>LmnSAtom</a> <a href='../Y/2790.html' title='Multiple used in 15 places.'>in_proxy</a>, <a href='../Y/4056.html' title='Multiple used in 4 places.'>out_proxy</a>;
+<a id='L371' name='L371' />
+<a id='L372' name='L372' />  <a href='../Y/2628.html' title='Multiple used in 59 places.'>hash</a>    = 0;
+<a id='L373' name='L373' />  <a href='../Y/2843.html' title='Multiple used in 4 places.'>insides</a> = <a href='../S/358.html#L342' title='Defined at 342 in src/membrane.h.'>lmn_mem_get_atomlist</a>(<a href='../Y/1782.html' title='Multiple used in 26 places.'>child_mem</a>, <a href='../S/331.html#L103' title='Defined at 103 in src/functor.h.'>LMN_IN_PROXY_FUNCTOR</a>);
+<a id='L374' name='L374' />  <a href='../Y/1779.html' title='Multiple used in 4 places.'>child_h</a> = <a href='../S/438.html#L115' title='Defined at 115 in src/verifier/mhash.c.'>mhash_membrane</a>(<a href='../Y/1782.html' title='Multiple used in 26 places.'>child_mem</a>, <a href='../Y/1722.html' title='Multiple used in 23 places.'>calc_mem</a>, <a href='../Y/1908.html' title='Multiple used in 46 places.'>ctx</a>);
+<a id='L375' name='L375' />
+<a id='L376' name='L376' />  <a href='../D/1415.html' title='Multiple defined in 2 places.'>LMN_ASSERT</a>(<a href='../Y/2843.html' title='Multiple used in 4 places.'>insides</a>);
+<a id='L377' name='L377' />
+<a id='L378' name='L378' />  <a href='../S/358.html#L596' title='Defined at 596 in src/membrane.h.'>EACH_ATOM</a>(<a href='../Y/2790.html' title='Multiple used in 15 places.'>in_proxy</a>, <a href='../Y/2843.html' title='Multiple used in 4 places.'>insides</a>, (<em class='brace'>{</em>
+<a id='L379' name='L379' />    <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../Y/5393.html' title='Multiple used in 121 places.'>tmp</a>;
+<a id='L380' name='L380' />    <strong class='reserved'>if</strong> (<a href='../Y/2790.html' title='Multiple used in 15 places.'>in_proxy</a> == <a href='../Y/2475.html' title='Multiple used in 3 places.'>from_in_proxy</a>) <strong class='reserved'>continue</strong>;
+<a id='L381' name='L381' />
+<a id='L382' name='L382' />    <em class='comment'>/* ------------------------------------ $calc_mem -------------------+</em>
+<a id='L383' name='L383' /><em class='comment'>     * ------------- $child_mem ----------+                              |</em>
+<a id='L384' name='L384' /><em class='comment'>     * skip:: ?--0--1-[$from_in_proxy]-0--|--0-[from_out_proxy]-1--...   |</em>
+<a id='L385' name='L385' /><em class='comment'>     * loop:: ?--0--1-[in_proxy]--0-------|--0-[out_proxy]-1---!trace    |</em>
+<a id='L386' name='L386' /><em class='comment'>     * -----------------------------------+                              |</em>
+<a id='L387' name='L387' /><em class='comment'>     * ------------------------------------------------------------------+  */</em>
+<a id='L388' name='L388' />
+<a id='L389' name='L389' />    <a href='../Y/4056.html' title='Multiple used in 4 places.'>out_proxy</a> = <a href='../S/311.html#L93' title='Defined at 93 in src/atom.h.'>LMN_SATOM</a>(<a href='../S/311.html#L133' title='Defined at 133 in src/atom.h.'>LMN_SATOM_GET_LINK</a>(<a href='../Y/2790.html' title='Multiple used in 15 places.'>in_proxy</a>, 0));
+<a id='L390' name='L390' />    <a href='../Y/5393.html' title='Multiple used in 121 places.'>tmp</a>       = <a href='../S/438.html#L290' title='Defined at 290 in src/verifier/mhash.c.'>mhash_unit</a>(<a href='../S/311.html#L133' title='Defined at 133 in src/atom.h.'>LMN_SATOM_GET_LINK</a>(<a href='../Y/4056.html' title='Multiple used in 4 places.'>out_proxy</a>, 1),
+<a id='L391' name='L391' />                           <a href='../S/311.html#L131' title='Defined at 131 in src/atom.h.'>LMN_SATOM_GET_ATTR</a>(<a href='../Y/4056.html' title='Multiple used in 4 places.'>out_proxy</a>, 1),
+<a id='L392' name='L392' />                           <a href='../Y/1722.html' title='Multiple used in 23 places.'>calc_mem</a>,
+<a id='L393' name='L393' />                           <a href='../Y/1908.html' title='Multiple used in 46 places.'>ctx</a>,
+<a id='L394' name='L394' />                           <a href='../Y/2023.html' title='Multiple used in 103 places.'>depth</a> + 1);
+<a id='L395' name='L395' />    <a href='../Y/5393.html' title='Multiple used in 121 places.'>tmp</a>      *= <a href='../Y/1779.html' title='Multiple used in 4 places.'>child_h</a> ^ <a href='../S/438.html#L413' title='Defined at 413 in src/verifier/mhash.c.'>memlink</a>(<a href='../Y/2790.html' title='Multiple used in 15 places.'>in_proxy</a>, <a href='../Y/1722.html' title='Multiple used in 23 places.'>calc_mem</a>, <a href='../Y/1908.html' title='Multiple used in 46 places.'>ctx</a>);
+<a id='L396' name='L396' />    <a href='../Y/2628.html' title='Multiple used in 59 places.'>hash</a>     += <a href='../Y/5393.html' title='Multiple used in 121 places.'>tmp</a>;
+<a id='L397' name='L397' />  <em class='brace'>}</em>));
+<a id='L398' name='L398' />
+<a id='L399' name='L399' />  <em class='comment'>/* hiroto論文にないmhash_membrane(child_mem)の加算処理を追加 @taisuke */</em>
+<a id='L400' name='L400' />  <strong class='reserved'>return</strong> <a href='../Y/2628.html' title='Multiple used in 59 places.'>hash</a> + <a href='../Y/1779.html' title='Multiple used in 4 places.'>child_h</a>;
+<a id='L401' name='L401' /><em class='brace'>}</em>
+<a id='L402' name='L402' />
+<a id='L403' name='L403' />
+<a id='L404' name='L404' /><em class='comment'>/* アトムin_proxyをトレースした際のハッシュ値を返す.</em>
+<a id='L405' name='L405' /><em class='comment'> * 非プロキシアトムに遭遇するまで, 子膜をトレースしてゆき,</em>
+<a id='L406' name='L406' /><em class='comment'> * トレースした全ての子膜のハッシュ値を掛け合わせる.</em>
+<a id='L407' name='L407' /><em class='comment'> * 最終的に到達した非プロキシアトムのハッシュ値を掛け合わせた値を返す.</em>
+<a id='L408' name='L408' /><em class='comment'> * ------------------------- $calc_mem ------------------------+</em>
+<a id='L409' name='L409' /><em class='comment'> * ----------------child_mem----+                              |</em>
+<a id='L410' name='L410' /><em class='comment'> * atom--?---1--[$in_proxy]-0---|---0-[from_out_proxy]-1--...  |</em>
+<a id='L411' name='L411' /><em class='comment'> * -----------------------------+                              |</em>
+<a id='L412' name='L412' /><em class='comment'> * ------------------------------------------------------------+  */</em>
+<a id='L413' name='L413' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../R/4246.html' title='Multiple refered from 3 places.'>memlink</a>(<a href='../S/347.html#L109' title='Defined at 109 in src/lmntal.h.'>LmnSAtom</a>    <a href='../Y/2790.html' title='Multiple used in 15 places.'>in_proxy</a>,
+<a id='L414' name='L414' />                              <a href='../D/1669.html' title='Multiple defined in 2 places.'>LmnMembrane</a> *<a href='../Y/1722.html' title='Multiple used in 23 places.'>calc_mem</a>,
+<a id='L415' name='L415' />                              <a href='../D/2229.html' title='Multiple defined in 2 places.'>ProcessTbl</a>  <a href='../Y/1908.html' title='Multiple used in 46 places.'>ctx</a>)
+<a id='L416' name='L416' /><em class='brace'>{</em>
+<a id='L417' name='L417' />  <a href='../S/347.html#L108' title='Defined at 108 in src/lmntal.h.'>LmnAtom</a> <a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>;
+<a id='L418' name='L418' />  <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../Y/2628.html' title='Multiple used in 59 places.'>hash</a> = 0;
+<a id='L419' name='L419' />  <a href='../S/347.html#L110' title='Defined at 110 in src/lmntal.h.'>LmnLinkAttr</a> <a href='../Y/1554.html' title='Multiple used in 342 places.'>attr</a>;
+<a id='L420' name='L420' />
+<a id='L421' name='L421' />  <strong class='reserved'>while</strong> (1) <em class='brace'>{</em>
+<a id='L422' name='L422' />    <a href='../Y/2628.html' title='Multiple used in 59 places.'>hash</a> = <a href='../S/438.html#L59' title='Defined at 59 in src/verifier/mhash.c.'>MHASH_B</a> * <a href='../Y/2628.html' title='Multiple used in 59 places.'>hash</a> + <a href='../S/438.html#L115' title='Defined at 115 in src/verifier/mhash.c.'>mhash_membrane</a>(<a href='../S/311.html#L156' title='Defined at 156 in src/atom.h.'>LMN_PROXY_GET_MEM</a>(<a href='../Y/2790.html' title='Multiple used in 15 places.'>in_proxy</a>), <a href='../Y/1722.html' title='Multiple used in 23 places.'>calc_mem</a>, <a href='../Y/1908.html' title='Multiple used in 46 places.'>ctx</a>);
+<a id='L423' name='L423' />
+<a id='L424' name='L424' />    <a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a> = <a href='../S/311.html#L133' title='Defined at 133 in src/atom.h.'>LMN_SATOM_GET_LINK</a>(<a href='../Y/2790.html' title='Multiple used in 15 places.'>in_proxy</a>, 1);
+<a id='L425' name='L425' />    <a href='../Y/1554.html' title='Multiple used in 342 places.'>attr</a> = <a href='../S/311.html#L131' title='Defined at 131 in src/atom.h.'>LMN_SATOM_GET_ATTR</a>(<a href='../Y/2790.html' title='Multiple used in 15 places.'>in_proxy</a>, 1);
+<a id='L426' name='L426' />    <strong class='reserved'>if</strong> (<a href='../S/311.html#L145' title='Defined at 145 in src/atom.h.'>LMN_ATTR_IS_DATA</a>(<a href='../Y/1554.html' title='Multiple used in 342 places.'>attr</a>) ||
+<a id='L427' name='L427' />        <a href='../S/311.html#L122' title='Defined at 122 in src/atom.h.'>LMN_SATOM_GET_FUNCTOR</a>(<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>) != <a href='../S/331.html#L104' title='Defined at 104 in src/functor.h.'>LMN_OUT_PROXY_FUNCTOR</a>) <strong class='reserved'>break</strong>;
+<a id='L428' name='L428' />    <a href='../Y/2790.html' title='Multiple used in 15 places.'>in_proxy</a> = <a href='../S/311.html#L93' title='Defined at 93 in src/atom.h.'>LMN_SATOM</a>(<a href='../S/311.html#L133' title='Defined at 133 in src/atom.h.'>LMN_SATOM_GET_LINK</a>(<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>, 0));
+<a id='L429' name='L429' />  <em class='brace'>}</em>
+<a id='L430' name='L430' />
+<a id='L431' name='L431' />  <strong class='reserved'>if</strong> (<a href='../S/311.html#L145' title='Defined at 145 in src/atom.h.'>LMN_ATTR_IS_DATA</a>(<a href='../Y/1554.html' title='Multiple used in 342 places.'>attr</a>)) <em class='brace'>{</em>
+<a id='L432' name='L432' />    <a href='../Y/2628.html' title='Multiple used in 59 places.'>hash</a> *= <a href='../S/438.html#L449' title='Defined at 449 in src/verifier/mhash.c.'>mhash_data</a>(<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>, <a href='../Y/1554.html' title='Multiple used in 342 places.'>attr</a>);
+<a id='L433' name='L433' />  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L434' name='L434' />    <a href='../Y/2628.html' title='Multiple used in 59 places.'>hash</a> *= <a href='../S/438.html#L441' title='Defined at 441 in src/verifier/mhash.c.'>mhash_symbol</a>((<a href='../S/347.html#L109' title='Defined at 109 in src/lmntal.h.'>LmnSAtom</a>)<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>) * (<a href='../S/311.html#L150' title='Defined at 150 in src/atom.h.'>LMN_ATTR_GET_VALUE</a>(<a href='../Y/1554.html' title='Multiple used in 342 places.'>attr</a>) + 1);
+<a id='L435' name='L435' />  <em class='brace'>}</em>
+<a id='L436' name='L436' />
+<a id='L437' name='L437' />  <strong class='reserved'>return</strong> <a href='../Y/2628.html' title='Multiple used in 59 places.'>hash</a>;
+<a id='L438' name='L438' /><em class='brace'>}</em>
+<a id='L439' name='L439' />
+<a id='L440' name='L440' /><em class='comment'>/* 非データアトムatomのハッシュ値を返す. */</em>
+<a id='L441' name='L441' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../R/4263.html' title='Multiple refered from 5 places.'>mhash_symbol</a>(<a href='../S/347.html#L109' title='Defined at 109 in src/lmntal.h.'>LmnSAtom</a> <a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>)
+<a id='L442' name='L442' /><em class='brace'>{</em>
+<a id='L443' name='L443' />  <em class='comment'>/* ファンクタの種類を示す整数IDを返す */</em>
+<a id='L444' name='L444' />  <strong class='reserved'>return</strong> <a href='../S/311.html#L122' title='Defined at 122 in src/atom.h.'>LMN_SATOM_GET_FUNCTOR</a>(<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>);
+<a id='L445' name='L445' /><em class='brace'>}</em>
+<a id='L446' name='L446' />
+<a id='L447' name='L447' />
+<a id='L448' name='L448' /><em class='comment'>/* データアトムatomのハッシュ値を返す. */</em>
+<a id='L449' name='L449' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../R/4258.html' title='Multiple refered from 5 places.'>mhash_data</a>(<a href='../S/347.html#L108' title='Defined at 108 in src/lmntal.h.'>LmnAtom</a> <a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>, <a href='../S/347.html#L110' title='Defined at 110 in src/lmntal.h.'>LmnLinkAttr</a> <a href='../Y/1554.html' title='Multiple used in 342 places.'>attr</a>) <em class='brace'>{</em>
+<a id='L450' name='L450' />  <strong class='reserved'>switch</strong> (<a href='../Y/1554.html' title='Multiple used in 342 places.'>attr</a>) <em class='brace'>{</em>
+<a id='L451' name='L451' />    <strong class='reserved'>case</strong> <a href='../S/311.html#L175' title='Defined at 175 in src/atom.h.'>LMN_INT_ATTR</a>:
+<a id='L452' name='L452' />      <em class='comment'>/* こっちの方が本当は好ましいけど遅いから, しょうがない. */</em>
+<a id='L453' name='L453' /><em class='comment'>//      return (mhash_t)lmn_byte_hash((unsigned char *)(&amp;atom),</em>
+<a id='L454' name='L454' /><em class='comment'>//                                    sizeof(long) / sizeof(unsigned char));</em>
+<a id='L455' name='L455' />      <em class='comment'>/* ここで値0が返るとハッシュ値の衝突数が爆発するため, 1を加算しておく.</em>
+<a id='L456' name='L456' /><em class='comment'>       * TODO: 値がオーバーフローするとゼロになってしまう. */</em>
+<a id='L457' name='L457' />      <strong class='reserved'>return</strong> ((<a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a>)<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>) + 1;
+<a id='L458' name='L458' />    <strong class='reserved'>case</strong> <a href='../S/311.html#L176' title='Defined at 176 in src/atom.h.'>LMN_DBL_ATTR</a>:
+<a id='L459' name='L459' />      <em class='comment'>/* double型8バイトをバイト列にキャストしてFNVハッシュ関数にかける. */</em>
+<a id='L460' name='L460' />      <strong class='reserved'>return</strong> (<a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a>)<a href='../S/407.html#L103' title='Defined at 103 in src/utility/util.h.'>lmn_byte_hash</a>((<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> *)<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>,
+<a id='L461' name='L461' />                                    <strong class='reserved'>sizeof</strong>(<strong class='reserved'>double</strong>) / <strong class='reserved'>sizeof</strong>(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong>));
+<a id='L462' name='L462' />    <strong class='reserved'>case</strong> <a href='../S/311.html#L177' title='Defined at 177 in src/atom.h.'>LMN_SP_ATOM_ATTR</a>:
+<a id='L463' name='L463' />      <em class='comment'>/* TODO: スペシャルアトムを定義する際にハッシュ値計算用関数も定義させる */</em>
+<a id='L464' name='L464' />      <strong class='reserved'>if</strong> (<a href='../S/377.html#L75' title='Defined at 75 in src/string.c.'>lmn_is_string</a>(<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>, <a href='../Y/1554.html' title='Multiple used in 342 places.'>attr</a>)) <em class='brace'>{</em>
+<a id='L465' name='L465' />        <strong class='reserved'>return</strong> (<a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a>)<a href='../S/377.html#L82' title='Defined at 82 in src/string.c.'>lmn_string_hash</a>(<a href='../S/372.html#L46' title='Defined at 46 in src/slim_header/string.h.'>LMN_STRING</a>(<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>));
+<a id='L466' name='L466' />      <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L467' name='L467' />        <a href='../D/1415.html' title='Multiple defined in 2 places.'>LMN_ASSERT</a>(<a href='../S/347.html#L66' title='Defined at 66 in src/lmntal.h.'>FALSE</a>); <em class='comment'>/* under constructions */</em>
+<a id='L468' name='L468' />        <strong class='reserved'>return</strong> 1;
+<a id='L469' name='L469' />      <em class='brace'>}</em>
+<a id='L470' name='L470' />    <strong class='reserved'>case</strong> <a href='../S/311.html#L183' title='Defined at 183 in src/atom.h.'>LMN_HL_ATTR</a>:
+<a id='L471' name='L471' />      <strong class='reserved'>return</strong> (<a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a>)<a href='../S/335.html#L152' title='Defined at 152 in src/hyperlink.h.'>lmn_hyperlink_hash</a>(<a href='../S/334.html#L443' title='Defined at 443 in src/hyperlink.c.'>lmn_hyperlink_at_to_hl</a>((<a href='../S/347.html#L109' title='Defined at 109 in src/lmntal.h.'>LmnSAtom</a>)<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>));
+<a id='L472' name='L472' />    <strong class='reserved'>default</strong>:
+<a id='L473' name='L473' />      <a href='../D/1415.html' title='Multiple defined in 2 places.'>LMN_ASSERT</a>(<a href='../S/347.html#L66' title='Defined at 66 in src/lmntal.h.'>FALSE</a>);
+<a id='L474' name='L474' />      <strong class='reserved'>return</strong> 0;
+<a id='L475' name='L475' />  <em class='brace'>}</em>
+<a id='L476' name='L476' /><em class='brace'>}</em>
+<a id='L477' name='L477' />
+<a id='L478' name='L478' />
+<a id='L479' name='L479' />
+<a id='L480' name='L480' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>int</strong> <a href='../S/438.html#L513' title='Defined at 513 in src/verifier/mhash.c.'>mhash_multiply_rhistories_f</a>(<a href='../S/405.html#L17' title='Defined at 17 in src/utility/st.h.'>st_data_t</a> <a href='../Y/1293.html' title='Multiple used in 14 places.'>_key</a>,
+<a id='L481' name='L481' />                                              <a href='../S/405.html#L17' title='Defined at 17 in src/utility/st.h.'>st_data_t</a> <a href='../Y/1347.html' title='Multiple used in 4 places.'>_value</a>,
+<a id='L482' name='L482' />                                              <a href='../S/405.html#L17' title='Defined at 17 in src/utility/st.h.'>st_data_t</a> <a href='../Y/1250.html' title='Multiple used in 37 places.'>_arg</a>);
+<a id='L483' name='L483' />
+<a id='L484' name='L484' /><em class='comment'>/* ルールセットのハッシュ値を返す.</em>
+<a id='L485' name='L485' /><em class='comment'> * 基本は, ルールセットIDを掛け合わせた値.</em>
+<a id='L486' name='L486' /><em class='comment'> * uniqルールセットの場合は, 更にuniqの適用履歴に一意な整数IDを掛け合わせる.</em>
+<a id='L487' name='L487' /><em class='comment'> * 即ち, 文字列とIDの対応テーブル(symbol table)の実装に依存している. */</em>
+<a id='L488' name='L488' /><strong class='reserved'>static</strong> <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../R/4261.html' title='Multiple refered from 2 places.'>mhash_rulesets</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/4643.html' title='Multiple used in 91 places.'>rulesets</a>)
+<a id='L489' name='L489' /><em class='brace'>{</em>
+<a id='L490' name='L490' />  <a href='../S/438.html#L68' title='Defined at 68 in src/verifier/mhash.c.'>mhash_t</a> <a href='../Y/2628.html' title='Multiple used in 59 places.'>hash</a>;
+<a id='L491' name='L491' />  <strong class='reserved'>int</strong> <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>, <a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a>;
+<a id='L492' name='L492' />
+<a id='L493' name='L493' />  <a href='../Y/2628.html' title='Multiple used in 59 places.'>hash</a> = 1;
+<a id='L494' name='L494' />  <strong class='reserved'>for</strong> (<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> = 0; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> &lt; <a href='../S/409.html#L54' title='Defined at 54 in src/utility/vector.h.'>vec_num</a>(<a href='../Y/4643.html' title='Multiple used in 91 places.'>rulesets</a>); <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>++) <em class='brace'>{</em>
+<a id='L495' name='L495' />    <a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../Y/4585.html' title='Multiple used in 137 places.'>rs</a> = (<a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a>)<a href='../S/409.html#L143' title='Defined at 143 in src/utility/vector.h.'>vec_get</a>(<a href='../Y/4643.html' title='Multiple used in 91 places.'>rulesets</a>, <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>);
+<a id='L496' name='L496' />    <a href='../Y/2628.html' title='Multiple used in 59 places.'>hash</a> *= <a href='../S/366.html#L195' title='Defined at 195 in src/rule.h.'>lmn_ruleset_get_id</a>(<a href='../Y/4585.html' title='Multiple used in 137 places.'>rs</a>);
+<a id='L497' name='L497' />
+<a id='L498' name='L498' />    <strong class='reserved'>if</strong> (<a href='../S/366.html#L217' title='Defined at 217 in src/rule.h.'>lmn_ruleset_has_uniqrule</a>(<a href='../Y/4585.html' title='Multiple used in 137 places.'>rs</a>)) <em class='brace'>{</em>
+<a id='L499' name='L499' />      <em class='comment'>/* 履歴テーブルを持つ場合は, 履歴の整数IDも掛け合わせる.</em>
+<a id='L500' name='L500' /><em class='comment'>       * この計算方法で十分かどうかはちゃんと考えていない. */</em>
+<a id='L501' name='L501' />      <strong class='reserved'>for</strong> (<a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a> = 0; <a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a> &lt; <a href='../S/366.html#L185' title='Defined at 185 in src/rule.h.'>lmn_ruleset_rule_num</a>(<a href='../Y/4585.html' title='Multiple used in 137 places.'>rs</a>); <a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a>++) <em class='brace'>{</em>
+<a id='L502' name='L502' />        <a href='../S/405.html#L18' title='Defined at 18 in src/utility/st.h.'>st_table_t</a> <a href='../Y/2701.html' title='Multiple used in 11 places.'>his_tbl</a> = <a href='../S/366.html#L78' title='Defined at 78 in src/rule.h.'>lmn_rule_get_history_tbl</a>(<a href='../S/366.html#L190' title='Defined at 190 in src/rule.h.'>lmn_ruleset_get_rule</a>(<a href='../Y/4585.html' title='Multiple used in 137 places.'>rs</a>, <a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a>));
+<a id='L503' name='L503' />        <strong class='reserved'>if</strong> (!<a href='../Y/2701.html' title='Multiple used in 11 places.'>his_tbl</a> || <a href='../S/405.html#L60' title='Defined at 60 in src/utility/st.h.'>st_num</a>(<a href='../Y/2701.html' title='Multiple used in 11 places.'>his_tbl</a>) == 0) <strong class='reserved'>continue</strong>;
+<a id='L504' name='L504' />        <a href='../S/404.html#L531' title='Defined at 531 in src/utility/st.c.'>st_foreach</a>(<a href='../Y/2701.html' title='Multiple used in 11 places.'>his_tbl</a>, <a href='../S/438.html#L513' title='Defined at 513 in src/verifier/mhash.c.'>mhash_multiply_rhistories_f</a>, (<a href='../S/405.html#L17' title='Defined at 17 in src/utility/st.h.'>st_data_t</a>)&amp;<a href='../Y/2628.html' title='Multiple used in 59 places.'>hash</a>);
+<a id='L505' name='L505' />      <em class='brace'>}</em>
+<a id='L506' name='L506' />    <em class='brace'>}</em>
+<a id='L507' name='L507' />  <em class='brace'>}</em>
+<a id='L508' name='L508' />
+<a id='L509' name='L509' />  <strong class='reserved'>return</strong> <a href='../Y/2628.html' title='Multiple used in 59 places.'>hash</a>;
+<a id='L510' name='L510' /><em class='brace'>}</em>
+<a id='L511' name='L511' />
+<a id='L512' name='L512' /><em class='comment'>/* 履歴表は, lmn_interned_idをkeyに, valueを0にしている */</em>
+<a id='L513' name='L513' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>int</strong> <a href='../R/4260.html' title='Multiple refered from 2 places.'>mhash_multiply_rhistories_f</a>(<a href='../S/405.html#L17' title='Defined at 17 in src/utility/st.h.'>st_data_t</a> <a href='../Y/1293.html' title='Multiple used in 14 places.'>_key</a>,
+<a id='L514' name='L514' />                                              <a href='../S/405.html#L17' title='Defined at 17 in src/utility/st.h.'>st_data_t</a> <a href='../Y/1347.html' title='Multiple used in 4 places.'>_value</a>,
+<a id='L515' name='L515' />                                              <a href='../S/405.html#L17' title='Defined at 17 in src/utility/st.h.'>st_data_t</a> <a href='../Y/1250.html' title='Multiple used in 37 places.'>_arg</a>)
+<a id='L516' name='L516' /><em class='brace'>{</em>
+<a id='L517' name='L517' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> *<a href='../Y/5507.html' title='Multiple used in 41 places.'>u</a>;
+<a id='L518' name='L518' />  <a href='../S/347.html#L126' title='Defined at 126 in src/lmntal.h.'>lmn_interned_str</a> <a href='../Y/2754.html' title='Multiple used in 204 places.'>id</a>;
+<a id='L519' name='L519' />
+<a id='L520' name='L520' />  <a href='../Y/5507.html' title='Multiple used in 41 places.'>u</a>  = (<strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> *)<a href='../Y/1250.html' title='Multiple used in 37 places.'>_arg</a>;
+<a id='L521' name='L521' />  <a href='../Y/2754.html' title='Multiple used in 204 places.'>id</a> = (<a href='../S/347.html#L126' title='Defined at 126 in src/lmntal.h.'>lmn_interned_str</a>)<a href='../Y/1293.html' title='Multiple used in 14 places.'>_key</a>;
+<a id='L522' name='L522' />  (*<a href='../Y/5507.html' title='Multiple used in 41 places.'>u</a>) *= <a href='../Y/2754.html' title='Multiple used in 204 places.'>id</a>;
+<a id='L523' name='L523' />
+<a id='L524' name='L524' />  <strong class='reserved'>return</strong> <a href='../S/405.html#L46' title='Defined at 46 in src/utility/st.h.'>ST_CONTINUE</a>;
+<a id='L525' name='L525' /><em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;]<a href='#L82'>[^]</a><a href='#L513'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

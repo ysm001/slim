@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>o0</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/382.html#L54'>o0</a>                 54 src/system_ruleset.c   LmnSAtom o0;</span>
+<span class='curline'><a href='../S/382.html#L59'>o0</a>                 59 src/system_ruleset.c   EACH_ATOM(o0, ent, ({</span>
+<span class='curline'><a href='../S/382.html#L62'>o0</a>                 62 src/system_ruleset.c     if (LMN_SATOM_GET_FUNCTOR(o0) == LMN_RESUME_FUNCTOR) continue;</span>
+<span class='curline'><a href='../S/382.html#L64'>o0</a>                 64 src/system_ruleset.c     if (LMN_ATTR_IS_DATA(LMN_SATOM_GET_ATTR(o0, 1))) return FALSE;</span>
+<span class='curline'><a href='../S/382.html#L65'>o0</a>                 65 src/system_ruleset.c     o1 = LMN_SATOM(LMN_SATOM_GET_LINK(o0, 1));</span>
+<span class='curline'><a href='../S/382.html#L72'>o0</a>                 72 src/system_ruleset.c       i0 = LMN_SATOM(LMN_SATOM_GET_LINK(o0, 0));</span>
+<span class='curline'><a href='../S/382.html#L78'>o0</a>                 78 src/system_ruleset.c         remove_from_atomlist(o0, ent); /* for efficiency */</span>
+<span class='curline'><a href='../S/382.html#L80'>o0</a>                 80 src/system_ruleset.c         lmn_delete_atom(o0);</span>
+<span class='curline'><a href='../S/382.html#L99'>o0</a>                 99 src/system_ruleset.c   LmnSAtom o0;</span>
+<span class='curline'><a href='../S/382.html#L104'>o0</a>                104 src/system_ruleset.c   EACH_ATOM(o0, ent, ({</span>
+<span class='curline'><a href='../S/382.html#L107'>o0</a>                107 src/system_ruleset.c     if (LMN_SATOM_GET_FUNCTOR(o0) == LMN_RESUME_FUNCTOR) continue;</span>
+<span class='curline'><a href='../S/382.html#L109'>o0</a>                109 src/system_ruleset.c     i0 = LMN_SATOM(LMN_SATOM_GET_LINK(o0, 0));</span>
+<span class='curline'><a href='../S/382.html#L115'>o0</a>                115 src/system_ruleset.c       remove_from_atomlist(o0, ent);</span>
+<span class='curline'><a href='../S/382.html#L117'>o0</a>                117 src/system_ruleset.c       lmn_delete_atom(o0);</span>
+<span class='curline'><a href='../S/382.html#L119'>o0</a>                119 src/system_ruleset.c       lmn_mem_unify_atom_args(mem, o0, 1, o1, 1);</span>
+</pre>
+</body>
+</html>

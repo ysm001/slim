@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>third_party/google-perftools-1.8.3/src/tests/sampling_test.cc</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/738.html'>third_party</a>/<a href='../files/739.html'>google-perftools-1.8.3</a>/<a href='../files/740.html'>src</a>/<a href='../files/743.html'>tests</a>/sampling_test.cc</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L50'>[^]</a><a href='#L64'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L50' title='Defined at 50.'>AllocateAllocate</a></li>
+<li><a href='#L58' title='Defined at 58.'>WriteStringToFile</a></li>
+<li><a href='#L64' title='Defined at 64.'>main</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>// Copyright (c) 2008, Google Inc.</em>
+<a id='L2' name='L2' /><em class='comment'>// All rights reserved.</em>
+<a id='L3' name='L3' /><em class='comment'>//</em>
+<a id='L4' name='L4' /><em class='comment'>// Redistribution and use in source and binary forms, with or without</em>
+<a id='L5' name='L5' /><em class='comment'>// modification, are permitted provided that the following conditions are</em>
+<a id='L6' name='L6' /><em class='comment'>// met:</em>
+<a id='L7' name='L7' /><em class='comment'>//</em>
+<a id='L8' name='L8' /><em class='comment'>//     * Redistributions of source code must retain the above copyright</em>
+<a id='L9' name='L9' /><em class='comment'>// notice, this list of conditions and the following disclaimer.</em>
+<a id='L10' name='L10' /><em class='comment'>//     * Redistributions in binary form must reproduce the above</em>
+<a id='L11' name='L11' /><em class='comment'>// copyright notice, this list of conditions and the following disclaimer</em>
+<a id='L12' name='L12' /><em class='comment'>// in the documentation and/or other materials provided with the</em>
+<a id='L13' name='L13' /><em class='comment'>// distribution.</em>
+<a id='L14' name='L14' /><em class='comment'>//     * Neither the name of Google Inc. nor the names of its</em>
+<a id='L15' name='L15' /><em class='comment'>// contributors may be used to endorse or promote products derived from</em>
+<a id='L16' name='L16' /><em class='comment'>// this software without specific prior written permission.</em>
+<a id='L17' name='L17' /><em class='comment'>//</em>
+<a id='L18' name='L18' /><em class='comment'>// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L19' name='L19' /><em class='comment'>// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L20' name='L20' /><em class='comment'>// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L21' name='L21' /><em class='comment'>// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L22' name='L22' /><em class='comment'>// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L23' name='L23' /><em class='comment'>// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L24' name='L24' /><em class='comment'>// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L25' name='L25' /><em class='comment'>// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L26' name='L26' /><em class='comment'>// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L27' name='L27' /><em class='comment'>// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L28' name='L28' /><em class='comment'>// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L29' name='L29' />
+<a id='L30' name='L30' /><em class='comment'>// ---</em>
+<a id='L31' name='L31' /><em class='comment'>// Author: Craig Silverstein</em>
+<a id='L32' name='L32' /><em class='comment'>//</em>
+<a id='L33' name='L33' /><em class='comment'>// This tests ReadStackTraces and ReadGrowthStackTraces.  It does this</em>
+<a id='L34' name='L34' /><em class='comment'>// by doing a bunch of allocations and then calling those functions.</em>
+<a id='L35' name='L35' /><em class='comment'>// A driver shell-script can call this, and then call pprof, and</em>
+<a id='L36' name='L36' /><em class='comment'>// verify the expected output.  The output is written to</em>
+<a id='L37' name='L37' /><em class='comment'>// argv[1].heap and argv[1].growth</em>
+<a id='L38' name='L38' />
+<a id='L39' name='L39' /><em class='sharp'>#include</em> "<a href='554.html'>config_for_unittests.h</a>"
+<a id='L40' name='L40' /><em class='sharp'>#include</em> &lt;stdio.h&gt;
+<a id='L41' name='L41' /><em class='sharp'>#include</em> &lt;stdlib.h&gt;
+<a id='L42' name='L42' /><em class='sharp'>#include</em> &lt;string&gt;
+<a id='L43' name='L43' /><em class='sharp'>#include</em> "<a href='529.html'>base/logging.h</a>"
+<a id='L44' name='L44' /><em class='sharp'>#include</em> &lt;<a href='559.html'>google/malloc_extension.h</a>&gt;
+<a id='L45' name='L45' />
+<a id='L46' name='L46' /><strong class='reserved'>using</strong> <a href='../Y/5100.html' title='Multiple used in 181 places.'>std</a>::<a href='../Y/5133.html' title='Multiple used in 61 places.'>string</a>;
+<a id='L47' name='L47' />
+<a id='L48' name='L48' /><strong class='reserved'>extern</strong> "C" <strong class='reserved'>void</strong>* <a href='../S/658.html#L50' title='Defined at 50 in third_party/google-perftools-1.8.3/src/tests/sampling_test.cc.'>AllocateAllocate</a>() <a href='../D/125.html' title='Multiple defined in 2 places.'>ATTRIBUTE_NOINLINE</a>;
+<a id='L49' name='L49' />
+<a id='L50' name='L50' /><strong class='reserved'>extern</strong> "C" <strong class='reserved'>void</strong>* <a href='../R/132.html' title='Multiple refered from 2 places.'>AllocateAllocate</a>() <em class='brace'>{</em>
+<a id='L51' name='L51' />  <em class='comment'>// The VLOG's are mostly to discourage inlining</em>
+<a id='L52' name='L52' />  <a href='../D/2938.html' title='Multiple defined in 3 places.'>VLOG</a>(1, "Allocating some more");
+<a id='L53' name='L53' />  <strong class='reserved'>void</strong>* <a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a> = <a href='../D/4497.html' title='Multiple defined in 2 places.'>malloc</a>(10000);
+<a id='L54' name='L54' />  <a href='../D/2938.html' title='Multiple defined in 3 places.'>VLOG</a>(1, "Done allocating");
+<a id='L55' name='L55' />  <strong class='reserved'>return</strong> <a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>;
+<a id='L56' name='L56' /><em class='brace'>}</em>
+<a id='L57' name='L57' />
+<a id='L58' name='L58' /><strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../R/2697.html' title='Multiple refered from 2 places.'>WriteStringToFile</a>(<strong class='reserved'>const</strong> <a href='../Y/5133.html' title='Multiple used in 61 places.'>string</a>&amp; <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>, <strong class='reserved'>const</strong> <a href='../Y/5133.html' title='Multiple used in 61 places.'>string</a>&amp; <a href='../S/652.html#L126' title='Defined at 126 in third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc.'>filename</a>) <em class='brace'>{</em>
+<a id='L59' name='L59' />  <a href='../Y/186.html' title='Multiple used in 169 places.'>FILE</a>* <a href='../Y/2435.html' title='Multiple used in 19 places.'>fp</a> = <a href='../Y/2420.html' title='Multiple used in 17 places.'>fopen</a>(<a href='../S/652.html#L126' title='Defined at 126 in third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc.'>filename</a>.<a href='../Y/1715.html' title='Multiple used in 27 places.'>c_str</a>(), "w");
+<a id='L60' name='L60' />  <a href='../Y/2505.html' title='Multiple used in 12 places.'>fwrite</a>(<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>.<a href='../Y/1968.html' title='Multiple used in 73 places.'>data</a>(), 1, <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>.<a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>(), <a href='../Y/2435.html' title='Multiple used in 19 places.'>fp</a>);
+<a id='L61' name='L61' />  <a href='../Y/2338.html' title='Multiple used in 18 places.'>fclose</a>(<a href='../Y/2435.html' title='Multiple used in 19 places.'>fp</a>);
+<a id='L62' name='L62' /><em class='brace'>}</em>
+<a id='L63' name='L63' />
+<a id='L64' name='L64' /><strong class='reserved'>int</strong> <a href='../S/557.html#L242' title='Refered from 242 in third_party/google-perftools-1.8.3/src/google/heap-checker.h.'>main</a>(<strong class='reserved'>int</strong> <a href='../Y/1497.html' title='Multiple used in 121 places.'>argc</a>, <strong class='reserved'>char</strong>** <a href='../Y/1503.html' title='Multiple used in 153 places.'>argv</a>) <em class='brace'>{</em>
+<a id='L65' name='L65' />  <strong class='reserved'>if</strong> (<a href='../Y/1497.html' title='Multiple used in 121 places.'>argc</a> &lt; 2) <em class='brace'>{</em>
+<a id='L66' name='L66' />    <a href='../Y/2438.html' title='Multiple used in 547 places.'>fprintf</a>(<a href='../Y/5101.html' title='Multiple used in 275 places.'>stderr</a>, "USAGE: %s &lt;base of output files&gt;\n", <a href='../Y/1503.html' title='Multiple used in 153 places.'>argv</a>[0]);
+<a id='L67' name='L67' />    <a href='../Y/2261.html' title='Multiple used in 105 places.'>exit</a>(1);
+<a id='L68' name='L68' />  <em class='brace'>}</em>
+<a id='L69' name='L69' />  <strong class='reserved'>for</strong> (<strong class='reserved'>int</strong> <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> = 0; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> &lt; 8000; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>++) <em class='brace'>{</em>
+<a id='L70' name='L70' />    <a href='../S/658.html#L50' title='Defined at 50 in third_party/google-perftools-1.8.3/src/tests/sampling_test.cc.'>AllocateAllocate</a>();
+<a id='L71' name='L71' />  <em class='brace'>}</em>
+<a id='L72' name='L72' />
+<a id='L73' name='L73' />  <a href='../Y/5133.html' title='Multiple used in 61 places.'>string</a> <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>;
+<a id='L74' name='L74' />  <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../S/580.html#L206' title='Defined at 206 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>instance</a>()-&gt;<a href='../D/845.html' title='Multiple defined in 2 places.'>GetHeapSample</a>(&amp;<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>);
+<a id='L75' name='L75' />  <a href='../S/658.html#L58' title='Defined at 58 in third_party/google-perftools-1.8.3/src/tests/sampling_test.cc.'>WriteStringToFile</a>(<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>, <a href='../Y/5133.html' title='Multiple used in 61 places.'>string</a>(<a href='../Y/1503.html' title='Multiple used in 153 places.'>argv</a>[1]) + ".heap");
+<a id='L76' name='L76' />
+<a id='L77' name='L77' />  <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>.<a href='../Y/1802.html' title='Multiple used in 6 places.'>clear</a>();
+<a id='L78' name='L78' />  <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../S/580.html#L206' title='Defined at 206 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>instance</a>()-&gt;<a href='../S/580.html#L310' title='Defined at 310 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>GetHeapGrowthStacks</a>(&amp;<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>);
+<a id='L79' name='L79' />  <a href='../S/658.html#L58' title='Defined at 58 in third_party/google-perftools-1.8.3/src/tests/sampling_test.cc.'>WriteStringToFile</a>(<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>, <a href='../Y/5133.html' title='Multiple used in 61 places.'>string</a>(<a href='../Y/1503.html' title='Multiple used in 153 places.'>argv</a>[1]) + ".growth");
+<a id='L80' name='L80' />
+<a id='L81' name='L81' />  <strong class='reserved'>return</strong> 0;
+<a id='L82' name='L82' /><em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;]<a href='#L50'>[^]</a><a href='#L64'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

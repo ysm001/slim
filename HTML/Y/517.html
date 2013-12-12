@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>MemoryRegionMap</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/568.html#L633'>MemoryRegionMap</a>   633 third_party/google-perftools-1.8.3/src/heap-checker.cc   RAW_DCHECK(MemoryRegionMap::LockIsHeld(), "");</span>
+<span class='curline'><a href='../S/568.html#L644'>MemoryRegionMap</a>   644 third_party/google-perftools-1.8.3/src/heap-checker.cc   MemoryRegionMap::Region region;</span>
+<span class='curline'><a href='../S/568.html#L645'>MemoryRegionMap</a>   645 third_party/google-perftools-1.8.3/src/heap-checker.cc   if (MemoryRegionMap::FindAndMarkStackRegion(top, &amp;region)) {</span>
+<span class='curline'><a href='../S/568.html#L678'>MemoryRegionMap</a>   678 third_party/google-perftools-1.8.3/src/heap-checker.cc           RAW_DCHECK(MemoryRegionMap::LockIsHeld(), "");</span>
+<span class='curline'><a href='../S/568.html#L679'>MemoryRegionMap</a>   679 third_party/google-perftools-1.8.3/src/heap-checker.cc           for (MemoryRegionMap::RegionIterator r =</span>
+<span class='curline'><a href='../S/568.html#L680'>MemoryRegionMap</a>   680 third_party/google-perftools-1.8.3/src/heap-checker.cc                  MemoryRegionMap::BeginRegionLocked();</span>
+<span class='curline'><a href='../S/568.html#L681'>MemoryRegionMap</a>   681 third_party/google-perftools-1.8.3/src/heap-checker.cc                r != MemoryRegionMap::EndRegionLocked(); ++r) {</span>
+<span class='curline'><a href='../S/568.html#L1082'>MemoryRegionMap</a>  1082 third_party/google-perftools-1.8.3/src/heap-checker.cc   RAW_DCHECK(MemoryRegionMap::LockIsHeld(), "");</span>
+<span class='curline'><a href='../S/568.html#L1139'>MemoryRegionMap</a>  1139 third_party/google-perftools-1.8.3/src/heap-checker.cc       RAW_DCHECK(MemoryRegionMap::LockIsHeld(), "");</span>
+<span class='curline'><a href='../S/568.html#L1145'>MemoryRegionMap</a>  1145 third_party/google-perftools-1.8.3/src/heap-checker.cc       for (MemoryRegionMap::RegionIterator region =</span>
+<span class='curline'><a href='../S/568.html#L1146'>MemoryRegionMap</a>  1146 third_party/google-perftools-1.8.3/src/heap-checker.cc              MemoryRegionMap::BeginRegionLocked();</span>
+<span class='curline'><a href='../S/568.html#L1147'>MemoryRegionMap</a>  1147 third_party/google-perftools-1.8.3/src/heap-checker.cc            region != MemoryRegionMap::EndRegionLocked(); ++region) {</span>
+<span class='curline'><a href='../S/568.html#L1550'>MemoryRegionMap</a>  1550 third_party/google-perftools-1.8.3/src/heap-checker.cc     MemoryRegionMap::LockHolder ml;</span>
+<span class='curline'><a href='../S/568.html#L1717'>MemoryRegionMap</a>  1717 third_party/google-perftools-1.8.3/src/heap-checker.cc     MemoryRegionMap::LockHolder ml;</span>
+<span class='curline'><a href='../S/568.html#L1804'>MemoryRegionMap</a>  1804 third_party/google-perftools-1.8.3/src/heap-checker.cc       MemoryRegionMap::Shutdown();</span>
+<span class='curline'><a href='../S/568.html#L2162'>MemoryRegionMap</a>  2162 third_party/google-perftools-1.8.3/src/heap-checker.cc   MemoryRegionMap::Init(1);</span>
+<span class='curline'><a href='../S/568.html#L2192'>MemoryRegionMap</a>  2192 third_party/google-perftools-1.8.3/src/heap-checker.cc     MemoryRegionMap::Shutdown();</span>
+<span class='curline'><a href='../S/571.html#L187'>MemoryRegionMap</a>   187 third_party/google-perftools-1.8.3/src/heap-profiler.cc   MemoryRegionMap::LockHolder l;</span>
+<span class='curline'><a href='../S/571.html#L188'>MemoryRegionMap</a>   188 third_party/google-perftools-1.8.3/src/heap-profiler.cc   for (MemoryRegionMap::RegionIterator r = MemoryRegionMap::BeginRegionLocked();</span>
+<span class='curline'><a href='../S/571.html#L189'>MemoryRegionMap</a>   189 third_party/google-perftools-1.8.3/src/heap-profiler.cc        r != MemoryRegionMap::EndRegionLocked(); ++r) {</span>
+<span class='curline'><a href='../S/571.html#L451'>MemoryRegionMap</a>   451 third_party/google-perftools-1.8.3/src/heap-profiler.cc     MemoryRegionMap::Init(HeapProfileTable::kMaxStackDepth);</span>
+<span class='curline'><a href='../S/571.html#L535'>MemoryRegionMap</a>   535 third_party/google-perftools-1.8.3/src/heap-profiler.cc     MemoryRegionMap::Shutdown();</span>
+<span class='curline'><a href='../S/588.html#L139'>MemoryRegionMap</a>   139 third_party/google-perftools-1.8.3/src/memory_region_map.cc int MemoryRegionMap::client_count_ = 0;</span>
+<span class='curline'><a href='../S/588.html#L140'>MemoryRegionMap</a>   140 third_party/google-perftools-1.8.3/src/memory_region_map.cc int MemoryRegionMap::max_stack_depth_ = 0;</span>
+<span class='curline'><a href='../S/588.html#L141'>MemoryRegionMap</a>   141 third_party/google-perftools-1.8.3/src/memory_region_map.cc MemoryRegionMap::RegionSet* MemoryRegionMap::regions_ = NULL;</span>
+<span class='curline'><a href='../S/588.html#L142'>MemoryRegionMap</a>   142 third_party/google-perftools-1.8.3/src/memory_region_map.cc LowLevelAlloc::Arena* MemoryRegionMap::arena_ = NULL;</span>
+<span class='curline'><a href='../S/588.html#L143'>MemoryRegionMap</a>   143 third_party/google-perftools-1.8.3/src/memory_region_map.cc SpinLock MemoryRegionMap::lock_(SpinLock::LINKER_INITIALIZED);</span>
+<span class='curline'><a href='../S/588.html#L144'>MemoryRegionMap</a>   144 third_party/google-perftools-1.8.3/src/memory_region_map.cc SpinLock MemoryRegionMap::owner_lock_(  // ACQUIRED_AFTER(lock_)</span>
+<span class='curline'><a href='../S/588.html#L146'>MemoryRegionMap</a>   146 third_party/google-perftools-1.8.3/src/memory_region_map.cc int MemoryRegionMap::recursion_count_ = 0;  // GUARDED_BY(owner_lock_)</span>
+<span class='curline'><a href='../S/588.html#L147'>MemoryRegionMap</a>   147 third_party/google-perftools-1.8.3/src/memory_region_map.cc pthread_t MemoryRegionMap::lock_owner_tid_;  // GUARDED_BY(owner_lock_)</span>
+<span class='curline'><a href='../S/588.html#L166'>MemoryRegionMap</a>   166 third_party/google-perftools-1.8.3/src/memory_region_map.cc union MemoryRegionMap::RegionSetRep {</span>
+<span class='curline'><a href='../S/588.html#L175'>MemoryRegionMap</a>   175 third_party/google-perftools-1.8.3/src/memory_region_map.cc static MemoryRegionMap::RegionSetRep regions_rep;</span>
+<span class='curline'><a href='../S/588.html#L183'>MemoryRegionMap</a>   183 third_party/google-perftools-1.8.3/src/memory_region_map.cc void MemoryRegionMap::Init(int max_stack_depth) {</span>
+<span class='curline'><a href='../S/588.html#L219'>MemoryRegionMap</a>   219 third_party/google-perftools-1.8.3/src/memory_region_map.cc bool MemoryRegionMap::Shutdown() {</span>
+<span class='curline'><a href='../S/588.html#L256'>MemoryRegionMap</a>   256 third_party/google-perftools-1.8.3/src/memory_region_map.cc void MemoryRegionMap::Lock() {</span>
+<span class='curline'><a href='../S/588.html#L278'>MemoryRegionMap</a>   278 third_party/google-perftools-1.8.3/src/memory_region_map.cc void MemoryRegionMap::Unlock() {</span>
+<span class='curline'><a href='../S/588.html#L290'>MemoryRegionMap</a>   290 third_party/google-perftools-1.8.3/src/memory_region_map.cc bool MemoryRegionMap::LockIsHeld() {</span>
+<span class='curline'><a href='../S/588.html#L295'>MemoryRegionMap</a>   295 third_party/google-perftools-1.8.3/src/memory_region_map.cc const MemoryRegionMap::Region*</span>
+<span class='curline'><a href='../S/588.html#L296'>MemoryRegionMap</a>   296 third_party/google-perftools-1.8.3/src/memory_region_map.cc MemoryRegionMap::DoFindRegionLocked(uintptr_t addr) {</span>
+<span class='curline'><a href='../S/588.html#L312'>MemoryRegionMap</a>   312 third_party/google-perftools-1.8.3/src/memory_region_map.cc bool MemoryRegionMap::FindRegion(uintptr_t addr, Region* result) {</span>
+<span class='curline'><a href='../S/588.html#L320'>MemoryRegionMap</a>   320 third_party/google-perftools-1.8.3/src/memory_region_map.cc bool MemoryRegionMap::FindAndMarkStackRegion(uintptr_t stack_top,</span>
+<span class='curline'><a href='../S/588.html#L337'>MemoryRegionMap</a>   337 third_party/google-perftools-1.8.3/src/memory_region_map.cc MemoryRegionMap::RegionIterator MemoryRegionMap::BeginRegionLocked() {</span>
+<span class='curline'><a href='../S/588.html#L343'>MemoryRegionMap</a>   343 third_party/google-perftools-1.8.3/src/memory_region_map.cc MemoryRegionMap::RegionIterator MemoryRegionMap::EndRegionLocked() {</span>
+<span class='curline'><a href='../S/588.html#L349'>MemoryRegionMap</a>   349 third_party/google-perftools-1.8.3/src/memory_region_map.cc inline void MemoryRegionMap::DoInsertRegionLocked(const Region&amp; region) {</span>
+<span class='curline'><a href='../S/588.html#L391'>MemoryRegionMap</a>   391 third_party/google-perftools-1.8.3/src/memory_region_map.cc static MemoryRegionMap::Region saved_regions[20];</span>
+<span class='curline'><a href='../S/588.html#L393'>MemoryRegionMap</a>   393 third_party/google-perftools-1.8.3/src/memory_region_map.cc inline void MemoryRegionMap::HandleSavedRegionsLocked(</span>
+<span class='curline'><a href='../S/588.html#L405'>MemoryRegionMap</a>   405 third_party/google-perftools-1.8.3/src/memory_region_map.cc inline void MemoryRegionMap::InsertRegionLocked(const Region&amp; region) {</span>
+<span class='curline'><a href='../S/588.html#L448'>MemoryRegionMap</a>   448 third_party/google-perftools-1.8.3/src/memory_region_map.cc void MemoryRegionMap::RecordRegionAddition(const void* start, size_t size) {</span>
+<span class='curline'><a href='../S/588.html#L471'>MemoryRegionMap</a>   471 third_party/google-perftools-1.8.3/src/memory_region_map.cc void MemoryRegionMap::RecordRegionRemoval(const void* start, size_t size) {</span>
+<span class='curline'><a href='../S/588.html#L579'>MemoryRegionMap</a>   579 third_party/google-perftools-1.8.3/src/memory_region_map.cc void MemoryRegionMap::MmapHook(const void* result,</span>
+<span class='curline'><a href='../S/588.html#L595'>MemoryRegionMap</a>   595 third_party/google-perftools-1.8.3/src/memory_region_map.cc void MemoryRegionMap::MunmapHook(const void* ptr, size_t size) {</span>
+<span class='curline'><a href='../S/588.html#L602'>MemoryRegionMap</a>   602 third_party/google-perftools-1.8.3/src/memory_region_map.cc void MemoryRegionMap::MremapHook(const void* result,</span>
+<span class='curline'><a href='../S/588.html#L619'>MemoryRegionMap</a>   619 third_party/google-perftools-1.8.3/src/memory_region_map.cc void MemoryRegionMap::SbrkHook(const void* result, ptrdiff_t increment) {</span>
+<span class='curline'><a href='../S/588.html#L634'>MemoryRegionMap</a>   634 third_party/google-perftools-1.8.3/src/memory_region_map.cc void MemoryRegionMap::LogAllLocked() {</span>
+<span class='curline'><a href='../S/589.html#L67'>MemoryRegionMap</a>    67 third_party/google-perftools-1.8.3/src/memory_region_map.h class MemoryRegionMap {</span>
+<span class='curline'><a href='../S/589.html#L151'>MemoryRegionMap</a>   151 third_party/google-perftools-1.8.3/src/memory_region_map.h     friend class MemoryRegionMap;</span>
+<span class='curline'><a href='../S/589.html#L328'>MemoryRegionMap</a>   328 third_party/google-perftools-1.8.3/src/memory_region_map.h   DISALLOW_COPY_AND_ASSIGN(MemoryRegionMap);</span>
+<span class='curline'><a href='../S/637.html#L1274'>MemoryRegionMap</a>  1274 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   { MemoryRegionMap::LockHolder l;</span>
+<span class='curline'><a href='../S/637.html#L1275'>MemoryRegionMap</a>  1275 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     for (MemoryRegionMap::RegionIterator</span>
+<span class='curline'><a href='../S/637.html#L1276'>MemoryRegionMap</a>  1276 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc            i = MemoryRegionMap::BeginRegionLocked();</span>
+<span class='curline'><a href='../S/637.html#L1277'>MemoryRegionMap</a>  1277 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc            i != MemoryRegionMap::EndRegionLocked(); ++i) {</span>
+</pre>
+</body>
+</html>

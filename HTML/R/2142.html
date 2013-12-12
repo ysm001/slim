@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>Region</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/568.html#L644'>Region</a>            644 third_party/google-perftools-1.8.3/src/heap-checker.cc   MemoryRegionMap::Region region;</span>
+<span class='curline'><a href='../S/588.html#L295'>Region</a>            295 third_party/google-perftools-1.8.3/src/memory_region_map.cc const MemoryRegionMap::Region*</span>
+<span class='curline'><a href='../S/588.html#L299'>Region</a>            299 third_party/google-perftools-1.8.3/src/memory_region_map.cc     Region sample;</span>
+<span class='curline'><a href='../S/588.html#L312'>Region</a>            312 third_party/google-perftools-1.8.3/src/memory_region_map.cc bool MemoryRegionMap::FindRegion(uintptr_t addr, Region* result) {</span>
+<span class='curline'><a href='../S/588.html#L314'>Region</a>            314 third_party/google-perftools-1.8.3/src/memory_region_map.cc   const Region* region = DoFindRegionLocked(addr);</span>
+<span class='curline'><a href='../S/588.html#L321'>Region</a>            321 third_party/google-perftools-1.8.3/src/memory_region_map.cc                                              Region* result) {</span>
+<span class='curline'><a href='../S/588.html#L323'>Region</a>            323 third_party/google-perftools-1.8.3/src/memory_region_map.cc   const Region* region = DoFindRegionLocked(stack_top);</span>
+<span class='curline'><a href='../S/588.html#L329'>Region</a>            329 third_party/google-perftools-1.8.3/src/memory_region_map.cc     const_cast&lt;Region*&gt;(region)-&gt;set_is_stack();  // now we know</span>
+<span class='curline'><a href='../S/588.html#L349'>Region</a>            349 third_party/google-perftools-1.8.3/src/memory_region_map.cc inline void MemoryRegionMap::DoInsertRegionLocked(const Region&amp; region) {</span>
+<span class='curline'><a href='../S/588.html#L364'>Region</a>            364 third_party/google-perftools-1.8.3/src/memory_region_map.cc     Region sample;</span>
+<span class='curline'><a href='../S/588.html#L391'>Region</a>            391 third_party/google-perftools-1.8.3/src/memory_region_map.cc static MemoryRegionMap::Region saved_regions[20];</span>
+<span class='curline'><a href='../S/588.html#L394'>Region</a>            394 third_party/google-perftools-1.8.3/src/memory_region_map.cc               void (*insert_func)(const Region&amp; region)) {</span>
+<span class='curline'><a href='../S/588.html#L400'>Region</a>            400 third_party/google-perftools-1.8.3/src/memory_region_map.cc     Region r = saved_regions[--saved_regions_count];</span>
+<span class='curline'><a href='../S/588.html#L405'>Region</a>            405 third_party/google-perftools-1.8.3/src/memory_region_map.cc inline void MemoryRegionMap::InsertRegionLocked(const Region&amp; region) {</span>
+<span class='curline'><a href='../S/588.html#L450'>Region</a>            450 third_party/google-perftools-1.8.3/src/memory_region_map.cc   Region region;</span>
+<span class='curline'><a href='../S/588.html#L483'>Region</a>            483 third_party/google-perftools-1.8.3/src/memory_region_map.cc       Region&amp; r = saved_regions[i];</span>
+<span class='curline'><a href='../S/588.html#L516'>Region</a>            516 third_party/google-perftools-1.8.3/src/memory_region_map.cc   Region sample;</span>
+<span class='curline'><a href='../S/588.html#L542'>Region</a>            542 third_party/google-perftools-1.8.3/src/memory_region_map.cc       Region r = *region;</span>
+<span class='curline'><a href='../S/588.html#L546'>Region</a>            546 third_party/google-perftools-1.8.3/src/memory_region_map.cc       const_cast&lt;Region&amp;&gt;(*region).set_start_addr(end_addr);</span>
+<span class='curline'><a href='../S/588.html#L552'>Region</a>            552 third_party/google-perftools-1.8.3/src/memory_region_map.cc       const_cast&lt;Region&amp;&gt;(*region).set_start_addr(end_addr);</span>
+<span class='curline'><a href='../S/588.html#L559'>Region</a>            559 third_party/google-perftools-1.8.3/src/memory_region_map.cc       Region r = *region;</span>
+<span class='curline'><a href='../S/589.html#L146'>Region</a>            146 third_party/google-perftools-1.8.3/src/memory_region_map.h     bool Overlaps(const Region&amp; x) const {</span>
+<span class='curline'><a href='../S/589.html#L208'>Region</a>            208 third_party/google-perftools-1.8.3/src/memory_region_map.h   static bool FindRegion(uintptr_t addr, Region* result);</span>
+<span class='curline'><a href='../S/589.html#L215'>Region</a>            215 third_party/google-perftools-1.8.3/src/memory_region_map.h   static bool FindAndMarkStackRegion(uintptr_t stack_top, Region* result);</span>
+<span class='curline'><a href='../S/589.html#L221'>Region</a>            221 third_party/google-perftools-1.8.3/src/memory_region_map.h     bool operator()(const Region&amp; x, const Region&amp; y) const {</span>
+<span class='curline'><a href='../S/589.html#L293'>Region</a>            293 third_party/google-perftools-1.8.3/src/memory_region_map.h   static const Region* DoFindRegionLocked(uintptr_t addr);</span>
+<span class='curline'><a href='../S/589.html#L297'>Region</a>            297 third_party/google-perftools-1.8.3/src/memory_region_map.h   inline static void DoInsertRegionLocked(const Region&amp; region);</span>
+<span class='curline'><a href='../S/589.html#L301'>Region</a>            301 third_party/google-perftools-1.8.3/src/memory_region_map.h                        void (*insert_func)(const Region&amp; region));</span>
+<span class='curline'><a href='../S/589.html#L304'>Region</a>            304 third_party/google-perftools-1.8.3/src/memory_region_map.h   inline static void InsertRegionLocked(const Region&amp; region);</span>
+</pre>
+</body>
+</html>

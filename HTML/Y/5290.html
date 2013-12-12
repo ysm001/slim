@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>tar_s</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/696.html#L35'>tar_s</a>              35 third_party/zdelta-2.1/_zdc.c   uLong         ref_s[REFNUM], tar_s;</span>
+<span class='curline'><a href='../S/696.html#L69'>tar_s</a>              69 third_party/zdelta-2.1/_zdc.c   tar_s = fread((void *) tar_buf, sizeof(Byte), (size_t) BUF_SIZE, stdin);</span>
+<span class='curline'><a href='../S/696.html#L80'>tar_s</a>              80 third_party/zdelta-2.1/_zdc.c   if( zd_compressN(ref_buf,ref_s,ref_n,tar_buf,tar_s,delta,&amp;d_size) == ZD_OK){</span>
+<span class='curline'><a href='../S/696.html#L112'>tar_s</a>             112 third_party/zdelta-2.1/_zdc.c   uLong d_size = 0, tar_s, ref_s;</span>
+<span class='curline'><a href='../S/696.html#L142'>tar_s</a>             142 third_party/zdelta-2.1/_zdc.c   tar_s = fread((void *) tar_buf, sizeof(Byte), (size_t) BUF_SIZE, stdin);</span>
+<span class='curline'><a href='../S/696.html#L154'>tar_s</a>             154 third_party/zdelta-2.1/_zdc.c   if(zd_compress(ref_buf, ref_s, tar_buf, tar_s, delta, &amp;d_size) == ZD_OK){</span>
+<span class='curline'><a href='../S/697.html#L35'>tar_s</a>              35 third_party/zdelta-2.1/_zdu.c   uLong         ref_s[REFNUM], tar_s;</span>
+<span class='curline'><a href='../S/697.html#L77'>tar_s</a>              77 third_party/zdelta-2.1/_zdu.c   tar_s = BUF_SIZE;</span>
+<span class='curline'><a href='../S/697.html#L80'>tar_s</a>              80 third_party/zdelta-2.1/_zdu.c   if(zd_uncompressN(ref_buf,ref_s,ref_n,tar_buf,&amp;tar_s,delta,d_size) == ZD_OK){</span>
+<span class='curline'><a href='../S/697.html#L88'>tar_s</a>              88 third_party/zdelta-2.1/_zdu.c     if(tar_s !=  fwrite(tar_buf,sizeof(char),tar_s ,stdout)) perror("ouput");</span>
+<span class='curline'><a href='../S/697.html#L112'>tar_s</a>             112 third_party/zdelta-2.1/_zdu.c   uLong d_size = 0, tar_s, ref_s;</span>
+<span class='curline'><a href='../S/697.html#L151'>tar_s</a>             151 third_party/zdelta-2.1/_zdu.c   tar_s = BUF_SIZE;</span>
+<span class='curline'><a href='../S/697.html#L154'>tar_s</a>             154 third_party/zdelta-2.1/_zdu.c   if(zd_uncompress(ref_buf, ref_s, tar_buf, &amp;tar_s, delta, d_size) == ZD_OK){ </span>
+<span class='curline'><a href='../S/697.html#L161'>tar_s</a>             161 third_party/zdelta-2.1/_zdu.c     if(tar_s != fwrite(tar_buf, sizeof(char), tar_s, stdout)) perror("ouput");</span>
+</pre>
+</body>
+</html>

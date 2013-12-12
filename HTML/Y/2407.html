@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>flush</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/699.html#L109'>flush</a>             109 third_party/zdelta-2.1/deflate.c typedef block_state (*compress_func) OF((deflate_state *s, int flush));</span>
+<span class='curline'><a href='../S/699.html#L118'>flush</a>             118 third_party/zdelta-2.1/deflate.c local block_state deflate_stored OF((deflate_state *s, int flush));</span>
+<span class='curline'><a href='../S/699.html#L120'>flush</a>             120 third_party/zdelta-2.1/deflate.c local block_state delta_deflate_fast OF((deflate_state *s, int flush));</span>
+<span class='curline'><a href='../S/699.html#L121'>flush</a>             121 third_party/zdelta-2.1/deflate.c local block_state delta_deflate_slow OF((deflate_state *s, int flush));</span>
+<span class='curline'><a href='../S/699.html#L527'>flush</a>             527 third_party/zdelta-2.1/deflate.c int ZEXPORT zd_deflate (strm, flush)</span>
+<span class='curline'><a href='../S/699.html#L529'>flush</a>             529 third_party/zdelta-2.1/deflate.c     int flush;</span>
+<span class='curline'><a href='../S/699.html#L535'>flush</a>             535 third_party/zdelta-2.1/deflate.c       flush &gt; ZD_FINISH || flush &lt; 0) {</span>
+<span class='curline'><a href='../S/699.html#L542'>flush</a>             542 third_party/zdelta-2.1/deflate.c       (s-&gt;status == FINISH_STATE &amp;&amp; flush != ZD_FINISH) ||</span>
+<span class='curline'><a href='../S/699.html#L550'>flush</a>             550 third_party/zdelta-2.1/deflate.c   s-&gt;last_flush = flush;</span>
+<span class='curline'><a href='../S/699.html#L584'>flush</a>             584 third_party/zdelta-2.1/deflate.c   } else if (strm-&gt;avail_in == 0 &amp;&amp; flush &lt;= old_flush &amp;&amp;</span>
+<span class='curline'><a href='../S/699.html#L585'>flush</a>             585 third_party/zdelta-2.1/deflate.c 	     flush != ZD_FINISH) {</span>
+<span class='curline'><a href='../S/699.html#L597'>flush</a>             597 third_party/zdelta-2.1/deflate.c       (flush != ZD_NO_FLUSH &amp;&amp; s-&gt;status != FINISH_STATE)) {</span>
+<span class='curline'><a href='../S/699.html#L601'>flush</a>             601 third_party/zdelta-2.1/deflate.c     bstate = (*(configuration_table[s-&gt;level].func))(s, flush);</span>
+<span class='curline'><a href='../S/699.html#L620'>flush</a>             620 third_party/zdelta-2.1/deflate.c       if (flush == ZD_PARTIAL_FLUSH) {</span>
+<span class='curline'><a href='../S/699.html#L627'>flush</a>             627 third_party/zdelta-2.1/deflate.c 	if (flush == ZD_FULL_FLUSH) {</span>
+<span class='curline'><a href='../S/699.html#L641'>flush</a>             641 third_party/zdelta-2.1/deflate.c   if (flush != ZD_FINISH) return ZD_OK;</span>
+<span class='curline'><a href='../S/699.html#L1321'>flush</a>            1321 third_party/zdelta-2.1/deflate.c local block_state deflate_stored(s, flush)</span>
+<span class='curline'><a href='../S/699.html#L1323'>flush</a>            1323 third_party/zdelta-2.1/deflate.c     int flush;</span>
+<span class='curline'><a href='../S/699.html#L1344'>flush</a>            1344 third_party/zdelta-2.1/deflate.c             if (s-&gt;lookahead == 0 &amp;&amp; flush == ZD_NO_FLUSH) return need_more;</span>
+<span class='curline'><a href='../S/699.html#L1368'>flush</a>            1368 third_party/zdelta-2.1/deflate.c     FLUSH_BLOCK(s, flush == ZD_FINISH);</span>
+<span class='curline'><a href='../S/699.html#L1369'>flush</a>            1369 third_party/zdelta-2.1/deflate.c     return flush == ZD_FINISH ? finish_done : block_done;</span>
+<span class='curline'><a href='../S/699.html#L1437'>flush</a>            1437 third_party/zdelta-2.1/deflate.c local block_state delta_deflate_fast(deflate_state *s, int flush){</span>
+<span class='curline'><a href='../S/699.html#L1456'>flush</a>            1456 third_party/zdelta-2.1/deflate.c       if (s-&gt;lookahead &lt; MIN_LOOKAHEAD &amp;&amp; flush == ZD_NO_FLUSH) {</span>
+<span class='curline'><a href='../S/699.html#L1561'>flush</a>            1561 third_party/zdelta-2.1/deflate.c   FLUSH_BLOCK(s, flush == ZD_FINISH);</span>
+<span class='curline'><a href='../S/699.html#L1562'>flush</a>            1562 third_party/zdelta-2.1/deflate.c   return flush == ZD_FINISH ? finish_done : block_done;</span>
+<span class='curline'><a href='../S/699.html#L1567'>flush</a>            1567 third_party/zdelta-2.1/deflate.c local block_state delta_deflate_slow(deflate_state *s, int flush){</span>
+<span class='curline'><a href='../S/699.html#L1586'>flush</a>            1586 third_party/zdelta-2.1/deflate.c       if (s-&gt;lookahead &lt; MIN_LOOKAHEAD &amp;&amp; flush == ZD_NO_FLUSH) {</span>
+<span class='curline'><a href='../S/699.html#L1709'>flush</a>            1709 third_party/zdelta-2.1/deflate.c   FLUSH_BLOCK(s, flush == ZD_FINISH);</span>
+<span class='curline'><a href='../S/699.html#L1710'>flush</a>            1710 third_party/zdelta-2.1/deflate.c   return flush == ZD_FINISH ? finish_done : block_done;</span>
+<span class='curline'><a href='../S/700.html#L397'>flush</a>             397 third_party/zdelta-2.1/deflate.h # define _tr_tally_lit(s, c, flush) \</span>
+<span class='curline'><a href='../S/700.html#L402'>flush</a>             402 third_party/zdelta-2.1/deflate.h     flush = (s-&gt;last_lit == s-&gt;lit_bufsize-1); \</span>
+<span class='curline'><a href='../S/700.html#L409'>flush</a>             409 third_party/zdelta-2.1/deflate.h # define _tr_tally_dist_ref(s, distance, length, zd, flush) \</span>
+<span class='curline'><a href='../S/700.html#L418'>flush</a>             418 third_party/zdelta-2.1/deflate.h     flush = (s-&gt;last_lit == s-&gt;lit_bufsize-1); \</span>
+<span class='curline'><a href='../S/700.html#L421'>flush</a>             421 third_party/zdelta-2.1/deflate.h # define _tr_tally_dist_tar(s, distance, length, flush) \</span>
+<span class='curline'><a href='../S/700.html#L429'>flush</a>             429 third_party/zdelta-2.1/deflate.h     flush = (s-&gt;last_lit == s-&gt;lit_bufsize-1); \</span>
+<span class='curline'><a href='../S/726.html#L185'>flush</a>             185 third_party/zdelta-2.1/zdlib.h ZEXTERN int ZEXPORT zd_deflate OF((zd_streamp strm, int flush));</span>
+<span class='curline'><a href='../S/726.html#L297'>flush</a>             297 third_party/zdelta-2.1/zdlib.h ZEXTERN int ZEXPORT zd_inflate OF((zd_streamp strm, int flush));</span>
+</pre>
+</body>
+</html>

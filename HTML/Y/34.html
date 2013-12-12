@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>Allocator</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/505.html#L105'>Allocator</a>         105 third_party/google-perftools-1.8.3/src/addressmap-inl.h   typedef void* (*Allocator)(size_t size);</span>
+<span class='curline'><a href='../S/505.html#L112'>Allocator</a>         112 third_party/google-perftools-1.8.3/src/addressmap-inl.h   AddressMap(Allocator alloc, DeAllocator dealloc);</span>
+<span class='curline'><a href='../S/505.html#L250'>Allocator</a>         250 third_party/google-perftools-1.8.3/src/addressmap-inl.h   Allocator     alloc_;                 // The allocator</span>
+<span class='curline'><a href='../S/505.html#L270'>Allocator</a>         270 third_party/google-perftools-1.8.3/src/addressmap-inl.h AddressMap&lt;Value&gt;::AddressMap(Allocator alloc, DeAllocator dealloc)</span>
+<span class='curline'><a href='../S/557.html#L209'>Allocator</a>         209 third_party/google-perftools-1.8.3/src/google/heap-checker.h   class Allocator;</span>
+<span class='curline'><a href='../S/568.html#L291'>Allocator</a>         291 third_party/google-perftools-1.8.3/src/heap-checker.cc class HeapLeakChecker::Allocator {</span>
+<span class='curline'><a href='../S/568.html#L336'>Allocator</a>         336 third_party/google-perftools-1.8.3/src/heap-checker.cc LowLevelAlloc::Arena* HeapLeakChecker::Allocator::arena_ = NULL;</span>
+<span class='curline'><a href='../S/568.html#L337'>Allocator</a>         337 third_party/google-perftools-1.8.3/src/heap-checker.cc int HeapLeakChecker::Allocator::alloc_count_ = 0;</span>
+<span class='curline'><a href='../S/568.html#L368'>Allocator</a>         368 third_party/google-perftools-1.8.3/src/heap-checker.cc                           HeapLeakChecker::Allocator&gt;</span>
+<span class='curline'><a href='../S/568.html#L382'>Allocator</a>         382 third_party/google-perftools-1.8.3/src/heap-checker.cc                STL_Allocator&lt;AllocObject, HeapLeakChecker::Allocator&gt;</span>
+<span class='curline'><a href='../S/568.html#L388'>Allocator</a>         388 third_party/google-perftools-1.8.3/src/heap-checker.cc                      STL_Allocator&lt;char, HeapLeakChecker::Allocator&gt;</span>
+<span class='curline'><a href='../S/568.html#L395'>Allocator</a>         395 third_party/google-perftools-1.8.3/src/heap-checker.cc                           HeapLeakChecker::Allocator&gt;</span>
+<span class='curline'><a href='../S/568.html#L409'>Allocator</a>         409 third_party/google-perftools-1.8.3/src/heap-checker.cc                           HeapLeakChecker::Allocator&gt;</span>
+<span class='curline'><a href='../S/568.html#L420'>Allocator</a>         420 third_party/google-perftools-1.8.3/src/heap-checker.cc             STL_Allocator&lt;uintptr_t, HeapLeakChecker::Allocator&gt;</span>
+<span class='curline'><a href='../S/568.html#L430'>Allocator</a>         430 third_party/google-perftools-1.8.3/src/heap-checker.cc                           HeapLeakChecker::Allocator&gt;</span>
+<span class='curline'><a href='../S/568.html#L877'>Allocator</a>         877 third_party/google-perftools-1.8.3/src/heap-checker.cc           new(Allocator::Allocate(sizeof(GlobalRegionCallerRangeMap)))</span>
+<span class='curline'><a href='../S/568.html#L1021'>Allocator</a>        1021 third_party/google-perftools-1.8.3/src/heap-checker.cc   vector&lt;void*, STL_Allocator&lt;void*, Allocator&gt; &gt; thread_registers;</span>
+<span class='curline'><a href='../S/568.html#L1224'>Allocator</a>        1224 third_party/google-perftools-1.8.3/src/heap-checker.cc     Allocator::DeleteAndNull(&amp;library_live_objects);</span>
+<span class='curline'><a href='../S/568.html#L1251'>Allocator</a>        1251 third_party/google-perftools-1.8.3/src/heap-checker.cc   live_objects = new(Allocator::Allocate(sizeof(LiveObjectsStack)))</span>
+<span class='curline'><a href='../S/568.html#L1253'>Allocator</a>        1253 third_party/google-perftools-1.8.3/src/heap-checker.cc   stack_tops = new(Allocator::Allocate(sizeof(StackTopSet))) StackTopSet;</span>
+<span class='curline'><a href='../S/568.html#L1270'>Allocator</a>        1270 third_party/google-perftools-1.8.3/src/heap-checker.cc       new(Allocator::Allocate(sizeof(LibraryLiveObjectsStacks)))</span>
+<span class='curline'><a href='../S/568.html#L1338'>Allocator</a>        1338 third_party/google-perftools-1.8.3/src/heap-checker.cc   Allocator::DeleteAndNull(&amp;live_objects);</span>
+<span class='curline'><a href='../S/568.html#L1339'>Allocator</a>        1339 third_party/google-perftools-1.8.3/src/heap-checker.cc   Allocator::DeleteAndNull(&amp;stack_tops);</span>
+<span class='curline'><a href='../S/568.html#L1490'>Allocator</a>        1490 third_party/google-perftools-1.8.3/src/heap-checker.cc       ignored_objects = new(Allocator::Allocate(sizeof(IgnoredObjectsMap)))</span>
+<span class='curline'><a href='../S/568.html#L1530'>Allocator</a>        1530 third_party/google-perftools-1.8.3/src/heap-checker.cc   char* file_name = reinterpret_cast&lt;char*&gt;(Allocator::Allocate(len));</span>
+<span class='curline'><a href='../S/568.html#L1704'>Allocator</a>        1704 third_party/google-perftools-1.8.3/src/heap-checker.cc     Allocator::DeleteAndNullIfNot(&amp;global_region_caller_ranges);</span>
+<span class='curline'><a href='../S/568.html#L1710'>Allocator</a>        1710 third_party/google-perftools-1.8.3/src/heap-checker.cc     const int initial_allocs = Allocator::alloc_count();</span>
+<span class='curline'><a href='../S/568.html#L1738'>Allocator</a>        1738 third_party/google-perftools-1.8.3/src/heap-checker.cc       if (Allocator::alloc_count() != initial_allocs) {</span>
+<span class='curline'><a href='../S/568.html#L1740'>Allocator</a>        1740 third_party/google-perftools-1.8.3/src/heap-checker.cc                 Allocator::alloc_count() - initial_allocs,</span>
+<span class='curline'><a href='../S/568.html#L1741'>Allocator</a>        1741 third_party/google-perftools-1.8.3/src/heap-checker.cc                 initial_allocs, Allocator::alloc_count());</span>
+<span class='curline'><a href='../S/568.html#L1824'>Allocator</a>        1824 third_party/google-perftools-1.8.3/src/heap-checker.cc       Allocator::Free(pprof_file);</span>
+<span class='curline'><a href='../S/568.html#L2165'>Allocator</a>        2165 third_party/google-perftools-1.8.3/src/heap-checker.cc   Allocator::Init();</span>
+<span class='curline'><a href='../S/568.html#L2167'>Allocator</a>        2167 third_party/google-perftools-1.8.3/src/heap-checker.cc   heap_profile = new(Allocator::Allocate(sizeof(HeapProfileTable)))</span>
+<span class='curline'><a href='../S/568.html#L2168'>Allocator</a>        2168 third_party/google-perftools-1.8.3/src/heap-checker.cc                    HeapProfileTable(&amp;Allocator::Allocate, &amp;Allocator::Free);</span>
+<span class='curline'><a href='../S/568.html#L2186'>Allocator</a>        2186 third_party/google-perftools-1.8.3/src/heap-checker.cc     Allocator::DeleteAndNull(&amp;heap_profile);</span>
+<span class='curline'><a href='../S/568.html#L2188'>Allocator</a>        2188 third_party/google-perftools-1.8.3/src/heap-checker.cc     Allocator::DeleteAndNullIfNot(&amp;ignored_objects);</span>
+<span class='curline'><a href='../S/568.html#L2189'>Allocator</a>        2189 third_party/google-perftools-1.8.3/src/heap-checker.cc     Allocator::DeleteAndNullIfNot(&amp;disabled_ranges);</span>
+<span class='curline'><a href='../S/568.html#L2190'>Allocator</a>        2190 third_party/google-perftools-1.8.3/src/heap-checker.cc     Allocator::DeleteAndNullIfNot(&amp;global_region_caller_ranges);</span>
+<span class='curline'><a href='../S/568.html#L2191'>Allocator</a>        2191 third_party/google-perftools-1.8.3/src/heap-checker.cc     Allocator::Shutdown();</span>
+<span class='curline'><a href='../S/568.html#L2287'>Allocator</a>        2287 third_party/google-perftools-1.8.3/src/heap-checker.cc     disabled_ranges = new(Allocator::Allocate(sizeof(DisabledRangeMap)))</span>
+<span class='curline'><a href='../S/569.html#L123'>Allocator</a>         123 third_party/google-perftools-1.8.3/src/heap-profile-table.cc HeapProfileTable::HeapProfileTable(Allocator alloc, DeAllocator dealloc)</span>
+<span class='curline'><a href='../S/570.html#L92'>Allocator</a>          92 third_party/google-perftools-1.8.3/src/heap-profile-table.h   typedef void* (*Allocator)(size_t size);</span>
+<span class='curline'><a href='../S/570.html#L97'>Allocator</a>          97 third_party/google-perftools-1.8.3/src/heap-profile-table.h   HeapProfileTable(Allocator alloc, DeAllocator dealloc);</span>
+<span class='curline'><a href='../S/570.html#L317'>Allocator</a>         317 third_party/google-perftools-1.8.3/src/heap-profile-table.h   Allocator alloc_;</span>
+<span class='curline'><a href='../S/570.html#L368'>Allocator</a>         368 third_party/google-perftools-1.8.3/src/heap-profile-table.h   Snapshot(Allocator alloc, DeAllocator dealloc) : map_(alloc, dealloc) {</span>
+</pre>
+</body>
+</html>

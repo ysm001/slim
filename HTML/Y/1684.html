@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>buflen</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/569.html#L269'>buflen</a>            269 third_party/google-perftools-1.8.3/src/heap-profile-table.cc                                     char* buf, int buflen, int bufsize,</span>
+<span class='curline'><a href='../S/569.html#L279'>buflen</a>            279 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     snprintf(buf + buflen, bufsize - buflen, "%6d: %8"PRId64" [%6d: %8"PRId64"] @%s",</span>
+<span class='curline'><a href='../S/569.html#L286'>buflen</a>            286 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   if (printed &lt; 0 || printed &gt;= bufsize - buflen) return buflen;</span>
+<span class='curline'><a href='../S/569.html#L287'>buflen</a>            287 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   buflen += printed;</span>
+<span class='curline'><a href='../S/569.html#L289'>buflen</a>            289 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     printed = snprintf(buf + buflen, bufsize - buflen, " 0x%08" PRIxPTR,</span>
+<span class='curline'><a href='../S/569.html#L291'>buflen</a>            291 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     if (printed &lt; 0 || printed &gt;= bufsize - buflen) return buflen;</span>
+<span class='curline'><a href='../S/569.html#L292'>buflen</a>            292 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     buflen += printed;</span>
+<span class='curline'><a href='../S/569.html#L294'>buflen</a>            294 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   printed = snprintf(buf + buflen, bufsize - buflen, "\n");</span>
+<span class='curline'><a href='../S/569.html#L295'>buflen</a>            295 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   if (printed &lt; 0 || printed &gt;= bufsize - buflen) return buflen;</span>
+<span class='curline'><a href='../S/569.html#L296'>buflen</a>            296 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   buflen += printed;</span>
+<span class='curline'><a href='../S/569.html#L297'>buflen</a>            297 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   return buflen;</span>
+<span class='curline'><a href='../S/570.html#L262'>buflen</a>            262 third_party/google-perftools-1.8.3/src/heap-profile-table.h                            char* buf, int buflen, int bufsize,</span>
+<span class='curline'><a href='../S/571.html#L202'>buflen</a>            202 third_party/google-perftools-1.8.3/src/heap-profiler.cc static char* DoGetHeapProfileLocked(char* buf, int buflen) {</span>
+<span class='curline'><a href='../S/571.html#L205'>buflen</a>            205 third_party/google-perftools-1.8.3/src/heap-profiler.cc   if (buf == NULL || buflen &lt; 1)</span>
+<span class='curline'><a href='../S/571.html#L214'>buflen</a>            214 third_party/google-perftools-1.8.3/src/heap-profiler.cc     bytes_written = heap_profile-&gt;FillOrderedProfile(buf, buflen - 1);</span>
+</pre>
+</body>
+</html>

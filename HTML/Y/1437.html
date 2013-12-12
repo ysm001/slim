@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>alloc_map_</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/555.html#L309'>alloc_map_</a>        309 third_party/google-perftools-1.8.3/src/debugallocation.cc   static AllocMap* alloc_map_;</span>
+<span class='curline'><a href='../S/555.html#L377'>alloc_map_</a>        377 third_party/google-perftools-1.8.3/src/debugallocation.cc     if (!alloc_map_) {</span>
+<span class='curline'><a href='../S/555.html#L379'>alloc_map_</a>        379 third_party/google-perftools-1.8.3/src/debugallocation.cc       alloc_map_ = new(p) AllocMap(BASE_MALLOC, BASE_FREE);</span>
+<span class='curline'><a href='../S/555.html#L381'>alloc_map_</a>        381 third_party/google-perftools-1.8.3/src/debugallocation.cc     alloc_map_-&gt;Insert(data_addr(), type);</span>
+<span class='curline'><a href='../S/555.html#L405'>alloc_map_</a>        405 third_party/google-perftools-1.8.3/src/debugallocation.cc     alloc_map_-&gt;Insert(data_addr(), type | kDeallocatedTypeBit);</span>
+<span class='curline'><a href='../S/555.html#L416'>alloc_map_</a>        416 third_party/google-perftools-1.8.3/src/debugallocation.cc       alloc_map_ != NULL ? alloc_map_-&gt;Find(data_addr()) : NULL;</span>
+<span class='curline'><a href='../S/555.html#L751'>alloc_map_</a>        751 third_party/google-perftools-1.8.3/src/debugallocation.cc     if (alloc_map_ != NULL)  alloc_map_-&gt;Iterate(CheckCallback, 0);</span>
+<span class='curline'><a href='../S/555.html#L763'>alloc_map_</a>        763 third_party/google-perftools-1.8.3/src/debugallocation.cc     if (alloc_map_ != NULL) alloc_map_-&gt;Iterate(StatsCallback, 0);</span>
+<span class='curline'><a href='../S/555.html#L813'>alloc_map_</a>        813 third_party/google-perftools-1.8.3/src/debugallocation.cc MallocBlock::AllocMap* MallocBlock::alloc_map_ = NULL;</span>
+</pre>
+</body>
+</html>

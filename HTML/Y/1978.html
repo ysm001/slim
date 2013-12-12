@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>dcodes</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/719.html#L183'>dcodes</a>            183 third_party/zdelta-2.1/trees.c local void send_all_trees OF((deflate_state *s, int lcodes, int dcodes,</span>
+<span class='curline'><a href='../S/719.html#L959'>dcodes</a>            959 third_party/zdelta-2.1/trees.c local void send_all_trees(s, lcodes, dcodes, zcodes, blcodes)</span>
+<span class='curline'><a href='../S/719.html#L961'>dcodes</a>            961 third_party/zdelta-2.1/trees.c      int lcodes, dcodes, zcodes, blcodes; /* number of codes for each tree */</span>
+<span class='curline'><a href='../S/719.html#L965'>dcodes</a>            965 third_party/zdelta-2.1/trees.c   Assert (lcodes &gt;= 1 &amp;&amp; dcodes &gt;= 257 &amp;&amp; blcodes &gt;= 4 &amp;&amp; zcodes&gt;=1,</span>
+<span class='curline'><a href='../S/719.html#L967'>dcodes</a>            967 third_party/zdelta-2.1/trees.c   Assert (lcodes &lt;= L_CODES &amp;&amp; dcodes &lt;= D_CODES &amp;&amp; blcodes &lt;= BL_CODES &amp;&amp;</span>
+<span class='curline'><a href='../S/719.html#L973'>dcodes</a>            973 third_party/zdelta-2.1/trees.c   send_bits(s, dcodes-257, 5);</span>
+<span class='curline'><a href='../S/719.html#L974'>dcodes</a>            974 third_party/zdelta-2.1/trees.c   Tracev((stderr, "\n # dist codes  :%u", dcodes-257));</span>
+<span class='curline'><a href='../S/719.html#L995'>dcodes</a>            995 third_party/zdelta-2.1/trees.c   send_tree(s, (ct_data *)s-&gt;dyn_dtree, dcodes-1); /* distance tree */</span>
+</pre>
+</body>
+</html>

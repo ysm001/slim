@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>blocks</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/505.html#L179'>blocks</a>            179 third_party/google-perftools-1.8.3/src/addressmap-inl.h     Entry*   blocks[kClusterBlocks];    // Per-block linked-lists</span>
+<span class='curline'><a href='../S/505.html#L298'>blocks</a>            298 third_party/google-perftools-1.8.3/src/addressmap-inl.h     for (Entry* e = c-&gt;blocks[BlockID(num)]; e != NULL; e = e-&gt;next) {</span>
+<span class='curline'><a href='../S/505.html#L314'>blocks</a>            314 third_party/google-perftools-1.8.3/src/addressmap-inl.h   for (Entry* e = c-&gt;blocks[block]; e != NULL; e = e-&gt;next) {</span>
+<span class='curline'><a href='../S/505.html#L335'>blocks</a>            335 third_party/google-perftools-1.8.3/src/addressmap-inl.h   e-&gt;next = c-&gt;blocks[block];</span>
+<span class='curline'><a href='../S/505.html#L336'>blocks</a>            336 third_party/google-perftools-1.8.3/src/addressmap-inl.h   c-&gt;blocks[block] = e;</span>
+<span class='curline'><a href='../S/505.html#L344'>blocks</a>            344 third_party/google-perftools-1.8.3/src/addressmap-inl.h     for (Entry** p = &amp;c-&gt;blocks[BlockID(num)]; *p != NULL; p = &amp;(*p)-&gt;next) {</span>
+<span class='curline'><a href='../S/505.html#L371'>blocks</a>            371 third_party/google-perftools-1.8.3/src/addressmap-inl.h         for (const Entry* e = c-&gt;blocks[block]; e != NULL; e = e-&gt;next) {</span>
+<span class='curline'><a href='../S/505.html#L413'>blocks</a>            413 third_party/google-perftools-1.8.3/src/addressmap-inl.h         for (Entry* e = c-&gt;blocks[b]; e != NULL; e = e-&gt;next) {</span>
+<span class='curline'><a href='../S/555.html#L756'>blocks</a>            756 third_party/google-perftools-1.8.3/src/debugallocation.cc   static bool MemoryStats(int* blocks, size_t* total,</span>
+<span class='curline'><a href='../S/555.html#L764'>blocks</a>            764 third_party/google-perftools-1.8.3/src/debugallocation.cc     *blocks = stats_blocks_;</span>
+<span class='curline'><a href='../S/555.html#L1035'>blocks</a>           1035 third_party/google-perftools-1.8.3/src/debugallocation.cc   virtual bool MallocMemoryStats(int* blocks, size_t* total,</span>
+<span class='curline'><a href='../S/555.html#L1037'>blocks</a>           1037 third_party/google-perftools-1.8.3/src/debugallocation.cc     return MallocBlock::MemoryStats(blocks, total, histogram);</span>
+<span class='curline'><a href='../S/559.html#L107'>blocks</a>            107 third_party/google-perftools-1.8.3/src/google/malloc_extension.h   virtual bool MallocMemoryStats(int* blocks, size_t* total,</span>
+<span class='curline'><a href='../S/560.html#L64'>blocks</a>             64 third_party/google-perftools-1.8.3/src/google/malloc_extension_c.h PERFTOOLS_DLL_DECL int MallocExtension_MallocMemoryStats(int* blocks, size_t* total,</span>
+<span class='curline'><a href='../S/580.html#L128'>blocks</a>            128 third_party/google-perftools-1.8.3/src/malloc_extension.cc bool MallocExtension::MallocMemoryStats(int* blocks, size_t* total,</span>
+<span class='curline'><a href='../S/580.html#L130'>blocks</a>            130 third_party/google-perftools-1.8.3/src/malloc_extension.cc   *blocks = 0;</span>
+<span class='curline'><a href='../S/580.html#L350'>blocks</a>            350 third_party/google-perftools-1.8.3/src/malloc_extension.cc        (int* blocks, size_t* total, int histogram[kMallocHistogramSize]),</span>
+<span class='curline'><a href='../S/580.html#L351'>blocks</a>            351 third_party/google-perftools-1.8.3/src/malloc_extension.cc        (blocks, total, histogram));</span>
+<span class='curline'><a href='../S/637.html#L266'>blocks</a>            266 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   int blocks;</span>
+<span class='curline'><a href='../S/637.html#L270'>blocks</a>            270 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc        -&gt;MallocMemoryStats(&amp;blocks, &amp;total, histogram)  &amp;&amp;  total != 0) {</span>
+<span class='curline'><a href='../S/637.html#L271'>blocks</a>            271 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     VLOG(3) &lt;&lt; "Malloc stats: " &lt;&lt; blocks &lt;&lt; " blocks of "</span>
+<span class='curline'><a href='../S/642.html#L98'>blocks</a>             98 third_party/google-perftools-1.8.3/src/tests/malloc_extension_c_test.c   int blocks;</span>
+<span class='curline'><a href='../S/642.html#L106'>blocks</a>            106 third_party/google-perftools-1.8.3/src/tests/malloc_extension_c_test.c   MallocExtension_MallocMemoryStats(&amp;blocks, &amp;total, hist);</span>
+<span class='curline'><a href='../S/708.html#L63'>blocks</a>             63 third_party/zdelta-2.1/inflate.c   *blocks;              /* current inflate_blocks state */</span>
+<span class='curline'><a href='../S/708.html#L77'>blocks</a>             77 third_party/zdelta-2.1/inflate.c   inflate_blocks_reset(z-&gt;state-&gt;blocks, z, ZD_NULL);</span>
+<span class='curline'><a href='../S/708.html#L88'>blocks</a>             88 third_party/zdelta-2.1/inflate.c   if (z-&gt;state-&gt;blocks != ZD_NULL)</span>
+<span class='curline'><a href='../S/708.html#L89'>blocks</a>             89 third_party/zdelta-2.1/inflate.c     inflate_blocks_free(z-&gt;state-&gt;blocks, z);</span>
+<span class='curline'><a href='../S/708.html#L119'>blocks</a>            119 third_party/zdelta-2.1/inflate.c   z-&gt;state-&gt;blocks = ZD_NULL;</span>
+<span class='curline'><a href='../S/708.html#L144'>blocks</a>            144 third_party/zdelta-2.1/inflate.c   if ((z-&gt;state-&gt;blocks =</span>
+<span class='curline'><a href='../S/708.html#L222'>blocks</a>            222 third_party/zdelta-2.1/inflate.c     r = inflate_blocks(z-&gt;state-&gt;blocks, z, r);</span>
+<span class='curline'><a href='../S/708.html#L234'>blocks</a>            234 third_party/zdelta-2.1/inflate.c     inflate_blocks_reset(z-&gt;state-&gt;blocks, z, &amp;z-&gt;state-&gt;sub.check.was);</span>
+</pre>
+</body>
+</html>

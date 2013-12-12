@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>rw</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/402.html#L52'>rw</a>                 52 src/utility/queue.c inline static void q_lock(Queue *q, BOOL rw);</span>
+<span class='curline'><a href='../S/402.html#L53'>rw</a>                 53 src/utility/queue.c inline static void q_unlock(Queue *q, BOOL rw);</span>
+<span class='curline'><a href='../S/699.html#L113'>rw</a>                113 third_party/zdelta-2.1/deflate.c local void fill_ref_window OF((deflate_state *s, int rw)); /* zdelta: added  */</span>
+<span class='curline'><a href='../S/699.html#L116'>rw</a>                116 third_party/zdelta-2.1/deflate.c local void init_ref_window OF((deflate_state *s, int rw)); /* zdelta: added  */</span>
+<span class='curline'><a href='../S/699.html#L128'>rw</a>                128 third_party/zdelta-2.1/deflate.c local int read_ref_buf OF((zd_streamp strm, Bytef *buf, unsigned size, int rw));</span>
+<span class='curline'><a href='../S/699.html#L132'>rw</a>                132 third_party/zdelta-2.1/deflate.c 					IPos cur_match, int rw));</span>
+<span class='curline'><a href='../S/699.html#L229'>rw</a>                229 third_party/zdelta-2.1/deflate.c #define INSERT_REF_STRING(s, str, rw) \</span>
+<span class='curline'><a href='../S/699.html#L230'>rw</a>                230 third_party/zdelta-2.1/deflate.c    (UPDATE_HASH(s, s-&gt;ref_h, s-&gt;ref_window[rw][(str) + (MIN_MATCH-1)]), \</span>
+<span class='curline'><a href='../S/699.html#L231'>rw</a>                231 third_party/zdelta-2.1/deflate.c     s-&gt;ref_prev[rw][((Pos) str) &amp; s-&gt;rw_mask] = s-&gt;ref_head[rw][s-&gt;ref_h], \</span>
+<span class='curline'><a href='../S/699.html#L232'>rw</a>                232 third_party/zdelta-2.1/deflate.c     s-&gt;ref_head[rw][s-&gt;ref_h] = (Pos)(str))</span>
+<span class='curline'><a href='../S/699.html#L243'>rw</a>                243 third_party/zdelta-2.1/deflate.c #define CLEAR_REF_HASH(s, rw) \</span>
+<span class='curline'><a href='../S/699.html#L244'>rw</a>                244 third_party/zdelta-2.1/deflate.c     s-&gt;ref_head[rw][s-&gt;hash_size-1] = NIL; \</span>
+<span class='curline'><a href='../S/699.html#L245'>rw</a>                245 third_party/zdelta-2.1/deflate.c     zmemzero((Bytef *)s-&gt;ref_head[rw], \</span>
+<span class='curline'><a href='../S/699.html#L246'>rw</a>                246 third_party/zdelta-2.1/deflate.c              (unsigned)(s-&gt;hash_size-1)*sizeof(*s-&gt;ref_head[rw]));</span>
+<span class='curline'><a href='../S/699.html#L256'>rw</a>                256 third_party/zdelta-2.1/deflate.c   int rw;</span>
+<span class='curline'><a href='../S/699.html#L263'>rw</a>                263 third_party/zdelta-2.1/deflate.c   for(rw=0;rw&lt;strm-&gt;refnum;++rw) strm-&gt;base_out[rw] = 0;</span>
+<span class='curline'><a href='../S/699.html#L286'>rw</a>                286 third_party/zdelta-2.1/deflate.c   for(rw=0;rw&lt;strm-&gt;refnum;++rw){</span>
+<span class='curline'><a href='../S/699.html#L287'>rw</a>                287 third_party/zdelta-2.1/deflate.c     if(strm-&gt;base_avail[rw] &gt;= MIN_MATCH)  init_ref_window(s,rw);</span>
+<span class='curline'><a href='../S/699.html#L725'>rw</a>                725 third_party/zdelta-2.1/deflate.c local int read_ref_buf(strm, buf, size, rw)</span>
+<span class='curline'><a href='../S/699.html#L729'>rw</a>                729 third_party/zdelta-2.1/deflate.c      int rw;</span>
+<span class='curline'><a href='../S/699.html#L731'>rw</a>                731 third_party/zdelta-2.1/deflate.c   unsigned len = strm-&gt;base_avail[rw]; </span>
+<span class='curline'><a href='../S/699.html#L735'>rw</a>                735 third_party/zdelta-2.1/deflate.c   strm-&gt;base_avail[rw]  -= len;</span>
+<span class='curline'><a href='../S/699.html#L737'>rw</a>                737 third_party/zdelta-2.1/deflate.c   zmemcpy(buf, strm-&gt;base[rw], len);</span>
+<span class='curline'><a href='../S/699.html#L739'>rw</a>                739 third_party/zdelta-2.1/deflate.c   strm-&gt;base[rw]     += len;</span>
+<span class='curline'><a href='../S/699.html#L740'>rw</a>                740 third_party/zdelta-2.1/deflate.c   strm-&gt;base_out[rw] += len;</span>
+<span class='curline'><a href='../S/699.html#L896'>rw</a>                896 third_party/zdelta-2.1/deflate.c fill_ref_window(s, rw)</span>
+<span class='curline'><a href='../S/699.html#L898'>rw</a>                898 third_party/zdelta-2.1/deflate.c     int rw;</span>
+<span class='curline'><a href='../S/699.html#L906'>rw</a>                906 third_party/zdelta-2.1/deflate.c   zmemcpy((Bytef*) s-&gt;ref_window[rw], </span>
+<span class='curline'><a href='../S/699.html#L907'>rw</a>                907 third_party/zdelta-2.1/deflate.c 	  (Bytef*) (s-&gt;ref_window[rw]+wsize), </span>
+<span class='curline'><a href='../S/699.html#L909'>rw</a>                909 third_party/zdelta-2.1/deflate.c   nb = read_ref_buf(s-&gt;strm,s-&gt;ref_window[rw]+wsize, wsize, rw);</span>
+<span class='curline'><a href='../S/699.html#L912'>rw</a>                912 third_party/zdelta-2.1/deflate.c   s-&gt;ref_window_size[rw] = wsize+nb;</span>
+<span class='curline'><a href='../S/699.html#L919'>rw</a>                919 third_party/zdelta-2.1/deflate.c   if(s-&gt;rwptr[2*rw]  &gt; (- ZD_UNREACHABLE)) s-&gt;rwptr[2*rw]   -=wsize;</span>
+<span class='curline'><a href='../S/699.html#L920'>rw</a>                920 third_party/zdelta-2.1/deflate.c   if(s-&gt;rwptr[2*rw+1]&gt; (- ZD_UNREACHABLE)) s-&gt;rwptr[2*rw+1] -=wsize;</span>
+<span class='curline'><a href='../S/699.html#L923'>rw</a>                923 third_party/zdelta-2.1/deflate.c   CLEAR_REF_HASH(s, rw);</span>
+<span class='curline'><a href='../S/699.html#L924'>rw</a>                924 third_party/zdelta-2.1/deflate.c   s-&gt;ref_h = s-&gt;ref_window[rw][0];</span>
+<span class='curline'><a href='../S/699.html#L929'>rw</a>                929 third_party/zdelta-2.1/deflate.c   UPDATE_HASH(s, s-&gt;ref_h, s-&gt;ref_window[rw][1]);</span>
+<span class='curline'><a href='../S/699.html#L930'>rw</a>                930 third_party/zdelta-2.1/deflate.c   for(i = 0;i &lt;= s-&gt;ref_window_size[rw] - MIN_MATCH; i++){</span>
+<span class='curline'><a href='../S/699.html#L931'>rw</a>                931 third_party/zdelta-2.1/deflate.c     INSERT_REF_STRING(s,i,rw);</span>
+<span class='curline'><a href='../S/699.html#L933'>rw</a>                933 third_party/zdelta-2.1/deflate.c   s-&gt;stored_allowed[rw] = 0;</span>
+<span class='curline'><a href='../S/699.html#L940'>rw</a>                940 third_party/zdelta-2.1/deflate.c init_ref_window(s, rw)</span>
+<span class='curline'><a href='../S/699.html#L942'>rw</a>                942 third_party/zdelta-2.1/deflate.c     int rw;</span>
+<span class='curline'><a href='../S/699.html#L947'>rw</a>                947 third_party/zdelta-2.1/deflate.c     n = read_ref_buf(s-&gt;strm, s-&gt;ref_window[rw], s-&gt;ref_window_size[rw], rw);</span>
+<span class='curline'><a href='../S/699.html#L948'>rw</a>                948 third_party/zdelta-2.1/deflate.c     s-&gt;ref_window_size[rw] = n;</span>
+<span class='curline'><a href='../S/699.html#L950'>rw</a>                950 third_party/zdelta-2.1/deflate.c     CLEAR_REF_HASH(s,rw);	</span>
+<span class='curline'><a href='../S/699.html#L952'>rw</a>                952 third_party/zdelta-2.1/deflate.c     s-&gt;ref_h = s-&gt;ref_window[rw][0];</span>
+<span class='curline'><a href='../S/699.html#L953'>rw</a>                953 third_party/zdelta-2.1/deflate.c     UPDATE_HASH(s, s-&gt;ref_h, s-&gt;ref_window[rw][1]);</span>
+<span class='curline'><a href='../S/699.html#L956'>rw</a>                956 third_party/zdelta-2.1/deflate.c         INSERT_REF_STRING(s, i, rw);</span>
+<span class='curline'><a href='../S/699.html#L1040'>rw</a>               1040 third_party/zdelta-2.1/deflate.c local void reference_longest_match(s, cur_match, rw)</span>
+<span class='curline'><a href='../S/699.html#L1043'>rw</a>               1043 third_party/zdelta-2.1/deflate.c      int rw;</span>
+<span class='curline'><a href='../S/699.html#L1075'>rw</a>               1075 third_party/zdelta-2.1/deflate.c   Pos *prev  = s-&gt;ref_prev[rw];</span>
+<span class='curline'><a href='../S/699.html#L1077'>rw</a>               1077 third_party/zdelta-2.1/deflate.c   ulg  wsize =  s-&gt;ref_window_size[rw];  </span>
+<span class='curline'><a href='../S/699.html#L1087'>rw</a>               1087 third_party/zdelta-2.1/deflate.c   if(s-&gt;rwptr[2*rw] &lt; s-&gt;rwptr[2*rw+1]){</span>
+<span class='curline'><a href='../S/699.html#L1088'>rw</a>               1088 third_party/zdelta-2.1/deflate.c     min = s-&gt;rwptr[2*rw], max = s-&gt;rwptr[2*rw+1];</span>
+<span class='curline'><a href='../S/699.html#L1089'>rw</a>               1089 third_party/zdelta-2.1/deflate.c     min_ptr = 2*rw, max_ptr = 2*rw+1;</span>
+<span class='curline'><a href='../S/699.html#L1092'>rw</a>               1092 third_party/zdelta-2.1/deflate.c     min = s-&gt;rwptr[2*rw+1], max = s-&gt;rwptr[2*rw];</span>
+<span class='curline'><a href='../S/699.html#L1093'>rw</a>               1093 third_party/zdelta-2.1/deflate.c     min_ptr = 2*rw+1, max_ptr = 2*rw;</span>
+<span class='curline'><a href='../S/699.html#L1112'>rw</a>               1112 third_party/zdelta-2.1/deflate.c     match = s-&gt;ref_window[rw] + cur_match; </span>
+<span class='curline'><a href='../S/699.html#L1401'>rw</a>               1401 third_party/zdelta-2.1/deflate.c 			    int rw, int len, int match_start){</span>
+<span class='curline'><a href='../S/699.html#L1403'>rw</a>               1403 third_party/zdelta-2.1/deflate.c   h-&gt;sum_len[rw] += len;       /* cumm. copy length */</span>
+<span class='curline'><a href='../S/699.html#L1404'>rw</a>               1404 third_party/zdelta-2.1/deflate.c   ptr_val = (s-&gt;ref_window_size[rw] - match_start - MAX_MATCH) * len;</span>
+<span class='curline'><a href='../S/699.html#L1405'>rw</a>               1405 third_party/zdelta-2.1/deflate.c   h-&gt;sum_ptr[rw] += ptr_val;              /* pointer average */</span>
+<span class='curline'><a href='../S/699.html#L1406'>rw</a>               1406 third_party/zdelta-2.1/deflate.c   h-&gt;len_hist[rw][h-&gt;front_ptr[rw]] = len;</span>
+<span class='curline'><a href='../S/699.html#L1407'>rw</a>               1407 third_party/zdelta-2.1/deflate.c   h-&gt;ptr_hist[rw][h-&gt;front_ptr[rw]] = ptr_val;</span>
+<span class='curline'><a href='../S/699.html#L1408'>rw</a>               1408 third_party/zdelta-2.1/deflate.c   h-&gt;front_ptr[rw] = ZD_GET_NEXT_POS(h-&gt;front_ptr[rw]);</span>
+<span class='curline'><a href='../S/699.html#L1410'>rw</a>               1410 third_party/zdelta-2.1/deflate.c   if ((h-&gt;front_ptr[rw] == h-&gt;back_ptr[rw]) || (h-&gt;sum_len[rw] &gt; 5000)){</span>
+<span class='curline'><a href='../S/699.html#L1411'>rw</a>               1411 third_party/zdelta-2.1/deflate.c     h-&gt;sum_len[rw] -= h-&gt;len_hist[rw][h-&gt;back_ptr[rw]];</span>
+<span class='curline'><a href='../S/699.html#L1412'>rw</a>               1412 third_party/zdelta-2.1/deflate.c     h-&gt;sum_ptr[rw] -= h-&gt;ptr_hist[rw][h-&gt;back_ptr[rw]];</span>
+<span class='curline'><a href='../S/699.html#L1413'>rw</a>               1413 third_party/zdelta-2.1/deflate.c     h-&gt;back_ptr[rw] = ZD_GET_NEXT_POS(h-&gt;back_ptr[rw]);</span>
+<span class='curline'><a href='../S/699.html#L1417'>rw</a>               1417 third_party/zdelta-2.1/deflate.c   if((++(h-&gt;ch_flag[rw])) == ZD_TIME_TO_CHECK){</span>
+<span class='curline'><a href='../S/699.html#L1418'>rw</a>               1418 third_party/zdelta-2.1/deflate.c     h-&gt;ch_flag[rw] = 0;</span>
+<span class='curline'><a href='../S/699.html#L1419'>rw</a>               1419 third_party/zdelta-2.1/deflate.c     h-&gt;avg_pos = h-&gt;sum_ptr[rw] / h-&gt;sum_len[rw];</span>
+<span class='curline'><a href='../S/699.html#L1421'>rw</a>               1421 third_party/zdelta-2.1/deflate.c     if((h-&gt;avg_pos &lt; 22000) &amp;&amp; (h-&gt;sum_len[rw] &gt; 2000) &amp;&amp; </span>
+<span class='curline'><a href='../S/699.html#L1422'>rw</a>               1422 third_party/zdelta-2.1/deflate.c        (s-&gt;rwptr[2*rw]&gt;(int)s-&gt;w_size ||</span>
+<span class='curline'><a href='../S/699.html#L1423'>rw</a>               1423 third_party/zdelta-2.1/deflate.c 	s-&gt;rwptr[2*rw+1]&gt;(int)s-&gt;w_size)) </span>
+<span class='curline'><a href='../S/699.html#L1425'>rw</a>               1425 third_party/zdelta-2.1/deflate.c       fill_ref_window(s, rw);         /* slide */</span>
+<span class='curline'><a href='../S/699.html#L1426'>rw</a>               1426 third_party/zdelta-2.1/deflate.c       h-&gt;sum_ptr[rw]   = 0;</span>
+<span class='curline'><a href='../S/699.html#L1427'>rw</a>               1427 third_party/zdelta-2.1/deflate.c       h-&gt;sum_len[rw]   = 0;</span>
+<span class='curline'><a href='../S/699.html#L1428'>rw</a>               1428 third_party/zdelta-2.1/deflate.c       h-&gt;front_ptr[rw] = 0;</span>
+<span class='curline'><a href='../S/699.html#L1429'>rw</a>               1429 third_party/zdelta-2.1/deflate.c       h-&gt;back_ptr[rw]  = 0;</span>
+<span class='curline'><a href='../S/699.html#L1442'>rw</a>               1442 third_party/zdelta-2.1/deflate.c   int rw; </span>
+<span class='curline'><a href='../S/699.html#L1447'>rw</a>               1447 third_party/zdelta-2.1/deflate.c   for(rw=0; rw&lt;refnum; ++rw){</span>
+<span class='curline'><a href='../S/699.html#L1448'>rw</a>               1448 third_party/zdelta-2.1/deflate.c     ph.sum_len[rw]   = ph.sum_ptr[rw]  = 0;</span>
+<span class='curline'><a href='../S/699.html#L1449'>rw</a>               1449 third_party/zdelta-2.1/deflate.c     ph.front_ptr[rw] = ph.back_ptr[rw] = ph.ch_flag[rw] = 0;</span>
+<span class='curline'><a href='../S/699.html#L1471'>rw</a>               1471 third_party/zdelta-2.1/deflate.c       for(rw=0; rw&lt;refnum; ++rw){</span>
+<span class='curline'><a href='../S/699.html#L1472'>rw</a>               1472 third_party/zdelta-2.1/deflate.c 	if (s-&gt;ref_head[rw][s-&gt;ins_h] != NIL &amp;&amp; </span>
+<span class='curline'><a href='../S/699.html#L1479'>rw</a>               1479 third_party/zdelta-2.1/deflate.c 	  reference_longest_match (s, s-&gt;ref_head[rw][s-&gt;ins_h], rw);</span>
+<span class='curline'><a href='../S/699.html#L1505'>rw</a>               1505 third_party/zdelta-2.1/deflate.c 	rw = s-&gt;match_ptr/2;</span>
+<span class='curline'><a href='../S/699.html#L1514'>rw</a>               1514 third_party/zdelta-2.1/deflate.c 	if(strm-&gt;base_avail[rw] &gt; 0) </span>
+<span class='curline'><a href='../S/699.html#L1515'>rw</a>               1515 third_party/zdelta-2.1/deflate.c 	  slide_ref_window(s, &amp;ph, rw, s-&gt;match_length, s-&gt;match_start);</span>
+<span class='curline'><a href='../S/699.html#L1573'>rw</a>               1573 third_party/zdelta-2.1/deflate.c   int rw; </span>
+<span class='curline'><a href='../S/699.html#L1577'>rw</a>               1577 third_party/zdelta-2.1/deflate.c   for(rw=0; rw&lt;refnum; ++rw){</span>
+<span class='curline'><a href='../S/699.html#L1578'>rw</a>               1578 third_party/zdelta-2.1/deflate.c     ph.sum_len[rw]   = ph.sum_ptr[rw]  = 0;</span>
+<span class='curline'><a href='../S/699.html#L1579'>rw</a>               1579 third_party/zdelta-2.1/deflate.c     ph.front_ptr[rw] = ph.back_ptr[rw] = ph.ch_flag[rw] = 0;</span>
+<span class='curline'><a href='../S/699.html#L1606'>rw</a>               1606 third_party/zdelta-2.1/deflate.c       for(rw=0; rw&lt;refnum; ++rw){</span>
+<span class='curline'><a href='../S/699.html#L1607'>rw</a>               1607 third_party/zdelta-2.1/deflate.c 	if (s-&gt;ref_head[rw][s-&gt;ins_h] != NIL &amp;&amp; </span>
+<span class='curline'><a href='../S/699.html#L1614'>rw</a>               1614 third_party/zdelta-2.1/deflate.c 	  reference_longest_match (s, s-&gt;ref_head[rw][s-&gt;ins_h], rw);</span>
+<span class='curline'><a href='../S/699.html#L1646'>rw</a>               1646 third_party/zdelta-2.1/deflate.c 	rw = s-&gt;prev_ptr/2;</span>
+<span class='curline'><a href='../S/699.html#L1655'>rw</a>               1655 third_party/zdelta-2.1/deflate.c 	if(strm-&gt;base_avail[rw] &gt; 0) </span>
+<span class='curline'><a href='../S/699.html#L1656'>rw</a>               1656 third_party/zdelta-2.1/deflate.c 	  slide_ref_window(s, &amp;ph, rw, s-&gt;prev_length, s-&gt;prev_match);</span>
+<span class='curline'><a href='../S/703.html#L58'>rw</a>                 58 third_party/zdelta-2.1/infcodes.c   int   rw;     /* reference window */</span>
+<span class='curline'><a href='../S/703.html#L254'>rw</a>                254 third_party/zdelta-2.1/infcodes.c       c-&gt;rw    = best_ptr/2;</span>
+<span class='curline'><a href='../S/703.html#L291'>rw</a>                291 third_party/zdelta-2.1/infcodes.c     f=z-&gt;base[c-&gt;rw]+c-&gt;bp;       /* do the coping */</span>
+<span class='curline'><a href='../S/726.html#L511'>rw</a>                511 third_party/zdelta-2.1/zdlib.h ZEXTERN int ZEXPORT zd_compressN OF ((const Bytef *ref[],uLong rsize[],int rw,</span>
+<span class='curline'><a href='../S/726.html#L596'>rw</a>                596 third_party/zdelta-2.1/zdlib.h zd_uncompressN OF((Bytef *ref[],uLong rsize[],int rw,</span>
+<span class='curline'><a href='../S/726.html#L626'>rw</a>                626 third_party/zdelta-2.1/zdlib.h ZEXTERN int ZEXPORT zd_compressN1 OF ((const Bytef *ref[],uLong rsize[],int rw,</span>
+<span class='curline'><a href='../S/726.html#L658'>rw</a>                658 third_party/zdelta-2.1/zdlib.h   zd_uncompressN1 OF ((const Bytef **ref, uLong* rsize,int rw,</span>
+</pre>
+</body>
+</html>

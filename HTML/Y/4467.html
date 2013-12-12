@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>ref_buf</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/696.html#L34'>ref_buf</a>            34 third_party/zdelta-2.1/_zdc.c   Bytef        *ref_buf[REFNUM];         /* reference target buffers */</span>
+<span class='curline'><a href='../S/696.html#L54'>ref_buf</a>            54 third_party/zdelta-2.1/_zdc.c     ref_buf[i] = (Bytef*) malloc(BUF_SIZE*sizeof(Byte));</span>
+<span class='curline'><a href='../S/696.html#L55'>ref_buf</a>            55 third_party/zdelta-2.1/_zdc.c     if(ref_buf[i] == NULL) </span>
+<span class='curline'><a href='../S/696.html#L60'>ref_buf</a>            60 third_party/zdelta-2.1/_zdc.c     ref_s[i] = fread((void *) ref_buf[i], sizeof(Byte), </span>
+<span class='curline'><a href='../S/696.html#L80'>ref_buf</a>            80 third_party/zdelta-2.1/_zdc.c   if( zd_compressN(ref_buf,ref_s,ref_n,tar_buf,tar_s,delta,&amp;d_size) == ZD_OK){</span>
+<span class='curline'><a href='../S/696.html#L95'>ref_buf</a>            95 third_party/zdelta-2.1/_zdc.c     free(&amp;ref_buf[i]); /* free  ref. buffers */</span>
+<span class='curline'><a href='../S/696.html#L110'>ref_buf</a>           110 third_party/zdelta-2.1/_zdc.c   Bytef *ref_buf;</span>
+<span class='curline'><a href='../S/696.html#L128'>ref_buf</a>           128 third_party/zdelta-2.1/_zdc.c   ref_buf = (Bytef*) malloc(BUF_SIZE*sizeof(Byte));</span>
+<span class='curline'><a href='../S/696.html#L129'>ref_buf</a>           129 third_party/zdelta-2.1/_zdc.c   if(ref_buf == NULL) </span>
+<span class='curline'><a href='../S/696.html#L134'>ref_buf</a>           134 third_party/zdelta-2.1/_zdc.c   ref_s = fread((void *) ref_buf, sizeof(Byte), (size_t) BUF_SIZE, fp_ref);</span>
+<span class='curline'><a href='../S/696.html#L154'>ref_buf</a>           154 third_party/zdelta-2.1/_zdc.c   if(zd_compress(ref_buf, ref_s, tar_buf, tar_s, delta, &amp;d_size) == ZD_OK){</span>
+<span class='curline'><a href='../S/696.html#L167'>ref_buf</a>           167 third_party/zdelta-2.1/_zdc.c   free(ref_buf);</span>
+<span class='curline'><a href='../S/697.html#L34'>ref_buf</a>            34 third_party/zdelta-2.1/_zdu.c   Bytef        *ref_buf[REFNUM];         /* reference target buffers */</span>
+<span class='curline'><a href='../S/697.html#L54'>ref_buf</a>            54 third_party/zdelta-2.1/_zdu.c     ref_buf[i] = (Bytef*) malloc(BUF_SIZE*sizeof(Byte));</span>
+<span class='curline'><a href='../S/697.html#L55'>ref_buf</a>            55 third_party/zdelta-2.1/_zdu.c     if(ref_buf[i] == NULL) </span>
+<span class='curline'><a href='../S/697.html#L60'>ref_buf</a>            60 third_party/zdelta-2.1/_zdu.c     ref_s[i] = fread((void *) ref_buf[i], sizeof(Byte), </span>
+<span class='curline'><a href='../S/697.html#L80'>ref_buf</a>            80 third_party/zdelta-2.1/_zdu.c   if(zd_uncompressN(ref_buf,ref_s,ref_n,tar_buf,&amp;tar_s,delta,d_size) == ZD_OK){</span>
+<span class='curline'><a href='../S/697.html#L95'>ref_buf</a>            95 third_party/zdelta-2.1/_zdu.c     free(&amp;ref_buf[i]); /* free  ref. buffers */</span>
+<span class='curline'><a href='../S/697.html#L110'>ref_buf</a>           110 third_party/zdelta-2.1/_zdu.c   Bytef *ref_buf;</span>
+<span class='curline'><a href='../S/697.html#L128'>ref_buf</a>           128 third_party/zdelta-2.1/_zdu.c   ref_buf = (Bytef*) malloc(BUF_SIZE*sizeof(Byte));</span>
+<span class='curline'><a href='../S/697.html#L129'>ref_buf</a>           129 third_party/zdelta-2.1/_zdu.c   if(ref_buf == NULL) </span>
+<span class='curline'><a href='../S/697.html#L134'>ref_buf</a>           134 third_party/zdelta-2.1/_zdu.c   ref_s = fread((void *) ref_buf, sizeof(Byte), (size_t) BUF_SIZE, fp_ref);</span>
+<span class='curline'><a href='../S/697.html#L154'>ref_buf</a>           154 third_party/zdelta-2.1/_zdu.c   if(zd_uncompress(ref_buf, ref_s, tar_buf, &amp;tar_s, delta, d_size) == ZD_OK){ </span>
+<span class='curline'><a href='../S/697.html#L167'>ref_buf</a>           167 third_party/zdelta-2.1/_zdu.c   free(ref_buf);</span>
+<span class='curline'><a href='../S/723.html#L32'>ref_buf</a>            32 third_party/zdelta-2.1/zdc.c   zd_mem_buffer ref_buf[REFNUM];         /* reference target buffers */</span>
+<span class='curline'><a href='../S/723.html#L53'>ref_buf</a>            53 third_party/zdelta-2.1/zdc.c     if(dread_file(fp_ref[i],&amp;ref_buf[i]) &lt; 0){ perror(argv[i]); exit(0); }</span>
+<span class='curline'><a href='../S/723.html#L54'>ref_buf</a>            54 third_party/zdelta-2.1/zdc.c     ref[i] = ref_buf[i].buffer;  ref_s[i] = ref_buf[i].pos-ref_buf[i].buffer; </span>
+<span class='curline'><a href='../S/723.html#L76'>ref_buf</a>            76 third_party/zdelta-2.1/zdc.c     zd_free(&amp;ref_buf[i]); /* free  ref. buffers */</span>
+<span class='curline'><a href='../S/723.html#L91'>ref_buf</a>            91 third_party/zdelta-2.1/zdc.c   zd_mem_buffer ref_buf;</span>
+<span class='curline'><a href='../S/723.html#L109'>ref_buf</a>           109 third_party/zdelta-2.1/zdc.c   if(dread_file(fp_ref,&amp;ref_buf) &lt; 0) perror(argv[1]);</span>
+<span class='curline'><a href='../S/723.html#L113'>ref_buf</a>           113 third_party/zdelta-2.1/zdc.c   if(zd_compress1((const Bytef*) ref_buf.buffer, ref_buf.pos - ref_buf.buffer,</span>
+<span class='curline'><a href='../S/723.html#L128'>ref_buf</a>           128 third_party/zdelta-2.1/zdc.c   zd_free(&amp;ref_buf);</span>
+<span class='curline'><a href='../S/727.html#L32'>ref_buf</a>            32 third_party/zdelta-2.1/zdu.c   zd_mem_buffer ref_buf[REFNUM];</span>
+<span class='curline'><a href='../S/727.html#L54'>ref_buf</a>            54 third_party/zdelta-2.1/zdu.c     if(dread_file(fp_ref[i],&amp;ref_buf[i]) &lt; 0) {perror(argv[i]); exit(0);}</span>
+<span class='curline'><a href='../S/727.html#L55'>ref_buf</a>            55 third_party/zdelta-2.1/zdu.c     ref[i] = ref_buf[i].buffer; </span>
+<span class='curline'><a href='../S/727.html#L56'>ref_buf</a>            56 third_party/zdelta-2.1/zdu.c     ref_s[i] = ref_buf[i].pos - ref_buf[i].buffer; </span>
+<span class='curline'><a href='../S/727.html#L80'>ref_buf</a>            80 third_party/zdelta-2.1/zdu.c     zd_free(&amp;ref_buf[i]); /* free  ref. buffers */</span>
+<span class='curline'><a href='../S/727.html#L94'>ref_buf</a>            94 third_party/zdelta-2.1/zdu.c   zd_mem_buffer ref_buf;</span>
+<span class='curline'><a href='../S/727.html#L113'>ref_buf</a>           113 third_party/zdelta-2.1/zdu.c   if(dread_file(fp_ref,&amp;ref_buf) &lt; 0) {perror(argv[1]); exit(0);}</span>
+<span class='curline'><a href='../S/727.html#L117'>ref_buf</a>           117 third_party/zdelta-2.1/zdu.c   if(zd_uncompress1((const Bytef*)ref_buf.buffer, ref_buf.pos - ref_buf.buffer,</span>
+<span class='curline'><a href='../S/727.html#L134'>ref_buf</a>           134 third_party/zdelta-2.1/zdu.c   zd_free(&amp;ref_buf);</span>
+</pre>
+</body>
+</html>

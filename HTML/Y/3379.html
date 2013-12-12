@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>magic</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/516.html#L278'>magic</a>             278 third_party/google-perftools-1.8.3/src/base/basictypes.h         if (hdr-&gt;magic == MH_MAGIC_64) {</span>
+<span class='curline'><a href='../S/516.html#L289'>magic</a>             289 third_party/google-perftools-1.8.3/src/base/basictypes.h         if (hdr-&gt;magic == MH_MAGIC) {</span>
+<span class='curline'><a href='../S/530.html#L70'>magic</a>              70 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       intptr_t magic; // kMagicAllocated or kMagicUnallocated xor this</span>
+<span class='curline'><a href='../S/530.html#L258'>magic</a>             258 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc inline static intptr_t Magic(intptr_t magic, AllocList::Header *ptr) {</span>
+<span class='curline'><a href='../S/530.html#L259'>magic</a>             259 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   return magic ^ reinterpret_cast&lt;intptr_t&gt;(ptr);</span>
+<span class='curline'><a href='../S/530.html#L275'>magic</a>             275 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     arena-&gt;freelist.header.magic =</span>
+<span class='curline'><a href='../S/530.html#L325'>magic</a>             325 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       RAW_CHECK(region-&gt;header.magic ==</span>
+<span class='curline'><a href='../S/530.html#L365'>magic</a>             365 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     RAW_CHECK(next-&gt;header.magic == Magic(kMagicUnallocated, &amp;next-&gt;header),</span>
+<span class='curline'><a href='../S/530.html#L385'>magic</a>             385 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     n-&gt;header.magic = 0;</span>
+<span class='curline'><a href='../S/530.html#L400'>magic</a>             400 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   RAW_CHECK(f-&gt;header.magic == Magic(kMagicAllocated, &amp;f-&gt;header),</span>
+<span class='curline'><a href='../S/530.html#L407'>magic</a>             407 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   f-&gt;header.magic = Magic(kMagicUnallocated, &amp;f-&gt;header);</span>
+<span class='curline'><a href='../S/530.html#L418'>magic</a>             418 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     RAW_CHECK(f-&gt;header.magic == Magic(kMagicAllocated, &amp;f-&gt;header),</span>
+<span class='curline'><a href='../S/530.html#L473'>magic</a>             473 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       s-&gt;header.magic = Magic(kMagicAllocated, &amp;s-&gt;header);</span>
+<span class='curline'><a href='../S/530.html#L484'>magic</a>             484 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       n-&gt;header.magic = Magic(kMagicAllocated, &amp;n-&gt;header);</span>
+<span class='curline'><a href='../S/530.html#L489'>magic</a>             489 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     s-&gt;header.magic = Magic(kMagicAllocated, &amp;s-&gt;header);</span>
+<span class='curline'><a href='../S/542.html#L525'>magic</a>             525 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   if (hdr-&gt;magic != kMagic)</span>
+</pre>
+</body>
+</html>

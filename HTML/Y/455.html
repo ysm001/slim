@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>LowLevelAlloc</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/530.html#L71'>LowLevelAlloc</a>      71 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       LowLevelAlloc::Arena *arena; // pointer to parent arena</span>
+<span class='curline'><a href='../S/530.html#L183'>LowLevelAlloc</a>     183 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc struct LowLevelAlloc::Arena {</span>
+<span class='curline'><a href='../S/530.html#L202'>LowLevelAlloc</a>     202 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc static struct LowLevelAlloc::Arena default_arena;</span>
+<span class='curline'><a href='../S/530.html#L207'>LowLevelAlloc</a>     207 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc static struct LowLevelAlloc::Arena unhooked_arena;</span>
+<span class='curline'><a href='../S/530.html#L208'>LowLevelAlloc</a>     208 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc static struct LowLevelAlloc::Arena unhooked_async_sig_safe_arena;</span>
+<span class='curline'><a href='../S/530.html#L217'>LowLevelAlloc</a>     217 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     explicit ArenaLock(LowLevelAlloc::Arena *arena)</span>
+<span class='curline'><a href='../S/530.html#L220'>LowLevelAlloc</a>     220 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       if ((arena-&gt;flags &amp; LowLevelAlloc::kAsyncSignalSafe) != 0) {</span>
+<span class='curline'><a href='../S/530.html#L251'>LowLevelAlloc</a>     251 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     LowLevelAlloc::Arena *arena_;</span>
+<span class='curline'><a href='../S/530.html#L263'>LowLevelAlloc</a>     263 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc static void ArenaInit(LowLevelAlloc::Arena *arena) {</span>
+<span class='curline'><a href='../S/530.html#L284'>LowLevelAlloc</a>     284 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       arena-&gt;flags = LowLevelAlloc::kCallMallocHook;</span>
+<span class='curline'><a href='../S/530.html#L286'>LowLevelAlloc</a>     286 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       arena-&gt;flags = LowLevelAlloc::kAsyncSignalSafe;</span>
+<span class='curline'><a href='../S/530.html#L295'>LowLevelAlloc</a>     295 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc LowLevelAlloc::Arena *LowLevelAlloc::NewArena(int32 flags,</span>
+<span class='curline'><a href='../S/530.html#L299'>LowLevelAlloc</a>     299 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     if ((flags &amp; LowLevelAlloc::kAsyncSignalSafe) != 0) {</span>
+<span class='curline'><a href='../S/530.html#L301'>LowLevelAlloc</a>     301 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     } else if ((flags &amp; LowLevelAlloc::kCallMallocHook) == 0) {</span>
+<span class='curline'><a href='../S/530.html#L314'>LowLevelAlloc</a>     314 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc bool LowLevelAlloc::DeleteArena(Arena *arena) {</span>
+<span class='curline'><a href='../S/530.html#L335'>LowLevelAlloc</a>     335 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       if ((arena-&gt;flags &amp; LowLevelAlloc::kAsyncSignalSafe) == 0) {</span>
+<span class='curline'><a href='../S/530.html#L361'>LowLevelAlloc</a>     361 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc static AllocList *Next(int i, AllocList *prev, LowLevelAlloc::Arena *arena) {</span>
+<span class='curline'><a href='../S/530.html#L383'>LowLevelAlloc</a>     383 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     LowLevelAlloc::Arena *arena = a-&gt;header.arena;</span>
+<span class='curline'><a href='../S/530.html#L397'>LowLevelAlloc</a>     397 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc static void AddToFreelist(void *v, LowLevelAlloc::Arena *arena) {</span>
+<span class='curline'><a href='../S/530.html#L414'>LowLevelAlloc</a>     414 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc void LowLevelAlloc::Free(void *v) {</span>
+<span class='curline'><a href='../S/530.html#L420'>LowLevelAlloc</a>     420 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     LowLevelAlloc::Arena *arena = f-&gt;header.arena;</span>
+<span class='curline'><a href='../S/530.html#L434'>LowLevelAlloc</a>     434 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc static void *DoAllocWithArena(size_t request, LowLevelAlloc::Arena *arena) {</span>
+<span class='curline'><a href='../S/530.html#L461'>LowLevelAlloc</a>     461 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       if ((arena-&gt;flags &amp; LowLevelAlloc::kAsyncSignalSafe) != 0) {</span>
+<span class='curline'><a href='../S/530.html#L499'>LowLevelAlloc</a>     499 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc void *LowLevelAlloc::Alloc(size_t request) {</span>
+<span class='curline'><a href='../S/530.html#L509'>LowLevelAlloc</a>     509 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc void *LowLevelAlloc::AllocWithArena(size_t request, Arena *arena) {</span>
+<span class='curline'><a href='../S/530.html#L520'>LowLevelAlloc</a>     520 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc LowLevelAlloc::Arena *LowLevelAlloc::DefaultArena() {</span>
+<span class='curline'><a href='../S/531.html#L43'>LowLevelAlloc</a>      43 third_party/google-perftools-1.8.3/src/base/low_level_alloc.h class LowLevelAlloc {</span>
+<span class='curline'><a href='../S/531.html#L103'>LowLevelAlloc</a>     103 third_party/google-perftools-1.8.3/src/base/low_level_alloc.h   LowLevelAlloc();      // no instances</span>
+<span class='curline'><a href='../S/568.html#L296'>LowLevelAlloc</a>     296 third_party/google-perftools-1.8.3/src/heap-checker.cc     arena_ = LowLevelAlloc::NewArena(0, LowLevelAlloc::DefaultArena());</span>
+<span class='curline'><a href='../S/568.html#L300'>LowLevelAlloc</a>     300 third_party/google-perftools-1.8.3/src/heap-checker.cc     if (!LowLevelAlloc::DeleteArena(arena_)  ||  alloc_count_ != 0) {</span>
+<span class='curline'><a href='../S/568.html#L310'>LowLevelAlloc</a>     310 third_party/google-perftools-1.8.3/src/heap-checker.cc     void* p = LowLevelAlloc::AllocWithArena(n, arena_);</span>
+<span class='curline'><a href='../S/568.html#L317'>LowLevelAlloc</a>     317 third_party/google-perftools-1.8.3/src/heap-checker.cc     LowLevelAlloc::Free(p);</span>
+<span class='curline'><a href='../S/568.html#L332'>LowLevelAlloc</a>     332 third_party/google-perftools-1.8.3/src/heap-checker.cc   static LowLevelAlloc::Arena* arena_;</span>
+<span class='curline'><a href='../S/568.html#L336'>LowLevelAlloc</a>     336 third_party/google-perftools-1.8.3/src/heap-checker.cc LowLevelAlloc::Arena* HeapLeakChecker::Allocator::arena_ = NULL;</span>
+<span class='curline'><a href='../S/571.html#L138'>LowLevelAlloc</a>     138 third_party/google-perftools-1.8.3/src/heap-profiler.cc static LowLevelAlloc::Arena *heap_profiler_memory;</span>
+<span class='curline'><a href='../S/571.html#L141'>LowLevelAlloc</a>     141 third_party/google-perftools-1.8.3/src/heap-profiler.cc   return LowLevelAlloc::AllocWithArena(bytes, heap_profiler_memory);</span>
+<span class='curline'><a href='../S/571.html#L144'>LowLevelAlloc</a>     144 third_party/google-perftools-1.8.3/src/heap-profiler.cc   LowLevelAlloc::Free(p);</span>
+<span class='curline'><a href='../S/571.html#L463'>LowLevelAlloc</a>     463 third_party/google-perftools-1.8.3/src/heap-profiler.cc     LowLevelAlloc::NewArena(0, LowLevelAlloc::DefaultArena());</span>
+<span class='curline'><a href='../S/571.html#L530'>LowLevelAlloc</a>     530 third_party/google-perftools-1.8.3/src/heap-profiler.cc   if (!LowLevelAlloc::DeleteArena(heap_profiler_memory)) {</span>
+<span class='curline'><a href='../S/588.html#L142'>LowLevelAlloc</a>     142 third_party/google-perftools-1.8.3/src/memory_region_map.cc LowLevelAlloc::Arena* MemoryRegionMap::arena_ = NULL;</span>
+<span class='curline'><a href='../S/588.html#L209'>LowLevelAlloc</a>     209 third_party/google-perftools-1.8.3/src/memory_region_map.cc   arena_ = LowLevelAlloc::NewArena(0, LowLevelAlloc::DefaultArena());</span>
+<span class='curline'><a href='../S/588.html#L235'>LowLevelAlloc</a>     235 third_party/google-perftools-1.8.3/src/memory_region_map.cc   bool deleted_arena = LowLevelAlloc::DeleteArena(arena_);</span>
+<span class='curline'><a href='../S/589.html#L229'>LowLevelAlloc</a>     229 third_party/google-perftools-1.8.3/src/memory_region_map.h       return LowLevelAlloc::AllocWithArena(n, arena_);</span>
+<span class='curline'><a href='../S/589.html#L232'>LowLevelAlloc</a>     232 third_party/google-perftools-1.8.3/src/memory_region_map.h       LowLevelAlloc::Free(const_cast&lt;void*&gt;(p));</span>
+<span class='curline'><a href='../S/589.html#L269'>LowLevelAlloc</a>     269 third_party/google-perftools-1.8.3/src/memory_region_map.h   static LowLevelAlloc::Arena* arena_;</span>
+<span class='curline'><a href='../S/641.html#L87'>LowLevelAlloc</a>      87 third_party/google-perftools-1.8.3/src/tests/low_level_alloc_unittest.cc   LowLevelAlloc::Arena *arena = 0;</span>
+<span class='curline'><a href='../S/641.html#L89'>LowLevelAlloc</a>      89 third_party/google-perftools-1.8.3/src/tests/low_level_alloc_unittest.cc     int32 flags = call_malloc_hook?  LowLevelAlloc::kCallMallocHook :  0;</span>
+<span class='curline'><a href='../S/641.html#L90'>LowLevelAlloc</a>      90 third_party/google-perftools-1.8.3/src/tests/low_level_alloc_unittest.cc     arena = LowLevelAlloc::NewArena(flags, LowLevelAlloc::DefaultArena());</span>
+<span class='curline'><a href='../S/641.html#L105'>LowLevelAlloc</a>     105 third_party/google-perftools-1.8.3/src/tests/low_level_alloc_unittest.cc                         ? LowLevelAlloc::Alloc(block_desc.len)</span>
+<span class='curline'><a href='../S/641.html#L106'>LowLevelAlloc</a>     106 third_party/google-perftools-1.8.3/src/tests/low_level_alloc_unittest.cc                         : LowLevelAlloc::AllocWithArena(block_desc.len, arena));</span>
+<span class='curline'><a href='../S/641.html#L114'>LowLevelAlloc</a>     114 third_party/google-perftools-1.8.3/src/tests/low_level_alloc_unittest.cc         LowLevelAlloc::Free(it-&gt;second.ptr);</span>
+<span class='curline'><a href='../S/641.html#L126'>LowLevelAlloc</a>     126 third_party/google-perftools-1.8.3/src/tests/low_level_alloc_unittest.cc         LowLevelAlloc::Free(it-&gt;second.ptr);</span>
+<span class='curline'><a href='../S/641.html#L137'>LowLevelAlloc</a>     137 third_party/google-perftools-1.8.3/src/tests/low_level_alloc_unittest.cc     LowLevelAlloc::Free(it-&gt;second.ptr);</span>
+<span class='curline'><a href='../S/641.html#L142'>LowLevelAlloc</a>     142 third_party/google-perftools-1.8.3/src/tests/low_level_alloc_unittest.cc     CHECK(LowLevelAlloc::DeleteArena(arena));</span>
+</pre>
+</body>
+</html>

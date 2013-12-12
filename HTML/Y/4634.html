@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>rules</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/339.html#L192'>rules</a>             192 src/il_parser.c   RuleList rules;</span>
+<span class='curline'><a href='../S/339.html#L1644'>rules</a>            1644 src/il_parser.c     { (yyval.ruleset) = ruleset_make((yyvsp[(2) - (3)]._int), (yyvsp[(3) - (3)].rules), TRUE); }</span>
+<span class='curline'><a href='../S/339.html#L1649'>rules</a>            1649 src/il_parser.c     { (yyval.ruleset) = ruleset_make((yyvsp[(2) - (3)]._int), (yyvsp[(3) - (3)].rules), FALSE); }</span>
+<span class='curline'><a href='../S/339.html#L1654'>rules</a>            1654 src/il_parser.c     { (yyval.rules) = rulelist_make(); rulelist_push((yyval.rules), (yyvsp[(1) - (1)].rule)); }</span>
+<span class='curline'><a href='../S/339.html#L1659'>rules</a>            1659 src/il_parser.c     { rulelist_push((yyvsp[(1) - (2)].rules), (yyvsp[(2) - (2)].rule)); (yyval.rules) = (yyvsp[(1) - (2)].rules); }</span>
+<span class='curline'><a href='../S/340.html#L128'>rules</a>             128 src/il_parser.h   RuleList rules;</span>
+<span class='curline'><a href='../S/341.html#L64'>rules</a>              64 src/il_parser.y   RuleList rules;</span>
+<span class='curline'><a href='../S/341.html#L111'>rules</a>             111 src/il_parser.y %type &lt;rules&gt; ruleList</span>
+<span class='curline'><a href='../S/351.html#L638'>rules</a>             638 src/load.c         LmnRule r = lmn_rule_make_translated(ruleset.rules[i].function,</span>
+<span class='curline'><a href='../S/351.html#L639'>rules</a>             639 src/load.c                                              maindata-&gt;symbol_exchange[ruleset.rules[i].name]);</span>
+<span class='curline'><a href='../S/351.html#L646'>rules</a>             646 src/load.c         LmnRule r = lmn_rule_make_translated(ruleset.rules[i].function,</span>
+<span class='curline'><a href='../S/351.html#L647'>rules</a>             647 src/load.c                                              maindata-&gt;symbol_exchange[ruleset.rules[i].name]);</span>
+<span class='curline'><a href='../S/351.html#L654'>rules</a>             654 src/load.c         LmnRule r = lmn_rule_make_translated(ruleset.rules[i].function,</span>
+<span class='curline'><a href='../S/351.html#L655'>rules</a>             655 src/load.c                                              maindata-&gt;symbol_exchange[ruleset.rules[i].name]);</span>
+<span class='curline'><a href='../S/351.html#L671'>rules</a>             671 src/load.c           LmnRule r = lmn_rule_make_translated(tr.rules[j].function,</span>
+<span class='curline'><a href='../S/351.html#L672'>rules</a>             672 src/load.c                                                maindata-&gt;symbol_exchange[tr.rules[j].name]);</span>
+<span class='curline'><a href='../S/363.html#L149'>rules</a>             149 src/react_context.c   v-&gt;rules          = vec_make(32);</span>
+<span class='curline'><a href='../S/363.html#L173'>rules</a>             173 src/react_context.c   vec_free(v-&gt;rules);</span>
+<span class='curline'><a href='../S/364.html#L157'>rules</a>             157 src/react_context.h   Vector       *rules;</span>
+<span class='curline'><a href='../S/364.html#L192'>rules</a>             192 src/react_context.h #define RC_EXPANDED_RULES(RC)           ((RC_ND_DATA(RC))-&gt;rules)</span>
+<span class='curline'><a href='../S/365.html#L150'>rules</a>             150 src/rule.c       ruleset-&gt;rules = LMN_CALLOC(LmnRule, init_size);</span>
+<span class='curline'><a href='../S/365.html#L167'>rules</a>             167 src/rule.c         lmn_rule_free(ruleset-&gt;rules[i]);</span>
+<span class='curline'><a href='../S/365.html#L169'>rules</a>             169 src/rule.c       LMN_FREE(ruleset-&gt;rules);</span>
+<span class='curline'><a href='../S/365.html#L178'>rules</a>             178 src/rule.c         ruleset-&gt;rules = LMN_REALLOC(LmnRule, ruleset-&gt;rules, ruleset-&gt;cap);</span>
+<span class='curline'><a href='../S/365.html#L180'>rules</a>             180 src/rule.c       ruleset-&gt;rules[ruleset-&gt;num++] = rule;</span>
+<span class='curline'><a href='../S/365.html#L261'>rules</a>             261 src/rule.c       LMN_FREE(rs-&gt;rules);</span>
+<span class='curline'><a href='../S/366.html#L142'>rules</a>             142 src/rule.h       LmnRule *rules;         /* ルールのリスト */</span>
+<span class='curline'><a href='../S/366.html#L191'>rules</a>             191 src/rule.h       return ruleset-&gt;rules[i];</span>
+<span class='curline'><a href='../S/366.html#L222'>rules</a>             222 src/rule.h       return ruleset-&gt;rules;</span>
+<span class='curline'><a href='../S/380.html#L82'>rules</a>              82 src/syntax.c     RuleList rules;</span>
+<span class='curline'><a href='../S/380.html#L573'>rules</a>             573 src/syntax.c   RuleSet ruleset_make(int id, RuleList rules, BOOL is_system_ruleset)</span>
+<span class='curline'><a href='../S/380.html#L578'>rules</a>             578 src/syntax.c     r-&gt;rules = rules;</span>
+<span class='curline'><a href='../S/380.html#L602'>rules</a>             602 src/syntax.c     return rs-&gt;rules;</span>
+<span class='curline'><a href='../S/381.html#L159'>rules</a>             159 src/syntax.h   RuleSet ruleset_make(int id, RuleList rules, BOOL is_system_ruleset);</span>
+<span class='curline'><a href='../S/387.html#L80'>rules</a>              80 src/translate.h   struct trans_rule *rules;</span>
+</pre>
+</body>
+</html>

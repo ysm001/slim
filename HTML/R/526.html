@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>Deque</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/402.html#L240'>Deque</a>             240 src/utility/queue.c BOOL deq_contains(const Deque *deq, LmnWord keyp)</span>
+<span class='curline'><a href='../S/402.html#L254'>Deque</a>             254 src/utility/queue.c Deque *deq_copy(Deque *deq)</span>
+<span class='curline'><a href='../S/402.html#L257'>Deque</a>             257 src/utility/queue.c   Deque *new_deq;</span>
+<span class='curline'><a href='../S/403.html#L100'>Deque</a>             100 src/utility/queue.h typedef struct Deque Deque;</span>
+<span class='curline'><a href='../S/403.html#L113'>Deque</a>             113 src/utility/queue.h static inline void    deq_init(Deque *deq, unsigned int init_size);</span>
+<span class='curline'><a href='../S/403.html#L114'>Deque</a>             114 src/utility/queue.h static inline Deque  *deq_make(unsigned int init_size);</span>
+<span class='curline'><a href='../S/403.html#L115'>Deque</a>             115 src/utility/queue.h static inline void    deq_push_head(Deque *deq, LmnWord keyp);</span>
+<span class='curline'><a href='../S/403.html#L116'>Deque</a>             116 src/utility/queue.h static inline void    deq_push_tail(Deque *deq, LmnWord keyp);</span>
+<span class='curline'><a href='../S/403.html#L117'>Deque</a>             117 src/utility/queue.h static inline LmnWord deq_pop_head(Deque *deq);</span>
+<span class='curline'><a href='../S/403.html#L118'>Deque</a>             118 src/utility/queue.h static inline LmnWord deq_pop_tail(Deque *deq);</span>
+<span class='curline'><a href='../S/403.html#L119'>Deque</a>             119 src/utility/queue.h static inline LmnWord deq_peek_head(const Deque *deq);</span>
+<span class='curline'><a href='../S/403.html#L120'>Deque</a>             120 src/utility/queue.h static inline LmnWord deq_peek_tail(const Deque *deq);</span>
+<span class='curline'><a href='../S/403.html#L121'>Deque</a>             121 src/utility/queue.h static inline LmnWord deq_get(const Deque *deq, unsigned int i);</span>
+<span class='curline'><a href='../S/403.html#L122'>Deque</a>             122 src/utility/queue.h static inline void    deq_clear(Deque *deq);</span>
+<span class='curline'><a href='../S/403.html#L123'>Deque</a>             123 src/utility/queue.h static inline void    deq_destroy(Deque *deq);</span>
+<span class='curline'><a href='../S/403.html#L124'>Deque</a>             124 src/utility/queue.h static inline void    deq_free(Deque *deq);</span>
+<span class='curline'><a href='../S/403.html#L125'>Deque</a>             125 src/utility/queue.h static inline unsigned long deq_space(Deque *deq);</span>
+<span class='curline'><a href='../S/403.html#L126'>Deque</a>             126 src/utility/queue.h static inline unsigned long deq_space_inner(Deque *deq);</span>
+<span class='curline'><a href='../S/403.html#L127'>Deque</a>             127 src/utility/queue.h static inline void    deq_print(Deque *deq);</span>
+<span class='curline'><a href='../S/403.html#L129'>Deque</a>             129 src/utility/queue.h LmnWord deq_pop_n(Deque *deq, unsigned int n);</span>
+<span class='curline'><a href='../S/403.html#L130'>Deque</a>             130 src/utility/queue.h BOOL    deq_contains(const Deque *deq, LmnWord keyp);</span>
+<span class='curline'><a href='../S/403.html#L131'>Deque</a>             131 src/utility/queue.h Deque  *deq_copy(Deque *deq);</span>
+<span class='curline'><a href='../S/403.html#L132'>Deque</a>             132 src/utility/queue.h void    deq_reverse(Deque *deq);</span>
+<span class='curline'><a href='../S/403.html#L133'>Deque</a>             133 src/utility/queue.h void    deq_resize(Deque *deq, unsigned int size, deq_data_t val);</span>
+<span class='curline'><a href='../S/403.html#L134'>Deque</a>             134 src/utility/queue.h void    deq_sort(const Deque *deq,</span>
+<span class='curline'><a href='../S/403.html#L139'>Deque</a>             139 src/utility/queue.h static inline void deq_init(Deque *deq, unsigned int init_size) {</span>
+<span class='curline'><a href='../S/403.html#L147'>Deque</a>             147 src/utility/queue.h static inline Deque *deq_make(unsigned int init_size) {</span>
+<span class='curline'><a href='../S/403.html#L149'>Deque</a>             149 src/utility/queue.h   Deque *deq = LMN_MALLOC(Deque);</span>
+<span class='curline'><a href='../S/403.html#L155'>Deque</a>             155 src/utility/queue.h static inline void deq_extend(Deque *deq) {</span>
+<span class='curline'><a href='../S/403.html#L169'>Deque</a>             169 src/utility/queue.h static inline void deq_push_head(Deque *deq, LmnWord keyp) {</span>
+<span class='curline'><a href='../S/403.html#L178'>Deque</a>             178 src/utility/queue.h static inline void deq_push_tail(Deque *deq, LmnWord keyp) {</span>
+<span class='curline'><a href='../S/403.html#L187'>Deque</a>             187 src/utility/queue.h static inline LmnWord deq_pop_head(Deque *deq) {</span>
+<span class='curline'><a href='../S/403.html#L196'>Deque</a>             196 src/utility/queue.h static inline LmnWord deq_pop_tail(Deque *deq) {</span>
+<span class='curline'><a href='../S/403.html#L203'>Deque</a>             203 src/utility/queue.h static inline LmnWord deq_peek_head(const Deque *deq) {</span>
+<span class='curline'><a href='../S/403.html#L208'>Deque</a>             208 src/utility/queue.h static inline LmnWord deq_peek_tail(const Deque *deq) {</span>
+<span class='curline'><a href='../S/403.html#L214'>Deque</a>             214 src/utility/queue.h static inline LmnWord deq_get(const Deque *deq, unsigned int i) {</span>
+<span class='curline'><a href='../S/403.html#L219'>Deque</a>             219 src/utility/queue.h static inline void deq_clear(Deque *deq) {</span>
+<span class='curline'><a href='../S/403.html#L225'>Deque</a>             225 src/utility/queue.h static inline void deq_destroy(Deque *deq) {</span>
+<span class='curline'><a href='../S/403.html#L230'>Deque</a>             230 src/utility/queue.h static inline void deq_free(Deque *deq) {</span>
+<span class='curline'><a href='../S/403.html#L235'>Deque</a>             235 src/utility/queue.h static inline unsigned long deq_space_inner(Deque *deq) {</span>
+<span class='curline'><a href='../S/403.html#L239'>Deque</a>             239 src/utility/queue.h static inline unsigned long deq_space(Deque *deq) {</span>
+<span class='curline'><a href='../S/403.html#L240'>Deque</a>             240 src/utility/queue.h   return sizeof(struct Deque) + deq_space_inner(deq);</span>
+<span class='curline'><a href='../S/403.html#L243'>Deque</a>             243 src/utility/queue.h static inline void deq_print(Deque *deq) {</span>
+<span class='curline'><a href='../S/432.html#L169'>Deque</a>             169 src/verifier/mc_generator.c                         Deque    *deq,</span>
+<span class='curline'><a href='../S/432.html#L179'>Deque</a>             179 src/verifier/mc_generator.c   Deque deq;</span>
+<span class='curline'><a href='../S/432.html#L446'>Deque</a>             446 src/verifier/mc_generator.c                      Deque     *deq,</span>
+</pre>
+</body>
+</html>

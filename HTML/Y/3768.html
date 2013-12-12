@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>new_val</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/511.html#L97'>new_val</a>            97 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   int64_t new_val = OSAtomicAdd64(theAmount, theValue);</span>
+<span class='curline'><a href='../S/511.html#L99'>new_val</a>            99 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   return new_val;</span>
+<span class='curline'><a href='../S/512.html#L426'>new_val</a>           426 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   Atomic64 new_val = NoBarrier_AtomicIncrement(ptr, increment);</span>
+<span class='curline'><a href='../S/512.html#L430'>new_val</a>           430 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   return new_val;</span>
+<span class='curline'><a href='../S/514.html#L322'>new_val</a>           322 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h                                          Atomic64 new_val) {</span>
+<span class='curline'><a href='../S/514.html#L323'>new_val</a>           323 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h   return __sync_val_compare_and_swap(ptr, old_val, new_val);</span>
+<span class='curline'><a href='../S/514.html#L327'>new_val</a>           327 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h                                          Atomic64 new_val) {</span>
+<span class='curline'><a href='../S/514.html#L332'>new_val</a>           332 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h   } while (__sync_val_compare_and_swap(ptr, old_val, new_val) != old_val);</span>
+<span class='curline'><a href='../S/514.html#L339'>new_val</a>           339 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h   Atomic64 old_val, new_val;</span>
+<span class='curline'><a href='../S/514.html#L343'>new_val</a>           343 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h     new_val = old_val + increment;</span>
+<span class='curline'><a href='../S/514.html#L344'>new_val</a>           344 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h   } while (__sync_val_compare_and_swap(ptr, old_val, new_val) != old_val);</span>
+<span class='curline'><a href='../S/514.html#L351'>new_val</a>           351 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h   Atomic64 new_val = NoBarrier_AtomicIncrement(ptr, increment);</span>
+<span class='curline'><a href='../S/514.html#L355'>new_val</a>           355 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h   return new_val;</span>
+<span class='curline'><a href='../S/581.html#L75'>new_val</a>            75 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h   PtrT Exchange(PtrT new_val);</span>
+<span class='curline'><a href='../S/581.html#L83'>new_val</a>            83 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h   PtrT CompareAndSwap(PtrT old_val, PtrT new_val);</span>
+<span class='curline'><a href='../S/582.html#L162'>new_val</a>           162 third_party/google-perftools-1.8.3/src/malloc_hook.cc PtrT AtomicPtr&lt;PtrT&gt;::Exchange(PtrT new_val) {</span>
+<span class='curline'><a href='../S/582.html#L171'>new_val</a>           171 third_party/google-perftools-1.8.3/src/malloc_hook.cc           reinterpret_cast&lt;AtomicWord&gt;(new_val))));</span>
+<span class='curline'><a href='../S/582.html#L177'>new_val</a>           177 third_party/google-perftools-1.8.3/src/malloc_hook.cc PtrT AtomicPtr&lt;PtrT&gt;::CompareAndSwap(PtrT old_val, PtrT new_val) {</span>
+<span class='curline'><a href='../S/582.html#L183'>new_val</a>           183 third_party/google-perftools-1.8.3/src/malloc_hook.cc           reinterpret_cast&lt;AtomicWord&gt;(new_val))));</span>
+</pre>
+</body>
+</html>

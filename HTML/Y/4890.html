@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>skip_count</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/561.html#L261'>skip_count</a>        261 third_party/google-perftools-1.8.3/src/google/malloc_hook.h                                         int skip_count) {</span>
+<span class='curline'><a href='../S/561.html#L262'>skip_count</a>        262 third_party/google-perftools-1.8.3/src/google/malloc_hook.h     return MallocHook_GetCallerStackTrace(result, max_depth, skip_count);</span>
+<span class='curline'><a href='../S/562.html#L64'>skip_count</a>         64 third_party/google-perftools-1.8.3/src/google/malloc_hook_c.h                                    int skip_count);</span>
+<span class='curline'><a href='../S/564.html#L81'>skip_count</a>         81 third_party/google-perftools-1.8.3/src/google/stacktrace.h                           int skip_count);</span>
+<span class='curline'><a href='../S/564.html#L88'>skip_count</a>         88 third_party/google-perftools-1.8.3/src/google/stacktrace.h                                      int skip_count, const void *uc);</span>
+<span class='curline'><a href='../S/564.html#L107'>skip_count</a>        107 third_party/google-perftools-1.8.3/src/google/stacktrace.h                                             int skip_count);</span>
+<span class='curline'><a href='../S/564.html#L114'>skip_count</a>        114 third_party/google-perftools-1.8.3/src/google/stacktrace.h                                     int skip_count, const void *uc);</span>
+<span class='curline'><a href='../S/569.html#L193'>skip_count</a>        193 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     int skip_count, void* stack[kMaxStackDepth]) {</span>
+<span class='curline'><a href='../S/569.html#L195'>skip_count</a>        195 third_party/google-perftools-1.8.3/src/heap-profile-table.cc       stack, kMaxStackDepth, kStripFrames + skip_count + 1);</span>
+<span class='curline'><a href='../S/570.html#L107'>skip_count</a>        107 third_party/google-perftools-1.8.3/src/heap-profile-table.h   static int GetCallerStackTrace(int skip_count, void* stack[kMaxStackDepth]);</span>
+<span class='curline'><a href='../S/571.html#L326'>skip_count</a>        326 third_party/google-perftools-1.8.3/src/heap-profiler.cc static void RecordAlloc(const void* ptr, size_t bytes, int skip_count) {</span>
+<span class='curline'><a href='../S/571.html#L329'>skip_count</a>        329 third_party/google-perftools-1.8.3/src/heap-profiler.cc   int depth = HeapProfileTable::GetCallerStackTrace(skip_count + 1, stack);</span>
+<span class='curline'><a href='../S/582.html#L643'>skip_count</a>        643 third_party/google-perftools-1.8.3/src/malloc_hook.cc                                               int skip_count) {</span>
+<span class='curline'><a href='../S/582.html#L651'>skip_count</a>        651 third_party/google-perftools-1.8.3/src/malloc_hook.cc   return GetStackTrace(result, max_depth, skip_count + int(DEBUG_MODE));</span>
+<span class='curline'><a href='../S/610.html#L64'>skip_count</a>         64 third_party/google-perftools-1.8.3/src/stacktrace.cc    GetStackTrace(void **result, int max_depth, int skip_count)</span>
+<span class='curline'><a href='../S/610.html#L73'>skip_count</a>         73 third_party/google-perftools-1.8.3/src/stacktrace.cc   GetStackFrames(void **result, int *sizes, int max_depth, int skip_count)</span>
+<span class='curline'><a href='../S/610.html#L83'>skip_count</a>         83 third_party/google-perftools-1.8.3/src/stacktrace.cc                            int skip_count, const void *ucp)</span>
+<span class='curline'><a href='../S/610.html#L93'>skip_count</a>         93 third_party/google-perftools-1.8.3/src/stacktrace.cc                             int skip_count, const void *ucp)</span>
+<span class='curline'><a href='../S/611.html#L127'>skip_count</a>        127 third_party/google-perftools-1.8.3/src/stacktrace_arm-inl.h     if (skip_count &gt; 0) {</span>
+<span class='curline'><a href='../S/611.html#L128'>skip_count</a>        128 third_party/google-perftools-1.8.3/src/stacktrace_arm-inl.h       skip_count--;</span>
+<span class='curline'><a href='../S/613.html#L68'>skip_count</a>         68 third_party/google-perftools-1.8.3/src/stacktrace_generic-inl.h   skip_count++;  // we want to skip the current frame as well</span>
+<span class='curline'><a href='../S/613.html#L69'>skip_count</a>         69 third_party/google-perftools-1.8.3/src/stacktrace_generic-inl.h   int result_count = size - skip_count;</span>
+<span class='curline'><a href='../S/613.html#L75'>skip_count</a>         75 third_party/google-perftools-1.8.3/src/stacktrace_generic-inl.h     result[i] = stack[i + skip_count];</span>
+<span class='curline'><a href='../S/614.html#L93'>skip_count</a>         93 third_party/google-perftools-1.8.3/src/stacktrace_libunwind-inl.h   skip_count++;         // Do not include current frame</span>
+<span class='curline'><a href='../S/614.html#L95'>skip_count</a>         95 third_party/google-perftools-1.8.3/src/stacktrace_libunwind-inl.h   while (skip_count--) {</span>
+<span class='curline'><a href='../S/616.html#L124'>skip_count</a>        124 third_party/google-perftools-1.8.3/src/stacktrace_powerpc-inl.h   skip_count++;</span>
+<span class='curline'><a href='../S/616.html#L136'>skip_count</a>        136 third_party/google-perftools-1.8.3/src/stacktrace_powerpc-inl.h     if (skip_count &gt; 0) {</span>
+<span class='curline'><a href='../S/616.html#L137'>skip_count</a>        137 third_party/google-perftools-1.8.3/src/stacktrace_powerpc-inl.h       skip_count--;</span>
+<span class='curline'><a href='../S/617.html#L74'>skip_count</a>         74 third_party/google-perftools-1.8.3/src/stacktrace_win32-inl.h                                      int skip_count) {</span>
+<span class='curline'><a href='../S/617.html#L79'>skip_count</a>         79 third_party/google-perftools-1.8.3/src/stacktrace_win32-inl.h   return (int)RtlCaptureStackBackTrace_fn(skip_count + 2, max_depth,</span>
+<span class='curline'><a href='../S/618.html#L334'>skip_count</a>        334 third_party/google-perftools-1.8.3/src/stacktrace_x86-inl.h     if (skip_count &gt; 0) {</span>
+<span class='curline'><a href='../S/618.html#L335'>skip_count</a>        335 third_party/google-perftools-1.8.3/src/stacktrace_x86-inl.h       skip_count--;</span>
+<span class='curline'><a href='../S/619.html#L45'>skip_count</a>         45 third_party/google-perftools-1.8.3/src/stacktrace_x86_64-inl.h   int skip_count;</span>
+<span class='curline'><a href='../S/619.html#L74'>skip_count</a>         74 third_party/google-perftools-1.8.3/src/stacktrace_x86_64-inl.h   if (targ-&gt;skip_count &gt; 0) {</span>
+<span class='curline'><a href='../S/619.html#L75'>skip_count</a>         75 third_party/google-perftools-1.8.3/src/stacktrace_x86_64-inl.h     targ-&gt;skip_count--;</span>
+<span class='curline'><a href='../S/619.html#L87'>skip_count</a>         87 third_party/google-perftools-1.8.3/src/stacktrace_x86_64-inl.h int GetStackTrace(void** result, int max_depth, int skip_count) {</span>
+<span class='curline'><a href='../S/619.html#L93'>skip_count</a>         93 third_party/google-perftools-1.8.3/src/stacktrace_x86_64-inl.h   skip_count += 1;         // Do not include the "GetStackTrace" frame</span>
+<span class='curline'><a href='../S/619.html#L97'>skip_count</a>         97 third_party/google-perftools-1.8.3/src/stacktrace_x86_64-inl.h   targ.skip_count = skip_count;</span>
+<span class='curline'><a href='../S/619.html#L132'>skip_count</a>        132 third_party/google-perftools-1.8.3/src/stacktrace_x86_64-inl.h int GetStackFrames(void** pcs, int* sizes, int max_depth, int skip_count) {</span>
+<span class='curline'><a href='../S/619.html#L138'>skip_count</a>        138 third_party/google-perftools-1.8.3/src/stacktrace_x86_64-inl.h   skip_count += 1;         // Do not include the "GetStackFrames" frame</span>
+<span class='curline'><a href='../S/619.html#L142'>skip_count</a>        142 third_party/google-perftools-1.8.3/src/stacktrace_x86_64-inl.h   targ.skip_count = skip_count;</span>
+</pre>
+</body>
+</html>

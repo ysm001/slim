@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>S</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/420.html#L87'>S</a>                  87 src/verifier/dpor.h #define LHS_FL(F, S)               ((F) &amp; (S))</span>
+<span class='curline'><a href='../S/420.html#L99'>S</a>                  99 src/verifier/dpor.h #define RHS_OP_SET(F, S)   ((F) |= (S))</span>
+<span class='curline'><a href='../S/420.html#L100'>S</a>                 100 src/verifier/dpor.h #define RHS_OP_UNSET(F, S) ((F) &amp;= ~(S))</span>
+<span class='curline'><a href='../S/420.html#L101'>S</a>                 101 src/verifier/dpor.h #define RHS_OP(F, S)       ((F) &amp; (S))</span>
+<span class='curline'><a href='../S/421.html#L92'>S</a>                  92 src/verifier/dpor_naive.c #define set_independency_checked(S)    (state_flags3(S) |=   INDEPENDENCY_CHECKED_MASK)</span>
+<span class='curline'><a href='../S/421.html#L93'>S</a>                  93 src/verifier/dpor_naive.c #define unset_independency_checked(S)  (state_flags3(S) &amp;= (~INDEPENDENCY_CHECKED_MASK))</span>
+<span class='curline'><a href='../S/421.html#L94'>S</a>                  94 src/verifier/dpor_naive.c #define is_independency_checked(S)     (state_flags3(S) &amp;    INDEPENDENCY_CHECKED_MASK)</span>
+<span class='curline'><a href='../S/421.html#L95'>S</a>                  95 src/verifier/dpor_naive.c #define set_ample(S)                   (state_flags3(S) |=   REPRESENTATIVE_MASK)</span>
+<span class='curline'><a href='../S/421.html#L96'>S</a>                  96 src/verifier/dpor_naive.c #define unset_ample(S)                 (state_flags3(S) &amp;= (~REPRESENTATIVE_MASK))</span>
+<span class='curline'><a href='../S/421.html#L97'>S</a>                  97 src/verifier/dpor_naive.c #define is_ample(S)                    (state_flags3(S) &amp;    REPRESENTATIVE_MASK)</span>
+<span class='curline'><a href='../S/421.html#L98'>S</a>                  98 src/verifier/dpor_naive.c #define set_por_expanded(S)            (state_flags3(S) |=   POR_EXPANDED_MASK)</span>
+<span class='curline'><a href='../S/421.html#L99'>S</a>                  99 src/verifier/dpor_naive.c #define unset_por_expanded(S)          (state_flags3(S) &amp;= (~POR_EXPANDED_MASK))</span>
+<span class='curline'><a href='../S/421.html#L100'>S</a>                 100 src/verifier/dpor_naive.c #define is_por_expanded(S)             (state_flags3(S) &amp;    POR_EXPANDED_MASK)</span>
+<span class='curline'><a href='../S/421.html#L101'>S</a>                 101 src/verifier/dpor_naive.c #define set_inserted(S)                (state_flags3(S) |=   POR_INSERTED_MASK)</span>
+<span class='curline'><a href='../S/421.html#L102'>S</a>                 102 src/verifier/dpor_naive.c #define unset_inserted(S)              (state_flags3(S) &amp;= (~POR_INSERTED_MASK))</span>
+<span class='curline'><a href='../S/421.html#L103'>S</a>                 103 src/verifier/dpor_naive.c #define is_inserted(S)                 (state_flags3(S) &amp;    POR_INSERTED_MASK)</span>
+<span class='curline'><a href='../S/421.html#L104'>S</a>                 104 src/verifier/dpor_naive.c #define set_outside_exist(S)           (state_flags3(S) |=   POR_OUTSIDE_MASK)</span>
+<span class='curline'><a href='../S/421.html#L105'>S</a>                 105 src/verifier/dpor_naive.c #define unset_outside_exist(S)         (state_flags3(S) &amp;= (~POR_OUTSIDE_MASK))</span>
+<span class='curline'><a href='../S/421.html#L106'>S</a>                 106 src/verifier/dpor_naive.c #define is_outside_exist(S)            (state_flags3(S) &amp;    POR_OUTSIDE_MASK)</span>
+<span class='curline'><a href='../S/429.html#L58'>S</a>                  58 src/verifier/mc.h #define MC_GET_PROPERTY(S, A)  ((A) ? automata_get_state(A, state_property_state(S)) : DEFAULT_PROP_AUTOMATA)</span>
+<span class='curline'><a href='../S/430.html#L67'>S</a>                  67 src/verifier/mc_explorer.c #define STATE_PROP_SCC_N(W, S, A) \</span>
+<span class='curline'><a href='../S/430.html#L68'>S</a>                  68 src/verifier/mc_explorer.c   (worker_use_opt_scc(W) &amp;&amp; (state_scc_id(A, S) == SCC_TYPE_NON_ACCEPT))</span>
+<span class='curline'><a href='../S/431.html#L68'>S</a>                  68 src/verifier/mc_explorer.h #define smap_set_deleted(S)       (OR_AND_FETCH((S)-&gt;flags2,  MC_MAP_MASK))</span>
+<span class='curline'><a href='../S/431.html#L69'>S</a>                  69 src/verifier/mc_explorer.h #define smap_unset_deleted(S)     (AND_AND_FETCH((S)-&gt;flags2, MC_MAP_MASK))</span>
+<span class='curline'><a href='../S/431.html#L70'>S</a>                  70 src/verifier/mc_explorer.h #define smap_is_deleted(S)        ((S)-&gt;flags2 &amp; MC_MAP_MASK)</span>
+<span class='curline'><a href='../S/431.html#L71'>S</a>                  71 src/verifier/mc_explorer.h #define smap_set_not_delete(S)    (OR_AND_FETCH((S)-&gt;flags2,  MC_MAP2_MASK))</span>
+<span class='curline'><a href='../S/431.html#L72'>S</a>                  72 src/verifier/mc_explorer.h #define smap_unset_not_delete(S)  (AND_AND_FETCH((S)-&gt;flags2, MC_MAP2_MASK))</span>
+<span class='curline'><a href='../S/431.html#L73'>S</a>                  73 src/verifier/mc_explorer.h #define smap_is_not_delete(S)     ((S)-&gt;flags2 &amp; MC_MAP2_MASK)</span>
+<span class='curline'><a href='../S/431.html#L75'>S</a>                  75 src/verifier/mc_explorer.h #define sble_set_on_stack(S)      (OR_AND_FETCH((S)-&gt;flags2,  MC_BLE_MASK))</span>
+<span class='curline'><a href='../S/431.html#L76'>S</a>                  76 src/verifier/mc_explorer.h #define sble_unset_on_stack(S)    (AND_AND_FETCH((S)-&gt;flags2, MC_BLE_MASK))</span>
+<span class='curline'><a href='../S/431.html#L77'>S</a>                  77 src/verifier/mc_explorer.h #define sble_is_on_stack(S)       ((S)-&gt;flags2 &amp; MC_BLE_MASK)</span>
+<span class='curline'><a href='../S/455.html#L91'>S</a>                  91 src/verifier/state.h #define state_flags(S)                 ((S)-&gt;flags)</span>
+<span class='curline'><a href='../S/455.html#L92'>S</a>                  92 src/verifier/state.h #define state_flags2(S)                ((S)-&gt;flags2)</span>
+<span class='curline'><a href='../S/455.html#L93'>S</a>                  93 src/verifier/state.h #define state_flags3(S)                ((S)-&gt;flags3)</span>
+<span class='curline'><a href='../S/455.html#L116'>S</a>                 116 src/verifier/state.h #define set_on_stack(S)                ((S)-&gt;flags |=   ON_STACK_MASK)</span>
+<span class='curline'><a href='../S/455.html#L117'>S</a>                 117 src/verifier/state.h #define unset_on_stack(S)              ((S)-&gt;flags &amp;= (~ON_STACK_MASK))</span>
+<span class='curline'><a href='../S/455.html#L118'>S</a>                 118 src/verifier/state.h #define is_on_stack(S)                 ((S)-&gt;flags &amp;    ON_STACK_MASK)</span>
+<span class='curline'><a href='../S/455.html#L119'>S</a>                 119 src/verifier/state.h #define set_snd(S)                     ((S)-&gt;flags |=   FOR_MC_MASK)</span>
+<span class='curline'><a href='../S/455.html#L120'>S</a>                 120 src/verifier/state.h #define unset_snd(S)                   ((S)-&gt;flags &amp;= (~FOR_MC_MASK))</span>
+<span class='curline'><a href='../S/455.html#L121'>S</a>                 121 src/verifier/state.h #define is_snd(S)                      ((S)-&gt;flags &amp;    FOR_MC_MASK)</span>
+<span class='curline'><a href='../S/455.html#L122'>S</a>                 122 src/verifier/state.h #define set_expanded(S)                ((S)-&gt;flags |=   EXPANDED_MASK)</span>
+<span class='curline'><a href='../S/455.html#L123'>S</a>                 123 src/verifier/state.h #define unset_expanded(S)              ((S)-&gt;flags &amp;= (~EXPANDED_MASK))</span>
+<span class='curline'><a href='../S/455.html#L124'>S</a>                 124 src/verifier/state.h #define is_expanded(S)                 ((S)-&gt;flags &amp;    EXPANDED_MASK)</span>
+<span class='curline'><a href='../S/455.html#L125'>S</a>                 125 src/verifier/state.h #define set_on_cycle(S)                ((S)-&gt;flags |=   ON_CYCLE_MASK)</span>
+<span class='curline'><a href='../S/455.html#L126'>S</a>                 126 src/verifier/state.h #define unset_on_cycle(S)              ((S)-&gt;flags &amp;= (~ON_CYCLE_MASK))</span>
+<span class='curline'><a href='../S/455.html#L127'>S</a>                 127 src/verifier/state.h #define is_on_cycle(S)                 ((S)-&gt;flags &amp;    ON_CYCLE_MASK)</span>
+<span class='curline'><a href='../S/455.html#L128'>S</a>                 128 src/verifier/state.h #define set_dummy(S)                   ((S)-&gt;flags |=   DUMMY_SYMBOL_MASK)</span>
+<span class='curline'><a href='../S/455.html#L129'>S</a>                 129 src/verifier/state.h #define unset_dummy(S)                 ((S)-&gt;flags &amp;= (~DUMMY_SYMBOL_MASK))</span>
+<span class='curline'><a href='../S/455.html#L130'>S</a>                 130 src/verifier/state.h #define is_dummy(S)                    ((S)-&gt;flags &amp;    DUMMY_SYMBOL_MASK)</span>
+<span class='curline'><a href='../S/455.html#L131'>S</a>                 131 src/verifier/state.h #define set_trans_obj(S)               ((S)-&gt;flags |=   TRANS_OBJ_MASK)</span>
+<span class='curline'><a href='../S/455.html#L132'>S</a>                 132 src/verifier/state.h #define unset_trans_obj(S)             ((S)-&gt;flags &amp;= (~TRANS_OBJ_MASK))</span>
+<span class='curline'><a href='../S/455.html#L133'>S</a>                 133 src/verifier/state.h #define has_trans_obj(S)               ((S)-&gt;flags &amp;    TRANS_OBJ_MASK)</span>
+<span class='curline'><a href='../S/455.html#L134'>S</a>                 134 src/verifier/state.h #define set_encoded(S)                 ((S)-&gt;flags |=   MEM_ENCODED_MASK)</span>
+<span class='curline'><a href='../S/455.html#L135'>S</a>                 135 src/verifier/state.h #define unset_encoded(S)               ((S)-&gt;flags &amp;= (~MEM_ENCODED_MASK))</span>
+<span class='curline'><a href='../S/455.html#L136'>S</a>                 136 src/verifier/state.h #define is_encoded(S)                  ((S)-&gt;flags &amp;    MEM_ENCODED_MASK)</span>
+<span class='curline'><a href='../S/455.html#L137'>S</a>                 137 src/verifier/state.h #define set_binstr_user(S)             ((S)-&gt;flags |=   MEM_DIRECT_MASK)</span>
+<span class='curline'><a href='../S/455.html#L138'>S</a>                 138 src/verifier/state.h #define unset_binstr_user(S)           ((S)-&gt;flags &amp;= (~MEM_DIRECT_MASK))</span>
+<span class='curline'><a href='../S/455.html#L139'>S</a>                 139 src/verifier/state.h #define is_binstr_user(S)              ((S)-&gt;flags &amp;    MEM_DIRECT_MASK)</span>
+<span class='curline'><a href='../S/455.html#L159'>S</a>                 159 src/verifier/state.h #define s_set_d(S)                     ((S)-&gt;flags2 |=   STATE_DELTA_MASK)</span>
+<span class='curline'><a href='../S/455.html#L160'>S</a>                 160 src/verifier/state.h #define s_unset_d(S)                   ((S)-&gt;flags2 &amp;= (~STATE_DELTA_MASK))</span>
+<span class='curline'><a href='../S/455.html#L161'>S</a>                 161 src/verifier/state.h #define s_is_d(S)                      ((S)-&gt;flags2 &amp;    STATE_DELTA_MASK)</span>
+<span class='curline'><a href='../S/455.html#L162'>S</a>                 162 src/verifier/state.h #define s_set_reduced(S)               ((S)-&gt;flags2 |=   STATE_REDUCED_MASK)</span>
+<span class='curline'><a href='../S/455.html#L163'>S</a>                 163 src/verifier/state.h #define s_unset_reduced(S)             ((S)-&gt;flags2 &amp;= (~STATE_REDUCED_MASK))</span>
+<span class='curline'><a href='../S/455.html#L164'>S</a>                 164 src/verifier/state.h #define s_is_reduced(S)                ((S)-&gt;flags2 &amp;    STATE_REDUCED_MASK)</span>
+<span class='curline'><a href='../S/455.html#L165'>S</a>                 165 src/verifier/state.h #define s_set_update(S)                ((S)-&gt;flags2 |=   STATE_UPDATE_MASK)</span>
+<span class='curline'><a href='../S/455.html#L166'>S</a>                 166 src/verifier/state.h #define s_unset_update(S)              ((S)-&gt;flags2 &amp;= (~STATE_UPDATE_MASK))</span>
+<span class='curline'><a href='../S/455.html#L167'>S</a>                 167 src/verifier/state.h #define s_is_update(S)                 ((S)-&gt;flags2 &amp;    STATE_UPDATE_MASK)</span>
+<span class='curline'><a href='../S/455.html#L233'>S</a>                 233 src/verifier/state.h #define state_map(S)         ((S)-&gt;map)</span>
+<span class='curline'><a href='../S/455.html#L236'>S</a>                 236 src/verifier/state.h # define state_cost(S)        ((S)-&gt;cost)</span>
+<span class='curline'><a href='../S/455.html#L238'>S</a>                 238 src/verifier/state.h # define state_cost(S)        0U</span>
+</pre>
+</body>
+</html>

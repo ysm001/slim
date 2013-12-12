@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>MallocRange</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/559.html#L70'>MallocRange</a>        70 third_party/google-perftools-1.8.3/src/google/malloc_extension.h struct MallocRange;</span>
+<span class='curline'><a href='../S/559.html#L143'>MallocRange</a>       143 third_party/google-perftools-1.8.3/src/google/malloc_extension.h   typedef void (RangeFunction)(void*, const base::MallocRange*);</span>
+<span class='curline'><a href='../S/591.html#L366'>MallocRange</a>       366 third_party/google-perftools-1.8.3/src/page_heap.cc bool PageHeap::GetNextRange(PageID start, base::MallocRange* r) {</span>
+<span class='curline'><a href='../S/591.html#L376'>MallocRange</a>       376 third_party/google-perftools-1.8.3/src/page_heap.cc       r-&gt;type = base::MallocRange::INUSE;</span>
+<span class='curline'><a href='../S/591.html#L385'>MallocRange</a>       385 third_party/google-perftools-1.8.3/src/page_heap.cc       r-&gt;type = base::MallocRange::FREE;</span>
+<span class='curline'><a href='../S/591.html#L388'>MallocRange</a>       388 third_party/google-perftools-1.8.3/src/page_heap.cc       r-&gt;type = base::MallocRange::UNMAPPED;</span>
+<span class='curline'><a href='../S/591.html#L391'>MallocRange</a>       391 third_party/google-perftools-1.8.3/src/page_heap.cc       r-&gt;type = base::MallocRange::UNKNOWN;</span>
+<span class='curline'><a href='../S/592.html#L68'>MallocRange</a>        68 third_party/google-perftools-1.8.3/src/page_heap.h struct MallocRange;</span>
+<span class='curline'><a href='../S/592.html#L141'>MallocRange</a>       141 third_party/google-perftools-1.8.3/src/page_heap.h   bool GetNextRange(PageID start, base::MallocRange* r);</span>
+<span class='curline'><a href='../S/626.html#L538'>MallocRange</a>       538 third_party/google-perftools-1.8.3/src/tcmalloc.cc     static base::MallocRange ranges[kNumRanges];</span>
+<span class='curline'><a href='../S/664.html#L798'>MallocRange</a>       798 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   base::MallocRange::Type expected_type;</span>
+<span class='curline'><a href='../S/664.html#L803'>MallocRange</a>       803 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc static void RangeCallback(void* arg, const base::MallocRange* r) {</span>
+<span class='curline'><a href='../S/664.html#L807'>MallocRange</a>       807 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     if (state-&gt;expected_type == base::MallocRange::FREE) {</span>
+<span class='curline'><a href='../S/664.html#L811'>MallocRange</a>       811 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc       CHECK(r-&gt;type == base::MallocRange::FREE ||</span>
+<span class='curline'><a href='../S/664.html#L812'>MallocRange</a>       812 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc             r-&gt;type == base::MallocRange::UNMAPPED);</span>
+<span class='curline'><a href='../S/664.html#L824'>MallocRange</a>       824 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc static void CheckRangeCallback(void* ptr, base::MallocRange::Type type,</span>
+<span class='curline'><a href='../S/664.html#L841'>MallocRange</a>       841 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   CheckRangeCallback(a, base::MallocRange::INUSE, MB);</span>
+<span class='curline'><a href='../S/664.html#L842'>MallocRange</a>       842 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   CheckRangeCallback(b, base::MallocRange::INUSE, MB);</span>
+<span class='curline'><a href='../S/664.html#L844'>MallocRange</a>       844 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   CheckRangeCallback(a, base::MallocRange::FREE, MB);</span>
+<span class='curline'><a href='../S/664.html#L845'>MallocRange</a>       845 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   CheckRangeCallback(b, base::MallocRange::INUSE, MB);</span>
+<span class='curline'><a href='../S/664.html#L847'>MallocRange</a>       847 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   CheckRangeCallback(a, base::MallocRange::UNMAPPED, MB);</span>
+<span class='curline'><a href='../S/664.html#L848'>MallocRange</a>       848 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   CheckRangeCallback(b, base::MallocRange::INUSE, MB);</span>
+<span class='curline'><a href='../S/664.html#L850'>MallocRange</a>       850 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   CheckRangeCallback(a, base::MallocRange::UNMAPPED, MB);</span>
+<span class='curline'><a href='../S/664.html#L851'>MallocRange</a>       851 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   CheckRangeCallback(b, base::MallocRange::FREE, MB);</span>
+</pre>
+</body>
+</html>

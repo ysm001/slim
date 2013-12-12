@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>new</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/309.html#L128'>new</a>               128 src/alloc.c      void *new;</span>
+<span class='curline'><a href='../S/309.html#L130'>new</a>               130 src/alloc.c      new = calloc (num, size);</span>
+<span class='curline'><a href='../S/309.html#L131'>new</a>               131 src/alloc.c      if (!new) {</span>
+<span class='curline'><a href='../S/309.html#L138'>new</a>               138 src/alloc.c      new = lmn_malloc(num * size);</span>
+<span class='curline'><a href='../S/309.html#L139'>new</a>               139 src/alloc.c      new_as_string = (char *)new;</span>
+<span class='curline'><a href='../S/309.html#L145'>new</a>               145 src/alloc.c      return new;</span>
+<span class='curline'><a href='../S/309.html#L152'>new</a>               152 src/alloc.c      void *new = malloc(num);</span>
+<span class='curline'><a href='../S/309.html#L153'>new</a>               153 src/alloc.c      if (!new) lmn_fatal("Memory exhausted");</span>
+<span class='curline'><a href='../S/309.html#L155'>new</a>               155 src/alloc.c      return new;</span>
+<span class='curline'><a href='../S/309.html#L160'>new</a>               160 src/alloc.c      void *new;</span>
+<span class='curline'><a href='../S/309.html#L163'>new</a>               163 src/alloc.c      new = realloc (p, num);</span>
+<span class='curline'><a href='../S/309.html#L164'>new</a>               164 src/alloc.c      if (!new) lmn_fatal("Memory exhausted");</span>
+<span class='curline'><a href='../S/309.html#L166'>new</a>               166 src/alloc.c      return new;</span>
+<span class='curline'><a href='../S/362.html#L130'>new</a>               130 src/port.c       LmnPort new = LMN_MALLOC(struct LmnPort);</span>
+<span class='curline'><a href='../S/362.html#L131'>new</a>               131 src/port.c       memcpy(new, port, sizeof(struct LmnPort));</span>
+<span class='curline'><a href='../S/362.html#L132'>new</a>               132 src/port.c       return new;</span>
+<span class='curline'><a href='../S/365.html#L267'>new</a>               267 src/rule.c       LmnRuleSet new;</span>
+<span class='curline'><a href='../S/365.html#L271'>new</a>               271 src/rule.c       new = lmn_ruleset_make(lmn_ruleset_get_id(src), r_n);</span>
+<span class='curline'><a href='../S/365.html#L272'>new</a>               272 src/rule.c       new-&gt;is_copy = TRUE;</span>
+<span class='curline'><a href='../S/365.html#L273'>new</a>               273 src/rule.c       new-&gt;atomic = src-&gt;atomic;</span>
+<span class='curline'><a href='../S/365.html#L274'>new</a>               274 src/rule.c       new-&gt;is_atomic_valid = src-&gt;is_atomic_valid;</span>
+<span class='curline'><a href='../S/365.html#L279'>new</a>               279 src/rule.c         lmn_ruleset_put(new, lmn_rule_copy(r));</span>
+<span class='curline'><a href='../S/365.html#L281'>new</a>               281 src/rule.c       return new;</span>
+<span class='curline'><a href='../S/402.html#L129'>new</a>               129 src/utility/queue.c   Node *last, *new;</span>
+<span class='curline'><a href='../S/402.html#L132'>new</a>               132 src/utility/queue.c   new = node_make(v);</span>
+<span class='curline'><a href='../S/402.html#L133'>new</a>               133 src/utility/queue.c   last-&gt;next = new;</span>
+<span class='curline'><a href='../S/402.html#L134'>new</a>               134 src/utility/queue.c   q-&gt;tail = new;</span>
+<span class='curline'><a href='../S/417.html#L70'>new</a>                70 src/verifier/delta_membrane.c static inline void dmem_root_commit_atom(struct MemDeltaRoot *d, LmnSAtom src, LmnSAtom new);</span>
+<span class='curline'><a href='../S/417.html#L71'>new</a>                71 src/verifier/delta_membrane.c static inline void dmem_root_revert_atom(struct MemDeltaRoot *d, LmnSAtom src, LmnSAtom new);</span>
+<span class='curline'><a href='../S/417.html#L1037'>new</a>              1037 src/verifier/delta_membrane.c     LmnSAtom new = LMN_SATOM(vec_get(&amp;d-&gt;modified_atoms, i+1));</span>
+<span class='curline'><a href='../S/417.html#L1039'>new</a>              1039 src/verifier/delta_membrane.c     if (!dmem_root_is_freed_atom(d, new)) {</span>
+<span class='curline'><a href='../S/417.html#L1040'>new</a>              1040 src/verifier/delta_membrane.c       dmem_root_commit_atom(d, src, new);</span>
+<span class='curline'><a href='../S/417.html#L1065'>new</a>              1065 src/verifier/delta_membrane.c static inline void dmem_root_commit_atom(struct MemDeltaRoot *d, LmnSAtom src, LmnSAtom new)</span>
+<span class='curline'><a href='../S/417.html#L1078'>new</a>              1078 src/verifier/delta_membrane.c     LmnLinkAttr attr = LMN_SATOM_GET_ATTR(new, i);</span>
+<span class='curline'><a href='../S/417.html#L1080'>new</a>              1080 src/verifier/delta_membrane.c       LmnSAtom a = dmem_root_modified_atom(d, LMN_SATOM(LMN_SATOM_GET_LINK(new, i)));</span>
+<span class='curline'><a href='../S/417.html#L1081'>new</a>              1081 src/verifier/delta_membrane.c       if (LMN_SATOM_GET_LINK(a, LMN_ATTR_GET_VALUE(attr)) != LMN_ATOM(new)) {</span>
+<span class='curline'><a href='../S/417.html#L1083'>new</a>              1083 src/verifier/delta_membrane.c         LMN_SATOM_SET_LINK(a, LMN_ATTR_GET_VALUE(attr), new);</span>
+<span class='curline'><a href='../S/417.html#L1135'>new</a>              1135 src/verifier/delta_membrane.c     LmnSAtom new = LMN_SATOM(vec_get(&amp;d-&gt;modified_atoms, i));</span>
+<span class='curline'><a href='../S/417.html#L1137'>new</a>              1137 src/verifier/delta_membrane.c     if (!dmem_root_is_freed_atom(d, new)) {</span>
+<span class='curline'><a href='../S/417.html#L1138'>new</a>              1138 src/verifier/delta_membrane.c       dmem_root_revert_atom(d, src, new);</span>
+<span class='curline'><a href='../S/417.html#L1164'>new</a>              1164 src/verifier/delta_membrane.c static inline void dmem_root_revert_atom(struct MemDeltaRoot *d, LmnSAtom src, LmnSAtom new)</span>
+<span class='curline'><a href='../S/540.html#L89'>new</a>                89 third_party/google-perftools-1.8.3/src/base/stl_allocator.h   void construct(pointer p, const T&amp; val) { ::new(p) T(val); }</span>
+<span class='curline'><a href='../S/575.html#L60'>new</a>                60 third_party/google-perftools-1.8.3/src/libc_override_gcc_and_weak.h void* operator new[](size_t size) throw (std::bad_alloc)</span>
+<span class='curline'><a href='../S/575.html#L64'>new</a>                64 third_party/google-perftools-1.8.3/src/libc_override_gcc_and_weak.h void* operator new(size_t size, const std::nothrow_t&amp; nt) __THROW</span>
+<span class='curline'><a href='../S/575.html#L66'>new</a>                66 third_party/google-perftools-1.8.3/src/libc_override_gcc_and_weak.h void* operator new[](size_t size, const std::nothrow_t&amp; nt) __THROW</span>
+<span class='curline'><a href='../S/577.html#L160'>new</a>               160 third_party/google-perftools-1.8.3/src/libc_override_osx.h   char* buffer = new char[bufsize];</span>
+<span class='curline'><a href='../S/578.html#L54'>new</a>                54 third_party/google-perftools-1.8.3/src/libc_override_redefine.h void* operator new[](size_t size)                { return tc_newarray(size);  }</span>
+<span class='curline'><a href='../S/578.html#L59'>new</a>                59 third_party/google-perftools-1.8.3/src/libc_override_redefine.h void* operator new[](size_t size, const std::nothrow_t&amp; nt) __THROW {</span>
+</pre>
+</body>
+</html>

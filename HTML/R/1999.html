@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>ProfileHandler</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/596.html#L111'>ProfileHandler</a>    111 third_party/google-perftools-1.8.3/src/profile-handler.cc   static ProfileHandler* Instance();</span>
+<span class='curline'><a href='../S/596.html#L114'>ProfileHandler</a>    114 third_party/google-perftools-1.8.3/src/profile-handler.cc   ProfileHandler();</span>
+<span class='curline'><a href='../S/596.html#L115'>ProfileHandler</a>    115 third_party/google-perftools-1.8.3/src/profile-handler.cc   ~ProfileHandler();</span>
+<span class='curline'><a href='../S/596.html#L123'>ProfileHandler</a>    123 third_party/google-perftools-1.8.3/src/profile-handler.cc   static ProfileHandler* instance_;</span>
+<span class='curline'><a href='../S/596.html#L213'>ProfileHandler</a>    213 third_party/google-perftools-1.8.3/src/profile-handler.cc   DISALLOW_COPY_AND_ASSIGN(ProfileHandler);</span>
+<span class='curline'><a href='../S/596.html#L216'>ProfileHandler</a>    216 third_party/google-perftools-1.8.3/src/profile-handler.cc ProfileHandler* ProfileHandler::instance_ = NULL;</span>
+<span class='curline'><a href='../S/596.html#L217'>ProfileHandler</a>    217 third_party/google-perftools-1.8.3/src/profile-handler.cc pthread_once_t ProfileHandler::once_ = PTHREAD_ONCE_INIT;</span>
+<span class='curline'><a href='../S/596.html#L219'>ProfileHandler</a>    219 third_party/google-perftools-1.8.3/src/profile-handler.cc const int32 ProfileHandler::kMaxFrequency;</span>
+<span class='curline'><a href='../S/596.html#L220'>ProfileHandler</a>    220 third_party/google-perftools-1.8.3/src/profile-handler.cc const int32 ProfileHandler::kDefaultFrequency;</span>
+<span class='curline'><a href='../S/596.html#L229'>ProfileHandler</a>    229 third_party/google-perftools-1.8.3/src/profile-handler.cc void ProfileHandler::Init() {</span>
+<span class='curline'><a href='../S/596.html#L230'>ProfileHandler</a>    230 third_party/google-perftools-1.8.3/src/profile-handler.cc   instance_ = new ProfileHandler();</span>
+<span class='curline'><a href='../S/596.html#L233'>ProfileHandler</a>    233 third_party/google-perftools-1.8.3/src/profile-handler.cc ProfileHandler* ProfileHandler::Instance() {</span>
+<span class='curline'><a href='../S/596.html#L247'>ProfileHandler</a>    247 third_party/google-perftools-1.8.3/src/profile-handler.cc ProfileHandler::ProfileHandler()</span>
+<span class='curline'><a href='../S/596.html#L285'>ProfileHandler</a>    285 third_party/google-perftools-1.8.3/src/profile-handler.cc ProfileHandler::~ProfileHandler() {</span>
+<span class='curline'><a href='../S/596.html#L289'>ProfileHandler</a>    289 third_party/google-perftools-1.8.3/src/profile-handler.cc void ProfileHandler::RegisterThread() {</span>
+<span class='curline'><a href='../S/596.html#L339'>ProfileHandler</a>    339 third_party/google-perftools-1.8.3/src/profile-handler.cc ProfileHandlerToken* ProfileHandler::RegisterCallback(</span>
+<span class='curline'><a href='../S/596.html#L359'>ProfileHandler</a>    359 third_party/google-perftools-1.8.3/src/profile-handler.cc void ProfileHandler::UnregisterCallback(ProfileHandlerToken* token) {</span>
+<span class='curline'><a href='../S/596.html#L384'>ProfileHandler</a>    384 third_party/google-perftools-1.8.3/src/profile-handler.cc void ProfileHandler::Reset() {</span>
+<span class='curline'><a href='../S/596.html#L404'>ProfileHandler</a>    404 third_party/google-perftools-1.8.3/src/profile-handler.cc void ProfileHandler::GetState(ProfileHandlerState* state) {</span>
+<span class='curline'><a href='../S/596.html#L419'>ProfileHandler</a>    419 third_party/google-perftools-1.8.3/src/profile-handler.cc void ProfileHandler::StartTimer() {</span>
+<span class='curline'><a href='../S/596.html#L430'>ProfileHandler</a>    430 third_party/google-perftools-1.8.3/src/profile-handler.cc void ProfileHandler::StopTimer() {</span>
+<span class='curline'><a href='../S/596.html#L439'>ProfileHandler</a>    439 third_party/google-perftools-1.8.3/src/profile-handler.cc bool ProfileHandler::IsTimerRunning() {</span>
+<span class='curline'><a href='../S/596.html#L449'>ProfileHandler</a>    449 third_party/google-perftools-1.8.3/src/profile-handler.cc void ProfileHandler::EnableHandler() {</span>
+<span class='curline'><a href='../S/596.html#L461'>ProfileHandler</a>    461 third_party/google-perftools-1.8.3/src/profile-handler.cc void ProfileHandler::DisableHandler() {</span>
+<span class='curline'><a href='../S/596.html#L473'>ProfileHandler</a>    473 third_party/google-perftools-1.8.3/src/profile-handler.cc bool ProfileHandler::IsSignalHandlerAvailable() {</span>
+<span class='curline'><a href='../S/596.html#L488'>ProfileHandler</a>    488 third_party/google-perftools-1.8.3/src/profile-handler.cc void ProfileHandler::SignalHandler(int sig, siginfo_t* sinfo, void* ucontext) {</span>
+<span class='curline'><a href='../S/596.html#L493'>ProfileHandler</a>    493 third_party/google-perftools-1.8.3/src/profile-handler.cc   ProfileHandler* instance = ANNOTATE_UNPROTECTED_READ(instance_);</span>
+<span class='curline'><a href='../S/596.html#L512'>ProfileHandler</a>    512 third_party/google-perftools-1.8.3/src/profile-handler.cc   ProfileHandler::Instance()-&gt;RegisterThread();</span>
+<span class='curline'><a href='../S/596.html#L517'>ProfileHandler</a>    517 third_party/google-perftools-1.8.3/src/profile-handler.cc   return ProfileHandler::Instance()-&gt;RegisterCallback(callback, callback_arg);</span>
+<span class='curline'><a href='../S/596.html#L521'>ProfileHandler</a>    521 third_party/google-perftools-1.8.3/src/profile-handler.cc   ProfileHandler::Instance()-&gt;UnregisterCallback(token);</span>
+<span class='curline'><a href='../S/596.html#L525'>ProfileHandler</a>    525 third_party/google-perftools-1.8.3/src/profile-handler.cc   return ProfileHandler::Instance()-&gt;Reset();</span>
+<span class='curline'><a href='../S/596.html#L529'>ProfileHandler</a>    529 third_party/google-perftools-1.8.3/src/profile-handler.cc   ProfileHandler::Instance()-&gt;GetState(state);</span>
+</pre>
+</body>
+</html>

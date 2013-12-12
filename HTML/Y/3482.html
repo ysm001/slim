@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>mc_por</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/421.html#L76'>mc_por</a>             76 src/verifier/dpor_naive.c } mc_por;</span>
+<span class='curline'><a href='../S/421.html#L153'>mc_por</a>            153 src/verifier/dpor_naive.c   mc_por.root                = NULL;</span>
+<span class='curline'><a href='../S/421.html#L154'>mc_por</a>            154 src/verifier/dpor_naive.c   mc_por.strans_independency = st_init_numtable();</span>
+<span class='curline'><a href='../S/421.html#L155'>mc_por</a>            155 src/verifier/dpor_naive.c   mc_por.states              = st_init_statetable();</span>
+<span class='curline'><a href='../S/421.html#L156'>mc_por</a>            156 src/verifier/dpor_naive.c   mc_por.queue               = new_queue();</span>
+<span class='curline'><a href='../S/421.html#L157'>mc_por</a>            157 src/verifier/dpor_naive.c   mc_por.ample_candidate     = vec_make(POR_VEC_SIZE);</span>
+<span class='curline'><a href='../S/421.html#L158'>mc_por</a>            158 src/verifier/dpor_naive.c   mc_por.next_strans_id      = POR_ID_INITIALIZER; /* 0は使用しない */</span>
+<span class='curline'><a href='../S/421.html#L159'>mc_por</a>            159 src/verifier/dpor_naive.c   mc_por.rc                  = NULL;</span>
+<span class='curline'><a href='../S/421.html#L160'>mc_por</a>            160 src/verifier/dpor_naive.c   mc_por.flags               = 0x00U;</span>
+<span class='curline'><a href='../S/421.html#L165'>mc_por</a>            165 src/verifier/dpor_naive.c   st_free_table(mc_por.states);</span>
+<span class='curline'><a href='../S/421.html#L166'>mc_por</a>            166 src/verifier/dpor_naive.c   st_free_table(mc_por.strans_independency);</span>
+<span class='curline'><a href='../S/421.html#L167'>mc_por</a>            167 src/verifier/dpor_naive.c   q_free(mc_por.queue);</span>
+<span class='curline'><a href='../S/421.html#L168'>mc_por</a>            168 src/verifier/dpor_naive.c   vec_free(mc_por.ample_candidate);</span>
+<span class='curline'><a href='../S/421.html#L169'>mc_por</a>            169 src/verifier/dpor_naive.c   if (mc_por.rc) {</span>
+<span class='curline'><a href='../S/421.html#L170'>mc_por</a>            170 src/verifier/dpor_naive.c     mc_react_cxt_destroy(mc_por.rc);</span>
+<span class='curline'><a href='../S/421.html#L181'>mc_por</a>            181 src/verifier/dpor_naive.c   if (!mc_por.rc) {</span>
+<span class='curline'><a href='../S/421.html#L182'>mc_por</a>            182 src/verifier/dpor_naive.c     mc_por.rc = LMN_MALLOC(struct LmnReactCxt);</span>
+<span class='curline'><a href='../S/421.html#L183'>mc_por</a>            183 src/verifier/dpor_naive.c     mc_react_cxt_init(mc_por.rc);</span>
+<span class='curline'><a href='../S/421.html#L184'>mc_por</a>            184 src/verifier/dpor_naive.c     mc_por.flags = f;</span>
+<span class='curline'><a href='../S/421.html#L185'>mc_por</a>            185 src/verifier/dpor_naive.c     mc_unset_por(mc_por.flags);</span>
+<span class='curline'><a href='../S/421.html#L186'>mc_por</a>            186 src/verifier/dpor_naive.c     mc_set_trans(mc_por.flags);</span>
+<span class='curline'><a href='../S/421.html#L187'>mc_por</a>            187 src/verifier/dpor_naive.c     mc_unset_dump(mc_por.flags);</span>
+<span class='curline'><a href='../S/421.html#L188'>mc_por</a>            188 src/verifier/dpor_naive.c     POR_DEBUG(mc_set_dump(mc_por.flags));</span>
+<span class='curline'><a href='../S/421.html#L197'>mc_por</a>            197 src/verifier/dpor_naive.c   mc_por.root = s;</span>
+<span class='curline'><a href='../S/421.html#L220'>mc_por</a>            220 src/verifier/dpor_naive.c   if (s != mc_por.root) {</span>
+<span class='curline'><a href='../S/421.html#L250'>mc_por</a>            250 src/verifier/dpor_naive.c   mc_por.next_strans_id = POR_ID_INITIALIZER;</span>
+<span class='curline'><a href='../S/421.html#L251'>mc_por</a>            251 src/verifier/dpor_naive.c   st_foreach(mc_por.strans_independency, independency_vec_free, (st_data_t)0);</span>
+<span class='curline'><a href='../S/421.html#L252'>mc_por</a>            252 src/verifier/dpor_naive.c   st_foreach(mc_por.states, destroy_tmp_state_graph, (LmnWord)org_f);</span>
+<span class='curline'><a href='../S/421.html#L253'>mc_por</a>            253 src/verifier/dpor_naive.c   queue_clear(mc_por.queue);</span>
+<span class='curline'><a href='../S/421.html#L254'>mc_por</a>            254 src/verifier/dpor_naive.c   vec_clear(mc_por.ample_candidate);</span>
+<span class='curline'><a href='../S/421.html#L255'>mc_por</a>            255 src/verifier/dpor_naive.c   RC_CLEAR_DATA(mc_por.rc);</span>
+<span class='curline'><a href='../S/421.html#L256'>mc_por</a>            256 src/verifier/dpor_naive.c   mc_por.root = NULL;</span>
+<span class='curline'><a href='../S/421.html#L272'>mc_por</a>            272 src/verifier/dpor_naive.c   st_add_direct(mc_por.states, (st_data_t)s, (st_data_t)s);</span>
+<span class='curline'><a href='../S/421.html#L285'>mc_por</a>            285 src/verifier/dpor_naive.c   st_foreach(mc_por.strans_independency, build_ample_satisfying_lemma, (st_data_t)s);</span>
+<span class='curline'><a href='../S/421.html#L289'>mc_por</a>            289 src/verifier/dpor_naive.c   if (vec_is_empty(mc_por.ample_candidate)) {</span>
+<span class='curline'><a href='../S/421.html#L294'>mc_por</a>            294 src/verifier/dpor_naive.c       vec_push(mc_por.ample_candidate, (vec_data_t)transition_id(t));</span>
+<span class='curline'><a href='../S/421.html#L301'>mc_por</a>            301 src/verifier/dpor_naive.c         vec_clear(mc_por.ample_candidate);</span>
+<span class='curline'><a href='../S/421.html#L307'>mc_por</a>            307 src/verifier/dpor_naive.c     if (vec_is_empty(mc_por.ample_candidate)) {</span>
+<span class='curline'><a href='../S/421.html#L323'>mc_por</a>            323 src/verifier/dpor_naive.c     if (vec_num(mc_por.ample_candidate) == state_succ_num(s) ||</span>
+<span class='curline'><a href='../S/421.html#L343'>mc_por</a>            343 src/verifier/dpor_naive.c     st_foreach(mc_por.strans_independency, dump__strans_independency, (st_data_t)0);</span>
+<span class='curline'><a href='../S/421.html#L357'>mc_por</a>            357 src/verifier/dpor_naive.c     mc_gen_successors_with_property(s, mem, p_s, rc, psyms, mc_por.flags);</span>
+<span class='curline'><a href='../S/421.html#L359'>mc_por</a>            359 src/verifier/dpor_naive.c     mc_gen_successors(s, mem, DEFAULT_STATE_ID, rc, mc_por.flags);</span>
+<span class='curline'><a href='../S/421.html#L362'>mc_por</a>            362 src/verifier/dpor_naive.c   if (mc_use_compress(mc_por.flags)) {</span>
+<span class='curline'><a href='../S/421.html#L389'>mc_por</a>            389 src/verifier/dpor_naive.c   if (st_lookup(mc_por.states, (st_data_t)succ, (st_data_t *)&amp;t)) {</span>
+<span class='curline'><a href='../S/421.html#L393'>mc_por</a>            393 src/verifier/dpor_naive.c     st_add_direct(mc_por.states, (st_data_t)succ, (st_data_t)succ);</span>
+<span class='curline'><a href='../S/421.html#L524'>mc_por</a>            524 src/verifier/dpor_naive.c       assign_id = mc_por.next_strans_id++;</span>
+<span class='curline'><a href='../S/421.html#L533'>mc_por</a>            533 src/verifier/dpor_naive.c       if (!st_lookup(mc_por.strans_independency, (st_data_t)assign_id, (st_data_t *)&amp;t)) {</span>
+<span class='curline'><a href='../S/421.html#L535'>mc_por</a>            535 src/verifier/dpor_naive.c         st_add_direct(mc_por.strans_independency, (st_data_t)assign_id, (st_data_t)v);</span>
+<span class='curline'><a href='../S/421.html#L580'>mc_por</a>            580 src/verifier/dpor_naive.c     por_gen_successors(s, mc_por.rc, a, psyms);</span>
+<span class='curline'><a href='../S/421.html#L581'>mc_por</a>            581 src/verifier/dpor_naive.c     por_store_successors(s, mc_por.rc, TRUE);</span>
+<span class='curline'><a href='../S/421.html#L583'>mc_por</a>            583 src/verifier/dpor_naive.c     RC_CLEAR_DATA(mc_por.rc);</span>
+<span class='curline'><a href='../S/421.html#L607'>mc_por</a>            607 src/verifier/dpor_naive.c       por_gen_successors(succ_s, mc_por.rc, a, psyms);</span>
+<span class='curline'><a href='../S/421.html#L608'>mc_por</a>            608 src/verifier/dpor_naive.c       por_store_successors(succ_s, mc_por.rc, FALSE); /* 2step目の遷移のIDはテーブルに登録しない */</span>
+<span class='curline'><a href='../S/421.html#L609'>mc_por</a>            609 src/verifier/dpor_naive.c       RC_CLEAR_DATA(mc_por.rc);</span>
+<span class='curline'><a href='../S/421.html#L617'>mc_por</a>            617 src/verifier/dpor_naive.c     st_foreach(mc_por.states, dump__tmp_graph, (st_data_t)FALSE);</span>
+<span class='curline'><a href='../S/421.html#L677'>mc_por</a>            677 src/verifier/dpor_naive.c     st_foreach(mc_por.states, dump__tmp_graph, (st_data_t)FALSE);</span>
+<span class='curline'><a href='../S/421.html#L697'>mc_por</a>            697 src/verifier/dpor_naive.c       if (!st_lookup(mc_por.strans_independency, (st_data_t)id, (st_data_t *)&amp;t)) {</span>
+<span class='curline'><a href='../S/421.html#L699'>mc_por</a>            699 src/verifier/dpor_naive.c         st_add_direct(mc_por.strans_independency, (st_data_t)id, (st_data_t)v);</span>
+<span class='curline'><a href='../S/421.html#L731'>mc_por</a>            731 src/verifier/dpor_naive.c     if (!vec_contains(mc_por.ample_candidate, (vec_data_t)transition_id(t))) {</span>
+<span class='curline'><a href='../S/421.html#L733'>mc_por</a>            733 src/verifier/dpor_naive.c       enqueue(mc_por.queue, (vec_data_t)t);</span>
+<span class='curline'><a href='../S/421.html#L737'>mc_por</a>            737 src/verifier/dpor_naive.c   while (!is_empty_queue(mc_por.queue)) {</span>
+<span class='curline'><a href='../S/421.html#L738'>mc_por</a>            738 src/verifier/dpor_naive.c     Transition succ_t = (Transition)dequeue(mc_por.queue);</span>
+<span class='curline'><a href='../S/421.html#L743'>mc_por</a>            743 src/verifier/dpor_naive.c          st_foreach(mc_por.strans_independency, dump__strans_independency, (st_data_t)0);</span>
+<span class='curline'><a href='../S/421.html#L745'>mc_por</a>            745 src/verifier/dpor_naive.c          st_foreach(mc_por.states, dump__tmp_graph, (st_data_t)FALSE);</span>
+<span class='curline'><a href='../S/421.html#L756'>mc_por</a>            756 src/verifier/dpor_naive.c           if (!vec_contains(mc_por.ample_candidate, (vec_data_t)transition_id(succ_succ_t))) {</span>
+<span class='curline'><a href='../S/421.html#L758'>mc_por</a>            758 src/verifier/dpor_naive.c             enqueue(mc_por.queue, (LmnWord)succ_succ_t);</span>
+<span class='curline'><a href='../S/421.html#L784'>mc_por</a>            784 src/verifier/dpor_naive.c       if (vec_contains(mc_por.ample_candidate, (vec_data_t)transition_id(t))) {</span>
+<span class='curline'><a href='../S/421.html#L807'>mc_por</a>            807 src/verifier/dpor_naive.c   else if (t == mc_por.root) {</span>
+<span class='curline'><a href='../S/421.html#L851'>mc_por</a>            851 src/verifier/dpor_naive.c     if (!vec_contains(mc_por.ample_candidate, (vec_data_t)transition_id(succ_t))) {</span>
+<span class='curline'><a href='../S/421.html#L875'>mc_por</a>            875 src/verifier/dpor_naive.c   for (i = 0; i &lt; vec_num(mc_por.ample_candidate); i++) {</span>
+<span class='curline'><a href='../S/421.html#L879'>mc_por</a>            879 src/verifier/dpor_naive.c     id = (unsigned long)vec_get(mc_por.ample_candidate, i);</span>
+<span class='curline'><a href='../S/421.html#L881'>mc_por</a>            881 src/verifier/dpor_naive.c     if(st_lookup(mc_por.strans_independency, (st_data_t)id, (st_data_t *)&amp;vec_independency)) {</span>
+<span class='curline'><a href='../S/421.html#L907'>mc_por</a>            907 src/verifier/dpor_naive.c   if (!st_lookup(mc_por.strans_independency, (st_data_t)i1, (st_data_t *)&amp;v1)) {</span>
+<span class='curline'><a href='../S/421.html#L908'>mc_por</a>            908 src/verifier/dpor_naive.c     LMN_ASSERT(!st_lookup(mc_por.strans_independency, (st_data_t)i2, (st_data_t *)&amp;v2));</span>
+<span class='curline'><a href='../S/421.html#L926'>mc_por</a>            926 src/verifier/dpor_naive.c       if (st_lookup(mc_por.strans_independency, (st_data_t)i2, (st_data_t *)&amp;v2)) {</span>
+<span class='curline'><a href='../S/421.html#L1035'>mc_por</a>           1035 src/verifier/dpor_naive.c         if (!vec_contains(mc_por.ample_candidate, (vec_data_t)transition_id(check))) {</span>
+<span class='curline'><a href='../S/421.html#L1036'>mc_por</a>           1036 src/verifier/dpor_naive.c           vec_push(mc_por.ample_candidate, (vec_data_t)transition_id(check));</span>
+<span class='curline'><a href='../S/421.html#L1042'>mc_por</a>           1042 src/verifier/dpor_naive.c     if (need_to_push_id_key &amp;&amp; !vec_contains(mc_por.ample_candidate, (vec_data_t)id_key)) {</span>
+<span class='curline'><a href='../S/421.html#L1043'>mc_por</a>           1043 src/verifier/dpor_naive.c       vec_push(mc_por.ample_candidate, (vec_data_t)id_key);</span>
+<span class='curline'><a href='../S/421.html#L1074'>mc_por</a>           1074 src/verifier/dpor_naive.c       } else if (!vec_contains(mc_por.ample_candidate, (vec_data_t)transition_id(succ_t))) {</span>
+<span class='curline'><a href='../S/421.html#L1154'>mc_por</a>           1154 src/verifier/dpor_naive.c   for (i = 0; i &lt; vec_num(mc_por.ample_candidate); ++i) {</span>
+<span class='curline'><a href='../S/421.html#L1155'>mc_por</a>           1155 src/verifier/dpor_naive.c     fprintf(stdout, " %lu", (unsigned long)vec_get(mc_por.ample_candidate, i));</span>
+</pre>
+</body>
+</html>

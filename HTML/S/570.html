@@ -1,0 +1,411 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>third_party/google-perftools-1.8.3/src/heap-profile-table.h</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/738.html'>third_party</a>/<a href='../files/739.html'>google-perftools-1.8.3</a>/<a href='../files/740.html'>src</a>/heap-profile-table.h</h2>
+<em class='comment'>/* [&lt;][&gt;][^][v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/192.html' title='Multiple included from 3 places.'>INCLUDED FROM</a></h2>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>// Copyright (c) 2006, Google Inc.</em>
+<a id='L2' name='L2' /><em class='comment'>// All rights reserved.</em>
+<a id='L3' name='L3' /><em class='comment'>// </em>
+<a id='L4' name='L4' /><em class='comment'>// Redistribution and use in source and binary forms, with or without</em>
+<a id='L5' name='L5' /><em class='comment'>// modification, are permitted provided that the following conditions are</em>
+<a id='L6' name='L6' /><em class='comment'>// met:</em>
+<a id='L7' name='L7' /><em class='comment'>// </em>
+<a id='L8' name='L8' /><em class='comment'>//     * Redistributions of source code must retain the above copyright</em>
+<a id='L9' name='L9' /><em class='comment'>// notice, this list of conditions and the following disclaimer.</em>
+<a id='L10' name='L10' /><em class='comment'>//     * Redistributions in binary form must reproduce the above</em>
+<a id='L11' name='L11' /><em class='comment'>// copyright notice, this list of conditions and the following disclaimer</em>
+<a id='L12' name='L12' /><em class='comment'>// in the documentation and/or other materials provided with the</em>
+<a id='L13' name='L13' /><em class='comment'>// distribution.</em>
+<a id='L14' name='L14' /><em class='comment'>//     * Neither the name of Google Inc. nor the names of its</em>
+<a id='L15' name='L15' /><em class='comment'>// contributors may be used to endorse or promote products derived from</em>
+<a id='L16' name='L16' /><em class='comment'>// this software without specific prior written permission.</em>
+<a id='L17' name='L17' /><em class='comment'>// </em>
+<a id='L18' name='L18' /><em class='comment'>// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L19' name='L19' /><em class='comment'>// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L20' name='L20' /><em class='comment'>// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L21' name='L21' /><em class='comment'>// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L22' name='L22' /><em class='comment'>// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L23' name='L23' /><em class='comment'>// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L24' name='L24' /><em class='comment'>// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L25' name='L25' /><em class='comment'>// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L26' name='L26' /><em class='comment'>// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L27' name='L27' /><em class='comment'>// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L28' name='L28' /><em class='comment'>// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L29' name='L29' />
+<a id='L30' name='L30' /><em class='comment'>// ---</em>
+<a id='L31' name='L31' /><em class='comment'>// Author: Sanjay Ghemawat</em>
+<a id='L32' name='L32' /><em class='comment'>//         Maxim Lifantsev (refactoring)</em>
+<a id='L33' name='L33' /><em class='comment'>//</em>
+<a id='L34' name='L34' />
+<a id='L35' name='L35' /><em class='sharp'>#ifndef</em> <a href='../S/570.html#L36' title='Defined at 36 in third_party/google-perftools-1.8.3/src/heap-profile-table.h.'>BASE_HEAP_PROFILE_TABLE_H_</a>
+<a id='L36' name='L36' /><em class='sharp'>#define</em> <a href='../S/570.html#L35' title='Refered from 35 in third_party/google-perftools-1.8.3/src/heap-profile-table.h.'>BASE_HEAP_PROFILE_TABLE_H_</a>
+<a id='L37' name='L37' />
+<a id='L38' name='L38' /><em class='sharp'>#include</em> "<a href='505.html'>addressmap-inl.h</a>"
+<a id='L39' name='L39' /><em class='sharp'>#include</em> "<a href='516.html'>base/basictypes.h</a>"
+<a id='L40' name='L40' /><em class='sharp'>#include</em> "<a href='529.html'>base/logging.h</a>"   <em class='comment'>// for RawFD</em>
+<a id='L41' name='L41' />
+<a id='L42' name='L42' /><em class='comment'>// Table to maintain a heap profile data inside,</em>
+<a id='L43' name='L43' /><em class='comment'>// i.e. the set of currently active heap memory allocations.</em>
+<a id='L44' name='L44' /><em class='comment'>// thread-unsafe and non-reentrant code:</em>
+<a id='L45' name='L45' /><em class='comment'>// each instance object must be used by one thread</em>
+<a id='L46' name='L46' /><em class='comment'>// at a time w/o self-recursion.</em>
+<a id='L47' name='L47' /><em class='comment'>//</em>
+<a id='L48' name='L48' /><em class='comment'>// TODO(maxim): add a unittest for this class.</em>
+<a id='L49' name='L49' /><a href='../Y/1792.html' title='Multiple used in 90 places.'>class</a> <a href='../S/569.html#L137' title='Defined at 137 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>HeapProfileTable</a> <em class='brace'>{</em>
+<a id='L50' name='L50' /> <a href='../Y/4390.html' title='Multiple used in 61 places.'>public</a>:
+<a id='L51' name='L51' />
+<a id='L52' name='L52' />  <em class='comment'>// Extension to be used for heap pforile files.</em>
+<a id='L53' name='L53' />  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>char</strong> <a href='../Y/3004.html' title='Multiple used in 6 places.'>kFileExt</a>[];
+<a id='L54' name='L54' />
+<a id='L55' name='L55' />  <em class='comment'>// Longest stack trace we record.</em>
+<a id='L56' name='L56' />  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> <a href='../Y/3068.html' title='Multiple used in 25 places.'>kMaxStackDepth</a> = 32;
+<a id='L57' name='L57' />
+<a id='L58' name='L58' />  <em class='comment'>// data types ----------------------------</em>
+<a id='L59' name='L59' />
+<a id='L60' name='L60' />  <em class='comment'>// Profile stats.</em>
+<a id='L61' name='L61' />  <strong class='reserved'>struct</strong> <a href='../R/2347.html' title='Multiple refered from 23 places.'>Stats</a> <em class='brace'>{</em>
+<a id='L62' name='L62' />    <a href='../S/516.html#L59' title='Defined at 59 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>int32</a> <a href='../Y/1452.html' title='Multiple used in 16 places.'>allocs</a>;      <em class='comment'>// Number of allocation calls</em>
+<a id='L63' name='L63' />    <a href='../S/516.html#L59' title='Defined at 59 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>int32</a> <a href='../Y/2464.html' title='Multiple used in 17 places.'>frees</a>;       <em class='comment'>// Number of free calls</em>
+<a id='L64' name='L64' />    <a href='../S/516.html#L60' title='Defined at 60 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>int64</a> <a href='../Y/1440.html' title='Multiple used in 25 places.'>alloc_size</a>;  <em class='comment'>// Total size of all allocated objects so far</em>
+<a id='L65' name='L65' />    <a href='../S/516.html#L60' title='Defined at 60 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>int64</a> <a href='../Y/2461.html' title='Multiple used in 15 places.'>free_size</a>;   <em class='comment'>// Total size of all freed objects so far</em>
+<a id='L66' name='L66' />
+<a id='L67' name='L67' />    <em class='comment'>// semantic equality</em>
+<a id='L68' name='L68' />    <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../Y/177.html' title='Multiple used in 2 places.'>Equivalent</a>(<strong class='reserved'>const</strong> <a href='../D/2614.html' title='Multiple defined in 2 places.'>Stats</a>&amp; <a href='../Y/5713.html' title='Multiple used in 222 places.'>x</a>) <strong class='reserved'>const</strong> <em class='brace'>{</em>
+<a id='L69' name='L69' />      <strong class='reserved'>return</strong> <a href='../Y/1452.html' title='Multiple used in 16 places.'>allocs</a> - <a href='../Y/2464.html' title='Multiple used in 17 places.'>frees</a> == <a href='../Y/5713.html' title='Multiple used in 222 places.'>x</a>.<a href='../Y/1452.html' title='Multiple used in 16 places.'>allocs</a> - <a href='../Y/5713.html' title='Multiple used in 222 places.'>x</a>.<a href='../Y/2464.html' title='Multiple used in 17 places.'>frees</a>  &amp;&amp;
+<a id='L70' name='L70' />             <a href='../Y/1440.html' title='Multiple used in 25 places.'>alloc_size</a> - <a href='../Y/2461.html' title='Multiple used in 15 places.'>free_size</a> == <a href='../Y/5713.html' title='Multiple used in 222 places.'>x</a>.<a href='../Y/1440.html' title='Multiple used in 25 places.'>alloc_size</a> - <a href='../Y/5713.html' title='Multiple used in 222 places.'>x</a>.<a href='../Y/2461.html' title='Multiple used in 15 places.'>free_size</a>;
+<a id='L71' name='L71' />    <em class='brace'>}</em>
+<a id='L72' name='L72' />  <em class='brace'>}</em>;
+<a id='L73' name='L73' />
+<a id='L74' name='L74' />  <em class='comment'>// Info we can return about an allocation.</em>
+<a id='L75' name='L75' />  <strong class='reserved'>struct</strong> <a href='../R/120.html' title='Multiple refered from 8 places.'>AllocInfo</a> <em class='brace'>{</em>
+<a id='L76' name='L76' />    <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/3913.html' title='Multiple used in 36 places.'>object_size</a>;  <em class='comment'>// size of the allocation</em>
+<a id='L77' name='L77' />    <strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <strong class='reserved'>const</strong>* <a href='../Y/1726.html' title='Multiple used in 15 places.'>call_stack</a>;  <em class='comment'>// call stack that made the allocation call</em>
+<a id='L78' name='L78' />    <strong class='reserved'>int</strong> <a href='../Y/5024.html' title='Multiple used in 11 places.'>stack_depth</a>;  <em class='comment'>// depth of call_stack</em>
+<a id='L79' name='L79' />    <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../Y/3277.html' title='Multiple used in 6 places.'>live</a>;
+<a id='L80' name='L80' />    <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../Y/2770.html' title='Multiple used in 3 places.'>ignored</a>;
+<a id='L81' name='L81' />  <em class='brace'>}</em>;
+<a id='L82' name='L82' />
+<a id='L83' name='L83' />  <em class='comment'>// Info we return about an allocation context.</em>
+<a id='L84' name='L84' />  <em class='comment'>// An allocation context is a unique caller stack trace</em>
+<a id='L85' name='L85' />  <em class='comment'>// of an allocation operation.</em>
+<a id='L86' name='L86' />  <strong class='reserved'>struct</strong> <a href='../Y/30.html' title='Multiple used in 3 places.'>AllocContextInfo</a> : <a href='../Y/4390.html' title='Multiple used in 61 places.'>public</a> <a href='../D/2614.html' title='Multiple defined in 2 places.'>Stats</a> <em class='brace'>{</em>
+<a id='L87' name='L87' />    <strong class='reserved'>int</strong> <a href='../Y/5024.html' title='Multiple used in 11 places.'>stack_depth</a>;                <em class='comment'>// Depth of stack trace</em>
+<a id='L88' name='L88' />    <strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <strong class='reserved'>const</strong>* <a href='../Y/1726.html' title='Multiple used in 15 places.'>call_stack</a>;  <em class='comment'>// Stack trace</em>
+<a id='L89' name='L89' />  <em class='brace'>}</em>;
+<a id='L90' name='L90' />
+<a id='L91' name='L91' />  <em class='comment'>// Memory (de)allocator interface we'll use.</em>
+<a id='L92' name='L92' />  <strong class='reserved'>typedef</strong> <strong class='reserved'>void</strong>* (*<a href='../Y/34.html' title='Multiple used in 45 places.'>Allocator</a>)(<a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>);
+<a id='L93' name='L93' />  <strong class='reserved'>typedef</strong> <strong class='reserved'>void</strong>  (*<a href='../Y/125.html' title='Multiple used in 9 places.'>DeAllocator</a>)(<strong class='reserved'>void</strong>* <a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>);
+<a id='L94' name='L94' />
+<a id='L95' name='L95' />  <em class='comment'>// interface ---------------------------</em>
+<a id='L96' name='L96' />
+<a id='L97' name='L97' />  <a href='../S/569.html#L137' title='Defined at 137 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>HeapProfileTable</a>(<a href='../Y/34.html' title='Multiple used in 45 places.'>Allocator</a> <a href='../S/664.html#L303' title='Defined at 303 in third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc.'>alloc</a>, <a href='../Y/125.html' title='Multiple used in 9 places.'>DeAllocator</a> <a href='../Y/1979.html' title='Multiple used in 7 places.'>dealloc</a>);
+<a id='L98' name='L98' />  ~<a href='../S/569.html#L137' title='Defined at 137 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>HeapProfileTable</a>();
+<a id='L99' name='L99' />
+<a id='L100' name='L100' />  <em class='comment'>// Collect the stack trace for the function that asked to do the</em>
+<a id='L101' name='L101' />  <em class='comment'>// allocation for passing to RecordAlloc() below.</em>
+<a id='L102' name='L102' />  <em class='comment'>//</em>
+<a id='L103' name='L103' />  <em class='comment'>// The stack trace is stored in 'stack'. The stack depth is returned.</em>
+<a id='L104' name='L104' />  <em class='comment'>//</em>
+<a id='L105' name='L105' />  <em class='comment'>// 'skip_count' gives the number of stack frames between this call</em>
+<a id='L106' name='L106' />  <em class='comment'>// and the memory allocation function.</em>
+<a id='L107' name='L107' />  <strong class='reserved'>static</strong> <strong class='reserved'>int</strong> <a href='../S/569.html#L192' title='Defined at 192 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>GetCallerStackTrace</a>(<strong class='reserved'>int</strong> <a href='../Y/4890.html' title='Multiple used in 41 places.'>skip_count</a>, <strong class='reserved'>void</strong>* <a href='../Y/5021.html' title='Multiple used in 116 places.'>stack</a>[<a href='../Y/3068.html' title='Multiple used in 25 places.'>kMaxStackDepth</a>]);
+<a id='L108' name='L108' />
+<a id='L109' name='L109' />  <em class='comment'>// Record an allocation at 'ptr' of 'bytes' bytes.  'stack_depth'</em>
+<a id='L110' name='L110' />  <em class='comment'>// and 'call_stack' identifying the function that requested the</em>
+<a id='L111' name='L111' />  <em class='comment'>// allocation. They can be generated using GetCallerStackTrace() above.</em>
+<a id='L112' name='L112' />  <strong class='reserved'>void</strong> <a href='../D/2382.html' title='Multiple defined in 2 places.'>RecordAlloc</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/1692.html' title='Multiple used in 48 places.'>bytes</a>,
+<a id='L113' name='L113' />                   <strong class='reserved'>int</strong> <a href='../Y/5024.html' title='Multiple used in 11 places.'>stack_depth</a>, <strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <strong class='reserved'>const</strong> <a href='../Y/1726.html' title='Multiple used in 15 places.'>call_stack</a>[]);
+<a id='L114' name='L114' />
+<a id='L115' name='L115' />  <em class='comment'>// Record the deallocation of memory at 'ptr'.</em>
+<a id='L116' name='L116' />  <strong class='reserved'>void</strong> <a href='../D/2383.html' title='Multiple defined in 2 places.'>RecordFree</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>);
+<a id='L117' name='L117' />
+<a id='L118' name='L118' />  <em class='comment'>// Return true iff we have recorded an allocation at 'ptr'.</em>
+<a id='L119' name='L119' />  <em class='comment'>// If yes, fill *object_size with the allocation byte size.</em>
+<a id='L120' name='L120' />  <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../S/569.html#L224' title='Defined at 224 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>FindAlloc</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a>* <a href='../Y/3913.html' title='Multiple used in 36 places.'>object_size</a>) <strong class='reserved'>const</strong>;
+<a id='L121' name='L121' />  <em class='comment'>// Same as FindAlloc, but fills all of *info.</em>
+<a id='L122' name='L122' />  <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../S/569.html#L230' title='Defined at 230 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>FindAllocDetails</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>, <a href='../S/570.html#L75' title='Defined at 75 in third_party/google-perftools-1.8.3/src/heap-profile-table.h.'>AllocInfo</a>* <a href='../Y/2802.html' title='Multiple used in 51 places.'>info</a>) <strong class='reserved'>const</strong>;
+<a id='L123' name='L123' />
+<a id='L124' name='L124' />  <em class='comment'>// Return true iff "ptr" points into a recorded allocation</em>
+<a id='L125' name='L125' />  <em class='comment'>// If yes, fill *object_ptr with the actual allocation address</em>
+<a id='L126' name='L126' />  <em class='comment'>// and *object_size with the allocation byte size.</em>
+<a id='L127' name='L127' />  <em class='comment'>// max_size specifies largest currently possible allocation size.</em>
+<a id='L128' name='L128' />  <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../S/569.html#L241' title='Defined at 241 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>FindInsideAlloc</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/3466.html' title='Multiple used in 20 places.'>max_size</a>,
+<a id='L129' name='L129' />                       <strong class='reserved'>const</strong> <strong class='reserved'>void</strong>** <a href='../Y/3912.html' title='Multiple used in 3 places.'>object_ptr</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a>* <a href='../Y/3913.html' title='Multiple used in 36 places.'>object_size</a>) <strong class='reserved'>const</strong>;
+<a id='L130' name='L130' />
+<a id='L131' name='L131' />  <em class='comment'>// If "ptr" points to a recorded allocation and it's not marked as live</em>
+<a id='L132' name='L132' />  <em class='comment'>// mark it as live and return true. Else return false.</em>
+<a id='L133' name='L133' />  <em class='comment'>// All allocations start as non-live.</em>
+<a id='L134' name='L134' />  <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../S/569.html#L251' title='Defined at 251 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>MarkAsLive</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>);
+<a id='L135' name='L135' />
+<a id='L136' name='L136' />  <em class='comment'>// If "ptr" points to a recorded allocation, mark it as "ignored".</em>
+<a id='L137' name='L137' />  <em class='comment'>// Ignored objects are treated like other objects, except that they</em>
+<a id='L138' name='L138' />  <em class='comment'>// are skipped in heap checking reports.</em>
+<a id='L139' name='L139' />  <strong class='reserved'>void</strong> <a href='../S/569.html#L260' title='Defined at 260 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>MarkAsIgnored</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>);
+<a id='L140' name='L140' />
+<a id='L141' name='L141' />  <em class='comment'>// Return current total (de)allocation statistics.</em>
+<a id='L142' name='L142' />  <strong class='reserved'>const</strong> <a href='../D/2614.html' title='Multiple defined in 2 places.'>Stats</a>&amp; <a href='../Y/5432.html' title='Multiple used in 90 places.'>total</a>() <strong class='reserved'>const</strong> <em class='brace'>{</em> <strong class='reserved'>return</strong> <a href='../Y/5433.html' title='Multiple used in 21 places.'>total_</a>; <em class='brace'>}</em>
+<a id='L143' name='L143' />
+<a id='L144' name='L144' />  <em class='comment'>// Allocation data iteration callback: gets passed object pointer and</em>
+<a id='L145' name='L145' />  <em class='comment'>// fully-filled AllocInfo.</em>
+<a id='L146' name='L146' />  <strong class='reserved'>typedef</strong> <strong class='reserved'>void</strong> (*<a href='../Y/32.html' title='Multiple used in 3 places.'>AllocIterator</a>)(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>, <strong class='reserved'>const</strong> <a href='../S/570.html#L75' title='Defined at 75 in third_party/google-perftools-1.8.3/src/heap-profile-table.h.'>AllocInfo</a>&amp; <a href='../Y/2802.html' title='Multiple used in 51 places.'>info</a>);
+<a id='L147' name='L147' />
+<a id='L148' name='L148' />  <em class='comment'>// Iterate over the allocation profile data calling "callback"</em>
+<a id='L149' name='L149' />  <em class='comment'>// for every allocation.</em>
+<a id='L150' name='L150' />  <strong class='reserved'>void</strong> <a href='../Y/401.html' title='Multiple used in 3 places.'>IterateAllocs</a>(<a href='../Y/32.html' title='Multiple used in 3 places.'>AllocIterator</a> <a href='../Y/1728.html' title='Multiple used in 29 places.'>callback</a>) <strong class='reserved'>const</strong> <em class='brace'>{</em>
+<a id='L151' name='L151' />    <a href='../Y/1447.html' title='Multiple used in 15 places.'>allocation_</a>-&gt;<a href='../S/505.html#L406' title='Defined at 406 in third_party/google-perftools-1.8.3/src/addressmap-inl.h.'>Iterate</a>(<a href='../Y/513.html' title='Multiple used in 2 places.'>MapArgsAllocIterator</a>, <a href='../Y/1728.html' title='Multiple used in 29 places.'>callback</a>);
+<a id='L152' name='L152' />  <em class='brace'>}</em>
+<a id='L153' name='L153' />
+<a id='L154' name='L154' />  <em class='comment'>// Allocation context profile data iteration callback</em>
+<a id='L155' name='L155' />  <strong class='reserved'>typedef</strong> <strong class='reserved'>void</strong> (*<a href='../Y/31.html' title='Multiple used in 3 places.'>AllocContextIterator</a>)(<strong class='reserved'>const</strong> <a href='../Y/30.html' title='Multiple used in 3 places.'>AllocContextInfo</a>&amp; <a href='../Y/2802.html' title='Multiple used in 51 places.'>info</a>);
+<a id='L156' name='L156' />
+<a id='L157' name='L157' />  <em class='comment'>// Iterate over the allocation context profile data calling "callback"</em>
+<a id='L158' name='L158' />  <em class='comment'>// for every allocation context. Allocation contexts are ordered by the</em>
+<a id='L159' name='L159' />  <em class='comment'>// size of allocated space.</em>
+<a id='L160' name='L160' />  <strong class='reserved'>void</strong> <a href='../S/569.html#L318' title='Defined at 318 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>IterateOrderedAllocContexts</a>(<a href='../Y/31.html' title='Multiple used in 3 places.'>AllocContextIterator</a> <a href='../Y/1728.html' title='Multiple used in 29 places.'>callback</a>) <strong class='reserved'>const</strong>;
+<a id='L161' name='L161' />
+<a id='L162' name='L162' />  <em class='comment'>// Fill profile data into buffer 'buf' of size 'size'</em>
+<a id='L163' name='L163' />  <em class='comment'>// and return the actual size occupied by the dump in 'buf'.</em>
+<a id='L164' name='L164' />  <em class='comment'>// The profile buckets are dumped in the decreasing order</em>
+<a id='L165' name='L165' />  <em class='comment'>// of currently allocated bytes.</em>
+<a id='L166' name='L166' />  <em class='comment'>// We do not provision for 0-terminating 'buf'.</em>
+<a id='L167' name='L167' />  <strong class='reserved'>int</strong> <a href='../S/569.html#L331' title='Defined at 331 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>FillOrderedProfile</a>(<strong class='reserved'>char</strong> <a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>[], <strong class='reserved'>int</strong> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>) <strong class='reserved'>const</strong>;
+<a id='L168' name='L168' />
+<a id='L169' name='L169' />  <em class='comment'>// Cleanup any old profile files matching prefix + ".*" + kFileExt.</em>
+<a id='L170' name='L170' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/569.html#L429' title='Defined at 429 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>CleanupOldProfiles</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../Y/4226.html' title='Multiple used in 12 places.'>prefix</a>);
+<a id='L171' name='L171' />
+<a id='L172' name='L172' />  <em class='comment'>// Return a snapshot of the current contents of *this.</em>
+<a id='L173' name='L173' />  <em class='comment'>// Caller must call ReleaseSnapshot() on result when no longer needed.</em>
+<a id='L174' name='L174' />  <em class='comment'>// The result is only valid while this exists and until</em>
+<a id='L175' name='L175' />  <em class='comment'>// the snapshot is discarded by calling ReleaseSnapshot().</em>
+<a id='L176' name='L176' />  <a href='../Y/1792.html' title='Multiple used in 90 places.'>class</a> <a href='../Y/800.html' title='Multiple used in 29 places.'>Snapshot</a>;
+<a id='L177' name='L177' />  <a href='../Y/800.html' title='Multiple used in 29 places.'>Snapshot</a>* <a href='../S/569.html#L453' title='Defined at 453 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>TakeSnapshot</a>();
+<a id='L178' name='L178' />
+<a id='L179' name='L179' />  <em class='comment'>// Release a previously taken snapshot.  snapshot must not</em>
+<a id='L180' name='L180' />  <em class='comment'>// be used after this call.</em>
+<a id='L181' name='L181' />  <strong class='reserved'>void</strong> <a href='../S/569.html#L459' title='Defined at 459 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>ReleaseSnapshot</a>(<a href='../Y/800.html' title='Multiple used in 29 places.'>Snapshot</a>* <a href='../Y/4909.html' title='Multiple used in 3 places.'>snapshot</a>);
+<a id='L182' name='L182' />
+<a id='L183' name='L183' />  <em class='comment'>// Return a snapshot of every non-live, non-ignored object in *this.</em>
+<a id='L184' name='L184' />  <em class='comment'>// If "base" is non-NULL, skip any objects present in "base".</em>
+<a id='L185' name='L185' />  <em class='comment'>// As a side-effect, clears the "live" bit on every live object in *this.</em>
+<a id='L186' name='L186' />  <em class='comment'>// Caller must call ReleaseSnapshot() on result when no longer needed.</em>
+<a id='L187' name='L187' />  <a href='../Y/800.html' title='Multiple used in 29 places.'>Snapshot</a>* <a href='../S/569.html#L470' title='Defined at 470 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>NonLiveSnapshot</a>(<a href='../Y/800.html' title='Multiple used in 29 places.'>Snapshot</a>* <a href='../D/3379.html' title='Multiple defined in 6 places.'>base</a>);
+<a id='L188' name='L188' />
+<a id='L189' name='L189' /> <a href='../Y/4261.html' title='Multiple used in 50 places.'>private</a>:
+<a id='L190' name='L190' />
+<a id='L191' name='L191' />  <em class='comment'>// data types ----------------------------</em>
+<a id='L192' name='L192' />
+<a id='L193' name='L193' />  <em class='comment'>// Hash table bucket to hold (de)allocation stats</em>
+<a id='L194' name='L194' />  <em class='comment'>// for a given allocation call stack trace.</em>
+<a id='L195' name='L195' />  <strong class='reserved'>struct</strong> <a href='../D/335.html' title='Multiple defined in 2 places.'>Bucket</a> : <a href='../Y/4390.html' title='Multiple used in 61 places.'>public</a> <a href='../D/2614.html' title='Multiple defined in 2 places.'>Stats</a> <em class='brace'>{</em>
+<a id='L196' name='L196' />    <a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a>    <a href='../Y/2628.html' title='Multiple used in 59 places.'>hash</a>;   <em class='comment'>// Hash value of the stack trace</em>
+<a id='L197' name='L197' />    <strong class='reserved'>int</strong>          <a href='../Y/2023.html' title='Multiple used in 103 places.'>depth</a>;  <em class='comment'>// Depth of stack trace</em>
+<a id='L198' name='L198' />    <strong class='reserved'>const</strong> <strong class='reserved'>void</strong>** <a href='../Y/5021.html' title='Multiple used in 116 places.'>stack</a>;  <em class='comment'>// Stack trace</em>
+<a id='L199' name='L199' />    <a href='../D/335.html' title='Multiple defined in 2 places.'>Bucket</a>*      <a href='../Y/3790.html' title='Multiple used in 218 places.'>next</a>;   <em class='comment'>// Next entry in hash-table</em>
+<a id='L200' name='L200' />  <em class='brace'>}</em>;
+<a id='L201' name='L201' />
+<a id='L202' name='L202' />  <em class='comment'>// Info stored in the address map</em>
+<a id='L203' name='L203' />  <strong class='reserved'>struct</strong> <a href='../R/128.html' title='Multiple refered from 21 places.'>AllocValue</a> <em class='brace'>{</em>
+<a id='L204' name='L204' />    <em class='comment'>// Access to the stack-trace bucket</em>
+<a id='L205' name='L205' />    <a href='../D/335.html' title='Multiple defined in 2 places.'>Bucket</a>* <a href='../Y/1663.html' title='Multiple used in 50 places.'>bucket</a>() <strong class='reserved'>const</strong> <em class='brace'>{</em>
+<a id='L206' name='L206' />      <strong class='reserved'>return</strong> <a href='../Y/4495.html' title='Multiple used in 76 places.'>reinterpret_cast</a>&lt;<a href='../D/335.html' title='Multiple defined in 2 places.'>Bucket</a>*&gt;(<a href='../Y/1667.html' title='Multiple used in 7 places.'>bucket_rep</a> &amp; ~<a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a>(<a href='../Y/3050.html' title='Multiple used in 2 places.'>kMask</a>));
+<a id='L207' name='L207' />    <em class='brace'>}</em>
+<a id='L208' name='L208' />    <em class='comment'>// This also does set_live(false).</em>
+<a id='L209' name='L209' />    <strong class='reserved'>void</strong> <a href='../Y/4777.html' title='Multiple used in 2 places.'>set_bucket</a>(<a href='../D/335.html' title='Multiple defined in 2 places.'>Bucket</a>* <a href='../Y/1569.html' title='Multiple used in 469 places.'>b</a>) <em class='brace'>{</em> <a href='../Y/1667.html' title='Multiple used in 7 places.'>bucket_rep</a> = <a href='../Y/4495.html' title='Multiple used in 76 places.'>reinterpret_cast</a>&lt;<a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a>&gt;(<a href='../Y/1569.html' title='Multiple used in 469 places.'>b</a>); <em class='brace'>}</em>
+<a id='L210' name='L210' />    <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a>  <a href='../Y/1692.html' title='Multiple used in 48 places.'>bytes</a>;   <em class='comment'>// Number of bytes in this allocation</em>
+<a id='L211' name='L211' />
+<a id='L212' name='L212' />    <em class='comment'>// Access to the allocation liveness flag (for leak checking)</em>
+<a id='L213' name='L213' />    <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../Y/3277.html' title='Multiple used in 6 places.'>live</a>() <strong class='reserved'>const</strong> <em class='brace'>{</em> <strong class='reserved'>return</strong> <a href='../Y/1667.html' title='Multiple used in 7 places.'>bucket_rep</a> &amp; <a href='../Y/3029.html' title='Multiple used in 4 places.'>kLive</a>; <em class='brace'>}</em>
+<a id='L214' name='L214' />    <strong class='reserved'>void</strong> <a href='../Y/4788.html' title='Multiple used in 4 places.'>set_live</a>(<a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../Y/3160.html' title='Multiple used in 392 places.'>l</a>) <em class='brace'>{</em>
+<a id='L215' name='L215' />      <a href='../Y/1667.html' title='Multiple used in 7 places.'>bucket_rep</a> = (<a href='../Y/1667.html' title='Multiple used in 7 places.'>bucket_rep</a> &amp; ~<a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a>(<a href='../Y/3029.html' title='Multiple used in 4 places.'>kLive</a>)) | (<a href='../Y/3160.html' title='Multiple used in 392 places.'>l</a> ? <a href='../Y/3029.html' title='Multiple used in 4 places.'>kLive</a> : 0);
+<a id='L216' name='L216' />    <em class='brace'>}</em>
+<a id='L217' name='L217' />
+<a id='L218' name='L218' />    <em class='comment'>// Should this allocation be ignored if it looks like a leak?</em>
+<a id='L219' name='L219' />    <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../Y/2764.html' title='Multiple used in 5 places.'>ignore</a>() <strong class='reserved'>const</strong> <em class='brace'>{</em> <strong class='reserved'>return</strong> <a href='../Y/1667.html' title='Multiple used in 7 places.'>bucket_rep</a> &amp; <a href='../Y/3017.html' title='Multiple used in 4 places.'>kIgnore</a>; <em class='brace'>}</em>
+<a id='L220' name='L220' />    <strong class='reserved'>void</strong> <a href='../Y/4785.html' title='Multiple used in 2 places.'>set_ignore</a>(<a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../Y/4406.html' title='Multiple used in 354 places.'>r</a>) <em class='brace'>{</em>
+<a id='L221' name='L221' />      <a href='../Y/1667.html' title='Multiple used in 7 places.'>bucket_rep</a> = (<a href='../Y/1667.html' title='Multiple used in 7 places.'>bucket_rep</a> &amp; ~<a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a>(<a href='../Y/3017.html' title='Multiple used in 4 places.'>kIgnore</a>)) | (<a href='../Y/4406.html' title='Multiple used in 354 places.'>r</a> ? <a href='../Y/3017.html' title='Multiple used in 4 places.'>kIgnore</a> : 0);
+<a id='L222' name='L222' />    <em class='brace'>}</em>
+<a id='L223' name='L223' />
+<a id='L224' name='L224' />   <a href='../Y/4261.html' title='Multiple used in 50 places.'>private</a>:
+<a id='L225' name='L225' />    <em class='comment'>// We store a few bits in the bottom bits of bucket_rep.</em>
+<a id='L226' name='L226' />    <em class='comment'>// (Alignment is at least four, so we have at least two bits.)</em>
+<a id='L227' name='L227' />    <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> <a href='../Y/3029.html' title='Multiple used in 4 places.'>kLive</a> = 1;
+<a id='L228' name='L228' />    <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> <a href='../Y/3017.html' title='Multiple used in 4 places.'>kIgnore</a> = 2;
+<a id='L229' name='L229' />    <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> <a href='../Y/3050.html' title='Multiple used in 2 places.'>kMask</a> = <a href='../Y/3029.html' title='Multiple used in 4 places.'>kLive</a> | <a href='../Y/3017.html' title='Multiple used in 4 places.'>kIgnore</a>;
+<a id='L230' name='L230' />
+<a id='L231' name='L231' />    <a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a> <a href='../Y/1667.html' title='Multiple used in 7 places.'>bucket_rep</a>;
+<a id='L232' name='L232' />  <em class='brace'>}</em>;
+<a id='L233' name='L233' />
+<a id='L234' name='L234' />  <em class='comment'>// helper for FindInsideAlloc</em>
+<a id='L235' name='L235' />  <strong class='reserved'>static</strong> <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/33.html' title='Multiple used in 2 places.'>AllocValueSize</a>(<strong class='reserved'>const</strong> <a href='../S/570.html#L203' title='Defined at 203 in third_party/google-perftools-1.8.3/src/heap-profile-table.h.'>AllocValue</a>&amp; <a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>) <em class='brace'>{</em> <strong class='reserved'>return</strong> <a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>.<a href='../Y/1692.html' title='Multiple used in 48 places.'>bytes</a>; <em class='brace'>}</em>
+<a id='L236' name='L236' />
+<a id='L237' name='L237' />  <strong class='reserved'>typedef</strong> <a href='../D/149.html' title='Multiple defined in 2 places.'>AddressMap</a>&lt;<a href='../S/570.html#L203' title='Defined at 203 in third_party/google-perftools-1.8.3/src/heap-profile-table.h.'>AllocValue</a>&gt; <a href='../R/134.html' title='Multiple refered from 6 places.'>AllocationMap</a>;
+<a id='L238' name='L238' />
+<a id='L239' name='L239' />  <em class='comment'>// Arguments that need to be passed DumpNonLiveIterator callback below.</em>
+<a id='L240' name='L240' />  <strong class='reserved'>struct</strong> <a href='../R/557.html' title='Multiple refered from 5 places.'>DumpArgs</a> <em class='brace'>{</em>
+<a id='L241' name='L241' />    <a href='../D/2368.html' title='Multiple defined in 2 places.'>RawFD</a> <a href='../Y/2340.html' title='Multiple used in 181 places.'>fd</a>;  <em class='comment'>// file to write to</em>
+<a id='L242' name='L242' />    <a href='../D/2614.html' title='Multiple defined in 2 places.'>Stats</a>* <a href='../Y/4289.html' title='Multiple used in 10 places.'>profile_stats</a>;  <em class='comment'>// stats to update (may be NULL)</em>
+<a id='L243' name='L243' />
+<a id='L244' name='L244' />    <a href='../S/570.html#L240' title='Defined at 240 in third_party/google-perftools-1.8.3/src/heap-profile-table.h.'>DumpArgs</a>(<a href='../D/2368.html' title='Multiple defined in 2 places.'>RawFD</a> <a href='../Y/1366.html' title='Multiple used in 517 places.'>a</a>, <a href='../D/2614.html' title='Multiple defined in 2 places.'>Stats</a>* <a href='../Y/1949.html' title='Multiple used in 724 places.'>d</a>)
+<a id='L245' name='L245' />      : <a href='../Y/2340.html' title='Multiple used in 181 places.'>fd</a>(<a href='../Y/1366.html' title='Multiple used in 517 places.'>a</a>), <a href='../Y/4289.html' title='Multiple used in 10 places.'>profile_stats</a>(<a href='../Y/1949.html' title='Multiple used in 724 places.'>d</a>) <em class='brace'>{</em> <em class='brace'>}</em>
+<a id='L246' name='L246' />  <em class='brace'>}</em>;
+<a id='L247' name='L247' />
+<a id='L248' name='L248' />  <em class='comment'>// helpers ----------------------------</em>
+<a id='L249' name='L249' />
+<a id='L250' name='L250' />  <em class='comment'>// Unparse bucket b and print its portion of profile dump into buf.</em>
+<a id='L251' name='L251' />  <em class='comment'>// We return the amount of space in buf that we use.  We start printing</em>
+<a id='L252' name='L252' />  <em class='comment'>// at buf + buflen, and promise not to go beyond buf + bufsize.</em>
+<a id='L253' name='L253' />  <em class='comment'>// We do not provision for 0-terminating 'buf'.</em>
+<a id='L254' name='L254' />  <em class='comment'>//</em>
+<a id='L255' name='L255' />  <em class='comment'>// If profile_stats is non-NULL, we update *profile_stats by</em>
+<a id='L256' name='L256' />  <em class='comment'>// counting bucket b.</em>
+<a id='L257' name='L257' />  <em class='comment'>//</em>
+<a id='L258' name='L258' />  <em class='comment'>// "extra" is appended to the unparsed bucket.  Typically it is empty,</em>
+<a id='L259' name='L259' />  <em class='comment'>// but may be set to something like " heapprofile" for the total</em>
+<a id='L260' name='L260' />  <em class='comment'>// bucket to indicate the type of the profile.</em>
+<a id='L261' name='L261' />  <strong class='reserved'>static</strong> <strong class='reserved'>int</strong> <a href='../S/569.html#L268' title='Defined at 268 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>UnparseBucket</a>(<strong class='reserved'>const</strong> <a href='../D/335.html' title='Multiple defined in 2 places.'>Bucket</a>&amp; <a href='../Y/1569.html' title='Multiple used in 469 places.'>b</a>,
+<a id='L262' name='L262' />                           <strong class='reserved'>char</strong>* <a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>, <strong class='reserved'>int</strong> <a href='../Y/1684.html' title='Multiple used in 15 places.'>buflen</a>, <strong class='reserved'>int</strong> <a href='../Y/1685.html' title='Multiple used in 16 places.'>bufsize</a>,
+<a id='L263' name='L263' />                           <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../Y/2278.html' title='Multiple used in 49 places.'>extra</a>,
+<a id='L264' name='L264' />                           <a href='../D/2614.html' title='Multiple defined in 2 places.'>Stats</a>* <a href='../Y/4289.html' title='Multiple used in 10 places.'>profile_stats</a>);
+<a id='L265' name='L265' />
+<a id='L266' name='L266' />  <em class='comment'>// Get the bucket for the caller stack trace 'key' of depth 'depth'</em>
+<a id='L267' name='L267' />  <em class='comment'>// creating the bucket if needed.</em>
+<a id='L268' name='L268' />  <a href='../D/335.html' title='Multiple defined in 2 places.'>Bucket</a>* <a href='../S/569.html#L155' title='Defined at 155 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>GetBucket</a>(<strong class='reserved'>int</strong> <a href='../Y/2023.html' title='Multiple used in 103 places.'>depth</a>, <strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <strong class='reserved'>const</strong> <a href='../Y/3140.html' title='Multiple used in 327 places.'>key</a>[]);
+<a id='L269' name='L269' />
+<a id='L270' name='L270' />  <em class='comment'>// Helper for IterateAllocs to do callback signature conversion</em>
+<a id='L271' name='L271' />  <em class='comment'>// from AllocationMap::Iterate to AllocIterator.</em>
+<a id='L272' name='L272' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../Y/513.html' title='Multiple used in 2 places.'>MapArgsAllocIterator</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>, <a href='../S/570.html#L203' title='Defined at 203 in third_party/google-perftools-1.8.3/src/heap-profile-table.h.'>AllocValue</a>* <a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>,
+<a id='L273' name='L273' />                                   <a href='../Y/32.html' title='Multiple used in 3 places.'>AllocIterator</a> <a href='../Y/1728.html' title='Multiple used in 29 places.'>callback</a>) <em class='brace'>{</em>
+<a id='L274' name='L274' />    <a href='../S/570.html#L75' title='Defined at 75 in third_party/google-perftools-1.8.3/src/heap-profile-table.h.'>AllocInfo</a> <a href='../Y/2802.html' title='Multiple used in 51 places.'>info</a>;
+<a id='L275' name='L275' />    <a href='../Y/2802.html' title='Multiple used in 51 places.'>info</a>.<a href='../Y/3913.html' title='Multiple used in 36 places.'>object_size</a> = <a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>-&gt;<a href='../Y/1692.html' title='Multiple used in 48 places.'>bytes</a>;
+<a id='L276' name='L276' />    <a href='../Y/2802.html' title='Multiple used in 51 places.'>info</a>.<a href='../Y/1726.html' title='Multiple used in 15 places.'>call_stack</a> = <a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>-&gt;<a href='../Y/1663.html' title='Multiple used in 50 places.'>bucket</a>()-&gt;<a href='../Y/5021.html' title='Multiple used in 116 places.'>stack</a>;
+<a id='L277' name='L277' />    <a href='../Y/2802.html' title='Multiple used in 51 places.'>info</a>.<a href='../Y/5024.html' title='Multiple used in 11 places.'>stack_depth</a> = <a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>-&gt;<a href='../Y/1663.html' title='Multiple used in 50 places.'>bucket</a>()-&gt;<a href='../Y/2023.html' title='Multiple used in 103 places.'>depth</a>;
+<a id='L278' name='L278' />    <a href='../Y/2802.html' title='Multiple used in 51 places.'>info</a>.<a href='../Y/3277.html' title='Multiple used in 6 places.'>live</a> = <a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>-&gt;<a href='../Y/3277.html' title='Multiple used in 6 places.'>live</a>();
+<a id='L279' name='L279' />    <a href='../Y/2802.html' title='Multiple used in 51 places.'>info</a>.<a href='../Y/2770.html' title='Multiple used in 3 places.'>ignored</a> = <a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>-&gt;<a href='../Y/2764.html' title='Multiple used in 5 places.'>ignore</a>();
+<a id='L280' name='L280' />    <a href='../Y/1728.html' title='Multiple used in 29 places.'>callback</a>(<a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>, <a href='../Y/2802.html' title='Multiple used in 51 places.'>info</a>);
+<a id='L281' name='L281' />  <em class='brace'>}</em>
+<a id='L282' name='L282' />
+<a id='L283' name='L283' />  <em class='comment'>// Helper for DumpNonLiveProfile to do object-granularity</em>
+<a id='L284' name='L284' />  <em class='comment'>// heap profile dumping. It gets passed to AllocationMap::Iterate.</em>
+<a id='L285' name='L285' />  <strong class='reserved'>inline</strong> <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/569.html#L371' title='Defined at 371 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>DumpNonLiveIterator</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>, <a href='../S/570.html#L203' title='Defined at 203 in third_party/google-perftools-1.8.3/src/heap-profile-table.h.'>AllocValue</a>* <a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>,
+<a id='L286' name='L286' />                                         <strong class='reserved'>const</strong> <a href='../S/570.html#L240' title='Defined at 240 in third_party/google-perftools-1.8.3/src/heap-profile-table.h.'>DumpArgs</a>&amp; <a href='../Y/1501.html' title='Multiple used in 145 places.'>args</a>);
+<a id='L287' name='L287' />
+<a id='L288' name='L288' />  <em class='comment'>// Helper for IterateOrderedAllocContexts and FillOrderedProfile.</em>
+<a id='L289' name='L289' />  <em class='comment'>// Creates a sorted list of Buckets whose length is num_buckets_.</em>
+<a id='L290' name='L290' />  <em class='comment'>// The caller is responsible for dellocating the returned list.</em>
+<a id='L291' name='L291' />  <a href='../D/335.html' title='Multiple defined in 2 places.'>Bucket</a>** <a href='../S/569.html#L301' title='Defined at 301 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>MakeSortedBucketList</a>() <strong class='reserved'>const</strong>;
+<a id='L292' name='L292' />
+<a id='L293' name='L293' />  <em class='comment'>// Helper for TakeSnapshot.  Saves object to snapshot.</em>
+<a id='L294' name='L294' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/569.html#L465' title='Defined at 465 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>AddToSnapshot</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>, <a href='../S/570.html#L203' title='Defined at 203 in third_party/google-perftools-1.8.3/src/heap-profile-table.h.'>AllocValue</a>* <a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>, <a href='../Y/800.html' title='Multiple used in 29 places.'>Snapshot</a>* <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>);
+<a id='L295' name='L295' />
+<a id='L296' name='L296' />  <em class='comment'>// Arguments passed to AddIfNonLive</em>
+<a id='L297' name='L297' />  <strong class='reserved'>struct</strong> <a href='../R/105.html' title='Multiple refered from 4 places.'>AddNonLiveArgs</a> <em class='brace'>{</em>
+<a id='L298' name='L298' />    <a href='../Y/800.html' title='Multiple used in 29 places.'>Snapshot</a>* <a href='../Y/2035.html' title='Multiple used in 55 places.'>dest</a>;
+<a id='L299' name='L299' />    <a href='../Y/800.html' title='Multiple used in 29 places.'>Snapshot</a>* <a href='../D/3379.html' title='Multiple defined in 6 places.'>base</a>;
+<a id='L300' name='L300' />  <em class='brace'>}</em>;
+<a id='L301' name='L301' />
+<a id='L302' name='L302' />  <em class='comment'>// Helper for NonLiveSnapshot.  Adds the object to the destination</em>
+<a id='L303' name='L303' />  <em class='comment'>// snapshot if it is non-live.</em>
+<a id='L304' name='L304' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/569.html#L393' title='Defined at 393 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>AddIfNonLive</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>, <a href='../S/570.html#L203' title='Defined at 203 in third_party/google-perftools-1.8.3/src/heap-profile-table.h.'>AllocValue</a>* <a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>,
+<a id='L305' name='L305' />                           <a href='../S/570.html#L297' title='Defined at 297 in third_party/google-perftools-1.8.3/src/heap-profile-table.h.'>AddNonLiveArgs</a>* <a href='../Y/1482.html' title='Multiple used in 187 places.'>arg</a>);
+<a id='L306' name='L306' />
+<a id='L307' name='L307' />  <em class='comment'>// Write contents of "*allocations" as a heap profile to</em>
+<a id='L308' name='L308' />  <em class='comment'>// "file_name".  "total" must contain the total of all entries in</em>
+<a id='L309' name='L309' />  <em class='comment'>// "*allocations".</em>
+<a id='L310' name='L310' />  <strong class='reserved'>static</strong> <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../S/569.html#L406' title='Defined at 406 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>WriteProfile</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../Y/2355.html' title='Multiple used in 34 places.'>file_name</a>,
+<a id='L311' name='L311' />                           <strong class='reserved'>const</strong> <a href='../D/335.html' title='Multiple defined in 2 places.'>Bucket</a>&amp; <a href='../Y/5432.html' title='Multiple used in 90 places.'>total</a>,
+<a id='L312' name='L312' />                           <a href='../S/570.html#L237' title='Defined at 237 in third_party/google-perftools-1.8.3/src/heap-profile-table.h.'>AllocationMap</a>* <a href='../Y/1449.html' title='Multiple used in 3 places.'>allocations</a>);
+<a id='L313' name='L313' />
+<a id='L314' name='L314' />  <em class='comment'>// data ----------------------------</em>
+<a id='L315' name='L315' />
+<a id='L316' name='L316' />  <em class='comment'>// Memory (de)allocator that we use.</em>
+<a id='L317' name='L317' />  <a href='../Y/34.html' title='Multiple used in 45 places.'>Allocator</a> <a href='../Y/1434.html' title='Multiple used in 12 places.'>alloc_</a>;
+<a id='L318' name='L318' />  <a href='../Y/125.html' title='Multiple used in 9 places.'>DeAllocator</a> <a href='../S/569.html#L124' title='Defined at 124 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>dealloc_</a>;
+<a id='L319' name='L319' />
+<a id='L320' name='L320' />  <em class='comment'>// Overall profile stats; we use only the Stats part,</em>
+<a id='L321' name='L321' />  <em class='comment'>// but make it a Bucket to pass to UnparseBucket.</em>
+<a id='L322' name='L322' />  <a href='../D/335.html' title='Multiple defined in 2 places.'>Bucket</a> <a href='../Y/5433.html' title='Multiple used in 21 places.'>total_</a>;
+<a id='L323' name='L323' />
+<a id='L324' name='L324' />  <em class='comment'>// Bucket hash table.</em>
+<a id='L325' name='L325' />  <em class='comment'>// We hand-craft one instead of using one of the pre-written</em>
+<a id='L326' name='L326' />  <em class='comment'>// ones because we do not want to use malloc when operating on the table.</em>
+<a id='L327' name='L327' />  <em class='comment'>// It is only few lines of code, so no big deal.</em>
+<a id='L328' name='L328' />  <a href='../D/335.html' title='Multiple defined in 2 places.'>Bucket</a>** <a href='../S/608.html#L59' title='Defined at 59 in third_party/google-perftools-1.8.3/src/stack_trace_table.cc.'>table_</a>;
+<a id='L329' name='L329' />  <strong class='reserved'>int</strong> <a href='../Y/3860.html' title='Multiple used in 8 places.'>num_buckets_</a>;
+<a id='L330' name='L330' />
+<a id='L331' name='L331' />  <em class='comment'>// Map of all currently allocated objects we know about.</em>
+<a id='L332' name='L332' />  <a href='../S/570.html#L237' title='Defined at 237 in third_party/google-perftools-1.8.3/src/heap-profile-table.h.'>AllocationMap</a>* <a href='../Y/1447.html' title='Multiple used in 15 places.'>allocation_</a>;
+<a id='L333' name='L333' />
+<a id='L334' name='L334' />  <a href='../S/516.html#L126' title='Defined at 126 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>DISALLOW_COPY_AND_ASSIGN</a>(<a href='../S/569.html#L137' title='Defined at 137 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>HeapProfileTable</a>);
+<a id='L335' name='L335' /><em class='brace'>}</em>;
+<a id='L336' name='L336' />
+<a id='L337' name='L337' /><a href='../Y/1792.html' title='Multiple used in 90 places.'>class</a> <a href='../S/569.html#L137' title='Defined at 137 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>HeapProfileTable</a>::<a href='../Y/800.html' title='Multiple used in 29 places.'>Snapshot</a> <em class='brace'>{</em>
+<a id='L338' name='L338' /> <a href='../Y/4390.html' title='Multiple used in 61 places.'>public</a>:
+<a id='L339' name='L339' />  <strong class='reserved'>const</strong> <a href='../D/2614.html' title='Multiple defined in 2 places.'>Stats</a>&amp; <a href='../Y/5432.html' title='Multiple used in 90 places.'>total</a>() <strong class='reserved'>const</strong> <em class='brace'>{</em> <strong class='reserved'>return</strong> <a href='../Y/5433.html' title='Multiple used in 21 places.'>total_</a>; <em class='brace'>}</em>
+<a id='L340' name='L340' />
+<a id='L341' name='L341' />  <em class='comment'>// Report anything in this snapshot as a leak.</em>
+<a id='L342' name='L342' />  <em class='comment'>// May use new/delete for temporary storage.</em>
+<a id='L343' name='L343' />  <em class='comment'>// If should_symbolize is true, will fork (which is not threadsafe)</em>
+<a id='L344' name='L344' />  <em class='comment'>// to turn addresses into symbol names.  Set to false for maximum safety.</em>
+<a id='L345' name='L345' />  <em class='comment'>// Also writes a heap profile to "filename" that contains</em>
+<a id='L346' name='L346' />  <em class='comment'>// all of the objects in this snapshot.</em>
+<a id='L347' name='L347' />  <strong class='reserved'>void</strong> <a href='../S/569.html#L516' title='Defined at 516 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>ReportLeaks</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../Y/1772.html' title='Multiple used in 3 places.'>checker_name</a>, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../S/652.html#L126' title='Defined at 126 in third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc.'>filename</a>,
+<a id='L348' name='L348' />                   <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../Y/4829.html' title='Multiple used in 9 places.'>should_symbolize</a>);
+<a id='L349' name='L349' />
+<a id='L350' name='L350' />  <em class='comment'>// Report the addresses of all leaked objects.</em>
+<a id='L351' name='L351' />  <em class='comment'>// May use new/delete for temporary storage.</em>
+<a id='L352' name='L352' />  <strong class='reserved'>void</strong> <a href='../S/569.html#L596' title='Defined at 596 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>ReportIndividualObjects</a>();
+<a id='L353' name='L353' />
+<a id='L354' name='L354' />  <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../Y/171.html' title='Multiple used in 5 places.'>Empty</a>() <strong class='reserved'>const</strong> <em class='brace'>{</em>
+<a id='L355' name='L355' />    <strong class='reserved'>return</strong> (<a href='../Y/5433.html' title='Multiple used in 21 places.'>total_</a>.<a href='../Y/1452.html' title='Multiple used in 16 places.'>allocs</a> == 0) &amp;&amp; (<a href='../Y/5433.html' title='Multiple used in 21 places.'>total_</a>.<a href='../Y/1440.html' title='Multiple used in 25 places.'>alloc_size</a> == 0);
+<a id='L356' name='L356' />  <em class='brace'>}</em>
+<a id='L357' name='L357' />
+<a id='L358' name='L358' /> <a href='../Y/4261.html' title='Multiple used in 50 places.'>private</a>:
+<a id='L359' name='L359' />  <a href='../Y/2470.html' title='Multiple used in 15 places.'>friend</a> <a href='../Y/1792.html' title='Multiple used in 90 places.'>class</a> <a href='../S/569.html#L137' title='Defined at 137 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>HeapProfileTable</a>;
+<a id='L360' name='L360' />
+<a id='L361' name='L361' />  <em class='comment'>// Total count/size are stored in a Bucket so we can reuse UnparseBucket</em>
+<a id='L362' name='L362' />  <a href='../D/335.html' title='Multiple defined in 2 places.'>Bucket</a> <a href='../Y/5433.html' title='Multiple used in 21 places.'>total_</a>;
+<a id='L363' name='L363' />
+<a id='L364' name='L364' />  <em class='comment'>// We share the Buckets managed by the parent table, but have our</em>
+<a id='L365' name='L365' />  <em class='comment'>// own object-&gt;bucket map.</em>
+<a id='L366' name='L366' />  <a href='../S/570.html#L237' title='Defined at 237 in third_party/google-perftools-1.8.3/src/heap-profile-table.h.'>AllocationMap</a> <a href='../Y/3413.html' title='Multiple used in 7 places.'>map_</a>;
+<a id='L367' name='L367' />
+<a id='L368' name='L368' />  <a href='../Y/800.html' title='Multiple used in 29 places.'>Snapshot</a>(<a href='../Y/34.html' title='Multiple used in 45 places.'>Allocator</a> <a href='../S/664.html#L303' title='Defined at 303 in third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc.'>alloc</a>, <a href='../Y/125.html' title='Multiple used in 9 places.'>DeAllocator</a> <a href='../Y/1979.html' title='Multiple used in 7 places.'>dealloc</a>) : <a href='../Y/3413.html' title='Multiple used in 7 places.'>map_</a>(<a href='../S/664.html#L303' title='Defined at 303 in third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc.'>alloc</a>, <a href='../Y/1979.html' title='Multiple used in 7 places.'>dealloc</a>) <em class='brace'>{</em>
+<a id='L369' name='L369' />    <a href='../Y/3518.html' title='Multiple used in 105 places.'>memset</a>(&amp;<a href='../Y/5433.html' title='Multiple used in 21 places.'>total_</a>, 0, <strong class='reserved'>sizeof</strong>(<a href='../Y/5433.html' title='Multiple used in 21 places.'>total_</a>));
+<a id='L370' name='L370' />  <em class='brace'>}</em>
+<a id='L371' name='L371' />
+<a id='L372' name='L372' />  <em class='comment'>// Callback used to populate a Snapshot object with entries found</em>
+<a id='L373' name='L373' />  <em class='comment'>// in another allocation map.</em>
+<a id='L374' name='L374' />  <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../D/138.html' title='Multiple defined in 4 places.'>Add</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>, <strong class='reserved'>const</strong> <a href='../S/570.html#L203' title='Defined at 203 in third_party/google-perftools-1.8.3/src/heap-profile-table.h.'>AllocValue</a>&amp; <a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>) <em class='brace'>{</em>
+<a id='L375' name='L375' />    <a href='../Y/3413.html' title='Multiple used in 7 places.'>map_</a>.<a href='../S/505.html#L308' title='Defined at 308 in third_party/google-perftools-1.8.3/src/addressmap-inl.h.'>Insert</a>(<a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>, <a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>);
+<a id='L376' name='L376' />    <a href='../Y/5433.html' title='Multiple used in 21 places.'>total_</a>.<a href='../Y/1452.html' title='Multiple used in 16 places.'>allocs</a>++;
+<a id='L377' name='L377' />    <a href='../Y/5433.html' title='Multiple used in 21 places.'>total_</a>.<a href='../Y/1440.html' title='Multiple used in 25 places.'>alloc_size</a> += <a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>.<a href='../Y/1692.html' title='Multiple used in 48 places.'>bytes</a>;
+<a id='L378' name='L378' />  <em class='brace'>}</em>
+<a id='L379' name='L379' />
+<a id='L380' name='L380' />  <em class='comment'>// Helpers for sorting and generating leak reports</em>
+<a id='L381' name='L381' />  <strong class='reserved'>struct</strong> <a href='../D/715.html' title='Multiple defined in 2 places.'>Entry</a>;
+<a id='L382' name='L382' />  <strong class='reserved'>struct</strong> <a href='../Y/698.html' title='Multiple used in 5 places.'>ReportState</a>;
+<a id='L383' name='L383' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/569.html#L507' title='Defined at 507 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>ReportCallback</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>, <a href='../S/570.html#L203' title='Defined at 203 in third_party/google-perftools-1.8.3/src/heap-profile-table.h.'>AllocValue</a>* <a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>, <a href='../Y/698.html' title='Multiple used in 5 places.'>ReportState</a>*);
+<a id='L384' name='L384' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/569.html#L588' title='Defined at 588 in third_party/google-perftools-1.8.3/src/heap-profile-table.cc.'>ReportObject</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>, <a href='../S/570.html#L203' title='Defined at 203 in third_party/google-perftools-1.8.3/src/heap-profile-table.h.'>AllocValue</a>* <a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>, <strong class='reserved'>char</strong>*);
+<a id='L385' name='L385' />
+<a id='L386' name='L386' />  <a href='../S/516.html#L126' title='Defined at 126 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>DISALLOW_COPY_AND_ASSIGN</a>(<a href='../Y/800.html' title='Multiple used in 29 places.'>Snapshot</a>);
+<a id='L387' name='L387' /><em class='brace'>}</em>;
+<a id='L388' name='L388' />
+<a id='L389' name='L389' /><em class='sharp'>#endif</em>  <em class='comment'>// BASE_HEAP_PROFILE_TABLE_H_</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^][v]<a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

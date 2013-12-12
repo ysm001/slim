@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>pid</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/400.html#L51'>pid</a>                51 src/utility/process_util.c    pid_t pid;</span>
+<span class='curline'><a href='../S/400.html#L59'>pid</a>                59 src/utility/process_util.c    pid = fork();</span>
+<span class='curline'><a href='../S/400.html#L61'>pid</a>                61 src/utility/process_util.c    switch (pid) {</span>
+<span class='curline'><a href='../S/525.html#L569'>pid</a>               569 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h #define MAKE_PROCESS_CPUCLOCK(pid, clock)                                     \</span>
+<span class='curline'><a href='../S/525.html#L570'>pid</a>               570 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         ((~(int)(pid) &lt;&lt; 3) | (int)(clock))</span>
+<span class='curline'><a href='../S/525.html#L2477'>pid</a>              2477 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     LSS_INLINE pid_t LSS_NAME(waitpid)(pid_t pid, int *status, int options){</span>
+<span class='curline'><a href='../S/525.html#L2478'>pid</a>              2478 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       return LSS_NAME(wait4)(pid, status, options, 0);</span>
+<span class='curline'><a href='../S/525.html#L2981'>pid</a>              2981 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h   LSS_INLINE int LSS_NAME(ptrace_detach)(pid_t pid) {</span>
+<span class='curline'><a href='../S/525.html#L2990'>pid</a>              2990 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     rc = LSS_NAME(ptrace)(PTRACE_DETACH, pid, (void *)0, (void *)0);</span>
+<span class='curline'><a href='../S/525.html#L2992'>pid</a>              2992 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     LSS_NAME(kill)(pid, SIGCONT);</span>
+<span class='curline'><a href='../S/526.html#L378'>pid</a>               378 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc             pid_t pid;</span>
+<span class='curline'><a href='../S/526.html#L389'>pid</a>               389 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc             pid = local_atoi(ptr);</span>
+<span class='curline'><a href='../S/526.html#L392'>pid</a>               392 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc             if (pid &amp;&amp; pid != clone_pid) {</span>
+<span class='curline'><a href='../S/526.html#L408'>pid</a>               408 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc                   if (pids[i] == pid) {</span>
+<span class='curline'><a href='../S/526.html#L422'>pid</a>               422 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc                 pids[num_threads++] = pid;</span>
+<span class='curline'><a href='../S/526.html#L424'>pid</a>               424 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc                 if (sys_ptrace(PTRACE_ATTACH, pid, (void *)0,</span>
+<span class='curline'><a href='../S/526.html#L437'>pid</a>               437 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc                 while (sys_waitpid(pid, (int *)0, __WALL) &lt; 0) {</span>
+<span class='curline'><a href='../S/526.html#L439'>pid</a>               439 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc                     sys_ptrace_detach(pid);</span>
+<span class='curline'><a href='../S/526.html#L446'>pid</a>               446 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc                 if (sys_ptrace(PTRACE_PEEKDATA, pid, &amp;i, &amp;j) || i++ != j ||</span>
+<span class='curline'><a href='../S/526.html#L447'>pid</a>               447 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc                     sys_ptrace(PTRACE_PEEKDATA, pid, &amp;i, &amp;j) || i   != j) {</span>
+<span class='curline'><a href='../S/526.html#L452'>pid</a>               452 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc                   sys_ptrace_detach(pid);</span>
+<span class='curline'><a href='../S/526.html#L456'>pid</a>               456 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc                   found_parent |= pid == ppid;</span>
+<span class='curline'><a href='../S/542.html#L503'>pid</a>               503 third_party/google-perftools-1.8.3/src/base/sysinfo.cc static void ConstructFilename(const char* spec, pid_t pid,</span>
+<span class='curline'><a href='../S/542.html#L507'>pid</a>               507 third_party/google-perftools-1.8.3/src/base/sysinfo.cc                     static_cast&lt;int&gt;(pid ? pid : getpid())), buf_size);</span>
+<span class='curline'><a href='../S/542.html#L553'>pid</a>               553 third_party/google-perftools-1.8.3/src/base/sysinfo.cc ProcMapsIterator::ProcMapsIterator(pid_t pid) {</span>
+<span class='curline'><a href='../S/542.html#L554'>pid</a>               554 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   Init(pid, NULL, false);</span>
+<span class='curline'><a href='../S/542.html#L557'>pid</a>               557 third_party/google-perftools-1.8.3/src/base/sysinfo.cc ProcMapsIterator::ProcMapsIterator(pid_t pid, Buffer *buffer) {</span>
+<span class='curline'><a href='../S/542.html#L558'>pid</a>               558 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   Init(pid, buffer, false);</span>
+<span class='curline'><a href='../S/542.html#L561'>pid</a>               561 third_party/google-perftools-1.8.3/src/base/sysinfo.cc ProcMapsIterator::ProcMapsIterator(pid_t pid, Buffer *buffer,</span>
+<span class='curline'><a href='../S/542.html#L563'>pid</a>               563 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   Init(pid, buffer, use_maps_backing);</span>
+<span class='curline'><a href='../S/542.html#L566'>pid</a>               566 third_party/google-perftools-1.8.3/src/base/sysinfo.cc void ProcMapsIterator::Init(pid_t pid, Buffer *buffer,</span>
+<span class='curline'><a href='../S/542.html#L568'>pid</a>               568 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   pid_ = pid;</span>
+<span class='curline'><a href='../S/542.html#L588'>pid</a>               588 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     ConstructFilename("/proc/%d/maps_backing", pid, ibuf_, Buffer::kBufSize);</span>
+<span class='curline'><a href='../S/542.html#L589'>pid</a>               589 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   } else if (pid == 0) {</span>
+<span class='curline'><a href='../S/542.html#L594'>pid</a>               594 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     ConstructFilename("/proc/%d/maps", pid, ibuf_, Buffer::kBufSize);</span>
+<span class='curline'><a href='../S/542.html#L602'>pid</a>               602 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   if (pid == 0) {</span>
+<span class='curline'><a href='../S/542.html#L605'>pid</a>               605 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     ConstructFilename("/proc/%d/map", pid, ibuf_, Buffer::kBufSize);</span>
+<span class='curline'><a href='../S/542.html#L609'>pid</a>               609 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   if (pid == 0) {</span>
+<span class='curline'><a href='../S/542.html#L612'>pid</a>               612 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     ConstructFilename("/proc/%d/map", pid, ibuf_, Buffer::kBufSize);</span>
+<span class='curline'><a href='../S/543.html#L116'>pid</a>               116 third_party/google-perftools-1.8.3/src/base/sysinfo.h   explicit ProcMapsIterator(pid_t pid);</span>
+<span class='curline'><a href='../S/543.html#L121'>pid</a>               121 third_party/google-perftools-1.8.3/src/base/sysinfo.h   ProcMapsIterator(pid_t pid, Buffer *buffer);</span>
+<span class='curline'><a href='../S/543.html#L126'>pid</a>               126 third_party/google-perftools-1.8.3/src/base/sysinfo.h   ProcMapsIterator(pid_t pid, Buffer *buffer,</span>
+<span class='curline'><a href='../S/543.html#L190'>pid</a>               190 third_party/google-perftools-1.8.3/src/base/sysinfo.h   void Init(pid_t pid, Buffer *buffer, bool use_maps_backing);</span>
+<span class='curline'><a href='../S/545.html#L55'>pid</a>                55 third_party/google-perftools-1.8.3/src/base/thread_lister.c   pid_t pid;</span>
+<span class='curline'><a href='../S/545.html#L63'>pid</a>                63 third_party/google-perftools-1.8.3/src/base/thread_lister.c   pid = getpid();</span>
+<span class='curline'><a href='../S/545.html#L64'>pid</a>                64 third_party/google-perftools-1.8.3/src/base/thread_lister.c   rc = callback(parameter, 1, &amp;pid, ap);</span>
+</pre>
+</body>
+</html>

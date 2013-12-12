@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>region</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/530.html#L322'>region</a>            322 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       AllocList *region = arena-&gt;freelist.next[0];</span>
+<span class='curline'><a href='../S/530.html#L323'>region</a>            323 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       size_t size = region-&gt;header.size;</span>
+<span class='curline'><a href='../S/530.html#L324'>region</a>            324 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       arena-&gt;freelist.next[0] = region-&gt;next[0];</span>
+<span class='curline'><a href='../S/530.html#L325'>region</a>            325 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       RAW_CHECK(region-&gt;header.magic ==</span>
+<span class='curline'><a href='../S/530.html#L326'>region</a>            326 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc                 Magic(kMagicUnallocated, &amp;region-&gt;header),</span>
+<span class='curline'><a href='../S/530.html#L328'>region</a>            328 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       RAW_CHECK(region-&gt;header.arena == arena,</span>
+<span class='curline'><a href='../S/530.html#L332'>region</a>            332 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       RAW_CHECK(reinterpret_cast&lt;intptr_t&gt;(region) % arena-&gt;pagesize == 0,</span>
+<span class='curline'><a href='../S/530.html#L336'>region</a>            336 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc         munmap_result = munmap(region, size);</span>
+<span class='curline'><a href='../S/530.html#L338'>region</a>            338 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc         munmap_result = MallocHook::UnhookedMUnmap(region, size);</span>
+<span class='curline'><a href='../S/568.html#L644'>region</a>            644 third_party/google-perftools-1.8.3/src/heap-checker.cc   MemoryRegionMap::Region region;</span>
+<span class='curline'><a href='../S/568.html#L645'>region</a>            645 third_party/google-perftools-1.8.3/src/heap-checker.cc   if (MemoryRegionMap::FindAndMarkStackRegion(top, &amp;region)) {</span>
+<span class='curline'><a href='../S/568.html#L649'>region</a>            649 third_party/google-perftools-1.8.3/src/heap-checker.cc                   top_ptr, region.end_addr - top);</span>
+<span class='curline'><a href='../S/568.html#L650'>region</a>            650 third_party/google-perftools-1.8.3/src/heap-checker.cc       live_objects-&gt;push_back(AllocObject(top_ptr, region.end_addr - top,</span>
+<span class='curline'><a href='../S/568.html#L654'>region</a>            654 third_party/google-perftools-1.8.3/src/heap-checker.cc                   AsPtr(region.start_addr),</span>
+<span class='curline'><a href='../S/568.html#L655'>region</a>            655 third_party/google-perftools-1.8.3/src/heap-checker.cc                   top - region.start_addr);</span>
+<span class='curline'><a href='../S/568.html#L656'>region</a>            656 third_party/google-perftools-1.8.3/src/heap-checker.cc       live_objects-&gt;push_back(AllocObject(AsPtr(region.start_addr),</span>
+<span class='curline'><a href='../S/568.html#L657'>region</a>            657 third_party/google-perftools-1.8.3/src/heap-checker.cc                                           top - region.start_addr,</span>
+<span class='curline'><a href='../S/568.html#L1145'>region</a>           1145 third_party/google-perftools-1.8.3/src/heap-checker.cc       for (MemoryRegionMap::RegionIterator region =</span>
+<span class='curline'><a href='../S/568.html#L1147'>region</a>           1147 third_party/google-perftools-1.8.3/src/heap-checker.cc            region != MemoryRegionMap::EndRegionLocked(); ++region) {</span>
+<span class='curline'><a href='../S/568.html#L1157'>region</a>           1157 third_party/google-perftools-1.8.3/src/heap-checker.cc         if (!region-&gt;is_stack  &amp;&amp;  global_region_caller_ranges) {</span>
+<span class='curline'><a href='../S/568.html#L1158'>region</a>           1158 third_party/google-perftools-1.8.3/src/heap-checker.cc           if (region-&gt;caller() == static_cast&lt;uintptr_t&gt;(NULL)) {</span>
+<span class='curline'><a href='../S/568.html#L1162'>region</a>           1162 third_party/google-perftools-1.8.3/src/heap-checker.cc               = global_region_caller_ranges-&gt;upper_bound(region-&gt;caller());</span>
+<span class='curline'><a href='../S/568.html#L1164'>region</a>           1164 third_party/google-perftools-1.8.3/src/heap-checker.cc               RAW_DCHECK(iter-&gt;first &gt; region-&gt;caller(), "");</span>
+<span class='curline'><a href='../S/568.html#L1165'>region</a>           1165 third_party/google-perftools-1.8.3/src/heap-checker.cc               if (iter-&gt;second &lt; region-&gt;caller()) {  // in special region</span>
+<span class='curline'><a href='../S/568.html#L1178'>region</a>           1178 third_party/google-perftools-1.8.3/src/heap-checker.cc             if (region-&gt;start_addr &lt;= start  &amp;&amp;  end &lt;= region-&gt;end_addr) {</span>
+<span class='curline'><a href='../S/568.html#L1180'>region</a>           1180 third_party/google-perftools-1.8.3/src/heap-checker.cc             } else if (start &lt; region-&gt;start_addr  &amp;&amp;</span>
+<span class='curline'><a href='../S/568.html#L1181'>region</a>           1181 third_party/google-perftools-1.8.3/src/heap-checker.cc                        region-&gt;end_addr &lt; end) {  // cutting-out split</span>
+<span class='curline'><a href='../S/568.html#L1183'>region</a>           1183 third_party/google-perftools-1.8.3/src/heap-checker.cc                                                   region-&gt;start_addr - start,</span>
+<span class='curline'><a href='../S/568.html#L1185'>region</a>           1185 third_party/google-perftools-1.8.3/src/heap-checker.cc               live_objects-&gt;push_back(AllocObject(AsPtr(region-&gt;end_addr),</span>
+<span class='curline'><a href='../S/568.html#L1186'>region</a>           1186 third_party/google-perftools-1.8.3/src/heap-checker.cc                                                   end - region-&gt;end_addr,</span>
+<span class='curline'><a href='../S/568.html#L1188'>region</a>           1188 third_party/google-perftools-1.8.3/src/heap-checker.cc             } else if (region-&gt;end_addr &gt; start  &amp;&amp;</span>
+<span class='curline'><a href='../S/568.html#L1189'>region</a>           1189 third_party/google-perftools-1.8.3/src/heap-checker.cc                        region-&gt;start_addr &lt;= start) {  // cut from start</span>
+<span class='curline'><a href='../S/568.html#L1190'>region</a>           1190 third_party/google-perftools-1.8.3/src/heap-checker.cc               live_objects-&gt;push_back(AllocObject(AsPtr(region-&gt;end_addr),</span>
+<span class='curline'><a href='../S/568.html#L1191'>region</a>           1191 third_party/google-perftools-1.8.3/src/heap-checker.cc                                                   end - region-&gt;end_addr,</span>
+<span class='curline'><a href='../S/568.html#L1193'>region</a>           1193 third_party/google-perftools-1.8.3/src/heap-checker.cc             } else if (region-&gt;start_addr &gt; start  &amp;&amp;</span>
+<span class='curline'><a href='../S/568.html#L1194'>region</a>           1194 third_party/google-perftools-1.8.3/src/heap-checker.cc                        region-&gt;start_addr &lt; end) {  // cut from end</span>
+<span class='curline'><a href='../S/568.html#L1196'>region</a>           1196 third_party/google-perftools-1.8.3/src/heap-checker.cc                                                   region-&gt;start_addr - start,</span>
+<span class='curline'><a href='../S/588.html#L301'>region</a>            301 third_party/google-perftools-1.8.3/src/memory_region_map.cc     RegionSet::iterator region = regions_-&gt;lower_bound(sample);</span>
+<span class='curline'><a href='../S/588.html#L302'>region</a>            302 third_party/google-perftools-1.8.3/src/memory_region_map.cc     if (region != regions_-&gt;end()) {</span>
+<span class='curline'><a href='../S/588.html#L303'>region</a>            303 third_party/google-perftools-1.8.3/src/memory_region_map.cc       RAW_CHECK(addr &lt;= region-&gt;end_addr, "");</span>
+<span class='curline'><a href='../S/588.html#L304'>region</a>            304 third_party/google-perftools-1.8.3/src/memory_region_map.cc       if (region-&gt;start_addr &lt;= addr  &amp;&amp;  addr &lt; region-&gt;end_addr) {</span>
+<span class='curline'><a href='../S/588.html#L305'>region</a>            305 third_party/google-perftools-1.8.3/src/memory_region_map.cc         return &amp;(*region);</span>
+<span class='curline'><a href='../S/588.html#L314'>region</a>            314 third_party/google-perftools-1.8.3/src/memory_region_map.cc   const Region* region = DoFindRegionLocked(addr);</span>
+<span class='curline'><a href='../S/588.html#L315'>region</a>            315 third_party/google-perftools-1.8.3/src/memory_region_map.cc   if (region != NULL) *result = *region;  // create it as an independent copy</span>
+<span class='curline'><a href='../S/588.html#L317'>region</a>            317 third_party/google-perftools-1.8.3/src/memory_region_map.cc   return region != NULL;</span>
+<span class='curline'><a href='../S/588.html#L323'>region</a>            323 third_party/google-perftools-1.8.3/src/memory_region_map.cc   const Region* region = DoFindRegionLocked(stack_top);</span>
+<span class='curline'><a href='../S/588.html#L324'>region</a>            324 third_party/google-perftools-1.8.3/src/memory_region_map.cc   if (region != NULL) {</span>
+<span class='curline'><a href='../S/588.html#L327'>region</a>            327 third_party/google-perftools-1.8.3/src/memory_region_map.cc                 reinterpret_cast&lt;void*&gt;(region-&gt;start_addr),</span>
+<span class='curline'><a href='../S/588.html#L328'>region</a>            328 third_party/google-perftools-1.8.3/src/memory_region_map.cc                 reinterpret_cast&lt;void*&gt;(region-&gt;end_addr));</span>
+<span class='curline'><a href='../S/588.html#L329'>region</a>            329 third_party/google-perftools-1.8.3/src/memory_region_map.cc     const_cast&lt;Region*&gt;(region)-&gt;set_is_stack();  // now we know</span>
+<span class='curline'><a href='../S/588.html#L331'>region</a>            331 third_party/google-perftools-1.8.3/src/memory_region_map.cc     *result = *region;  // create *result as an independent copy</span>
+<span class='curline'><a href='../S/588.html#L334'>region</a>            334 third_party/google-perftools-1.8.3/src/memory_region_map.cc   return region != NULL;</span>
+<span class='curline'><a href='../S/588.html#L349'>region</a>            349 third_party/google-perftools-1.8.3/src/memory_region_map.cc inline void MemoryRegionMap::DoInsertRegionLocked(const Region&amp; region) {</span>
+<span class='curline'><a href='../S/588.html#L351'>region</a>            351 third_party/google-perftools-1.8.3/src/memory_region_map.cc               reinterpret_cast&lt;void*&gt;(region.start_addr),</span>
+<span class='curline'><a href='../S/588.html#L352'>region</a>            352 third_party/google-perftools-1.8.3/src/memory_region_map.cc               reinterpret_cast&lt;void*&gt;(region.end_addr),</span>
+<span class='curline'><a href='../S/588.html#L353'>region</a>            353 third_party/google-perftools-1.8.3/src/memory_region_map.cc               reinterpret_cast&lt;void*&gt;(region.caller()));</span>
+<span class='curline'><a href='../S/588.html#L354'>region</a>            354 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RegionSet::const_iterator i = regions_-&gt;lower_bound(region);</span>
+<span class='curline'><a href='../S/588.html#L355'>region</a>            355 third_party/google-perftools-1.8.3/src/memory_region_map.cc   if (i != regions_-&gt;end() &amp;&amp; i-&gt;start_addr &lt;= region.start_addr) {</span>
+<span class='curline'><a href='../S/588.html#L356'>region</a>            356 third_party/google-perftools-1.8.3/src/memory_region_map.cc     RAW_DCHECK(region.end_addr &lt;= i-&gt;end_addr, "");  // lower_bound ensures this</span>
+<span class='curline'><a href='../S/588.html#L362'>region</a>            362 third_party/google-perftools-1.8.3/src/memory_region_map.cc     RAW_CHECK(i == regions_-&gt;end()  ||  !region.Overlaps(*i),</span>
+<span class='curline'><a href='../S/588.html#L365'>region</a>            365 third_party/google-perftools-1.8.3/src/memory_region_map.cc     sample.SetRegionSetKey(region.start_addr);</span>
+<span class='curline'><a href='../S/588.html#L367'>region</a>            367 third_party/google-perftools-1.8.3/src/memory_region_map.cc     RAW_CHECK(i == regions_-&gt;end()  ||  !region.Overlaps(*i),</span>
+<span class='curline'><a href='../S/588.html#L370'>region</a>            370 third_party/google-perftools-1.8.3/src/memory_region_map.cc   region.AssertIsConsistent();  // just making sure</span>
+<span class='curline'><a href='../S/588.html#L373'>region</a>            373 third_party/google-perftools-1.8.3/src/memory_region_map.cc   regions_-&gt;insert(region);</span>
+<span class='curline'><a href='../S/588.html#L375'>region</a>            375 third_party/google-perftools-1.8.3/src/memory_region_map.cc               reinterpret_cast&lt;void*&gt;(region.start_addr),</span>
+<span class='curline'><a href='../S/588.html#L376'>region</a>            376 third_party/google-perftools-1.8.3/src/memory_region_map.cc               reinterpret_cast&lt;void*&gt;(region.end_addr));</span>
+<span class='curline'><a href='../S/588.html#L394'>region</a>            394 third_party/google-perftools-1.8.3/src/memory_region_map.cc               void (*insert_func)(const Region&amp; region)) {</span>
+<span class='curline'><a href='../S/588.html#L405'>region</a>            405 third_party/google-perftools-1.8.3/src/memory_region_map.cc inline void MemoryRegionMap::InsertRegionLocked(const Region&amp; region) {</span>
+<span class='curline'><a href='../S/588.html#L415'>region</a>            415 third_party/google-perftools-1.8.3/src/memory_region_map.cc                 reinterpret_cast&lt;void*&gt;(region.start_addr),</span>
+<span class='curline'><a href='../S/588.html#L416'>region</a>            416 third_party/google-perftools-1.8.3/src/memory_region_map.cc                 reinterpret_cast&lt;void*&gt;(region.end_addr),</span>
+<span class='curline'><a href='../S/588.html#L417'>region</a>            417 third_party/google-perftools-1.8.3/src/memory_region_map.cc                 reinterpret_cast&lt;void*&gt;(region.caller()));</span>
+<span class='curline'><a href='../S/588.html#L422'>region</a>            422 third_party/google-perftools-1.8.3/src/memory_region_map.cc     saved_regions[saved_regions_count++] = region;</span>
+<span class='curline'><a href='../S/588.html#L434'>region</a>            434 third_party/google-perftools-1.8.3/src/memory_region_map.cc     DoInsertRegionLocked(region);</span>
+<span class='curline'><a href='../S/588.html#L450'>region</a>            450 third_party/google-perftools-1.8.3/src/memory_region_map.cc   Region region;</span>
+<span class='curline'><a href='../S/588.html#L451'>region</a>            451 third_party/google-perftools-1.8.3/src/memory_region_map.cc   region.Create(start, size);</span>
+<span class='curline'><a href='../S/588.html#L455'>region</a>            455 third_party/google-perftools-1.8.3/src/memory_region_map.cc     ? MallocHook::GetCallerStackTrace(const_cast&lt;void**&gt;(region.call_stack),</span>
+<span class='curline'><a href='../S/588.html#L458'>region</a>            458 third_party/google-perftools-1.8.3/src/memory_region_map.cc   region.set_call_stack_depth(depth);  // record stack info fully</span>
+<span class='curline'><a href='../S/588.html#L460'>region</a>            460 third_party/google-perftools-1.8.3/src/memory_region_map.cc               reinterpret_cast&lt;void*&gt;(region.start_addr),</span>
+<span class='curline'><a href='../S/588.html#L461'>region</a>            461 third_party/google-perftools-1.8.3/src/memory_region_map.cc               reinterpret_cast&lt;void*&gt;(region.end_addr),</span>
+<span class='curline'><a href='../S/588.html#L462'>region</a>            462 third_party/google-perftools-1.8.3/src/memory_region_map.cc               reinterpret_cast&lt;void*&gt;(region.caller()));</span>
+<span class='curline'><a href='../S/588.html#L465'>region</a>            465 third_party/google-perftools-1.8.3/src/memory_region_map.cc   InsertRegionLocked(region);</span>
+<span class='curline'><a href='../S/588.html#L519'>region</a>            519 third_party/google-perftools-1.8.3/src/memory_region_map.cc   for (RegionSet::iterator region = regions_-&gt;lower_bound(sample);</span>
+<span class='curline'><a href='../S/588.html#L520'>region</a>            520 third_party/google-perftools-1.8.3/src/memory_region_map.cc        region != regions_-&gt;end()  &amp;&amp;  region-&gt;start_addr &lt; end_addr;</span>
+<span class='curline'><a href='../S/588.html#L523'>region</a>            523 third_party/google-perftools-1.8.3/src/memory_region_map.cc                 reinterpret_cast&lt;void*&gt;(region-&gt;start_addr),</span>
+<span class='curline'><a href='../S/588.html#L524'>region</a>            524 third_party/google-perftools-1.8.3/src/memory_region_map.cc                 reinterpret_cast&lt;void*&gt;(region-&gt;end_addr));</span>
+<span class='curline'><a href='../S/588.html#L525'>region</a>            525 third_party/google-perftools-1.8.3/src/memory_region_map.cc     if (start_addr &lt;= region-&gt;start_addr  &amp;&amp;</span>
+<span class='curline'><a href='../S/588.html#L526'>region</a>            526 third_party/google-perftools-1.8.3/src/memory_region_map.cc         region-&gt;end_addr &lt;= end_addr) {  // full deletion</span>
+<span class='curline'><a href='../S/588.html#L528'>region</a>            528 third_party/google-perftools-1.8.3/src/memory_region_map.cc                   reinterpret_cast&lt;void*&gt;(region-&gt;start_addr),</span>
+<span class='curline'><a href='../S/588.html#L529'>region</a>            529 third_party/google-perftools-1.8.3/src/memory_region_map.cc                   reinterpret_cast&lt;void*&gt;(region-&gt;end_addr));</span>
+<span class='curline'><a href='../S/588.html#L530'>region</a>            530 third_party/google-perftools-1.8.3/src/memory_region_map.cc       RegionSet::iterator d = region;</span>
+<span class='curline'><a href='../S/588.html#L531'>region</a>            531 third_party/google-perftools-1.8.3/src/memory_region_map.cc       ++region;</span>
+<span class='curline'><a href='../S/588.html#L534'>region</a>            534 third_party/google-perftools-1.8.3/src/memory_region_map.cc     } else if (region-&gt;start_addr &lt; start_addr  &amp;&amp;</span>
+<span class='curline'><a href='../S/588.html#L535'>region</a>            535 third_party/google-perftools-1.8.3/src/memory_region_map.cc                end_addr &lt; region-&gt;end_addr) {  // cutting-out split</span>
+<span class='curline'><a href='../S/588.html#L537'>region</a>            537 third_party/google-perftools-1.8.3/src/memory_region_map.cc                   reinterpret_cast&lt;void*&gt;(region-&gt;start_addr),</span>
+<span class='curline'><a href='../S/588.html#L538'>region</a>            538 third_party/google-perftools-1.8.3/src/memory_region_map.cc                   reinterpret_cast&lt;void*&gt;(region-&gt;end_addr));</span>
+<span class='curline'><a href='../S/588.html#L542'>region</a>            542 third_party/google-perftools-1.8.3/src/memory_region_map.cc       Region r = *region;</span>
+<span class='curline'><a href='../S/588.html#L546'>region</a>            546 third_party/google-perftools-1.8.3/src/memory_region_map.cc       const_cast&lt;Region&amp;&gt;(*region).set_start_addr(end_addr);</span>
+<span class='curline'><a href='../S/588.html#L547'>region</a>            547 third_party/google-perftools-1.8.3/src/memory_region_map.cc     } else if (end_addr &gt; region-&gt;start_addr  &amp;&amp;</span>
+<span class='curline'><a href='../S/588.html#L548'>region</a>            548 third_party/google-perftools-1.8.3/src/memory_region_map.cc                start_addr &lt;= region-&gt;start_addr) {  // cut from start</span>
+<span class='curline'><a href='../S/588.html#L550'>region</a>            550 third_party/google-perftools-1.8.3/src/memory_region_map.cc                   reinterpret_cast&lt;void*&gt;(region-&gt;start_addr),</span>
+<span class='curline'><a href='../S/588.html#L551'>region</a>            551 third_party/google-perftools-1.8.3/src/memory_region_map.cc                   reinterpret_cast&lt;void*&gt;(region-&gt;end_addr));</span>
+<span class='curline'><a href='../S/588.html#L552'>region</a>            552 third_party/google-perftools-1.8.3/src/memory_region_map.cc       const_cast&lt;Region&amp;&gt;(*region).set_start_addr(end_addr);</span>
+<span class='curline'><a href='../S/588.html#L553'>region</a>            553 third_party/google-perftools-1.8.3/src/memory_region_map.cc     } else if (start_addr &gt; region-&gt;start_addr  &amp;&amp;</span>
+<span class='curline'><a href='../S/588.html#L554'>region</a>            554 third_party/google-perftools-1.8.3/src/memory_region_map.cc                start_addr &lt; region-&gt;end_addr) {  // cut from end</span>
+<span class='curline'><a href='../S/588.html#L556'>region</a>            556 third_party/google-perftools-1.8.3/src/memory_region_map.cc                   reinterpret_cast&lt;void*&gt;(region-&gt;start_addr),</span>
+<span class='curline'><a href='../S/588.html#L557'>region</a>            557 third_party/google-perftools-1.8.3/src/memory_region_map.cc                   reinterpret_cast&lt;void*&gt;(region-&gt;end_addr));</span>
+<span class='curline'><a href='../S/588.html#L559'>region</a>            559 third_party/google-perftools-1.8.3/src/memory_region_map.cc       Region r = *region;</span>
+<span class='curline'><a href='../S/588.html#L561'>region</a>            561 third_party/google-perftools-1.8.3/src/memory_region_map.cc       RegionSet::iterator d = region;</span>
+<span class='curline'><a href='../S/588.html#L562'>region</a>            562 third_party/google-perftools-1.8.3/src/memory_region_map.cc       ++region;</span>
+<span class='curline'><a href='../S/588.html#L569'>region</a>            569 third_party/google-perftools-1.8.3/src/memory_region_map.cc     ++region;</span>
+<span class='curline'><a href='../S/589.html#L297'>region</a>            297 third_party/google-perftools-1.8.3/src/memory_region_map.h   inline static void DoInsertRegionLocked(const Region&amp; region);</span>
+<span class='curline'><a href='../S/589.html#L301'>region</a>            301 third_party/google-perftools-1.8.3/src/memory_region_map.h                        void (*insert_func)(const Region&amp; region));</span>
+<span class='curline'><a href='../S/589.html#L304'>region</a>            304 third_party/google-perftools-1.8.3/src/memory_region_map.h   inline static void InsertRegionLocked(const Region&amp; region);</span>
+</pre>
+</body>
+</html>

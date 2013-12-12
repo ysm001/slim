@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>basename</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/351.html#L695'>basename</a>          695 src/load.c     static inline LmnRuleSet load_compiled_il_inner(char *basename,</span>
+<span class='curline'><a href='../S/351.html#L707'>basename</a>          707 src/load.c       char *basename, *buf;</span>
+<span class='curline'><a href='../S/351.html#L711'>basename</a>          711 src/load.c       basename = create_formatted_basename(filename);</span>
+<span class='curline'><a href='../S/351.html#L712'>basename</a>          712 src/load.c       buf_len  = strlen(basename) + 50;   /* 適当に50文字余分にとったけどこれでいいのか  */</span>
+<span class='curline'><a href='../S/351.html#L715'>basename</a>          715 src/load.c       ret      = load_compiled_il_inner(basename, buf, buf_len, sohandle, filename);</span>
+<span class='curline'><a href='../S/351.html#L718'>basename</a>          718 src/load.c       lmn_free(basename);</span>
+<span class='curline'><a href='../S/351.html#L723'>basename</a>          723 src/load.c     static inline LmnRuleSet load_compiled_il_inner(char *basename,</span>
+<span class='curline'><a href='../S/351.html#L730'>basename</a>          730 src/load.c       snprintf(buf, buf_len, "init_%s", basename);</span>
+<span class='curline'><a href='../S/351.html#L744'>basename</a>          744 src/load.c         snprintf(buf, buf_len, "trans_%s_maindata", basename);</span>
+<span class='curline'><a href='../S/351.html#L748'>basename</a>          748 src/load.c           fprintf(stderr, "maindata \"%s\" not found in %s.\n", buf, basename);</span>
+<span class='curline'><a href='../S/351.html#L871'>basename</a>          871 src/load.c     int load_loading_tbl_entry(st_data_t basename, st_data_t filetype, void *path)</span>
+<span class='curline'><a href='../S/351.html#L880'>basename</a>          880 src/load.c                                 (char *)basename, extension);</span>
+<span class='curline'><a href='../S/351.html#L887'>basename</a>          887 src/load.c     int free_loading_tbl_entry(st_data_t basename, st_data_t filetype, void *path)</span>
+<span class='curline'><a href='../S/351.html#L889'>basename</a>          889 src/load.c       LMN_FREE(basename);</span>
+<span class='curline'><a href='../S/351.html#L924'>basename</a>          924 src/load.c               char *basename;</span>
+<span class='curline'><a href='../S/351.html#L927'>basename</a>          927 src/load.c               basename = basename_ext(dp-&gt;d_name);</span>
+<span class='curline'><a href='../S/351.html#L928'>basename</a>          928 src/load.c               if (st_lookup(loading_files_type, (st_data_t)basename, &amp;old_filetype)) {</span>
+<span class='curline'><a href='../S/351.html#L930'>basename</a>          930 src/load.c                   st_insert(loading_files_type, (st_data_t)basename, filetype);</span>
+<span class='curline'><a href='../S/351.html#L932'>basename</a>          932 src/load.c                 LMN_FREE(basename);</span>
+<span class='curline'><a href='../S/351.html#L934'>basename</a>          934 src/load.c                 st_insert(loading_files_type, (st_data_t)basename, filetype);</span>
+<span class='curline'><a href='../S/351.html#L1033'>basename</a>         1033 src/load.c       char *begin, *end, *basename, *p;</span>
+<span class='curline'><a href='../S/351.html#L1045'>basename</a>         1045 src/load.c       basename = lmn_malloc(end - begin + 1);</span>
+<span class='curline'><a href='../S/351.html#L1048'>basename</a>         1048 src/load.c           basename[i] = *p;</span>
+<span class='curline'><a href='../S/351.html#L1050'>basename</a>         1050 src/load.c           basename[i] = 'O'; /* 記号は全部Oにする */</span>
+<span class='curline'><a href='../S/351.html#L1054'>basename</a>         1054 src/load.c       basename[end - begin] = '\0';</span>
+<span class='curline'><a href='../S/351.html#L1056'>basename</a>         1056 src/load.c       return basename;</span>
+</pre>
+</body>
+</html>

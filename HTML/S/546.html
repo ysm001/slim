@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>third_party/google-perftools-1.8.3/src/base/thread_lister.h</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/738.html'>third_party</a>/<a href='../files/739.html'>google-perftools-1.8.3</a>/<a href='../files/740.html'>src</a>/<a href='../files/741.html'>base</a>/thread_lister.h</h2>
+<em class='comment'>/* [&lt;][&gt;][^][v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/170.html' title='Multiple included from 4 places.'>INCLUDED FROM</a></h2>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>/* Copyright (c) 2005-2007, Google Inc.</em>
+<a id='L2' name='L2' /><em class='comment'> * All rights reserved.</em>
+<a id='L3' name='L3' /><em class='comment'> *</em>
+<a id='L4' name='L4' /><em class='comment'> * Redistribution and use in source and binary forms, with or without</em>
+<a id='L5' name='L5' /><em class='comment'> * modification, are permitted provided that the following conditions are</em>
+<a id='L6' name='L6' /><em class='comment'> * met:</em>
+<a id='L7' name='L7' /><em class='comment'> *</em>
+<a id='L8' name='L8' /><em class='comment'> *     * Redistributions of source code must retain the above copyright</em>
+<a id='L9' name='L9' /><em class='comment'> * notice, this list of conditions and the following disclaimer.</em>
+<a id='L10' name='L10' /><em class='comment'> *     * Redistributions in binary form must reproduce the above</em>
+<a id='L11' name='L11' /><em class='comment'> * copyright notice, this list of conditions and the following disclaimer</em>
+<a id='L12' name='L12' /><em class='comment'> * in the documentation and/or other materials provided with the</em>
+<a id='L13' name='L13' /><em class='comment'> * distribution.</em>
+<a id='L14' name='L14' /><em class='comment'> *     * Neither the name of Google Inc. nor the names of its</em>
+<a id='L15' name='L15' /><em class='comment'> * contributors may be used to endorse or promote products derived from</em>
+<a id='L16' name='L16' /><em class='comment'> * this software without specific prior written permission.</em>
+<a id='L17' name='L17' /><em class='comment'> *</em>
+<a id='L18' name='L18' /><em class='comment'> * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L19' name='L19' /><em class='comment'> * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L20' name='L20' /><em class='comment'> * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L21' name='L21' /><em class='comment'> * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L22' name='L22' /><em class='comment'> * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L23' name='L23' /><em class='comment'> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L24' name='L24' /><em class='comment'> * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L25' name='L25' /><em class='comment'> * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L26' name='L26' /><em class='comment'> * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L27' name='L27' /><em class='comment'> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L28' name='L28' /><em class='comment'> * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L29' name='L29' /><em class='comment'> *</em>
+<a id='L30' name='L30' /><em class='comment'> * ---</em>
+<a id='L31' name='L31' /><em class='comment'> * Author: Markus Gutschke</em>
+<a id='L32' name='L32' /><em class='comment'> */</em>
+<a id='L33' name='L33' />
+<a id='L34' name='L34' /><em class='sharp'>#ifndef</em> <a href='../S/546.html#L35' title='Defined at 35 in third_party/google-perftools-1.8.3/src/base/thread_lister.h.'>_THREAD_LISTER_H</a>
+<a id='L35' name='L35' /><em class='sharp'>#define</em> <a href='../S/546.html#L34' title='Refered from 34 in third_party/google-perftools-1.8.3/src/base/thread_lister.h.'>_THREAD_LISTER_H</a>
+<a id='L36' name='L36' />
+<a id='L37' name='L37' /><em class='sharp'>#include</em> &lt;stdarg.h&gt;
+<a id='L38' name='L38' /><em class='sharp'>#include</em> &lt;sys/types.h&gt;
+<a id='L39' name='L39' />
+<a id='L40' name='L40' /><em class='sharp'>#ifdef</em> <a href='../Y/1125.html' title='Multiple used in 121 places.'>__cplusplus</a>
+<a id='L41' name='L41' /><strong class='reserved'>extern</strong> "C" <em class='brace'>{</em>
+<a id='L42' name='L42' /><em class='sharp'>#endif</em>
+<a id='L43' name='L43' />
+<a id='L44' name='L44' /><strong class='reserved'>typedef</strong> <strong class='reserved'>int</strong> (*<a href='../Y/445.html' title='Multiple used in 5 places.'>ListAllProcessThreadsCallBack</a>)(<strong class='reserved'>void</strong> *<a href='../Y/4114.html' title='Multiple used in 11 places.'>parameter</a>,
+<a id='L45' name='L45' />                                             <strong class='reserved'>int</strong> <a href='../Y/3884.html' title='Multiple used in 39 places.'>num_threads</a>,
+<a id='L46' name='L46' />                                             <a href='../S/686.html#L392' title='Defined at 392 in third_party/google-perftools-1.8.3/src/windows/port.h.'>pid_t</a> *<a href='../Y/5365.html' title='Multiple used in 14 places.'>thread_pids</a>,
+<a id='L47' name='L47' />                                             <a href='../Y/5593.html' title='Multiple used in 27 places.'>va_list</a> <a href='../Y/1470.html' title='Multiple used in 194 places.'>ap</a>);
+<a id='L48' name='L48' />
+<a id='L49' name='L49' /><em class='comment'>/* This function gets the list of all linux threads of the current process</em>
+<a id='L50' name='L50' /><em class='comment'> * passes them to the 'callback' along with the 'parameter' pointer; at the</em>
+<a id='L51' name='L51' /><em class='comment'> * call back call time all the threads are paused via</em>
+<a id='L52' name='L52' /><em class='comment'> * PTRACE_ATTACH.</em>
+<a id='L53' name='L53' /><em class='comment'> * The callback is executed from a separate thread which shares only the</em>
+<a id='L54' name='L54' /><em class='comment'> * address space, the filesystem, and the filehandles with the caller. Most</em>
+<a id='L55' name='L55' /><em class='comment'> * notably, it does not share the same pid and ppid; and if it terminates,</em>
+<a id='L56' name='L56' /><em class='comment'> * the rest of the application is still there. 'callback' is supposed to do</em>
+<a id='L57' name='L57' /><em class='comment'> * or arrange for ResumeAllProcessThreads. This happens automatically, if</em>
+<a id='L58' name='L58' /><em class='comment'> * the thread raises a synchronous signal (e.g. SIGSEGV); asynchronous</em>
+<a id='L59' name='L59' /><em class='comment'> * signals are blocked. If the 'callback' decides to unblock them, it must</em>
+<a id='L60' name='L60' /><em class='comment'> * ensure that they cannot terminate the application, or that</em>
+<a id='L61' name='L61' /><em class='comment'> * ResumeAllProcessThreads will get called.</em>
+<a id='L62' name='L62' /><em class='comment'> * It is an error for the 'callback' to make any library calls that could</em>
+<a id='L63' name='L63' /><em class='comment'> * acquire locks. Most notably, this means that most system calls have to</em>
+<a id='L64' name='L64' /><em class='comment'> * avoid going through libc. Also, this means that it is not legal to call</em>
+<a id='L65' name='L65' /><em class='comment'> * exit() or abort().</em>
+<a id='L66' name='L66' /><em class='comment'> * We return -1 on error and the return value of 'callback' on success.</em>
+<a id='L67' name='L67' /><em class='comment'> */</em>
+<a id='L68' name='L68' /><strong class='reserved'>int</strong> <a href='../D/1644.html' title='Multiple defined in 2 places.'>ListAllProcessThreads</a>(<strong class='reserved'>void</strong> *<a href='../Y/4114.html' title='Multiple used in 11 places.'>parameter</a>,
+<a id='L69' name='L69' />                          <a href='../Y/445.html' title='Multiple used in 5 places.'>ListAllProcessThreadsCallBack</a> <a href='../Y/1728.html' title='Multiple used in 29 places.'>callback</a>, ...);
+<a id='L70' name='L70' />
+<a id='L71' name='L71' /><em class='comment'>/* This function resumes the list of all linux threads that</em>
+<a id='L72' name='L72' /><em class='comment'> * ListAllProcessThreads pauses before giving to its callback.</em>
+<a id='L73' name='L73' /><em class='comment'> * The function returns non-zero if at least one thread was</em>
+<a id='L74' name='L74' /><em class='comment'> * suspended and has now been resumed.</em>
+<a id='L75' name='L75' /><em class='comment'> */</em>
+<a id='L76' name='L76' /><strong class='reserved'>int</strong> <a href='../D/2422.html' title='Multiple defined in 2 places.'>ResumeAllProcessThreads</a>(<strong class='reserved'>int</strong> <a href='../Y/3884.html' title='Multiple used in 39 places.'>num_threads</a>, <a href='../S/686.html#L392' title='Defined at 392 in third_party/google-perftools-1.8.3/src/windows/port.h.'>pid_t</a> *<a href='../Y/5365.html' title='Multiple used in 14 places.'>thread_pids</a>);
+<a id='L77' name='L77' />
+<a id='L78' name='L78' /><em class='sharp'>#ifdef</em> <a href='../Y/1125.html' title='Multiple used in 121 places.'>__cplusplus</a>
+<a id='L79' name='L79' /><em class='brace'>}</em>
+<a id='L80' name='L80' /><em class='sharp'>#endif</em>
+<a id='L81' name='L81' />
+<a id='L82' name='L82' /><em class='sharp'>#endif</em>  <em class='comment'>/* _THREAD_LISTER_H */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^][v]<a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

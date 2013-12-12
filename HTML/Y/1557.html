@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>attr2</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/311.html#L209'>attr2</a>             209 src/atom.h                                         LmnAtom atom2, LmnLinkAttr attr2);</span>
+<span class='curline'><a href='../S/311.html#L382'>attr2</a>             382 src/atom.h                                         LmnAtom atom2, LmnLinkAttr attr2) {</span>
+<span class='curline'><a href='../S/311.html#L383'>attr2</a>             383 src/atom.h       if (attr1 != attr2) {</span>
+<span class='curline'><a href='../S/311.html#L395'>attr2</a>             395 src/atom.h           return lmn_hyperlink_eq(LMN_SATOM(atom1), attr1, LMN_SATOM(atom2), attr2);</span>
+<span class='curline'><a href='../S/334.html#L481'>attr2</a>             481 src/hyperlink.c BOOL lmn_hyperlink_eq(LmnSAtom atom1, LmnLinkAttr attr1, LmnSAtom atom2, LmnLinkAttr attr2)</span>
+<span class='curline'><a href='../S/334.html#L484'>attr2</a>             484 src/hyperlink.c          LMN_ATTR_IS_HL(attr2) &amp;&amp;</span>
+<span class='curline'><a href='../S/335.html#L102'>attr2</a>             102 src/hyperlink.h BOOL lmn_hyperlink_eq(LmnSAtom atom1, LmnLinkAttr attr1, LmnSAtom atom2, LmnLinkAttr attr2);</span>
+<span class='curline'><a href='../S/357.html#L349'>attr2</a>             349 src/membrane.c   LmnLinkAttr attr1, attr2;</span>
+<span class='curline'><a href='../S/357.html#L354'>attr2</a>             354 src/membrane.c   attr2 = LMN_SATOM_GET_ATTR(atom2, pos2);</span>
+<span class='curline'><a href='../S/357.html#L356'>attr2</a>             356 src/membrane.c   LMN_SATOM_SET_LINK(ap2, attr2, ap1);</span>
+<span class='curline'><a href='../S/357.html#L357'>attr2</a>             357 src/membrane.c   LMN_SATOM_SET_ATTR(ap2, attr2, attr1);</span>
+<span class='curline'><a href='../S/357.html#L359'>attr2</a>             359 src/membrane.c   LMN_SATOM_SET_ATTR(ap1, attr1, attr2);</span>
+<span class='curline'><a href='../S/357.html#L368'>attr2</a>             368 src/membrane.c   LmnLinkAttr attr1, attr2;</span>
+<span class='curline'><a href='../S/357.html#L373'>attr2</a>             373 src/membrane.c   attr2 = LMN_SATOM_GET_ATTR(atom2, pos2);</span>
+<span class='curline'><a href='../S/357.html#L375'>attr2</a>             375 src/membrane.c   if (LMN_ATTR_IS_DATA(attr1) &amp;&amp; LMN_ATTR_IS_DATA(attr2)) {</span>
+<span class='curline'><a href='../S/357.html#L376'>attr2</a>             376 src/membrane.c     lmn_mem_link_data_atoms(mem, ap1, attr1, ap2, attr2);</span>
+<span class='curline'><a href='../S/357.html#L379'>attr2</a>             379 src/membrane.c     LMN_SATOM_SET_LINK(ap2, attr2, ap1);</span>
+<span class='curline'><a href='../S/357.html#L380'>attr2</a>             380 src/membrane.c     LMN_SATOM_SET_ATTR(ap2, attr2, attr1);</span>
+<span class='curline'><a href='../S/357.html#L382'>attr2</a>             382 src/membrane.c   else if (LMN_ATTR_IS_DATA(attr2)) {</span>
+<span class='curline'><a href='../S/357.html#L384'>attr2</a>             384 src/membrane.c     LMN_SATOM_SET_ATTR(ap1, attr1, attr2);</span>
+<span class='curline'><a href='../S/357.html#L387'>attr2</a>             387 src/membrane.c     LMN_SATOM_SET_LINK(ap2, attr2, ap1);</span>
+<span class='curline'><a href='../S/357.html#L388'>attr2</a>             388 src/membrane.c     LMN_SATOM_SET_ATTR(ap2, attr2, attr1);</span>
+<span class='curline'><a href='../S/357.html#L390'>attr2</a>             390 src/membrane.c     LMN_SATOM_SET_ATTR(ap1, attr1, attr2);</span>
+<span class='curline'><a href='../S/357.html#L2062'>attr2</a>            2062 src/membrane.c   LmnLinkAttr attr1, attr2;</span>
+<span class='curline'><a href='../S/357.html#L2078'>attr2</a>            2078 src/membrane.c   attr2 = LMN_SATOM_GET_ATTR(pair2, 1);</span>
+<span class='curline'><a href='../S/357.html#L2132'>attr2</a>            2132 src/membrane.c   if ((LMN_ATTR_IS_DATA(attr1) || LMN_ATTR_IS_DATA(attr2))) {</span>
+<span class='curline'><a href='../S/357.html#L2134'>attr2</a>            2134 src/membrane.c     if (!lmn_data_atom_eq(atom1, attr1, atom2, attr2)) {</span>
+<span class='curline'><a href='../S/357.html#L2148'>attr2</a>            2148 src/membrane.c     if (f_new != LMN_SATOM_GET_FUNCTOR(atom2) || attr1 != attr2) {</span>
+<span class='curline'><a href='../S/357.html#L2181'>attr2</a>            2181 src/membrane.c     LmnLinkAttr attr1, attr2;</span>
+<span class='curline'><a href='../S/357.html#L2188'>attr2</a>            2188 src/membrane.c     attr2 = LMN_SATOM_GET_ATTR(cur2, to_i);</span>
+<span class='curline'><a href='../S/357.html#L2193'>attr2</a>            2193 src/membrane.c         LMN_ATTR_IS_DATA(attr2)) { /* data atomの場合 */</span>
+<span class='curline'><a href='../S/357.html#L2194'>attr2</a>            2194 src/membrane.c       if (!lmn_data_atom_eq(atom1, attr1, atom2, attr2)) {</span>
+<span class='curline'><a href='../S/357.html#L2204'>attr2</a>            2204 src/membrane.c           attr1 != attr2)</span>
+<span class='curline'><a href='../S/357.html#L2641'>attr2</a>            2641 src/membrane.c     LmnLinkAttr attr1, attr2;</span>
+<span class='curline'><a href='../S/357.html#L2644'>attr2</a>            2644 src/membrane.c     attr2 = LMN_SATOM_GET_ATTR(a2, i);</span>
+<span class='curline'><a href='../S/357.html#L2646'>attr2</a>            2646 src/membrane.c     if (LMN_ATTR_IS_DATA(attr1) &amp;&amp; LMN_ATTR_IS_DATA(attr2)) {</span>
+<span class='curline'><a href='../S/357.html#L2654'>attr2</a>            2654 src/membrane.c     else if (!LMN_ATTR_IS_DATA(attr1) &amp;&amp; !LMN_ATTR_IS_DATA(attr2)) {</span>
+<span class='curline'><a href='../S/357.html#L2663'>attr2</a>            2663 src/membrane.c       if (attr1 != attr2) {</span>
+<span class='curline'><a href='../S/358.html#L540'>attr2</a>             540 src/membrane.h                              LmnAtom d2, LmnLinkAttr attr2);</span>
+<span class='curline'><a href='../S/373.html#L92'>attr2</a>              92 src/so.h             LmnLinkAttr attr2 = LINKED_ATTR(link2);                           \</span>
+<span class='curline'><a href='../S/373.html#L95'>attr2</a>              95 src/so.h               if (LMN_ATTR_IS_DATA_WITHOUT_EX(attr2)) { /* 1, 2 are data */   \</span>
+<span class='curline'><a href='../S/373.html#L97'>attr2</a>              97 src/so.h                                         wt(rc, link1), at(rc, link1), LINKED_ATOM(link2), attr2);\</span>
+<span class='curline'><a href='../S/373.html#L100'>attr2</a>             100 src/so.h                 LMN_SATOM_SET_LINK(LINKED_ATOM(link2), LMN_ATTR_GET_VALUE(attr2), LINKED_ATOM(link1)); \</span>
+<span class='curline'><a href='../S/373.html#L101'>attr2</a>             101 src/so.h                 LMN_SATOM_SET_ATTR(LINKED_ATOM(link2), LMN_ATTR_GET_VALUE(attr2), attr1); \</span>
+<span class='curline'><a href='../S/373.html#L104'>attr2</a>             104 src/so.h             else if (LMN_ATTR_IS_DATA_WITHOUT_EX(attr2)) { /* 2 is data */    \</span>
+<span class='curline'><a href='../S/373.html#L106'>attr2</a>             106 src/so.h               LMN_SATOM_SET_ATTR(LINKED_ATOM(link1), LMN_ATTR_GET_VALUE(attr1), attr2); \</span>
+<span class='curline'><a href='../S/373.html#L111'>attr2</a>             111 src/so.h                 if (LMN_ATTR_IS_EX(attr2)) { /* 1, 2 are ex */                \</span>
+<span class='curline'><a href='../S/373.html#L114'>attr2</a>             114 src/so.h                                       LMN_SATOM(LINKED_ATOM(link2)), attr2, 0);\</span>
+<span class='curline'><a href='../S/373.html#L118'>attr2</a>             118 src/so.h                                       LMN_SATOM(LINKED_ATOM(link2)), attr2, attr2);\</span>
+<span class='curline'><a href='../S/373.html#L120'>attr2</a>             120 src/so.h               } else if (LMN_ATTR_IS_EX(attr2)) { /* 2 is ex */                     \</span>
+<span class='curline'><a href='../S/373.html#L123'>attr2</a>             123 src/so.h                                     LMN_SATOM(LINKED_ATOM(link2)), attr2, 0);       \</span>
+<span class='curline'><a href='../S/373.html#L126'>attr2</a>             126 src/so.h                 LMN_SATOM_SET_LINK(LINKED_ATOM(link2), LMN_ATTR_GET_VALUE(attr2), LINKED_ATOM(link1)); \</span>
+<span class='curline'><a href='../S/373.html#L127'>attr2</a>             127 src/so.h                 LMN_SATOM_SET_ATTR(LINKED_ATOM(link1), LMN_ATTR_GET_VALUE(attr1), attr2);              \</span>
+<span class='curline'><a href='../S/373.html#L128'>attr2</a>             128 src/so.h                 LMN_SATOM_SET_ATTR(LINKED_ATOM(link2), LMN_ATTR_GET_VALUE(attr2), attr1);              \</span>
+<span class='curline'><a href='../S/384.html#L1366'>attr2</a>            1366 src/task.c           LmnLinkAttr attr1, attr2;</span>
+<span class='curline'><a href='../S/384.html#L1373'>attr2</a>            1373 src/task.c           attr2 = LINKED_ATTR(link2);</span>
+<span class='curline'><a href='../S/384.html#L1376'>attr2</a>            1376 src/task.c             if (LMN_ATTR_IS_DATA_WITHOUT_EX(attr2)) { /* 1, 2 are data */</span>
+<span class='curline'><a href='../S/384.html#L1378'>attr2</a>            1378 src/task.c                                       wt(rc, link1), at(rc, link1), LINKED_ATOM(link2), attr2);</span>
+<span class='curline'><a href='../S/384.html#L1381'>attr2</a>            1381 src/task.c               LMN_SATOM_SET_LINK(LINKED_ATOM(link2), LMN_ATTR_GET_VALUE(attr2), LINKED_ATOM(link1));</span>
+<span class='curline'><a href='../S/384.html#L1382'>attr2</a>            1382 src/task.c               LMN_SATOM_SET_ATTR(LINKED_ATOM(link2), LMN_ATTR_GET_VALUE(attr2), attr1);</span>
+<span class='curline'><a href='../S/384.html#L1385'>attr2</a>            1385 src/task.c           else if (LMN_ATTR_IS_DATA_WITHOUT_EX(attr2)) { /* 2 is data */</span>
+<span class='curline'><a href='../S/384.html#L1387'>attr2</a>            1387 src/task.c             LMN_SATOM_SET_ATTR(LINKED_ATOM(link1), LMN_ATTR_GET_VALUE(attr1), attr2);</span>
+<span class='curline'><a href='../S/384.html#L1392'>attr2</a>            1392 src/task.c               if (LMN_ATTR_IS_EX(attr2)) { /* 1, 2 are ex */</span>
+<span class='curline'><a href='../S/384.html#L1395'>attr2</a>            1395 src/task.c                                     LMN_SATOM(LINKED_ATOM(link2)), attr2, 0);</span>
+<span class='curline'><a href='../S/384.html#L1399'>attr2</a>            1399 src/task.c                                     LMN_SATOM(LINKED_ATOM(link2)), attr2, attr2);</span>
+<span class='curline'><a href='../S/384.html#L1401'>attr2</a>            1401 src/task.c             } else if (LMN_ATTR_IS_EX(attr2)) { /* 2 is ex */</span>
+<span class='curline'><a href='../S/384.html#L1404'>attr2</a>            1404 src/task.c                                   LMN_SATOM(LINKED_ATOM(link2)), attr2, 0);</span>
+<span class='curline'><a href='../S/384.html#L1407'>attr2</a>            1407 src/task.c               LMN_SATOM_SET_LINK(LINKED_ATOM(link2), LMN_ATTR_GET_VALUE(attr2), LINKED_ATOM(link1));</span>
+<span class='curline'><a href='../S/384.html#L1408'>attr2</a>            1408 src/task.c               LMN_SATOM_SET_ATTR(LINKED_ATOM(link1), LMN_ATTR_GET_VALUE(attr1), attr2);</span>
+<span class='curline'><a href='../S/384.html#L1409'>attr2</a>            1409 src/task.c               LMN_SATOM_SET_ATTR(LINKED_ATOM(link2), LMN_ATTR_GET_VALUE(attr2), attr1);</span>
+<span class='curline'><a href='../S/384.html#L2018'>attr2</a>            2018 src/task.c           LmnLinkAttr attr1, attr2;</span>
+<span class='curline'><a href='../S/384.html#L2026'>attr2</a>            2026 src/task.c           attr2 = LMN_SATOM_GET_ATTR(atom, 1);</span>
+<span class='curline'><a href='../S/384.html#L2029'>attr2</a>            2029 src/task.c           if (LMN_ATTR_IS_HL(attr1) &amp;&amp; LMN_ATTR_IS_HL(attr2)) {</span>
+<span class='curline'><a href='../S/384.html#L2041'>attr2</a>            2041 src/task.c             lmn_mem_delete_atom(m, (LmnWord)atom2, (LmnWord)attr2);</span>
+<span class='curline'><a href='../S/417.html#L383'>attr2</a>             383 src/verifier/delta_membrane.c                                LmnAtom d2, LmnLinkAttr attr2)</span>
+<span class='curline'><a href='../S/417.html#L385'>attr2</a>             385 src/verifier/delta_membrane.c   dmem_link_data_atoms(dmem_root_get_mem_delta(d, m), m, d1, attr1, d2, attr2);</span>
+<span class='curline'><a href='../S/417.html#L394'>attr2</a>             394 src/verifier/delta_membrane.c   LmnLinkAttr attr1, attr2;</span>
+<span class='curline'><a href='../S/417.html#L400'>attr2</a>             400 src/verifier/delta_membrane.c     attr2 = LMN_SATOM_GET_ATTR(atom2, pos2);</span>
+<span class='curline'><a href='../S/417.html#L401'>attr2</a>             401 src/verifier/delta_membrane.c     if (LMN_ATTR_IS_DATA(attr1) &amp;&amp; LMN_ATTR_IS_DATA(attr2)) {</span>
+<span class='curline'><a href='../S/417.html#L402'>attr2</a>             402 src/verifier/delta_membrane.c       lmn_mem_link_data_atoms(m, ap1, attr1, ap2, attr2);</span>
+<span class='curline'><a href='../S/417.html#L411'>attr2</a>             411 src/verifier/delta_membrane.c                            ap2, attr2);</span>
+<span class='curline'><a href='../S/417.html#L414'>attr2</a>             414 src/verifier/delta_membrane.c           LMN_SATOM_SET_ATTR(ap1, LMN_ATTR_GET_VALUE(attr1), attr2);</span>
+<span class='curline'><a href='../S/417.html#L417'>attr2</a>             417 src/verifier/delta_membrane.c       if (!LMN_ATTR_IS_DATA(attr2)) {</span>
+<span class='curline'><a href='../S/417.html#L423'>attr2</a>             423 src/verifier/delta_membrane.c                            LMN_SATOM(ap2), LMN_ATTR_GET_VALUE(attr2),</span>
+<span class='curline'><a href='../S/417.html#L426'>attr2</a>             426 src/verifier/delta_membrane.c           LMN_SATOM_SET_LINK(ap2, LMN_ATTR_GET_VALUE(attr2), ap1);</span>
+<span class='curline'><a href='../S/417.html#L427'>attr2</a>             427 src/verifier/delta_membrane.c           LMN_SATOM_SET_ATTR(ap2, LMN_ATTR_GET_VALUE(attr2), attr1);</span>
+<span class='curline'><a href='../S/417.html#L445'>attr2</a>             445 src/verifier/delta_membrane.c                            LmnAtom atom2, LmnLinkAttr attr2)</span>
+<span class='curline'><a href='../S/417.html#L447'>attr2</a>             447 src/verifier/delta_membrane.c   if (LMN_ATTR_IS_DATA(attr2)) { /* 2 is data */</span>
+<span class='curline'><a href='../S/417.html#L450'>attr2</a>             450 src/verifier/delta_membrane.c       LMN_SATOM_SET_ATTR(atom1, LMN_ATTR_GET_VALUE(attr1), attr2);</span>
+<span class='curline'><a href='../S/417.html#L454'>attr2</a>             454 src/verifier/delta_membrane.c                        atom2, attr2);</span>
+<span class='curline'><a href='../S/417.html#L459'>attr2</a>             459 src/verifier/delta_membrane.c     LMN_SATOM_SET_ATTR(atom1, LMN_ATTR_GET_VALUE(attr1), attr2);</span>
+<span class='curline'><a href='../S/417.html#L461'>attr2</a>             461 src/verifier/delta_membrane.c       LMN_SATOM_SET_LINK(atom2, LMN_ATTR_GET_VALUE(attr2), atom1);</span>
+<span class='curline'><a href='../S/417.html#L462'>attr2</a>             462 src/verifier/delta_membrane.c       LMN_SATOM_SET_ATTR(atom2, LMN_ATTR_GET_VALUE(attr2), attr1);</span>
+<span class='curline'><a href='../S/417.html#L465'>attr2</a>             465 src/verifier/delta_membrane.c                        LMN_SATOM(atom2), LMN_ATTR_GET_VALUE(attr2),</span>
+<span class='curline'><a href='../S/417.html#L472'>attr2</a>             472 src/verifier/delta_membrane.c                      atom2, attr2);</span>
+<span class='curline'><a href='../S/417.html#L473'>attr2</a>             473 src/verifier/delta_membrane.c     LMN_SATOM_SET_LINK(atom2, LMN_ATTR_GET_VALUE(attr2), atom1);</span>
+<span class='curline'><a href='../S/417.html#L474'>attr2</a>             474 src/verifier/delta_membrane.c     LMN_SATOM_SET_ATTR(atom2, LMN_ATTR_GET_VALUE(attr2), attr1);</span>
+<span class='curline'><a href='../S/417.html#L484'>attr2</a>             484 src/verifier/delta_membrane.c     LMN_SATOM_SET_ATTR(copy1, LMN_ATTR_GET_VALUE(attr1), attr2);</span>
+<span class='curline'><a href='../S/417.html#L485'>attr2</a>             485 src/verifier/delta_membrane.c     LMN_SATOM_SET_LINK(copy2, LMN_ATTR_GET_VALUE(attr2), copy1);</span>
+<span class='curline'><a href='../S/417.html#L486'>attr2</a>             486 src/verifier/delta_membrane.c     LMN_SATOM_SET_ATTR(copy2, LMN_ATTR_GET_VALUE(attr2), attr1);</span>
+<span class='curline'><a href='../S/417.html#L498'>attr2</a>             498 src/verifier/delta_membrane.c                       LmnLinkAttr attr2,</span>
+<span class='curline'><a href='../S/417.html#L516'>attr2</a>             516 src/verifier/delta_membrane.c                                   atom2, attr2, pos2);</span>
+<span class='curline'><a href='../S/417.html#L2102'>attr2</a>            2102 src/verifier/delta_membrane.c   LmnLinkAttr attr1, attr2;</span>
+<span class='curline'><a href='../S/417.html#L2108'>attr2</a>            2108 src/verifier/delta_membrane.c   attr2 = LMN_SATOM_GET_ATTR(atom2, pos2);</span>
+<span class='curline'><a href='../S/417.html#L2110'>attr2</a>            2110 src/verifier/delta_membrane.c   if (LMN_ATTR_IS_DATA(attr1) || LMN_ATTR_IS_DATA(attr2)) {</span>
+<span class='curline'><a href='../S/417.html#L2111'>attr2</a>            2111 src/verifier/delta_membrane.c     if (LMN_ATTR_IS_DATA(attr1) &amp;&amp; LMN_ATTR_IS_DATA(attr2)) {</span>
+<span class='curline'><a href='../S/417.html#L2112'>attr2</a>            2112 src/verifier/delta_membrane.c       dmem_link_data_atoms(dmem_root_get_mem_delta(d-&gt;root_d, m), m, ap1, attr1, ap2, attr2);</span>
+<span class='curline'><a href='../S/417.html#L2120'>attr2</a>            2120 src/verifier/delta_membrane.c                        ap2, attr2);</span>
+<span class='curline'><a href='../S/417.html#L2122'>attr2</a>            2122 src/verifier/delta_membrane.c     else if (!LMN_ATTR_IS_DATA(attr2)) {</span>
+<span class='curline'><a href='../S/417.html#L2125'>attr2</a>            2125 src/verifier/delta_membrane.c                        LMN_ATTR_GET_VALUE(attr2),</span>
+<span class='curline'><a href='../S/417.html#L2136'>attr2</a>            2136 src/verifier/delta_membrane.c     LMN_SATOM_SET_LINK(ap2, LMN_ATTR_GET_VALUE(attr2), ap1);</span>
+<span class='curline'><a href='../S/417.html#L2137'>attr2</a>            2137 src/verifier/delta_membrane.c     LMN_SATOM_SET_ATTR(ap1, LMN_ATTR_GET_VALUE(attr1), attr2);</span>
+<span class='curline'><a href='../S/417.html#L2138'>attr2</a>            2138 src/verifier/delta_membrane.c     LMN_SATOM_SET_ATTR(ap2, LMN_ATTR_GET_VALUE(attr2), attr1);</span>
+<span class='curline'><a href='../S/418.html#L136'>attr2</a>             136 src/verifier/delta_membrane.h                                LmnAtom d2,LmnLinkAttr attr2);</span>
+<span class='curline'><a href='../S/418.html#L142'>attr2</a>             142 src/verifier/delta_membrane.h                            LmnAtom atom2, LmnLinkAttr attr2);</span>
+<span class='curline'><a href='../S/418.html#L145'>attr2</a>             145 src/verifier/delta_membrane.h                       LmnAtom atom2, LmnLinkAttr attr2, int pos2);</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>Array</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/637.html#L1021'>Array</a>            1021 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   Array() {</span>
+<span class='curline'><a href='../S/637.html#L1025'>Array</a>            1025 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   ~Array() { delete [] ptr; }</span>
+<span class='curline'><a href='../S/637.html#L1026'>Array</a>            1026 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   Array(const Array&amp; x) {</span>
+<span class='curline'><a href='../S/637.html#L1033'>Array</a>            1033 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   void operator=(const Array&amp; x) {</span>
+<span class='curline'><a href='../S/637.html#L1041'>Array</a>            1041 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   void append(const Array&amp; x) {</span>
+<span class='curline'><a href='../S/637.html#L1062'>Array</a>            1062 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc REGISTER_OBJ_MAKER(string, Array&lt;char&gt;* p = new(initialized) Array&lt;char&gt;();)</span>
+<span class='curline'><a href='../S/637.html#L1064'>Array</a>            1064 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc                    Array&lt;char&gt;* p = new(initialized) Array&lt;char&gt;[5];)</span>
+<span class='curline'><a href='../S/637.html#L1067'>Array</a>            1067 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   Array&lt;char&gt;* p = new Array&lt;char&gt;();</span>
+<span class='curline'><a href='../S/637.html#L1068'>Array</a>            1068 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   p-&gt;append(Array&lt;char&gt;());</span>
+<span class='curline'><a href='../S/637.html#L1105'>Array</a>            1105 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc static const TClass&lt;Array&lt;char&gt; &gt; live_leak_templ_mutable(1);</span>
+<span class='curline'><a href='../S/637.html#L1245'>Array</a>            1245 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   live_leak_templ_mutable.ptr = new(initialized) Array&lt;char&gt;();</span>
+<span class='curline'><a href='../S/637.html#L1246'>Array</a>            1246 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   live_leak_templ_mutable.val = Array&lt;char&gt;();</span>
+</pre>
+</body>
+</html>

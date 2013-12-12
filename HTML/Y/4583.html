@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>roundup</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/530.html#L194'>roundup</a>           194 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   size_t roundup;         // lowest power of 2 &gt;= max(16,sizeof (AllocList))</span>
+<span class='curline'><a href='../S/530.html#L267'>roundup</a>           267 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     arena-&gt;roundup = 16;</span>
+<span class='curline'><a href='../S/530.html#L268'>roundup</a>           268 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     while (arena-&gt;roundup &lt; sizeof (arena-&gt;freelist.header)) {</span>
+<span class='curline'><a href='../S/530.html#L269'>roundup</a>           269 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       arena-&gt;roundup += arena-&gt;roundup;</span>
+<span class='curline'><a href='../S/530.html#L273'>roundup</a>           273 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     arena-&gt;min_size = 2 * arena-&gt;roundup;</span>
+<span class='curline'><a href='../S/530.html#L441'>roundup</a>           441 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     size_t req_rnd = RoundUp(request + sizeof (s-&gt;header), arena-&gt;roundup);</span>
+</pre>
+</body>
+</html>

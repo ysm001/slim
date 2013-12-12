@@ -1,0 +1,400 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>third_party/google-perftools-1.8.3/src/windows/preamble_patcher.h</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/738.html'>third_party</a>/<a href='../files/739.html'>google-perftools-1.8.3</a>/<a href='../files/740.html'>src</a>/<a href='../files/745.html'>windows</a>/preamble_patcher.h</h2>
+<em class='comment'>/* [&lt;][&gt;][^][v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/300.html' title='Multiple included from 3 places.'>INCLUDED FROM</a></h2>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>/* Copyright (c) 2007, Google Inc.</em>
+<a id='L2' name='L2' /><em class='comment'> * All rights reserved.</em>
+<a id='L3' name='L3' /><em class='comment'> * </em>
+<a id='L4' name='L4' /><em class='comment'> * Redistribution and use in source and binary forms, with or without</em>
+<a id='L5' name='L5' /><em class='comment'> * modification, are permitted provided that the following conditions are</em>
+<a id='L6' name='L6' /><em class='comment'> * met:</em>
+<a id='L7' name='L7' /><em class='comment'> * </em>
+<a id='L8' name='L8' /><em class='comment'> *     * Redistributions of source code must retain the above copyright</em>
+<a id='L9' name='L9' /><em class='comment'> * notice, this list of conditions and the following disclaimer.</em>
+<a id='L10' name='L10' /><em class='comment'> *     * Redistributions in binary form must reproduce the above</em>
+<a id='L11' name='L11' /><em class='comment'> * copyright notice, this list of conditions and the following disclaimer</em>
+<a id='L12' name='L12' /><em class='comment'> * in the documentation and/or other materials provided with the</em>
+<a id='L13' name='L13' /><em class='comment'> * distribution.</em>
+<a id='L14' name='L14' /><em class='comment'> *     * Neither the name of Google Inc. nor the names of its</em>
+<a id='L15' name='L15' /><em class='comment'> * contributors may be used to endorse or promote products derived from</em>
+<a id='L16' name='L16' /><em class='comment'> * this software without specific prior written permission.</em>
+<a id='L17' name='L17' /><em class='comment'> * </em>
+<a id='L18' name='L18' /><em class='comment'> * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L19' name='L19' /><em class='comment'> * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L20' name='L20' /><em class='comment'> * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L21' name='L21' /><em class='comment'> * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L22' name='L22' /><em class='comment'> * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L23' name='L23' /><em class='comment'> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L24' name='L24' /><em class='comment'> * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L25' name='L25' /><em class='comment'> * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L26' name='L26' /><em class='comment'> * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L27' name='L27' /><em class='comment'> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L28' name='L28' /><em class='comment'> * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L29' name='L29' /><em class='comment'> *</em>
+<a id='L30' name='L30' /><em class='comment'> * ---</em>
+<a id='L31' name='L31' /><em class='comment'> * Author: Joi Sigurdsson</em>
+<a id='L32' name='L32' /><em class='comment'> *</em>
+<a id='L33' name='L33' /><em class='comment'> * Definition of PreamblePatcher</em>
+<a id='L34' name='L34' /><em class='comment'> */</em>
+<a id='L35' name='L35' />
+<a id='L36' name='L36' /><em class='sharp'>#ifndef</em> <a href='../S/688.html#L37' title='Defined at 37 in third_party/google-perftools-1.8.3/src/windows/preamble_patcher.h.'>GOOGLE_PERFTOOLS_PREAMBLE_PATCHER_H_</a>
+<a id='L37' name='L37' /><em class='sharp'>#define</em> <a href='../S/688.html#L36' title='Refered from 36 in third_party/google-perftools-1.8.3/src/windows/preamble_patcher.h.'>GOOGLE_PERFTOOLS_PREAMBLE_PATCHER_H_</a>
+<a id='L38' name='L38' />
+<a id='L39' name='L39' /><em class='sharp'>#include</em> &lt;windows.h&gt;
+<a id='L40' name='L40' />
+<a id='L41' name='L41' /><em class='comment'>// compatibility shim</em>
+<a id='L42' name='L42' /><em class='sharp'>#include</em> "<a href='529.html'>base/logging.h</a>"
+<a id='L43' name='L43' /><em class='sharp'>#define</em> <a href='../R/2212.html' title='Multiple refered from 26 places.'>SIDESTEP_ASSERT</a>(<a href='../Y/1845.html' title='Multiple used in 21 places.'>cond</a>)  <a href='../D/2265.html' title='Multiple defined in 2 places.'>RAW_DCHECK</a>(<a href='../Y/1845.html' title='Multiple used in 21 places.'>cond</a>, #<a href='../Y/1845.html' title='Multiple used in 21 places.'>cond</a>)
+<a id='L44' name='L44' /><em class='sharp'>#define</em> <a href='../R/2217.html' title='Multiple refered from 2 places.'>SIDESTEP_LOG</a>(<a href='../Y/3605.html' title='Multiple used in 73 places.'>msg</a>)      <a href='../S/529.html#L228' title='Defined at 228 in third_party/google-perftools-1.8.3/src/base/logging.h.'>RAW_VLOG</a>(1, <a href='../Y/3605.html' title='Multiple used in 73 places.'>msg</a>)
+<a id='L45' name='L45' />
+<a id='L46' name='L46' /><em class='comment'>// Maximum size of the preamble stub. We overwrite at least the first 5</em>
+<a id='L47' name='L47' /><em class='comment'>// bytes of the function. Considering the worst case scenario, we need 4</em>
+<a id='L48' name='L48' /><em class='comment'>// bytes + the max instruction size + 5 more bytes for our jump back to</em>
+<a id='L49' name='L49' /><em class='comment'>// the original code. With that in mind, 32 is a good number :)</em>
+<a id='L50' name='L50' /><em class='sharp'>#define</em> <a href='../R/1547.html' title='Multiple refered from 10 places.'>MAX_PREAMBLE_STUB_SIZE</a>    (32)
+<a id='L51' name='L51' />
+<a id='L52' name='L52' /><a href='../Y/3671.html' title='Multiple used in 66 places.'>namespace</a> <a href='../D/5094.html' title='Multiple defined in 5 places.'>sidestep</a> <em class='brace'>{</em>
+<a id='L53' name='L53' />
+<a id='L54' name='L54' /><em class='comment'>// Possible results of patching/unpatching</em>
+<a id='L55' name='L55' /><strong class='reserved'>enum</strong> <a href='../R/2307.html' title='Multiple refered from 12 places.'>SideStepError</a> <em class='brace'>{</em>
+<a id='L56' name='L56' />  <a href='../R/2220.html' title='Multiple refered from 10 places.'>SIDESTEP_SUCCESS</a> = 0,
+<a id='L57' name='L57' />  <a href='../R/2215.html' title='Multiple refered from 5 places.'>SIDESTEP_INVALID_PARAMETER</a>,
+<a id='L58' name='L58' />  <a href='../R/2214.html' title='Multiple refered from 2 places.'>SIDESTEP_INSUFFICIENT_BUFFER</a>,
+<a id='L59' name='L59' />  <a href='../S/689.html#L109' title='Refered from 109 in third_party/google-perftools-1.8.3/src/windows/preamble_patcher_with_stub.cc.'>SIDESTEP_JUMP_INSTRUCTION</a>,
+<a id='L60' name='L60' />  <a href='../S/689.html#L113' title='Refered from 113 in third_party/google-perftools-1.8.3/src/windows/preamble_patcher_with_stub.cc.'>SIDESTEP_FUNCTION_TOO_SMALL</a>,
+<a id='L61' name='L61' />  <a href='../R/2222.html' title='Multiple refered from 2 places.'>SIDESTEP_UNSUPPORTED_INSTRUCTION</a>,
+<a id='L62' name='L62' />  <a href='../S/688.html#L194' title='Refered from 194 in third_party/google-perftools-1.8.3/src/windows/preamble_patcher.h.'>SIDESTEP_NO_SUCH_MODULE</a>,
+<a id='L63' name='L63' />  <a href='../S/688.html#L200' title='Refered from 200 in third_party/google-perftools-1.8.3/src/windows/preamble_patcher.h.'>SIDESTEP_NO_SUCH_FUNCTION</a>,
+<a id='L64' name='L64' />  <a href='../R/2211.html' title='Multiple refered from 3 places.'>SIDESTEP_ACCESS_DENIED</a>,
+<a id='L65' name='L65' />  <a href='../S/687.html#L337' title='Refered from 337 in third_party/google-perftools-1.8.3/src/windows/preamble_patcher.cc.'>SIDESTEP_UNEXPECTED</a>,
+<a id='L66' name='L66' /><em class='brace'>}</em>;
+<a id='L67' name='L67' />
+<a id='L68' name='L68' /><em class='sharp'>#define</em> SIDESTEP_TO_HRESULT(<a href='../Y/2235.html' title='Multiple used in 25 places.'>error</a>)                      \
+<a id='L69' name='L69' />  MAKE_HRESULT(SEVERITY_ERROR, FACILITY_NULL, <a href='../Y/2235.html' title='Multiple used in 25 places.'>error</a>)
+<a id='L70' name='L70' />
+<a id='L71' name='L71' /><em class='comment'>// Implements a patching mechanism that overwrites the first few bytes of</em>
+<a id='L72' name='L72' /><em class='comment'>// a function preamble with a jump to our hook function, which is then</em>
+<a id='L73' name='L73' /><em class='comment'>// able to call the original function via a specially-made preamble-stub</em>
+<a id='L74' name='L74' /><em class='comment'>// that imitates the action of the original preamble.</em>
+<a id='L75' name='L75' /><em class='comment'>//</em>
+<a id='L76' name='L76' /><em class='comment'>// NOTE:  This patching mechanism should currently only be used for</em>
+<a id='L77' name='L77' /><em class='comment'>// non-production code, e.g. unit tests, because it is not threadsafe.</em>
+<a id='L78' name='L78' /><em class='comment'>// See the TODO in preamble_patcher_with_stub.cc for instructions on what</em>
+<a id='L79' name='L79' /><em class='comment'>// we need to do before using it in production code; it's fairly simple</em>
+<a id='L80' name='L80' /><em class='comment'>// but unnecessary for now since we only intend to use it in unit tests.</em>
+<a id='L81' name='L81' /><em class='comment'>//</em>
+<a id='L82' name='L82' /><em class='comment'>// To patch a function, use either of the typesafe Patch() methods.  You</em>
+<a id='L83' name='L83' /><em class='comment'>// can unpatch a function using Unpatch().</em>
+<a id='L84' name='L84' /><em class='comment'>//</em>
+<a id='L85' name='L85' /><em class='comment'>// Typical usage goes something like this:</em>
+<a id='L86' name='L86' /><em class='comment'>// @code</em>
+<a id='L87' name='L87' /><em class='comment'>// typedef int (*MyTypesafeFuncPtr)(int x);</em>
+<a id='L88' name='L88' /><em class='comment'>// MyTypesafeFuncPtr original_func_stub;</em>
+<a id='L89' name='L89' /><em class='comment'>// int MyTypesafeFunc(int x) { return x + 1; }</em>
+<a id='L90' name='L90' /><em class='comment'>// int HookMyTypesafeFunc(int x) { return 1 + original_func_stub(x); }</em>
+<a id='L91' name='L91' /><em class='comment'>// </em>
+<a id='L92' name='L92' /><em class='comment'>// void MyPatchInitializingFunction() {</em>
+<a id='L93' name='L93' /><em class='comment'>//   original_func_stub = PreamblePatcher::Patch(</em>
+<a id='L94' name='L94' /><em class='comment'>//              MyTypesafeFunc, HookMyTypesafeFunc);</em>
+<a id='L95' name='L95' /><em class='comment'>//   if (!original_func_stub) {</em>
+<a id='L96' name='L96' /><em class='comment'>//     // ... error handling ...</em>
+<a id='L97' name='L97' /><em class='comment'>//   }</em>
+<a id='L98' name='L98' /><em class='comment'>//</em>
+<a id='L99' name='L99' /><em class='comment'>//   // ... continue - you have patched the function successfully ...</em>
+<a id='L100' name='L100' /><em class='comment'>// }</em>
+<a id='L101' name='L101' /><em class='comment'>// @endcode</em>
+<a id='L102' name='L102' /><em class='comment'>//</em>
+<a id='L103' name='L103' /><em class='comment'>// Note that there are a number of ways that this method of patching can</em>
+<a id='L104' name='L104' /><em class='comment'>// fail.  The most common are:</em>
+<a id='L105' name='L105' /><em class='comment'>//    - If there is a jump (jxx) instruction in the first 5 bytes of</em>
+<a id='L106' name='L106' /><em class='comment'>//    the function being patched, we cannot patch it because in the</em>
+<a id='L107' name='L107' /><em class='comment'>//    current implementation we do not know how to rewrite relative</em>
+<a id='L108' name='L108' /><em class='comment'>//    jumps after relocating them to the preamble-stub.  Note that</em>
+<a id='L109' name='L109' /><em class='comment'>//    if you really really need to patch a function like this, it</em>
+<a id='L110' name='L110' /><em class='comment'>//    would be possible to add this functionality (but at some cost).</em>
+<a id='L111' name='L111' /><em class='comment'>//    - If there is a return (ret) instruction in the first 5 bytes</em>
+<a id='L112' name='L112' /><em class='comment'>//    we cannot patch the function because it may not be long enough</em>
+<a id='L113' name='L113' /><em class='comment'>//    for the jmp instruction we use to inject our patch.</em>
+<a id='L114' name='L114' /><em class='comment'>//    - If there is another thread currently executing within the bytes</em>
+<a id='L115' name='L115' /><em class='comment'>//    that are copied to the preamble stub, it will crash in an undefined</em>
+<a id='L116' name='L116' /><em class='comment'>//    way.</em>
+<a id='L117' name='L117' /><em class='comment'>//</em>
+<a id='L118' name='L118' /><em class='comment'>// If you get any other error than the above, you're either pointing the</em>
+<a id='L119' name='L119' /><em class='comment'>// patcher at an invalid instruction (e.g. into the middle of a multi-</em>
+<a id='L120' name='L120' /><em class='comment'>// byte instruction, or not at memory containing executable instructions)</em>
+<a id='L121' name='L121' /><em class='comment'>// or, there may be a bug in the disassembler we use to find</em>
+<a id='L122' name='L122' /><em class='comment'>// instruction boundaries.</em>
+<a id='L123' name='L123' /><em class='comment'>//</em>
+<a id='L124' name='L124' /><em class='comment'>// NOTE:  In optimized builds, when you have very trivial functions that</em>
+<a id='L125' name='L125' /><em class='comment'>// the compiler can reason do not have side effects, the compiler may</em>
+<a id='L126' name='L126' /><em class='comment'>// reuse the result of calling the function with a given parameter, which</em>
+<a id='L127' name='L127' /><em class='comment'>// may mean if you patch the function in between your patch will never get</em>
+<a id='L128' name='L128' /><em class='comment'>// invoked.  See preamble_patcher_test.cc for an example.</em>
+<a id='L129' name='L129' /><a href='../Y/1792.html' title='Multiple used in 90 places.'>class</a> <a href='../Y/649.html' title='Multiple used in 12 places.'>PreamblePatcher</a> <em class='brace'>{</em>
+<a id='L130' name='L130' /> <a href='../Y/4390.html' title='Multiple used in 61 places.'>public</a>:
+<a id='L131' name='L131' />
+<a id='L132' name='L132' />  <em class='comment'>// This is a typesafe version of RawPatch(), identical in all other</em>
+<a id='L133' name='L133' />  <em class='comment'>// ways than it takes a template parameter indicating the type of the</em>
+<a id='L134' name='L134' />  <em class='comment'>// function being patched.</em>
+<a id='L135' name='L135' />  <em class='comment'>//</em>
+<a id='L136' name='L136' />  <em class='comment'>// @param T The type of the function you are patching. Usually</em>
+<a id='L137' name='L137' />  <em class='comment'>// you will establish this type using a typedef, as in the following</em>
+<a id='L138' name='L138' />  <em class='comment'>// example:</em>
+<a id='L139' name='L139' />  <em class='comment'>// @code</em>
+<a id='L140' name='L140' />  <em class='comment'>// typedef BOOL (WINAPI *MessageBoxPtr)(HWND, LPCTSTR, LPCTSTR, UINT);</em>
+<a id='L141' name='L141' />  <em class='comment'>// MessageBoxPtr original = NULL;</em>
+<a id='L142' name='L142' />  <em class='comment'>// PreamblePatcher::Patch(MessageBox, Hook_MessageBox, &amp;original);</em>
+<a id='L143' name='L143' />  <em class='comment'>// @endcode</em>
+<a id='L144' name='L144' />  <a href='../Y/5333.html' title='Multiple used in 38 places.'>template</a> &lt;<a href='../Y/1792.html' title='Multiple used in 90 places.'>class</a> <a href='../Y/845.html' title='Multiple used in 153 places.'>T</a>&gt;
+<a id='L145' name='L145' />  <strong class='reserved'>static</strong> <a href='../S/688.html#L55' title='Defined at 55 in third_party/google-perftools-1.8.3/src/windows/preamble_patcher.h.'>SideStepError</a> <a href='../Y/636.html' title='Multiple used in 18 places.'>Patch</a>(<a href='../Y/845.html' title='Multiple used in 153 places.'>T</a> <a href='../Y/5301.html' title='Multiple used in 28 places.'>target_function</a>,
+<a id='L146' name='L146' />                             <a href='../Y/845.html' title='Multiple used in 153 places.'>T</a> <a href='../Y/4513.html' title='Multiple used in 22 places.'>replacement_function</a>,
+<a id='L147' name='L147' />                             <a href='../Y/845.html' title='Multiple used in 153 places.'>T</a>* <a href='../Y/4039.html' title='Multiple used in 15 places.'>original_function_stub</a>) <em class='brace'>{</em>
+<a id='L148' name='L148' />    <em class='comment'>// NOTE: casting from a function to a pointer is contra the C++</em>
+<a id='L149' name='L149' />    <em class='comment'>//       spec.  It's not safe on IA64, but is on i386.  We use</em>
+<a id='L150' name='L150' />    <em class='comment'>//       a C-style cast here to emphasize this is not legal C++.</em>
+<a id='L151' name='L151' />    <strong class='reserved'>return</strong> <a href='../S/687.html#L185' title='Defined at 185 in third_party/google-perftools-1.8.3/src/windows/preamble_patcher.cc.'>RawPatch</a>((<strong class='reserved'>void</strong>*)(<a href='../Y/5301.html' title='Multiple used in 28 places.'>target_function</a>),
+<a id='L152' name='L152' />                    (<strong class='reserved'>void</strong>*)(<a href='../Y/4513.html' title='Multiple used in 22 places.'>replacement_function</a>),
+<a id='L153' name='L153' />                    (<strong class='reserved'>void</strong>**)(<a href='../Y/4039.html' title='Multiple used in 15 places.'>original_function_stub</a>));
+<a id='L154' name='L154' />  <em class='brace'>}</em>
+<a id='L155' name='L155' />
+<a id='L156' name='L156' />  <em class='comment'>// Patches a named function imported from the named module using</em>
+<a id='L157' name='L157' />  <em class='comment'>// preamble patching.  Uses RawPatch() to do the actual patching</em>
+<a id='L158' name='L158' />  <em class='comment'>// work.</em>
+<a id='L159' name='L159' />  <em class='comment'>//</em>
+<a id='L160' name='L160' />  <em class='comment'>// @param T The type of the function you are patching.  Must</em>
+<a id='L161' name='L161' />  <em class='comment'>// exactly match the function you specify using module_name and</em>
+<a id='L162' name='L162' />  <em class='comment'>// function_name.</em>
+<a id='L163' name='L163' />  <em class='comment'>//</em>
+<a id='L164' name='L164' />  <em class='comment'>// @param module_name The name of the module from which the function</em>
+<a id='L165' name='L165' />  <em class='comment'>// is being imported.  Note that the patch will fail if this module</em>
+<a id='L166' name='L166' />  <em class='comment'>// has not already been loaded into the current process.</em>
+<a id='L167' name='L167' />  <em class='comment'>//</em>
+<a id='L168' name='L168' />  <em class='comment'>// @param function_name The name of the function you wish to patch.</em>
+<a id='L169' name='L169' />  <em class='comment'>//</em>
+<a id='L170' name='L170' />  <em class='comment'>// @param replacement_function Your replacement function which</em>
+<a id='L171' name='L171' />  <em class='comment'>// will be called whenever code tries to call the original function.</em>
+<a id='L172' name='L172' />  <em class='comment'>//</em>
+<a id='L173' name='L173' />  <em class='comment'>// @param original_function_stub Pointer to memory that should receive a</em>
+<a id='L174' name='L174' />  <em class='comment'>// pointer that can be used (e.g. in the replacement function) to call the</em>
+<a id='L175' name='L175' />  <em class='comment'>// original function, or NULL to indicate failure.</em>
+<a id='L176' name='L176' />  <em class='comment'>//</em>
+<a id='L177' name='L177' />  <em class='comment'>// @return One of the EnSideStepError error codes; only SIDESTEP_SUCCESS</em>
+<a id='L178' name='L178' />  <em class='comment'>// indicates success.</em>
+<a id='L179' name='L179' />  <a href='../Y/5333.html' title='Multiple used in 38 places.'>template</a> &lt;<a href='../Y/1792.html' title='Multiple used in 90 places.'>class</a> <a href='../Y/845.html' title='Multiple used in 153 places.'>T</a>&gt;
+<a id='L180' name='L180' />  <strong class='reserved'>static</strong> <a href='../S/688.html#L55' title='Defined at 55 in third_party/google-perftools-1.8.3/src/windows/preamble_patcher.h.'>SideStepError</a> <a href='../Y/636.html' title='Multiple used in 18 places.'>Patch</a>(LPCTSTR <a href='../Y/3593.html' title='Multiple used in 10 places.'>module_name</a>,
+<a id='L181' name='L181' />                             LPCSTR <a href='../S/684.html#L230' title='Defined at 230 in third_party/google-perftools-1.8.3/src/windows/patch_functions.cc.'>function_name</a>,
+<a id='L182' name='L182' />                             <a href='../Y/845.html' title='Multiple used in 153 places.'>T</a> <a href='../Y/4513.html' title='Multiple used in 22 places.'>replacement_function</a>,
+<a id='L183' name='L183' />                             <a href='../Y/845.html' title='Multiple used in 153 places.'>T</a>* <a href='../Y/4039.html' title='Multiple used in 15 places.'>original_function_stub</a>) <em class='brace'>{</em>
+<a id='L184' name='L184' />    <a href='../D/2467.html' title='Multiple defined in 2 places.'>SIDESTEP_ASSERT</a>(<a href='../Y/3593.html' title='Multiple used in 10 places.'>module_name</a> &amp;&amp; <a href='../S/684.html#L230' title='Defined at 230 in third_party/google-perftools-1.8.3/src/windows/patch_functions.cc.'>function_name</a>);
+<a id='L185' name='L185' />    <strong class='reserved'>if</strong> (!<a href='../Y/3593.html' title='Multiple used in 10 places.'>module_name</a> || !<a href='../S/684.html#L230' title='Defined at 230 in third_party/google-perftools-1.8.3/src/windows/patch_functions.cc.'>function_name</a>) <em class='brace'>{</em>
+<a id='L186' name='L186' />      <a href='../D/2467.html' title='Multiple defined in 2 places.'>SIDESTEP_ASSERT</a>(<a href='../Y/2331.html' title='Multiple used in 24 places.'>false</a> &amp;&amp;
+<a id='L187' name='L187' />                      "You must specify a module name and function name.");
+<a id='L188' name='L188' />      <strong class='reserved'>return</strong> <a href='../S/688.html#L57' title='Defined at 57 in third_party/google-perftools-1.8.3/src/windows/preamble_patcher.h.'>SIDESTEP_INVALID_PARAMETER</a>;
+<a id='L189' name='L189' />    <em class='brace'>}</em>
+<a id='L190' name='L190' />    <a href='../Y/351.html' title='Multiple used in 18 places.'>HMODULE</a> <a href='../Y/3581.html' title='Multiple used in 22 places.'>module</a> = ::GetModuleHandle(<a href='../Y/3593.html' title='Multiple used in 10 places.'>module_name</a>);
+<a id='L191' name='L191' />    <a href='../D/2467.html' title='Multiple defined in 2 places.'>SIDESTEP_ASSERT</a>(<a href='../Y/3581.html' title='Multiple used in 22 places.'>module</a> != <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>);
+<a id='L192' name='L192' />    <strong class='reserved'>if</strong> (!<a href='../Y/3581.html' title='Multiple used in 22 places.'>module</a>) <em class='brace'>{</em>
+<a id='L193' name='L193' />      <a href='../D/2467.html' title='Multiple defined in 2 places.'>SIDESTEP_ASSERT</a>(<a href='../Y/2331.html' title='Multiple used in 24 places.'>false</a> &amp;&amp; "Invalid module name.");
+<a id='L194' name='L194' />      <strong class='reserved'>return</strong> <a href='../S/688.html#L62' title='Defined at 62 in third_party/google-perftools-1.8.3/src/windows/preamble_patcher.h.'>SIDESTEP_NO_SUCH_MODULE</a>;
+<a id='L195' name='L195' />    <em class='brace'>}</em>
+<a id='L196' name='L196' />    <a href='../Y/183.html' title='Multiple used in 2 places.'>FARPROC</a> <a href='../Y/2260.html' title='Multiple used in 3 places.'>existing_function</a> = ::<a href='../Y/313.html' title='Multiple used in 4 places.'>GetProcAddress</a>(<a href='../Y/3581.html' title='Multiple used in 22 places.'>module</a>, <a href='../S/684.html#L230' title='Defined at 230 in third_party/google-perftools-1.8.3/src/windows/patch_functions.cc.'>function_name</a>);
+<a id='L197' name='L197' />    <strong class='reserved'>if</strong> (!<a href='../Y/2260.html' title='Multiple used in 3 places.'>existing_function</a>) <em class='brace'>{</em>
+<a id='L198' name='L198' />      <a href='../D/2467.html' title='Multiple defined in 2 places.'>SIDESTEP_ASSERT</a>(
+<a id='L199' name='L199' />          <a href='../Y/2331.html' title='Multiple used in 24 places.'>false</a> &amp;&amp; "Did not find any function with that name in the module.");
+<a id='L200' name='L200' />      <strong class='reserved'>return</strong> <a href='../S/688.html#L63' title='Defined at 63 in third_party/google-perftools-1.8.3/src/windows/preamble_patcher.h.'>SIDESTEP_NO_SUCH_FUNCTION</a>;
+<a id='L201' name='L201' />    <em class='brace'>}</em>
+<a id='L202' name='L202' />    <em class='comment'>// NOTE: casting from a function to a pointer is contra the C++</em>
+<a id='L203' name='L203' />    <em class='comment'>//       spec.  It's not safe on IA64, but is on i386.  We use</em>
+<a id='L204' name='L204' />    <em class='comment'>//       a C-style cast here to emphasize this is not legal C++.</em>
+<a id='L205' name='L205' />    <strong class='reserved'>return</strong> <a href='../S/687.html#L185' title='Defined at 185 in third_party/google-perftools-1.8.3/src/windows/preamble_patcher.cc.'>RawPatch</a>((<strong class='reserved'>void</strong>*)<a href='../Y/2260.html' title='Multiple used in 3 places.'>existing_function</a>, (<strong class='reserved'>void</strong>*)<a href='../Y/4513.html' title='Multiple used in 22 places.'>replacement_function</a>,
+<a id='L206' name='L206' />                    (<strong class='reserved'>void</strong>**)(<a href='../Y/4039.html' title='Multiple used in 15 places.'>original_function_stub</a>));
+<a id='L207' name='L207' />  <em class='brace'>}</em>
+<a id='L208' name='L208' />
+<a id='L209' name='L209' />  <em class='comment'>// Patches a function by overwriting its first few bytes with</em>
+<a id='L210' name='L210' />  <em class='comment'>// a jump to a different function.  This is the "worker" function</em>
+<a id='L211' name='L211' />  <em class='comment'>// for each of the typesafe Patch() functions.  In most cases,</em>
+<a id='L212' name='L212' />  <em class='comment'>// it is preferable to use the Patch() functions rather than</em>
+<a id='L213' name='L213' />  <em class='comment'>// this one as they do more checking at compile time.</em>
+<a id='L214' name='L214' />  <em class='comment'>//</em>
+<a id='L215' name='L215' />  <em class='comment'>// @param target_function A pointer to the function that should be</em>
+<a id='L216' name='L216' />  <em class='comment'>// patched.</em>
+<a id='L217' name='L217' />  <em class='comment'>//</em>
+<a id='L218' name='L218' />  <em class='comment'>// @param replacement_function A pointer to the function that should</em>
+<a id='L219' name='L219' />  <em class='comment'>// replace the target function.  The replacement function must have</em>
+<a id='L220' name='L220' />  <em class='comment'>// exactly the same calling convention and parameters as the original</em>
+<a id='L221' name='L221' />  <em class='comment'>// function.</em>
+<a id='L222' name='L222' />  <em class='comment'>//</em>
+<a id='L223' name='L223' />  <em class='comment'>// @param original_function_stub Pointer to memory that should receive a</em>
+<a id='L224' name='L224' />  <em class='comment'>// pointer that can be used (e.g. in the replacement function) to call the</em>
+<a id='L225' name='L225' />  <em class='comment'>// original function, or NULL to indicate failure.</em>
+<a id='L226' name='L226' />  <em class='comment'>//</em>
+<a id='L227' name='L227' />  <em class='comment'>// @param original_function_stub Pointer to memory that should receive a</em>
+<a id='L228' name='L228' />  <em class='comment'>// pointer that can be used (e.g. in the replacement function) to call the</em>
+<a id='L229' name='L229' />  <em class='comment'>// original function, or NULL to indicate failure.</em>
+<a id='L230' name='L230' />  <em class='comment'>//</em>
+<a id='L231' name='L231' />  <em class='comment'>// @return One of the EnSideStepError error codes; only SIDESTEP_SUCCESS</em>
+<a id='L232' name='L232' />  <em class='comment'>// indicates success.</em>
+<a id='L233' name='L233' />  <em class='comment'>//</em>
+<a id='L234' name='L234' />  <em class='comment'>// @note The preamble-stub (the memory pointed to by</em>
+<a id='L235' name='L235' />  <em class='comment'>// *original_function_stub) is allocated on the heap, and (in</em>
+<a id='L236' name='L236' />  <em class='comment'>// production binaries) never destroyed, resulting in a memory leak.  This</em>
+<a id='L237' name='L237' />  <em class='comment'>// will be the case until we implement safe unpatching of a method.</em>
+<a id='L238' name='L238' />  <em class='comment'>// However, it is quite difficult to unpatch a method (because other</em>
+<a id='L239' name='L239' />  <em class='comment'>// threads in the process may be using it) so we are leaving it for now.</em>
+<a id='L240' name='L240' />  <em class='comment'>// See however UnsafeUnpatch, which can be used for binaries where you</em>
+<a id='L241' name='L241' />  <em class='comment'>// know only one thread is running, e.g. unit tests.</em>
+<a id='L242' name='L242' />  <strong class='reserved'>static</strong> <a href='../S/688.html#L55' title='Defined at 55 in third_party/google-perftools-1.8.3/src/windows/preamble_patcher.h.'>SideStepError</a> <a href='../S/687.html#L185' title='Defined at 185 in third_party/google-perftools-1.8.3/src/windows/preamble_patcher.cc.'>RawPatch</a>(<strong class='reserved'>void</strong>* <a href='../Y/5301.html' title='Multiple used in 28 places.'>target_function</a>,
+<a id='L243' name='L243' />                                <strong class='reserved'>void</strong>* <a href='../Y/4513.html' title='Multiple used in 22 places.'>replacement_function</a>,
+<a id='L244' name='L244' />                                <strong class='reserved'>void</strong>** <a href='../Y/4039.html' title='Multiple used in 15 places.'>original_function_stub</a>);
+<a id='L245' name='L245' />
+<a id='L246' name='L246' />  <em class='comment'>// Unpatches target_function and deletes the stub that previously could be</em>
+<a id='L247' name='L247' />  <em class='comment'>// used to call the original version of the function.</em>
+<a id='L248' name='L248' />  <em class='comment'>//</em>
+<a id='L249' name='L249' />  <em class='comment'>// DELETES the stub that is passed to the function.</em>
+<a id='L250' name='L250' />  <em class='comment'>//</em>
+<a id='L251' name='L251' />  <em class='comment'>// @param target_function Pointer to the target function which was</em>
+<a id='L252' name='L252' />  <em class='comment'>// previously patched, i.e. a pointer which value should match the value</em>
+<a id='L253' name='L253' />  <em class='comment'>// of the symbol prior to patching it.</em>
+<a id='L254' name='L254' />  <em class='comment'>//</em>
+<a id='L255' name='L255' />  <em class='comment'>// @param replacement_function Pointer to the function target_function</em>
+<a id='L256' name='L256' />  <em class='comment'>// was patched to.</em>
+<a id='L257' name='L257' />  <em class='comment'>//</em>
+<a id='L258' name='L258' />  <em class='comment'>// @param original_function_stub Pointer to the stub returned when</em>
+<a id='L259' name='L259' />  <em class='comment'>// patching, that could be used to call the original version of the</em>
+<a id='L260' name='L260' />  <em class='comment'>// patched function.  This function will also delete the stub, which after</em>
+<a id='L261' name='L261' />  <em class='comment'>// unpatching is useless.</em>
+<a id='L262' name='L262' />  <em class='comment'>//</em>
+<a id='L263' name='L263' />  <em class='comment'>// If your original call was</em>
+<a id='L264' name='L264' />  <em class='comment'>//    Patch(VirtualAlloc, MyVirtualAlloc, &amp;origptr)</em>
+<a id='L265' name='L265' />  <em class='comment'>// then to undo it you would call</em>
+<a id='L266' name='L266' />  <em class='comment'>//    Unpatch(VirtualAlloc, MyVirtualAlloc, origptr);</em>
+<a id='L267' name='L267' />  <em class='comment'>//</em>
+<a id='L268' name='L268' />  <em class='comment'>// @return One of the EnSideStepError error codes; only SIDESTEP_SUCCESS</em>
+<a id='L269' name='L269' />  <em class='comment'>// indicates success.</em>
+<a id='L270' name='L270' />  <strong class='reserved'>static</strong> <a href='../S/688.html#L55' title='Defined at 55 in third_party/google-perftools-1.8.3/src/windows/preamble_patcher.h.'>SideStepError</a> <a href='../S/687.html#L253' title='Defined at 253 in third_party/google-perftools-1.8.3/src/windows/preamble_patcher.cc.'>Unpatch</a>(<strong class='reserved'>void</strong>* <a href='../Y/5301.html' title='Multiple used in 28 places.'>target_function</a>,
+<a id='L271' name='L271' />                               <strong class='reserved'>void</strong>* <a href='../Y/4513.html' title='Multiple used in 22 places.'>replacement_function</a>,
+<a id='L272' name='L272' />                               <strong class='reserved'>void</strong>* <a href='../Y/4039.html' title='Multiple used in 15 places.'>original_function_stub</a>);
+<a id='L273' name='L273' />
+<a id='L274' name='L274' />  <em class='comment'>// A helper routine when patching, which follows jmp instructions at</em>
+<a id='L275' name='L275' />  <em class='comment'>// function addresses, to get to the "actual" function contents.</em>
+<a id='L276' name='L276' />  <em class='comment'>// This allows us to identify two functions that are at different</em>
+<a id='L277' name='L277' />  <em class='comment'>// addresses but actually resolve to the same code.</em>
+<a id='L278' name='L278' />  <em class='comment'>//</em>
+<a id='L279' name='L279' />  <em class='comment'>// @param target_function Pointer to a function.</em>
+<a id='L280' name='L280' />  <em class='comment'>//</em>
+<a id='L281' name='L281' />  <em class='comment'>// @return Either target_function (the input parameter), or if</em>
+<a id='L282' name='L282' />  <em class='comment'>// target_function's body consists entirely of a JMP instruction,</em>
+<a id='L283' name='L283' />  <em class='comment'>// the address it JMPs to (or more precisely, the address at the end</em>
+<a id='L284' name='L284' />  <em class='comment'>// of a chain of JMPs).</em>
+<a id='L285' name='L285' />  <a href='../Y/5333.html' title='Multiple used in 38 places.'>template</a> &lt;<a href='../Y/1792.html' title='Multiple used in 90 places.'>class</a> <a href='../Y/845.html' title='Multiple used in 153 places.'>T</a>&gt;
+<a id='L286' name='L286' />  <strong class='reserved'>static</strong> <a href='../Y/845.html' title='Multiple used in 153 places.'>T</a> <a href='../Y/705.html' title='Multiple used in 3 places.'>ResolveTarget</a>(<a href='../Y/845.html' title='Multiple used in 153 places.'>T</a> <a href='../Y/5301.html' title='Multiple used in 28 places.'>target_function</a>) <em class='brace'>{</em>
+<a id='L287' name='L287' />    <strong class='reserved'>return</strong> (<a href='../Y/845.html' title='Multiple used in 153 places.'>T</a>)<a href='../S/687.html#L59' title='Defined at 59 in third_party/google-perftools-1.8.3/src/windows/preamble_patcher.cc.'>ResolveTargetImpl</a>((<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong>*)<a href='../Y/5301.html' title='Multiple used in 28 places.'>target_function</a>, <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>);
+<a id='L288' name='L288' />  <em class='brace'>}</em>
+<a id='L289' name='L289' />
+<a id='L290' name='L290' /> <a href='../Y/4261.html' title='Multiple used in 50 places.'>private</a>:
+<a id='L291' name='L291' />  <em class='comment'>// Patches a function by overwriting its first few bytes with</em>
+<a id='L292' name='L292' />  <em class='comment'>// a jump to a different function.  This is similar to the RawPatch</em>
+<a id='L293' name='L293' />  <em class='comment'>// function except that it uses the stub allocated by the caller</em>
+<a id='L294' name='L294' />  <em class='comment'>// instead of allocating it.</em>
+<a id='L295' name='L295' />  <em class='comment'>//</em>
+<a id='L296' name='L296' />  <em class='comment'>// We call VirtualProtect to make the</em>
+<a id='L297' name='L297' />  <em class='comment'>// target function writable at least for the duration of the call.</em>
+<a id='L298' name='L298' />  <em class='comment'>//</em>
+<a id='L299' name='L299' />  <em class='comment'>// @param target_function A pointer to the function that should be</em>
+<a id='L300' name='L300' />  <em class='comment'>// patched.</em>
+<a id='L301' name='L301' />  <em class='comment'>//</em>
+<a id='L302' name='L302' />  <em class='comment'>// @param replacement_function A pointer to the function that should</em>
+<a id='L303' name='L303' />  <em class='comment'>// replace the target function.  The replacement function must have</em>
+<a id='L304' name='L304' />  <em class='comment'>// exactly the same calling convention and parameters as the original</em>
+<a id='L305' name='L305' />  <em class='comment'>// function.</em>
+<a id='L306' name='L306' />  <em class='comment'>//</em>
+<a id='L307' name='L307' />  <em class='comment'>// @param preamble_stub A pointer to a buffer where the preamble stub</em>
+<a id='L308' name='L308' />  <em class='comment'>// should be copied. The size of the buffer should be sufficient to</em>
+<a id='L309' name='L309' />  <em class='comment'>// hold the preamble bytes.</em>
+<a id='L310' name='L310' />  <em class='comment'>//</em>
+<a id='L311' name='L311' />  <em class='comment'>// @param stub_size Size in bytes of the buffer allocated for the</em>
+<a id='L312' name='L312' />  <em class='comment'>// preamble_stub</em>
+<a id='L313' name='L313' />  <em class='comment'>//</em>
+<a id='L314' name='L314' />  <em class='comment'>// @param bytes_needed Pointer to a variable that receives the minimum</em>
+<a id='L315' name='L315' />  <em class='comment'>// number of bytes required for the stub.  Can be set to NULL if you're</em>
+<a id='L316' name='L316' />  <em class='comment'>// not interested.</em>
+<a id='L317' name='L317' />  <em class='comment'>//</em>
+<a id='L318' name='L318' />  <em class='comment'>// @return An error code indicating the result of patching.</em>
+<a id='L319' name='L319' />  <strong class='reserved'>static</strong> <a href='../S/688.html#L55' title='Defined at 55 in third_party/google-perftools-1.8.3/src/windows/preamble_patcher.h.'>SideStepError</a> <a href='../S/687.html#L120' title='Defined at 120 in third_party/google-perftools-1.8.3/src/windows/preamble_patcher.cc.'>RawPatchWithStubAndProtections</a>(
+<a id='L320' name='L320' />      <strong class='reserved'>void</strong>* <a href='../Y/5301.html' title='Multiple used in 28 places.'>target_function</a>,
+<a id='L321' name='L321' />      <strong class='reserved'>void</strong> *<a href='../Y/4513.html' title='Multiple used in 22 places.'>replacement_function</a>,
+<a id='L322' name='L322' />      <strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong>* <a href='../Y/4221.html' title='Multiple used in 16 places.'>preamble_stub</a>,
+<a id='L323' name='L323' />      <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../Y/5150.html' title='Multiple used in 7 places.'>stub_size</a>,
+<a id='L324' name='L324' />      <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong>* <a href='../Y/1694.html' title='Multiple used in 8 places.'>bytes_needed</a>);
+<a id='L325' name='L325' />
+<a id='L326' name='L326' />  <em class='comment'>// A helper function used by RawPatchWithStubAndProtections -- it</em>
+<a id='L327' name='L327' />  <em class='comment'>// does everything but the VirtualProtect work.  Defined in</em>
+<a id='L328' name='L328' />  <em class='comment'>// preamble_patcher_with_stub.cc.</em>
+<a id='L329' name='L329' />  <em class='comment'>//</em>
+<a id='L330' name='L330' />  <em class='comment'>// @param target_function A pointer to the function that should be</em>
+<a id='L331' name='L331' />  <em class='comment'>// patched.</em>
+<a id='L332' name='L332' />  <em class='comment'>//</em>
+<a id='L333' name='L333' />  <em class='comment'>// @param replacement_function A pointer to the function that should</em>
+<a id='L334' name='L334' />  <em class='comment'>// replace the target function.  The replacement function must have</em>
+<a id='L335' name='L335' />  <em class='comment'>// exactly the same calling convention and parameters as the original</em>
+<a id='L336' name='L336' />  <em class='comment'>// function.</em>
+<a id='L337' name='L337' />  <em class='comment'>//</em>
+<a id='L338' name='L338' />  <em class='comment'>// @param preamble_stub A pointer to a buffer where the preamble stub</em>
+<a id='L339' name='L339' />  <em class='comment'>// should be copied. The size of the buffer should be sufficient to</em>
+<a id='L340' name='L340' />  <em class='comment'>// hold the preamble bytes.</em>
+<a id='L341' name='L341' />  <em class='comment'>//</em>
+<a id='L342' name='L342' />  <em class='comment'>// @param stub_size Size in bytes of the buffer allocated for the</em>
+<a id='L343' name='L343' />  <em class='comment'>// preamble_stub</em>
+<a id='L344' name='L344' />  <em class='comment'>//</em>
+<a id='L345' name='L345' />  <em class='comment'>// @param bytes_needed Pointer to a variable that receives the minimum</em>
+<a id='L346' name='L346' />  <em class='comment'>// number of bytes required for the stub.  Can be set to NULL if you're</em>
+<a id='L347' name='L347' />  <em class='comment'>// not interested.</em>
+<a id='L348' name='L348' />  <em class='comment'>//</em>
+<a id='L349' name='L349' />  <em class='comment'>// @return An error code indicating the result of patching.</em>
+<a id='L350' name='L350' />  <strong class='reserved'>static</strong> <a href='../S/688.html#L55' title='Defined at 55 in third_party/google-perftools-1.8.3/src/windows/preamble_patcher.h.'>SideStepError</a> <a href='../S/689.html#L46' title='Defined at 46 in third_party/google-perftools-1.8.3/src/windows/preamble_patcher_with_stub.cc.'>RawPatchWithStub</a>(<strong class='reserved'>void</strong>* <a href='../Y/5301.html' title='Multiple used in 28 places.'>target_function</a>,
+<a id='L351' name='L351' />                                        <strong class='reserved'>void</strong> *<a href='../Y/4513.html' title='Multiple used in 22 places.'>replacement_function</a>,
+<a id='L352' name='L352' />                                        <strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong>* <a href='../Y/4221.html' title='Multiple used in 16 places.'>preamble_stub</a>,
+<a id='L353' name='L353' />                                        <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../Y/5150.html' title='Multiple used in 7 places.'>stub_size</a>,
+<a id='L354' name='L354' />                                        <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong>* <a href='../Y/1694.html' title='Multiple used in 8 places.'>bytes_needed</a>);
+<a id='L355' name='L355' />
+<a id='L356' name='L356' />
+<a id='L357' name='L357' />  <em class='comment'>// A helper routine when patching, which follows jmp instructions at</em>
+<a id='L358' name='L358' />  <em class='comment'>// function addresses, to get to the "actual" function contents.</em>
+<a id='L359' name='L359' />  <em class='comment'>// This allows us to identify two functions that are at different</em>
+<a id='L360' name='L360' />  <em class='comment'>// addresses but actually resolve to the same code.</em>
+<a id='L361' name='L361' />  <em class='comment'>//</em>
+<a id='L362' name='L362' />  <em class='comment'>// @param target_function Pointer to a function.</em>
+<a id='L363' name='L363' />  <em class='comment'>//</em>
+<a id='L364' name='L364' />  <em class='comment'>// @param stop_before If, when following JMP instructions from</em>
+<a id='L365' name='L365' />  <em class='comment'>// target_function, we get to the address stop, we return</em>
+<a id='L366' name='L366' />  <em class='comment'>// immediately, the address that jumps to stop_before.</em>
+<a id='L367' name='L367' />  <em class='comment'>//</em>
+<a id='L368' name='L368' />  <em class='comment'>// @return Either target_function (the input parameter), or if</em>
+<a id='L369' name='L369' />  <em class='comment'>// target_function's body consists entirely of a JMP instruction,</em>
+<a id='L370' name='L370' />  <em class='comment'>// the address it JMPs to (or more precisely, the address at the end</em>
+<a id='L371' name='L371' />  <em class='comment'>// of a chain of JMPs).</em>
+<a id='L372' name='L372' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong>* <a href='../S/687.html#L59' title='Defined at 59 in third_party/google-perftools-1.8.3/src/windows/preamble_patcher.cc.'>ResolveTargetImpl</a>(<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong>* <a href='../Y/5301.html' title='Multiple used in 28 places.'>target_function</a>,
+<a id='L373' name='L373' />                                 <strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong>* <a href='../Y/5107.html' title='Multiple used in 3 places.'>stop_before</a>);
+<a id='L374' name='L374' /><em class='brace'>}</em>;
+<a id='L375' name='L375' />
+<a id='L376' name='L376' /><em class='brace'>}</em>;  <em class='comment'>// namespace sidestep</em>
+<a id='L377' name='L377' />
+<a id='L378' name='L378' /><em class='sharp'>#endif</em>  <em class='comment'>// GOOGLE_PERFTOOLS_PREAMBLE_PATCHER_H_</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^][v]<a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

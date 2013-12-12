@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>opcode</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/679.html#L115'>opcode</a>            115 third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc   const Opcode&amp; opcode = s_ia32_opcode_map_[0].table_[*start_byte];</span>
+<span class='curline'><a href='../S/679.html#L117'>opcode</a>            117 third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc   switch (opcode.type_) {</span>
+<span class='curline'><a href='../S/679.html#L133'>opcode</a>            133 third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc       instruction_type = opcode.type_;</span>
+<span class='curline'><a href='../S/679.html#L157'>opcode</a>            157 third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc   const Opcode&amp; opcode = table.table_[current_byte];</span>
+<span class='curline'><a href='../S/679.html#L158'>opcode</a>            158 third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc   if (IT_UNUSED == opcode.type_) {</span>
+<span class='curline'><a href='../S/679.html#L164'>opcode</a>            164 third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc   } else if (IT_REFERENCE == opcode.type_) {</span>
+<span class='curline'><a href='../S/679.html#L169'>opcode</a>            169 third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc     ProcessOpcode(start_byte + 1, opcode.table_index_, size);</span>
+<span class='curline'><a href='../S/679.html#L173'>opcode</a>            173 third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc   const SpecificOpcode* specific_opcode = (SpecificOpcode*)&amp;opcode;</span>
+<span class='curline'><a href='../S/679.html#L174'>opcode</a>            174 third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc   if (opcode.is_prefix_dependent_) {</span>
+<span class='curline'><a href='../S/679.html#L175'>opcode</a>            175 third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc     if (got_f2_prefix_ &amp;&amp; opcode.opcode_if_f2_prefix_.mnemonic_ != 0) {</span>
+<span class='curline'><a href='../S/679.html#L176'>opcode</a>            176 third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc       specific_opcode = &amp;opcode.opcode_if_f2_prefix_;</span>
+<span class='curline'><a href='../S/679.html#L177'>opcode</a>            177 third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc     } else if (got_f3_prefix_ &amp;&amp; opcode.opcode_if_f3_prefix_.mnemonic_ != 0) {</span>
+<span class='curline'><a href='../S/679.html#L178'>opcode</a>            178 third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc       specific_opcode = &amp;opcode.opcode_if_f3_prefix_;</span>
+<span class='curline'><a href='../S/679.html#L179'>opcode</a>            179 third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc     } else if (got_66_prefix_ &amp;&amp; opcode.opcode_if_66_prefix_.mnemonic_ != 0) {</span>
+<span class='curline'><a href='../S/679.html#L180'>opcode</a>            180 third_party/google-perftools-1.8.3/src/windows/mini_disassembler.cc       specific_opcode = &amp;opcode.opcode_if_66_prefix_;</span>
+</pre>
+</body>
+</html>

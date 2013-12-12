@@ -1,0 +1,656 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/738.html'>third_party</a>/<a href='../files/739.html'>google-perftools-1.8.3</a>/<a href='../files/740.html'>src</a>/<a href='../files/741.html'>base</a>/dynamic_annotations.h</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L537'>[^]</a><a href='#L612'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/144.html' title='Multiple included from 8 places.'>INCLUDED FROM</a></h2>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L537' title='Defined at 537.'>ANNOTATE_UNPROTECTED_READ</a></li>
+<li><a href='#L612' title='Defined at 612.'>ANNOTATE_UNPROTECTED_READ</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>/* Copyright (c) 2008, Google Inc.</em>
+<a id='L2' name='L2' /><em class='comment'> * All rights reserved.</em>
+<a id='L3' name='L3' /><em class='comment'> *</em>
+<a id='L4' name='L4' /><em class='comment'> * Redistribution and use in source and binary forms, with or without</em>
+<a id='L5' name='L5' /><em class='comment'> * modification, are permitted provided that the following conditions are</em>
+<a id='L6' name='L6' /><em class='comment'> * met:</em>
+<a id='L7' name='L7' /><em class='comment'> *</em>
+<a id='L8' name='L8' /><em class='comment'> *     * Redistributions of source code must retain the above copyright</em>
+<a id='L9' name='L9' /><em class='comment'> * notice, this list of conditions and the following disclaimer.</em>
+<a id='L10' name='L10' /><em class='comment'> *     * Redistributions in binary form must reproduce the above</em>
+<a id='L11' name='L11' /><em class='comment'> * copyright notice, this list of conditions and the following disclaimer</em>
+<a id='L12' name='L12' /><em class='comment'> * in the documentation and/or other materials provided with the</em>
+<a id='L13' name='L13' /><em class='comment'> * distribution.</em>
+<a id='L14' name='L14' /><em class='comment'> *     * Neither the name of Google Inc. nor the names of its</em>
+<a id='L15' name='L15' /><em class='comment'> * contributors may be used to endorse or promote products derived from</em>
+<a id='L16' name='L16' /><em class='comment'> * this software without specific prior written permission.</em>
+<a id='L17' name='L17' /><em class='comment'> *</em>
+<a id='L18' name='L18' /><em class='comment'> * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L19' name='L19' /><em class='comment'> * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L20' name='L20' /><em class='comment'> * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L21' name='L21' /><em class='comment'> * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L22' name='L22' /><em class='comment'> * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L23' name='L23' /><em class='comment'> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L24' name='L24' /><em class='comment'> * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L25' name='L25' /><em class='comment'> * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L26' name='L26' /><em class='comment'> * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L27' name='L27' /><em class='comment'> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L28' name='L28' /><em class='comment'> * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L29' name='L29' /><em class='comment'> *</em>
+<a id='L30' name='L30' /><em class='comment'> * ---</em>
+<a id='L31' name='L31' /><em class='comment'> * Author: Kostya Serebryany</em>
+<a id='L32' name='L32' /><em class='comment'> */</em>
+<a id='L33' name='L33' />
+<a id='L34' name='L34' /><em class='comment'>/* This file defines dynamic annotations for use with dynamic analysis</em>
+<a id='L35' name='L35' /><em class='comment'>   tool such as valgrind, PIN, etc.</em>
+<a id='L36' name='L36' /><em class='comment'></em>
+<a id='L37' name='L37' /><em class='comment'>   Dynamic annotation is a source code annotation that affects</em>
+<a id='L38' name='L38' /><em class='comment'>   the generated code (that is, the annotation is not a comment).</em>
+<a id='L39' name='L39' /><em class='comment'>   Each such annotation is attached to a particular</em>
+<a id='L40' name='L40' /><em class='comment'>   instruction and/or to a particular object (address) in the program.</em>
+<a id='L41' name='L41' /><em class='comment'></em>
+<a id='L42' name='L42' /><em class='comment'>   The annotations that should be used by users are macros in all upper-case</em>
+<a id='L43' name='L43' /><em class='comment'>   (e.g., ANNOTATE_NEW_MEMORY).</em>
+<a id='L44' name='L44' /><em class='comment'></em>
+<a id='L45' name='L45' /><em class='comment'>   Actual implementation of these macros may differ depending on the</em>
+<a id='L46' name='L46' /><em class='comment'>   dynamic analysis tool being used.</em>
+<a id='L47' name='L47' /><em class='comment'></em>
+<a id='L48' name='L48' /><em class='comment'>   See http://code.google.com/p/data-race-test/  for more information.</em>
+<a id='L49' name='L49' /><em class='comment'></em>
+<a id='L50' name='L50' /><em class='comment'>   This file supports the following dynamic analysis tools:</em>
+<a id='L51' name='L51' /><em class='comment'>   - None (DYNAMIC_ANNOTATIONS_ENABLED is not defined or zero).</em>
+<a id='L52' name='L52' /><em class='comment'>      Macros are defined empty.</em>
+<a id='L53' name='L53' /><em class='comment'>   - ThreadSanitizer, Helgrind, DRD (DYNAMIC_ANNOTATIONS_ENABLED is 1).</em>
+<a id='L54' name='L54' /><em class='comment'>      Macros are defined as calls to non-inlinable empty functions</em>
+<a id='L55' name='L55' /><em class='comment'>      that are intercepted by Valgrind. */</em>
+<a id='L56' name='L56' />
+<a id='L57' name='L57' /><em class='sharp'>#ifndef</em> <a href='../S/520.html#L58' title='Defined at 58 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>BASE_DYNAMIC_ANNOTATIONS_H_</a>
+<a id='L58' name='L58' /><em class='sharp'>#define</em> <a href='../S/520.html#L57' title='Refered from 57 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>BASE_DYNAMIC_ANNOTATIONS_H_</a>
+<a id='L59' name='L59' />
+<a id='L60' name='L60' /><em class='sharp'>#ifndef</em> <a href='../S/520.html#L61' title='Defined at 61 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>DYNAMIC_ANNOTATIONS_ENABLED</a>
+<a id='L61' name='L61' /><em class='sharp'># define</em> <a href='../R/500.html' title='Multiple refered from 5 places.'>DYNAMIC_ANNOTATIONS_ENABLED</a> 0
+<a id='L62' name='L62' /><em class='sharp'>#endif</em>
+<a id='L63' name='L63' />
+<a id='L64' name='L64' /><em class='sharp'>#if</em> <a href='../S/520.html#L61' title='Defined at 61 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>DYNAMIC_ANNOTATIONS_ENABLED</a> != 0
+<a id='L65' name='L65' />
+<a id='L66' name='L66' />  <em class='comment'>/* -------------------------------------------------------------</em>
+<a id='L67' name='L67' /><em class='comment'>     Annotations useful when implementing condition variables such as CondVar,</em>
+<a id='L68' name='L68' /><em class='comment'>     using conditional critical sections (Await/LockWhen) and when constructing</em>
+<a id='L69' name='L69' /><em class='comment'>     user-defined synchronization mechanisms.</em>
+<a id='L70' name='L70' /><em class='comment'></em>
+<a id='L71' name='L71' /><em class='comment'>     The annotations ANNOTATE_HAPPENS_BEFORE() and ANNOTATE_HAPPENS_AFTER() can</em>
+<a id='L72' name='L72' /><em class='comment'>     be used to define happens-before arcs in user-defined synchronization</em>
+<a id='L73' name='L73' /><em class='comment'>     mechanisms:  the race detector will infer an arc from the former to the</em>
+<a id='L74' name='L74' /><em class='comment'>     latter when they share the same argument pointer.</em>
+<a id='L75' name='L75' /><em class='comment'></em>
+<a id='L76' name='L76' /><em class='comment'>     Example 1 (reference counting):</em>
+<a id='L77' name='L77' /><em class='comment'></em>
+<a id='L78' name='L78' /><em class='comment'>     void Unref() {</em>
+<a id='L79' name='L79' /><em class='comment'>       ANNOTATE_HAPPENS_BEFORE(&amp;refcount_);</em>
+<a id='L80' name='L80' /><em class='comment'>       if (AtomicDecrementByOne(&amp;refcount_) == 0) {</em>
+<a id='L81' name='L81' /><em class='comment'>         ANNOTATE_HAPPENS_AFTER(&amp;refcount_);</em>
+<a id='L82' name='L82' /><em class='comment'>         delete this;</em>
+<a id='L83' name='L83' /><em class='comment'>       }</em>
+<a id='L84' name='L84' /><em class='comment'>     }</em>
+<a id='L85' name='L85' /><em class='comment'></em>
+<a id='L86' name='L86' /><em class='comment'>     Example 2 (message queue):</em>
+<a id='L87' name='L87' /><em class='comment'></em>
+<a id='L88' name='L88' /><em class='comment'>     void MyQueue::Put(Type *e) {</em>
+<a id='L89' name='L89' /><em class='comment'>       MutexLock lock(&amp;mu_);</em>
+<a id='L90' name='L90' /><em class='comment'>       ANNOTATE_HAPPENS_BEFORE(e);</em>
+<a id='L91' name='L91' /><em class='comment'>       PutElementIntoMyQueue(e);</em>
+<a id='L92' name='L92' /><em class='comment'>     }</em>
+<a id='L93' name='L93' /><em class='comment'></em>
+<a id='L94' name='L94' /><em class='comment'>     Type *MyQueue::Get() {</em>
+<a id='L95' name='L95' /><em class='comment'>       MutexLock lock(&amp;mu_);</em>
+<a id='L96' name='L96' /><em class='comment'>       Type *e = GetElementFromMyQueue();</em>
+<a id='L97' name='L97' /><em class='comment'>       ANNOTATE_HAPPENS_AFTER(e);</em>
+<a id='L98' name='L98' /><em class='comment'>       return e;</em>
+<a id='L99' name='L99' /><em class='comment'>     }</em>
+<a id='L100' name='L100' /><em class='comment'></em>
+<a id='L101' name='L101' /><em class='comment'>     Note: when possible, please use the existing reference counting and message</em>
+<a id='L102' name='L102' /><em class='comment'>     queue implementations instead of inventing new ones. */</em>
+<a id='L103' name='L103' />
+<a id='L104' name='L104' />  <em class='comment'>/* Report that wait on the condition variable at address "cv" has succeeded</em>
+<a id='L105' name='L105' /><em class='comment'>     and the lock at address "lock" is held. */</em>
+<a id='L106' name='L106' /><em class='sharp'>  #define</em> ANNOTATE_CONDVAR_LOCK_WAIT(<a href='../Y/1943.html' title='Multiple used in 18 places.'>cv</a>, <a href='../Y/3313.html' title='Multiple used in 107 places.'>lock</a>) \
+<a id='L107' name='L107' />    <a href='../S/519.html#L85' title='Defined at 85 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateCondVarWait</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>, <a href='../Y/1943.html' title='Multiple used in 18 places.'>cv</a>, <a href='../Y/3313.html' title='Multiple used in 107 places.'>lock</a>)
+<a id='L108' name='L108' />
+<a id='L109' name='L109' />  <em class='comment'>/* Report that wait on the condition variable at "cv" has succeeded.  Variant</em>
+<a id='L110' name='L110' /><em class='comment'>     w/o lock. */</em>
+<a id='L111' name='L111' /><em class='sharp'>  #define</em> <a href='../S/520.html#L125' title='Refered from 125 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>ANNOTATE_CONDVAR_WAIT</a>(<a href='../Y/1943.html' title='Multiple used in 18 places.'>cv</a>) \
+<a id='L112' name='L112' />    <a href='../S/519.html#L85' title='Defined at 85 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateCondVarWait</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>, <a href='../Y/1943.html' title='Multiple used in 18 places.'>cv</a>, <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>)
+<a id='L113' name='L113' />
+<a id='L114' name='L114' />  <em class='comment'>/* Report that we are about to signal on the condition variable at address</em>
+<a id='L115' name='L115' /><em class='comment'>     "cv". */</em>
+<a id='L116' name='L116' /><em class='sharp'>  #define</em> <a href='../S/520.html#L124' title='Refered from 124 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>ANNOTATE_CONDVAR_SIGNAL</a>(<a href='../Y/1943.html' title='Multiple used in 18 places.'>cv</a>) \
+<a id='L117' name='L117' />    <a href='../S/519.html#L88' title='Defined at 88 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateCondVarSignal</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>, <a href='../Y/1943.html' title='Multiple used in 18 places.'>cv</a>)
+<a id='L118' name='L118' />
+<a id='L119' name='L119' />  <em class='comment'>/* Report that we are about to signal_all on the condition variable at "cv". */</em>
+<a id='L120' name='L120' /><em class='sharp'>  #define</em> ANNOTATE_CONDVAR_SIGNAL_ALL(<a href='../Y/1943.html' title='Multiple used in 18 places.'>cv</a>) \
+<a id='L121' name='L121' />    <a href='../S/519.html#L90' title='Defined at 90 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateCondVarSignalAll</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>, <a href='../Y/1943.html' title='Multiple used in 18 places.'>cv</a>)
+<a id='L122' name='L122' />
+<a id='L123' name='L123' />  <em class='comment'>/* Annotations for user-defined synchronization mechanisms. */</em>
+<a id='L124' name='L124' /><em class='sharp'>  #define</em> ANNOTATE_HAPPENS_BEFORE(<a href='../Y/3907.html' title='Multiple used in 30 places.'>obj</a>) <a href='../D/60.html' title='Multiple defined in 2 places.'>ANNOTATE_CONDVAR_SIGNAL</a>(<a href='../Y/3907.html' title='Multiple used in 30 places.'>obj</a>)
+<a id='L125' name='L125' /><em class='sharp'>  #define</em> ANNOTATE_HAPPENS_AFTER(<a href='../Y/3907.html' title='Multiple used in 30 places.'>obj</a>)  <a href='../D/62.html' title='Multiple defined in 2 places.'>ANNOTATE_CONDVAR_WAIT</a>(<a href='../Y/3907.html' title='Multiple used in 30 places.'>obj</a>)
+<a id='L126' name='L126' />
+<a id='L127' name='L127' />  <em class='comment'>/* Report that the bytes in the range [pointer, pointer+size) are about</em>
+<a id='L128' name='L128' /><em class='comment'>     to be published safely. The race checker will create a happens-before</em>
+<a id='L129' name='L129' /><em class='comment'>     arc from the call ANNOTATE_PUBLISH_MEMORY_RANGE(pointer, size) to</em>
+<a id='L130' name='L130' /><em class='comment'>     subsequent accesses to this memory.</em>
+<a id='L131' name='L131' /><em class='comment'>     Note: this annotation may not work properly if the race detector uses</em>
+<a id='L132' name='L132' /><em class='comment'>     sampling, i.e. does not observe all memory accesses.</em>
+<a id='L133' name='L133' /><em class='comment'>     */</em>
+<a id='L134' name='L134' /><em class='sharp'>  #define</em> <a href='../S/520.html#L145' title='Refered from 145 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>ANNOTATE_PUBLISH_MEMORY_RANGE</a>(<a href='../S/540.html#L63' title='Defined at 63 in third_party/google-perftools-1.8.3/src/base/stl_allocator.h.'>pointer</a>, <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>) \
+<a id='L135' name='L135' />    <a href='../S/519.html#L92' title='Defined at 92 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotatePublishMemoryRange</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>, <a href='../S/540.html#L63' title='Defined at 63 in third_party/google-perftools-1.8.3/src/base/stl_allocator.h.'>pointer</a>, <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>)
+<a id='L136' name='L136' />
+<a id='L137' name='L137' />  <em class='comment'>/* DEPRECATED. Don't use it. */</em>
+<a id='L138' name='L138' /><em class='sharp'>  #define</em> <a href='../S/520.html#L144' title='Refered from 144 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>ANNOTATE_UNPUBLISH_MEMORY_RANGE</a>(<a href='../S/540.html#L63' title='Defined at 63 in third_party/google-perftools-1.8.3/src/base/stl_allocator.h.'>pointer</a>, <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>) \
+<a id='L139' name='L139' />    <a href='../S/519.html#L95' title='Defined at 95 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateUnpublishMemoryRange</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>, <a href='../S/540.html#L63' title='Defined at 63 in third_party/google-perftools-1.8.3/src/base/stl_allocator.h.'>pointer</a>, <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>)
+<a id='L140' name='L140' />
+<a id='L141' name='L141' />  <em class='comment'>/* DEPRECATED. Don't use it. */</em>
+<a id='L142' name='L142' /><em class='sharp'>  #define</em> ANNOTATE_SWAP_MEMORY_RANGE(<a href='../S/540.html#L63' title='Defined at 63 in third_party/google-perftools-1.8.3/src/base/stl_allocator.h.'>pointer</a>, <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>)   \
+<a id='L143' name='L143' />    <strong class='reserved'>do</strong> <em class='brace'>{</em>                                              \
+<a id='L144' name='L144' />      <a href='../D/91.html' title='Multiple defined in 2 places.'>ANNOTATE_UNPUBLISH_MEMORY_RANGE</a>(<a href='../S/540.html#L63' title='Defined at 63 in third_party/google-perftools-1.8.3/src/base/stl_allocator.h.'>pointer</a>, <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>); \
+<a id='L145' name='L145' />      <a href='../D/81.html' title='Multiple defined in 2 places.'>ANNOTATE_PUBLISH_MEMORY_RANGE</a>(<a href='../S/540.html#L63' title='Defined at 63 in third_party/google-perftools-1.8.3/src/base/stl_allocator.h.'>pointer</a>, <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>);   \
+<a id='L146' name='L146' />    <em class='brace'>}</em> <strong class='reserved'>while</strong> (0)
+<a id='L147' name='L147' />
+<a id='L148' name='L148' />  <em class='comment'>/* Instruct the tool to create a happens-before arc between mu-&gt;Unlock() and</em>
+<a id='L149' name='L149' /><em class='comment'>     mu-&gt;Lock(). This annotation may slow down the race detector and hide real</em>
+<a id='L150' name='L150' /><em class='comment'>     races. Normally it is used only when it would be difficult to annotate each</em>
+<a id='L151' name='L151' /><em class='comment'>     of the mutex's critical sections individually using the annotations above.</em>
+<a id='L152' name='L152' /><em class='comment'>     This annotation makes sense only for hybrid race detectors. For pure</em>
+<a id='L153' name='L153' /><em class='comment'>     happens-before detectors this is a no-op. For more details see</em>
+<a id='L154' name='L154' /><em class='comment'>     http://code.google.com/p/data-race-test/wiki/PureHappensBeforeVsHybrid . */</em>
+<a id='L155' name='L155' /><em class='sharp'>  #define</em> ANNOTATE_PURE_HAPPENS_BEFORE_MUTEX(<a href='../Y/3617.html' title='Multiple used in 18 places.'>mu</a>) \
+<a id='L156' name='L156' />    <a href='../S/519.html#L119' title='Defined at 119 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateMutexIsUsedAsCondVar</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>, <a href='../Y/3617.html' title='Multiple used in 18 places.'>mu</a>)
+<a id='L157' name='L157' />
+<a id='L158' name='L158' />  <em class='comment'>/* Deprecated. Use ANNOTATE_PURE_HAPPENS_BEFORE_MUTEX. */</em>
+<a id='L159' name='L159' /><em class='sharp'>  #define</em> ANNOTATE_MUTEX_IS_USED_AS_CONDVAR(<a href='../Y/3617.html' title='Multiple used in 18 places.'>mu</a>) \
+<a id='L160' name='L160' />    <a href='../S/519.html#L119' title='Defined at 119 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateMutexIsUsedAsCondVar</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>, <a href='../Y/3617.html' title='Multiple used in 18 places.'>mu</a>)
+<a id='L161' name='L161' />
+<a id='L162' name='L162' />  <em class='comment'>/* -------------------------------------------------------------</em>
+<a id='L163' name='L163' /><em class='comment'>     Annotations useful when defining memory allocators, or when memory that</em>
+<a id='L164' name='L164' /><em class='comment'>     was protected in one way starts to be protected in another. */</em>
+<a id='L165' name='L165' />
+<a id='L166' name='L166' />  <em class='comment'>/* Report that a new memory at "address" of size "size" has been allocated.</em>
+<a id='L167' name='L167' /><em class='comment'>     This might be used when the memory has been retrieved from a free list and</em>
+<a id='L168' name='L168' /><em class='comment'>     is about to be reused, or when a the locking discipline for a variable</em>
+<a id='L169' name='L169' /><em class='comment'>     changes. */</em>
+<a id='L170' name='L170' /><em class='sharp'>  #define</em> <a href='../S/530.html#L495' title='Refered from 495 in third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc.'>ANNOTATE_NEW_MEMORY</a>(<a href='../Y/1411.html' title='Multiple used in 58 places.'>address</a>, <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>) \
+<a id='L171' name='L171' />    <a href='../S/519.html#L106' title='Defined at 106 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateNewMemory</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>, <a href='../Y/1411.html' title='Multiple used in 58 places.'>address</a>, <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>)
+<a id='L172' name='L172' />
+<a id='L173' name='L173' />  <em class='comment'>/* -------------------------------------------------------------</em>
+<a id='L174' name='L174' /><em class='comment'>     Annotations useful when defining FIFO queues that transfer data between</em>
+<a id='L175' name='L175' /><em class='comment'>     threads. */</em>
+<a id='L176' name='L176' />
+<a id='L177' name='L177' />  <em class='comment'>/* Report that the producer-consumer queue (such as ProducerConsumerQueue) at</em>
+<a id='L178' name='L178' /><em class='comment'>     address "pcq" has been created.  The ANNOTATE_PCQ_* annotations</em>
+<a id='L179' name='L179' /><em class='comment'>     should be used only for FIFO queues.  For non-FIFO queues use</em>
+<a id='L180' name='L180' /><em class='comment'>     ANNOTATE_HAPPENS_BEFORE (for put) and ANNOTATE_HAPPENS_AFTER (for get). */</em>
+<a id='L181' name='L181' /><em class='sharp'>  #define</em> ANNOTATE_PCQ_CREATE(<a href='../Y/4136.html' title='Multiple used in 20 places.'>pcq</a>) \
+<a id='L182' name='L182' />    <a href='../S/519.html#L98' title='Defined at 98 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotatePCQCreate</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>, <a href='../Y/4136.html' title='Multiple used in 20 places.'>pcq</a>)
+<a id='L183' name='L183' />
+<a id='L184' name='L184' />  <em class='comment'>/* Report that the queue at address "pcq" is about to be destroyed. */</em>
+<a id='L185' name='L185' /><em class='sharp'>  #define</em> ANNOTATE_PCQ_DESTROY(<a href='../Y/4136.html' title='Multiple used in 20 places.'>pcq</a>) \
+<a id='L186' name='L186' />    <a href='../S/519.html#L100' title='Defined at 100 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotatePCQDestroy</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>, <a href='../Y/4136.html' title='Multiple used in 20 places.'>pcq</a>)
+<a id='L187' name='L187' />
+<a id='L188' name='L188' />  <em class='comment'>/* Report that we are about to put an element into a FIFO queue at address</em>
+<a id='L189' name='L189' /><em class='comment'>     "pcq". */</em>
+<a id='L190' name='L190' /><em class='sharp'>  #define</em> ANNOTATE_PCQ_PUT(<a href='../Y/4136.html' title='Multiple used in 20 places.'>pcq</a>) \
+<a id='L191' name='L191' />    <a href='../S/519.html#L102' title='Defined at 102 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotatePCQPut</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>, <a href='../Y/4136.html' title='Multiple used in 20 places.'>pcq</a>)
+<a id='L192' name='L192' />
+<a id='L193' name='L193' />  <em class='comment'>/* Report that we've just got an element from a FIFO queue at address "pcq". */</em>
+<a id='L194' name='L194' /><em class='sharp'>  #define</em> ANNOTATE_PCQ_GET(<a href='../Y/4136.html' title='Multiple used in 20 places.'>pcq</a>) \
+<a id='L195' name='L195' />    <a href='../S/519.html#L104' title='Defined at 104 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotatePCQGet</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>, <a href='../Y/4136.html' title='Multiple used in 20 places.'>pcq</a>)
+<a id='L196' name='L196' />
+<a id='L197' name='L197' />  <em class='comment'>/* -------------------------------------------------------------</em>
+<a id='L198' name='L198' /><em class='comment'>     Annotations that suppress errors.  It is usually better to express the</em>
+<a id='L199' name='L199' /><em class='comment'>     program's synchronization using the other annotations, but these can</em>
+<a id='L200' name='L200' /><em class='comment'>     be used when all else fails. */</em>
+<a id='L201' name='L201' />
+<a id='L202' name='L202' />  <em class='comment'>/* Report that we may have a benign race at "pointer", with size</em>
+<a id='L203' name='L203' /><em class='comment'>     "sizeof(*(pointer))". "pointer" must be a non-void* pointer.  Insert at the</em>
+<a id='L204' name='L204' /><em class='comment'>     point where "pointer" has been allocated, preferably close to the point</em>
+<a id='L205' name='L205' /><em class='comment'>     where the race happens.  See also ANNOTATE_BENIGN_RACE_STATIC. */</em>
+<a id='L206' name='L206' /><em class='sharp'>  #define</em> <a href='../R/48.html' title='Multiple refered from 3 places.'>ANNOTATE_BENIGN_RACE</a>(<a href='../S/540.html#L63' title='Defined at 63 in third_party/google-perftools-1.8.3/src/base/stl_allocator.h.'>pointer</a>, <a href='../Y/2034.html' title='Multiple used in 22 places.'>description</a>) \
+<a id='L207' name='L207' />    <a href='../S/519.html#L115' title='Defined at 115 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateBenignRaceSized</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>, <a href='../S/540.html#L63' title='Defined at 63 in third_party/google-perftools-1.8.3/src/base/stl_allocator.h.'>pointer</a>, \
+<a id='L208' name='L208' />                            <strong class='reserved'>sizeof</strong>(*(<a href='../S/540.html#L63' title='Defined at 63 in third_party/google-perftools-1.8.3/src/base/stl_allocator.h.'>pointer</a>)), <a href='../Y/2034.html' title='Multiple used in 22 places.'>description</a>)
+<a id='L209' name='L209' />
+<a id='L210' name='L210' />  <em class='comment'>/* Same as ANNOTATE_BENIGN_RACE(address, description), but applies to</em>
+<a id='L211' name='L211' /><em class='comment'>     the memory range [address, address+size). */</em>
+<a id='L212' name='L212' /><em class='sharp'>  #define</em> <a href='../S/520.html#L550' title='Refered from 550 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>ANNOTATE_BENIGN_RACE_SIZED</a>(<a href='../Y/1411.html' title='Multiple used in 58 places.'>address</a>, <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>, <a href='../Y/2034.html' title='Multiple used in 22 places.'>description</a>) \
+<a id='L213' name='L213' />    <a href='../S/519.html#L115' title='Defined at 115 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateBenignRaceSized</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>, <a href='../Y/1411.html' title='Multiple used in 58 places.'>address</a>, <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>, <a href='../Y/2034.html' title='Multiple used in 22 places.'>description</a>)
+<a id='L214' name='L214' />
+<a id='L215' name='L215' />  <em class='comment'>/* Request the analysis tool to ignore all reads in the current thread</em>
+<a id='L216' name='L216' /><em class='comment'>     until ANNOTATE_IGNORE_READS_END is called.</em>
+<a id='L217' name='L217' /><em class='comment'>     Useful to ignore intentional racey reads, while still checking</em>
+<a id='L218' name='L218' /><em class='comment'>     other reads and all writes.</em>
+<a id='L219' name='L219' /><em class='comment'>     See also ANNOTATE_UNPROTECTED_READ. */</em>
+<a id='L220' name='L220' /><em class='sharp'>  #define</em> <a href='../R/52.html' title='Multiple refered from 4 places.'>ANNOTATE_IGNORE_READS_BEGIN</a>() \
+<a id='L221' name='L221' />    <a href='../S/519.html#L125' title='Defined at 125 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateIgnoreReadsBegin</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>)
+<a id='L222' name='L222' />
+<a id='L223' name='L223' />  <em class='comment'>/* Stop ignoring reads. */</em>
+<a id='L224' name='L224' /><em class='sharp'>  #define</em> <a href='../R/53.html' title='Multiple refered from 4 places.'>ANNOTATE_IGNORE_READS_END</a>() \
+<a id='L225' name='L225' />    <a href='../S/519.html#L126' title='Defined at 126 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateIgnoreReadsEnd</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>)
+<a id='L226' name='L226' />
+<a id='L227' name='L227' />  <em class='comment'>/* Similar to ANNOTATE_IGNORE_READS_BEGIN, but ignore writes. */</em>
+<a id='L228' name='L228' /><em class='sharp'>  #define</em> <a href='../R/54.html' title='Multiple refered from 2 places.'>ANNOTATE_IGNORE_WRITES_BEGIN</a>() \
+<a id='L229' name='L229' />    <a href='../S/519.html#L127' title='Defined at 127 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateIgnoreWritesBegin</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>)
+<a id='L230' name='L230' />
+<a id='L231' name='L231' />  <em class='comment'>/* Stop ignoring writes. */</em>
+<a id='L232' name='L232' /><em class='sharp'>  #define</em> <a href='../R/55.html' title='Multiple refered from 2 places.'>ANNOTATE_IGNORE_WRITES_END</a>() \
+<a id='L233' name='L233' />    <a href='../S/519.html#L128' title='Defined at 128 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateIgnoreWritesEnd</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>)
+<a id='L234' name='L234' />
+<a id='L235' name='L235' />  <em class='comment'>/* Start ignoring all memory accesses (reads and writes). */</em>
+<a id='L236' name='L236' /><em class='sharp'>  #define</em> ANNOTATE_IGNORE_READS_AND_WRITES_BEGIN() \
+<a id='L237' name='L237' />    <strong class='reserved'>do</strong> <em class='brace'>{</em>\
+<a id='L238' name='L238' />      <a href='../D/70.html' title='Multiple defined in 4 places.'>ANNOTATE_IGNORE_READS_BEGIN</a>();\
+<a id='L239' name='L239' />      <a href='../D/72.html' title='Multiple defined in 4 places.'>ANNOTATE_IGNORE_WRITES_BEGIN</a>();\
+<a id='L240' name='L240' />    <em class='brace'>}</em><strong class='reserved'>while</strong>(0)\
+<a id='L241' name='L241' />
+<a id='L242' name='L242' />  <em class='comment'>/* Stop ignoring all memory accesses. */</em>
+<a id='L243' name='L243' /><em class='sharp'>  #define</em> ANNOTATE_IGNORE_READS_AND_WRITES_END() \
+<a id='L244' name='L244' />    <strong class='reserved'>do</strong> <em class='brace'>{</em>\
+<a id='L245' name='L245' />      <a href='../D/73.html' title='Multiple defined in 4 places.'>ANNOTATE_IGNORE_WRITES_END</a>();\
+<a id='L246' name='L246' />      <a href='../D/71.html' title='Multiple defined in 4 places.'>ANNOTATE_IGNORE_READS_END</a>();\
+<a id='L247' name='L247' />    <em class='brace'>}</em><strong class='reserved'>while</strong>(0)\
+<a id='L248' name='L248' />
+<a id='L249' name='L249' />  <em class='comment'>/* Enable (enable!=0) or disable (enable==0) race detection for all threads.</em>
+<a id='L250' name='L250' /><em class='comment'>     This annotation could be useful if you want to skip expensive race analysis</em>
+<a id='L251' name='L251' /><em class='comment'>     during some period of program execution, e.g. during initialization. */</em>
+<a id='L252' name='L252' /><em class='sharp'>  #define</em> ANNOTATE_ENABLE_RACE_DETECTION(<a href='../Y/2176.html' title='Multiple used in 5 places.'>enable</a>) \
+<a id='L253' name='L253' />    <a href='../S/519.html#L129' title='Defined at 129 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateEnableRaceDetection</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>, <a href='../Y/2176.html' title='Multiple used in 5 places.'>enable</a>)
+<a id='L254' name='L254' />
+<a id='L255' name='L255' />  <em class='comment'>/* -------------------------------------------------------------</em>
+<a id='L256' name='L256' /><em class='comment'>     Annotations useful for debugging. */</em>
+<a id='L257' name='L257' />
+<a id='L258' name='L258' />  <em class='comment'>/* Request to trace every access to "address". */</em>
+<a id='L259' name='L259' /><em class='sharp'>  #define</em> ANNOTATE_TRACE_MEMORY(<a href='../Y/1411.html' title='Multiple used in 58 places.'>address</a>) \
+<a id='L260' name='L260' />    <a href='../S/519.html#L121' title='Defined at 121 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateTraceMemory</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>, <a href='../Y/1411.html' title='Multiple used in 58 places.'>address</a>)
+<a id='L261' name='L261' />
+<a id='L262' name='L262' />  <em class='comment'>/* Report the current thread name to a race detector. */</em>
+<a id='L263' name='L263' /><em class='sharp'>  #define</em> ANNOTATE_THREAD_NAME(<a href='../Y/3665.html' title='Multiple used in 438 places.'>name</a>) \
+<a id='L264' name='L264' />    <a href='../S/519.html#L123' title='Defined at 123 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateThreadName</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>, <a href='../Y/3665.html' title='Multiple used in 438 places.'>name</a>)
+<a id='L265' name='L265' />
+<a id='L266' name='L266' />  <em class='comment'>/* -------------------------------------------------------------</em>
+<a id='L267' name='L267' /><em class='comment'>     Annotations useful when implementing locks.  They are not</em>
+<a id='L268' name='L268' /><em class='comment'>     normally needed by modules that merely use locks.</em>
+<a id='L269' name='L269' /><em class='comment'>     The "lock" argument is a pointer to the lock object. */</em>
+<a id='L270' name='L270' />
+<a id='L271' name='L271' />  <em class='comment'>/* Report that a lock has been created at address "lock". */</em>
+<a id='L272' name='L272' /><em class='sharp'>  #define</em> ANNOTATE_RWLOCK_CREATE(<a href='../Y/3313.html' title='Multiple used in 107 places.'>lock</a>) \
+<a id='L273' name='L273' />    <a href='../S/519.html#L67' title='Defined at 67 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateRWLockCreate</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>, <a href='../Y/3313.html' title='Multiple used in 107 places.'>lock</a>)
+<a id='L274' name='L274' />
+<a id='L275' name='L275' />  <em class='comment'>/* Report that the lock at address "lock" is about to be destroyed. */</em>
+<a id='L276' name='L276' /><em class='sharp'>  #define</em> ANNOTATE_RWLOCK_DESTROY(<a href='../Y/3313.html' title='Multiple used in 107 places.'>lock</a>) \
+<a id='L277' name='L277' />    <a href='../S/519.html#L69' title='Defined at 69 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateRWLockDestroy</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>, <a href='../Y/3313.html' title='Multiple used in 107 places.'>lock</a>)
+<a id='L278' name='L278' />
+<a id='L279' name='L279' />  <em class='comment'>/* Report that the lock at address "lock" has been acquired.</em>
+<a id='L280' name='L280' /><em class='comment'>     is_w=1 for writer lock, is_w=0 for reader lock. */</em>
+<a id='L281' name='L281' /><em class='sharp'>  #define</em> <a href='../R/58.html' title='Multiple refered from 2 places.'>ANNOTATE_RWLOCK_ACQUIRED</a>(<a href='../Y/3313.html' title='Multiple used in 107 places.'>lock</a>, <a href='../Y/2928.html' title='Multiple used in 10 places.'>is_w</a>) \
+<a id='L282' name='L282' />    <a href='../S/519.html#L71' title='Defined at 71 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateRWLockAcquired</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>, <a href='../Y/3313.html' title='Multiple used in 107 places.'>lock</a>, <a href='../Y/2928.html' title='Multiple used in 10 places.'>is_w</a>)
+<a id='L283' name='L283' />
+<a id='L284' name='L284' />  <em class='comment'>/* Report that the lock at address "lock" is about to be released. */</em>
+<a id='L285' name='L285' /><em class='sharp'>  #define</em> <a href='../S/534.html#L100' title='Refered from 100 in third_party/google-perftools-1.8.3/src/base/spinlock.h.'>ANNOTATE_RWLOCK_RELEASED</a>(<a href='../Y/3313.html' title='Multiple used in 107 places.'>lock</a>, <a href='../Y/2928.html' title='Multiple used in 10 places.'>is_w</a>) \
+<a id='L286' name='L286' />    <a href='../S/519.html#L73' title='Defined at 73 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateRWLockReleased</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>, <a href='../Y/3313.html' title='Multiple used in 107 places.'>lock</a>, <a href='../Y/2928.html' title='Multiple used in 10 places.'>is_w</a>)
+<a id='L287' name='L287' />
+<a id='L288' name='L288' />  <em class='comment'>/* -------------------------------------------------------------</em>
+<a id='L289' name='L289' /><em class='comment'>     Annotations useful when implementing barriers.  They are not</em>
+<a id='L290' name='L290' /><em class='comment'>     normally needed by modules that merely use barriers.</em>
+<a id='L291' name='L291' /><em class='comment'>     The "barrier" argument is a pointer to the barrier object. */</em>
+<a id='L292' name='L292' />
+<a id='L293' name='L293' />  <em class='comment'>/* Report that the "barrier" has been initialized with initial "count".</em>
+<a id='L294' name='L294' /><em class='comment'>   If 'reinitialization_allowed' is true, initialization is allowed to happen</em>
+<a id='L295' name='L295' /><em class='comment'>   multiple times w/o calling barrier_destroy() */</em>
+<a id='L296' name='L296' /><em class='sharp'>  #define</em> ANNOTATE_BARRIER_INIT(<a href='../Y/1583.html' title='Multiple used in 20 places.'>barrier</a>, <a href='../Y/1870.html' title='Multiple used in 157 places.'>count</a>, <a href='../Y/4494.html' title='Multiple used in 5 places.'>reinitialization_allowed</a>) \
+<a id='L297' name='L297' />    <a href='../S/519.html#L75' title='Defined at 75 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateBarrierInit</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>, <a href='../Y/1583.html' title='Multiple used in 20 places.'>barrier</a>, <a href='../Y/1870.html' title='Multiple used in 157 places.'>count</a>, \
+<a id='L298' name='L298' />                        <a href='../Y/4494.html' title='Multiple used in 5 places.'>reinitialization_allowed</a>)
+<a id='L299' name='L299' />
+<a id='L300' name='L300' />  <em class='comment'>/* Report that we are about to enter barrier_wait("barrier"). */</em>
+<a id='L301' name='L301' /><em class='sharp'>  #define</em> ANNOTATE_BARRIER_WAIT_BEFORE(<a href='../Y/1583.html' title='Multiple used in 20 places.'>barrier</a>) \
+<a id='L302' name='L302' />    <a href='../S/519.html#L78' title='Defined at 78 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateBarrierWaitBefore</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>, <a href='../Y/1583.html' title='Multiple used in 20 places.'>barrier</a>)
+<a id='L303' name='L303' />
+<a id='L304' name='L304' />  <em class='comment'>/* Report that we just exited barrier_wait("barrier"). */</em>
+<a id='L305' name='L305' /><em class='sharp'>  #define</em> ANNOTATE_BARRIER_WAIT_AFTER(<a href='../Y/1583.html' title='Multiple used in 20 places.'>barrier</a>) \
+<a id='L306' name='L306' />    <a href='../S/519.html#L80' title='Defined at 80 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateBarrierWaitAfter</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>, <a href='../Y/1583.html' title='Multiple used in 20 places.'>barrier</a>)
+<a id='L307' name='L307' />
+<a id='L308' name='L308' />  <em class='comment'>/* Report that the "barrier" has been destroyed. */</em>
+<a id='L309' name='L309' /><em class='sharp'>  #define</em> ANNOTATE_BARRIER_DESTROY(<a href='../Y/1583.html' title='Multiple used in 20 places.'>barrier</a>) \
+<a id='L310' name='L310' />    <a href='../S/519.html#L82' title='Defined at 82 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateBarrierDestroy</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>, <a href='../Y/1583.html' title='Multiple used in 20 places.'>barrier</a>)
+<a id='L311' name='L311' />
+<a id='L312' name='L312' />  <em class='comment'>/* -------------------------------------------------------------</em>
+<a id='L313' name='L313' /><em class='comment'>     Annotations useful for testing race detectors. */</em>
+<a id='L314' name='L314' />
+<a id='L315' name='L315' />  <em class='comment'>/* Report that we expect a race on the variable at "address".</em>
+<a id='L316' name='L316' /><em class='comment'>     Use only in unit tests for a race detector. */</em>
+<a id='L317' name='L317' /><em class='sharp'>  #define</em> ANNOTATE_EXPECT_RACE(<a href='../Y/1411.html' title='Multiple used in 58 places.'>address</a>, <a href='../Y/2034.html' title='Multiple used in 22 places.'>description</a>) \
+<a id='L318' name='L318' />    <a href='../S/519.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateExpectRace</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>, <a href='../Y/1411.html' title='Multiple used in 58 places.'>address</a>, <a href='../Y/2034.html' title='Multiple used in 22 places.'>description</a>)
+<a id='L319' name='L319' />
+<a id='L320' name='L320' />  <em class='comment'>/* A no-op. Insert where you like to test the interceptors. */</em>
+<a id='L321' name='L321' /><em class='sharp'>  #define</em> ANNOTATE_NO_OP(<a href='../Y/1482.html' title='Multiple used in 187 places.'>arg</a>) \
+<a id='L322' name='L322' />    <a href='../S/519.html#L130' title='Defined at 130 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateNoOp</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>, <a href='../Y/1482.html' title='Multiple used in 187 places.'>arg</a>)
+<a id='L323' name='L323' />
+<a id='L324' name='L324' />  <em class='comment'>/* Force the race detector to flush its state. The actual effect depends on</em>
+<a id='L325' name='L325' /><em class='comment'>   * the implementation of the detector. */</em>
+<a id='L326' name='L326' /><em class='sharp'>  #define</em> ANNOTATE_FLUSH_STATE() \
+<a id='L327' name='L327' />    <a href='../S/519.html#L132' title='Defined at 132 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateFlushState</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>)
+<a id='L328' name='L328' />
+<a id='L329' name='L329' />
+<a id='L330' name='L330' /><em class='sharp'>#else</em>  <em class='comment'>/* DYNAMIC_ANNOTATIONS_ENABLED == 0 */</em>
+<a id='L331' name='L331' />
+<a id='L332' name='L332' /><em class='sharp'>  #define</em> ANNOTATE_RWLOCK_CREATE(<a href='../Y/3313.html' title='Multiple used in 107 places.'>lock</a>) <em class='comment'>/* empty */</em>
+<a id='L333' name='L333' /><em class='sharp'>  #define</em> ANNOTATE_RWLOCK_DESTROY(<a href='../Y/3313.html' title='Multiple used in 107 places.'>lock</a>) <em class='comment'>/* empty */</em>
+<a id='L334' name='L334' /><em class='sharp'>  #define</em> <a href='../R/58.html' title='Multiple refered from 2 places.'>ANNOTATE_RWLOCK_ACQUIRED</a>(<a href='../Y/3313.html' title='Multiple used in 107 places.'>lock</a>, <a href='../Y/2928.html' title='Multiple used in 10 places.'>is_w</a>) <em class='comment'>/* empty */</em>
+<a id='L335' name='L335' /><em class='sharp'>  #define</em> <a href='../S/534.html#L100' title='Refered from 100 in third_party/google-perftools-1.8.3/src/base/spinlock.h.'>ANNOTATE_RWLOCK_RELEASED</a>(<a href='../Y/3313.html' title='Multiple used in 107 places.'>lock</a>, <a href='../Y/2928.html' title='Multiple used in 10 places.'>is_w</a>) <em class='comment'>/* empty */</em>
+<a id='L336' name='L336' /><em class='sharp'>  #define</em> ANNOTATE_BARRIER_INIT(<a href='../Y/1583.html' title='Multiple used in 20 places.'>barrier</a>, <a href='../Y/1870.html' title='Multiple used in 157 places.'>count</a>, <a href='../Y/4494.html' title='Multiple used in 5 places.'>reinitialization_allowed</a>) <em class='comment'>/* */</em>
+<a id='L337' name='L337' /><em class='sharp'>  #define</em> ANNOTATE_BARRIER_WAIT_BEFORE(<a href='../Y/1583.html' title='Multiple used in 20 places.'>barrier</a>) <em class='comment'>/* empty */</em>
+<a id='L338' name='L338' /><em class='sharp'>  #define</em> ANNOTATE_BARRIER_WAIT_AFTER(<a href='../Y/1583.html' title='Multiple used in 20 places.'>barrier</a>) <em class='comment'>/* empty */</em>
+<a id='L339' name='L339' /><em class='sharp'>  #define</em> ANNOTATE_BARRIER_DESTROY(<a href='../Y/1583.html' title='Multiple used in 20 places.'>barrier</a>) <em class='comment'>/* empty */</em>
+<a id='L340' name='L340' /><em class='sharp'>  #define</em> ANNOTATE_CONDVAR_LOCK_WAIT(<a href='../Y/1943.html' title='Multiple used in 18 places.'>cv</a>, <a href='../Y/3313.html' title='Multiple used in 107 places.'>lock</a>) <em class='comment'>/* empty */</em>
+<a id='L341' name='L341' /><em class='sharp'>  #define</em> <a href='../S/520.html#L125' title='Refered from 125 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>ANNOTATE_CONDVAR_WAIT</a>(<a href='../Y/1943.html' title='Multiple used in 18 places.'>cv</a>) <em class='comment'>/* empty */</em>
+<a id='L342' name='L342' /><em class='sharp'>  #define</em> <a href='../S/520.html#L124' title='Refered from 124 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>ANNOTATE_CONDVAR_SIGNAL</a>(<a href='../Y/1943.html' title='Multiple used in 18 places.'>cv</a>) <em class='comment'>/* empty */</em>
+<a id='L343' name='L343' /><em class='sharp'>  #define</em> ANNOTATE_CONDVAR_SIGNAL_ALL(<a href='../Y/1943.html' title='Multiple used in 18 places.'>cv</a>) <em class='comment'>/* empty */</em>
+<a id='L344' name='L344' /><em class='sharp'>  #define</em> ANNOTATE_HAPPENS_BEFORE(<a href='../Y/3907.html' title='Multiple used in 30 places.'>obj</a>) <em class='comment'>/* empty */</em>
+<a id='L345' name='L345' /><em class='sharp'>  #define</em> ANNOTATE_HAPPENS_AFTER(<a href='../Y/3907.html' title='Multiple used in 30 places.'>obj</a>) <em class='comment'>/* empty */</em>
+<a id='L346' name='L346' /><em class='sharp'>  #define</em> <a href='../S/520.html#L145' title='Refered from 145 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>ANNOTATE_PUBLISH_MEMORY_RANGE</a>(<a href='../Y/1411.html' title='Multiple used in 58 places.'>address</a>, <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>) <em class='comment'>/* empty */</em>
+<a id='L347' name='L347' /><em class='sharp'>  #define</em> <a href='../S/520.html#L144' title='Refered from 144 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>ANNOTATE_UNPUBLISH_MEMORY_RANGE</a>(<a href='../Y/1411.html' title='Multiple used in 58 places.'>address</a>, <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>)  <em class='comment'>/* empty */</em>
+<a id='L348' name='L348' /><em class='sharp'>  #define</em> ANNOTATE_SWAP_MEMORY_RANGE(<a href='../Y/1411.html' title='Multiple used in 58 places.'>address</a>, <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>)  <em class='comment'>/* empty */</em>
+<a id='L349' name='L349' /><em class='sharp'>  #define</em> ANNOTATE_PCQ_CREATE(<a href='../Y/4136.html' title='Multiple used in 20 places.'>pcq</a>) <em class='comment'>/* empty */</em>
+<a id='L350' name='L350' /><em class='sharp'>  #define</em> ANNOTATE_PCQ_DESTROY(<a href='../Y/4136.html' title='Multiple used in 20 places.'>pcq</a>) <em class='comment'>/* empty */</em>
+<a id='L351' name='L351' /><em class='sharp'>  #define</em> ANNOTATE_PCQ_PUT(<a href='../Y/4136.html' title='Multiple used in 20 places.'>pcq</a>) <em class='comment'>/* empty */</em>
+<a id='L352' name='L352' /><em class='sharp'>  #define</em> ANNOTATE_PCQ_GET(<a href='../Y/4136.html' title='Multiple used in 20 places.'>pcq</a>) <em class='comment'>/* empty */</em>
+<a id='L353' name='L353' /><em class='sharp'>  #define</em> <a href='../S/530.html#L495' title='Refered from 495 in third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc.'>ANNOTATE_NEW_MEMORY</a>(<a href='../Y/1411.html' title='Multiple used in 58 places.'>address</a>, <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>) <em class='comment'>/* empty */</em>
+<a id='L354' name='L354' /><em class='sharp'>  #define</em> ANNOTATE_EXPECT_RACE(<a href='../Y/1411.html' title='Multiple used in 58 places.'>address</a>, <a href='../Y/2034.html' title='Multiple used in 22 places.'>description</a>) <em class='comment'>/* empty */</em>
+<a id='L355' name='L355' /><em class='sharp'>  #define</em> <a href='../R/48.html' title='Multiple refered from 3 places.'>ANNOTATE_BENIGN_RACE</a>(<a href='../Y/1411.html' title='Multiple used in 58 places.'>address</a>, <a href='../Y/2034.html' title='Multiple used in 22 places.'>description</a>) <em class='comment'>/* empty */</em>
+<a id='L356' name='L356' /><em class='sharp'>  #define</em> <a href='../S/520.html#L550' title='Refered from 550 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>ANNOTATE_BENIGN_RACE_SIZED</a>(<a href='../Y/1411.html' title='Multiple used in 58 places.'>address</a>, <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>, <a href='../Y/2034.html' title='Multiple used in 22 places.'>description</a>) <em class='comment'>/* empty */</em>
+<a id='L357' name='L357' /><em class='sharp'>  #define</em> ANNOTATE_PURE_HAPPENS_BEFORE_MUTEX(<a href='../Y/3617.html' title='Multiple used in 18 places.'>mu</a>) <em class='comment'>/* empty */</em>
+<a id='L358' name='L358' /><em class='sharp'>  #define</em> ANNOTATE_MUTEX_IS_USED_AS_CONDVAR(<a href='../Y/3617.html' title='Multiple used in 18 places.'>mu</a>) <em class='comment'>/* empty */</em>
+<a id='L359' name='L359' /><em class='sharp'>  #define</em> ANNOTATE_TRACE_MEMORY(<a href='../Y/1482.html' title='Multiple used in 187 places.'>arg</a>) <em class='comment'>/* empty */</em>
+<a id='L360' name='L360' /><em class='sharp'>  #define</em> ANNOTATE_THREAD_NAME(<a href='../Y/3665.html' title='Multiple used in 438 places.'>name</a>) <em class='comment'>/* empty */</em>
+<a id='L361' name='L361' /><em class='sharp'>  #define</em> <a href='../R/52.html' title='Multiple refered from 4 places.'>ANNOTATE_IGNORE_READS_BEGIN</a>() <em class='comment'>/* empty */</em>
+<a id='L362' name='L362' /><em class='sharp'>  #define</em> <a href='../R/53.html' title='Multiple refered from 4 places.'>ANNOTATE_IGNORE_READS_END</a>() <em class='comment'>/* empty */</em>
+<a id='L363' name='L363' /><em class='sharp'>  #define</em> <a href='../R/54.html' title='Multiple refered from 2 places.'>ANNOTATE_IGNORE_WRITES_BEGIN</a>() <em class='comment'>/* empty */</em>
+<a id='L364' name='L364' /><em class='sharp'>  #define</em> <a href='../R/55.html' title='Multiple refered from 2 places.'>ANNOTATE_IGNORE_WRITES_END</a>() <em class='comment'>/* empty */</em>
+<a id='L365' name='L365' /><em class='sharp'>  #define</em> ANNOTATE_IGNORE_READS_AND_WRITES_BEGIN() <em class='comment'>/* empty */</em>
+<a id='L366' name='L366' /><em class='sharp'>  #define</em> ANNOTATE_IGNORE_READS_AND_WRITES_END() <em class='comment'>/* empty */</em>
+<a id='L367' name='L367' /><em class='sharp'>  #define</em> ANNOTATE_ENABLE_RACE_DETECTION(<a href='../Y/2176.html' title='Multiple used in 5 places.'>enable</a>) <em class='comment'>/* empty */</em>
+<a id='L368' name='L368' /><em class='sharp'>  #define</em> ANNOTATE_NO_OP(<a href='../Y/1482.html' title='Multiple used in 187 places.'>arg</a>) <em class='comment'>/* empty */</em>
+<a id='L369' name='L369' /><em class='sharp'>  #define</em> ANNOTATE_FLUSH_STATE() <em class='comment'>/* empty */</em>
+<a id='L370' name='L370' />
+<a id='L371' name='L371' /><em class='sharp'>#endif</em>  <em class='comment'>/* DYNAMIC_ANNOTATIONS_ENABLED */</em>
+<a id='L372' name='L372' />
+<a id='L373' name='L373' /><em class='comment'>/* Macro definitions for GCC attributes that allow static thread safety</em>
+<a id='L374' name='L374' /><em class='comment'>   analysis to recognize and use some of the dynamic annotations as</em>
+<a id='L375' name='L375' /><em class='comment'>   escape hatches.</em>
+<a id='L376' name='L376' /><em class='comment'>   TODO(lcwu): remove the check for __SUPPORT_DYN_ANNOTATION__ once the</em>
+<a id='L377' name='L377' /><em class='comment'>   default crosstool/GCC supports these GCC attributes.  */</em>
+<a id='L378' name='L378' />
+<a id='L379' name='L379' /><em class='sharp'>#define</em> <a href='../R/46.html' title='Multiple refered from 4 places.'>ANNOTALYSIS_STATIC_INLINE</a>
+<a id='L380' name='L380' /><em class='sharp'>#define</em> <a href='../R/45.html' title='Multiple refered from 4 places.'>ANNOTALYSIS_SEMICOLON_OR_EMPTY_BODY</a> ;
+<a id='L381' name='L381' /><em class='sharp'>#define</em> <a href='../S/520.html#L477' title='Refered from 477 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>ANNOTALYSIS_IGNORE_READS_BEGIN</a>
+<a id='L382' name='L382' /><em class='sharp'>#define</em> <a href='../S/520.html#L480' title='Refered from 480 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>ANNOTALYSIS_IGNORE_READS_END</a>
+<a id='L383' name='L383' /><em class='sharp'>#define</em> <a href='../S/520.html#L483' title='Refered from 483 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>ANNOTALYSIS_IGNORE_WRITES_BEGIN</a>
+<a id='L384' name='L384' /><em class='sharp'>#define</em> <a href='../S/520.html#L486' title='Refered from 486 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>ANNOTALYSIS_IGNORE_WRITES_END</a>
+<a id='L385' name='L385' /><em class='sharp'>#define</em> <a href='../R/47.html' title='Multiple refered from 2 places.'>ANNOTALYSIS_UNPROTECTED_READ</a>
+<a id='L386' name='L386' />
+<a id='L387' name='L387' /><em class='sharp'>#if</em> <strong class='reserved'>defined</strong>(<a href='../Y/1046.html' title='Multiple used in 44 places.'>__GNUC__</a>) &amp;&amp; (!<strong class='reserved'>defined</strong>(<a href='../Y/755.html' title='Multiple used in 3 places.'>SWIG</a>)) &amp;&amp; (!<strong class='reserved'>defined</strong>(__clang__)) &amp;&amp; \
+<a id='L388' name='L388' />    <strong class='reserved'>defined</strong>(<a href='../Y/1100.html' title='Multiple used in 3 places.'>__SUPPORT_TS_ANNOTATION__</a>) &amp;&amp; <strong class='reserved'>defined</strong>(<a href='../Y/1099.html' title='Multiple used in 2 places.'>__SUPPORT_DYN_ANNOTATION__</a>)
+<a id='L389' name='L389' />
+<a id='L390' name='L390' /><em class='sharp'>#if</em> <a href='../S/520.html#L61' title='Defined at 61 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>DYNAMIC_ANNOTATIONS_ENABLED</a> == 0
+<a id='L391' name='L391' /><em class='sharp'>#define</em> <a href='../S/520.html#L574' title='Refered from 574 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>ANNOTALYSIS_ONLY</a> 1
+<a id='L392' name='L392' /><em class='sharp'>#undef</em> <a href='../R/46.html' title='Multiple refered from 4 places.'>ANNOTALYSIS_STATIC_INLINE</a>
+<a id='L393' name='L393' /><em class='sharp'>#define</em> <a href='../R/46.html' title='Multiple refered from 4 places.'>ANNOTALYSIS_STATIC_INLINE</a> <strong class='reserved'>static</strong> <strong class='reserved'>inline</strong>
+<a id='L394' name='L394' /><em class='sharp'>#undef</em> <a href='../R/45.html' title='Multiple refered from 4 places.'>ANNOTALYSIS_SEMICOLON_OR_EMPTY_BODY</a>
+<a id='L395' name='L395' /><em class='sharp'>#define</em> <a href='../R/45.html' title='Multiple refered from 4 places.'>ANNOTALYSIS_SEMICOLON_OR_EMPTY_BODY</a> <em class='brace'>{</em> (<strong class='reserved'>void</strong>)<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>; (<strong class='reserved'>void</strong>)<a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>; <em class='brace'>}</em>
+<a id='L396' name='L396' /><em class='sharp'>#endif</em>
+<a id='L397' name='L397' />
+<a id='L398' name='L398' /><em class='comment'>/* Only emit attributes when annotalysis is enabled. */</em>
+<a id='L399' name='L399' /><em class='sharp'>#if</em> <strong class='reserved'>defined</strong>(<a href='../Y/1100.html' title='Multiple used in 3 places.'>__SUPPORT_TS_ANNOTATION__</a>) &amp;&amp; <strong class='reserved'>defined</strong>(<a href='../Y/1099.html' title='Multiple used in 2 places.'>__SUPPORT_DYN_ANNOTATION__</a>)
+<a id='L400' name='L400' /><em class='sharp'>#undef</em>  <a href='../S/520.html#L477' title='Refered from 477 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>ANNOTALYSIS_IGNORE_READS_BEGIN</a>
+<a id='L401' name='L401' /><em class='sharp'>#define</em> <a href='../S/520.html#L477' title='Refered from 477 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>ANNOTALYSIS_IGNORE_READS_BEGIN</a>  <strong class='reserved'>__attribute__</strong> ((ignore_reads_begin))
+<a id='L402' name='L402' /><em class='sharp'>#undef</em>  <a href='../S/520.html#L480' title='Refered from 480 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>ANNOTALYSIS_IGNORE_READS_END</a>
+<a id='L403' name='L403' /><em class='sharp'>#define</em> <a href='../S/520.html#L480' title='Refered from 480 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>ANNOTALYSIS_IGNORE_READS_END</a>    <strong class='reserved'>__attribute__</strong> ((ignore_reads_end))
+<a id='L404' name='L404' /><em class='sharp'>#undef</em>  <a href='../S/520.html#L483' title='Refered from 483 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>ANNOTALYSIS_IGNORE_WRITES_BEGIN</a>
+<a id='L405' name='L405' /><em class='sharp'>#define</em> <a href='../S/520.html#L483' title='Refered from 483 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>ANNOTALYSIS_IGNORE_WRITES_BEGIN</a> <strong class='reserved'>__attribute__</strong> ((ignore_writes_begin))
+<a id='L406' name='L406' /><em class='sharp'>#undef</em>  <a href='../S/520.html#L486' title='Refered from 486 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>ANNOTALYSIS_IGNORE_WRITES_END</a>
+<a id='L407' name='L407' /><em class='sharp'>#define</em> <a href='../S/520.html#L486' title='Refered from 486 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>ANNOTALYSIS_IGNORE_WRITES_END</a>   <strong class='reserved'>__attribute__</strong> ((ignore_writes_end))
+<a id='L408' name='L408' /><em class='sharp'>#undef</em>  <a href='../R/47.html' title='Multiple refered from 2 places.'>ANNOTALYSIS_UNPROTECTED_READ</a>
+<a id='L409' name='L409' /><em class='sharp'>#define</em> <a href='../R/47.html' title='Multiple refered from 2 places.'>ANNOTALYSIS_UNPROTECTED_READ</a>    <strong class='reserved'>__attribute__</strong> ((unprotected_read))
+<a id='L410' name='L410' /><em class='sharp'>#endif</em>
+<a id='L411' name='L411' />
+<a id='L412' name='L412' /><em class='sharp'>#endif</em> <em class='comment'>// defined(__GNUC__) &amp;&amp; (!defined(SWIG)) &amp;&amp; (!defined(__clang__))</em>
+<a id='L413' name='L413' />
+<a id='L414' name='L414' /><em class='comment'>/* Use the macros above rather than using these functions directly. */</em>
+<a id='L415' name='L415' /><em class='sharp'>#ifdef</em> <a href='../Y/1125.html' title='Multiple used in 121 places.'>__cplusplus</a>
+<a id='L416' name='L416' /><strong class='reserved'>extern</strong> "C" <em class='brace'>{</em>
+<a id='L417' name='L417' /><em class='sharp'>#endif</em>
+<a id='L418' name='L418' /><strong class='reserved'>void</strong> <a href='../S/519.html#L67' title='Defined at 67 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateRWLockCreate</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>,
+<a id='L419' name='L419' />                          <strong class='reserved'>const</strong> <strong class='reserved'>volatile</strong> <strong class='reserved'>void</strong> *<a href='../Y/3313.html' title='Multiple used in 107 places.'>lock</a>);
+<a id='L420' name='L420' /><strong class='reserved'>void</strong> <a href='../S/519.html#L69' title='Defined at 69 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateRWLockDestroy</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>,
+<a id='L421' name='L421' />                           <strong class='reserved'>const</strong> <strong class='reserved'>volatile</strong> <strong class='reserved'>void</strong> *<a href='../Y/3313.html' title='Multiple used in 107 places.'>lock</a>);
+<a id='L422' name='L422' /><strong class='reserved'>void</strong> <a href='../S/519.html#L71' title='Defined at 71 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateRWLockAcquired</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>,
+<a id='L423' name='L423' />                            <strong class='reserved'>const</strong> <strong class='reserved'>volatile</strong> <strong class='reserved'>void</strong> *<a href='../Y/3313.html' title='Multiple used in 107 places.'>lock</a>, <strong class='reserved'>long</strong> <a href='../Y/2928.html' title='Multiple used in 10 places.'>is_w</a>);
+<a id='L424' name='L424' /><strong class='reserved'>void</strong> <a href='../S/519.html#L73' title='Defined at 73 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateRWLockReleased</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>,
+<a id='L425' name='L425' />                            <strong class='reserved'>const</strong> <strong class='reserved'>volatile</strong> <strong class='reserved'>void</strong> *<a href='../Y/3313.html' title='Multiple used in 107 places.'>lock</a>, <strong class='reserved'>long</strong> <a href='../Y/2928.html' title='Multiple used in 10 places.'>is_w</a>);
+<a id='L426' name='L426' /><strong class='reserved'>void</strong> <a href='../S/519.html#L75' title='Defined at 75 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateBarrierInit</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>,
+<a id='L427' name='L427' />                         <strong class='reserved'>const</strong> <strong class='reserved'>volatile</strong> <strong class='reserved'>void</strong> *<a href='../Y/1583.html' title='Multiple used in 20 places.'>barrier</a>, <strong class='reserved'>long</strong> <a href='../Y/1870.html' title='Multiple used in 157 places.'>count</a>,
+<a id='L428' name='L428' />                         <strong class='reserved'>long</strong> <a href='../Y/4494.html' title='Multiple used in 5 places.'>reinitialization_allowed</a>);
+<a id='L429' name='L429' /><strong class='reserved'>void</strong> <a href='../S/519.html#L78' title='Defined at 78 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateBarrierWaitBefore</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>,
+<a id='L430' name='L430' />                               <strong class='reserved'>const</strong> <strong class='reserved'>volatile</strong> <strong class='reserved'>void</strong> *<a href='../Y/1583.html' title='Multiple used in 20 places.'>barrier</a>);
+<a id='L431' name='L431' /><strong class='reserved'>void</strong> <a href='../S/519.html#L80' title='Defined at 80 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateBarrierWaitAfter</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>,
+<a id='L432' name='L432' />                              <strong class='reserved'>const</strong> <strong class='reserved'>volatile</strong> <strong class='reserved'>void</strong> *<a href='../Y/1583.html' title='Multiple used in 20 places.'>barrier</a>);
+<a id='L433' name='L433' /><strong class='reserved'>void</strong> <a href='../S/519.html#L82' title='Defined at 82 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateBarrierDestroy</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>,
+<a id='L434' name='L434' />                            <strong class='reserved'>const</strong> <strong class='reserved'>volatile</strong> <strong class='reserved'>void</strong> *<a href='../Y/1583.html' title='Multiple used in 20 places.'>barrier</a>);
+<a id='L435' name='L435' /><strong class='reserved'>void</strong> <a href='../S/519.html#L85' title='Defined at 85 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateCondVarWait</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>,
+<a id='L436' name='L436' />                         <strong class='reserved'>const</strong> <strong class='reserved'>volatile</strong> <strong class='reserved'>void</strong> *<a href='../Y/1943.html' title='Multiple used in 18 places.'>cv</a>,
+<a id='L437' name='L437' />                         <strong class='reserved'>const</strong> <strong class='reserved'>volatile</strong> <strong class='reserved'>void</strong> *<a href='../Y/3313.html' title='Multiple used in 107 places.'>lock</a>);
+<a id='L438' name='L438' /><strong class='reserved'>void</strong> <a href='../S/519.html#L88' title='Defined at 88 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateCondVarSignal</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>,
+<a id='L439' name='L439' />                           <strong class='reserved'>const</strong> <strong class='reserved'>volatile</strong> <strong class='reserved'>void</strong> *<a href='../Y/1943.html' title='Multiple used in 18 places.'>cv</a>);
+<a id='L440' name='L440' /><strong class='reserved'>void</strong> <a href='../S/519.html#L90' title='Defined at 90 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateCondVarSignalAll</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>,
+<a id='L441' name='L441' />                              <strong class='reserved'>const</strong> <strong class='reserved'>volatile</strong> <strong class='reserved'>void</strong> *<a href='../Y/1943.html' title='Multiple used in 18 places.'>cv</a>);
+<a id='L442' name='L442' /><strong class='reserved'>void</strong> <a href='../S/519.html#L92' title='Defined at 92 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotatePublishMemoryRange</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>,
+<a id='L443' name='L443' />                                <strong class='reserved'>const</strong> <strong class='reserved'>volatile</strong> <strong class='reserved'>void</strong> *<a href='../Y/1411.html' title='Multiple used in 58 places.'>address</a>,
+<a id='L444' name='L444' />                                <strong class='reserved'>long</strong> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>);
+<a id='L445' name='L445' /><strong class='reserved'>void</strong> <a href='../S/519.html#L95' title='Defined at 95 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateUnpublishMemoryRange</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>,
+<a id='L446' name='L446' />                                  <strong class='reserved'>const</strong> <strong class='reserved'>volatile</strong> <strong class='reserved'>void</strong> *<a href='../Y/1411.html' title='Multiple used in 58 places.'>address</a>,
+<a id='L447' name='L447' />                                  <strong class='reserved'>long</strong> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>);
+<a id='L448' name='L448' /><strong class='reserved'>void</strong> <a href='../S/519.html#L98' title='Defined at 98 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotatePCQCreate</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>,
+<a id='L449' name='L449' />                       <strong class='reserved'>const</strong> <strong class='reserved'>volatile</strong> <strong class='reserved'>void</strong> *<a href='../Y/4136.html' title='Multiple used in 20 places.'>pcq</a>);
+<a id='L450' name='L450' /><strong class='reserved'>void</strong> <a href='../S/519.html#L100' title='Defined at 100 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotatePCQDestroy</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>,
+<a id='L451' name='L451' />                        <strong class='reserved'>const</strong> <strong class='reserved'>volatile</strong> <strong class='reserved'>void</strong> *<a href='../Y/4136.html' title='Multiple used in 20 places.'>pcq</a>);
+<a id='L452' name='L452' /><strong class='reserved'>void</strong> <a href='../S/519.html#L102' title='Defined at 102 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotatePCQPut</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>,
+<a id='L453' name='L453' />                    <strong class='reserved'>const</strong> <strong class='reserved'>volatile</strong> <strong class='reserved'>void</strong> *<a href='../Y/4136.html' title='Multiple used in 20 places.'>pcq</a>);
+<a id='L454' name='L454' /><strong class='reserved'>void</strong> <a href='../S/519.html#L104' title='Defined at 104 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotatePCQGet</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>,
+<a id='L455' name='L455' />                    <strong class='reserved'>const</strong> <strong class='reserved'>volatile</strong> <strong class='reserved'>void</strong> *<a href='../Y/4136.html' title='Multiple used in 20 places.'>pcq</a>);
+<a id='L456' name='L456' /><strong class='reserved'>void</strong> <a href='../S/519.html#L106' title='Defined at 106 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateNewMemory</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>,
+<a id='L457' name='L457' />                       <strong class='reserved'>const</strong> <strong class='reserved'>volatile</strong> <strong class='reserved'>void</strong> *<a href='../Y/1411.html' title='Multiple used in 58 places.'>address</a>,
+<a id='L458' name='L458' />                       <strong class='reserved'>long</strong> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>);
+<a id='L459' name='L459' /><strong class='reserved'>void</strong> <a href='../S/519.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateExpectRace</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>,
+<a id='L460' name='L460' />                        <strong class='reserved'>const</strong> <strong class='reserved'>volatile</strong> <strong class='reserved'>void</strong> *<a href='../Y/1411.html' title='Multiple used in 58 places.'>address</a>,
+<a id='L461' name='L461' />                        <strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2034.html' title='Multiple used in 22 places.'>description</a>);
+<a id='L462' name='L462' /><strong class='reserved'>void</strong> <a href='../S/519.html#L112' title='Defined at 112 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateBenignRace</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>,
+<a id='L463' name='L463' />                        <strong class='reserved'>const</strong> <strong class='reserved'>volatile</strong> <strong class='reserved'>void</strong> *<a href='../Y/1411.html' title='Multiple used in 58 places.'>address</a>,
+<a id='L464' name='L464' />                        <strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2034.html' title='Multiple used in 22 places.'>description</a>);
+<a id='L465' name='L465' /><strong class='reserved'>void</strong> <a href='../S/519.html#L115' title='Defined at 115 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateBenignRaceSized</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>,
+<a id='L466' name='L466' />                        <strong class='reserved'>const</strong> <strong class='reserved'>volatile</strong> <strong class='reserved'>void</strong> *<a href='../Y/1411.html' title='Multiple used in 58 places.'>address</a>,
+<a id='L467' name='L467' />                        <strong class='reserved'>long</strong> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>,
+<a id='L468' name='L468' />                        <strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2034.html' title='Multiple used in 22 places.'>description</a>);
+<a id='L469' name='L469' /><strong class='reserved'>void</strong> <a href='../S/519.html#L119' title='Defined at 119 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateMutexIsUsedAsCondVar</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>,
+<a id='L470' name='L470' />                                  <strong class='reserved'>const</strong> <strong class='reserved'>volatile</strong> <strong class='reserved'>void</strong> *<a href='../Y/3617.html' title='Multiple used in 18 places.'>mu</a>);
+<a id='L471' name='L471' /><strong class='reserved'>void</strong> <a href='../S/519.html#L121' title='Defined at 121 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateTraceMemory</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>,
+<a id='L472' name='L472' />                         <strong class='reserved'>const</strong> <strong class='reserved'>volatile</strong> <strong class='reserved'>void</strong> *<a href='../Y/1482.html' title='Multiple used in 187 places.'>arg</a>);
+<a id='L473' name='L473' /><strong class='reserved'>void</strong> <a href='../S/519.html#L123' title='Defined at 123 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateThreadName</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>,
+<a id='L474' name='L474' />                        <strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/3665.html' title='Multiple used in 438 places.'>name</a>);
+<a id='L475' name='L475' /><a href='../D/50.html' title='Multiple defined in 4 places.'>ANNOTALYSIS_STATIC_INLINE</a>
+<a id='L476' name='L476' /><strong class='reserved'>void</strong> <a href='../S/519.html#L125' title='Defined at 125 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateIgnoreReadsBegin</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>)
+<a id='L477' name='L477' />    <a href='../D/44.html' title='Multiple defined in 3 places.'>ANNOTALYSIS_IGNORE_READS_BEGIN</a> <a href='../D/49.html' title='Multiple defined in 4 places.'>ANNOTALYSIS_SEMICOLON_OR_EMPTY_BODY</a>
+<a id='L478' name='L478' /><a href='../D/50.html' title='Multiple defined in 4 places.'>ANNOTALYSIS_STATIC_INLINE</a>
+<a id='L479' name='L479' /><strong class='reserved'>void</strong> <a href='../S/519.html#L126' title='Defined at 126 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateIgnoreReadsEnd</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>)
+<a id='L480' name='L480' />    <a href='../D/45.html' title='Multiple defined in 3 places.'>ANNOTALYSIS_IGNORE_READS_END</a> <a href='../D/49.html' title='Multiple defined in 4 places.'>ANNOTALYSIS_SEMICOLON_OR_EMPTY_BODY</a>
+<a id='L481' name='L481' /><a href='../D/50.html' title='Multiple defined in 4 places.'>ANNOTALYSIS_STATIC_INLINE</a>
+<a id='L482' name='L482' /><strong class='reserved'>void</strong> <a href='../S/519.html#L127' title='Defined at 127 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateIgnoreWritesBegin</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>)
+<a id='L483' name='L483' />    <a href='../D/46.html' title='Multiple defined in 3 places.'>ANNOTALYSIS_IGNORE_WRITES_BEGIN</a> <a href='../D/49.html' title='Multiple defined in 4 places.'>ANNOTALYSIS_SEMICOLON_OR_EMPTY_BODY</a>
+<a id='L484' name='L484' /><a href='../D/50.html' title='Multiple defined in 4 places.'>ANNOTALYSIS_STATIC_INLINE</a>
+<a id='L485' name='L485' /><strong class='reserved'>void</strong> <a href='../S/519.html#L128' title='Defined at 128 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateIgnoreWritesEnd</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>)
+<a id='L486' name='L486' />    <a href='../D/47.html' title='Multiple defined in 3 places.'>ANNOTALYSIS_IGNORE_WRITES_END</a> <a href='../D/49.html' title='Multiple defined in 4 places.'>ANNOTALYSIS_SEMICOLON_OR_EMPTY_BODY</a>
+<a id='L487' name='L487' /><strong class='reserved'>void</strong> <a href='../S/519.html#L129' title='Defined at 129 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateEnableRaceDetection</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>, <strong class='reserved'>int</strong> <a href='../Y/2176.html' title='Multiple used in 5 places.'>enable</a>);
+<a id='L488' name='L488' /><strong class='reserved'>void</strong> <a href='../S/519.html#L130' title='Defined at 130 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateNoOp</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>,
+<a id='L489' name='L489' />                  <strong class='reserved'>const</strong> <strong class='reserved'>volatile</strong> <strong class='reserved'>void</strong> *<a href='../Y/1482.html' title='Multiple used in 187 places.'>arg</a>);
+<a id='L490' name='L490' /><strong class='reserved'>void</strong> <a href='../S/519.html#L132' title='Defined at 132 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateFlushState</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2353.html' title='Multiple used in 95 places.'>file</a>, <strong class='reserved'>int</strong> <a href='../Y/3241.html' title='Multiple used in 123 places.'>line</a>);
+<a id='L491' name='L491' />
+<a id='L492' name='L492' /><em class='comment'>/* Return non-zero value if running under valgrind.</em>
+<a id='L493' name='L493' /><em class='comment'></em>
+<a id='L494' name='L494' /><em class='comment'>  If "valgrind.h" is included into dynamic_annotations.c,</em>
+<a id='L495' name='L495' /><em class='comment'>  the regular valgrind mechanism will be used.</em>
+<a id='L496' name='L496' /><em class='comment'>  See http://valgrind.org/docs/manual/manual-core-adv.html about</em>
+<a id='L497' name='L497' /><em class='comment'>  RUNNING_ON_VALGRIND and other valgrind "client requests".</em>
+<a id='L498' name='L498' /><em class='comment'>  The file "valgrind.h" may be obtained by doing</em>
+<a id='L499' name='L499' /><em class='comment'>     svn co svn://svn.valgrind.org/valgrind/trunk/include</em>
+<a id='L500' name='L500' /><em class='comment'></em>
+<a id='L501' name='L501' /><em class='comment'>  If for some reason you can't use "valgrind.h" or want to fake valgrind,</em>
+<a id='L502' name='L502' /><em class='comment'>  there are two ways to make this function return non-zero:</em>
+<a id='L503' name='L503' /><em class='comment'>    - Use environment variable: export RUNNING_ON_VALGRIND=1</em>
+<a id='L504' name='L504' /><em class='comment'>    - Make your tool intercept the function RunningOnValgrind() and</em>
+<a id='L505' name='L505' /><em class='comment'>      change its return value.</em>
+<a id='L506' name='L506' /><em class='comment'> */</em>
+<a id='L507' name='L507' /><strong class='reserved'>int</strong> <a href='../S/519.html#L163' title='Defined at 163 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>RunningOnValgrind</a>(<strong class='reserved'>void</strong>);
+<a id='L508' name='L508' />
+<a id='L509' name='L509' /><em class='comment'>/* ValgrindSlowdown returns:</em>
+<a id='L510' name='L510' /><em class='comment'>    * 1.0, if (RunningOnValgrind() == 0)</em>
+<a id='L511' name='L511' /><em class='comment'>    * 50.0, if (RunningOnValgrind() != 0 &amp;&amp; getenv("VALGRIND_SLOWDOWN") == NULL)</em>
+<a id='L512' name='L512' /><em class='comment'>    * atof(getenv("VALGRIND_SLOWDOWN")) otherwise</em>
+<a id='L513' name='L513' /><em class='comment'>   This function can be used to scale timeout values:</em>
+<a id='L514' name='L514' /><em class='comment'>   EXAMPLE:</em>
+<a id='L515' name='L515' /><em class='comment'>   for (;;) {</em>
+<a id='L516' name='L516' /><em class='comment'>     DoExpensiveBackgroundTask();</em>
+<a id='L517' name='L517' /><em class='comment'>     SleepForSeconds(5 * ValgrindSlowdown());</em>
+<a id='L518' name='L518' /><em class='comment'>   }</em>
+<a id='L519' name='L519' /><em class='comment'> */</em>
+<a id='L520' name='L520' /><strong class='reserved'>double</strong> <a href='../S/519.html#L177' title='Defined at 177 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>ValgrindSlowdown</a>(<strong class='reserved'>void</strong>);
+<a id='L521' name='L521' />
+<a id='L522' name='L522' /><em class='sharp'>#ifdef</em> <a href='../Y/1125.html' title='Multiple used in 121 places.'>__cplusplus</a>
+<a id='L523' name='L523' /><em class='brace'>}</em>
+<a id='L524' name='L524' /><em class='sharp'>#endif</em>
+<a id='L525' name='L525' />
+<a id='L526' name='L526' /><em class='sharp'>#if</em> <a href='../S/520.html#L61' title='Defined at 61 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>DYNAMIC_ANNOTATIONS_ENABLED</a> != 0 &amp;&amp; <strong class='reserved'>defined</strong>(<a href='../Y/1125.html' title='Multiple used in 121 places.'>__cplusplus</a>)
+<a id='L527' name='L527' />
+<a id='L528' name='L528' />  <em class='comment'>/* ANNOTATE_UNPROTECTED_READ is the preferred way to annotate racey reads.</em>
+<a id='L529' name='L529' /><em class='comment'></em>
+<a id='L530' name='L530' /><em class='comment'>     Instead of doing</em>
+<a id='L531' name='L531' /><em class='comment'>        ANNOTATE_IGNORE_READS_BEGIN();</em>
+<a id='L532' name='L532' /><em class='comment'>        ... = x;</em>
+<a id='L533' name='L533' /><em class='comment'>        ANNOTATE_IGNORE_READS_END();</em>
+<a id='L534' name='L534' /><em class='comment'>     one can use</em>
+<a id='L535' name='L535' /><em class='comment'>        ... = ANNOTATE_UNPROTECTED_READ(x); */</em>
+<a id='L536' name='L536' />  <a href='../Y/5333.html' title='Multiple used in 38 places.'>template</a> &lt;<a href='../Y/1792.html' title='Multiple used in 90 places.'>class</a> <a href='../Y/845.html' title='Multiple used in 153 places.'>T</a>&gt;
+<a id='L537' name='L537' />  <strong class='reserved'>inline</strong> <a href='../Y/845.html' title='Multiple used in 153 places.'>T</a> <a href='../S/596.html#L493' title='Refered from 493 in third_party/google-perftools-1.8.3/src/profile-handler.cc.'>ANNOTATE_UNPROTECTED_READ</a>(<strong class='reserved'>const</strong> <strong class='reserved'>volatile</strong> <a href='../Y/845.html' title='Multiple used in 153 places.'>T</a> &amp;<a href='../Y/5713.html' title='Multiple used in 222 places.'>x</a>)
+<a id='L538' name='L538' />      <a href='../D/51.html' title='Multiple defined in 3 places.'>ANNOTALYSIS_UNPROTECTED_READ</a> <em class='brace'>{</em>
+<a id='L539' name='L539' />    <a href='../D/70.html' title='Multiple defined in 4 places.'>ANNOTATE_IGNORE_READS_BEGIN</a>();
+<a id='L540' name='L540' />    <a href='../Y/845.html' title='Multiple used in 153 places.'>T</a> <a href='../Y/4519.html' title='Multiple used in 67 places.'>res</a> = <a href='../Y/5713.html' title='Multiple used in 222 places.'>x</a>;
+<a id='L541' name='L541' />    <a href='../D/71.html' title='Multiple defined in 4 places.'>ANNOTATE_IGNORE_READS_END</a>();
+<a id='L542' name='L542' />    <strong class='reserved'>return</strong> <a href='../Y/4519.html' title='Multiple used in 67 places.'>res</a>;
+<a id='L543' name='L543' />  <em class='brace'>}</em>
+<a id='L544' name='L544' />  <em class='comment'>/* Apply ANNOTATE_BENIGN_RACE_SIZED to a static variable. */</em>
+<a id='L545' name='L545' /><em class='sharp'>  #define</em> ANNOTATE_BENIGN_RACE_STATIC(<a href='../Y/5090.html' title='Multiple used in 8 places.'>static_var</a>, <a href='../Y/2034.html' title='Multiple used in 22 places.'>description</a>)        \
+<a id='L546' name='L546' />    <a href='../Y/3671.html' title='Multiple used in 66 places.'>namespace</a> <em class='brace'>{</em>                                                       \
+<a id='L547' name='L547' />      <a href='../Y/1792.html' title='Multiple used in 90 places.'>class</a> <a href='../Y/5090.html' title='Multiple used in 8 places.'>static_var</a> ## <a href='../Y/1249.html' title='Multiple used in 3 places.'>_annotator</a> <em class='brace'>{</em>                                \
+<a id='L548' name='L548' />       <a href='../Y/4390.html' title='Multiple used in 61 places.'>public</a>:                                                        \
+<a id='L549' name='L549' />        <a href='../Y/5090.html' title='Multiple used in 8 places.'>static_var</a> ## <a href='../Y/1249.html' title='Multiple used in 3 places.'>_annotator</a>() <em class='brace'>{</em>                                  \
+<a id='L550' name='L550' />          <a href='../D/57.html' title='Multiple defined in 2 places.'>ANNOTATE_BENIGN_RACE_SIZED</a>(&amp;<a href='../Y/5090.html' title='Multiple used in 8 places.'>static_var</a>,                     \
+<a id='L551' name='L551' />                                      <strong class='reserved'>sizeof</strong>(<a href='../Y/5090.html' title='Multiple used in 8 places.'>static_var</a>),             \
+<a id='L552' name='L552' />            # <a href='../Y/5090.html' title='Multiple used in 8 places.'>static_var</a> ": " <a href='../Y/2034.html' title='Multiple used in 22 places.'>description</a>);                           \
+<a id='L553' name='L553' />        <em class='brace'>}</em>                                                             \
+<a id='L554' name='L554' />      <em class='brace'>}</em>;                                                              \
+<a id='L555' name='L555' />      <strong class='reserved'>static</strong> <a href='../Y/5090.html' title='Multiple used in 8 places.'>static_var</a> ## <a href='../Y/1249.html' title='Multiple used in 3 places.'>_annotator</a> the ## <a href='../Y/5090.html' title='Multiple used in 8 places.'>static_var</a> ## <a href='../Y/1249.html' title='Multiple used in 3 places.'>_annotator</a>;\
+<a id='L556' name='L556' />    <em class='brace'>}</em>
+<a id='L557' name='L557' /><em class='sharp'>#else</em> <em class='comment'>/* DYNAMIC_ANNOTATIONS_ENABLED == 0 */</em>
+<a id='L558' name='L558' />
+<a id='L559' name='L559' /><em class='sharp'>  #define</em> <a href='../S/596.html#L493' title='Refered from 493 in third_party/google-perftools-1.8.3/src/profile-handler.cc.'>ANNOTATE_UNPROTECTED_READ</a>(<a href='../Y/5713.html' title='Multiple used in 222 places.'>x</a>) (<a href='../Y/5713.html' title='Multiple used in 222 places.'>x</a>)
+<a id='L560' name='L560' /><em class='sharp'>  #define</em> ANNOTATE_BENIGN_RACE_STATIC(<a href='../Y/5090.html' title='Multiple used in 8 places.'>static_var</a>, <a href='../Y/2034.html' title='Multiple used in 22 places.'>description</a>)  <em class='comment'>/* empty */</em>
+<a id='L561' name='L561' />
+<a id='L562' name='L562' /><em class='sharp'>#endif</em> <em class='comment'>/* DYNAMIC_ANNOTATIONS_ENABLED */</em>
+<a id='L563' name='L563' />
+<a id='L564' name='L564' /><em class='comment'>/* Annotalysis, a GCC based static analyzer, is able to understand and use</em>
+<a id='L565' name='L565' /><em class='comment'>   some of the dynamic annotations defined in this file. However, dynamic</em>
+<a id='L566' name='L566' /><em class='comment'>   annotations are usually disabled in the opt mode (to avoid additional</em>
+<a id='L567' name='L567' /><em class='comment'>   runtime overheads) while Annotalysis only works in the opt mode.</em>
+<a id='L568' name='L568' /><em class='comment'>   In order for Annotalysis to use these dynamic annotations when they</em>
+<a id='L569' name='L569' /><em class='comment'>   are disabled, we re-define these annotations here. Note that unlike the</em>
+<a id='L570' name='L570' /><em class='comment'>   original macro definitions above, these macros are expanded to calls to</em>
+<a id='L571' name='L571' /><em class='comment'>   static inline functions so that the compiler will be able to remove the</em>
+<a id='L572' name='L572' /><em class='comment'>   calls after the analysis. */</em>
+<a id='L573' name='L573' />
+<a id='L574' name='L574' /><em class='sharp'>#ifdef</em> <a href='../D/48.html' title='Multiple defined in 2 places.'>ANNOTALYSIS_ONLY</a>
+<a id='L575' name='L575' />
+<a id='L576' name='L576' /><em class='sharp'>  #undef</em> <a href='../S/520.html#L574' title='Refered from 574 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.h.'>ANNOTALYSIS_ONLY</a>
+<a id='L577' name='L577' />
+<a id='L578' name='L578' />  <em class='comment'>/* Undefine and re-define the macros that the static analyzer understands. */</em>
+<a id='L579' name='L579' /><em class='sharp'>  #undef</em> <a href='../R/52.html' title='Multiple refered from 4 places.'>ANNOTATE_IGNORE_READS_BEGIN</a>
+<a id='L580' name='L580' /><em class='sharp'>  #define</em> <a href='../R/52.html' title='Multiple refered from 4 places.'>ANNOTATE_IGNORE_READS_BEGIN</a>()           \
+<a id='L581' name='L581' />    <a href='../S/519.html#L125' title='Defined at 125 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateIgnoreReadsBegin</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>)
+<a id='L582' name='L582' />
+<a id='L583' name='L583' /><em class='sharp'>  #undef</em> <a href='../R/53.html' title='Multiple refered from 4 places.'>ANNOTATE_IGNORE_READS_END</a>
+<a id='L584' name='L584' /><em class='sharp'>  #define</em> <a href='../R/53.html' title='Multiple refered from 4 places.'>ANNOTATE_IGNORE_READS_END</a>()             \
+<a id='L585' name='L585' />    <a href='../S/519.html#L126' title='Defined at 126 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateIgnoreReadsEnd</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>)
+<a id='L586' name='L586' />
+<a id='L587' name='L587' /><em class='sharp'>  #undef</em> <a href='../R/54.html' title='Multiple refered from 2 places.'>ANNOTATE_IGNORE_WRITES_BEGIN</a>
+<a id='L588' name='L588' /><em class='sharp'>  #define</em> <a href='../R/54.html' title='Multiple refered from 2 places.'>ANNOTATE_IGNORE_WRITES_BEGIN</a>()          \
+<a id='L589' name='L589' />    <a href='../S/519.html#L127' title='Defined at 127 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateIgnoreWritesBegin</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>)
+<a id='L590' name='L590' />
+<a id='L591' name='L591' /><em class='sharp'>  #undef</em> <a href='../R/55.html' title='Multiple refered from 2 places.'>ANNOTATE_IGNORE_WRITES_END</a>
+<a id='L592' name='L592' /><em class='sharp'>  #define</em> <a href='../R/55.html' title='Multiple refered from 2 places.'>ANNOTATE_IGNORE_WRITES_END</a>()            \
+<a id='L593' name='L593' />    <a href='../S/519.html#L128' title='Defined at 128 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>AnnotateIgnoreWritesEnd</a>(<a href='../Y/1040.html' title='Multiple used in 65 places.'>__FILE__</a>, <a href='../Y/1048.html' title='Multiple used in 65 places.'>__LINE__</a>)
+<a id='L594' name='L594' />
+<a id='L595' name='L595' /><em class='sharp'>  #undef</em> ANNOTATE_IGNORE_READS_AND_WRITES_BEGIN
+<a id='L596' name='L596' /><em class='sharp'>  #define</em> ANNOTATE_IGNORE_READS_AND_WRITES_BEGIN()       \
+<a id='L597' name='L597' />    <strong class='reserved'>do</strong> <em class='brace'>{</em>                                                 \
+<a id='L598' name='L598' />      <a href='../D/70.html' title='Multiple defined in 4 places.'>ANNOTATE_IGNORE_READS_BEGIN</a>();                     \
+<a id='L599' name='L599' />      <a href='../D/72.html' title='Multiple defined in 4 places.'>ANNOTATE_IGNORE_WRITES_BEGIN</a>();                    \
+<a id='L600' name='L600' />    <em class='brace'>}</em><strong class='reserved'>while</strong>(0)                                            \
+<a id='L601' name='L601' />
+<a id='L602' name='L602' /><em class='sharp'>  #undef</em> ANNOTATE_IGNORE_READS_AND_WRITES_END
+<a id='L603' name='L603' /><em class='sharp'>  #define</em> ANNOTATE_IGNORE_READS_AND_WRITES_END()  \
+<a id='L604' name='L604' />    <strong class='reserved'>do</strong> <em class='brace'>{</em>                                          \
+<a id='L605' name='L605' />      <a href='../D/73.html' title='Multiple defined in 4 places.'>ANNOTATE_IGNORE_WRITES_END</a>();               \
+<a id='L606' name='L606' />      <a href='../D/71.html' title='Multiple defined in 4 places.'>ANNOTATE_IGNORE_READS_END</a>();                \
+<a id='L607' name='L607' />    <em class='brace'>}</em><strong class='reserved'>while</strong>(0)                                     \
+<a id='L608' name='L608' />
+<a id='L609' name='L609' /><em class='sharp'>  #if</em> <strong class='reserved'>defined</strong>(<a href='../Y/1125.html' title='Multiple used in 121 places.'>__cplusplus</a>)
+<a id='L610' name='L610' /><em class='sharp'>    #undef</em> <a href='../S/596.html#L493' title='Refered from 493 in third_party/google-perftools-1.8.3/src/profile-handler.cc.'>ANNOTATE_UNPROTECTED_READ</a>
+<a id='L611' name='L611' />    <a href='../Y/5333.html' title='Multiple used in 38 places.'>template</a> &lt;<a href='../Y/1792.html' title='Multiple used in 90 places.'>class</a> <a href='../Y/845.html' title='Multiple used in 153 places.'>T</a>&gt;
+<a id='L612' name='L612' />    <strong class='reserved'>inline</strong> <a href='../Y/845.html' title='Multiple used in 153 places.'>T</a> <a href='../S/596.html#L493' title='Refered from 493 in third_party/google-perftools-1.8.3/src/profile-handler.cc.'>ANNOTATE_UNPROTECTED_READ</a>(<strong class='reserved'>const</strong> <strong class='reserved'>volatile</strong> <a href='../Y/845.html' title='Multiple used in 153 places.'>T</a> &amp;<a href='../Y/5713.html' title='Multiple used in 222 places.'>x</a>)
+<a id='L613' name='L613' />         <a href='../D/51.html' title='Multiple defined in 3 places.'>ANNOTALYSIS_UNPROTECTED_READ</a> <em class='brace'>{</em>
+<a id='L614' name='L614' />      <a href='../D/70.html' title='Multiple defined in 4 places.'>ANNOTATE_IGNORE_READS_BEGIN</a>();
+<a id='L615' name='L615' />      <a href='../Y/845.html' title='Multiple used in 153 places.'>T</a> <a href='../Y/4519.html' title='Multiple used in 67 places.'>res</a> = <a href='../Y/5713.html' title='Multiple used in 222 places.'>x</a>;
+<a id='L616' name='L616' />      <a href='../D/71.html' title='Multiple defined in 4 places.'>ANNOTATE_IGNORE_READS_END</a>();
+<a id='L617' name='L617' />      <strong class='reserved'>return</strong> <a href='../Y/4519.html' title='Multiple used in 67 places.'>res</a>;
+<a id='L618' name='L618' />    <em class='brace'>}</em>
+<a id='L619' name='L619' /><em class='sharp'>  #endif</em> <em class='comment'>/* __cplusplus */</em>
+<a id='L620' name='L620' />
+<a id='L621' name='L621' /><em class='sharp'>#endif</em> <em class='comment'>/* ANNOTALYSIS_ONLY */</em>
+<a id='L622' name='L622' />
+<a id='L623' name='L623' /><em class='comment'>/* Undefine the macros intended only in this file. */</em>
+<a id='L624' name='L624' /><em class='sharp'>#undef</em> <a href='../R/46.html' title='Multiple refered from 4 places.'>ANNOTALYSIS_STATIC_INLINE</a>
+<a id='L625' name='L625' /><em class='sharp'>#undef</em> <a href='../R/45.html' title='Multiple refered from 4 places.'>ANNOTALYSIS_SEMICOLON_OR_EMPTY_BODY</a>
+<a id='L626' name='L626' />
+<a id='L627' name='L627' /><em class='sharp'>#endif</em>  <em class='comment'>/* BASE_DYNAMIC_ANNOTATIONS_H_ */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;]<a href='#L537'>[^]</a><a href='#L612'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

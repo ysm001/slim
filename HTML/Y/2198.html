@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>end_states</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/456.html#L238'>end_states</a>        238 src/verifier/statespace.c   ss-&gt;end_states        = NULL;</span>
+<span class='curline'><a href='../S/456.html#L316'>end_states</a>        316 src/verifier/statespace.c   ss-&gt;end_states        = vec_make(64);</span>
+<span class='curline'><a href='../S/456.html#L334'>end_states</a>        334 src/verifier/statespace.c   ss-&gt;end_states = LMN_NALLOC(struct Vector, thread_num);</span>
+<span class='curline'><a href='../S/456.html#L336'>end_states</a>        336 src/verifier/statespace.c     vec_init(&amp;ss-&gt;end_states[i], 48);</span>
+<span class='curline'><a href='../S/456.html#L347'>end_states</a>        347 src/verifier/statespace.c     vec_clear(&amp;ss-&gt;end_states[i]);</span>
+<span class='curline'><a href='../S/456.html#L370'>end_states</a>        370 src/verifier/statespace.c       vec_destroy(&amp;ss-&gt;end_states[i]);</span>
+<span class='curline'><a href='../S/456.html#L372'>end_states</a>        372 src/verifier/statespace.c     LMN_FREE(ss-&gt;end_states);</span>
+<span class='curline'><a href='../S/456.html#L375'>end_states</a>        375 src/verifier/statespace.c     vec_free(ss-&gt;end_states);</span>
+<span class='curline'><a href='../S/457.html#L72'>end_states</a>         72 src/verifier/statespace.h   Vector          *end_states;    /* 最終状態の集合 */</span>
+<span class='curline'><a href='../S/457.html#L313'>end_states</a>        313 src/verifier/statespace.h       sum += vec_num(&amp;ss-&gt;end_states[i]);</span>
+<span class='curline'><a href='../S/457.html#L318'>end_states</a>        318 src/verifier/statespace.h     return vec_num(ss-&gt;end_states);</span>
+<span class='curline'><a href='../S/457.html#L327'>end_states</a>        327 src/verifier/statespace.h     vec_push(&amp;ss-&gt;end_states[env_my_thread_id()], (vec_data_t)s);</span>
+<span class='curline'><a href='../S/457.html#L329'>end_states</a>        329 src/verifier/statespace.h     vec_push(ss-&gt;end_states, (vec_data_t)s);</span>
+<span class='curline'><a href='../S/457.html#L336'>end_states</a>        336 src/verifier/statespace.h   return ss-&gt;end_states;</span>
+<span class='curline'><a href='../S/457.html#L371'>end_states</a>        371 src/verifier/statespace.h     for (i = 0; i &lt; ss-&gt;thread_num; i++)  ret += vec_space(&amp;ss-&gt;end_states[i]);</span>
+<span class='curline'><a href='../S/457.html#L373'>end_states</a>        373 src/verifier/statespace.h     ret += vec_space(ss-&gt;end_states);</span>
+</pre>
+</body>
+</html>

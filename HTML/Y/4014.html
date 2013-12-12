@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>org</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/415.html#L97'>org</a>                97 src/verifier/binstr_compress.c LmnBinStr lmn_bscomp_z_encode(const LmnBinStr org)</span>
+<span class='curline'><a href='../S/415.html#L100'>org</a>               100 src/verifier/binstr_compress.c   return org;</span>
+<span class='curline'><a href='../S/415.html#L113'>org</a>               113 src/verifier/binstr_compress.c   LMN_ASSERT(!is_comp_z(org)); /* z圧縮の多重掛けは想定していない */</span>
+<span class='curline'><a href='../S/415.html#L115'>org</a>               115 src/verifier/binstr_compress.c   org_8len = (org-&gt;len + 1) / TAG_IN_BYTE;</span>
+<span class='curline'><a href='../S/415.html#L118'>org</a>               118 src/verifier/binstr_compress.c   cmp-&gt;type = org-&gt;type;</span>
+<span class='curline'><a href='../S/415.html#L119'>org</a>               119 src/verifier/binstr_compress.c   ret = compress(cmp-&gt;v, &amp;cmp_8len, org-&gt;v, org_8len);</span>
+<span class='curline'><a href='../S/415.html#L125'>org</a>               125 src/verifier/binstr_compress.c   cmp-&gt;len = cmp_8len * TAG_IN_BYTE + ((org-&gt;len &amp; 0x1U) ? 1 : 0);</span>
+<span class='curline'><a href='../S/415.html#L129'>org</a>               129 src/verifier/binstr_compress.c   old_space = lmn_binstr_space(org);</span>
+<span class='curline'><a href='../S/415.html#L147'>org</a>               147 src/verifier/binstr_compress.c   LmnBinStr org;</span>
+<span class='curline'><a href='../S/415.html#L161'>org</a>               161 src/verifier/binstr_compress.c   org = lmn_binstr_make(org_8len);</span>
+<span class='curline'><a href='../S/415.html#L162'>org</a>               162 src/verifier/binstr_compress.c   ret = uncompress(org-&gt;v, &amp;org_8len, cmp-&gt;v, cmp_8len);</span>
+<span class='curline'><a href='../S/415.html#L168'>org</a>               168 src/verifier/binstr_compress.c   org-&gt;type = cmp-&gt;type;</span>
+<span class='curline'><a href='../S/415.html#L169'>org</a>               169 src/verifier/binstr_compress.c   org-&gt;len  = org_8len * TAG_IN_BYTE - ((cmp-&gt;len &amp; 0x1U) ? 1 : 0);</span>
+<span class='curline'><a href='../S/415.html#L170'>org</a>               170 src/verifier/binstr_compress.c   unset_comp_z(org);</span>
+<span class='curline'><a href='../S/415.html#L173'>org</a>               173 src/verifier/binstr_compress.c   org_space = lmn_binstr_space(org);</span>
+<span class='curline'><a href='../S/415.html#L180'>org</a>               180 src/verifier/binstr_compress.c   return org;</span>
+<span class='curline'><a href='../S/415.html#L213'>org</a>               213 src/verifier/binstr_compress.c LmnBinStr lmn_bscomp_d_encode(const LmnBinStr org, const LmnBinStr ref)</span>
+<span class='curline'><a href='../S/415.html#L226'>org</a>               226 src/verifier/binstr_compress.c   LMN_ASSERT(!is_comp_d(org)); /* diffからのdiff計算は禁止 */</span>
+<span class='curline'><a href='../S/415.html#L228'>org</a>               228 src/verifier/binstr_compress.c   org_8len = (org-&gt;len + 1) / TAG_IN_BYTE;</span>
+<span class='curline'><a href='../S/415.html#L239'>org</a>               239 src/verifier/binstr_compress.c     ret = zd_compress(ref-&gt;v, ref_8len, org-&gt;v, org_8len, dif-&gt;v, &amp;dif_8len);</span>
+<span class='curline'><a href='../S/415.html#L253'>org</a>               253 src/verifier/binstr_compress.c   dif-&gt;len  = dif_8len * TAG_IN_BYTE + ((org-&gt;len &amp; 0x1U) ? 1 : 0);</span>
+<span class='curline'><a href='../S/415.html#L254'>org</a>               254 src/verifier/binstr_compress.c   dif-&gt;type = org-&gt;type;</span>
+<span class='curline'><a href='../S/415.html#L258'>org</a>               258 src/verifier/binstr_compress.c   old_space = lmn_binstr_space(org);</span>
+<span class='curline'><a href='../S/415.html#L273'>org</a>               273 src/verifier/binstr_compress.c   LmnBinStr org;</span>
+<span class='curline'><a href='../S/415.html#L289'>org</a>               289 src/verifier/binstr_compress.c   org = NULL;</span>
+<span class='curline'><a href='../S/415.html#L293'>org</a>               293 src/verifier/binstr_compress.c     if (org) lmn_binstr_free(org);</span>
+<span class='curline'><a href='../S/415.html#L295'>org</a>               295 src/verifier/binstr_compress.c     org = lmn_binstr_make(org_8len);</span>
+<span class='curline'><a href='../S/415.html#L297'>org</a>               297 src/verifier/binstr_compress.c     ret = zd_uncompress(ref-&gt;v, ref_8len, org-&gt;v, &amp;org_8len, dif-&gt;v, dif_8len);</span>
+<span class='curline'><a href='../S/415.html#L311'>org</a>               311 src/verifier/binstr_compress.c   org-&gt;len  = org_8len * TAG_IN_BYTE - ((dif-&gt;len &amp; 0x1U) ? 1 : 0);</span>
+<span class='curline'><a href='../S/415.html#L312'>org</a>               312 src/verifier/binstr_compress.c   org-&gt;type = dif-&gt;type;</span>
+<span class='curline'><a href='../S/415.html#L313'>org</a>               313 src/verifier/binstr_compress.c   unset_comp_d(org);</span>
+<span class='curline'><a href='../S/415.html#L316'>org</a>               316 src/verifier/binstr_compress.c   org_space = lmn_binstr_space(org);</span>
+<span class='curline'><a href='../S/415.html#L323'>org</a>               323 src/verifier/binstr_compress.c   return org;</span>
+<span class='curline'><a href='../S/416.html#L46'>org</a>                46 src/verifier/binstr_compress.h LmnBinStr lmn_bscomp_z_encode(LmnBinStr org);</span>
+<span class='curline'><a href='../S/416.html#L47'>org</a>                47 src/verifier/binstr_compress.h LmnBinStr lmn_bscomp_z_decode(LmnBinStr org);</span>
+<span class='curline'><a href='../S/416.html#L50'>org</a>                50 src/verifier/binstr_compress.h LmnBinStr lmn_bscomp_d_encode(LmnBinStr org, LmnBinStr ref);</span>
+<span class='curline'><a href='../S/454.html#L59'>org</a>                59 src/verifier/state.c static inline LmnBinStr state_binstr_D_compress(LmnBinStr org, State *ref_s);</span>
+<span class='curline'><a href='../S/454.html#L536'>org</a>               536 src/verifier/state.c   LmnBinStr org = state_binstr(s);</span>
+<span class='curline'><a href='../S/454.html#L537'>org</a>               537 src/verifier/state.c   if (org &amp;&amp; state_D_ref(s)) {</span>
+<span class='curline'><a href='../S/454.html#L539'>org</a>               539 src/verifier/state.c     dif = state_binstr_D_compress(org, state_D_ref(s));</span>
+<span class='curline'><a href='../S/454.html#L540'>org</a>               540 src/verifier/state.c     state_D_cache(s, org);</span>
+<span class='curline'><a href='../S/454.html#L551'>org</a>               551 src/verifier/state.c static inline LmnBinStr state_binstr_D_compress(LmnBinStr org, State *ref_s)</span>
+<span class='curline'><a href='../S/454.html#L557'>org</a>               557 src/verifier/state.c     dif = lmn_bscomp_d_encode(org, ref);</span>
+<span class='curline'><a href='../S/454.html#L561'>org</a>               561 src/verifier/state.c     dif = lmn_bscomp_d_encode(org, ref);</span>
+<span class='curline'><a href='../S/456.html#L421'>org</a>               421 src/verifier/statespace.c   StateTable *org;</span>
+<span class='curline'><a href='../S/456.html#L424'>org</a>               424 src/verifier/statespace.c   org = states-&gt;tbl;</span>
+<span class='curline'><a href='../S/456.html#L427'>org</a>               427 src/verifier/statespace.c   for (i = 0; i &lt; statetable_cap(org); i++) {</span>
+<span class='curline'><a href='../S/456.html#L428'>org</a>               428 src/verifier/statespace.c     ptr = org-&gt;tbl[i];</span>
+<span class='curline'><a href='../S/456.html#L434'>org</a>               434 src/verifier/statespace.c         statetable_memid_rehash(ptr, org);</span>
+</pre>
+</body>
+</html>

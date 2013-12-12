@@ -1,0 +1,761 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>third_party/zdelta-2.1/zdlib.h</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/738.html'>third_party</a>/<a href='../files/747.html'>zdelta-2.1</a>/zdlib.h</h2>
+<em class='comment'>/* [&lt;][&gt;][^][v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/328.html' title='Multiple included from 9 places.'>INCLUDED FROM</a></h2>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>/* file: zdlib.h; copyright Dimitre Trendafilov (2003)</em>
+<a id='L2' name='L2' /><em class='comment'> * definitions of zdelta interface functions</em>
+<a id='L3' name='L3' /><em class='comment'> */</em>
+<a id='L4' name='L4' />
+<a id='L5' name='L5' /><em class='sharp'>#ifndef</em> <a href='../S/726.html#L6' title='Defined at 6 in third_party/zdelta-2.1/zdlib.h.'>ZD_LIBZD_H</a>
+<a id='L6' name='L6' /><em class='sharp'>#define</em> <a href='../S/726.html#L5' title='Refered from 5 in third_party/zdelta-2.1/zdlib.h.'>ZD_LIBZD_H</a>
+<a id='L7' name='L7' />
+<a id='L8' name='L8' /><em class='sharp'>#include</em> "<a href='724.html'>zdconf.h</a>"
+<a id='L9' name='L9' />
+<a id='L10' name='L10' /><em class='sharp'>#ifdef</em> <a href='../Y/1125.html' title='Multiple used in 121 places.'>__cplusplus</a>
+<a id='L11' name='L11' /><strong class='reserved'>extern</strong> "C" <em class='brace'>{</em>
+<a id='L12' name='L12' /><em class='sharp'>#endif</em>
+<a id='L13' name='L13' />
+<a id='L14' name='L14' /><em class='comment'>/* ==========================================================================</em>
+<a id='L15' name='L15' /><em class='comment'> * constant definitions        </em>
+<a id='L16' name='L16' /><em class='comment'> */</em>
+<a id='L17' name='L17' />
+<a id='L18' name='L18' /><em class='sharp'>#define</em> <a href='../R/2820.html' title='Multiple refered from 5 places.'>ZD_NO_FLUSH</a>      0
+<a id='L19' name='L19' /><em class='sharp'>#define</em> <a href='../R/2823.html' title='Multiple refered from 2 places.'>ZD_PARTIAL_FLUSH</a> 1 <em class='comment'>/* will be removed, use Z_SYNC_FLUSH instead */</em>
+<a id='L20' name='L20' />
+<a id='L21' name='L21' /><em class='sharp'>#define</em> <a href='../R/2830.html' title='Multiple refered from 2 places.'>ZD_SYNC_FLUSH</a>    2
+<a id='L22' name='L22' /><em class='sharp'>#define</em> <a href='../S/699.html#L627' title='Refered from 627 in third_party/zdelta-2.1/deflate.c.'>ZD_FULL_FLUSH</a>    3
+<a id='L23' name='L23' /><em class='sharp'>#define</em> <a href='../R/2808.html' title='Multiple refered from 17 places.'>ZD_FINISH</a>        4
+<a id='L24' name='L24' /><em class='comment'>/* Allowed flush values; see zd_deflate() below for details */</em>
+<a id='L25' name='L25' />
+<a id='L26' name='L26' /><em class='sharp'>#define</em> <a href='../R/2813.html' title='Multiple refered from 3 places.'>ZD_HUFFMAN_ONLY</a>        0
+<a id='L27' name='L27' /><em class='sharp'>#define</em> ZD_FILTERED            5
+<a id='L28' name='L28' /><em class='sharp'>#define</em> <a href='../S/699.html#L349' title='Refered from 349 in third_party/zdelta-2.1/deflate.c.'>ZD_DEFAULT_STRATEGY</a>    7
+<a id='L29' name='L29' /><em class='comment'>/* compression strategy; see zd_deflateInit2() below for details */</em>
+<a id='L30' name='L30' />
+<a id='L31' name='L31' /><em class='sharp'>#define</em> ZD_NO_COMPRESSION         0
+<a id='L32' name='L32' /><em class='sharp'>#define</em> ZD_BEST_SPEED             1
+<a id='L33' name='L33' /><em class='sharp'>#define</em> ZD_BEST_COMPRESSION       9
+<a id='L34' name='L34' /><em class='sharp'>#define</em> <a href='../R/2802.html' title='Multiple refered from 6 places.'>ZD_DEFAULT_COMPRESSION</a>  (-1)
+<a id='L35' name='L35' /><em class='comment'>/* compression levels */</em>
+<a id='L36' name='L36' />
+<a id='L37' name='L37' /><em class='sharp'>#define</em> <a href='../S/719.html#L1349' title='Refered from 1349 in third_party/zdelta-2.1/trees.c.'>ZD_BINARY</a>   0
+<a id='L38' name='L38' /><em class='sharp'>#define</em> <a href='../S/719.html#L1349' title='Refered from 1349 in third_party/zdelta-2.1/trees.c.'>ZD_ASCII</a>    1
+<a id='L39' name='L39' /><em class='sharp'>#define</em> <a href='../S/699.html#L266' title='Refered from 266 in third_party/zdelta-2.1/deflate.c.'>ZD_UNKNOWN</a>  2
+<a id='L40' name='L40' /><em class='comment'>/* Possible values of the data_type field */</em>
+<a id='L41' name='L41' />
+<a id='L42' name='L42' /><em class='sharp'>#define</em> <a href='../R/2804.html' title='Multiple refered from 4 places.'>ZD_DEFLATED</a>  5 <em class='comment'>/* randomly choosen 8,15 are reserved */</em>
+<a id='L43' name='L43' /><em class='comment'>/* The deflate compression method (the only one supported in this version) */</em>
+<a id='L44' name='L44' />
+<a id='L45' name='L45' /><em class='sharp'>#define</em> <a href='../R/2821.html' title='Multiple refered from 65 places.'>ZD_NULL</a>  0  <em class='comment'>/* for initializing zalloc, zfree, opaque */</em>
+<a id='L46' name='L46' />
+<a id='L47' name='L47' />
+<a id='L48' name='L48' /><em class='comment'>/* Return codes for the compression/decompression functions. Negative</em>
+<a id='L49' name='L49' /><em class='comment'> * values are errors, positive values are used for special but normal events.</em>
+<a id='L50' name='L50' /><em class='comment'> *</em>
+<a id='L51' name='L51' /><em class='comment'> * zdelta: match the return codes in zlib 1.1.3; the prefix is changed to ZD</em>
+<a id='L52' name='L52' /><em class='comment'> */</em>
+<a id='L53' name='L53' /><em class='sharp'>#define</em> <a href='../R/2822.html' title='Multiple refered from 59 places.'>ZD_OK</a>            0
+<a id='L54' name='L54' /><em class='sharp'>#define</em> <a href='../R/2827.html' title='Multiple refered from 19 places.'>ZD_STREAM_END</a>    1
+<a id='L55' name='L55' /><em class='sharp'>#define</em> <a href='../S/721.html#L101' title='Refered from 101 in third_party/zdelta-2.1/zd_mem.c.'>ZD_ERRNO</a>        (-1)
+<a id='L56' name='L56' /><em class='sharp'>#define</em> <a href='../R/2828.html' title='Multiple refered from 22 places.'>ZD_STREAM_ERROR</a> (-2)
+<a id='L57' name='L57' /><em class='sharp'>#define</em> <a href='../R/2801.html' title='Multiple refered from 31 places.'>ZD_DATA_ERROR</a>   (-3)
+<a id='L58' name='L58' /><em class='sharp'>#define</em> <a href='../R/2817.html' title='Multiple refered from 18 places.'>ZD_MEM_ERROR</a>    (-4)
+<a id='L59' name='L59' /><em class='sharp'>#define</em> <a href='../R/2798.html' title='Multiple refered from 17 places.'>ZD_BUF_ERROR</a>    (-5)
+<a id='L60' name='L60' /><em class='sharp'>#define</em> <a href='../R/2835.html' title='Multiple refered from 2 places.'>ZD_VERSION_ERROR</a> (-6)
+<a id='L61' name='L61' />
+<a id='L62' name='L62' /><em class='sharp'>#ifndef</em> <a href='../S/726.html#L63' title='Defined at 63 in third_party/zdelta-2.1/zdlib.h.'>REFNUM</a>
+<a id='L63' name='L63' /><em class='sharp'>#define</em> <a href='../R/2090.html' title='Multiple refered from 85 places.'>REFNUM</a> 1            <em class='comment'>/* Reference Window Number */</em>
+<a id='L64' name='L64' /><em class='sharp'>#endif</em>
+<a id='L65' name='L65' /><em class='sharp'>#if</em> <a href='../S/726.html#L63' title='Defined at 63 in third_party/zdelta-2.1/zdlib.h.'>REFNUM</a> &lt; 1 || <a href='../S/726.html#L63' title='Defined at 63 in third_party/zdelta-2.1/zdlib.h.'>REFNUM</a> &gt; 4
+<a id='L66' name='L66' /><em class='sharp'>#error</em>: incorrect REFNUM value 
+<a id='L67' name='L67' /><em class='sharp'>#endif</em> 
+<a id='L68' name='L68' />
+<a id='L69' name='L69' /><em class='sharp'>#define</em> <a href='../R/2795.html' title='Multiple refered from 7 places.'>ZDLIB_VERSION</a> "2.1"
+<a id='L70' name='L70' /><em class='comment'>/* current libzd version */</em>
+<a id='L71' name='L71' />
+<a id='L72' name='L72' /><em class='comment'>/* </em>
+<a id='L73' name='L73' /><em class='comment'>     The 'libzd' compression library provides in-memory compression and</em>
+<a id='L74' name='L74' /><em class='comment'>  decompression functions, including integrity checks of the uncompressed</em>
+<a id='L75' name='L75' /><em class='comment'>  data.  This version of the library supports only one compression method</em>
+<a id='L76' name='L76' /><em class='comment'>  (delta_deflation) </em>
+<a id='L77' name='L77' /><em class='comment'>  NOTE: 'libzd' complies with the ZLIB Compressed Data Format Specification</em>
+<a id='L78' name='L78' /><em class='comment'></em>
+<a id='L79' name='L79' /><em class='comment'>     Compression can be done in a single step if the buffers are large</em>
+<a id='L80' name='L80' /><em class='comment'>  enough (for example if an input file is mmap'ed), or can be done by</em>
+<a id='L81' name='L81' /><em class='comment'>  repeated calls of the compression function.  In the latter case, the</em>
+<a id='L82' name='L82' /><em class='comment'>  application must provide more input and/or consume the output</em>
+<a id='L83' name='L83' /><em class='comment'>  (providing more output space) before each call.</em>
+<a id='L84' name='L84' /><em class='comment'></em>
+<a id='L85' name='L85' /><em class='comment'>     The library does not install any signal handler. The decoder checks</em>
+<a id='L86' name='L86' /><em class='comment'>  the consistency of the compressed data, so the library should never</em>
+<a id='L87' name='L87' /><em class='comment'>  crash even in case of corrupted input.</em>
+<a id='L88' name='L88' /><em class='comment'>*/</em>
+<a id='L89' name='L89' />
+<a id='L90' name='L90' /><em class='comment'>/* ==========================================================================</em>
+<a id='L91' name='L91' /><em class='comment'> * struct definitions        </em>
+<a id='L92' name='L92' /><em class='comment'> */</em>
+<a id='L93' name='L93' />
+<a id='L94' name='L94' /><strong class='reserved'>typedef</strong> <a href='../D/5576.html' title='Multiple defined in 3 places.'>voidpf</a> (*<a href='../Y/1436.html' title='Multiple used in 10 places.'>alloc_func</a>) <a href='../R/1754.html' title='Multiple refered from 86 places.'>OF</a>((<a href='../D/5576.html' title='Multiple defined in 3 places.'>voidpf</a> <a href='../Y/3978.html' title='Multiple used in 32 places.'>opaque</a>, <a href='../D/5483.html' title='Multiple defined in 2 places.'>uInt</a> <a href='../Y/2939.html' title='Multiple used in 16 places.'>items</a>, <a href='../D/5483.html' title='Multiple defined in 2 places.'>uInt</a> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>));
+<a id='L95' name='L95' /><strong class='reserved'>typedef</strong> <strong class='reserved'>void</strong>   (*<a href='../Y/2454.html' title='Multiple used in 10 places.'>free_func</a>)  <a href='../R/1754.html' title='Multiple refered from 86 places.'>OF</a>((<a href='../D/5576.html' title='Multiple defined in 3 places.'>voidpf</a> <a href='../Y/3978.html' title='Multiple used in 32 places.'>opaque</a>, <a href='../D/5576.html' title='Multiple defined in 3 places.'>voidpf</a> <a href='../Y/1411.html' title='Multiple used in 58 places.'>address</a>));
+<a id='L96' name='L96' />
+<a id='L97' name='L97' /><strong class='reserved'>struct</strong> <a href='../D/5779.html' title='Multiple defined in 6 places.'>zd_internal_state</a>;
+<a id='L98' name='L98' />
+<a id='L99' name='L99' /><strong class='reserved'>typedef</strong> <strong class='reserved'>struct</strong> zd_stream_s <em class='brace'>{</em>
+<a id='L100' name='L100' />  <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a>    *<a href='../Y/3799.html' title='Multiple used in 20 places.'>next_in</a>;  <em class='comment'>/* next input byte */</em>
+<a id='L101' name='L101' />  <a href='../D/5483.html' title='Multiple defined in 2 places.'>uInt</a>     <a href='../Y/1563.html' title='Multiple used in 25 places.'>avail_in</a>;  <em class='comment'>/* number of bytes available at next_in */</em>
+<a id='L102' name='L102' />  <a href='../D/5485.html' title='Multiple defined in 2 places.'>uLong</a>    <a href='../Y/5440.html' title='Multiple used in 18 places.'>total_in</a>;  <em class='comment'>/* total nb of input bytes read so far */</em>
+<a id='L103' name='L103' />  
+<a id='L104' name='L104' />  <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a>    *<a href='../Y/3804.html' title='Multiple used in 27 places.'>next_out</a>; <em class='comment'>/* next output byte should be put there */</em>
+<a id='L105' name='L105' />  <a href='../D/5483.html' title='Multiple defined in 2 places.'>uInt</a>     <a href='../Y/1564.html' title='Multiple used in 27 places.'>avail_out</a>; <em class='comment'>/* remaining free space at next_out */</em>
+<a id='L106' name='L106' />  <a href='../D/5485.html' title='Multiple defined in 2 places.'>uLong</a>    <a href='../Y/5442.html' title='Multiple used in 28 places.'>total_out</a>; <em class='comment'>/* total nb of bytes output so far */</em>
+<a id='L107' name='L107' />  
+<a id='L108' name='L108' />  <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a>    *<a href='../D/3379.html' title='Multiple defined in 6 places.'>base</a>[<a href='../S/726.html#L63' title='Defined at 63 in third_party/zdelta-2.1/zdlib.h.'>REFNUM</a>];      <em class='comment'>/* pointer to the base window    */</em>
+<a id='L109' name='L109' />  <a href='../D/5485.html' title='Multiple defined in 2 places.'>uLong</a>    <a href='../Y/1591.html' title='Multiple used in 9 places.'>base_out</a>[<a href='../S/726.html#L63' title='Defined at 63 in third_party/zdelta-2.1/zdlib.h.'>REFNUM</a>];   <em class='comment'>/* total read bytes from the base window */</em>
+<a id='L110' name='L110' />  <a href='../D/5485.html' title='Multiple defined in 2 places.'>uLong</a>    <a href='../Y/1588.html' title='Multiple used in 14 places.'>base_avail</a>[<a href='../S/726.html#L63' title='Defined at 63 in third_party/zdelta-2.1/zdlib.h.'>REFNUM</a>];
+<a id='L111' name='L111' />  <strong class='reserved'>int</strong>      <a href='../Y/4481.html' title='Multiple used in 38 places.'>refnum</a>;
+<a id='L112' name='L112' />
+<a id='L113' name='L113' />  <strong class='reserved'>char</strong>     *<a href='../Y/3605.html' title='Multiple used in 73 places.'>msg</a>;      <em class='comment'>/* last error message, NULL if no error */</em>
+<a id='L114' name='L114' />  <strong class='reserved'>struct</strong> <a href='../D/5779.html' title='Multiple defined in 6 places.'>zd_internal_state</a> <a href='../D/735.html' title='Multiple defined in 5 places.'>FAR</a> *<a href='../Y/5063.html' title='Multiple used in 178 places.'>state</a>; <em class='comment'>/* not visible by applications */</em>
+<a id='L115' name='L115' />
+<a id='L116' name='L116' />  <a href='../Y/1436.html' title='Multiple used in 10 places.'>alloc_func</a> <a href='../Y/5890.html' title='Multiple used in 16 places.'>zalloc</a>;  <em class='comment'>/* used to allocate the internal state */</em>
+<a id='L117' name='L117' />  <a href='../Y/2454.html' title='Multiple used in 10 places.'>free_func</a>  <a href='../Y/5928.html' title='Multiple used in 15 places.'>zfree</a>;   <em class='comment'>/* used to free the internal state */</em>
+<a id='L118' name='L118' />  <a href='../D/5576.html' title='Multiple defined in 3 places.'>voidpf</a>     <a href='../Y/3978.html' title='Multiple used in 32 places.'>opaque</a>;  <em class='comment'>/* private data object passed to zalloc and zfree */</em>
+<a id='L119' name='L119' />
+<a id='L120' name='L120' />  <strong class='reserved'>int</strong>     <a href='../Y/1974.html' title='Multiple used in 4 places.'>data_type</a>;  <em class='comment'>/* best guess about the data type: ascii or binary */</em>
+<a id='L121' name='L121' />  <a href='../D/5485.html' title='Multiple defined in 2 places.'>uLong</a>   <a href='../Y/1417.html' title='Multiple used in 13 places.'>adler</a>;      <em class='comment'>/* adler32 value of the uncompressed data */</em>
+<a id='L122' name='L122' />  <a href='../D/5485.html' title='Multiple defined in 2 places.'>uLong</a>   reserved;   <em class='comment'>/* reserved for future use */</em>
+<a id='L123' name='L123' /> 
+<a id='L124' name='L124' /><em class='brace'>}</em> <a href='../R/5298.html' title='Multiple refered from 15 places.'>zd_stream</a>;
+<a id='L125' name='L125' />
+<a id='L126' name='L126' /><strong class='reserved'>typedef</strong> <a href='../S/726.html#L124' title='Defined at 124 in third_party/zdelta-2.1/zdlib.h.'>zd_stream</a> <a href='../D/735.html' title='Multiple defined in 5 places.'>FAR</a> *<a href='../R/5299.html' title='Multiple refered from 57 places.'>zd_streamp</a>;
+<a id='L127' name='L127' />
+<a id='L128' name='L128' /><em class='comment'>/*</em>
+<a id='L129' name='L129' /><em class='comment'>   The application must update next_in and avail_in when avail_in has</em>
+<a id='L130' name='L130' /><em class='comment'>   dropped to zero. It must update next_out and avail_out when avail_out</em>
+<a id='L131' name='L131' /><em class='comment'>   has dropped to zero. The application must initialize zalloc, zfree and</em>
+<a id='L132' name='L132' /><em class='comment'>   opaque before calling the init function. All other fields are set by the</em>
+<a id='L133' name='L133' /><em class='comment'>   compression library and must not be updated by the application.</em>
+<a id='L134' name='L134' /><em class='comment'></em>
+<a id='L135' name='L135' /><em class='comment'>   The opaque value provided by the application will be passed as the first</em>
+<a id='L136' name='L136' /><em class='comment'>   parameter for calls of zalloc and zfree. This can be useful for custom</em>
+<a id='L137' name='L137' /><em class='comment'>   memory management. The compression library attaches no meaning to the</em>
+<a id='L138' name='L138' /><em class='comment'>   opaque value.</em>
+<a id='L139' name='L139' /><em class='comment'></em>
+<a id='L140' name='L140' /><em class='comment'>   zalloc must return ZD_NULL if there is not enough memory for the object.</em>
+<a id='L141' name='L141' /><em class='comment'>   If zdelta library is used in a multi-threaded application, zalloc and </em>
+<a id='L142' name='L142' /><em class='comment'>   zfree must be thread safe.</em>
+<a id='L143' name='L143' /><em class='comment'></em>
+<a id='L144' name='L144' /><em class='comment'>   The fields total_in and total_out can be used for statistics or</em>
+<a id='L145' name='L145' /><em class='comment'>   progress reports. After compression, total_in holds the total size of</em>
+<a id='L146' name='L146' /><em class='comment'>   the uncompressed data and may be saved for use in the decompressor</em>
+<a id='L147' name='L147' /><em class='comment'>   (particularly if the decompressor wants to decompress everything in</em>
+<a id='L148' name='L148' /><em class='comment'>   a single step).</em>
+<a id='L149' name='L149' /><em class='comment'>*/</em>
+<a id='L150' name='L150' />
+<a id='L151' name='L151' /><em class='comment'>/* ==========================================================================</em>
+<a id='L152' name='L152' /><em class='comment'> * basic functions        </em>
+<a id='L153' name='L153' /><em class='comment'> */</em>
+<a id='L154' name='L154' />
+<a id='L155' name='L155' /><a href='../D/3168.html' title='Multiple defined in 3 places.'>ZEXTERN</a> <strong class='reserved'>const</strong> <strong class='reserved'>char</strong> * <a href='../D/3165.html' title='Multiple defined in 4 places.'>ZEXPORT</a> <a href='../S/729.html#L63' title='Defined at 63 in third_party/zdelta-2.1/zutil.c.'>zdlibVersion</a> <a href='../D/1965.html' title='Multiple defined in 6 places.'>OF</a>((<strong class='reserved'>void</strong>));
+<a id='L156' name='L156' /><em class='comment'>/* </em>
+<a id='L157' name='L157' /><em class='comment'>   The application can compare zdlibVersion and ZDLIB_VERSION for consistency.</em>
+<a id='L158' name='L158' /><em class='comment'>   If the first character differs, the library code actually used is</em>
+<a id='L159' name='L159' /><em class='comment'>   not compatible with the zdlib.h header file used by the application.</em>
+<a id='L160' name='L160' /><em class='comment'>   This check is automatically made by zd_deflateInit and zd_inflateInit.</em>
+<a id='L161' name='L161' /><em class='comment'> */</em>
+<a id='L162' name='L162' />
+<a id='L163' name='L163' /><em class='comment'>/* </em>
+<a id='L164' name='L164' /><em class='comment'>ZEXTERN int ZEXPORT zd_deflateInit OF((zd_streamp strm, int level));</em>
+<a id='L165' name='L165' /><em class='comment'></em>
+<a id='L166' name='L166' /><em class='comment'>     Initializes the internal stream state for compression. The fields</em>
+<a id='L167' name='L167' /><em class='comment'>   zalloc, zfree and opaque must be initialized before by the caller.</em>
+<a id='L168' name='L168' /><em class='comment'>   If zalloc and zfree are set to ZD_NULL, zd_deflateInit updates them to</em>
+<a id='L169' name='L169' /><em class='comment'>   use default allocation functions.</em>
+<a id='L170' name='L170' /><em class='comment'></em>
+<a id='L171' name='L171' /><em class='comment'>     The compression level must be ZD_DEFAULT_COMPRESSION, or between 0 and 9:</em>
+<a id='L172' name='L172' /><em class='comment'>   1 gives best speed, 9 gives best compression, 0 gives no compression at</em>
+<a id='L173' name='L173' /><em class='comment'>   all (the input data is simply copied a block at a time).</em>
+<a id='L174' name='L174' /><em class='comment'>   ZD_DEFAULT_COMPRESSION requests a default compromise between speed and</em>
+<a id='L175' name='L175' /><em class='comment'>   compression (currently equivalent to level 6).</em>
+<a id='L176' name='L176' /><em class='comment'></em>
+<a id='L177' name='L177' /><em class='comment'>     zd_deflateInit returns ZD_OK if success, ZD_MEM_ERROR if there was not</em>
+<a id='L178' name='L178' /><em class='comment'>   enough memory, ZD_STREAM_ERROR if level is not a valid compression level,</em>
+<a id='L179' name='L179' /><em class='comment'>   ZD_VERSION_ERROR if the zdlib library version (zdlibVersion) is </em>
+<a id='L180' name='L180' /><em class='comment'>   incompatible with the version assumed by the caller (ZDLIB_VERSION).</em>
+<a id='L181' name='L181' /><em class='comment'>   msg is set to null if there is no error message.  zd_deflateInit does not</em>
+<a id='L182' name='L182' /><em class='comment'>   perform any compression: this will be done by zd_deflate().</em>
+<a id='L183' name='L183' /><em class='comment'>*/</em>
+<a id='L184' name='L184' />
+<a id='L185' name='L185' /><a href='../D/3168.html' title='Multiple defined in 3 places.'>ZEXTERN</a> <strong class='reserved'>int</strong> <a href='../D/3165.html' title='Multiple defined in 4 places.'>ZEXPORT</a> <a href='../D/5761.html' title='Multiple defined in 2 places.'>zd_deflate</a> <a href='../D/1965.html' title='Multiple defined in 6 places.'>OF</a>((<a href='../S/726.html#L126' title='Defined at 126 in third_party/zdelta-2.1/zdlib.h.'>zd_streamp</a> <a href='../Y/5140.html' title='Multiple used in 325 places.'>strm</a>, <strong class='reserved'>int</strong> <a href='../Y/2407.html' title='Multiple used in 37 places.'>flush</a>));
+<a id='L186' name='L186' /><em class='comment'>/*</em>
+<a id='L187' name='L187' /><em class='comment'>    zd_deflate compresses as much data as possible, and stops when the input</em>
+<a id='L188' name='L188' /><em class='comment'>  buffer becomes empty or the output buffer becomes full. It may introduce some</em>
+<a id='L189' name='L189' /><em class='comment'>  output latency (reading input without producing any output) except when</em>
+<a id='L190' name='L190' /><em class='comment'>  forced to flush. </em>
+<a id='L191' name='L191' /><em class='comment'></em>
+<a id='L192' name='L192' /><em class='comment'>    The detailed semantics are as follows. zd_deflate performs one or both of </em>
+<a id='L193' name='L193' /><em class='comment'>  the following actions:</em>
+<a id='L194' name='L194' /><em class='comment'></em>
+<a id='L195' name='L195' /><em class='comment'>  - Compress more input starting at next_in and update next_in and avail_in</em>
+<a id='L196' name='L196' /><em class='comment'>    accordingly. If not all input can be processed (because there is not</em>
+<a id='L197' name='L197' /><em class='comment'>    enough room in the output buffer), next_in and avail_in are updated and</em>
+<a id='L198' name='L198' /><em class='comment'>    processing will resume at this point for the next call of zd_deflate().</em>
+<a id='L199' name='L199' /><em class='comment'></em>
+<a id='L200' name='L200' /><em class='comment'>  - Provide more output starting at next_out and update next_out and avail_out</em>
+<a id='L201' name='L201' /><em class='comment'>    accordingly. This action is forced if the parameter flush is non zero.</em>
+<a id='L202' name='L202' /><em class='comment'>    Forcing flush frequently degrades the compression ratio, so this parameter</em>
+<a id='L203' name='L203' /><em class='comment'>    should be set only when necessary (in interactive applications).</em>
+<a id='L204' name='L204' /><em class='comment'>    Some output may be provided even if flush is not set.</em>
+<a id='L205' name='L205' /><em class='comment'></em>
+<a id='L206' name='L206' /><em class='comment'>  Before the call of zd_deflate(), the application should ensure that at least</em>
+<a id='L207' name='L207' /><em class='comment'>  one of the actions is possible, by providing more input and/or consuming</em>
+<a id='L208' name='L208' /><em class='comment'>  more output, and updating avail_in or avail_out accordingly; avail_out</em>
+<a id='L209' name='L209' /><em class='comment'>  should never be zero before the call. The application can consume the</em>
+<a id='L210' name='L210' /><em class='comment'>  compressed output when it wants, for example when the output buffer is full</em>
+<a id='L211' name='L211' /><em class='comment'>  (avail_out == 0), or after each call of zd_deflate(). If deflate returns </em>
+<a id='L212' name='L212' /><em class='comment'>  ZD_OK and with zero avail_out, it must be called again after making room in </em>
+<a id='L213' name='L213' /><em class='comment'>  the output buffer because there might be more output pending.</em>
+<a id='L214' name='L214' /><em class='comment'></em>
+<a id='L215' name='L215' /><em class='comment'>    If the parameter flush is set to ZD_SYNC_FLUSH, all pending output is</em>
+<a id='L216' name='L216' /><em class='comment'>  flushed to the output buffer and the output is aligned on a byte boundary, so</em>
+<a id='L217' name='L217' /><em class='comment'>  that the decompressor can get all input data available so far. (In particular</em>
+<a id='L218' name='L218' /><em class='comment'>  avail_in is zero after the call if enough output space has been provided</em>
+<a id='L219' name='L219' /><em class='comment'>  before the call.)  Flushing may degrade compression for some compression</em>
+<a id='L220' name='L220' /><em class='comment'>  algorithms and so it should be used only when necessary. </em>
+<a id='L221' name='L221' /><em class='comment'></em>
+<a id='L222' name='L222' /><em class='comment'>    If flush is set to ZD_FULL_FLUSH, all output is flushed as with</em>
+<a id='L223' name='L223' /><em class='comment'>  ZD_SYNC_FLUSH, and the compression state is reset so that decompression can</em>
+<a id='L224' name='L224' /><em class='comment'>  restart from this point if previous compressed data has been damaged or if</em>
+<a id='L225' name='L225' /><em class='comment'>  random access is desired. Using ZD_FULL_FLUSH too often can seriously degrade</em>
+<a id='L226' name='L226' /><em class='comment'>  the compression.</em>
+<a id='L227' name='L227' /><em class='comment'></em>
+<a id='L228' name='L228' /><em class='comment'>    If zd_deflate returns with avail_out == 0, this function must be called </em>
+<a id='L229' name='L229' /><em class='comment'>  again with the same value of the flush parameter and more output space </em>
+<a id='L230' name='L230' /><em class='comment'>  (updated avail_out), until the flush is complete (deflate returns with </em>
+<a id='L231' name='L231' /><em class='comment'>  non-zero avail_out).</em>
+<a id='L232' name='L232' /><em class='comment'></em>
+<a id='L233' name='L233' /><em class='comment'>    If the parameter flush is set to ZD_FINISH, pending input is processed,</em>
+<a id='L234' name='L234' /><em class='comment'>  pending output is flushed and deflate returns with ZD_STREAM_END if there</em>
+<a id='L235' name='L235' /><em class='comment'>  was enough output space; if deflate returns with ZD_OK, this function must be</em>
+<a id='L236' name='L236' /><em class='comment'>  called again with ZD_FINISH and more output space (updated avail_out) but no</em>
+<a id='L237' name='L237' /><em class='comment'>  more input data, until it returns with ZD_STREAM_END or an error. After</em>
+<a id='L238' name='L238' /><em class='comment'>  deflate has returned ZD_STREAM_END, the only possible operations on the</em>
+<a id='L239' name='L239' /><em class='comment'>  stream are zd_deflateReset or zd_deflateEnd.</em>
+<a id='L240' name='L240' /><em class='comment'>  </em>
+<a id='L241' name='L241' /><em class='comment'>    ZD_FINISH can be used immediately after zd_deflateInit if all the </em>
+<a id='L242' name='L242' /><em class='comment'>  compression is to be done in a single step. In this case, </em>
+<a id='L243' name='L243' /><em class='comment'>  a recommended value for avail_out is at least 0.1% larger than avail_in plus</em>
+<a id='L244' name='L244' /><em class='comment'>  12 bytes - on some rare occasions zdelta may expand the data more than this,</em>
+<a id='L245' name='L245' /><em class='comment'>  the application should check the return codes for those cases!</em>
+<a id='L246' name='L246' /><em class='comment'>  If deflate does not return  ZD_STREAM_END, then it must be called </em>
+<a id='L247' name='L247' /><em class='comment'>  again as described above.</em>
+<a id='L248' name='L248' /><em class='comment'></em>
+<a id='L249' name='L249' /><em class='comment'>    zd_deflate() sets strm-&gt;adler to the adler32 checksum of all input read</em>
+<a id='L250' name='L250' /><em class='comment'>  so far (that is, total_in bytes).</em>
+<a id='L251' name='L251' /><em class='comment'></em>
+<a id='L252' name='L252' /><em class='comment'>     zd_deflate() returns ZD_OK if some progress has been made (more input</em>
+<a id='L253' name='L253' /><em class='comment'>  processed or more output produced), ZD_STREAM_END if all input has been</em>
+<a id='L254' name='L254' /><em class='comment'>  consumed and all output has been produced (only when flush is set to</em>
+<a id='L255' name='L255' /><em class='comment'>  ZD_FINISH), ZD_STREAM_ERROR if the stream state was inconsistent (for example</em>
+<a id='L256' name='L256' /><em class='comment'>  if next_in or next_out was NULL), ZD_BUF_ERROR if no progress is possible</em>
+<a id='L257' name='L257' /><em class='comment'>  (for example avail_in or avail_out was zero).</em>
+<a id='L258' name='L258' /><em class='comment'>*/</em>
+<a id='L259' name='L259' />
+<a id='L260' name='L260' />
+<a id='L261' name='L261' /><a href='../D/3168.html' title='Multiple defined in 3 places.'>ZEXTERN</a> <strong class='reserved'>int</strong> <a href='../D/3165.html' title='Multiple defined in 4 places.'>ZEXPORT</a> <a href='../D/5762.html' title='Multiple defined in 2 places.'>zd_deflateEnd</a> <a href='../D/1965.html' title='Multiple defined in 6 places.'>OF</a>((<a href='../S/726.html#L126' title='Defined at 126 in third_party/zdelta-2.1/zdlib.h.'>zd_streamp</a> <a href='../Y/5140.html' title='Multiple used in 325 places.'>strm</a>));
+<a id='L262' name='L262' /><em class='comment'>/*</em>
+<a id='L263' name='L263' /><em class='comment'>     All dynamically allocated data structures for this stream are freed.</em>
+<a id='L264' name='L264' /><em class='comment'>   This function discards any unprocessed input and does not flush any</em>
+<a id='L265' name='L265' /><em class='comment'>   pending output.</em>
+<a id='L266' name='L266' /><em class='comment'></em>
+<a id='L267' name='L267' /><em class='comment'>     zd_deflateEnd returns ZD_OK if success, ZD_STREAM_ERROR if the</em>
+<a id='L268' name='L268' /><em class='comment'>   stream state was inconsistent, ZD_DATA_ERROR if the stream was freed</em>
+<a id='L269' name='L269' /><em class='comment'>   prematurely (some input or output was discarded). In the error case,</em>
+<a id='L270' name='L270' /><em class='comment'>   msg may be set but then points to a static string (which must not be</em>
+<a id='L271' name='L271' /><em class='comment'>   deallocated).</em>
+<a id='L272' name='L272' /><em class='comment'>*/</em>
+<a id='L273' name='L273' />
+<a id='L274' name='L274' />
+<a id='L275' name='L275' /><em class='comment'>/* </em>
+<a id='L276' name='L276' /><em class='comment'>ZEXTERN int ZEXPORT inflateInit OF((z_streamp strm));</em>
+<a id='L277' name='L277' /><em class='comment'></em>
+<a id='L278' name='L278' /><em class='comment'>     Initializes the internal stream state for decompression. The fields</em>
+<a id='L279' name='L279' /><em class='comment'>   next_in, avail_in, zalloc, zfree and opaque must be initialized before by</em>
+<a id='L280' name='L280' /><em class='comment'>   the caller. If next_in is not ZD_NULL and avail_in is large enough (the exact</em>
+<a id='L281' name='L281' /><em class='comment'>   value depends on the compression method), zd_inflateInit determines the</em>
+<a id='L282' name='L282' /><em class='comment'>   compression method from the zdlib header and allocates all data structures</em>
+<a id='L283' name='L283' /><em class='comment'>   accordingly; otherwise the allocation will be deferred to the first call of</em>
+<a id='L284' name='L284' /><em class='comment'>   inflate.  If zalloc and zfree are set to ZD_NULL, zd_inflateInit updates them to</em>
+<a id='L285' name='L285' /><em class='comment'>   use default allocation functions.</em>
+<a id='L286' name='L286' /><em class='comment'></em>
+<a id='L287' name='L287' /><em class='comment'>     inflateInit returns ZD_OK if success, ZD_MEM_ERROR if there was not enough</em>
+<a id='L288' name='L288' /><em class='comment'>   memory, ZD_VERSION_ERROR if the zdelta library version is incompatible with the</em>
+<a id='L289' name='L289' /><em class='comment'>   version assumed by the caller.  msg is set to null if there is no error</em>
+<a id='L290' name='L290' /><em class='comment'>   message. inflateInit does not perform any decompression apart from reading</em>
+<a id='L291' name='L291' /><em class='comment'>   the zdlib header if present: this will be done by zd_inflate().  (So next_in and</em>
+<a id='L292' name='L292' /><em class='comment'>   avail_in may be modified, but next_out and avail_out are unchanged.)</em>
+<a id='L293' name='L293' /><em class='comment'>*/</em>
+<a id='L294' name='L294' />
+<a id='L295' name='L295' />
+<a id='L296' name='L296' />
+<a id='L297' name='L297' /><a href='../D/3168.html' title='Multiple defined in 3 places.'>ZEXTERN</a> <strong class='reserved'>int</strong> <a href='../D/3165.html' title='Multiple defined in 4 places.'>ZEXPORT</a> <a href='../D/5771.html' title='Multiple defined in 2 places.'>zd_inflate</a> <a href='../D/1965.html' title='Multiple defined in 6 places.'>OF</a>((<a href='../S/726.html#L126' title='Defined at 126 in third_party/zdelta-2.1/zdlib.h.'>zd_streamp</a> <a href='../Y/5140.html' title='Multiple used in 325 places.'>strm</a>, <strong class='reserved'>int</strong> <a href='../Y/2407.html' title='Multiple used in 37 places.'>flush</a>));
+<a id='L298' name='L298' /><em class='comment'>/*</em>
+<a id='L299' name='L299' /><em class='comment'>    zd_inflate decompresses as much data as possible, and stops when the input</em>
+<a id='L300' name='L300' /><em class='comment'>  buffer becomes empty or the output buffer becomes full. It may some</em>
+<a id='L301' name='L301' /><em class='comment'>  introduce some output latency (reading input without producing any output)</em>
+<a id='L302' name='L302' /><em class='comment'>  except when forced to flush.</em>
+<a id='L303' name='L303' /><em class='comment'></em>
+<a id='L304' name='L304' /><em class='comment'>  The detailed semantics are as follows. zd_inflate performs one or both of the</em>
+<a id='L305' name='L305' /><em class='comment'>  following actions:</em>
+<a id='L306' name='L306' /><em class='comment'></em>
+<a id='L307' name='L307' /><em class='comment'>  - Decompress more input starting at next_in and update next_in and avail_in</em>
+<a id='L308' name='L308' /><em class='comment'>    accordingly. If not all input can be processed (because there is not</em>
+<a id='L309' name='L309' /><em class='comment'>    enough room in the output buffer), next_in is updated and processing</em>
+<a id='L310' name='L310' /><em class='comment'>    will resume at this point for the next call of zd_inflate().</em>
+<a id='L311' name='L311' /><em class='comment'></em>
+<a id='L312' name='L312' /><em class='comment'>  - Provide more output starting at next_out and update next_out and avail_out</em>
+<a id='L313' name='L313' /><em class='comment'>    accordingly.  zd_inflate() provides as much output as possible, until there</em>
+<a id='L314' name='L314' /><em class='comment'>    is no more input data or no more space in the output buffer (see below</em>
+<a id='L315' name='L315' /><em class='comment'>    about the flush parameter).</em>
+<a id='L316' name='L316' /><em class='comment'></em>
+<a id='L317' name='L317' /><em class='comment'>  Before the call of zd_inflate(), the application should ensure that at least</em>
+<a id='L318' name='L318' /><em class='comment'>  one of the actions is possible, by providing more input and/or consuming</em>
+<a id='L319' name='L319' /><em class='comment'>  more output, and updating the next_* and avail_* values accordingly.</em>
+<a id='L320' name='L320' /><em class='comment'>  The application can consume the uncompressed output when it wants, for</em>
+<a id='L321' name='L321' /><em class='comment'>  example when the output buffer is full (avail_out == 0), or after each</em>
+<a id='L322' name='L322' /><em class='comment'>  call of zd_inflate(). If inflate returns ZD_OK and with zero avail_out, it</em>
+<a id='L323' name='L323' /><em class='comment'>  must be called again after making room in the output buffer because there</em>
+<a id='L324' name='L324' /><em class='comment'>  might be more output pending. </em>
+<a id='L325' name='L325' /><em class='comment'></em>
+<a id='L326' name='L326' /><em class='comment'>    If the parameter flush is set to ZD_SYNC_FLUSH, inflate flushes as much</em>
+<a id='L327' name='L327' /><em class='comment'>  output as possible to the output buffer. The flushing behavior of inflate is</em>
+<a id='L328' name='L328' /><em class='comment'>  not specified for values of the flush parameter other than ZD_SYNC_FLUSH</em>
+<a id='L329' name='L329' /><em class='comment'>  and ZD_FINISH, but the current implementation actually flushes as much output</em>
+<a id='L330' name='L330' /><em class='comment'>  as possible anyway.</em>
+<a id='L331' name='L331' /><em class='comment'></em>
+<a id='L332' name='L332' /><em class='comment'>    zd_inflate() should normally be called until it returns ZD_STREAM_END or an</em>
+<a id='L333' name='L333' /><em class='comment'>  error. However if all decompression is to be performed in a single step</em>
+<a id='L334' name='L334' /><em class='comment'>  (a single call of inflate), the parameter flush should be set to</em>
+<a id='L335' name='L335' /><em class='comment'>  ZD_FINISH. In this case all pending input is processed and all pending</em>
+<a id='L336' name='L336' /><em class='comment'>  output is flushed; avail_out must be large enough to hold all the</em>
+<a id='L337' name='L337' /><em class='comment'>  uncompressed data. (The size of the uncompressed data may have been saved</em>
+<a id='L338' name='L338' /><em class='comment'>  by the compressor for this purpose.) The next operation on this stream must</em>
+<a id='L339' name='L339' /><em class='comment'>  be inflateEnd to deallocate the decompression state. The use of ZD_FINISH</em>
+<a id='L340' name='L340' /><em class='comment'>  is never required, but can be used to inform inflate that a faster routine</em>
+<a id='L341' name='L341' /><em class='comment'>  may be used for the single zd_inflate() call.</em>
+<a id='L342' name='L342' /><em class='comment'>  </em>
+<a id='L343' name='L343' /><em class='comment'>    zd_inflate() returns ZD_OK if some progress has been made (more input </em>
+<a id='L344' name='L344' /><em class='comment'>  processed or more output produced), ZD_STREAM_END if the end of the </em>
+<a id='L345' name='L345' /><em class='comment'>  compressed data has been reached and all uncompressed output has been </em>
+<a id='L346' name='L346' /><em class='comment'>  produced, ZD_DATA_ERROR if the input data was corrupted (input stream not </em>
+<a id='L347' name='L347' /><em class='comment'>  conforming to the zlib/libzd format or incorrect adler32 checksum), </em>
+<a id='L348' name='L348' /><em class='comment'>  ZD_STREAM_ERROR if the stream structure was inconsistent (for example if </em>
+<a id='L349' name='L349' /><em class='comment'>  next_in or next_out was NULL), ZD_MEM_ERROR if there was not enough memory,</em>
+<a id='L350' name='L350' /><em class='comment'>  ZD_BUF_ERROR if no progress is possible or if there was not enough room in</em>
+<a id='L351' name='L351' /><em class='comment'>  the output buffer when ZD_FINISH is used.</em>
+<a id='L352' name='L352' /><em class='comment'></em>
+<a id='L353' name='L353' /><em class='comment'>  NOTE: there is no check sum for the reference data! </em>
+<a id='L354' name='L354' /><em class='comment'>*/</em>
+<a id='L355' name='L355' />
+<a id='L356' name='L356' />
+<a id='L357' name='L357' /><a href='../D/3168.html' title='Multiple defined in 3 places.'>ZEXTERN</a> <strong class='reserved'>int</strong> <a href='../D/3165.html' title='Multiple defined in 4 places.'>ZEXPORT</a> <a href='../D/5772.html' title='Multiple defined in 2 places.'>zd_inflateEnd</a> <a href='../D/1965.html' title='Multiple defined in 6 places.'>OF</a>((<a href='../S/726.html#L126' title='Defined at 126 in third_party/zdelta-2.1/zdlib.h.'>zd_streamp</a> <a href='../Y/5140.html' title='Multiple used in 325 places.'>strm</a>));
+<a id='L358' name='L358' /><em class='comment'>/*</em>
+<a id='L359' name='L359' /><em class='comment'>     All dynamically allocated data structures for this stream are freed.</em>
+<a id='L360' name='L360' /><em class='comment'>   This function discards any unprocessed input and does not flush any</em>
+<a id='L361' name='L361' /><em class='comment'>   pending output.</em>
+<a id='L362' name='L362' /><em class='comment'></em>
+<a id='L363' name='L363' /><em class='comment'>     zd_inflateEnd returns ZD_OK if success, ZD_STREAM_ERROR if the stream </em>
+<a id='L364' name='L364' /><em class='comment'>   state was inconsistent. In the error case, msg may be set but then points </em>
+<a id='L365' name='L365' /><em class='comment'>   to a static string (which must not be deallocated).</em>
+<a id='L366' name='L366' /><em class='comment'>*/</em>
+<a id='L367' name='L367' />
+<a id='L368' name='L368' /><em class='comment'>/* ==========================================================================</em>
+<a id='L369' name='L369' /><em class='comment'> * advanced functions  </em>
+<a id='L370' name='L370' /><em class='comment'> */</em>  
+<a id='L371' name='L371' />
+<a id='L372' name='L372' /><a href='../D/3168.html' title='Multiple defined in 3 places.'>ZEXTERN</a> <strong class='reserved'>int</strong> <a href='../D/3165.html' title='Multiple defined in 4 places.'>ZEXPORT</a> <a href='../D/5768.html' title='Multiple defined in 2 places.'>zd_deflateReset</a> <a href='../D/1965.html' title='Multiple defined in 6 places.'>OF</a>((<a href='../S/726.html#L126' title='Defined at 126 in third_party/zdelta-2.1/zdlib.h.'>zd_streamp</a> <a href='../Y/5140.html' title='Multiple used in 325 places.'>strm</a>));
+<a id='L373' name='L373' /><em class='comment'>/*</em>
+<a id='L374' name='L374' /><em class='comment'>     This function is equivalent to zd_deflateEnd followed by zd_deflateInit,</em>
+<a id='L375' name='L375' /><em class='comment'>   but does not free and reallocate all the internal compression state.</em>
+<a id='L376' name='L376' /><em class='comment'>   The stream will keep the same compression level and any other attributes</em>
+<a id='L377' name='L377' /><em class='comment'>   that may have been set by zd_deflateInit2.</em>
+<a id='L378' name='L378' /><em class='comment'></em>
+<a id='L379' name='L379' /><em class='comment'>      deflateReset returns ZD_OK if success, or ZD_STREAM_ERROR if the source</em>
+<a id='L380' name='L380' /><em class='comment'>   stream state was inconsistent (such as zalloc or state being NULL).</em>
+<a id='L381' name='L381' /><em class='comment'>*/</em>
+<a id='L382' name='L382' />
+<a id='L383' name='L383' /><a href='../D/3168.html' title='Multiple defined in 3 places.'>ZEXTERN</a> <strong class='reserved'>int</strong> <a href='../D/3165.html' title='Multiple defined in 4 places.'>ZEXPORT</a> <a href='../S/699.html#L305' title='Defined at 305 in third_party/zdelta-2.1/deflate.c.'>zd_deflateParams</a> <a href='../D/1965.html' title='Multiple defined in 6 places.'>OF</a>((<a href='../S/726.html#L126' title='Defined at 126 in third_party/zdelta-2.1/zdlib.h.'>zd_streamp</a> <a href='../Y/5140.html' title='Multiple used in 325 places.'>strm</a>,
+<a id='L384' name='L384' />                                         <strong class='reserved'>int</strong> <a href='../Y/3216.html' title='Multiple used in 55 places.'>level</a>,
+<a id='L385' name='L385' />                                         <strong class='reserved'>int</strong> <a href='../Y/5120.html' title='Multiple used in 22 places.'>strategy</a>));
+<a id='L386' name='L386' /><em class='comment'>/*</em>
+<a id='L387' name='L387' /><em class='comment'>     Dynamically update the compression level and compression strategy.  The</em>
+<a id='L388' name='L388' /><em class='comment'>   interpretation of level and strategy is as in zd_deflateInit2.  This can be</em>
+<a id='L389' name='L389' /><em class='comment'>   used to switch between compression and straight copy of the input data, or</em>
+<a id='L390' name='L390' /><em class='comment'>   to switch to a different kind of input data requiring a different</em>
+<a id='L391' name='L391' /><em class='comment'>   strategy. If the compression level is changed, the input available so far</em>
+<a id='L392' name='L392' /><em class='comment'>   is compressed with the old level (and may be flushed); the new level will</em>
+<a id='L393' name='L393' /><em class='comment'>   take effect only at the next call of zd_deflate().</em>
+<a id='L394' name='L394' /><em class='comment'></em>
+<a id='L395' name='L395' /><em class='comment'>     Before the call of zd_deflateParams, the stream state must be set as for</em>
+<a id='L396' name='L396' /><em class='comment'>   a call of zd_deflate(), since the currently available input may have to</em>
+<a id='L397' name='L397' /><em class='comment'>   be compressed and flushed. In particular, strm-&gt;avail_out must be non-zero.</em>
+<a id='L398' name='L398' /><em class='comment'></em>
+<a id='L399' name='L399' /><em class='comment'>     zd_deflateParams returns ZD_OK if success, ZD_STREAM_ERROR if the source</em>
+<a id='L400' name='L400' /><em class='comment'>   stream state was inconsistent or if a parameter was invalid, ZD_BUF_ERROR</em>
+<a id='L401' name='L401' /><em class='comment'>   if strm-&gt;avail_out was zero.</em>
+<a id='L402' name='L402' /><em class='comment'>*/</em>
+<a id='L403' name='L403' />
+<a id='L404' name='L404' /><a href='../D/3168.html' title='Multiple defined in 3 places.'>ZEXTERN</a> <strong class='reserved'>int</strong> <a href='../D/3165.html' title='Multiple defined in 4 places.'>ZEXPORT</a> <a href='../S/708.html#L278' title='Defined at 278 in third_party/zdelta-2.1/inflate.c.'>zd_inflateSync</a> <a href='../D/1965.html' title='Multiple defined in 6 places.'>OF</a>((<a href='../S/726.html#L126' title='Defined at 126 in third_party/zdelta-2.1/zdlib.h.'>zd_streamp</a> <a href='../Y/5140.html' title='Multiple used in 325 places.'>strm</a>));
+<a id='L405' name='L405' /><em class='comment'>/* </em>
+<a id='L406' name='L406' /><em class='comment'>    Skips invalid compressed data until a full flush point (see above the</em>
+<a id='L407' name='L407' /><em class='comment'>  description of deflate with ZD_FULL_FLUSH) can be found, or until all</em>
+<a id='L408' name='L408' /><em class='comment'>  available input is skipped. No output is provided.</em>
+<a id='L409' name='L409' /><em class='comment'></em>
+<a id='L410' name='L410' /><em class='comment'>    zd_inflateSync returns ZD_OK if a full flush point has been found, </em>
+<a id='L411' name='L411' /><em class='comment'>  ZD_BUF_ERROR if no more input was provided, ZD_DATA_ERROR if no flush point </em>
+<a id='L412' name='L412' /><em class='comment'>  has been found, or ZD_STREAM_ERROR if the stream structure was inconsistent. </em>
+<a id='L413' name='L413' /><em class='comment'>  In the success case, the application may save the current current value of </em>
+<a id='L414' name='L414' /><em class='comment'>  total_in which indicates where valid compressed data was found. In the error</em>
+<a id='L415' name='L415' /><em class='comment'>  case, the application may repeatedly call zd_inflateSync, providing more </em>
+<a id='L416' name='L416' /><em class='comment'>  input each time, until success or end of the input data.</em>
+<a id='L417' name='L417' /><em class='comment'>*/</em>
+<a id='L418' name='L418' />
+<a id='L419' name='L419' /><a href='../D/3168.html' title='Multiple defined in 3 places.'>ZEXTERN</a> <strong class='reserved'>int</strong> <a href='../D/3165.html' title='Multiple defined in 4 places.'>ZEXPORT</a> <a href='../D/5777.html' title='Multiple defined in 2 places.'>zd_inflateReset</a> <a href='../D/1965.html' title='Multiple defined in 6 places.'>OF</a>((<a href='../S/726.html#L126' title='Defined at 126 in third_party/zdelta-2.1/zdlib.h.'>zd_streamp</a> <a href='../Y/5140.html' title='Multiple used in 325 places.'>strm</a>));
+<a id='L420' name='L420' /><em class='comment'>/*</em>
+<a id='L421' name='L421' /><em class='comment'>     This function is equivalent to zd_inflateEnd followed by zd_inflateInit,</em>
+<a id='L422' name='L422' /><em class='comment'>   but does not free and reallocate all the internal decompression state.</em>
+<a id='L423' name='L423' /><em class='comment'>   The stream will keep attributes that may have been set by zd_inflateInit2.</em>
+<a id='L424' name='L424' /><em class='comment'></em>
+<a id='L425' name='L425' /><em class='comment'>      inflateReset returns ZD_OK if success, or ZD_STREAM_ERROR if the source</em>
+<a id='L426' name='L426' /><em class='comment'>   stream state was inconsistent (such as zalloc or state being NULL).</em>
+<a id='L427' name='L427' /><em class='comment'>*/</em>
+<a id='L428' name='L428' />
+<a id='L429' name='L429' /><em class='comment'>/* ==========================================================================</em>
+<a id='L430' name='L430' /><em class='comment'> * utility functions  </em>
+<a id='L431' name='L431' /><em class='comment'> */</em>
+<a id='L432' name='L432' />
+<a id='L433' name='L433' /><em class='comment'>/* computes zdelta difference between target data and reference data</em>
+<a id='L434' name='L434' /><em class='comment'> *</em>
+<a id='L435' name='L435' /><em class='comment'> * INPUT:</em>
+<a id='L436' name='L436' /><em class='comment'> * ref      pointer to reference data set</em>
+<a id='L437' name='L437' /><em class='comment'> * rsize    size of reference data set</em>
+<a id='L438' name='L438' /><em class='comment'> * tar      pointer to targeted data set</em>
+<a id='L439' name='L439' /><em class='comment'> * tsize    size of targeted data set</em>
+<a id='L440' name='L440' /><em class='comment'> * delta    pointer to delta buffer</em>
+<a id='L441' name='L441' /><em class='comment'> *          the delta buffer IS allocated by the user</em>
+<a id='L442' name='L442' /><em class='comment'> * *dsize   size of delta buffer</em>
+<a id='L443' name='L443' /><em class='comment'> *</em>
+<a id='L444' name='L444' /><em class='comment'> *</em>
+<a id='L445' name='L445' /><em class='comment'> * OUTPUT parameters:</em>
+<a id='L446' name='L446' /><em class='comment'> * delta    pointer to zdelta difference </em>
+<a id='L447' name='L447' /><em class='comment'> * *dsize   size of zdelta difference</em>
+<a id='L448' name='L448' /><em class='comment'> *</em>
+<a id='L449' name='L449' /><em class='comment'> * zd_compress returns ZD_OK on success,</em>
+<a id='L450' name='L450' /><em class='comment'> * ZD_MEM_ERROR if there was not enough memory,</em>
+<a id='L451' name='L451' /><em class='comment'> * ZD_BUF_ERROR if there was not enough room in the output</em>
+<a id='L452' name='L452' /><em class='comment'> * buffer.</em>
+<a id='L453' name='L453' /><em class='comment'> */</em>
+<a id='L454' name='L454' /><a href='../D/3168.html' title='Multiple defined in 3 places.'>ZEXTERN</a> <strong class='reserved'>int</strong> <a href='../D/3165.html' title='Multiple defined in 4 places.'>ZEXPORT</a> <a href='../D/5757.html' title='Multiple defined in 2 places.'>zd_compress</a> <a href='../D/1965.html' title='Multiple defined in 6 places.'>OF</a> ((<strong class='reserved'>const</strong> <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a> *<a href='../Y/4465.html' title='Multiple used in 85 places.'>ref</a>, <a href='../D/5485.html' title='Multiple defined in 2 places.'>uLong</a> <a href='../Y/4597.html' title='Multiple used in 26 places.'>rsize</a>,
+<a id='L455' name='L455' />                                     <strong class='reserved'>const</strong> <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a> *<a href='../Y/5288.html' title='Multiple used in 24 places.'>tar</a>, <a href='../D/5485.html' title='Multiple defined in 2 places.'>uLong</a> <a href='../Y/5478.html' title='Multiple used in 34 places.'>tsize</a>,
+<a id='L456' name='L456' />                                     <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a> *<a href='../Y/2015.html' title='Multiple used in 70 places.'>delta</a>, <a href='../D/5486.html' title='Multiple defined in 2 places.'>uLongf</a>* <a href='../Y/2089.html' title='Multiple used in 32 places.'>dsize</a>));
+<a id='L457' name='L457' />
+<a id='L458' name='L458' />
+<a id='L459' name='L459' />
+<a id='L460' name='L460' /><em class='comment'>/* computes zdelta difference between target data and reference data</em>
+<a id='L461' name='L461' /><em class='comment'> *</em>
+<a id='L462' name='L462' /><em class='comment'> * INPUT:</em>
+<a id='L463' name='L463' /><em class='comment'> * ref      pointer to reference data set</em>
+<a id='L464' name='L464' /><em class='comment'> * rsize    size of reference data set</em>
+<a id='L465' name='L465' /><em class='comment'> * tar      pointer to targeted data set</em>
+<a id='L466' name='L466' /><em class='comment'> * tsize    size of targeted data set</em>
+<a id='L467' name='L467' /><em class='comment'> * delta    a pointer to NULL pointer</em>
+<a id='L468' name='L468' /><em class='comment'> *          DO NOT allocate any memory for the output here</em>
+<a id='L469' name='L469' /><em class='comment'> *          this will be done by libZD </em>
+<a id='L470' name='L470' /><em class='comment'> *</em>
+<a id='L471' name='L471' /><em class='comment'> * OUTPUT parameters:</em>
+<a id='L472' name='L472' /><em class='comment'> * *delta   points to zdelta difference </em>
+<a id='L473' name='L473' /><em class='comment'> *          the memory space IS allocated by zdelta</em>
+<a id='L474' name='L474' /><em class='comment'> * *dsize   size ot zdelta difference</em>
+<a id='L475' name='L475' /><em class='comment'> *          the memory space for this variable </em>
+<a id='L476' name='L476' /><em class='comment'> *          SHOULD be allocated by the user</em>
+<a id='L477' name='L477' /><em class='comment'> *</em>
+<a id='L478' name='L478' /><em class='comment'> * zd_compress1 returns ZD_OK on success</em>
+<a id='L479' name='L479' /><em class='comment'> * in case of failure an error code is returned, and</em>
+<a id='L480' name='L480' /><em class='comment'> * an error message is printed to stderr, delta is set to NULL</em>
+<a id='L481' name='L481' /><em class='comment'> */</em>
+<a id='L482' name='L482' /><a href='../D/3168.html' title='Multiple defined in 3 places.'>ZEXTERN</a> <strong class='reserved'>int</strong> <a href='../D/3165.html' title='Multiple defined in 4 places.'>ZEXPORT</a> <a href='../D/5758.html' title='Multiple defined in 2 places.'>zd_compress1</a> <a href='../D/1965.html' title='Multiple defined in 6 places.'>OF</a> ((<strong class='reserved'>const</strong> <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a> *<a href='../Y/4465.html' title='Multiple used in 85 places.'>ref</a>, <a href='../D/5485.html' title='Multiple defined in 2 places.'>uLong</a> <a href='../Y/4597.html' title='Multiple used in 26 places.'>rsize</a>,
+<a id='L483' name='L483' />                                      <strong class='reserved'>const</strong> <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a> *<a href='../Y/5288.html' title='Multiple used in 24 places.'>tar</a>, <a href='../D/5485.html' title='Multiple defined in 2 places.'>uLong</a> <a href='../Y/5478.html' title='Multiple used in 34 places.'>tsize</a>,
+<a id='L484' name='L484' />                                      <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a> **<a href='../Y/2015.html' title='Multiple used in 70 places.'>delta</a>, <a href='../D/5486.html' title='Multiple defined in 2 places.'>uLongf</a> *<a href='../Y/2089.html' title='Multiple used in 32 places.'>dsize</a>));
+<a id='L485' name='L485' />
+<a id='L486' name='L486' />
+<a id='L487' name='L487' /><em class='comment'>/* computes zdelta difference between target data and N reference data sets</em>
+<a id='L488' name='L488' /><em class='comment'> *</em>
+<a id='L489' name='L489' /><em class='comment'> * INPUT:</em>
+<a id='L490' name='L490' /><em class='comment'> * ref      pointer to *N* reference data set</em>
+<a id='L491' name='L491' /><em class='comment'> * rsize    sizes of the *N* reference data set</em>
+<a id='L492' name='L492' /><em class='comment'> * rw       number of the reference data sets (*N*)</em>
+<a id='L493' name='L493' /><em class='comment'> *</em>
+<a id='L494' name='L494' /><em class='comment'> * tar      pointer to targeted data set</em>
+<a id='L495' name='L495' /><em class='comment'> * tsize    size of targeted data set</em>
+<a id='L496' name='L496' /><em class='comment'> * delta    a pointer to NULL pointer</em>
+<a id='L497' name='L497' /><em class='comment'> *          DO NOT allocate any memory for the output here</em>
+<a id='L498' name='L498' /><em class='comment'> *          this will be done by libZD </em>
+<a id='L499' name='L499' /><em class='comment'> *</em>
+<a id='L500' name='L500' /><em class='comment'> * OUTPUT parameters:</em>
+<a id='L501' name='L501' /><em class='comment'> * delta    points to zdelta difference </em>
+<a id='L502' name='L502' /><em class='comment'> *          the memory space IS allocated by the user</em>
+<a id='L503' name='L503' /><em class='comment'> * *dsize   size ot zdelta difference</em>
+<a id='L504' name='L504' /><em class='comment'> *          the memory space for this variable </em>
+<a id='L505' name='L505' /><em class='comment'> *          SHOULD be allocated by the user</em>
+<a id='L506' name='L506' /><em class='comment'> *</em>
+<a id='L507' name='L507' /><em class='comment'> * zd_compress1 returns ZD_OK on success</em>
+<a id='L508' name='L508' /><em class='comment'> * in case of failure an error code is returned, and</em>
+<a id='L509' name='L509' /><em class='comment'> * an error message is printed to stderr, delta is set to NULL</em>
+<a id='L510' name='L510' /><em class='comment'> */</em>
+<a id='L511' name='L511' /><a href='../D/3168.html' title='Multiple defined in 3 places.'>ZEXTERN</a> <strong class='reserved'>int</strong> <a href='../D/3165.html' title='Multiple defined in 4 places.'>ZEXPORT</a> <a href='../S/725.html#L151' title='Defined at 151 in third_party/zdelta-2.1/zdelta.c.'>zd_compressN</a> <a href='../D/1965.html' title='Multiple defined in 6 places.'>OF</a> ((<strong class='reserved'>const</strong> <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a> *<a href='../Y/4465.html' title='Multiple used in 85 places.'>ref</a>[],<a href='../D/5485.html' title='Multiple defined in 2 places.'>uLong</a> <a href='../Y/4597.html' title='Multiple used in 26 places.'>rsize</a>[],<strong class='reserved'>int</strong> <a href='../Y/4654.html' title='Multiple used in 106 places.'>rw</a>,
+<a id='L512' name='L512' />                                      <strong class='reserved'>const</strong> <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a> *<a href='../Y/5288.html' title='Multiple used in 24 places.'>tar</a>, <a href='../D/5485.html' title='Multiple defined in 2 places.'>uLong</a> <a href='../Y/5478.html' title='Multiple used in 34 places.'>tsize</a>,
+<a id='L513' name='L513' />                                      <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a> *<a href='../Y/2015.html' title='Multiple used in 70 places.'>delta</a>, <a href='../D/5486.html' title='Multiple defined in 2 places.'>uLongf</a> *<a href='../Y/2089.html' title='Multiple used in 32 places.'>dsize</a>));
+<a id='L514' name='L514' />
+<a id='L515' name='L515' />
+<a id='L516' name='L516' />
+<a id='L517' name='L517' />
+<a id='L518' name='L518' /><em class='comment'>/* rebuilds target data from reference data and zdelta difference</em>
+<a id='L519' name='L519' /><em class='comment'> *</em>
+<a id='L520' name='L520' /><em class='comment'> * INPUT:</em>
+<a id='L521' name='L521' /><em class='comment'> * ref      pointer to reference data set</em>
+<a id='L522' name='L522' /><em class='comment'> * rsize    size of reference data set</em>
+<a id='L523' name='L523' /><em class='comment'> * tar      pointer to target buffer</em>
+<a id='L524' name='L524' /><em class='comment'> *          this buffer IS allocated by the user</em>
+<a id='L525' name='L525' /><em class='comment'> * tsize    size of target buffer</em>
+<a id='L526' name='L526' /><em class='comment'> * delta    pointer to zdelta difference</em>
+<a id='L527' name='L527' /><em class='comment'> * dsize    size of zdelta difference</em>
+<a id='L528' name='L528' /><em class='comment'> *</em>
+<a id='L529' name='L529' /><em class='comment'> *</em>
+<a id='L530' name='L530' /><em class='comment'> * OUTPUT parameters:</em>
+<a id='L531' name='L531' /><em class='comment'> * tar      pointer to recomputed target data</em>
+<a id='L532' name='L532' /><em class='comment'> * *tsize   size of recomputed target data</em>
+<a id='L533' name='L533' /><em class='comment'> *</em>
+<a id='L534' name='L534' /><em class='comment'> * zd_uncompress returns ZD_OK on success,</em>
+<a id='L535' name='L535' /><em class='comment'> * ZD_MEM_ERROR if there was not enough memory,</em>
+<a id='L536' name='L536' /><em class='comment'> * ZD_BUF_ERROR if there was not enough room in the output</em>
+<a id='L537' name='L537' /><em class='comment'> * buffer.</em>
+<a id='L538' name='L538' /><em class='comment'> */</em>
+<a id='L539' name='L539' /><a href='../D/3168.html' title='Multiple defined in 3 places.'>ZEXTERN</a> <strong class='reserved'>int</strong> <a href='../D/3165.html' title='Multiple defined in 4 places.'>ZEXPORT</a> <a href='../D/5792.html' title='Multiple defined in 2 places.'>zd_uncompress</a> <a href='../D/1965.html' title='Multiple defined in 6 places.'>OF</a> ((<strong class='reserved'>const</strong> <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a> *<a href='../Y/4465.html' title='Multiple used in 85 places.'>ref</a>, <a href='../D/5485.html' title='Multiple defined in 2 places.'>uLong</a> <a href='../Y/4597.html' title='Multiple used in 26 places.'>rsize</a>,
+<a id='L540' name='L540' />                                       <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a> *<a href='../Y/5288.html' title='Multiple used in 24 places.'>tar</a>, <a href='../D/5486.html' title='Multiple defined in 2 places.'>uLongf</a> *<a href='../Y/5478.html' title='Multiple used in 34 places.'>tsize</a>,
+<a id='L541' name='L541' />                                       <strong class='reserved'>const</strong> <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a> *<a href='../Y/2015.html' title='Multiple used in 70 places.'>delta</a>, <a href='../D/5485.html' title='Multiple defined in 2 places.'>uLong</a> <a href='../Y/2089.html' title='Multiple used in 32 places.'>dsize</a>));
+<a id='L542' name='L542' />
+<a id='L543' name='L543' />
+<a id='L544' name='L544' /><em class='comment'>/* rebuilds target data from reference data and zdelta difference</em>
+<a id='L545' name='L545' /><em class='comment'> *</em>
+<a id='L546' name='L546' /><em class='comment'> * INPUT:</em>
+<a id='L547' name='L547' /><em class='comment'> * ref      pointer to reference data set</em>
+<a id='L548' name='L548' /><em class='comment'> * rsize    size of reference data set</em>
+<a id='L549' name='L549' /><em class='comment'> * tar      pointer to NULL poiner</em>
+<a id='L550' name='L550' /><em class='comment'> *          DO NOT allocate any memory for the output here;</em>
+<a id='L551' name='L551' /><em class='comment'> *          this will be done by libZD </em>
+<a id='L552' name='L552' /><em class='comment'> * </em>
+<a id='L553' name='L553' /><em class='comment'> * delta    pointer to zdelta diference</em>
+<a id='L554' name='L554' /><em class='comment'> * dsize    size of zdelta difference</em>
+<a id='L555' name='L555' /><em class='comment'> *</em>
+<a id='L556' name='L556' /><em class='comment'> * OUTPUT parameters:</em>
+<a id='L557' name='L557' /><em class='comment'> * *tar     pointer to the rebuild target data </em>
+<a id='L558' name='L558' /><em class='comment'> *          the memory space IS allocated by zdelta</em>
+<a id='L559' name='L559' /><em class='comment'> * tsize    size ot the recomputed target</em>
+<a id='L560' name='L560' /><em class='comment'> *          the memory space for this variable </em>
+<a id='L561' name='L561' /><em class='comment'> *          SHOULD be allocated by the user</em>
+<a id='L562' name='L562' /><em class='comment'> *</em>
+<a id='L563' name='L563' /><em class='comment'> * zd_uncompress1 returns ZD_OK on success</em>
+<a id='L564' name='L564' /><em class='comment'> * in case of failure an error code is returned, and</em>
+<a id='L565' name='L565' /><em class='comment'> * an error message is printed to the stderr, tar is set to NULL</em>
+<a id='L566' name='L566' /><em class='comment'> */</em>
+<a id='L567' name='L567' /><a href='../D/3168.html' title='Multiple defined in 3 places.'>ZEXTERN</a> <strong class='reserved'>int</strong> <a href='../D/3165.html' title='Multiple defined in 4 places.'>ZEXPORT</a> <a href='../D/5793.html' title='Multiple defined in 2 places.'>zd_uncompress1</a> <a href='../D/1965.html' title='Multiple defined in 6 places.'>OF</a> ((<strong class='reserved'>const</strong> <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a> *<a href='../Y/4465.html' title='Multiple used in 85 places.'>ref</a>, <a href='../D/5485.html' title='Multiple defined in 2 places.'>uLong</a> <a href='../Y/4597.html' title='Multiple used in 26 places.'>rsize</a>,
+<a id='L568' name='L568' />                                        <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a> **<a href='../Y/5288.html' title='Multiple used in 24 places.'>tar</a>, <a href='../D/5486.html' title='Multiple defined in 2 places.'>uLongf</a> *<a href='../Y/5478.html' title='Multiple used in 34 places.'>tsize</a>,
+<a id='L569' name='L569' />                                        <strong class='reserved'>const</strong> <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a> *<a href='../Y/2015.html' title='Multiple used in 70 places.'>delta</a>, <a href='../D/5485.html' title='Multiple defined in 2 places.'>uLong</a> <a href='../Y/2089.html' title='Multiple used in 32 places.'>dsize</a>));
+<a id='L570' name='L570' />
+<a id='L571' name='L571' />
+<a id='L572' name='L572' />
+<a id='L573' name='L573' /><em class='comment'>/* rebuilds target data from reference data and zdelta difference </em>
+<a id='L574' name='L574' /><em class='comment'> *</em>
+<a id='L575' name='L575' /><em class='comment'> * INPUT:</em>
+<a id='L576' name='L576' /><em class='comment'> * ref      pointer to *N* reference data set</em>
+<a id='L577' name='L577' /><em class='comment'> * rsize    sizes of the *N* reference data set</em>
+<a id='L578' name='L578' /><em class='comment'> * rw       number of the reference data sets (*N*)</em>
+<a id='L579' name='L579' /><em class='comment'> * tar      pointer to target buffer</em>
+<a id='L580' name='L580' /><em class='comment'> *          this buffer IS allocated by the user</em>
+<a id='L581' name='L581' /><em class='comment'> * tsize    size of target buffer</em>
+<a id='L582' name='L582' /><em class='comment'> * delta    pointer to zdelta difference</em>
+<a id='L583' name='L583' /><em class='comment'> * dsize    size of zdelta difference</em>
+<a id='L584' name='L584' /><em class='comment'> *</em>
+<a id='L585' name='L585' /><em class='comment'> *</em>
+<a id='L586' name='L586' /><em class='comment'> * OUTPUT parameters:</em>
+<a id='L587' name='L587' /><em class='comment'> * tar      pointer to recomputed target data</em>
+<a id='L588' name='L588' /><em class='comment'> * *tsize   size of recomputed target data</em>
+<a id='L589' name='L589' /><em class='comment'> *</em>
+<a id='L590' name='L590' /><em class='comment'> * zd_uncompress returns ZD_OK on success,</em>
+<a id='L591' name='L591' /><em class='comment'> * ZD_MEM_ERROR if there was not enough memory,</em>
+<a id='L592' name='L592' /><em class='comment'> * ZD_BUF_ERROR if there was not enough room in the output</em>
+<a id='L593' name='L593' /><em class='comment'> * buffer.</em>
+<a id='L594' name='L594' /><em class='comment'> */</em>
+<a id='L595' name='L595' /><a href='../D/3168.html' title='Multiple defined in 3 places.'>ZEXTERN</a> <strong class='reserved'>int</strong> <a href='../D/3165.html' title='Multiple defined in 4 places.'>ZEXPORT</a> 
+<a id='L596' name='L596' /><a href='../S/725.html#L411' title='Defined at 411 in third_party/zdelta-2.1/zdelta.c.'>zd_uncompressN</a> <a href='../D/1965.html' title='Multiple defined in 6 places.'>OF</a>((<a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a> *<a href='../Y/4465.html' title='Multiple used in 85 places.'>ref</a>[],<a href='../D/5485.html' title='Multiple defined in 2 places.'>uLong</a> <a href='../Y/4597.html' title='Multiple used in 26 places.'>rsize</a>[],<strong class='reserved'>int</strong> <a href='../Y/4654.html' title='Multiple used in 106 places.'>rw</a>,
+<a id='L597' name='L597' />                   <strong class='reserved'>const</strong> <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a> *<a href='../Y/5288.html' title='Multiple used in 24 places.'>tar</a>, <a href='../D/5485.html' title='Multiple defined in 2 places.'>uLong</a> *<a href='../Y/5478.html' title='Multiple used in 34 places.'>tsize</a>,
+<a id='L598' name='L598' />                   <strong class='reserved'>const</strong> <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a> *<a href='../Y/2015.html' title='Multiple used in 70 places.'>delta</a>, <a href='../D/5486.html' title='Multiple defined in 2 places.'>uLongf</a> <a href='../Y/2089.html' title='Multiple used in 32 places.'>dsize</a>));
+<a id='L599' name='L599' />  
+<a id='L600' name='L600' />
+<a id='L601' name='L601' />
+<a id='L602' name='L602' /><em class='comment'>/* computes zdelta difference between target data and N reference data sets</em>
+<a id='L603' name='L603' /><em class='comment'> *</em>
+<a id='L604' name='L604' /><em class='comment'> * INPUT:</em>
+<a id='L605' name='L605' /><em class='comment'> * ref      pointer to *N* reference data set</em>
+<a id='L606' name='L606' /><em class='comment'> * rsize    sizes of the *N* reference data set</em>
+<a id='L607' name='L607' /><em class='comment'> * rw       number of the reference data sets (*N*)</em>
+<a id='L608' name='L608' /><em class='comment'> *</em>
+<a id='L609' name='L609' /><em class='comment'> * tar      pointer to targeted data set</em>
+<a id='L610' name='L610' /><em class='comment'> * tsize    size of targeted data set</em>
+<a id='L611' name='L611' /><em class='comment'> * delta    a pointer to NULL pointer</em>
+<a id='L612' name='L612' /><em class='comment'> *          DO NOT allocate any memory for the output here</em>
+<a id='L613' name='L613' /><em class='comment'> *          this will be done by libZD </em>
+<a id='L614' name='L614' /><em class='comment'> *</em>
+<a id='L615' name='L615' /><em class='comment'> * OUTPUT parameters:</em>
+<a id='L616' name='L616' /><em class='comment'> * *delta   points to zdelta difference </em>
+<a id='L617' name='L617' /><em class='comment'> *          the memory space IS allocated by zdelta</em>
+<a id='L618' name='L618' /><em class='comment'> * *dsize   size ot zdelta difference</em>
+<a id='L619' name='L619' /><em class='comment'> *          the memory space for this variable </em>
+<a id='L620' name='L620' /><em class='comment'> *          SHOULD be allocated by the user</em>
+<a id='L621' name='L621' /><em class='comment'> *</em>
+<a id='L622' name='L622' /><em class='comment'> * zd_compress1 returns ZD_OK on success</em>
+<a id='L623' name='L623' /><em class='comment'> * in case of failure an error code is returned, and</em>
+<a id='L624' name='L624' /><em class='comment'> * an error message is printed to stderr, delta is set to NULL</em>
+<a id='L625' name='L625' /><em class='comment'> */</em>
+<a id='L626' name='L626' /><a href='../D/3168.html' title='Multiple defined in 3 places.'>ZEXTERN</a> <strong class='reserved'>int</strong> <a href='../D/3165.html' title='Multiple defined in 4 places.'>ZEXPORT</a> <a href='../S/725.html#L206' title='Defined at 206 in third_party/zdelta-2.1/zdelta.c.'>zd_compressN1</a> <a href='../D/1965.html' title='Multiple defined in 6 places.'>OF</a> ((<strong class='reserved'>const</strong> <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a> *<a href='../Y/4465.html' title='Multiple used in 85 places.'>ref</a>[],<a href='../D/5485.html' title='Multiple defined in 2 places.'>uLong</a> <a href='../Y/4597.html' title='Multiple used in 26 places.'>rsize</a>[],<strong class='reserved'>int</strong> <a href='../Y/4654.html' title='Multiple used in 106 places.'>rw</a>,
+<a id='L627' name='L627' />                                       <strong class='reserved'>const</strong> <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a> *<a href='../Y/5288.html' title='Multiple used in 24 places.'>tar</a>, <a href='../D/5485.html' title='Multiple defined in 2 places.'>uLong</a> <a href='../Y/5478.html' title='Multiple used in 34 places.'>tsize</a>,
+<a id='L628' name='L628' />                                       <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a> **<a href='../Y/2015.html' title='Multiple used in 70 places.'>delta</a>, <a href='../D/5486.html' title='Multiple defined in 2 places.'>uLongf</a> *<a href='../Y/2089.html' title='Multiple used in 32 places.'>dsize</a>));
+<a id='L629' name='L629' />
+<a id='L630' name='L630' />
+<a id='L631' name='L631' />
+<a id='L632' name='L632' /><em class='comment'>/* rebuilds target data from reference data and zdelta difference</em>
+<a id='L633' name='L633' /><em class='comment'> *</em>
+<a id='L634' name='L634' /><em class='comment'> * INPUT:</em>
+<a id='L635' name='L635' /><em class='comment'> * ref      pointer to *N* reference data set</em>
+<a id='L636' name='L636' /><em class='comment'> * rsize    sizes of the *N* reference data set</em>
+<a id='L637' name='L637' /><em class='comment'> * rw       number of the reference data sets (*N*)</em>
+<a id='L638' name='L638' /><em class='comment'> *</em>
+<a id='L639' name='L639' /><em class='comment'> * tar      pointer to NULL poiner</em>
+<a id='L640' name='L640' /><em class='comment'> *          DO NOT allocate any memory for the output here;</em>
+<a id='L641' name='L641' /><em class='comment'> *          this will be done by libZD </em>
+<a id='L642' name='L642' /><em class='comment'> * </em>
+<a id='L643' name='L643' /><em class='comment'> * delta    pointer to zdelta diference</em>
+<a id='L644' name='L644' /><em class='comment'> * dsize    size of zdelta difference</em>
+<a id='L645' name='L645' /><em class='comment'> *</em>
+<a id='L646' name='L646' /><em class='comment'> * OUTPUT parameters:</em>
+<a id='L647' name='L647' /><em class='comment'> * *tar     pointer to the rebuild target data </em>
+<a id='L648' name='L648' /><em class='comment'> *          the memory space IS allocated by zdelta</em>
+<a id='L649' name='L649' /><em class='comment'> * tsize    size ot the recomputed target</em>
+<a id='L650' name='L650' /><em class='comment'> *          the memory space for this variable </em>
+<a id='L651' name='L651' /><em class='comment'> *          SHOULD be allocated by the user</em>
+<a id='L652' name='L652' /><em class='comment'> *</em>
+<a id='L653' name='L653' /><em class='comment'> * zd_uncompress1 returns ZD_OK on success</em>
+<a id='L654' name='L654' /><em class='comment'> * in case of failure an error code is returned, and</em>
+<a id='L655' name='L655' /><em class='comment'> * an error message is printed to the stderr, tar is set to NULL</em>
+<a id='L656' name='L656' /><em class='comment'> */</em>
+<a id='L657' name='L657' />  <a href='../D/3168.html' title='Multiple defined in 3 places.'>ZEXTERN</a> <strong class='reserved'>int</strong> <a href='../D/3165.html' title='Multiple defined in 4 places.'>ZEXPORT</a> 
+<a id='L658' name='L658' />  <a href='../S/725.html#L464' title='Defined at 464 in third_party/zdelta-2.1/zdelta.c.'>zd_uncompressN1</a> <a href='../D/1965.html' title='Multiple defined in 6 places.'>OF</a> ((<strong class='reserved'>const</strong> <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a> **<a href='../Y/4465.html' title='Multiple used in 85 places.'>ref</a>, <a href='../D/5485.html' title='Multiple defined in 2 places.'>uLong</a>* <a href='../Y/4597.html' title='Multiple used in 26 places.'>rsize</a>,<strong class='reserved'>int</strong> <a href='../Y/4654.html' title='Multiple used in 106 places.'>rw</a>,
+<a id='L659' name='L659' />                       <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a> **<a href='../Y/5288.html' title='Multiple used in 24 places.'>tar</a>, <a href='../D/5486.html' title='Multiple defined in 2 places.'>uLongf</a> *<a href='../Y/5478.html' title='Multiple used in 34 places.'>tsize</a>,
+<a id='L660' name='L660' />                       <strong class='reserved'>const</strong> <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a> *<a href='../Y/2015.html' title='Multiple used in 70 places.'>delta</a>, <a href='../D/5485.html' title='Multiple defined in 2 places.'>uLong</a> <a href='../Y/2089.html' title='Multiple used in 32 places.'>dsize</a>));
+<a id='L661' name='L661' />
+<a id='L662' name='L662' />
+<a id='L663' name='L663' />
+<a id='L664' name='L664' />  <em class='comment'>/*ZEXTERN int ZEXPORT zd_inflateSync OF((zd_streamp strm)); */</em>
+<a id='L665' name='L665' /><em class='comment'>/* </em>
+<a id='L666' name='L666' /><em class='comment'>    Skips invalid compressed data until a full flush point (see above the</em>
+<a id='L667' name='L667' /><em class='comment'>  description of deflate with ZD_FULL_FLUSH) can be found, or until all</em>
+<a id='L668' name='L668' /><em class='comment'>  available input is skipped. No output is provided.</em>
+<a id='L669' name='L669' /><em class='comment'></em>
+<a id='L670' name='L670' /><em class='comment'>    zd_inflateSync returns ZD_OK if a full flush point has been found, </em>
+<a id='L671' name='L671' /><em class='comment'>  ZD_BUF_ERROR if no more input was provided, ZD_DATA_ERROR if no flush </em>
+<a id='L672' name='L672' /><em class='comment'>  point has been found, or ZD_STREAM_ERROR if the stream structure was </em>
+<a id='L673' name='L673' /><em class='comment'>  inconsistent. In the success case, the application may save the current </em>
+<a id='L674' name='L674' /><em class='comment'>  value of total_in which indicates where valid compressed data was found. </em>
+<a id='L675' name='L675' /><em class='comment'>  In the error case, the application may repeatedly call zd_inflateSync, </em>
+<a id='L676' name='L676' /><em class='comment'>  providing more input each time, until success or end of the input data.</em>
+<a id='L677' name='L677' /><em class='comment'>*/</em>
+<a id='L678' name='L678' />
+<a id='L679' name='L679' />
+<a id='L680' name='L680' /><em class='comment'>/* ==========================================================================</em>
+<a id='L681' name='L681' /><em class='comment'> * checksum functions  </em>
+<a id='L682' name='L682' /><em class='comment'> */</em>  
+<a id='L683' name='L683' /><a href='../D/3168.html' title='Multiple defined in 3 places.'>ZEXTERN</a> <a href='../D/5485.html' title='Multiple defined in 2 places.'>uLong</a> <a href='../D/3165.html' title='Multiple defined in 4 places.'>ZEXPORT</a> <a href='../D/5755.html' title='Multiple defined in 2 places.'>zd_adler32</a> <a href='../D/1965.html' title='Multiple defined in 6 places.'>OF</a>((<a href='../D/5485.html' title='Multiple defined in 2 places.'>uLong</a> <a href='../Y/1417.html' title='Multiple used in 13 places.'>adler</a>, <strong class='reserved'>const</strong> <a href='../D/341.html' title='Multiple defined in 3 places.'>Bytef</a> *<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>, <a href='../D/5483.html' title='Multiple defined in 2 places.'>uInt</a> <a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a>));
+<a id='L684' name='L684' />
+<a id='L685' name='L685' /><em class='comment'>/*</em>
+<a id='L686' name='L686' /><em class='comment'>     Update a running Adler-32 checksum with the bytes buf[0..len-1] and</em>
+<a id='L687' name='L687' /><em class='comment'>   return the updated checksum. If buf is NULL, this function returns</em>
+<a id='L688' name='L688' /><em class='comment'>   the required initial value for the checksum.</em>
+<a id='L689' name='L689' /><em class='comment'>   An Adler-32 checksum is almost as reliable as a CRC32 but can be computed</em>
+<a id='L690' name='L690' /><em class='comment'>   much faster. Usage example:</em>
+<a id='L691' name='L691' /><em class='comment'></em>
+<a id='L692' name='L692' /><em class='comment'>   uLong adler = adler32(0L, ZD_NULL, 0);</em>
+<a id='L693' name='L693' /><em class='comment'></em>
+<a id='L694' name='L694' /><em class='comment'>   while (read_buffer(buffer, length) != EOF) {</em>
+<a id='L695' name='L695' /><em class='comment'>     adler = adler32(adler, buffer, length);</em>
+<a id='L696' name='L696' /><em class='comment'>   }</em>
+<a id='L697' name='L697' /><em class='comment'>   if (adler != original_adler) error();</em>
+<a id='L698' name='L698' /><em class='comment'>*/</em>
+<a id='L699' name='L699' />
+<a id='L700' name='L700' />
+<a id='L701' name='L701' /><em class='comment'>/* ==========================================================================</em>
+<a id='L702' name='L702' /><em class='comment'> */</em>
+<a id='L703' name='L703' />                        <em class='comment'>/* various hacks, don't look :) */</em>
+<a id='L704' name='L704' />
+<a id='L705' name='L705' /><em class='comment'>/* zd_deflateInit and zd_inflateInit are macros to allow checking the libzd</em>
+<a id='L706' name='L706' /><em class='comment'> * version and the compiler's view of zd_stream:</em>
+<a id='L707' name='L707' /><em class='comment'> */</em>
+<a id='L708' name='L708' /><a href='../D/3168.html' title='Multiple defined in 3 places.'>ZEXTERN</a> <strong class='reserved'>int</strong> <a href='../D/3165.html' title='Multiple defined in 4 places.'>ZEXPORT</a> <a href='../D/5766.html' title='Multiple defined in 2 places.'>zd_deflateInit_</a> <a href='../D/1965.html' title='Multiple defined in 6 places.'>OF</a>((<a href='../S/726.html#L126' title='Defined at 126 in third_party/zdelta-2.1/zdlib.h.'>zd_streamp</a> <a href='../Y/5140.html' title='Multiple used in 325 places.'>strm</a>, <strong class='reserved'>int</strong> <a href='../Y/3216.html' title='Multiple used in 55 places.'>level</a>,
+<a id='L709' name='L709' />                                        <strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/5628.html' title='Multiple used in 27 places.'>version</a>, <strong class='reserved'>int</strong> <a href='../Y/5129.html' title='Multiple used in 16 places.'>stream_size</a>));
+<a id='L710' name='L710' /><a href='../D/3168.html' title='Multiple defined in 3 places.'>ZEXTERN</a> <strong class='reserved'>int</strong> <a href='../D/3165.html' title='Multiple defined in 4 places.'>ZEXPORT</a> <a href='../D/5776.html' title='Multiple defined in 2 places.'>zd_inflateInit_</a> <a href='../D/1965.html' title='Multiple defined in 6 places.'>OF</a>((<a href='../S/726.html#L126' title='Defined at 126 in third_party/zdelta-2.1/zdlib.h.'>zd_streamp</a> <a href='../Y/5140.html' title='Multiple used in 325 places.'>strm</a>,
+<a id='L711' name='L711' />                                        <strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/5628.html' title='Multiple used in 27 places.'>version</a>, <strong class='reserved'>int</strong> <a href='../Y/5129.html' title='Multiple used in 16 places.'>stream_size</a>));
+<a id='L712' name='L712' /><a href='../D/3168.html' title='Multiple defined in 3 places.'>ZEXTERN</a> <strong class='reserved'>int</strong> <a href='../D/3165.html' title='Multiple defined in 4 places.'>ZEXPORT</a> <a href='../D/5765.html' title='Multiple defined in 2 places.'>zd_deflateInit2_</a> <a href='../D/1965.html' title='Multiple defined in 6 places.'>OF</a>((<a href='../S/726.html#L126' title='Defined at 126 in third_party/zdelta-2.1/zdlib.h.'>zd_streamp</a> <a href='../Y/5140.html' title='Multiple used in 325 places.'>strm</a>, <strong class='reserved'>int</strong>  <a href='../Y/3216.html' title='Multiple used in 55 places.'>level</a>, 
+<a id='L713' name='L713' />                                         <strong class='reserved'>int</strong>  <a href='../Y/3527.html' title='Multiple used in 12 places.'>method</a>, <strong class='reserved'>int</strong> <a href='../Y/5686.html' title='Multiple used in 12 places.'>windowBits</a>,
+<a id='L714' name='L714' />                                         <strong class='reserved'>int</strong> <a href='../Y/3493.html' title='Multiple used in 8 places.'>memLevel</a>, <strong class='reserved'>int</strong> <a href='../Y/5120.html' title='Multiple used in 22 places.'>strategy</a>, 
+<a id='L715' name='L715' />                                         <strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/5628.html' title='Multiple used in 27 places.'>version</a>,<strong class='reserved'>int</strong> <a href='../Y/5129.html' title='Multiple used in 16 places.'>stream_size</a>));
+<a id='L716' name='L716' /><a href='../D/3168.html' title='Multiple defined in 3 places.'>ZEXTERN</a> <strong class='reserved'>int</strong> <a href='../D/3165.html' title='Multiple defined in 4 places.'>ZEXPORT</a> <a href='../D/5775.html' title='Multiple defined in 2 places.'>zd_inflateInit2_</a> <a href='../D/1965.html' title='Multiple defined in 6 places.'>OF</a>((<a href='../S/726.html#L126' title='Defined at 126 in third_party/zdelta-2.1/zdlib.h.'>zd_streamp</a> <a href='../Y/5140.html' title='Multiple used in 325 places.'>strm</a>, <strong class='reserved'>int</strong>  <a href='../Y/5686.html' title='Multiple used in 12 places.'>windowBits</a>,
+<a id='L717' name='L717' />                                        <strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/5628.html' title='Multiple used in 27 places.'>version</a>, <strong class='reserved'>int</strong> <a href='../Y/5129.html' title='Multiple used in 16 places.'>stream_size</a>));
+<a id='L718' name='L718' />
+<a id='L719' name='L719' /><em class='sharp'>#define</em> <a href='../R/5279.html' title='Multiple refered from 4 places.'>zd_deflateInit</a>(<a href='../Y/5140.html' title='Multiple used in 325 places.'>strm</a>, <a href='../Y/3216.html' title='Multiple used in 55 places.'>level</a>) \
+<a id='L720' name='L720' />        <a href='../D/5766.html' title='Multiple defined in 2 places.'>zd_deflateInit_</a>((<a href='../Y/5140.html' title='Multiple used in 325 places.'>strm</a>), (<a href='../Y/3216.html' title='Multiple used in 55 places.'>level</a>),       <a href='../S/726.html#L69' title='Defined at 69 in third_party/zdelta-2.1/zdlib.h.'>ZDLIB_VERSION</a>, <strong class='reserved'>sizeof</strong>(<a href='../S/726.html#L124' title='Defined at 124 in third_party/zdelta-2.1/zdlib.h.'>zd_stream</a>))
+<a id='L721' name='L721' /><em class='sharp'>#define</em> <a href='../R/5288.html' title='Multiple refered from 4 places.'>zd_inflateInit</a>(<a href='../Y/5140.html' title='Multiple used in 325 places.'>strm</a>) \
+<a id='L722' name='L722' />        <a href='../D/5776.html' title='Multiple defined in 2 places.'>zd_inflateInit_</a>((<a href='../Y/5140.html' title='Multiple used in 325 places.'>strm</a>),                <a href='../S/726.html#L69' title='Defined at 69 in third_party/zdelta-2.1/zdlib.h.'>ZDLIB_VERSION</a>, <strong class='reserved'>sizeof</strong>(<a href='../S/726.html#L124' title='Defined at 124 in third_party/zdelta-2.1/zdlib.h.'>zd_stream</a>))
+<a id='L723' name='L723' /><em class='sharp'>#define</em> zd_deflateInit2(<a href='../Y/5140.html' title='Multiple used in 325 places.'>strm</a>, <a href='../Y/3216.html' title='Multiple used in 55 places.'>level</a>, <a href='../Y/3527.html' title='Multiple used in 12 places.'>method</a>, <a href='../Y/5686.html' title='Multiple used in 12 places.'>windowBits</a>, <a href='../Y/3493.html' title='Multiple used in 8 places.'>memLevel</a>, <a href='../Y/5120.html' title='Multiple used in 22 places.'>strategy</a>) \
+<a id='L724' name='L724' />        <a href='../D/5765.html' title='Multiple defined in 2 places.'>zd_deflateInit2_</a>((<a href='../Y/5140.html' title='Multiple used in 325 places.'>strm</a>),(<a href='../Y/3216.html' title='Multiple used in 55 places.'>level</a>),(<a href='../Y/3527.html' title='Multiple used in 12 places.'>method</a>),(<a href='../Y/5686.html' title='Multiple used in 12 places.'>windowBits</a>),(<a href='../Y/3493.html' title='Multiple used in 8 places.'>memLevel</a>),\
+<a id='L725' name='L725' />                      (<a href='../Y/5120.html' title='Multiple used in 22 places.'>strategy</a>),           <a href='../S/726.html#L69' title='Defined at 69 in third_party/zdelta-2.1/zdlib.h.'>ZDLIB_VERSION</a>, <strong class='reserved'>sizeof</strong>(<a href='../S/726.html#L124' title='Defined at 124 in third_party/zdelta-2.1/zdlib.h.'>zd_stream</a>))
+<a id='L726' name='L726' /><em class='sharp'>#define</em> zd_inflateInit2(<a href='../Y/5140.html' title='Multiple used in 325 places.'>strm</a>, <a href='../Y/5686.html' title='Multiple used in 12 places.'>windowBits</a>) \
+<a id='L727' name='L727' />        <a href='../D/5775.html' title='Multiple defined in 2 places.'>zd_inflateInit2_</a>((<a href='../Y/5140.html' title='Multiple used in 325 places.'>strm</a>), (<a href='../Y/5686.html' title='Multiple used in 12 places.'>windowBits</a>), <a href='../S/726.html#L69' title='Defined at 69 in third_party/zdelta-2.1/zdlib.h.'>ZDLIB_VERSION</a>, <strong class='reserved'>sizeof</strong>(<a href='../S/726.html#L124' title='Defined at 124 in third_party/zdelta-2.1/zdlib.h.'>zd_stream</a>))
+<a id='L728' name='L728' />
+<a id='L729' name='L729' /><em class='sharp'>#if</em> !<strong class='reserved'>defined</strong>(<a href='../S/730.html#L26' title='Defined at 26 in third_party/zdelta-2.1/zutil.h.'>_ZD_UTIL_H</a>) &amp;&amp; !<strong class='reserved'>defined</strong>(<a href='../S/724.html#L99' title='Defined at 99 in third_party/zdelta-2.1/zdconf.h.'>ZD_NO_DUMMY_DECL</a>)
+<a id='L730' name='L730' />    <strong class='reserved'>struct</strong> <a href='../R/5293.html' title='Multiple refered from 5 places.'>zd_internal_state</a> <em class='brace'>{</em><strong class='reserved'>int</strong> <a href='../Y/2107.html' title='Multiple used in 25 places.'>dummy</a>;<em class='brace'>}</em>; <em class='comment'>/* hack for buggy compilers */</em>
+<a id='L731' name='L731' /><em class='sharp'>#endif</em>
+<a id='L732' name='L732' />
+<a id='L733' name='L733' />
+<a id='L734' name='L734' /><em class='sharp'>#ifdef</em> <a href='../Y/1125.html' title='Multiple used in 121 places.'>__cplusplus</a>
+<a id='L735' name='L735' /><em class='brace'>}</em>
+<a id='L736' name='L736' /><em class='sharp'>#endif</em>
+<a id='L737' name='L737' />
+<a id='L738' name='L738' /><em class='sharp'>#endif</em> <em class='comment'>/* ZD_LIBZD_H */</em>
+<a id='L739' name='L739' />
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^][v]<a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

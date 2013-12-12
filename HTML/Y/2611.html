@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>hModules</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/684.html#L681'>hModules</a>          681 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc   HMODULE hModules[kMaxModules];  // max # of modules we support in one process</span>
+<span class='curline'><a href='../S/684.html#L682'>hModules</a>          682 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc   if (!::EnumProcessModules(hCurrentProcess, hModules, sizeof(hModules),</span>
+<span class='curline'><a href='../S/684.html#L688'>hModules</a>          688 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc   num_modules /= sizeof(*hModules);</span>
+<span class='curline'><a href='../S/684.html#L712'>hModules</a>          712 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc       currently_loaded_modules.insert(hModules[i]);</span>
+<span class='curline'><a href='../S/684.html#L713'>hModules</a>          713 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc       if (g_last_loaded-&gt;count(hModules[i]) &gt; 0) {</span>
+<span class='curline'><a href='../S/684.html#L714'>hModules</a>          714 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc         hModules[i] = hModules[--num_modules];  // replace element i with tail</span>
+<span class='curline'><a href='../S/684.html#L740'>hModules</a>          740 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc     if (::GetModuleInformation(hCurrentProcess, hModules[i], &amp;mi, sizeof(mi)))</span>
+</pre>
+</body>
+</html>

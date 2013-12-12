@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>SpinLock</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/530.html#L184'>SpinLock</a>          184 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   Arena() : mu(SpinLock::LINKER_INITIALIZED) {} // does nothing; for static init</span>
+<span class='curline'><a href='../S/530.html#L188'>SpinLock</a>          188 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   SpinLock mu;            // protects freelist, allocation_count,</span>
+<span class='curline'><a href='../S/533.html#L54'>SpinLock</a>           54 third_party/google-perftools-1.8.3/src/base/spinlock.cc const base::LinkerInitialized SpinLock::LINKER_INITIALIZED =</span>
+<span class='curline'><a href='../S/533.html#L81'>SpinLock</a>           81 third_party/google-perftools-1.8.3/src/base/spinlock.cc Atomic32 SpinLock::SpinLoop(int64 initial_wait_timestamp,</span>
+<span class='curline'><a href='../S/533.html#L94'>SpinLock</a>           94 third_party/google-perftools-1.8.3/src/base/spinlock.cc void SpinLock::SlowLock() {</span>
+<span class='curline'><a href='../S/533.html#L151'>SpinLock</a>          151 third_party/google-perftools-1.8.3/src/base/spinlock.cc void SpinLock::SlowUnlock(uint64 wait_cycles) {</span>
+<span class='curline'><a href='../S/533.html#L173'>SpinLock</a>          173 third_party/google-perftools-1.8.3/src/base/spinlock.cc inline int32 SpinLock::CalculateWaitCycles(int64 wait_start_time) {</span>
+<span class='curline'><a href='../S/534.html#L52'>SpinLock</a>           52 third_party/google-perftools-1.8.3/src/base/spinlock.h class LOCKABLE SpinLock {</span>
+<span class='curline'><a href='../S/534.html#L54'>SpinLock</a>           54 third_party/google-perftools-1.8.3/src/base/spinlock.h   SpinLock() : lockword_(kSpinLockFree) { }</span>
+<span class='curline'><a href='../S/534.html#L65'>SpinLock</a>           65 third_party/google-perftools-1.8.3/src/base/spinlock.h   explicit SpinLock(base::LinkerInitialized /*x*/) {</span>
+<span class='curline'><a href='../S/534.html#L130'>SpinLock</a>          130 third_party/google-perftools-1.8.3/src/base/spinlock.h   DISALLOW_COPY_AND_ASSIGN(SpinLock);</span>
+<span class='curline'><a href='../S/534.html#L137'>SpinLock</a>          137 third_party/google-perftools-1.8.3/src/base/spinlock.h   SpinLock* lock_;</span>
+<span class='curline'><a href='../S/534.html#L139'>SpinLock</a>          139 third_party/google-perftools-1.8.3/src/base/spinlock.h   inline explicit SpinLockHolder(SpinLock* l) EXCLUSIVE_LOCK_FUNCTION(l)</span>
+<span class='curline'><a href='../S/549.html#L191'>SpinLock</a>          191 third_party/google-perftools-1.8.3/src/central_freelist.cc   SpinLock *held_, *temp_;</span>
+<span class='curline'><a href='../S/549.html#L193'>SpinLock</a>          193 third_party/google-perftools-1.8.3/src/central_freelist.cc   inline explicit LockInverter(SpinLock* held, SpinLock *temp)</span>
+<span class='curline'><a href='../S/550.html#L153'>SpinLock</a>          153 third_party/google-perftools-1.8.3/src/central_freelist.h   SpinLock lock_;</span>
+<span class='curline'><a href='../S/555.html#L315'>SpinLock</a>          315 third_party/google-perftools-1.8.3/src/debugallocation.cc   static SpinLock alloc_map_lock_;</span>
+<span class='curline'><a href='../S/555.html#L325'>SpinLock</a>          325 third_party/google-perftools-1.8.3/src/debugallocation.cc   static SpinLock free_queue_lock_;</span>
+<span class='curline'><a href='../S/555.html#L814'>SpinLock</a>          814 third_party/google-perftools-1.8.3/src/debugallocation.cc SpinLock MallocBlock::alloc_map_lock_(SpinLock::LINKER_INITIALIZED);</span>
+<span class='curline'><a href='../S/555.html#L818'>SpinLock</a>          818 third_party/google-perftools-1.8.3/src/debugallocation.cc SpinLock MallocBlock::free_queue_lock_(SpinLock::LINKER_INITIALIZED);</span>
+<span class='curline'><a href='../S/555.html#L953'>SpinLock</a>          953 third_party/google-perftools-1.8.3/src/debugallocation.cc static SpinLock malloc_trace_lock(SpinLock::LINKER_INITIALIZED);</span>
+<span class='curline'><a href='../S/557.html#L359'>SpinLock</a>          359 third_party/google-perftools-1.8.3/src/google/heap-checker.h   class SpinLock* lock_;  // to make HeapLeakChecker objects thread-safe</span>
+<span class='curline'><a href='../S/568.html#L242'>SpinLock</a>          242 third_party/google-perftools-1.8.3/src/heap-checker.cc static SpinLock heap_checker_lock(SpinLock::LINKER_INITIALIZED);</span>
+<span class='curline'><a href='../S/568.html#L1349'>SpinLock</a>         1349 third_party/google-perftools-1.8.3/src/heap-checker.cc static SpinLock alignment_checker_lock(SpinLock::LINKER_INITIALIZED);</span>
+<span class='curline'><a href='../S/568.html#L1577'>SpinLock</a>         1577 third_party/google-perftools-1.8.3/src/heap-checker.cc HeapLeakChecker::HeapLeakChecker(const char *name) : lock_(new SpinLock) {</span>
+<span class='curline'><a href='../S/568.html#L1582'>SpinLock</a>         1582 third_party/google-perftools-1.8.3/src/heap-checker.cc HeapLeakChecker::HeapLeakChecker() : lock_(new SpinLock) {</span>
+<span class='curline'><a href='../S/571.html#L132'>SpinLock</a>          132 third_party/google-perftools-1.8.3/src/heap-profiler.cc static SpinLock heap_lock(SpinLock::LINKER_INITIALIZED);</span>
+<span class='curline'><a href='../S/572.html#L51'>SpinLock</a>           51 third_party/google-perftools-1.8.3/src/internal_logging.cc static SpinLock crash_lock(base::LINKER_INITIALIZED);</span>
+<span class='curline'><a href='../S/582.html#L202'>SpinLock</a>          202 third_party/google-perftools-1.8.3/src/malloc_hook.cc static SpinLock hooklist_spinlock(base::LINKER_INITIALIZED);</span>
+<span class='curline'><a href='../S/588.html#L143'>SpinLock</a>          143 third_party/google-perftools-1.8.3/src/memory_region_map.cc SpinLock MemoryRegionMap::lock_(SpinLock::LINKER_INITIALIZED);</span>
+<span class='curline'><a href='../S/588.html#L144'>SpinLock</a>          144 third_party/google-perftools-1.8.3/src/memory_region_map.cc SpinLock MemoryRegionMap::owner_lock_(  // ACQUIRED_AFTER(lock_)</span>
+<span class='curline'><a href='../S/588.html#L145'>SpinLock</a>          145 third_party/google-perftools-1.8.3/src/memory_region_map.cc     SpinLock::LINKER_INITIALIZED);</span>
+<span class='curline'><a href='../S/589.html#L280'>SpinLock</a>          280 third_party/google-perftools-1.8.3/src/memory_region_map.h   static SpinLock lock_;</span>
+<span class='curline'><a href='../S/589.html#L282'>SpinLock</a>          282 third_party/google-perftools-1.8.3/src/memory_region_map.h   static SpinLock owner_lock_;</span>
+<span class='curline'><a href='../S/596.html#L165'>SpinLock</a>          165 third_party/google-perftools-1.8.3/src/profile-handler.cc   SpinLock control_lock_ ACQUIRED_BEFORE(signal_lock_);</span>
+<span class='curline'><a href='../S/596.html#L166'>SpinLock</a>          166 third_party/google-perftools-1.8.3/src/profile-handler.cc   SpinLock signal_lock_;</span>
+<span class='curline'><a href='../S/600.html#L105'>SpinLock</a>          105 third_party/google-perftools-1.8.3/src/profiler.cc   SpinLock      lock_;</span>
+<span class='curline'><a href='../S/620.html#L42'>SpinLock</a>           42 third_party/google-perftools-1.8.3/src/static_vars.cc SpinLock Static::pageheap_lock_(SpinLock::LINKER_INITIALIZED);</span>
+<span class='curline'><a href='../S/621.html#L52'>SpinLock</a>           52 third_party/google-perftools-1.8.3/src/static_vars.h   static SpinLock* pageheap_lock() { return &amp;pageheap_lock_; }</span>
+<span class='curline'><a href='../S/621.html#L86'>SpinLock</a>           86 third_party/google-perftools-1.8.3/src/static_vars.h   static SpinLock pageheap_lock_;</span>
+<span class='curline'><a href='../S/624.html#L108'>SpinLock</a>          108 third_party/google-perftools-1.8.3/src/system-alloc.cc static SpinLock spinlock(SpinLock::LINKER_INITIALIZED);</span>
+<span class='curline'><a href='../S/626.html#L1339'>SpinLock</a>         1339 third_party/google-perftools-1.8.3/src/tcmalloc.cc static SpinLock set_new_handler_lock(SpinLock::LINKER_INITIALIZED);</span>
+<span class='curline'><a href='../S/684.html#L657'>SpinLock</a>          657 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc static SpinLock patch_all_modules_lock(SpinLock::LINKER_INITIALIZED);</span>
+<span class='curline'><a href='../S/686.html#L193'>SpinLock</a>          193 third_party/google-perftools-1.8.3/src/windows/port.h class SpinLock {</span>
+<span class='curline'><a href='../S/686.html#L195'>SpinLock</a>          195 third_party/google-perftools-1.8.3/src/windows/port.h   SpinLock() : initialize_token_(PTHREAD_ONCE_INIT) {}</span>
+<span class='curline'><a href='../S/686.html#L198'>SpinLock</a>          198 third_party/google-perftools-1.8.3/src/windows/port.h   explicit SpinLock(StaticInitializer) : initialize_token_(PTHREAD_ONCE_INIT) {</span>
+<span class='curline'><a href='../S/686.html#L243'>SpinLock</a>          243 third_party/google-perftools-1.8.3/src/windows/port.h   SpinLock* lock_;</span>
+<span class='curline'><a href='../S/686.html#L245'>SpinLock</a>          245 third_party/google-perftools-1.8.3/src/windows/port.h   inline explicit SpinLockHolder(SpinLock* l) : lock_(l) { l-&gt;Lock(); }</span>
+</pre>
+</body>
+</html>

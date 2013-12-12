@@ -1,0 +1,441 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>src/string.c</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/733.html'>src</a>/string.c</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L75'>[^]</a><a href='#L384'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L75' title='Defined at 75.'>lmn_is_string</a></li>
+<li><a href='#L82' title='Defined at 82.'>lmn_string_hash</a></li>
+<li><a href='#L87' title='Defined at 87.'>lmn_string_c_str</a></li>
+<li><a href='#L92' title='Defined at 92.'>lmn_string_make</a></li>
+<li><a href='#L103' title='Defined at 103.'>string_make_empty_with_size</a></li>
+<li><a href='#L114' title='Defined at 114.'>lmn_string_make_empty</a></li>
+<li><a href='#L119' title='Defined at 119.'>lmn_string_copy</a></li>
+<li><a href='#L128' title='Defined at 128.'>lmn_string_free</a></li>
+<li><a href='#L136' title='Defined at 136.'>lmn_string_eq</a></li>
+<li><a href='#L142' title='Defined at 142.'>string_expand_buf</a></li>
+<li><a href='#L148' title='Defined at 148.'>lmn_string_push_raw_c</a></li>
+<li><a href='#L160' title='Defined at 160.'>lmn_string_push</a></li>
+<li><a href='#L166' title='Defined at 166.'>lmn_string_push_raw_s</a></li>
+<li><a href='#L177' title='Defined at 177.'>lmn_string_concat</a></li>
+<li><a href='#L187' title='Defined at 187.'>lmn_string_get</a></li>
+<li><a href='#L193' title='Defined at 193.'>lmn_string_set_raw_c</a></li>
+<li><a href='#L198' title='Defined at 198.'>lmn_string_len</a></li>
+<li><a href='#L207' title='Defined at 207.'>cb_string_make</a></li>
+<li><a href='#L239' title='Defined at 239.'>cb_string_concat</a></li>
+<li><a href='#L252' title='Defined at 252.'>cb_string_length</a></li>
+<li><a href='#L265' title='Defined at 265.'>cb_string_reverse</a></li>
+<li><a href='#L283' title='Defined at 283.'>cb_string_substr</a></li>
+<li><a href='#L314' title='Defined at 314.'>cb_string_substr_right</a></li>
+<li><a href='#L340' title='Defined at 340.'>sp_cb_string_copy</a></li>
+<li><a href='#L346' title='Defined at 346.'>sp_cb_string_free</a></li>
+<li><a href='#L351' title='Defined at 351.'>sp_cb_string_dump</a></li>
+<li><a href='#L358' title='Defined at 358.'>sp_cb_string_is_ground</a></li>
+<li><a href='#L363' title='Defined at 363.'>sp_cb_string_eq</a></li>
+<li><a href='#L368' title='Defined at 368.'>string_init</a></li>
+<li><a href='#L384' title='Defined at 384.'>string_finalize</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>/*</em>
+<a id='L2' name='L2' /><em class='comment'> * string.c - String implementation</em>
+<a id='L3' name='L3' /><em class='comment'> *</em>
+<a id='L4' name='L4' /><em class='comment'> *   Copyright (c) 2008, Ueda Laboratory LMNtal Group</em>
+<a id='L5' name='L5' /><em class='comment'> *                                         &lt;lmntal@ueda.info.waseda.ac.jp&gt;</em>
+<a id='L6' name='L6' /><em class='comment'> *   All rights reserved.</em>
+<a id='L7' name='L7' /><em class='comment'> *</em>
+<a id='L8' name='L8' /><em class='comment'> *   Redistribution and use in source and binary forms, with or without</em>
+<a id='L9' name='L9' /><em class='comment'> *   modification, are permitted provided that the following conditions are</em>
+<a id='L10' name='L10' /><em class='comment'> *   met:</em>
+<a id='L11' name='L11' /><em class='comment'> *</em>
+<a id='L12' name='L12' /><em class='comment'> *    1. Redistributions of source code must retain the above copyright</em>
+<a id='L13' name='L13' /><em class='comment'> *       notice, this list of conditions and the following disclaimer.</em>
+<a id='L14' name='L14' /><em class='comment'> *</em>
+<a id='L15' name='L15' /><em class='comment'> *    2. Redistributions in binary form must reproduce the above copyright</em>
+<a id='L16' name='L16' /><em class='comment'> *       notice, this list of conditions and the following disclaimer in</em>
+<a id='L17' name='L17' /><em class='comment'> *       the documentation and/or other materials provided with the</em>
+<a id='L18' name='L18' /><em class='comment'> *       distribution.</em>
+<a id='L19' name='L19' /><em class='comment'> *</em>
+<a id='L20' name='L20' /><em class='comment'> *    3. Neither the name of the Ueda Laboratory LMNtal Group nor the</em>
+<a id='L21' name='L21' /><em class='comment'> *       names of its contributors may be used to endorse or promote</em>
+<a id='L22' name='L22' /><em class='comment'> *       products derived from this software without specific prior</em>
+<a id='L23' name='L23' /><em class='comment'> *       written permission.</em>
+<a id='L24' name='L24' /><em class='comment'> *</em>
+<a id='L25' name='L25' /><em class='comment'> *   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L26' name='L26' /><em class='comment'> *   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L27' name='L27' /><em class='comment'> *   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L28' name='L28' /><em class='comment'> *   A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L29' name='L29' /><em class='comment'> *   OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L30' name='L30' /><em class='comment'> *   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L31' name='L31' /><em class='comment'> *   LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L32' name='L32' /><em class='comment'> *   DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L33' name='L33' /><em class='comment'> *   THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L34' name='L34' /><em class='comment'> *   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L35' name='L35' /><em class='comment'> *   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L36' name='L36' /><em class='comment'> *</em>
+<a id='L37' name='L37' /><em class='comment'> * $Id$</em>
+<a id='L38' name='L38' /><em class='comment'> */</em>
+<a id='L39' name='L39' />
+<a id='L40' name='L40' /><em class='sharp'>#include</em> "<a href='347.html'>lmntal.h</a>"
+<a id='L41' name='L41' /><em class='sharp'>#include</em> "<a href='311.html'>atom.h</a>"
+<a id='L42' name='L42' /><em class='sharp'>#include</em> "<a href='358.html'>membrane.h</a>"
+<a id='L43' name='L43' /><em class='sharp'>#include</em> "<a href='313.html'>ccallback.h</a>"
+<a id='L44' name='L44' /><em class='sharp'>#include</em> "<a href='331.html'>functor.h</a>"
+<a id='L45' name='L45' /><em class='sharp'>#include</em> "<a href='375.html'>special_atom.h</a>"
+<a id='L46' name='L46' /><em class='sharp'>#include</em> "<a href='372.html'>slim_header/string.h</a>"
+<a id='L47' name='L47' /><em class='sharp'>#include</em> "<a href='385.html'>task.h</a>"
+<a id='L48' name='L48' /><em class='sharp'>#include</em> "<a href='407.html'>util.h</a>"
+<a id='L49' name='L49' /><em class='sharp'>#include</em> "<a href='318.html'>dumper.h</a>"
+<a id='L50' name='L50' /><em class='sharp'>#include</em> &lt;stdio.h&gt;
+<a id='L51' name='L51' />
+<a id='L52' name='L52' /><strong class='reserved'>inline</strong> <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/377.html#L142' title='Defined at 142 in src/string.c.'>string_expand_buf</a>(<a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a> <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>, <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>);
+<a id='L53' name='L53' />
+<a id='L54' name='L54' /><strong class='reserved'>struct</strong> <a href='../R/1492.html' title='Multiple refered from 60 places.'>LmnString</a> <em class='brace'>{</em>
+<a id='L55' name='L55' />  <a href='../S/347.html#L169' title='Defined at 169 in src/lmntal.h.'>LMN_SP_ATOM_HEADER</a>;
+<a id='L56' name='L56' />
+<a id='L57' name='L57' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../Y/1678.html' title='Multiple used in 27 places.'>buf_size</a>, <a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a>;
+<a id='L58' name='L58' />  <strong class='reserved'>char</strong> *<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>; <em class='comment'>/* Cの文字列形式 */</em>
+<a id='L59' name='L59' /><em class='brace'>}</em>;
+<a id='L60' name='L60' />
+<a id='L61' name='L61' /><em class='sharp'>#define</em> <a href='../R/1379.html' title='Multiple refered from 5 places.'>LMN_STRING_LEN</a>(<a href='../Y/3907.html' title='Multiple used in 30 places.'>obj</a>) (<a href='../S/372.html#L46' title='Defined at 46 in src/slim_header/string.h.'>LMN_STRING</a>(<a href='../Y/3907.html' title='Multiple used in 30 places.'>obj</a>)-&gt;<a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a>)
+<a id='L62' name='L62' /><em class='sharp'>#define</em> <a href='../R/1377.html' title='Multiple refered from 7 places.'>LMN_STRING_BUF</a>(<a href='../Y/3907.html' title='Multiple used in 30 places.'>obj</a>) (<a href='../S/372.html#L46' title='Defined at 46 in src/slim_header/string.h.'>LMN_STRING</a>(<a href='../Y/3907.html' title='Multiple used in 30 places.'>obj</a>)-&gt;<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>)
+<a id='L63' name='L63' /><em class='sharp'>#define</em> LMN_STRING_BUF_SIZE(<a href='../Y/3907.html' title='Multiple used in 30 places.'>obj</a>) (<a href='../S/372.html#L46' title='Defined at 46 in src/slim_header/string.h.'>LMN_STRING</a>(<a href='../Y/3907.html' title='Multiple used in 30 places.'>obj</a>)-&gt;<a href='../Y/1678.html' title='Multiple used in 27 places.'>buf_size</a>)
+<a id='L64' name='L64' />
+<a id='L65' name='L65' /><em class='sharp'>#define</em> <a href='../R/1215.html' title='Multiple refered from 4 places.'>LINK_STR</a>(<a href='../Y/470.html' title='Multiple used in 28 places.'>MEM</a>, <a href='../Y/861.html' title='Multiple used in 2 places.'>TO_ATOM</a>, <a href='../Y/862.html' title='Multiple used in 3 places.'>TO_ATTR</a>, <a href='../Y/751.html' title='Multiple used in 2 places.'>STR_ATOM</a>)                        \
+<a id='L66' name='L66' />        <a href='../S/357.html#L448' title='Defined at 448 in src/membrane.c.'>lmn_mem_newlink</a>((<a href='../Y/470.html' title='Multiple used in 28 places.'>MEM</a>),                                           \
+<a id='L67' name='L67' />                        (<a href='../Y/861.html' title='Multiple used in 2 places.'>TO_ATOM</a>),                                       \
+<a id='L68' name='L68' />                        (<a href='../Y/862.html' title='Multiple used in 3 places.'>TO_ATTR</a>),                                       \
+<a id='L69' name='L69' />                        <a href='../S/311.html#L150' title='Defined at 150 in src/atom.h.'>LMN_ATTR_GET_VALUE</a>((<a href='../Y/862.html' title='Multiple used in 3 places.'>TO_ATTR</a>)),                   \
+<a id='L70' name='L70' />                        <a href='../S/311.html#L92' title='Defined at 92 in src/atom.h.'>LMN_ATOM</a>((<a href='../Y/751.html' title='Multiple used in 2 places.'>STR_ATOM</a>)),                            \
+<a id='L71' name='L71' />                        <a href='../S/311.html#L177' title='Defined at 177 in src/atom.h.'>LMN_SP_ATOM_ATTR</a>, 0)
+<a id='L72' name='L72' />
+<a id='L73' name='L73' /><strong class='reserved'>static</strong> <strong class='reserved'>int</strong> <a href='../Y/5136.html' title='Multiple used in 5 places.'>string_atom_type</a>;
+<a id='L74' name='L74' />
+<a id='L75' name='L75' /><a href='../S/347.html#L62' title='Defined at 62 in src/lmntal.h.'>BOOL</a> <a href='../R/3846.html' title='Multiple refered from 6 places.'>lmn_is_string</a>(<a href='../S/347.html#L108' title='Defined at 108 in src/lmntal.h.'>LmnAtom</a> <a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>, <a href='../S/347.html#L110' title='Defined at 110 in src/lmntal.h.'>LmnLinkAttr</a> <a href='../Y/1554.html' title='Multiple used in 342 places.'>attr</a>)
+<a id='L76' name='L76' /><em class='brace'>{</em>
+<a id='L77' name='L77' />  <strong class='reserved'>return</strong>
+<a id='L78' name='L78' />    <a href='../Y/1554.html' title='Multiple used in 342 places.'>attr</a> == <a href='../S/311.html#L177' title='Defined at 177 in src/atom.h.'>LMN_SP_ATOM_ATTR</a> &amp;&amp;
+<a id='L79' name='L79' />    <a href='../S/375.html#L58' title='Defined at 58 in src/special_atom.h.'>LMN_SP_ATOM_TYPE</a>(<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>) == <a href='../Y/5136.html' title='Multiple used in 5 places.'>string_atom_type</a>;
+<a id='L80' name='L80' /><em class='brace'>}</em>
+<a id='L81' name='L81' />
+<a id='L82' name='L82' /><strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../R/4030.html' title='Multiple refered from 2 places.'>lmn_string_hash</a>(<a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a> <a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>) <em class='brace'>{</em>
+<a id='L83' name='L83' />  <strong class='reserved'>return</strong> <a href='../S/407.html#L103' title='Defined at 103 in src/utility/util.h.'>lmn_byte_hash</a>((<strong class='reserved'>unsigned</strong> <strong class='reserved'>char</strong> *)<a href='../S/377.html#L62' title='Defined at 62 in src/string.c.'>LMN_STRING_BUF</a>(<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>), (<strong class='reserved'>long</strong>)<a href='../S/377.html#L61' title='Defined at 61 in src/string.c.'>LMN_STRING_LEN</a>(<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>));
+<a id='L84' name='L84' /><em class='brace'>}</em>
+<a id='L85' name='L85' />
+<a id='L86' name='L86' /><em class='comment'>/* 文字列をCの文字列の形式で返す */</em>
+<a id='L87' name='L87' /><strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../R/4024.html' title='Multiple refered from 6 places.'>lmn_string_c_str</a>(<a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a> <a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>)
+<a id='L88' name='L88' /><em class='brace'>{</em>
+<a id='L89' name='L89' />  <strong class='reserved'>return</strong> (<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *)<a href='../S/377.html#L62' title='Defined at 62 in src/string.c.'>LMN_STRING_BUF</a>(<a href='../Y/1526.html' title='Multiple used in 662 places.'>atom</a>);
+<a id='L90' name='L90' /><em class='brace'>}</em>
+<a id='L91' name='L91' />
+<a id='L92' name='L92' /><a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a> <a href='../R/4032.html' title='Multiple refered from 12 places.'>lmn_string_make</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>)
+<a id='L93' name='L93' /><em class='brace'>{</em>
+<a id='L94' name='L94' />  <strong class='reserved'>struct</strong> <a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a> *<a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a> = <a href='../S/347.html#L218' title='Defined at 218 in src/lmntal.h.'>LMN_MALLOC</a>(<strong class='reserved'>struct</strong> <a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a>);
+<a id='L95' name='L95' />  <a href='../S/375.html#L59' title='Defined at 59 in src/special_atom.h.'>LMN_SP_ATOM_SET_TYPE</a>(<a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>, <a href='../Y/5136.html' title='Multiple used in 5 places.'>string_atom_type</a>);
+<a id='L96' name='L96' />  <a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>-&gt;<a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a> = <a href='../Y/5139.html' title='Multiple used in 84 places.'>strlen</a>(<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>);
+<a id='L97' name='L97' />  <a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>-&gt;<a href='../Y/1678.html' title='Multiple used in 27 places.'>buf_size</a> = <a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>-&gt;<a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a> + 1;
+<a id='L98' name='L98' />  <a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>-&gt;<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a> = <a href='../S/347.html#L216' title='Defined at 216 in src/lmntal.h.'>LMN_NALLOC</a>(<strong class='reserved'>char</strong>, <a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>-&gt;<a href='../Y/1678.html' title='Multiple used in 27 places.'>buf_size</a>);
+<a id='L99' name='L99' />  <a href='../Y/5125.html' title='Multiple used in 12 places.'>strcpy</a>(<a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>-&gt;<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>, <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>);
+<a id='L100' name='L100' />  <strong class='reserved'>return</strong> <a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>;
+<a id='L101' name='L101' /><em class='brace'>}</em>
+<a id='L102' name='L102' />
+<a id='L103' name='L103' /><a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a> <a href='../R/4927.html' title='Multiple refered from 2 places.'>string_make_empty_with_size</a>(<strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../Y/1678.html' title='Multiple used in 27 places.'>buf_size</a>)
+<a id='L104' name='L104' /><em class='brace'>{</em>
+<a id='L105' name='L105' />  <strong class='reserved'>struct</strong> <a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a> *<a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a> = <a href='../S/347.html#L218' title='Defined at 218 in src/lmntal.h.'>LMN_MALLOC</a>(<strong class='reserved'>struct</strong> <a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a>);
+<a id='L106' name='L106' />  <a href='../S/375.html#L59' title='Defined at 59 in src/special_atom.h.'>LMN_SP_ATOM_SET_TYPE</a>(<a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>, <a href='../Y/5136.html' title='Multiple used in 5 places.'>string_atom_type</a>);
+<a id='L107' name='L107' />  <a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>-&gt;<a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a> = 0;
+<a id='L108' name='L108' />  <a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>-&gt;<a href='../Y/1678.html' title='Multiple used in 27 places.'>buf_size</a> = <a href='../Y/1678.html' title='Multiple used in 27 places.'>buf_size</a> &gt; 0 ? <a href='../Y/1678.html' title='Multiple used in 27 places.'>buf_size</a> : 1;
+<a id='L109' name='L109' />  <a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>-&gt;<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a> = <a href='../S/347.html#L216' title='Defined at 216 in src/lmntal.h.'>LMN_NALLOC</a>(<strong class='reserved'>char</strong>, <a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>-&gt;<a href='../Y/1678.html' title='Multiple used in 27 places.'>buf_size</a>);
+<a id='L110' name='L110' />  <a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>-&gt;<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>[0] = '\0';
+<a id='L111' name='L111' />  <strong class='reserved'>return</strong> <a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>;
+<a id='L112' name='L112' /><em class='brace'>}</em>
+<a id='L113' name='L113' />
+<a id='L114' name='L114' /><a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a> <a href='../R/4033.html' title='Multiple refered from 3 places.'>lmn_string_make_empty</a>()
+<a id='L115' name='L115' /><em class='brace'>{</em>
+<a id='L116' name='L116' />  <strong class='reserved'>return</strong> <a href='../S/377.html#L103' title='Defined at 103 in src/string.c.'>string_make_empty_with_size</a>(1);
+<a id='L117' name='L117' /><em class='brace'>}</em>
+<a id='L118' name='L118' />
+<a id='L119' name='L119' /><a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a> <a href='../R/4026.html' title='Multiple refered from 4 places.'>lmn_string_copy</a>(<a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a> <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>)
+<a id='L120' name='L120' /><em class='brace'>{</em>
+<a id='L121' name='L121' />  <strong class='reserved'>struct</strong> <a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a> *<a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a> = <a href='../S/347.html#L218' title='Defined at 218 in src/lmntal.h.'>LMN_MALLOC</a>(<strong class='reserved'>struct</strong> <a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a>);
+<a id='L122' name='L122' />  *<a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a> = *<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>;
+<a id='L123' name='L123' />  <a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>-&gt;<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a> = <a href='../S/347.html#L216' title='Defined at 216 in src/lmntal.h.'>LMN_NALLOC</a>(<strong class='reserved'>char</strong>, <a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>-&gt;<a href='../Y/1678.html' title='Multiple used in 27 places.'>buf_size</a>);
+<a id='L124' name='L124' />  <a href='../Y/5125.html' title='Multiple used in 12 places.'>strcpy</a>(<a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>-&gt;<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>, <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>-&gt;<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>);
+<a id='L125' name='L125' />  <strong class='reserved'>return</strong> <a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>;
+<a id='L126' name='L126' /><em class='brace'>}</em>
+<a id='L127' name='L127' />
+<a id='L128' name='L128' /><strong class='reserved'>void</strong> <a href='../R/4028.html' title='Multiple refered from 7 places.'>lmn_string_free</a>(<a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a> <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>)
+<a id='L129' name='L129' /><em class='brace'>{</em>
+<a id='L130' name='L130' />  <strong class='reserved'>if</strong> (<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>) <em class='brace'>{</em>
+<a id='L131' name='L131' />    <strong class='reserved'>if</strong> (<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>-&gt;<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>) <a href='../S/347.html#L220' title='Defined at 220 in src/lmntal.h.'>LMN_FREE</a>(<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>-&gt;<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>);
+<a id='L132' name='L132' />    <a href='../S/347.html#L220' title='Defined at 220 in src/lmntal.h.'>LMN_FREE</a>(<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>);
+<a id='L133' name='L133' />  <em class='brace'>}</em>
+<a id='L134' name='L134' /><em class='brace'>}</em>
+<a id='L135' name='L135' />
+<a id='L136' name='L136' /><a href='../S/347.html#L62' title='Defined at 62 in src/lmntal.h.'>BOOL</a> <a href='../R/4027.html' title='Multiple refered from 5 places.'>lmn_string_eq</a>(<a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a> <a href='../Y/4661.html' title='Multiple used in 81 places.'>s1</a>, <a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a> <a href='../Y/4665.html' title='Multiple used in 62 places.'>s2</a>)
+<a id='L137' name='L137' /><em class='brace'>{</em>
+<a id='L138' name='L138' />  <strong class='reserved'>return</strong> <a href='../S/377.html#L61' title='Defined at 61 in src/string.c.'>LMN_STRING_LEN</a>(<a href='../Y/4661.html' title='Multiple used in 81 places.'>s1</a>) == <a href='../S/377.html#L61' title='Defined at 61 in src/string.c.'>LMN_STRING_LEN</a>(<a href='../Y/4665.html' title='Multiple used in 62 places.'>s2</a>) &amp;&amp;
+<a id='L139' name='L139' />         !<a href='../Y/5124.html' title='Multiple used in 47 places.'>strcmp</a>(<a href='../S/377.html#L62' title='Defined at 62 in src/string.c.'>LMN_STRING_BUF</a>(<a href='../Y/4661.html' title='Multiple used in 81 places.'>s1</a>), <a href='../S/377.html#L62' title='Defined at 62 in src/string.c.'>LMN_STRING_BUF</a>(<a href='../Y/4665.html' title='Multiple used in 62 places.'>s2</a>));
+<a id='L140' name='L140' /><em class='brace'>}</em>
+<a id='L141' name='L141' />
+<a id='L142' name='L142' /><strong class='reserved'>inline</strong> <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../R/4923.html' title='Multiple refered from 3 places.'>string_expand_buf</a>(<a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a> <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>, <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>)
+<a id='L143' name='L143' /><em class='brace'>{</em>
+<a id='L144' name='L144' />  <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>-&gt;<a href='../Y/1678.html' title='Multiple used in 27 places.'>buf_size</a> = <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>;
+<a id='L145' name='L145' />  <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>-&gt;<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a> = <a href='../S/347.html#L219' title='Defined at 219 in src/lmntal.h.'>LMN_REALLOC</a>(<strong class='reserved'>char</strong>, <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>-&gt;<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>, <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>);
+<a id='L146' name='L146' /><em class='brace'>}</em>
+<a id='L147' name='L147' />
+<a id='L148' name='L148' /><strong class='reserved'>void</strong> <a href='../R/4035.html' title='Multiple refered from 3 places.'>lmn_string_push_raw_c</a>(<a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a> <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>, <strong class='reserved'>int</strong> <a href='../Y/1702.html' title='Multiple used in 562 places.'>c</a>)
+<a id='L149' name='L149' /><em class='brace'>{</em>
+<a id='L150' name='L150' />  <strong class='reserved'>if</strong> (<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>-&gt;<a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a>+1 == <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>-&gt;<a href='../Y/1678.html' title='Multiple used in 27 places.'>buf_size</a>) <em class='brace'>{</em>
+<a id='L151' name='L151' />    <em class='comment'>/* バッファのサイズをどれくらい増加すべきか */</em>
+<a id='L152' name='L152' />    <a href='../S/377.html#L142' title='Defined at 142 in src/string.c.'>string_expand_buf</a>(<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>, <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>-&gt;<a href='../Y/1678.html' title='Multiple used in 27 places.'>buf_size</a>+1);
+<a id='L153' name='L153' />  <em class='brace'>}</em>
+<a id='L154' name='L154' />  <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>-&gt;<a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a>++;
+<a id='L155' name='L155' />  <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>-&gt;<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>[<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>-&gt;<a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a>-1] = <a href='../Y/1702.html' title='Multiple used in 562 places.'>c</a>;
+<a id='L156' name='L156' />  <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>-&gt;<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>[<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>-&gt;<a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a>] = '\0';
+<a id='L157' name='L157' /><em class='brace'>}</em>
+<a id='L158' name='L158' />
+<a id='L159' name='L159' /><em class='comment'>/* srcの文字列をdstの末尾に追加する。srcの内容は変わらない */</em>
+<a id='L160' name='L160' /><strong class='reserved'>void</strong> <a href='../R/4034.html' title='Multiple refered from 3 places.'>lmn_string_push</a>(<a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a> <a href='../Y/2090.html' title='Multiple used in 37 places.'>dst</a>, <strong class='reserved'>const</strong> <a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a> <a href='../Y/4954.html' title='Multiple used in 136 places.'>src</a>)
+<a id='L161' name='L161' /><em class='brace'>{</em>
+<a id='L162' name='L162' />  <a href='../S/377.html#L166' title='Defined at 166 in src/string.c.'>lmn_string_push_raw_s</a>(<a href='../Y/2090.html' title='Multiple used in 37 places.'>dst</a>, <a href='../Y/4954.html' title='Multiple used in 136 places.'>src</a>-&gt;<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>);
+<a id='L163' name='L163' /><em class='brace'>}</em>
+<a id='L164' name='L164' />
+<a id='L165' name='L165' /><em class='comment'>/* Cの文字列srcをdstの末尾に追加する。*/</em>
+<a id='L166' name='L166' /><strong class='reserved'>void</strong> <a href='../R/4036.html' title='Multiple refered from 3 places.'>lmn_string_push_raw_s</a>(<a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a> <a href='../Y/2090.html' title='Multiple used in 37 places.'>dst</a>, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/4954.html' title='Multiple used in 136 places.'>src</a>)
+<a id='L167' name='L167' /><em class='brace'>{</em>
+<a id='L168' name='L168' />  <strong class='reserved'>const</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a> = <a href='../Y/2090.html' title='Multiple used in 37 places.'>dst</a>-&gt;<a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a> + <a href='../Y/5139.html' title='Multiple used in 84 places.'>strlen</a>(<a href='../Y/4954.html' title='Multiple used in 136 places.'>src</a>);
+<a id='L169' name='L169' />  <strong class='reserved'>if</strong> (<a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a> &gt;= <a href='../Y/2090.html' title='Multiple used in 37 places.'>dst</a>-&gt;<a href='../Y/1678.html' title='Multiple used in 27 places.'>buf_size</a>) <em class='brace'>{</em>
+<a id='L170' name='L170' />    <em class='comment'>/* バッファのサイズをどれくらい増加すべきか */</em>
+<a id='L171' name='L171' />    <a href='../S/377.html#L142' title='Defined at 142 in src/string.c.'>string_expand_buf</a>(<a href='../Y/2090.html' title='Multiple used in 37 places.'>dst</a>, <a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a> + 1);
+<a id='L172' name='L172' />  <em class='brace'>}</em>
+<a id='L173' name='L173' />  <a href='../Y/2090.html' title='Multiple used in 37 places.'>dst</a>-&gt;<a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a> = <a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a>;
+<a id='L174' name='L174' />  <a href='../Y/5122.html' title='Multiple used in 14 places.'>strcat</a>(<a href='../Y/2090.html' title='Multiple used in 37 places.'>dst</a>-&gt;<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>, <a href='../Y/4954.html' title='Multiple used in 136 places.'>src</a>);
+<a id='L175' name='L175' /><em class='brace'>}</em>
+<a id='L176' name='L176' />
+<a id='L177' name='L177' /><a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a> <a href='../S/377.html#L245' title='Refered from 245 in src/string.c.'>lmn_string_concat</a>(<a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a> <a href='../Y/4660.html' title='Multiple used in 7 places.'>s0</a>, <a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a> <a href='../Y/4661.html' title='Multiple used in 81 places.'>s1</a>)
+<a id='L178' name='L178' /><em class='brace'>{</em>
+<a id='L179' name='L179' />  <a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a> <a href='../Y/4536.html' title='Multiple used in 4 places.'>ret_atom</a> = <a href='../S/377.html#L103' title='Defined at 103 in src/string.c.'>string_make_empty_with_size</a>(<a href='../Y/4660.html' title='Multiple used in 7 places.'>s0</a>-&gt;<a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a> + <a href='../Y/4661.html' title='Multiple used in 81 places.'>s1</a>-&gt;<a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a> + 1);
+<a id='L180' name='L180' />
+<a id='L181' name='L181' />  <a href='../S/377.html#L160' title='Defined at 160 in src/string.c.'>lmn_string_push</a>(<a href='../Y/4536.html' title='Multiple used in 4 places.'>ret_atom</a>, <a href='../Y/4660.html' title='Multiple used in 7 places.'>s0</a>);
+<a id='L182' name='L182' />  <a href='../S/377.html#L160' title='Defined at 160 in src/string.c.'>lmn_string_push</a>(<a href='../Y/4536.html' title='Multiple used in 4 places.'>ret_atom</a>, <a href='../Y/4661.html' title='Multiple used in 81 places.'>s1</a>);
+<a id='L183' name='L183' />
+<a id='L184' name='L184' />  <strong class='reserved'>return</strong> <a href='../Y/4536.html' title='Multiple used in 4 places.'>ret_atom</a>;
+<a id='L185' name='L185' /><em class='brace'>}</em>
+<a id='L186' name='L186' />
+<a id='L187' name='L187' /><strong class='reserved'>int</strong> <a href='../R/4029.html' title='Multiple refered from 3 places.'>lmn_string_get</a>(<a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a> <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>, <strong class='reserved'>int</strong> <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>)
+<a id='L188' name='L188' /><em class='brace'>{</em>
+<a id='L189' name='L189' />  <strong class='reserved'>if</strong> (<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> &lt; 0 || <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> &gt;= <a href='../S/377.html#L61' title='Defined at 61 in src/string.c.'>LMN_STRING_LEN</a>(<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>)) <strong class='reserved'>return</strong> <a href='../Y/165.html' title='Multiple used in 25 places.'>EOF</a>;
+<a id='L190' name='L190' />  <strong class='reserved'>else</strong> <strong class='reserved'>return</strong> <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>-&gt;<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>[<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>];
+<a id='L191' name='L191' /><em class='brace'>}</em>
+<a id='L192' name='L192' />
+<a id='L193' name='L193' /><strong class='reserved'>void</strong> <a href='../S/372.html#L63' title='Refered from 63 in src/slim_header/string.h.'>lmn_string_set_raw_c</a>(<a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a> <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>, <strong class='reserved'>int</strong> <a href='../Y/1702.html' title='Multiple used in 562 places.'>c</a>, <strong class='reserved'>int</strong> <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>)
+<a id='L194' name='L194' /><em class='brace'>{</em>
+<a id='L195' name='L195' />  <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>-&gt;<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>[<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>] = <a href='../Y/1702.html' title='Multiple used in 562 places.'>c</a>;
+<a id='L196' name='L196' /><em class='brace'>}</em>
+<a id='L197' name='L197' />
+<a id='L198' name='L198' /><strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../R/4031.html' title='Multiple refered from 2 places.'>lmn_string_len</a>(<a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a> <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>)
+<a id='L199' name='L199' /><em class='brace'>{</em>
+<a id='L200' name='L200' />  <strong class='reserved'>return</strong> <a href='../S/377.html#L61' title='Defined at 61 in src/string.c.'>LMN_STRING_LEN</a>(<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>);
+<a id='L201' name='L201' /><em class='brace'>}</em>
+<a id='L202' name='L202' />
+<a id='L203' name='L203' /><em class='comment'>/*----------------------------------------------------------------------</em>
+<a id='L204' name='L204' /><em class='comment'> * Callbacks</em>
+<a id='L205' name='L205' /><em class='comment'> */</em>
+<a id='L206' name='L206' />
+<a id='L207' name='L207' /><strong class='reserved'>void</strong> <a href='../S/377.html#L376' title='Refered from 376 in src/string.c.'>cb_string_make</a>(<a href='../D/1675.html' title='Multiple defined in 2 places.'>LmnReactCxt</a> *<a href='../Y/4442.html' title='Multiple used in 1338 places.'>rc</a>,
+<a id='L208' name='L208' />                    <a href='../D/1669.html' title='Multiple defined in 2 places.'>LmnMembrane</a> *<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>,
+<a id='L209' name='L209' />                    <a href='../S/347.html#L108' title='Defined at 108 in src/lmntal.h.'>LmnAtom</a> <a href='../Y/1367.html' title='Multiple used in 113 places.'>a0</a>, <a href='../S/347.html#L110' title='Defined at 110 in src/lmntal.h.'>LmnLinkAttr</a> <a href='../Y/5269.html' title='Multiple used in 65 places.'>t0</a>,
+<a id='L210' name='L210' />                    <a href='../S/347.html#L108' title='Defined at 108 in src/lmntal.h.'>LmnAtom</a> <a href='../Y/1368.html' title='Multiple used in 109 places.'>a1</a>, <a href='../S/347.html#L110' title='Defined at 110 in src/lmntal.h.'>LmnLinkAttr</a> <a href='../Y/5270.html' title='Multiple used in 66 places.'>t1</a>)
+<a id='L211' name='L211' /><em class='brace'>{</em>
+<a id='L212' name='L212' />  <strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>;
+<a id='L213' name='L213' />  <a href='../S/347.html#L62' title='Defined at 62 in src/lmntal.h.'>BOOL</a> <a href='../Y/5422.html' title='Multiple used in 3 places.'>to_be_freed</a> = <a href='../S/347.html#L66' title='Defined at 66 in src/lmntal.h.'>FALSE</a>;
+<a id='L214' name='L214' />
+<a id='L215' name='L215' />  <strong class='reserved'>if</strong> (<a href='../S/311.html#L145' title='Defined at 145 in src/atom.h.'>LMN_ATTR_IS_DATA</a>(<a href='../Y/5269.html' title='Multiple used in 65 places.'>t0</a>)) <em class='brace'>{</em>
+<a id='L216' name='L216' />    <strong class='reserved'>switch</strong> (<a href='../Y/5269.html' title='Multiple used in 65 places.'>t0</a>) <em class='brace'>{</em>
+<a id='L217' name='L217' />    <strong class='reserved'>case</strong> <a href='../S/311.html#L175' title='Defined at 175 in src/atom.h.'>LMN_INT_ATTR</a>:
+<a id='L218' name='L218' />      <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a> = <a href='../S/406.html#L44' title='Defined at 44 in src/utility/util.c.'>int_to_str</a>(<a href='../Y/1367.html' title='Multiple used in 113 places.'>a0</a>);
+<a id='L219' name='L219' />      <a href='../Y/5422.html' title='Multiple used in 3 places.'>to_be_freed</a> = <a href='../S/347.html#L69' title='Defined at 69 in src/lmntal.h.'>TRUE</a>;
+<a id='L220' name='L220' />      <strong class='reserved'>break</strong>;
+<a id='L221' name='L221' />    <strong class='reserved'>case</strong> <a href='../S/311.html#L176' title='Defined at 176 in src/atom.h.'>LMN_DBL_ATTR</a>:
+<a id='L222' name='L222' /><em class='comment'>/*       s = double_to_str(a0); */</em>
+<a id='L223' name='L223' />      <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a> = "not implemented";
+<a id='L224' name='L224' />      <strong class='reserved'>break</strong>;
+<a id='L225' name='L225' />    <strong class='reserved'>default</strong>:
+<a id='L226' name='L226' />      <a href='../Y/2438.html' title='Multiple used in 547 places.'>fprintf</a>(<a href='../Y/5101.html' title='Multiple used in 275 places.'>stderr</a>, "STRING.C: unexpected argument");
+<a id='L227' name='L227' />      <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a> = "error";
+<a id='L228' name='L228' />      <strong class='reserved'>break</strong>;
+<a id='L229' name='L229' />    <em class='brace'>}</em>
+<a id='L230' name='L230' />  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em> <em class='comment'>/* symbol atom */</em>
+<a id='L231' name='L231' />    <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a> = <a href='../S/311.html#L162' title='Defined at 162 in src/atom.h.'>LMN_SATOM_STR</a>(<a href='../Y/1367.html' title='Multiple used in 113 places.'>a0</a>);
+<a id='L232' name='L232' />  <em class='brace'>}</em>
+<a id='L233' name='L233' />
+<a id='L234' name='L234' />  <a href='../S/377.html#L65' title='Defined at 65 in src/string.c.'>LINK_STR</a>(<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>, <a href='../Y/1368.html' title='Multiple used in 109 places.'>a1</a>, <a href='../Y/5270.html' title='Multiple used in 66 places.'>t1</a>, <a href='../S/377.html#L92' title='Defined at 92 in src/string.c.'>lmn_string_make</a>(<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>));
+<a id='L235' name='L235' />  <strong class='reserved'>if</strong> (<a href='../Y/5422.html' title='Multiple used in 3 places.'>to_be_freed</a>) <a href='../S/347.html#L220' title='Defined at 220 in src/lmntal.h.'>LMN_FREE</a>(<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>);
+<a id='L236' name='L236' />  <a href='../S/358.html#L486' title='Defined at 486 in src/membrane.h.'>lmn_mem_delete_atom</a>(<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>, <a href='../Y/1367.html' title='Multiple used in 113 places.'>a0</a>, <a href='../Y/5269.html' title='Multiple used in 65 places.'>t0</a>);
+<a id='L237' name='L237' /><em class='brace'>}</em>
+<a id='L238' name='L238' />
+<a id='L239' name='L239' /><strong class='reserved'>void</strong> <a href='../S/377.html#L377' title='Refered from 377 in src/string.c.'>cb_string_concat</a>(<a href='../D/1675.html' title='Multiple defined in 2 places.'>LmnReactCxt</a> *<a href='../Y/4442.html' title='Multiple used in 1338 places.'>rc</a>,
+<a id='L240' name='L240' />                      <a href='../D/1669.html' title='Multiple defined in 2 places.'>LmnMembrane</a> *<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>,
+<a id='L241' name='L241' />                      <a href='../S/347.html#L108' title='Defined at 108 in src/lmntal.h.'>LmnAtom</a> <a href='../Y/1367.html' title='Multiple used in 113 places.'>a0</a>, <a href='../S/347.html#L110' title='Defined at 110 in src/lmntal.h.'>LmnLinkAttr</a> <a href='../Y/5269.html' title='Multiple used in 65 places.'>t0</a>,
+<a id='L242' name='L242' />                      <a href='../S/347.html#L108' title='Defined at 108 in src/lmntal.h.'>LmnAtom</a> <a href='../Y/1368.html' title='Multiple used in 109 places.'>a1</a>, <a href='../S/347.html#L110' title='Defined at 110 in src/lmntal.h.'>LmnLinkAttr</a> <a href='../Y/5270.html' title='Multiple used in 66 places.'>t1</a>,
+<a id='L243' name='L243' />                      <a href='../S/347.html#L108' title='Defined at 108 in src/lmntal.h.'>LmnAtom</a> <a href='../Y/1370.html' title='Multiple used in 55 places.'>a2</a>, <a href='../S/347.html#L110' title='Defined at 110 in src/lmntal.h.'>LmnLinkAttr</a> <a href='../Y/5271.html' title='Multiple used in 57 places.'>t2</a>)
+<a id='L244' name='L244' /><em class='brace'>{</em>
+<a id='L245' name='L245' />  <a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a> <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a> = <a href='../S/377.html#L177' title='Defined at 177 in src/string.c.'>lmn_string_concat</a>(<a href='../S/372.html#L46' title='Defined at 46 in src/slim_header/string.h.'>LMN_STRING</a>(<a href='../Y/1367.html' title='Multiple used in 113 places.'>a0</a>), <a href='../S/372.html#L46' title='Defined at 46 in src/slim_header/string.h.'>LMN_STRING</a>(<a href='../Y/1368.html' title='Multiple used in 109 places.'>a1</a>));
+<a id='L246' name='L246' />  <a href='../S/377.html#L65' title='Defined at 65 in src/string.c.'>LINK_STR</a>(<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>, <a href='../Y/1370.html' title='Multiple used in 55 places.'>a2</a>, <a href='../Y/5271.html' title='Multiple used in 57 places.'>t2</a>, <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>);
+<a id='L247' name='L247' />
+<a id='L248' name='L248' />  <a href='../S/358.html#L486' title='Defined at 486 in src/membrane.h.'>lmn_mem_delete_atom</a>(<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>, <a href='../Y/1367.html' title='Multiple used in 113 places.'>a0</a>, <a href='../Y/5269.html' title='Multiple used in 65 places.'>t0</a>);
+<a id='L249' name='L249' />  <a href='../S/358.html#L486' title='Defined at 486 in src/membrane.h.'>lmn_mem_delete_atom</a>(<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>, <a href='../Y/1368.html' title='Multiple used in 109 places.'>a1</a>, <a href='../Y/5270.html' title='Multiple used in 66 places.'>t1</a>);
+<a id='L250' name='L250' /><em class='brace'>}</em>
+<a id='L251' name='L251' />
+<a id='L252' name='L252' /><strong class='reserved'>void</strong> <a href='../S/377.html#L378' title='Refered from 378 in src/string.c.'>cb_string_length</a>(<a href='../D/1675.html' title='Multiple defined in 2 places.'>LmnReactCxt</a> *<a href='../Y/4442.html' title='Multiple used in 1338 places.'>rc</a>,
+<a id='L253' name='L253' />                      <a href='../D/1669.html' title='Multiple defined in 2 places.'>LmnMembrane</a> *<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>,
+<a id='L254' name='L254' />                      <a href='../S/347.html#L108' title='Defined at 108 in src/lmntal.h.'>LmnAtom</a> <a href='../Y/1367.html' title='Multiple used in 113 places.'>a0</a>, <a href='../S/347.html#L110' title='Defined at 110 in src/lmntal.h.'>LmnLinkAttr</a> <a href='../Y/5269.html' title='Multiple used in 65 places.'>t0</a>,
+<a id='L255' name='L255' />                      <a href='../S/347.html#L108' title='Defined at 108 in src/lmntal.h.'>LmnAtom</a> <a href='../Y/1368.html' title='Multiple used in 109 places.'>a1</a>, <a href='../S/347.html#L110' title='Defined at 110 in src/lmntal.h.'>LmnLinkAttr</a> <a href='../Y/5270.html' title='Multiple used in 66 places.'>t1</a>)
+<a id='L256' name='L256' /><em class='brace'>{</em>
+<a id='L257' name='L257' />  <strong class='reserved'>int</strong> <a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a> = <a href='../S/377.html#L61' title='Defined at 61 in src/string.c.'>LMN_STRING_LEN</a>(<a href='../Y/1367.html' title='Multiple used in 113 places.'>a0</a>);
+<a id='L258' name='L258' />
+<a id='L259' name='L259' />  <a href='../S/357.html#L448' title='Defined at 448 in src/membrane.c.'>lmn_mem_newlink</a>(<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>, <a href='../Y/1368.html' title='Multiple used in 109 places.'>a1</a>, <a href='../Y/5270.html' title='Multiple used in 66 places.'>t1</a>, <a href='../S/311.html#L150' title='Defined at 150 in src/atom.h.'>LMN_ATTR_GET_VALUE</a>(<a href='../Y/5270.html' title='Multiple used in 66 places.'>t1</a>),
+<a id='L260' name='L260' />                  <a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a>, <a href='../S/311.html#L175' title='Defined at 175 in src/atom.h.'>LMN_INT_ATTR</a>, 0);
+<a id='L261' name='L261' />
+<a id='L262' name='L262' />  <a href='../S/358.html#L486' title='Defined at 486 in src/membrane.h.'>lmn_mem_delete_atom</a>(<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>, <a href='../Y/1367.html' title='Multiple used in 113 places.'>a0</a>, <a href='../Y/5269.html' title='Multiple used in 65 places.'>t0</a>);
+<a id='L263' name='L263' /><em class='brace'>}</em>
+<a id='L264' name='L264' />
+<a id='L265' name='L265' /><strong class='reserved'>void</strong> <a href='../S/377.html#L379' title='Refered from 379 in src/string.c.'>cb_string_reverse</a>(<a href='../D/1675.html' title='Multiple defined in 2 places.'>LmnReactCxt</a> *<a href='../Y/4442.html' title='Multiple used in 1338 places.'>rc</a>,
+<a id='L266' name='L266' />                       <a href='../D/1669.html' title='Multiple defined in 2 places.'>LmnMembrane</a> *<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>,
+<a id='L267' name='L267' />                       <a href='../S/347.html#L108' title='Defined at 108 in src/lmntal.h.'>LmnAtom</a> <a href='../Y/1367.html' title='Multiple used in 113 places.'>a0</a>, <a href='../S/347.html#L110' title='Defined at 110 in src/lmntal.h.'>LmnLinkAttr</a> <a href='../Y/5269.html' title='Multiple used in 65 places.'>t0</a>,
+<a id='L268' name='L268' />                       <a href='../S/347.html#L108' title='Defined at 108 in src/lmntal.h.'>LmnAtom</a> <a href='../Y/1368.html' title='Multiple used in 109 places.'>a1</a>, <a href='../S/347.html#L110' title='Defined at 110 in src/lmntal.h.'>LmnLinkAttr</a> <a href='../Y/5270.html' title='Multiple used in 66 places.'>t1</a>)
+<a id='L269' name='L269' /><em class='brace'>{</em>
+<a id='L270' name='L270' />  <strong class='reserved'>int</strong> <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>, <a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a>;
+<a id='L271' name='L271' />  <strong class='reserved'>char</strong> *<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a> = <a href='../S/377.html#L62' title='Defined at 62 in src/string.c.'>LMN_STRING_BUF</a>(<a href='../Y/1367.html' title='Multiple used in 113 places.'>a0</a>);
+<a id='L272' name='L272' />
+<a id='L273' name='L273' />  <strong class='reserved'>for</strong> (<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> = 0, <a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a> = <a href='../Y/5139.html' title='Multiple used in 84 places.'>strlen</a>(<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>)-1; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> &lt; <a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a>; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>++, <a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a>--) <em class='brace'>{</em>
+<a id='L274' name='L274' />    <strong class='reserved'>char</strong> <a href='../Y/5268.html' title='Multiple used in 639 places.'>t</a> = <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>[<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>];
+<a id='L275' name='L275' />    <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>[<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>] = <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>[<a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a>];
+<a id='L276' name='L276' />    <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>[<a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a>] = <a href='../Y/5268.html' title='Multiple used in 639 places.'>t</a>;
+<a id='L277' name='L277' />  <em class='brace'>}</em>
+<a id='L278' name='L278' />
+<a id='L279' name='L279' />  <a href='../S/357.html#L448' title='Defined at 448 in src/membrane.c.'>lmn_mem_newlink</a>(<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>, <a href='../Y/1368.html' title='Multiple used in 109 places.'>a1</a>, <a href='../Y/5270.html' title='Multiple used in 66 places.'>t1</a>, <a href='../S/311.html#L150' title='Defined at 150 in src/atom.h.'>LMN_ATTR_GET_VALUE</a>(<a href='../Y/5270.html' title='Multiple used in 66 places.'>t1</a>),
+<a id='L280' name='L280' />                  <a href='../Y/1367.html' title='Multiple used in 113 places.'>a0</a>, <a href='../Y/5269.html' title='Multiple used in 65 places.'>t0</a>, 0);
+<a id='L281' name='L281' /><em class='brace'>}</em>
+<a id='L282' name='L282' />
+<a id='L283' name='L283' /><strong class='reserved'>void</strong> <a href='../S/377.html#L380' title='Refered from 380 in src/string.c.'>cb_string_substr</a>(<a href='../D/1675.html' title='Multiple defined in 2 places.'>LmnReactCxt</a> *<a href='../Y/4442.html' title='Multiple used in 1338 places.'>rc</a>,
+<a id='L284' name='L284' />                      <a href='../D/1669.html' title='Multiple defined in 2 places.'>LmnMembrane</a> *<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>,
+<a id='L285' name='L285' />                      <a href='../S/347.html#L108' title='Defined at 108 in src/lmntal.h.'>LmnAtom</a> <a href='../Y/1367.html' title='Multiple used in 113 places.'>a0</a>, <a href='../S/347.html#L110' title='Defined at 110 in src/lmntal.h.'>LmnLinkAttr</a> <a href='../Y/5269.html' title='Multiple used in 65 places.'>t0</a>,
+<a id='L286' name='L286' />                      <strong class='reserved'>long</strong> <a href='../S/521.html#L382' title='Defined at 382 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>begin</a>, <a href='../S/347.html#L110' title='Defined at 110 in src/lmntal.h.'>LmnLinkAttr</a> <a href='../Y/5270.html' title='Multiple used in 66 places.'>t1</a>,
+<a id='L287' name='L287' />                      <strong class='reserved'>long</strong> <a href='../S/521.html#L388' title='Defined at 388 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>end</a>, <a href='../S/347.html#L110' title='Defined at 110 in src/lmntal.h.'>LmnLinkAttr</a> <a href='../Y/5271.html' title='Multiple used in 57 places.'>t2</a>,
+<a id='L288' name='L288' />                      <a href='../S/347.html#L108' title='Defined at 108 in src/lmntal.h.'>LmnAtom</a> <a href='../Y/1371.html' title='Multiple used in 2 places.'>a3</a>, <a href='../S/347.html#L110' title='Defined at 110 in src/lmntal.h.'>LmnLinkAttr</a> <a href='../Y/5272.html' title='Multiple used in 8 places.'>t3</a>)
+<a id='L289' name='L289' /><em class='brace'>{</em>
+<a id='L290' name='L290' />  <strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/4954.html' title='Multiple used in 136 places.'>src</a> = (<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *)<a href='../S/377.html#L62' title='Defined at 62 in src/string.c.'>LMN_STRING_BUF</a>(<a href='../Y/1367.html' title='Multiple used in 113 places.'>a0</a>);
+<a id='L291' name='L291' />  <strong class='reserved'>char</strong> *<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>;
+<a id='L292' name='L292' />  <a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a> <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a>;
+<a id='L293' name='L293' />
+<a id='L294' name='L294' />  <strong class='reserved'>if</strong> (<a href='../S/521.html#L382' title='Defined at 382 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>begin</a> &lt;= <a href='../S/521.html#L388' title='Defined at 388 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>end</a>) <em class='brace'>{</em>
+<a id='L295' name='L295' />    <strong class='reserved'>int</strong> <a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a> = <a href='../Y/5139.html' title='Multiple used in 84 places.'>strlen</a>(<a href='../Y/4954.html' title='Multiple used in 136 places.'>src</a>);
+<a id='L296' name='L296' />    <strong class='reserved'>if</strong> (<a href='../S/521.html#L382' title='Defined at 382 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>begin</a> &lt; 0) <a href='../S/521.html#L382' title='Defined at 382 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>begin</a> = 0;
+<a id='L297' name='L297' />    <strong class='reserved'>if</strong> (<a href='../S/521.html#L388' title='Defined at 388 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>end</a> &gt; <a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a>) <a href='../S/521.html#L388' title='Defined at 388 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>end</a> = <a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a>;
+<a id='L298' name='L298' />    <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a> = <a href='../S/347.html#L216' title='Defined at 216 in src/lmntal.h.'>LMN_NALLOC</a>(<strong class='reserved'>char</strong>, <a href='../S/521.html#L388' title='Defined at 388 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>end</a> - <a href='../S/521.html#L382' title='Defined at 382 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>begin</a> + 1);
+<a id='L299' name='L299' />    <a href='../S/686.html#L318' title='Defined at 318 in third_party/google-perftools-1.8.3/src/windows/port.h.'>snprintf</a>(<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>, <a href='../S/521.html#L388' title='Defined at 388 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>end</a> - <a href='../S/521.html#L382' title='Defined at 382 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>begin</a> + 1, "%s", <a href='../Y/4954.html' title='Multiple used in 136 places.'>src</a>+<a href='../S/521.html#L382' title='Defined at 382 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>begin</a>);
+<a id='L300' name='L300' />  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L301' name='L301' />    <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a> = <a href='../Y/5127.html' title='Multiple used in 15 places.'>strdup</a>("");
+<a id='L302' name='L302' />  <em class='brace'>}</em>
+<a id='L303' name='L303' />
+<a id='L304' name='L304' />  <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a> = <a href='../S/377.html#L92' title='Defined at 92 in src/string.c.'>lmn_string_make</a>(<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>);
+<a id='L305' name='L305' />  <a href='../S/347.html#L220' title='Defined at 220 in src/lmntal.h.'>LMN_FREE</a>(<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>);
+<a id='L306' name='L306' />  <a href='../S/358.html#L491' title='Defined at 491 in src/membrane.h.'>lmn_mem_push_atom</a>(<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>, <a href='../S/311.html#L92' title='Defined at 92 in src/atom.h.'>LMN_ATOM</a>(<a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a>), <a href='../S/311.html#L177' title='Defined at 177 in src/atom.h.'>LMN_SP_ATOM_ATTR</a>);
+<a id='L307' name='L307' />  <a href='../S/377.html#L65' title='Defined at 65 in src/string.c.'>LINK_STR</a>(<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>, <a href='../Y/1371.html' title='Multiple used in 2 places.'>a3</a>, <a href='../Y/5272.html' title='Multiple used in 8 places.'>t3</a>, <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a>);
+<a id='L308' name='L308' />
+<a id='L309' name='L309' />  <a href='../S/358.html#L486' title='Defined at 486 in src/membrane.h.'>lmn_mem_delete_atom</a>(<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>, <a href='../Y/1367.html' title='Multiple used in 113 places.'>a0</a>, <a href='../Y/5269.html' title='Multiple used in 65 places.'>t0</a>);
+<a id='L310' name='L310' />  <a href='../S/358.html#L486' title='Defined at 486 in src/membrane.h.'>lmn_mem_delete_atom</a>(<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>, <a href='../S/521.html#L382' title='Defined at 382 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>begin</a>, <a href='../Y/5270.html' title='Multiple used in 66 places.'>t1</a>);
+<a id='L311' name='L311' />  <a href='../S/358.html#L486' title='Defined at 486 in src/membrane.h.'>lmn_mem_delete_atom</a>(<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>, <a href='../S/521.html#L388' title='Defined at 388 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>end</a>, <a href='../Y/5271.html' title='Multiple used in 57 places.'>t2</a>);
+<a id='L312' name='L312' /><em class='brace'>}</em>
+<a id='L313' name='L313' />
+<a id='L314' name='L314' /><strong class='reserved'>void</strong> <a href='../S/377.html#L381' title='Refered from 381 in src/string.c.'>cb_string_substr_right</a>(<a href='../D/1675.html' title='Multiple defined in 2 places.'>LmnReactCxt</a> *<a href='../Y/4442.html' title='Multiple used in 1338 places.'>rc</a>,
+<a id='L315' name='L315' />                            <a href='../D/1669.html' title='Multiple defined in 2 places.'>LmnMembrane</a> *<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>,
+<a id='L316' name='L316' />                            <a href='../S/347.html#L108' title='Defined at 108 in src/lmntal.h.'>LmnAtom</a> <a href='../Y/1367.html' title='Multiple used in 113 places.'>a0</a>, <a href='../S/347.html#L110' title='Defined at 110 in src/lmntal.h.'>LmnLinkAttr</a> <a href='../Y/5269.html' title='Multiple used in 65 places.'>t0</a>,
+<a id='L317' name='L317' />                            <strong class='reserved'>long</strong> <a href='../S/521.html#L382' title='Defined at 382 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>begin</a>, <a href='../S/347.html#L110' title='Defined at 110 in src/lmntal.h.'>LmnLinkAttr</a> <a href='../Y/5270.html' title='Multiple used in 66 places.'>t1</a>,
+<a id='L318' name='L318' />                            <a href='../S/347.html#L108' title='Defined at 108 in src/lmntal.h.'>LmnAtom</a> <a href='../Y/1370.html' title='Multiple used in 55 places.'>a2</a>, <a href='../S/347.html#L110' title='Defined at 110 in src/lmntal.h.'>LmnLinkAttr</a> <a href='../Y/5271.html' title='Multiple used in 57 places.'>t2</a>)
+<a id='L319' name='L319' /><em class='brace'>{</em>
+<a id='L320' name='L320' />  <strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/4954.html' title='Multiple used in 136 places.'>src</a> = <a href='../S/377.html#L62' title='Defined at 62 in src/string.c.'>LMN_STRING_BUF</a>(<a href='../Y/1367.html' title='Multiple used in 113 places.'>a0</a>);
+<a id='L321' name='L321' />  <strong class='reserved'>char</strong> *<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>;
+<a id='L322' name='L322' />  <strong class='reserved'>int</strong> <a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a> = <a href='../Y/5139.html' title='Multiple used in 84 places.'>strlen</a>(<a href='../Y/4954.html' title='Multiple used in 136 places.'>src</a>);
+<a id='L323' name='L323' />  <a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a> <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a>;
+<a id='L324' name='L324' />
+<a id='L325' name='L325' />  <strong class='reserved'>if</strong> (<a href='../S/521.html#L382' title='Defined at 382 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>begin</a> &lt; 0) <em class='brace'>{</em> <a href='../S/521.html#L382' title='Defined at 382 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>begin</a> = 0;<em class='brace'>}</em>
+<a id='L326' name='L326' />  <strong class='reserved'>if</strong> (<a href='../S/521.html#L382' title='Defined at 382 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>begin</a> &gt; <a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a>) <a href='../S/521.html#L382' title='Defined at 382 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>begin</a> = <a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a>;
+<a id='L327' name='L327' />  <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a> = <a href='../S/347.html#L216' title='Defined at 216 in src/lmntal.h.'>LMN_NALLOC</a>(<strong class='reserved'>char</strong>, <a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a> - <a href='../S/521.html#L382' title='Defined at 382 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>begin</a> + 1);
+<a id='L328' name='L328' />  <a href='../S/686.html#L318' title='Defined at 318 in third_party/google-perftools-1.8.3/src/windows/port.h.'>snprintf</a>(<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>, <a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a> - <a href='../S/521.html#L382' title='Defined at 382 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>begin</a> + 1, "%s", <a href='../Y/4954.html' title='Multiple used in 136 places.'>src</a>+<a href='../S/521.html#L382' title='Defined at 382 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>begin</a>);
+<a id='L329' name='L329' />
+<a id='L330' name='L330' />  <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a> = <a href='../S/377.html#L92' title='Defined at 92 in src/string.c.'>lmn_string_make</a>(<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>);
+<a id='L331' name='L331' />  <a href='../S/347.html#L220' title='Defined at 220 in src/lmntal.h.'>LMN_FREE</a>(<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>);
+<a id='L332' name='L332' />  <a href='../S/358.html#L491' title='Defined at 491 in src/membrane.h.'>lmn_mem_push_atom</a>(<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>, <a href='../S/311.html#L92' title='Defined at 92 in src/atom.h.'>LMN_ATOM</a>(<a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a>), <a href='../S/311.html#L177' title='Defined at 177 in src/atom.h.'>LMN_SP_ATOM_ATTR</a>);
+<a id='L333' name='L333' />  <a href='../S/377.html#L65' title='Defined at 65 in src/string.c.'>LINK_STR</a>(<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>, <a href='../Y/1370.html' title='Multiple used in 55 places.'>a2</a>, <a href='../Y/5271.html' title='Multiple used in 57 places.'>t2</a>, <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a>);
+<a id='L334' name='L334' />
+<a id='L335' name='L335' />  <a href='../S/358.html#L486' title='Defined at 486 in src/membrane.h.'>lmn_mem_delete_atom</a>(<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>, <a href='../Y/1367.html' title='Multiple used in 113 places.'>a0</a>, <a href='../Y/5269.html' title='Multiple used in 65 places.'>t0</a>);
+<a id='L336' name='L336' />  <a href='../S/358.html#L486' title='Defined at 486 in src/membrane.h.'>lmn_mem_delete_atom</a>(<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>, <a href='../S/521.html#L382' title='Defined at 382 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>begin</a>, <a href='../Y/5270.html' title='Multiple used in 66 places.'>t1</a>);
+<a id='L337' name='L337' /><em class='brace'>}</em>
+<a id='L338' name='L338' />
+<a id='L339' name='L339' />
+<a id='L340' name='L340' /><strong class='reserved'>void</strong> *<a href='../S/377.html#L371' title='Refered from 371 in src/string.c.'>sp_cb_string_copy</a>(<strong class='reserved'>void</strong> *<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>)
+<a id='L341' name='L341' /><em class='brace'>{</em>
+<a id='L342' name='L342' />
+<a id='L343' name='L343' />  <strong class='reserved'>return</strong> <a href='../S/377.html#L119' title='Defined at 119 in src/string.c.'>lmn_string_copy</a>(<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>);
+<a id='L344' name='L344' /><em class='brace'>}</em>
+<a id='L345' name='L345' />
+<a id='L346' name='L346' /><strong class='reserved'>void</strong> <a href='../S/377.html#L372' title='Refered from 372 in src/string.c.'>sp_cb_string_free</a>(<strong class='reserved'>void</strong> *<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>)
+<a id='L347' name='L347' /><em class='brace'>{</em>
+<a id='L348' name='L348' />  <a href='../S/377.html#L128' title='Defined at 128 in src/string.c.'>lmn_string_free</a>(<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>);
+<a id='L349' name='L349' /><em class='brace'>}</em>
+<a id='L350' name='L350' />
+<a id='L351' name='L351' /><strong class='reserved'>void</strong> <a href='../S/377.html#L374' title='Refered from 374 in src/string.c.'>sp_cb_string_dump</a>(<strong class='reserved'>void</strong> *<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>, <a href='../D/1671.html' title='Multiple defined in 2 places.'>LmnPort</a> <a href='../Y/4193.html' title='Multiple used in 240 places.'>port</a>)
+<a id='L352' name='L352' /><em class='brace'>{</em>
+<a id='L353' name='L353' />  <a href='../S/362.html#L338' title='Defined at 338 in src/port.c.'>port_put_raw_c</a>(<a href='../Y/4193.html' title='Multiple used in 240 places.'>port</a>, '"');
+<a id='L354' name='L354' />  <a href='../S/317.html#L1067' title='Defined at 1067 in src/dumper.c.'>dump_escaped</a>(<a href='../Y/4193.html' title='Multiple used in 240 places.'>port</a>, <a href='../S/377.html#L62' title='Defined at 62 in src/string.c.'>LMN_STRING_BUF</a>(<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>));
+<a id='L355' name='L355' />  <a href='../S/362.html#L338' title='Defined at 338 in src/port.c.'>port_put_raw_c</a>(<a href='../Y/4193.html' title='Multiple used in 240 places.'>port</a>, '"');
+<a id='L356' name='L356' /><em class='brace'>}</em>
+<a id='L357' name='L357' />
+<a id='L358' name='L358' /><a href='../S/347.html#L62' title='Defined at 62 in src/lmntal.h.'>BOOL</a> <a href='../S/377.html#L375' title='Refered from 375 in src/string.c.'>sp_cb_string_is_ground</a>(<strong class='reserved'>void</strong> *<a href='../Y/1968.html' title='Multiple used in 73 places.'>data</a>)
+<a id='L359' name='L359' /><em class='brace'>{</em>
+<a id='L360' name='L360' />  <strong class='reserved'>return</strong> <a href='../S/347.html#L69' title='Defined at 69 in src/lmntal.h.'>TRUE</a>;
+<a id='L361' name='L361' /><em class='brace'>}</em>
+<a id='L362' name='L362' />
+<a id='L363' name='L363' /><a href='../S/347.html#L62' title='Defined at 62 in src/lmntal.h.'>BOOL</a> <a href='../S/377.html#L373' title='Refered from 373 in src/string.c.'>sp_cb_string_eq</a>(<strong class='reserved'>void</strong> *<a href='../Y/4661.html' title='Multiple used in 81 places.'>s1</a>, <strong class='reserved'>void</strong> *<a href='../Y/4665.html' title='Multiple used in 62 places.'>s2</a>)
+<a id='L364' name='L364' /><em class='brace'>{</em>
+<a id='L365' name='L365' />  <strong class='reserved'>return</strong> <a href='../S/377.html#L136' title='Defined at 136 in src/string.c.'>lmn_string_eq</a>((<a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a>)<a href='../Y/4661.html' title='Multiple used in 81 places.'>s1</a>, (<a href='../D/1685.html' title='Multiple defined in 2 places.'>LmnString</a>)<a href='../Y/4665.html' title='Multiple used in 62 places.'>s2</a>);
+<a id='L366' name='L366' /><em class='brace'>}</em>
+<a id='L367' name='L367' />
+<a id='L368' name='L368' /><strong class='reserved'>void</strong> <a href='../R/4926.html' title='Multiple refered from 2 places.'>string_init</a>()
+<a id='L369' name='L369' /><em class='brace'>{</em>
+<a id='L370' name='L370' />  <a href='../Y/5136.html' title='Multiple used in 5 places.'>string_atom_type</a> = <a href='../S/374.html#L60' title='Defined at 60 in src/special_atom.c.'>lmn_sp_atom_register</a>("string",
+<a id='L371' name='L371' />                                          <a href='../S/377.html#L340' title='Defined at 340 in src/string.c.'>sp_cb_string_copy</a>,
+<a id='L372' name='L372' />                                          <a href='../S/377.html#L346' title='Defined at 346 in src/string.c.'>sp_cb_string_free</a>,
+<a id='L373' name='L373' />                                          <a href='../S/377.html#L363' title='Defined at 363 in src/string.c.'>sp_cb_string_eq</a>,
+<a id='L374' name='L374' />                                          <a href='../S/377.html#L351' title='Defined at 351 in src/string.c.'>sp_cb_string_dump</a>,
+<a id='L375' name='L375' />                                          <a href='../S/377.html#L358' title='Defined at 358 in src/string.c.'>sp_cb_string_is_ground</a>);
+<a id='L376' name='L376' />  <a href='../S/312.html#L67' title='Defined at 67 in src/ccallback.c.'>lmn_register_c_fun</a>("string_make", <a href='../S/377.html#L207' title='Defined at 207 in src/string.c.'>cb_string_make</a>, 2);
+<a id='L377' name='L377' />  <a href='../S/312.html#L67' title='Defined at 67 in src/ccallback.c.'>lmn_register_c_fun</a>("string_concat", <a href='../S/377.html#L239' title='Defined at 239 in src/string.c.'>cb_string_concat</a>, 3);
+<a id='L378' name='L378' />  <a href='../S/312.html#L67' title='Defined at 67 in src/ccallback.c.'>lmn_register_c_fun</a>("string_length", <a href='../S/377.html#L252' title='Defined at 252 in src/string.c.'>cb_string_length</a>, 2);
+<a id='L379' name='L379' />  <a href='../S/312.html#L67' title='Defined at 67 in src/ccallback.c.'>lmn_register_c_fun</a>("string_reverse", <a href='../S/377.html#L265' title='Defined at 265 in src/string.c.'>cb_string_reverse</a>, 2);
+<a id='L380' name='L380' />  <a href='../S/312.html#L67' title='Defined at 67 in src/ccallback.c.'>lmn_register_c_fun</a>("string_substr", <a href='../S/377.html#L283' title='Defined at 283 in src/string.c.'>cb_string_substr</a>, 4);
+<a id='L381' name='L381' />  <a href='../S/312.html#L67' title='Defined at 67 in src/ccallback.c.'>lmn_register_c_fun</a>("string_substr_right", <a href='../S/377.html#L314' title='Defined at 314 in src/string.c.'>cb_string_substr_right</a>, 3);
+<a id='L382' name='L382' /><em class='brace'>}</em>
+<a id='L383' name='L383' />
+<a id='L384' name='L384' /><strong class='reserved'>void</strong> <a href='../R/4924.html' title='Multiple refered from 2 places.'>string_finalize</a>()
+<a id='L385' name='L385' /><em class='brace'>{</em>
+<a id='L386' name='L386' /><em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;]<a href='#L75'>[^]</a><a href='#L384'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

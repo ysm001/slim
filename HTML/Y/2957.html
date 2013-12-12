@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>jump_points</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/386.html#L312'>jump_points</a>       312 src/translate.c                                   Vector     *jump_points,</span>
+<span class='curline'><a href='../S/386.html#L335'>jump_points</a>       335 src/translate.c     next_index = vec_inserted_index(jump_points, (LmnWord)next);</span>
+<span class='curline'><a href='../S/386.html#L391'>jump_points</a>       391 src/translate.c const BYTE *translate_instructions(const BYTE *p, Vector *jump_points, const char *header, const char *successcode, const char *failcode, int indent)</span>
+<span class='curline'><a href='../S/386.html#L399'>jump_points</a>       399 src/translate.c     next = translate_instruction_generated(p, jump_points, header, successcode, failcode, indent, &amp;finishflag);</span>
+<span class='curline'><a href='../S/386.html#L408'>jump_points</a>       408 src/translate.c       next = translate_instruction(p, jump_points, header, successcode, failcode, indent, &amp;finishflag);</span>
+<span class='curline'><a href='../S/386.html#L426'>jump_points</a>       426 src/translate.c   Vector *jump_points = vec_make(4);</span>
+<span class='curline'><a href='../S/386.html#L429'>jump_points</a>       429 src/translate.c   vec_push(jump_points, (LmnWord)lmn_rule_get_inst_seq(rule));</span>
+<span class='curline'><a href='../S/386.html#L431'>jump_points</a>       431 src/translate.c   for (i = 0; i &lt; vec_num(jump_points) /*変換中にjump_pointsは増えていく*/; i++){</span>
+<span class='curline'><a href='../S/386.html#L432'>jump_points</a>       432 src/translate.c     BYTE *p = (BYTE*)vec_get(jump_points, i);</span>
+<span class='curline'><a href='../S/386.html#L436'>jump_points</a>       436 src/translate.c     translate_instructions(p, jump_points, header, "return TRUE", "return FALSE", 1);</span>
+<span class='curline'><a href='../S/387.html#L106'>jump_points</a>       106 src/translate.h                                             Vector *jump_points, /* 変換対象の場所 */</span>
+<span class='curline'><a href='../S/387.html#L115'>jump_points</a>       115 src/translate.h                                             Vector *jump_points,</span>
+<span class='curline'><a href='../S/387.html#L125'>jump_points</a>       125 src/translate.h                                    Vector *jump_points,</span>
+<span class='curline'><a href='../S/388.html#L11'>jump_points</a>        11 src/translate_generated.c                                             Vector *jump_points,</span>
+<span class='curline'><a href='../S/388.html#L44'>jump_points</a>        44 src/translate_generated.c       instr = translate_instructions(instr, jump_points, header, buf_always, buf_always, indent+1);</span>
+<span class='curline'><a href='../S/388.html#L72'>jump_points</a>        72 src/translate_generated.c       instr = translate_instructions(instr, jump_points, header, buf_always, buf_always, indent+1);</span>
+<span class='curline'><a href='../S/388.html#L101'>jump_points</a>       101 src/translate_generated.c       instr = translate_instructions(instr, jump_points, header, buf_always, buf_always, indent+1);</span>
+<span class='curline'><a href='../S/388.html#L142'>jump_points</a>       142 src/translate_generated.c               instr = translate_instructions(instr, jump_points, header, successcode, buf_fail, indent+1);</span>
+<span class='curline'><a href='../S/388.html#L187'>jump_points</a>       187 src/translate_generated.c           instr = translate_instructions(instr, jump_points, header, successcode, buf_fail, indent+1);</span>
+<span class='curline'><a href='../S/388.html#L354'>jump_points</a>       354 src/translate_generated.c       const BYTE *next = translate_instructions(instr, jump_points, header, buf_success, buf_fail, indent+1);</span>
+<span class='curline'><a href='../S/388.html#L706'>jump_points</a>       706 src/translate_generated.c       instr = translate_instructions(instr, jump_points, header, buf_success, buf_fail, indent+1);</span>
+<span class='curline'><a href='../S/388.html#L808'>jump_points</a>       808 src/translate_generated.c       instr = translate_instructions(instr, jump_points, header, buf_always, buf_always, indent+1);</span>
+</pre>
+</body>
+</html>

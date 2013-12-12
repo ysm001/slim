@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>worker_states</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/322.html#L140'>worker_states</a>     140 src/ext/atomic.c   statespace_free(worker_states(w));</span>
+<span class='curline'><a href='../S/322.html#L167'>worker_states</a>     167 src/ext/atomic.c                                 statespace_use_memenc(worker_states(w)));</span>
+<span class='curline'><a href='../S/322.html#L168'>worker_states</a>     168 src/ext/atomic.c       if (sub_s != statespace_insert(worker_states(w), sub_s)) {</span>
+<span class='curline'><a href='../S/322.html#L171'>worker_states</a>     171 src/ext/atomic.c         worker_states(w)-&gt;init_state = sub_s;</span>
+<span class='curline'><a href='../S/322.html#L177'>worker_states</a>     177 src/ext/atomic.c     ends = statespace_end_states(worker_states(w));</span>
+<span class='curline'><a href='../S/367.html#L349'>worker_states</a>     349 src/runtime_status.c   lmn_prof.state_num_stored = statespace_num(worker_states(w));</span>
+<span class='curline'><a href='../S/367.html#L350'>worker_states</a>     350 src/runtime_status.c   lmn_prof.state_num_end    = statespace_end_num(worker_states(w));</span>
+<span class='curline'><a href='../S/367.html#L363'>worker_states</a>     363 src/runtime_status.c     statespace_foreach(worker_states(w), profile_state_f,</span>
+<span class='curline'><a href='../S/367.html#L364'>worker_states</a>     364 src/runtime_status.c                        (LmnWord)worker_states(w), DEFAULT_ARGS);</span>
+<span class='curline'><a href='../S/367.html#L372'>worker_states</a>     372 src/runtime_status.c     total-&gt;statespace_space = statespace_space(worker_states(w));</span>
+<span class='curline'><a href='../S/428.html#L107'>worker_states</a>     107 src/verifier/mc.c   states = worker_states(workers_get_worker(wp, LMN_PRIMARY_ID));</span>
+<span class='curline'><a href='../S/428.html#L140'>worker_states</a>     140 src/verifier/mc.c   StateSpace ss = worker_states(workers_get_worker(wp, LMN_PRIMARY_ID));</span>
+<span class='curline'><a href='../S/428.html#L871'>worker_states</a>     871 src/verifier/mc.c         ss = worker_states(w);</span>
+<span class='curline'><a href='../S/428.html#L894'>worker_states</a>     894 src/verifier/mc.c         ss = worker_states(w);</span>
+<span class='curline'><a href='../S/428.html#L922'>worker_states</a>     922 src/verifier/mc.c         StateSpace represent = worker_states(workers_get_worker(wp, LMN_PRIMARY_ID));</span>
+<span class='curline'><a href='../S/430.html#L361'>worker_states</a>     361 src/verifier/mc_explorer.c   statetable_to_state_queue(statespace_accept_tbl(worker_states(w)),</span>
+<span class='curline'><a href='../S/430.html#L363'>worker_states</a>     363 src/verifier/mc_explorer.c   statetable_to_state_queue(statespace_accept_memid_tbl(worker_states(w)),</span>
+<span class='curline'><a href='../S/430.html#L421'>worker_states</a>     421 src/verifier/mc_explorer.c     owcty_found_accepting_cycle(w, statespace_automata(worker_states(w)));</span>
+<span class='curline'><a href='../S/430.html#L469'>worker_states</a>     469 src/verifier/mc_explorer.c   StateSpace ss = worker_states(w);</span>
+<span class='curline'><a href='../S/430.html#L682'>worker_states</a>     682 src/verifier/mc_explorer.c   a = statespace_automata(worker_states(w));</span>
+<span class='curline'><a href='../S/430.html#L994'>worker_states</a>     994 src/verifier/mc_explorer.c   Automata a = statespace_automata(worker_states(w));</span>
+<span class='curline'><a href='../S/432.html#L314'>worker_states</a>     314 src/verifier/mc_generator.c   ss = worker_states(w);</span>
+<span class='curline'><a href='../S/432.html#L407'>worker_states</a>     407 src/verifier/mc_generator.c     mc_expand(worker_states(w), s, p_s, &amp;worker_rc(w), new_ss, psyms, worker_flags(w));</span>
+<span class='curline'><a href='../S/432.html#L471'>worker_states</a>     471 src/verifier/mc_generator.c       mc_expand(worker_states(w), s, p_s, &amp;worker_rc(w), new_ss, psyms, worker_flags(w));</span>
+<span class='curline'><a href='../S/432.html#L610'>worker_states</a>     610 src/verifier/mc_generator.c   ss = worker_states(w);</span>
+<span class='curline'><a href='../S/432.html#L708'>worker_states</a>     708 src/verifier/mc_generator.c     mc_expand(worker_states(w), s, p_s, &amp;worker_rc(w), new_ss, psyms, worker_flags(w));</span>
+<span class='curline'><a href='../S/434.html#L138'>worker_states</a>     138 src/verifier/mc_worker.c     StateSpace ss = worker_states(w);</span>
+<span class='curline'><a href='../S/434.html#L481'>worker_states</a>     481 src/verifier/mc_worker.c       states = worker_states(workers_get_worker(owner, 0));</span>
+<span class='curline'><a href='../S/434.html#L515'>worker_states</a>     515 src/verifier/mc_worker.c       statespace_free(worker_states(w));</span>
+</pre>
+</body>
+</html>

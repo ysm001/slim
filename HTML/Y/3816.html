@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>nextline_</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/542.html#L582'>nextline_</a>         582 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   stext_ = etext_ = nextline_ = ibuf_;</span>
+<span class='curline'><a href='../S/542.html#L584'>nextline_</a>         584 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   nextline_ = ibuf_;</span>
+<span class='curline'><a href='../S/542.html#L668'>nextline_</a>         668 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     stext_ = nextline_;</span>
+<span class='curline'><a href='../S/542.html#L671'>nextline_</a>         671 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     nextline_ = static_cast&lt;char *&gt;(memchr (stext_, '\n', etext_ - stext_));</span>
+<span class='curline'><a href='../S/542.html#L672'>nextline_</a>         672 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     if (!nextline_) {</span>
+<span class='curline'><a href='../S/542.html#L696'>nextline_</a>         696 third_party/google-perftools-1.8.3/src/base/sysinfo.cc       nextline_ = static_cast&lt;char *&gt;(memchr (stext_, '\n', etext_ + 1 - stext_));</span>
+<span class='curline'><a href='../S/542.html#L698'>nextline_</a>         698 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     *nextline_ = 0;                // turn newline into nul</span>
+<span class='curline'><a href='../S/542.html#L699'>nextline_</a>         699 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     nextline_ += ((nextline_ &lt; etext_)? 1 : 0);  // skip nul if not end of text</span>
+<span class='curline'><a href='../S/543.html#L195'>nextline_</a>         195 third_party/google-perftools-1.8.3/src/base/sysinfo.h   char *nextline_;    // start of next line</span>
+</pre>
+</body>
+</html>

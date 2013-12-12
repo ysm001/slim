@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>dyn_ltree</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/700.html#L243'>dyn_ltree</a>         243 third_party/zdelta-2.1/deflate.h   struct ct_data_s dyn_ltree[2*L_CODES+1];   /* length tree trees            */</span>
+<span class='curline'><a href='../S/700.html#L415'>dyn_ltree</a>         415 third_party/zdelta-2.1/deflate.h     s-&gt;dyn_ltree[l_code(len)+OFFSET(zd)].Freq++; \</span>
+<span class='curline'><a href='../S/700.html#L427'>dyn_ltree</a>         427 third_party/zdelta-2.1/deflate.h     s-&gt;dyn_ltree[l_code(len)].Freq++; \</span>
+<span class='curline'><a href='../S/719.html#L488'>dyn_ltree</a>         488 third_party/zdelta-2.1/trees.c   s-&gt;l_desc.dyn_tree  = s-&gt;dyn_ltree;</span>
+<span class='curline'><a href='../S/719.html#L524'>dyn_ltree</a>         524 third_party/zdelta-2.1/trees.c   for (n = 0; n &lt; L_CODES;  n++)  s-&gt;dyn_ltree[n].Freq  = 0;</span>
+<span class='curline'><a href='../S/719.html#L921'>dyn_ltree</a>         921 third_party/zdelta-2.1/trees.c   scan_tree(s, (ct_data *)s-&gt;dyn_ltree,  s-&gt;l_desc.max_code);</span>
+<span class='curline'><a href='../S/719.html#L992'>dyn_ltree</a>         992 third_party/zdelta-2.1/trees.c   send_tree(s, (ct_data *)s-&gt;dyn_ltree, lcodes-1); /* literal tree */</span>
+<span class='curline'><a href='../S/719.html#L1166'>dyn_ltree</a>        1166 third_party/zdelta-2.1/trees.c     compress_block(s, (ct_data*)s-&gt;dyn_ltree, (ct_data*)s-&gt;dyn_dtree,</span>
+<span class='curline'><a href='../S/719.html#L1169'>dyn_ltree</a>        1169 third_party/zdelta-2.1/trees.c     compress_block(s, (ct_data*)s-&gt;dyn_ltree, (ct_data*)s-&gt;dyn_dtree,</span>
+<span class='curline'><a href='../S/719.html#L1227'>dyn_ltree</a>        1227 third_party/zdelta-2.1/trees.c     s-&gt;dyn_ltree[lc].Freq++;</span>
+<span class='curline'><a href='../S/719.html#L1236'>dyn_ltree</a>        1236 third_party/zdelta-2.1/trees.c     s-&gt;dyn_ltree[zd_length_code[lc]+LITERALS+1].Freq++;</span>
+</pre>
+</body>
+</html>

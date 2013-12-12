@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>objects</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/549.html#L109'>objects</a>           109 third_party/google-perftools-1.8.3/src/central_freelist.cc   if (span-&gt;objects == NULL) {</span>
+<span class='curline'><a href='../S/549.html#L119'>objects</a>           119 third_party/google-perftools-1.8.3/src/central_freelist.cc     for (void* p = span-&gt;objects; p != NULL; p = *((void**) p)) {</span>
+<span class='curline'><a href='../S/549.html#L145'>objects</a>           145 third_party/google-perftools-1.8.3/src/central_freelist.cc     *(reinterpret_cast&lt;void**&gt;(object)) = span-&gt;objects;</span>
+<span class='curline'><a href='../S/549.html#L146'>objects</a>           146 third_party/google-perftools-1.8.3/src/central_freelist.cc     span-&gt;objects = object;</span>
+<span class='curline'><a href='../S/549.html#L295'>objects</a>           295 third_party/google-perftools-1.8.3/src/central_freelist.cc   ASSERT(span-&gt;objects != NULL);</span>
+<span class='curline'><a href='../S/549.html#L297'>objects</a>           297 third_party/google-perftools-1.8.3/src/central_freelist.cc   void* result = span-&gt;objects;</span>
+<span class='curline'><a href='../S/549.html#L298'>objects</a>           298 third_party/google-perftools-1.8.3/src/central_freelist.cc   span-&gt;objects = *(reinterpret_cast&lt;void**&gt;(result));</span>
+<span class='curline'><a href='../S/549.html#L299'>objects</a>           299 third_party/google-perftools-1.8.3/src/central_freelist.cc   if (span-&gt;objects == NULL) {</span>
+<span class='curline'><a href='../S/549.html#L337'>objects</a>           337 third_party/google-perftools-1.8.3/src/central_freelist.cc   void** tail = &amp;span-&gt;objects;</span>
+<span class='curline'><a href='../S/607.html#L49'>objects</a>            49 third_party/google-perftools-1.8.3/src/span.h   void*         objects;        // Linked list of free objects</span>
+<span class='curline'><a href='../S/626.html#L610'>objects</a>           610 third_party/google-perftools-1.8.3/src/tcmalloc.cc         table.AddTrace(*reinterpret_cast&lt;StackTrace*&gt;(s-&gt;objects));</span>
+<span class='curline'><a href='../S/626.html#L963'>objects</a>           963 third_party/google-perftools-1.8.3/src/tcmalloc.cc   span-&gt;objects = stack;</span>
+<span class='curline'><a href='../S/626.html#L1131'>objects</a>          1131 third_party/google-perftools-1.8.3/src/tcmalloc.cc       StackTrace* st = reinterpret_cast&lt;StackTrace*&gt;(span-&gt;objects);</span>
+<span class='curline'><a href='../S/626.html#L1134'>objects</a>          1134 third_party/google-perftools-1.8.3/src/tcmalloc.cc       span-&gt;objects = NULL;</span>
+<span class='curline'><a href='../S/667.html#L53'>objects</a>            53 third_party/google-perftools-1.8.3/src/tests/thread_dealloc_unittest.cc   void** objects = new void*[kNumObjects];</span>
+<span class='curline'><a href='../S/667.html#L55'>objects</a>            55 third_party/google-perftools-1.8.3/src/tests/thread_dealloc_unittest.cc     objects[i] = malloc(kObjectSize);</span>
+<span class='curline'><a href='../S/667.html#L58'>objects</a>            58 third_party/google-perftools-1.8.3/src/tests/thread_dealloc_unittest.cc     free(objects[i]);</span>
+<span class='curline'><a href='../S/667.html#L60'>objects</a>            60 third_party/google-perftools-1.8.3/src/tests/thread_dealloc_unittest.cc   delete[] objects;</span>
+</pre>
+</body>
+</html>

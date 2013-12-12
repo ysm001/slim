@@ -1,0 +1,332 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>type</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/347.html#L162'>type</a>              162 src/lmntal.h     LmnByte type;</span>
+<span class='curline'><a href='../S/362.html#L57'>type</a>               57 src/port.c     #define LMN_PORT_TYPE(obj) (LMN_PORT(obj)-&gt;type)</span>
+<span class='curline'><a href='../S/362.html#L69'>type</a>               69 src/port.c     static LmnPort make_port(LmnPortDirection dir, LmnPortType type, const char *name)</span>
+<span class='curline'><a href='../S/362.html#L74'>type</a>               74 src/port.c       port-&gt;type = type;</span>
+<span class='curline'><a href='../S/362.html#L83'>type</a>               83 src/port.c     LmnPort lmn_make_port(LmnPortDirection dir, LmnPortType type, const char *name){</span>
+<span class='curline'><a href='../S/362.html#L84'>type</a>               84 src/port.c       return make_port(dir, type, name);</span>
+<span class='curline'><a href='../S/367.html#L59'>type</a>               59 src/runtime_status.c static char *profile_space_id_to_name(int type);</span>
+<span class='curline'><a href='../S/367.html#L60'>type</a>               60 src/runtime_status.c static char *profile_counter_id_to_name(int type);</span>
+<span class='curline'><a href='../S/367.html#L61'>type</a>               61 src/runtime_status.c static char *profile_time_id_to_name(int type);</span>
+<span class='curline'><a href='../S/367.html#L798'>type</a>              798 src/runtime_status.c static char *profile_time_id_to_name(int type)</span>
+<span class='curline'><a href='../S/367.html#L801'>type</a>              801 src/runtime_status.c   switch (type) {</span>
+<span class='curline'><a href='../S/367.html#L866'>type</a>              866 src/runtime_status.c static char *profile_counter_id_to_name(int type)</span>
+<span class='curline'><a href='../S/367.html#L869'>type</a>              869 src/runtime_status.c   switch (type) {</span>
+<span class='curline'><a href='../S/367.html#L892'>type</a>              892 src/runtime_status.c static char *profile_space_id_to_name(int type)</span>
+<span class='curline'><a href='../S/367.html#L895'>type</a>              895 src/runtime_status.c   switch (type) {</span>
+<span class='curline'><a href='../S/368.html#L205'>type</a>              205 src/runtime_status.h static inline void profile_finish_timer(int type);</span>
+<span class='curline'><a href='../S/368.html#L206'>type</a>              206 src/runtime_status.h static inline void profile_start_timer(int type);</span>
+<span class='curline'><a href='../S/368.html#L207'>type</a>              207 src/runtime_status.h static inline void profile_remove_space(int type, unsigned long size);</span>
+<span class='curline'><a href='../S/368.html#L208'>type</a>              208 src/runtime_status.h static inline void profile_add_space(int type, unsigned long size);</span>
+<span class='curline'><a href='../S/368.html#L209'>type</a>              209 src/runtime_status.h static inline void profile_countup(int type);</span>
+<span class='curline'><a href='../S/368.html#L254'>type</a>              254 src/runtime_status.h static inline void profile_add_space(int type, unsigned long size)</span>
+<span class='curline'><a href='../S/368.html#L256'>type</a>              256 src/runtime_status.h   MemoryProfiler *p = &amp;(lmn_prof.lv3[env_my_thread_id()].spaces[type]);</span>
+<span class='curline'><a href='../S/368.html#L261'>type</a>              261 src/runtime_status.h static inline void profile_remove_space(int type, unsigned long size)</span>
+<span class='curline'><a href='../S/368.html#L264'>type</a>              264 src/runtime_status.h     MemoryProfiler *p = &amp;(lmn_prof.lv3[env_my_thread_id()].spaces[type]);</span>
+<span class='curline'><a href='../S/368.html#L281'>type</a>              281 src/runtime_status.h static inline void profile_start_timer(int type)</span>
+<span class='curline'><a href='../S/368.html#L283'>type</a>              283 src/runtime_status.h   TimeProfiler *p = &amp;(lmn_prof.lv3[env_my_thread_id()].times[type]);</span>
+<span class='curline'><a href='../S/368.html#L287'>type</a>              287 src/runtime_status.h static inline void profile_finish_timer(int type)</span>
+<span class='curline'><a href='../S/368.html#L289'>type</a>              289 src/runtime_status.h   TimeProfiler *p = &amp;(lmn_prof.lv3[env_my_thread_id()].times[type]);</span>
+<span class='curline'><a href='../S/368.html#L293'>type</a>              293 src/runtime_status.h static inline void profile_countup(int type)</span>
+<span class='curline'><a href='../S/368.html#L296'>type</a>              296 src/runtime_status.h   p-&gt;counters[type]++;</span>
+<span class='curline'><a href='../S/368.html#L299'>type</a>              299 src/runtime_status.h static inline void profile_count_add(int type, unsigned long num)</span>
+<span class='curline'><a href='../S/368.html#L301'>type</a>              301 src/runtime_status.h   lmn_prof.lv3[env_my_thread_id()].counters[type] += num;</span>
+<span class='curline'><a href='../S/371.html#L55'>type</a>               55 src/slim_header/port.h   LmnByte type;   /* LMN_PORT_{FILE|ISTR|OST|PROC} */</span>
+<span class='curline'><a href='../S/371.html#L98'>type</a>               98 src/slim_header/port.h LmnPort lmn_make_port(LmnPortDirection dir, LmnPortType type, const char *name);</span>
+<span class='curline'><a href='../S/375.html#L58'>type</a>               58 src/special_atom.h #define LMN_SP_ATOM_TYPE(X) (LMN_SP_ATOM(X)-&gt;type)</span>
+<span class='curline'><a href='../S/375.html#L59'>type</a>               59 src/special_atom.h #define LMN_SP_ATOM_SET_TYPE(obj, t) (LMN_SP_ATOM((obj))-&gt;type = (t))</span>
+<span class='curline'><a href='../S/380.html#L45'>type</a>               45 src/syntax.c     enum ArgType type;</span>
+<span class='curline'><a href='../S/380.html#L96'>type</a>               96 src/syntax.c     enum FunctorType type;</span>
+<span class='curline'><a href='../S/380.html#L147'>type</a>              147 src/syntax.c   Functor functor_make(enum FunctorType type)</span>
+<span class='curline'><a href='../S/380.html#L151'>type</a>              151 src/syntax.c     f-&gt;type = type;</span>
+<span class='curline'><a href='../S/380.html#L201'>type</a>              201 src/syntax.c     return f-&gt;type;</span>
+<span class='curline'><a href='../S/380.html#L228'>type</a>              228 src/syntax.c   InstrArg inst_arg_make(enum ArgType type)</span>
+<span class='curline'><a href='../S/380.html#L231'>type</a>              231 src/syntax.c     arg-&gt;type = type;</span>
+<span class='curline'><a href='../S/380.html#L253'>type</a>              253 src/syntax.c     return arg-&gt;type;</span>
+<span class='curline'><a href='../S/380.html#L398'>type</a>              398 src/syntax.c       line_num_arg-&gt;type = LineNum;</span>
+<span class='curline'><a href='../S/381.html#L64'>type</a>               64 src/syntax.h   Functor functor_make(enum FunctorType type);</span>
+<span class='curline'><a href='../S/381.html#L82'>type</a>               82 src/syntax.h   InstrArg inst_arg_make(enum ArgType type);</span>
+<span class='curline'><a href='../S/384.html#L476'>type</a>              476 src/task.c     #define READ_CONST_DATA_ATOM(dest, attr, type)                \</span>
+<span class='curline'><a href='../S/384.html#L498'>type</a>              498 src/task.c          (type) = TT_OTHER;                                       \</span>
+<span class='curline'><a href='../S/384.html#L501'>type</a>              501 src/task.c     #define READ_CMP_DATA_ATOM(attr, x, result, type)             \</span>
+<span class='curline'><a href='../S/384.html#L531'>type</a>              531 src/task.c         (type) = TT_ATOM;                                         \</span>
+<span class='curline'><a href='../S/404.html#L42'>type</a>               42 src/utility/st.c #define EQUAL(table,x,y) ((x)==(y) || (*table-&gt;type-&gt;compare)((x),(y)) == 0)</span>
+<span class='curline'><a href='../S/404.html#L44'>type</a>               44 src/utility/st.c #define do_hash(key,table) (unsigned long)(*(table)-&gt;type-&gt;hash)((key))</span>
+<span class='curline'><a href='../S/404.html#L119'>type</a>              119 src/utility/st.c st_table_t st_init_table_with_size(struct st_hash_type *type, int size) {</span>
+<span class='curline'><a href='../S/404.html#L132'>type</a>              132 src/utility/st.c   tbl-&gt;type = type;</span>
+<span class='curline'><a href='../S/404.html#L139'>type</a>              139 src/utility/st.c st_table_t st_init_table(struct st_hash_type *type) {</span>
+<span class='curline'><a href='../S/404.html#L140'>type</a>              140 src/utility/st.c   return st_init_table_with_size(type, 0);</span>
+<span class='curline'><a href='../S/405.html#L35'>type</a>               35 src/utility/st.h   struct st_hash_type *type;</span>
+<span class='curline'><a href='../S/413.html#L56'>type</a>               56 src/verifier/automata.c static inline void atmscc_set_type(AutomataSCC *s, BYTE type);</span>
+<span class='curline'><a href='../S/413.html#L84'>type</a>               84 src/verifier/automata.c   BYTE type;</span>
+<span class='curline'><a href='../S/413.html#L360'>type</a>              360 src/verifier/automata.c   m-&gt;type = SCC_TYPE_UNKNOWN;</span>
+<span class='curline'><a href='../S/413.html#L385'>type</a>              385 src/verifier/automata.c   return s-&gt;type;</span>
+<span class='curline'><a href='../S/413.html#L388'>type</a>              388 src/verifier/automata.c static inline void atmscc_set_type(AutomataSCC *s, BYTE type)</span>
+<span class='curline'><a href='../S/413.html#L390'>type</a>              390 src/verifier/automata.c   s-&gt;type = type;</span>
+<span class='curline'><a href='../S/415.html#L118'>type</a>              118 src/verifier/binstr_compress.c   cmp-&gt;type = org-&gt;type;</span>
+<span class='curline'><a href='../S/415.html#L168'>type</a>              168 src/verifier/binstr_compress.c   org-&gt;type = cmp-&gt;type;</span>
+<span class='curline'><a href='../S/415.html#L254'>type</a>              254 src/verifier/binstr_compress.c   dif-&gt;type = org-&gt;type;</span>
+<span class='curline'><a href='../S/415.html#L312'>type</a>              312 src/verifier/binstr_compress.c   org-&gt;type = dif-&gt;type;</span>
+<span class='curline'><a href='../S/434.html#L59'>type</a>               59 src/verifier/mc_worker.c   mc-&gt;type     = 0x00U;</span>
+<span class='curline'><a href='../S/435.html#L121'>type</a>              121 src/verifier/mc_worker.h   BYTE type;</span>
+<span class='curline'><a href='../S/435.html#L129'>type</a>              129 src/verifier/mc_worker.h #define mc_type(MC)               ((MC)-&gt;type)</span>
+<span class='curline'><a href='../S/435.html#L130'>type</a>              130 src/verifier/mc_worker.h #define mc_type_set(MC, T)        ((MC)-&gt;type = (T))</span>
+<span class='curline'><a href='../S/436.html#L174'>type</a>              174 src/verifier/mem_encode.c   BYTE    type;</span>
+<span class='curline'><a href='../S/436.html#L233'>type</a>              233 src/verifier/mem_encode.c   bs-&gt;type = 0x00U;</span>
+<span class='curline'><a href='../S/436.html#L582'>type</a>              582 src/verifier/mem_encode.c   ret_bs-&gt;type = 0x00U;</span>
+<span class='curline'><a href='../S/436.html#L643'>type</a>              643 src/verifier/mem_encode.c         log[v_i].type = BS_LOG_TYPE_ATOM;</span>
+<span class='curline'><a href='../S/436.html#L652'>type</a>              652 src/verifier/mem_encode.c         log[v_i].type = BS_LOG_TYPE_MEM;</span>
+<span class='curline'><a href='../S/436.html#L679'>type</a>              679 src/verifier/mem_encode.c         log[v_i].type = BS_LOG_TYPE_HLINK;</span>
+<span class='curline'><a href='../S/436.html#L691'>type</a>              691 src/verifier/mem_encode.c         switch (log[ref].type) {</span>
+<span class='curline'><a href='../S/436.html#L1809'>type</a>             1809 src/verifier/mem_encode.c       log[(*nvisit)].type = BS_LOG_TYPE_MEM;</span>
+<span class='curline'><a href='../S/436.html#L1891'>type</a>             1891 src/verifier/mem_encode.c       log[(*nvisit)].type = BS_LOG_TYPE_HLINK;</span>
+<span class='curline'><a href='../S/436.html#L1907'>type</a>             1907 src/verifier/mem_encode.c       switch (log[ref].type) {</span>
+<span class='curline'><a href='../S/436.html#L2024'>type</a>             2024 src/verifier/mem_encode.c   log[(*nvisit)].type = BS_LOG_TYPE_ATOM;</span>
+<span class='curline'><a href='../S/436.html#L2595'>type</a>             2595 src/verifier/mem_encode.c   ref_log[*i_ref].type = BS_LOG_TYPE_ATOM;</span>
+<span class='curline'><a href='../S/436.html#L2654'>type</a>             2654 src/verifier/mem_encode.c   ref_log[*i_ref].type = BS_LOG_TYPE_MEM;</span>
+<span class='curline'><a href='../S/436.html#L2694'>type</a>             2694 src/verifier/mem_encode.c   ref_log[*i_ref].type = BS_LOG_TYPE_MEM;</span>
+<span class='curline'><a href='../S/436.html#L2903'>type</a>             2903 src/verifier/mem_encode.c   switch (ref_log[ref].type) {</span>
+<span class='curline'><a href='../S/436.html#L3077'>type</a>             3077 src/verifier/mem_encode.c         ref_log[*i_ref].type = BS_LOG_TYPE_HLINK;</span>
+<span class='curline'><a href='../S/437.html#L49'>type</a>               49 src/verifier/mem_encode.h   BOOL type;          /* バイト列への記録方式を記録しておくためのbit field. 圧縮方式のメモ用に用いる.</span>
+<span class='curline'><a href='../S/437.html#L58'>type</a>               58 src/verifier/mem_encode.h #define is_comp_z(BS)             (((BS)-&gt;type) &amp; BS_COMP_Z)</span>
+<span class='curline'><a href='../S/437.html#L59'>type</a>               59 src/verifier/mem_encode.h #define set_comp_z(BS)            (((BS)-&gt;type) |= BS_COMP_Z)</span>
+<span class='curline'><a href='../S/437.html#L60'>type</a>               60 src/verifier/mem_encode.h #define unset_comp_z(BS)          (((BS)-&gt;type) &amp;= ~(BS_COMP_Z))</span>
+<span class='curline'><a href='../S/437.html#L61'>type</a>               61 src/verifier/mem_encode.h #define is_comp_d(BS)             (((BS)-&gt;type) &amp; BS_COMP_D)</span>
+<span class='curline'><a href='../S/437.html#L62'>type</a>               62 src/verifier/mem_encode.h #define set_comp_d(BS)            (((BS)-&gt;type) |= BS_COMP_D)</span>
+<span class='curline'><a href='../S/437.html#L63'>type</a>               63 src/verifier/mem_encode.h #define unset_comp_d(BS)          (((BS)-&gt;type) &amp;= ~(BS_COMP_D))</span>
+<span class='curline'><a href='../S/456.html#L102'>type</a>              102 src/verifier/statespace.c                                           &amp;&amp; ((Tbl)-&gt;type-&gt;compare)(Check, Stored))</span>
+<span class='curline'><a href='../S/456.html#L112'>type</a>              112 src/verifier/statespace.c     bs = (*((st)-&gt;type-&gt;compress))(s);</span>
+<span class='curline'><a href='../S/456.html#L628'>type</a>              628 src/verifier/statespace.c       st-&gt;type = &amp;type_state_compress_z;</span>
+<span class='curline'><a href='../S/456.html#L630'>type</a>              630 src/verifier/statespace.c       st-&gt;type = &amp;type_state_compress;</span>
+<span class='curline'><a href='../S/456.html#L633'>type</a>              633 src/verifier/statespace.c     st-&gt;type = &amp;type_state_default;</span>
+<span class='curline'><a href='../S/457.html#L104'>type</a>              104 src/verifier/statespace.h   struct statespace_type *type;</span>
+<span class='curline'><a href='../S/517.html#L57'>type</a>               57 third_party/google-perftools-1.8.3/src/base/commandlineflags.h #define DECLARE_VARIABLE(type, name)                                          \</span>
+<span class='curline'><a href='../S/517.html#L58'>type</a>               58 third_party/google-perftools-1.8.3/src/base/commandlineflags.h   namespace FLAG__namespace_do_not_use_directly_use_DECLARE_##type##_instead {  \</span>
+<span class='curline'><a href='../S/517.html#L59'>type</a>               59 third_party/google-perftools-1.8.3/src/base/commandlineflags.h   extern PERFTOOLS_DLL_DECL type FLAGS_##name;                                \</span>
+<span class='curline'><a href='../S/517.html#L61'>type</a>               61 third_party/google-perftools-1.8.3/src/base/commandlineflags.h   using FLAG__namespace_do_not_use_directly_use_DECLARE_##type##_instead::FLAGS_##name</span>
+<span class='curline'><a href='../S/517.html#L63'>type</a>               63 third_party/google-perftools-1.8.3/src/base/commandlineflags.h #define DEFINE_VARIABLE(type, name, value, meaning) \</span>
+<span class='curline'><a href='../S/517.html#L64'>type</a>               64 third_party/google-perftools-1.8.3/src/base/commandlineflags.h   namespace FLAG__namespace_do_not_use_directly_use_DECLARE_##type##_instead {  \</span>
+<span class='curline'><a href='../S/517.html#L65'>type</a>               65 third_party/google-perftools-1.8.3/src/base/commandlineflags.h   PERFTOOLS_DLL_DECL type FLAGS_##name(value);                                \</span>
+<span class='curline'><a href='../S/517.html#L68'>type</a>               68 third_party/google-perftools-1.8.3/src/base/commandlineflags.h   using FLAG__namespace_do_not_use_directly_use_DECLARE_##type##_instead::FLAGS_##name</span>
+<span class='curline'><a href='../S/521.html#L317'>type</a>              317 third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc                                int type,</span>
+<span class='curline'><a href='../S/521.html#L321'>type</a>              321 third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc         CurrentElfClass::ElfType(it-&gt;symbol) == type) {</span>
+<span class='curline'><a href='../S/525.html#L1284'>type</a>             1284 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h   #define LSS_RETURN(type, res)                                               \</span>
+<span class='curline'><a href='../S/525.html#L1290'>type</a>             1290 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       return (type) (res);                                                    \</span>
+<span class='curline'><a href='../S/525.html#L1296'>type</a>             1296 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h   #define LSS_RETURN(type, res, err)                                          \</span>
+<span class='curline'><a href='../S/525.html#L1302'>type</a>             1302 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       return (type) (res);                                                    \</span>
+<span class='curline'><a href='../S/525.html#L1308'>type</a>             1308 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h   #define LSS_RETURN(type, res, err)                                          \</span>
+<span class='curline'><a href='../S/525.html#L1314'>type</a>             1314 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h      return (type) (res);                                                     \</span>
+<span class='curline'><a href='../S/525.html#L1327'>type</a>             1327 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define LSS_BODY(type,args...)                                            \</span>
+<span class='curline'><a href='../S/525.html#L1335'>type</a>             1335 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       LSS_RETURN(type,__res)</span>
+<span class='curline'><a href='../S/525.html#L1337'>type</a>             1337 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall0(type,name)                                              \</span>
+<span class='curline'><a href='../S/525.html#L1338'>type</a>             1338 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)(void) {                                             \</span>
+<span class='curline'><a href='../S/525.html#L1344'>type</a>             1344 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         LSS_RETURN(type,__res);                                               \</span>
+<span class='curline'><a href='../S/525.html#L1347'>type</a>             1347 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall1(type,name,type1,arg1)                                   \</span>
+<span class='curline'><a href='../S/525.html#L1348'>type</a>             1348 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)(type1 arg1) {                                       \</span>
+<span class='curline'><a href='../S/525.html#L1349'>type</a>             1349 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         LSS_BODY(type,                                                        \</span>
+<span class='curline'><a href='../S/525.html#L1354'>type</a>             1354 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall2(type,name,type1,arg1,type2,arg2)                        \</span>
+<span class='curline'><a href='../S/525.html#L1355'>type</a>             1355 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)(type1 arg1,type2 arg2) {                            \</span>
+<span class='curline'><a href='../S/525.html#L1356'>type</a>             1356 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         LSS_BODY(type,                                                        \</span>
+<span class='curline'><a href='../S/525.html#L1361'>type</a>             1361 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall3(type,name,type1,arg1,type2,arg2,type3,arg3)             \</span>
+<span class='curline'><a href='../S/525.html#L1362'>type</a>             1362 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)(type1 arg1,type2 arg2,type3 arg3) {                 \</span>
+<span class='curline'><a href='../S/525.html#L1363'>type</a>             1363 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         LSS_BODY(type,                                                        \</span>
+<span class='curline'><a href='../S/525.html#L1369'>type</a>             1369 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall4(type,name,type1,arg1,type2,arg2,type3,arg3,type4,arg4)  \</span>
+<span class='curline'><a href='../S/525.html#L1370'>type</a>             1370 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)(type1 arg1, type2 arg2, type3 arg3, type4 arg4) {   \</span>
+<span class='curline'><a href='../S/525.html#L1371'>type</a>             1371 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         LSS_BODY(type,                                                        \</span>
+<span class='curline'><a href='../S/525.html#L1377'>type</a>             1377 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall5(type,name,type1,arg1,type2,arg2,type3,arg3,type4,arg4,  \</span>
+<span class='curline'><a href='../S/525.html#L1379'>type</a>             1379 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)(type1 arg1, type2 arg2, type3 arg3, type4 arg4,     \</span>
+<span class='curline'><a href='../S/525.html#L1392'>type</a>             1392 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         LSS_RETURN(type,__res);                                               \</span>
+<span class='curline'><a href='../S/525.html#L1395'>type</a>             1395 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall6(type,name,type1,arg1,type2,arg2,type3,arg3,type4,arg4,  \</span>
+<span class='curline'><a href='../S/525.html#L1397'>type</a>             1397 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)(type1 arg1, type2 arg2, type3 arg3, type4 arg4,     \</span>
+<span class='curline'><a href='../S/525.html#L1414'>type</a>             1414 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         LSS_RETURN(type,__res);                                               \</span>
+<span class='curline'><a href='../S/525.html#L1574'>type</a>             1574 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define LSS_BODY(type,name, ...)                                          \</span>
+<span class='curline'><a href='../S/525.html#L1578'>type</a>             1578 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h           LSS_RETURN(type, __res)</span>
+<span class='curline'><a href='../S/525.html#L1580'>type</a>             1580 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall0(type,name)                                              \</span>
+<span class='curline'><a href='../S/525.html#L1581'>type</a>             1581 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)() {                                                 \</span>
+<span class='curline'><a href='../S/525.html#L1582'>type</a>             1582 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         LSS_BODY(type, name);                                                 \</span>
+<span class='curline'><a href='../S/525.html#L1585'>type</a>             1585 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall1(type,name,type1,arg1)                                   \</span>
+<span class='curline'><a href='../S/525.html#L1586'>type</a>             1586 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)(type1 arg1) {                                       \</span>
+<span class='curline'><a href='../S/525.html#L1587'>type</a>             1587 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         LSS_BODY(type, name, "D" ((long)(arg1)));                             \</span>
+<span class='curline'><a href='../S/525.html#L1590'>type</a>             1590 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall2(type,name,type1,arg1,type2,arg2)                        \</span>
+<span class='curline'><a href='../S/525.html#L1591'>type</a>             1591 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)(type1 arg1, type2 arg2) {                           \</span>
+<span class='curline'><a href='../S/525.html#L1592'>type</a>             1592 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         LSS_BODY(type, name, "D" ((long)(arg1)), "S" ((long)(arg2)));         \</span>
+<span class='curline'><a href='../S/525.html#L1595'>type</a>             1595 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall3(type,name,type1,arg1,type2,arg2,type3,arg3)             \</span>
+<span class='curline'><a href='../S/525.html#L1596'>type</a>             1596 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)(type1 arg1, type2 arg2, type3 arg3) {               \</span>
+<span class='curline'><a href='../S/525.html#L1597'>type</a>             1597 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         LSS_BODY(type, name, "D" ((long)(arg1)), "S" ((long)(arg2)),          \</span>
+<span class='curline'><a href='../S/525.html#L1601'>type</a>             1601 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall4(type,name,type1,arg1,type2,arg2,type3,arg3,type4,arg4)  \</span>
+<span class='curline'><a href='../S/525.html#L1602'>type</a>             1602 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)(type1 arg1, type2 arg2, type3 arg3, type4 arg4) {   \</span>
+<span class='curline'><a href='../S/525.html#L1608'>type</a>             1608 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h           LSS_RETURN(type, __res);                                            \</span>
+<span class='curline'><a href='../S/525.html#L1611'>type</a>             1611 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall5(type,name,type1,arg1,type2,arg2,type3,arg3,type4,arg4,  \</span>
+<span class='curline'><a href='../S/525.html#L1613'>type</a>             1613 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)(type1 arg1, type2 arg2, type3 arg3, type4 arg4,     \</span>
+<span class='curline'><a href='../S/525.html#L1621'>type</a>             1621 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h           LSS_RETURN(type, __res);                                            \</span>
+<span class='curline'><a href='../S/525.html#L1624'>type</a>             1624 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall6(type,name,type1,arg1,type2,arg2,type3,arg3,type4,arg4,  \</span>
+<span class='curline'><a href='../S/525.html#L1626'>type</a>             1626 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)(type1 arg1, type2 arg2, type3 arg3, type4 arg4,     \</span>
+<span class='curline'><a href='../S/525.html#L1635'>type</a>             1635 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h           LSS_RETURN(type, __res);                                            \</span>
+<span class='curline'><a href='../S/525.html#L1739'>type</a>             1739 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define LSS_BODY(type,name,args...)                                       \</span>
+<span class='curline'><a href='../S/525.html#L1745'>type</a>             1745 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h           LSS_RETURN(type, __res)</span>
+<span class='curline'><a href='../S/525.html#L1747'>type</a>             1747 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall0(type, name)                                             \</span>
+<span class='curline'><a href='../S/525.html#L1748'>type</a>             1748 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)() {                                                 \</span>
+<span class='curline'><a href='../S/525.html#L1749'>type</a>             1749 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         LSS_BODY(type, name);                                                 \</span>
+<span class='curline'><a href='../S/525.html#L1752'>type</a>             1752 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall1(type, name, type1, arg1)                                \</span>
+<span class='curline'><a href='../S/525.html#L1753'>type</a>             1753 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)(type1 arg1) {                                       \</span>
+<span class='curline'><a href='../S/525.html#L1754'>type</a>             1754 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         LSS_REG(0, arg1); LSS_BODY(type, name, "r"(__r0));                    \</span>
+<span class='curline'><a href='../S/525.html#L1757'>type</a>             1757 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall2(type, name, type1, arg1, type2, arg2)                   \</span>
+<span class='curline'><a href='../S/525.html#L1758'>type</a>             1758 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)(type1 arg1, type2 arg2) {                           \</span>
+<span class='curline'><a href='../S/525.html#L1760'>type</a>             1760 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         LSS_BODY(type, name, "r"(__r0), "r"(__r1));                           \</span>
+<span class='curline'><a href='../S/525.html#L1763'>type</a>             1763 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall3(type, name, type1, arg1, type2, arg2, type3, arg3)      \</span>
+<span class='curline'><a href='../S/525.html#L1764'>type</a>             1764 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)(type1 arg1, type2 arg2, type3 arg3) {               \</span>
+<span class='curline'><a href='../S/525.html#L1766'>type</a>             1766 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         LSS_BODY(type, name, "r"(__r0), "r"(__r1), "r"(__r2));                \</span>
+<span class='curline'><a href='../S/525.html#L1769'>type</a>             1769 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall4(type,name,type1,arg1,type2,arg2,type3,arg3,type4,arg4)  \</span>
+<span class='curline'><a href='../S/525.html#L1770'>type</a>             1770 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)(type1 arg1, type2 arg2, type3 arg3, type4 arg4) {   \</span>
+<span class='curline'><a href='../S/525.html#L1773'>type</a>             1773 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         LSS_BODY(type, name, "r"(__r0), "r"(__r1), "r"(__r2), "r"(__r3));     \</span>
+<span class='curline'><a href='../S/525.html#L1776'>type</a>             1776 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall5(type,name,type1,arg1,type2,arg2,type3,arg3,type4,arg4,  \</span>
+<span class='curline'><a href='../S/525.html#L1778'>type</a>             1778 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)(type1 arg1, type2 arg2, type3 arg3, type4 arg4,     \</span>
+<span class='curline'><a href='../S/525.html#L1782'>type</a>             1782 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         LSS_BODY(type, name, "r"(__r0), "r"(__r1), "r"(__r2), "r"(__r3),      \</span>
+<span class='curline'><a href='../S/525.html#L1786'>type</a>             1786 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall6(type,name,type1,arg1,type2,arg2,type3,arg3,type4,arg4,  \</span>
+<span class='curline'><a href='../S/525.html#L1788'>type</a>             1788 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)(type1 arg1, type2 arg2, type3 arg3, type4 arg4,     \</span>
+<span class='curline'><a href='../S/525.html#L1792'>type</a>             1792 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         LSS_BODY(type, name, "r"(__r0), "r"(__r1), "r"(__r2), "r"(__r3),      \</span>
+<span class='curline'><a href='../S/525.html#L1867'>type</a>             1867 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define LSS_BODY(type,name,r7,...)                                        \</span>
+<span class='curline'><a href='../S/525.html#L1873'>type</a>             1873 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h           LSS_RETURN(type, __v0, __r7)</span>
+<span class='curline'><a href='../S/525.html#L1875'>type</a>             1875 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall0(type, name)                                             \</span>
+<span class='curline'><a href='../S/525.html#L1876'>type</a>             1876 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)() {                                                 \</span>
+<span class='curline'><a href='../S/525.html#L1878'>type</a>             1878 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         LSS_BODY(type, name, "=r");                                           \</span>
+<span class='curline'><a href='../S/525.html#L1881'>type</a>             1881 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall1(type, name, type1, arg1)                                \</span>
+<span class='curline'><a href='../S/525.html#L1882'>type</a>             1882 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)(type1 arg1) {                                       \</span>
+<span class='curline'><a href='../S/525.html#L1884'>type</a>             1884 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         LSS_REG(4, arg1); LSS_BODY(type, name, "=r", "r"(__r4));              \</span>
+<span class='curline'><a href='../S/525.html#L1887'>type</a>             1887 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall2(type, name, type1, arg1, type2, arg2)                   \</span>
+<span class='curline'><a href='../S/525.html#L1888'>type</a>             1888 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)(type1 arg1, type2 arg2) {                           \</span>
+<span class='curline'><a href='../S/525.html#L1891'>type</a>             1891 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         LSS_BODY(type, name, "=r", "r"(__r4), "r"(__r5));                     \</span>
+<span class='curline'><a href='../S/525.html#L1894'>type</a>             1894 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall3(type, name, type1, arg1, type2, arg2, type3, arg3)      \</span>
+<span class='curline'><a href='../S/525.html#L1895'>type</a>             1895 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)(type1 arg1, type2 arg2, type3 arg3) {               \</span>
+<span class='curline'><a href='../S/525.html#L1898'>type</a>             1898 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         LSS_BODY(type, name, "=r", "r"(__r4), "r"(__r5), "r"(__r6));          \</span>
+<span class='curline'><a href='../S/525.html#L1901'>type</a>             1901 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall4(type,name,type1,arg1,type2,arg2,type3,arg3,type4,arg4)  \</span>
+<span class='curline'><a href='../S/525.html#L1902'>type</a>             1902 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)(type1 arg1, type2 arg2, type3 arg3, type4 arg4) {   \</span>
+<span class='curline'><a href='../S/525.html#L1905'>type</a>             1905 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         LSS_BODY(type, name, "+r", "r"(__r4), "r"(__r5), "r"(__r6));          \</span>
+<span class='curline'><a href='../S/525.html#L1912'>type</a>             1912 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall5(type,name,type1,arg1,type2,arg2,type3,arg3,type4,arg4,  \</span>
+<span class='curline'><a href='../S/525.html#L1914'>type</a>             1914 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)(type1 arg1, type2 arg2, type3 arg3, type4 arg4,     \</span>
+<span class='curline'><a href='../S/525.html#L1931'>type</a>             1931 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         LSS_RETURN(type, __v0, __r7);                                         \</span>
+<span class='curline'><a href='../S/525.html#L1934'>type</a>             1934 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall5(type,name,type1,arg1,type2,arg2,type3,arg3,type4,arg4,  \</span>
+<span class='curline'><a href='../S/525.html#L1936'>type</a>             1936 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)(type1 arg1, type2 arg2, type3 arg3, type4 arg4,     \</span>
+<span class='curline'><a href='../S/525.html#L1940'>type</a>             1940 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         LSS_BODY(type, name, "+r", "r"(__r4), "r"(__r5), "r"(__r6),           \</span>
+<span class='curline'><a href='../S/525.html#L1949'>type</a>             1949 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall6(type,name,type1,arg1,type2,arg2,type3,arg3,type4,arg4,  \</span>
+<span class='curline'><a href='../S/525.html#L1951'>type</a>             1951 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)(type1 arg1, type2 arg2, type3 arg3, type4 arg4,     \</span>
+<span class='curline'><a href='../S/525.html#L1971'>type</a>             1971 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         LSS_RETURN(type, __v0, __r7);                                         \</span>
+<span class='curline'><a href='../S/525.html#L1974'>type</a>             1974 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall6(type,name,type1,arg1,type2,arg2,type3,arg3,type4,arg4,  \</span>
+<span class='curline'><a href='../S/525.html#L1976'>type</a>             1976 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       type LSS_NAME(name)(type1 arg1, type2 arg2, type3 arg3, type4 arg4,     \</span>
+<span class='curline'><a href='../S/525.html#L1980'>type</a>             1980 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         LSS_BODY(type, name, "+r", "r"(__r4), "r"(__r5), "r"(__r6),           \</span>
+<span class='curline'><a href='../S/525.html#L2122'>type</a>             2122 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define LSS_BODY(nr, type, name, args...)                                 \</span>
+<span class='curline'><a href='../S/525.html#L2147'>type</a>             2147 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         LSS_RETURN(type, __sc_ret, __sc_err)</span>
+<span class='curline'><a href='../S/525.html#L2149'>type</a>             2149 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall0(type, name)                                             \</span>
+<span class='curline'><a href='../S/525.html#L2150'>type</a>             2150 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h        type LSS_NAME(name)(void) {                                            \</span>
+<span class='curline'><a href='../S/525.html#L2151'>type</a>             2151 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h           LSS_BODY(0, type, name);                                            \</span>
+<span class='curline'><a href='../S/525.html#L2154'>type</a>             2154 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall1(type, name, type1, arg1)                                \</span>
+<span class='curline'><a href='../S/525.html#L2155'>type</a>             2155 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h        type LSS_NAME(name)(type1 arg1) {                                      \</span>
+<span class='curline'><a href='../S/525.html#L2156'>type</a>             2156 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h           LSS_BODY(1, type, name, arg1);                                      \</span>
+<span class='curline'><a href='../S/525.html#L2159'>type</a>             2159 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall2(type, name, type1, arg1, type2, arg2)                   \</span>
+<span class='curline'><a href='../S/525.html#L2160'>type</a>             2160 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h        type LSS_NAME(name)(type1 arg1, type2 arg2) {                          \</span>
+<span class='curline'><a href='../S/525.html#L2161'>type</a>             2161 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h           LSS_BODY(2, type, name, arg1, arg2);                                \</span>
+<span class='curline'><a href='../S/525.html#L2164'>type</a>             2164 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall3(type, name, type1, arg1, type2, arg2, type3, arg3)      \</span>
+<span class='curline'><a href='../S/525.html#L2165'>type</a>             2165 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h        type LSS_NAME(name)(type1 arg1, type2 arg2, type3 arg3) {              \</span>
+<span class='curline'><a href='../S/525.html#L2166'>type</a>             2166 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h           LSS_BODY(3, type, name, arg1, arg2, arg3);                          \</span>
+<span class='curline'><a href='../S/525.html#L2169'>type</a>             2169 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall4(type, name, type1, arg1, type2, arg2, type3, arg3,      \</span>
+<span class='curline'><a href='../S/525.html#L2171'>type</a>             2171 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h        type LSS_NAME(name)(type1 arg1, type2 arg2, type3 arg3, type4 arg4) {  \</span>
+<span class='curline'><a href='../S/525.html#L2172'>type</a>             2172 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h           LSS_BODY(4, type, name, arg1, arg2, arg3, arg4);                    \</span>
+<span class='curline'><a href='../S/525.html#L2175'>type</a>             2175 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall5(type, name, type1, arg1, type2, arg2, type3, arg3,      \</span>
+<span class='curline'><a href='../S/525.html#L2177'>type</a>             2177 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h        type LSS_NAME(name)(type1 arg1, type2 arg2, type3 arg3, type4 arg4,    \</span>
+<span class='curline'><a href='../S/525.html#L2179'>type</a>             2179 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h           LSS_BODY(5, type, name, arg1, arg2, arg3, arg4, arg5);              \</span>
+<span class='curline'><a href='../S/525.html#L2182'>type</a>             2182 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define _syscall6(type, name, type1, arg1, type2, arg2, type3, arg3,      \</span>
+<span class='curline'><a href='../S/525.html#L2184'>type</a>             2184 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h        type LSS_NAME(name)(type1 arg1, type2 arg2, type3 arg3, type4 arg4,    \</span>
+<span class='curline'><a href='../S/525.html#L2186'>type</a>             2186 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h           LSS_BODY(6, type, name, arg1, arg2, arg3, arg4, arg5, arg6);        \</span>
+<span class='curline'><a href='../S/525.html#L2763'>type</a>             2763 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     #define LSS_SC_BODY(nr, type, opt, args...)                               \</span>
+<span class='curline'><a href='../S/525.html#L2793'>type</a>             2793 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         LSS_RETURN(type, __sc_ret, __sc_err)</span>
+<span class='curline'><a href='../S/525.html#L2820'>type</a>             2820 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     LSS_INLINE int LSS_NAME(socket)(int domain, int type, int protocol) {</span>
+<span class='curline'><a href='../S/525.html#L2821'>type</a>             2821 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       LSS_SC_BODY(3, int, 1, domain, type, protocol);</span>
+<span class='curline'><a href='../S/525.html#L2824'>type</a>             2824 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     LSS_INLINE int LSS_NAME(socketpair)(int d, int type, int protocol,</span>
+<span class='curline'><a href='../S/525.html#L2826'>type</a>             2826 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       LSS_SC_BODY(4, int, 8, d, type, protocol, sv);</span>
+<span class='curline'><a href='../S/525.html#L2882'>type</a>             2882 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     LSS_INLINE int LSS_NAME(socket)(int domain, int type, int protocol) {</span>
+<span class='curline'><a href='../S/525.html#L2885'>type</a>             2885 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         (unsigned long) type,</span>
+<span class='curline'><a href='../S/525.html#L2891'>type</a>             2891 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     LSS_INLINE int LSS_NAME(socketpair)(int d, int type, int protocol,</span>
+<span class='curline'><a href='../S/525.html#L2895'>type</a>             2895 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         (unsigned long) type,</span>
+<span class='curline'><a href='../S/547.html#L138'>type</a>              138 third_party/google-perftools-1.8.3/src/base/vdso_support.cc                                int type,</span>
+<span class='curline'><a href='../S/547.html#L140'>type</a>              140 third_party/google-perftools-1.8.3/src/base/vdso_support.cc   return image_.LookupSymbol(name, version, type, info);</span>
+<span class='curline'><a href='../S/555.html#L332'>type</a>              332 third_party/google-perftools-1.8.3/src/debugallocation.cc   static const char* AllocName(int type) {</span>
+<span class='curline'><a href='../S/555.html#L333'>type</a>              333 third_party/google-perftools-1.8.3/src/debugallocation.cc     return kAllocName[type &amp; kAllocTypeMask];</span>
+<span class='curline'><a href='../S/555.html#L336'>type</a>              336 third_party/google-perftools-1.8.3/src/debugallocation.cc   static const char* DeallocName(int type) {</span>
+<span class='curline'><a href='../S/555.html#L337'>type</a>              337 third_party/google-perftools-1.8.3/src/debugallocation.cc     return kDeallocName[type &amp; kAllocTypeMask];</span>
+<span class='curline'><a href='../S/555.html#L373'>type</a>              373 third_party/google-perftools-1.8.3/src/debugallocation.cc   void Initialize(size_t size, int type) {</span>
+<span class='curline'><a href='../S/555.html#L381'>type</a>              381 third_party/google-perftools-1.8.3/src/debugallocation.cc     alloc_map_-&gt;Insert(data_addr(), type);</span>
+<span class='curline'><a href='../S/555.html#L385'>type</a>              385 third_party/google-perftools-1.8.3/src/debugallocation.cc     alloc_type_ = type;</span>
+<span class='curline'><a href='../S/555.html#L398'>type</a>              398 third_party/google-perftools-1.8.3/src/debugallocation.cc   size_t CheckAndClear(int type) {</span>
+<span class='curline'><a href='../S/555.html#L400'>type</a>              400 third_party/google-perftools-1.8.3/src/debugallocation.cc     CheckLocked(type);</span>
+<span class='curline'><a href='../S/555.html#L405'>type</a>              405 third_party/google-perftools-1.8.3/src/debugallocation.cc     alloc_map_-&gt;Insert(data_addr(), type | kDeallocatedTypeBit);</span>
+<span class='curline'><a href='../S/555.html#L413'>type</a>              413 third_party/google-perftools-1.8.3/src/debugallocation.cc   void CheckLocked(int type) const {</span>
+<span class='curline'><a href='../S/555.html#L451'>type</a>              451 third_party/google-perftools-1.8.3/src/debugallocation.cc     if (alloc_type_ != type) {</span>
+<span class='curline'><a href='../S/555.html#L460'>type</a>              460 third_party/google-perftools-1.8.3/src/debugallocation.cc                      data_addr(), AllocName(alloc_type_), DeallocName(type));</span>
+<span class='curline'><a href='../S/555.html#L483'>type</a>              483 third_party/google-perftools-1.8.3/src/debugallocation.cc   static MallocBlock* Allocate(size_t size, int type) {</span>
+<span class='curline'><a href='../S/555.html#L519'>type</a>              519 third_party/google-perftools-1.8.3/src/debugallocation.cc       b = (MallocBlock*) (type == kMallocType ?</span>
+<span class='curline'><a href='../S/555.html#L524'>type</a>              524 third_party/google-perftools-1.8.3/src/debugallocation.cc     b = (MallocBlock*) (type == kMallocType ?</span>
+<span class='curline'><a href='../S/555.html#L535'>type</a>              535 third_party/google-perftools-1.8.3/src/debugallocation.cc       b-&gt;Initialize(size, type);</span>
+<span class='curline'><a href='../S/555.html#L540'>type</a>              540 third_party/google-perftools-1.8.3/src/debugallocation.cc   void Deallocate(int type) {</span>
+<span class='curline'><a href='../S/555.html#L543'>type</a>              543 third_party/google-perftools-1.8.3/src/debugallocation.cc       int size = CheckAndClear(type);</span>
+<span class='curline'><a href='../S/555.html#L556'>type</a>              556 third_party/google-perftools-1.8.3/src/debugallocation.cc       const size_t size = CheckAndClear(type);</span>
+<span class='curline'><a href='../S/555.html#L743'>type</a>              743 third_party/google-perftools-1.8.3/src/debugallocation.cc   void Check(int type) {</span>
+<span class='curline'><a href='../S/555.html#L745'>type</a>              745 third_party/google-perftools-1.8.3/src/debugallocation.cc     CheckLocked(type);</span>
+<span class='curline'><a href='../S/555.html#L772'>type</a>              772 third_party/google-perftools-1.8.3/src/debugallocation.cc   static void CheckCallback(const void* ptr, int* type, int dummy) {</span>
+<span class='curline'><a href='../S/555.html#L773'>type</a>              773 third_party/google-perftools-1.8.3/src/debugallocation.cc     if ((*type &amp; kDeallocatedTypeBit) == 0) {</span>
+<span class='curline'><a href='../S/555.html#L774'>type</a>              774 third_party/google-perftools-1.8.3/src/debugallocation.cc       FromRawPointer(ptr)-&gt;CheckLocked(*type);</span>
+<span class='curline'><a href='../S/555.html#L783'>type</a>              783 third_party/google-perftools-1.8.3/src/debugallocation.cc   static void StatsCallback(const void* ptr, int* type, int dummy) {</span>
+<span class='curline'><a href='../S/555.html#L784'>type</a>              784 third_party/google-perftools-1.8.3/src/debugallocation.cc     if ((*type &amp; kDeallocatedTypeBit) == 0) {</span>
+<span class='curline'><a href='../S/555.html#L786'>type</a>              786 third_party/google-perftools-1.8.3/src/debugallocation.cc       b-&gt;CheckLocked(*type);</span>
+<span class='curline'><a href='../S/555.html#L984'>type</a>              984 third_party/google-perftools-1.8.3/src/debugallocation.cc static inline void* DebugAllocate(size_t size, int type) {</span>
+<span class='curline'><a href='../S/555.html#L985'>type</a>              985 third_party/google-perftools-1.8.3/src/debugallocation.cc   MallocBlock* ptr = MallocBlock::Allocate(size, type);</span>
+<span class='curline'><a href='../S/555.html#L991'>type</a>              991 third_party/google-perftools-1.8.3/src/debugallocation.cc static inline void DebugDeallocate(void* ptr, int type) {</span>
+<span class='curline'><a href='../S/555.html#L995'>type</a>              995 third_party/google-perftools-1.8.3/src/debugallocation.cc   if (ptr)  MallocBlock::FromRawPointer(ptr)-&gt;Deallocate(type);</span>
+<span class='curline'><a href='../S/555.html#L1067'>type</a>             1067 third_party/google-perftools-1.8.3/src/debugallocation.cc     i.type = kDebugFreeQueue;</span>
+<span class='curline'><a href='../S/559.html#L318'>type</a>              318 third_party/google-perftools-1.8.3/src/google/malloc_extension.h     const char* type;</span>
+<span class='curline'><a href='../S/559.html#L391'>type</a>              391 third_party/google-perftools-1.8.3/src/google/malloc_extension.h   Type type;            // Type of this range</span>
+<span class='curline'><a href='../S/591.html#L376'>type</a>              376 third_party/google-perftools-1.8.3/src/page_heap.cc       r-&gt;type = base::MallocRange::INUSE;</span>
+<span class='curline'><a href='../S/591.html#L385'>type</a>              385 third_party/google-perftools-1.8.3/src/page_heap.cc       r-&gt;type = base::MallocRange::FREE;</span>
+<span class='curline'><a href='../S/591.html#L388'>type</a>              388 third_party/google-perftools-1.8.3/src/page_heap.cc       r-&gt;type = base::MallocRange::UNMAPPED;</span>
+<span class='curline'><a href='../S/591.html#L391'>type</a>              391 third_party/google-perftools-1.8.3/src/page_heap.cc       r-&gt;type = base::MallocRange::UNKNOWN;</span>
+<span class='curline'><a href='../S/626.html#L798'>type</a>              798 third_party/google-perftools-1.8.3/src/tcmalloc.cc       i.type = kCentralCacheType;</span>
+<span class='curline'><a href='../S/626.html#L804'>type</a>              804 third_party/google-perftools-1.8.3/src/tcmalloc.cc       i.type = kTransferCacheType;</span>
+<span class='curline'><a href='../S/626.html#L826'>type</a>              826 third_party/google-perftools-1.8.3/src/tcmalloc.cc       i.type = kThreadCacheType;</span>
+<span class='curline'><a href='../S/626.html#L841'>type</a>              841 third_party/google-perftools-1.8.3/src/tcmalloc.cc     span_info.type = kLargeSpanType;</span>
+<span class='curline'><a href='../S/626.html#L848'>type</a>              848 third_party/google-perftools-1.8.3/src/tcmalloc.cc     span_info.type = kLargeUnmappedSpanType;</span>
+<span class='curline'><a href='../S/626.html#L858'>type</a>              858 third_party/google-perftools-1.8.3/src/tcmalloc.cc       i.type = kPageHeapType;</span>
+<span class='curline'><a href='../S/626.html#L862'>type</a>              862 third_party/google-perftools-1.8.3/src/tcmalloc.cc       i.type = kPageHeapUnmappedType;</span>
+<span class='curline'><a href='../S/637.html#L424'>type</a>              424 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc static void VerifyLeaks(HeapLeakChecker* check, CheckType type,</span>
+<span class='curline'><a href='../S/637.html#L428'>type</a>              428 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     type == NO_LEAKS ? RUN_SILENT(*check, BriefNoLeaks)</span>
+<span class='curline'><a href='../S/664.html#L204'>type</a>              204 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     int         type;</span>
+<span class='curline'><a href='../S/664.html#L223'>type</a>              223 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   void AddType(int type, int weight, const char* name);</span>
+<span class='curline'><a href='../S/664.html#L253'>type</a>              253 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc void TestHarness::AddType(int type, int weight, const char* name) {</span>
+<span class='curline'><a href='../S/664.html#L256'>type</a>              256 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   t.type = type;</span>
+<span class='curline'><a href='../S/664.html#L282'>type</a>              282 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   return (*types_)[i].type;</span>
+<span class='curline'><a href='../S/664.html#L811'>type</a>              811 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc       CHECK(r-&gt;type == base::MallocRange::FREE ||</span>
+<span class='curline'><a href='../S/664.html#L812'>type</a>              812 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc             r-&gt;type == base::MallocRange::UNMAPPED);</span>
+<span class='curline'><a href='../S/664.html#L814'>type</a>              814 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc       CHECK_EQ(r-&gt;type, state-&gt;expected_type);</span>
+<span class='curline'><a href='../S/664.html#L824'>type</a>              824 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc static void CheckRangeCallback(void* ptr, base::MallocRange::Type type,</span>
+<span class='curline'><a href='../S/664.html#L828'>type</a>              828 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   state.expected_type = type;</span>
+<span class='curline'><a href='../S/684.html#L355'>type</a>              355 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc                                                 SIZE_T size, DWORD type,</span>
+<span class='curline'><a href='../S/684.html#L358'>type</a>              358 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc                                              SIZE_T size, DWORD type);</span>
+<span class='curline'><a href='../S/684.html#L934'>type</a>              934 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc                                                     SIZE_T size, DWORD type,</span>
+<span class='curline'><a href='../S/684.html#L938'>type</a>              938 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc                        process, address, size, type, protect);</span>
+<span class='curline'><a href='../S/684.html#L940'>type</a>              940 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc   MallocHook::InvokeMmapHook(result, address, size, protect, type, -1, 0);</span>
+<span class='curline'><a href='../S/684.html#L945'>type</a>              945 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc                                                  SIZE_T size, DWORD type) {</span>
+<span class='curline'><a href='../S/684.html#L949'>type</a>              949 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc               process, address, size, type);</span>
+<span class='curline'><a href='../S/686.html#L380'>type</a>              380 third_party/google-perftools-1.8.3/src/windows/port.h inline FILE *popen(const char *command, const char *type) {</span>
+<span class='curline'><a href='../S/686.html#L381'>type</a>              381 third_party/google-perftools-1.8.3/src/windows/port.h   return _popen(command, type);</span>
+<span class='curline'><a href='../S/730.html#L161'>type</a>              161 third_party/zdelta-2.1/zutil.h #  define fdopen(fd,type)  _fdopen(fd,type)</span>
+</pre>
+</body>
+</html>

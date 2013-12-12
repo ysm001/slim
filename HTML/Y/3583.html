@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>module_base</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/671.html#L60'>module_base</a>        60 third_party/google-perftools-1.8.3/src/windows/addr2line-pdb.c   ULONG64 module_base;</span>
+<span class='curline'><a href='../S/671.html#L121'>module_base</a>       121 third_party/google-perftools-1.8.3/src/windows/addr2line-pdb.c   module_base = SymLoadModuleEx(process, NULL, filename, NULL, 0, 0, NULL, 0);</span>
+<span class='curline'><a href='../S/671.html#L122'>module_base</a>       122 third_party/google-perftools-1.8.3/src/windows/addr2line-pdb.c   if (!module_base) {</span>
+<span class='curline'><a href='../S/671.html#L160'>module_base</a>       160 third_party/google-perftools-1.8.3/src/windows/addr2line-pdb.c   SymUnloadModule64(process, module_base);</span>
+<span class='curline'><a href='../S/682.html#L69'>module_base</a>        69 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c   ULONG64 module_base;</span>
+<span class='curline'><a href='../S/682.html#L90'>module_base</a>        90 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c   if (symbol_info-&gt;Address &lt; ctx-&gt;module_base ||</span>
+<span class='curline'><a href='../S/682.html#L116'>module_base</a>       116 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c static void ShowSymbolInfo(HANDLE process, ULONG64 module_base) {</span>
+<span class='curline'><a href='../S/682.html#L120'>module_base</a>       120 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c   printf("Load Address: %I64x\n", module_base);</span>
+<span class='curline'><a href='../S/682.html#L123'>module_base</a>       123 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c   getmoduleinfo_rv = SymGetModuleInfo64(process, module_base, &amp;module_info);</span>
+<span class='curline'><a href='../S/682.html#L190'>module_base</a>       190 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c   ULONG64 module_base;</span>
+<span class='curline'><a href='../S/682.html#L244'>module_base</a>       244 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c   module_base = SymLoadModuleEx(process, NULL, filename, NULL, 0, 0, NULL, 0);</span>
+<span class='curline'><a href='../S/682.html#L245'>module_base</a>       245 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c   if (!module_base) {</span>
+<span class='curline'><a href='../S/682.html#L254'>module_base</a>       254 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c   ShowSymbolInfo(process, module_base);</span>
+<span class='curline'><a href='../S/682.html#L257'>module_base</a>       257 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c   ctx.module_base = module_base;</span>
+<span class='curline'><a href='../S/682.html#L258'>module_base</a>       258 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c   if (!SymEnumSymbols(process, module_base, NULL, EnumSymProc, &amp;ctx)) {</span>
+<span class='curline'><a href='../S/682.html#L270'>module_base</a>       270 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c   SymUnloadModule64(process, module_base);</span>
+</pre>
+</body>
+</html>

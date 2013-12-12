@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>filename_prefix</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/571.html#L165'>filename_prefix</a>   165 third_party/google-perftools-1.8.3/src/heap-profiler.cc static char* filename_prefix = NULL;  // Prefix used for profile file names</span>
+<span class='curline'><a href='../S/571.html#L245'>filename_prefix</a>   245 third_party/google-perftools-1.8.3/src/heap-profiler.cc   if (filename_prefix == NULL) return;  // we do not yet need dumping</span>
+<span class='curline'><a href='../S/571.html#L253'>filename_prefix</a>   253 third_party/google-perftools-1.8.3/src/heap-profiler.cc            filename_prefix, dump_count, HeapProfileTable::kFileExt);</span>
+<span class='curline'><a href='../S/571.html#L488'>filename_prefix</a>   488 third_party/google-perftools-1.8.3/src/heap-profiler.cc   RAW_DCHECK(filename_prefix == NULL, "");</span>
+<span class='curline'><a href='../S/571.html#L490'>filename_prefix</a>   490 third_party/google-perftools-1.8.3/src/heap-profiler.cc   filename_prefix = reinterpret_cast&lt;char*&gt;(ProfilerMalloc(prefix_length + 1));</span>
+<span class='curline'><a href='../S/571.html#L491'>filename_prefix</a>   491 third_party/google-perftools-1.8.3/src/heap-profiler.cc   memcpy(filename_prefix, prefix, prefix_length);</span>
+<span class='curline'><a href='../S/571.html#L492'>filename_prefix</a>   492 third_party/google-perftools-1.8.3/src/heap-profiler.cc   filename_prefix[prefix_length] = '\0';</span>
+<span class='curline'><a href='../S/571.html#L527'>filename_prefix</a>   527 third_party/google-perftools-1.8.3/src/heap-profiler.cc   ProfilerFree(filename_prefix);</span>
+<span class='curline'><a href='../S/571.html#L528'>filename_prefix</a>   528 third_party/google-perftools-1.8.3/src/heap-profiler.cc   filename_prefix = NULL;</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,639 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>src/rule.c</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/733.html'>src</a>/rule.c</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L52'>[^]</a><a href='#L568'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L52' title='Defined at 52.'>make_rule</a></li>
+<li><a href='#L70' title='Defined at 70.'>lmn_rule_make</a></li>
+<li><a href='#L76' title='Defined at 76.'>lmn_rule_make_dummy</a></li>
+<li><a href='#L82' title='Defined at 82.'>lmn_rule_make_translated</a></li>
+<li><a href='#L88' title='Defined at 88.'>lmn_rule_copy</a></li>
+<li><a href='#L109' title='Defined at 109.'>lmn_rule_free</a></li>
+<li><a href='#L118' title='Defined at 118.'>dummy_rule</a></li>
+<li><a href='#L137' title='Defined at 137.'>lmn_gen_ruleset_id</a></li>
+<li><a href='#L145' title='Defined at 145.'>lmn_ruleset_make</a></li>
+<li><a href='#L162' title='Defined at 162.'>lmn_ruleset_free</a></li>
+<li><a href='#L174' title='Defined at 174.'>lmn_ruleset_put</a></li>
+<li><a href='#L191' title='Defined at 191.'>init_ruleset_table</a></li>
+<li><a href='#L201' title='Defined at 201.'>destroy_ruleset_table</a></li>
+<li><a href='#L215' title='Defined at 215.'>lmn_set_ruleset</a></li>
+<li><a href='#L232' title='Defined at 232.'>lmn_ruleset_history_num</a></li>
+<li><a href='#L252' title='Defined at 252.'>lmn_ruleset_copied_free</a></li>
+<li><a href='#L265' title='Defined at 265.'>lmn_ruleset_copy_object</a></li>
+<li><a href='#L284' title='Defined at 284.'>ruleset_cp_is_need_object</a></li>
+<li><a href='#L295' title='Defined at 295.'>lmn_ruleset_copy</a></li>
+<li><a href='#L304' title='Defined at 304.'>lmn_ruleset_space</a></li>
+<li><a href='#L325' title='Defined at 325.'>lmn_ruleset_equals</a></li>
+<li><a href='#L376' title='Defined at 376.'>lmn_rulesets_contains</a></li>
+<li><a href='#L396' title='Defined at 396.'>lmn_rulesets_equals</a></li>
+<li><a href='#L479' title='Defined at 479.'>init_system_rulset</a></li>
+<li><a href='#L484' title='Defined at 484.'>destroy_system_ruleset</a></li>
+<li><a href='#L491' title='Defined at 491.'>lmn_add_system_rule</a></li>
+<li><a href='#L503' title='Defined at 503.'>init_initial_rulset</a></li>
+<li><a href='#L509' title='Defined at 509.'>destroy_initial_ruleset</a></li>
+<li><a href='#L517' title='Defined at 517.'>lmn_add_initial_rule</a></li>
+<li><a href='#L522' title='Defined at 522.'>lmn_add_initial_system_rule</a></li>
+<li><a href='#L533' title='Defined at 533.'>init_module_table</a></li>
+<li><a href='#L538' title='Defined at 538.'>destroy_module_table</a></li>
+<li><a href='#L544' title='Defined at 544.'>lmn_set_module</a></li>
+<li><a href='#L550' title='Defined at 550.'>lmn_get_module_ruleset</a></li>
+<li><a href='#L560' title='Defined at 560.'>init_rules</a></li>
+<li><a href='#L568' title='Defined at 568.'>destroy_rules</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>/*</em>
+<a id='L2' name='L2' /><em class='comment'> * rule.c</em>
+<a id='L3' name='L3' /><em class='comment'> *</em>
+<a id='L4' name='L4' /><em class='comment'> *   Copyright (c) 2008, Ueda Laboratory LMNtal Group &lt;lmntal@ueda.info.waseda.ac.jp&gt;</em>
+<a id='L5' name='L5' /><em class='comment'> *   All rights reserved.</em>
+<a id='L6' name='L6' /><em class='comment'> *</em>
+<a id='L7' name='L7' /><em class='comment'> *   Redistribution and use in source and binary forms, with or without</em>
+<a id='L8' name='L8' /><em class='comment'> *   modification, are permitted provided that the following conditions are</em>
+<a id='L9' name='L9' /><em class='comment'> *   met:</em>
+<a id='L10' name='L10' /><em class='comment'> *</em>
+<a id='L11' name='L11' /><em class='comment'> *    1. Redistributions of source code must retain the above copyright</em>
+<a id='L12' name='L12' /><em class='comment'> *       notice, this list of conditions and the following disclaimer.</em>
+<a id='L13' name='L13' /><em class='comment'> *</em>
+<a id='L14' name='L14' /><em class='comment'> *    2. Redistributions in binary form must reproduce the above copyright</em>
+<a id='L15' name='L15' /><em class='comment'> *       notice, this list of conditions and the following disclaimer in</em>
+<a id='L16' name='L16' /><em class='comment'> *       the documentation and/or other materials provided with the</em>
+<a id='L17' name='L17' /><em class='comment'> *       distribution.</em>
+<a id='L18' name='L18' /><em class='comment'> *</em>
+<a id='L19' name='L19' /><em class='comment'> *    3. Neither the name of the Ueda Laboratory LMNtal Group nor the</em>
+<a id='L20' name='L20' /><em class='comment'> *       names of its contributors may be used to endorse or promote</em>
+<a id='L21' name='L21' /><em class='comment'> *       products derived from this software without specific prior</em>
+<a id='L22' name='L22' /><em class='comment'> *       written permission.</em>
+<a id='L23' name='L23' /><em class='comment'> *</em>
+<a id='L24' name='L24' /><em class='comment'> *   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L25' name='L25' /><em class='comment'> *   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L26' name='L26' /><em class='comment'> *   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L27' name='L27' /><em class='comment'> *   A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L28' name='L28' /><em class='comment'> *   OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L29' name='L29' /><em class='comment'> *   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L30' name='L30' /><em class='comment'> *   LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L31' name='L31' /><em class='comment'> *   DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L32' name='L32' /><em class='comment'> *   THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L33' name='L33' /><em class='comment'> *   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L34' name='L34' /><em class='comment'> *   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L35' name='L35' /><em class='comment'> *</em>
+<a id='L36' name='L36' /><em class='comment'> * $Id: rule.c,v 1.7 2008/10/16 18:12:55 sasaki Exp $</em>
+<a id='L37' name='L37' /><em class='comment'> */</em>
+<a id='L38' name='L38' />
+<a id='L39' name='L39' /><em class='sharp'>#include</em> "<a href='366.html'>rule.h</a>"
+<a id='L40' name='L40' /><em class='sharp'>#include</em> "<a href='383.html'>system_ruleset.h</a>"
+<a id='L41' name='L41' />
+<a id='L42' name='L42' /><em class='comment'>/*----------------------------------------------------------------------</em>
+<a id='L43' name='L43' /><em class='comment'> * Rule</em>
+<a id='L44' name='L44' /><em class='comment'> */</em>
+<a id='L45' name='L45' />
+<a id='L46' name='L46' /><em class='comment'>/* prototypes */</em>
+<a id='L47' name='L47' /><a href='../D/1677.html' title='Multiple defined in 2 places.'>LmnRule</a> <a href='../S/365.html#L52' title='Defined at 52 in src/rule.c.'>make_rule</a>(<a href='../S/347.html#L128' title='Defined at 128 in src/lmntal.h.'>LmnRuleInstr</a> <a href='../Y/2848.html' title='Multiple used in 16 places.'>inst_seq</a>, <strong class='reserved'>int</strong> <a href='../Y/2849.html' title='Multiple used in 9 places.'>inst_seq_len</a>, <a href='../Y/446.html' title='Multiple used in 11 places.'>LmnTranslated</a> <a href='../Y/5462.html' title='Multiple used in 12 places.'>translated</a>, <a href='../S/347.html#L126' title='Defined at 126 in src/lmntal.h.'>lmn_interned_str</a> <a href='../Y/3665.html' title='Multiple used in 438 places.'>name</a>);
+<a id='L48' name='L48' /><strong class='reserved'>void</strong> <a href='../S/365.html#L560' title='Defined at 560 in src/rule.c.'>init_rules</a>(<strong class='reserved'>void</strong>);
+<a id='L49' name='L49' /><strong class='reserved'>void</strong> <a href='../S/365.html#L568' title='Defined at 568 in src/rule.c.'>destroy_rules</a>(<strong class='reserved'>void</strong>);
+<a id='L50' name='L50' />
+<a id='L51' name='L51' /><em class='comment'>/* create new rule */</em>
+<a id='L52' name='L52' /><a href='../D/1677.html' title='Multiple defined in 2 places.'>LmnRule</a> <a href='../R/4085.html' title='Multiple refered from 5 places.'>make_rule</a>(<a href='../S/347.html#L128' title='Defined at 128 in src/lmntal.h.'>LmnRuleInstr</a> <a href='../Y/2848.html' title='Multiple used in 16 places.'>inst_seq</a>, <strong class='reserved'>int</strong> <a href='../Y/2849.html' title='Multiple used in 9 places.'>inst_seq_len</a>, <a href='../Y/446.html' title='Multiple used in 11 places.'>LmnTranslated</a> <a href='../Y/5462.html' title='Multiple used in 12 places.'>translated</a>, <a href='../S/347.html#L126' title='Defined at 126 in src/lmntal.h.'>lmn_interned_str</a> <a href='../Y/3665.html' title='Multiple used in 438 places.'>name</a>)
+<a id='L53' name='L53' /><em class='brace'>{</em>
+<a id='L54' name='L54' />  <a href='../D/1677.html' title='Multiple defined in 2 places.'>LmnRule</a> <a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a> = <a href='../S/347.html#L218' title='Defined at 218 in src/lmntal.h.'>LMN_MALLOC</a>(<strong class='reserved'>struct</strong> <a href='../D/1677.html' title='Multiple defined in 2 places.'>LmnRule</a>);
+<a id='L55' name='L55' />
+<a id='L56' name='L56' />  <a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>-&gt;<a href='../Y/2848.html' title='Multiple used in 16 places.'>inst_seq</a> = <a href='../Y/2848.html' title='Multiple used in 16 places.'>inst_seq</a>;
+<a id='L57' name='L57' />  <a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>-&gt;<a href='../Y/2849.html' title='Multiple used in 9 places.'>inst_seq_len</a> = <a href='../Y/2849.html' title='Multiple used in 9 places.'>inst_seq_len</a>;  <em class='comment'>/* inst_seqの長さ */</em>
+<a id='L58' name='L58' />  <a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>-&gt;<a href='../Y/5462.html' title='Multiple used in 12 places.'>translated</a> = <a href='../Y/5462.html' title='Multiple used in 12 places.'>translated</a>;
+<a id='L59' name='L59' />  <a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>-&gt;<a href='../Y/3665.html' title='Multiple used in 438 places.'>name</a> = <a href='../Y/3665.html' title='Multiple used in 438 places.'>name</a>;                  <em class='comment'>/* ルール名 */</em>
+<a id='L60' name='L60' />  <a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>-&gt;<a href='../Y/2913.html' title='Multiple used in 3 places.'>is_invisible</a> = <a href='../S/347.html#L66' title='Defined at 66 in src/lmntal.h.'>FALSE</a>; <em class='comment'>/* ルールの可視性を決定するコンパイラ部分の実装が完成するまでは，すべてのルールをvisibleに固定しておく */</em>
+<a id='L61' name='L61' />  <a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>-&gt;<a href='../Y/4218.html' title='Multiple used in 5 places.'>pre_id</a> = <a href='../S/379.html#L44' title='Defined at 44 in src/symbol.h.'>ANONYMOUS</a>;
+<a id='L62' name='L62' />  <a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>-&gt;<a href='../Y/2707.html' title='Multiple used in 5 places.'>history_tbl</a> = <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>;
+<a id='L63' name='L63' />  <em class='comment'>//rule-&gt;cost = 0U;</em>
+<a id='L64' name='L64' />
+<a id='L65' name='L65' />  <strong class='reserved'>return</strong> <a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>;
+<a id='L66' name='L66' /><em class='brace'>}</em>
+<a id='L67' name='L67' />
+<a id='L68' name='L68' /><em class='comment'>/* create new rule with byte sequence of instructions.</em>
+<a id='L69' name='L69' /><em class='comment'>   inst_seq_sizeはinst_seqの長さ(バイト単位)を表す */</em>
+<a id='L70' name='L70' /><a href='../D/1677.html' title='Multiple defined in 2 places.'>LmnRule</a> <a href='../R/3980.html' title='Multiple refered from 2 places.'>lmn_rule_make</a>(<a href='../S/347.html#L101' title='Defined at 101 in src/lmntal.h.'>BYTE</a> *<a href='../Y/2848.html' title='Multiple used in 16 places.'>inst_seq</a>, <strong class='reserved'>int</strong> <a href='../Y/2849.html' title='Multiple used in 9 places.'>inst_seq_len</a>, <a href='../S/347.html#L126' title='Defined at 126 in src/lmntal.h.'>lmn_interned_str</a> <a href='../Y/3665.html' title='Multiple used in 438 places.'>name</a>)
+<a id='L71' name='L71' /><em class='brace'>{</em>
+<a id='L72' name='L72' />  <strong class='reserved'>return</strong> <a href='../S/365.html#L52' title='Defined at 52 in src/rule.c.'>make_rule</a>(<a href='../Y/2848.html' title='Multiple used in 16 places.'>inst_seq</a>, <a href='../Y/2849.html' title='Multiple used in 9 places.'>inst_seq_len</a>, <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>, <a href='../Y/3665.html' title='Multiple used in 438 places.'>name</a>);
+<a id='L73' name='L73' /><em class='brace'>}</em>
+<a id='L74' name='L74' />
+<a id='L75' name='L75' /><em class='comment'>/* 中身のない、名前だけを持つルールを生成する */</em>
+<a id='L76' name='L76' /><a href='../D/1677.html' title='Multiple defined in 2 places.'>LmnRule</a> lmn_rule_make_dummy(<a href='../S/347.html#L126' title='Defined at 126 in src/lmntal.h.'>lmn_interned_str</a> <a href='../Y/3665.html' title='Multiple used in 438 places.'>name</a>)
+<a id='L77' name='L77' /><em class='brace'>{</em>
+<a id='L78' name='L78' />  <strong class='reserved'>return</strong> <a href='../S/365.html#L52' title='Defined at 52 in src/rule.c.'>make_rule</a>(<a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>, -1, <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>, <a href='../Y/3665.html' title='Multiple used in 438 places.'>name</a>);
+<a id='L79' name='L79' /><em class='brace'>}</em>
+<a id='L80' name='L80' />
+<a id='L81' name='L81' /><em class='comment'>/* create new rule with a translated function */</em>
+<a id='L82' name='L82' /><a href='../D/1677.html' title='Multiple defined in 2 places.'>LmnRule</a> <a href='../R/3981.html' title='Multiple refered from 10 places.'>lmn_rule_make_translated</a>(<a href='../Y/446.html' title='Multiple used in 11 places.'>LmnTranslated</a> <a href='../Y/5462.html' title='Multiple used in 12 places.'>translated</a>, <a href='../S/347.html#L126' title='Defined at 126 in src/lmntal.h.'>lmn_interned_str</a> <a href='../Y/3665.html' title='Multiple used in 438 places.'>name</a>)
+<a id='L83' name='L83' /><em class='brace'>{</em>
+<a id='L84' name='L84' />  <strong class='reserved'>return</strong> <a href='../S/365.html#L52' title='Defined at 52 in src/rule.c.'>make_rule</a>(<a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>, 0, <a href='../Y/5462.html' title='Multiple used in 12 places.'>translated</a>, <a href='../Y/3665.html' title='Multiple used in 438 places.'>name</a>);
+<a id='L85' name='L85' /><em class='brace'>}</em>
+<a id='L86' name='L86' />
+<a id='L87' name='L87' /><em class='comment'>/* ruleをコピーして新しいルールを作成する */</em>
+<a id='L88' name='L88' /><a href='../D/1677.html' title='Multiple defined in 2 places.'>LmnRule</a> <a href='../R/3972.html' title='Multiple refered from 6 places.'>lmn_rule_copy</a>(<a href='../D/1677.html' title='Multiple defined in 2 places.'>LmnRule</a> <a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>)
+<a id='L89' name='L89' /><em class='brace'>{</em>
+<a id='L90' name='L90' />  <a href='../D/1677.html' title='Multiple defined in 2 places.'>LmnRule</a> <a href='../Y/3753.html' title='Multiple used in 5 places.'>new_rule</a>;
+<a id='L91' name='L91' />  <a href='../S/347.html#L101' title='Defined at 101 in src/lmntal.h.'>BYTE</a> *<a href='../Y/2848.html' title='Multiple used in 16 places.'>inst_seq</a>;
+<a id='L92' name='L92' />
+<a id='L93' name='L93' />  <strong class='reserved'>if</strong> (<a href='../S/366.html#L97' title='Defined at 97 in src/rule.h.'>lmn_rule_get_inst_seq</a>(<a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>)) <em class='brace'>{</em>
+<a id='L94' name='L94' />    <a href='../Y/2848.html' title='Multiple used in 16 places.'>inst_seq</a> = <a href='../S/347.html#L216' title='Defined at 216 in src/lmntal.h.'>LMN_NALLOC</a>(<a href='../S/347.html#L101' title='Defined at 101 in src/lmntal.h.'>BYTE</a>, <a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>-&gt;<a href='../Y/2849.html' title='Multiple used in 9 places.'>inst_seq_len</a>);
+<a id='L95' name='L95' />    <a href='../Y/2848.html' title='Multiple used in 16 places.'>inst_seq</a> = <a href='../Y/3502.html' title='Multiple used in 35 places.'>memcpy</a>(<a href='../Y/2848.html' title='Multiple used in 16 places.'>inst_seq</a>, <a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>-&gt;<a href='../Y/2848.html' title='Multiple used in 16 places.'>inst_seq</a>, <a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>-&gt;<a href='../Y/2849.html' title='Multiple used in 9 places.'>inst_seq_len</a>);
+<a id='L96' name='L96' />  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L97' name='L97' />    <a href='../Y/2848.html' title='Multiple used in 16 places.'>inst_seq</a> = <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>;
+<a id='L98' name='L98' />  <em class='brace'>}</em>
+<a id='L99' name='L99' />
+<a id='L100' name='L100' />  <a href='../Y/3753.html' title='Multiple used in 5 places.'>new_rule</a> = <a href='../S/365.html#L52' title='Defined at 52 in src/rule.c.'>make_rule</a>(<a href='../Y/2848.html' title='Multiple used in 16 places.'>inst_seq</a>, <a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>-&gt;<a href='../Y/2849.html' title='Multiple used in 9 places.'>inst_seq_len</a>, <a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>-&gt;<a href='../Y/5462.html' title='Multiple used in 12 places.'>translated</a>, <a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>-&gt;<a href='../Y/3665.html' title='Multiple used in 438 places.'>name</a>);
+<a id='L101' name='L101' />  <strong class='reserved'>if</strong> (<a href='../S/366.html#L78' title='Defined at 78 in src/rule.h.'>lmn_rule_get_history_tbl</a>(<a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>)) <em class='brace'>{</em>
+<a id='L102' name='L102' />    <a href='../Y/3753.html' title='Multiple used in 5 places.'>new_rule</a>-&gt;<a href='../Y/2707.html' title='Multiple used in 5 places.'>history_tbl</a> = <a href='../S/404.html#L395' title='Defined at 395 in src/utility/st.c.'>st_copy</a>(<a href='../S/366.html#L78' title='Defined at 78 in src/rule.h.'>lmn_rule_get_history_tbl</a>(<a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>));
+<a id='L103' name='L103' />    <a href='../Y/3753.html' title='Multiple used in 5 places.'>new_rule</a>-&gt;<a href='../Y/4218.html' title='Multiple used in 5 places.'>pre_id</a> = <a href='../S/366.html#L82' title='Defined at 82 in src/rule.h.'>lmn_rule_get_pre_id</a>(<a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>);
+<a id='L104' name='L104' />  <em class='brace'>}</em>
+<a id='L105' name='L105' />  <strong class='reserved'>return</strong> <a href='../Y/3753.html' title='Multiple used in 5 places.'>new_rule</a>;
+<a id='L106' name='L106' /><em class='brace'>}</em>
+<a id='L107' name='L107' />
+<a id='L108' name='L108' /><em class='comment'>/* ruleとruleの要素を解放する */</em>
+<a id='L109' name='L109' /><strong class='reserved'>void</strong> <a href='../R/3973.html' title='Multiple refered from 4 places.'>lmn_rule_free</a>(<a href='../D/1677.html' title='Multiple defined in 2 places.'>LmnRule</a> <a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>)
+<a id='L110' name='L110' /><em class='brace'>{</em>
+<a id='L111' name='L111' />  <a href='../S/347.html#L220' title='Defined at 220 in src/lmntal.h.'>LMN_FREE</a>(<a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>-&gt;<a href='../Y/2848.html' title='Multiple used in 16 places.'>inst_seq</a>);
+<a id='L112' name='L112' />  <strong class='reserved'>if</strong> (<a href='../S/366.html#L78' title='Defined at 78 in src/rule.h.'>lmn_rule_get_history_tbl</a>(<a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>)) <em class='brace'>{</em>
+<a id='L113' name='L113' />    <a href='../S/404.html#L175' title='Defined at 175 in src/utility/st.c.'>st_free_table</a>(<a href='../S/366.html#L78' title='Defined at 78 in src/rule.h.'>lmn_rule_get_history_tbl</a>(<a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>));
+<a id='L114' name='L114' />  <em class='brace'>}</em>
+<a id='L115' name='L115' />  <a href='../S/347.html#L220' title='Defined at 220 in src/lmntal.h.'>LMN_FREE</a>(<a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>);
+<a id='L116' name='L116' /><em class='brace'>}</em>
+<a id='L117' name='L117' />
+<a id='L118' name='L118' /><a href='../D/1677.html' title='Multiple defined in 2 places.'>LmnRule</a> <a href='../R/3357.html' title='Multiple refered from 2 places.'>dummy_rule</a>(<strong class='reserved'>void</strong>)
+<a id='L119' name='L119' /><em class='brace'>{</em>
+<a id='L120' name='L120' />  <strong class='reserved'>static</strong> <strong class='reserved'>struct</strong> <a href='../D/1677.html' title='Multiple defined in 2 places.'>LmnRule</a> <a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>;
+<a id='L121' name='L121' />  <strong class='reserved'>static</strong> <a href='../S/347.html#L62' title='Defined at 62 in src/lmntal.h.'>BOOL</a> <a href='../Y/2377.html' title='Multiple used in 22 places.'>first</a> = <a href='../S/347.html#L69' title='Defined at 69 in src/lmntal.h.'>TRUE</a>;
+<a id='L122' name='L122' />
+<a id='L123' name='L123' />  <strong class='reserved'>if</strong> (<a href='../Y/2377.html' title='Multiple used in 22 places.'>first</a>) <em class='brace'>{</em>
+<a id='L124' name='L124' />    <a href='../Y/2377.html' title='Multiple used in 22 places.'>first</a> = <a href='../S/347.html#L66' title='Defined at 66 in src/lmntal.h.'>FALSE</a>;
+<a id='L125' name='L125' />    <a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>.<a href='../Y/3665.html' title='Multiple used in 438 places.'>name</a> = <a href='../S/378.html#L98' title='Defined at 98 in src/symbol.c.'>lmn_intern</a>("");
+<a id='L126' name='L126' />  <em class='brace'>}</em>
+<a id='L127' name='L127' />
+<a id='L128' name='L128' />  <strong class='reserved'>return</strong> &amp;<a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>;
+<a id='L129' name='L129' /><em class='brace'>}</em>
+<a id='L130' name='L130' />
+<a id='L131' name='L131' /><em class='comment'>/*----------------------------------------------------------------------</em>
+<a id='L132' name='L132' /><em class='comment'> * Rule Set</em>
+<a id='L133' name='L133' /><em class='comment'> */</em>
+<a id='L134' name='L134' /><strong class='reserved'>struct</strong> <a href='../S/366.html#L152' title='Defined at 152 in src/rule.h.'>LmnRuleSetTable</a> *<a href='../Y/4642.html' title='Multiple used in 24 places.'>ruleset_table</a>;
+<a id='L135' name='L135' />
+<a id='L136' name='L136' /><em class='comment'>/* Generates and returns new RuleSet id */</em>
+<a id='L137' name='L137' /><strong class='reserved'>int</strong> <a href='../R/3825.html' title='Multiple refered from 6 places.'>lmn_gen_ruleset_id</a>()
+<a id='L138' name='L138' /><em class='brace'>{</em>
+<a id='L139' name='L139' />  <strong class='reserved'>static</strong> <strong class='reserved'>int</strong> <a href='../Y/4640.html' title='Multiple used in 2 places.'>ruleset_next_id</a> = 1;
+<a id='L140' name='L140' />
+<a id='L141' name='L141' />  <strong class='reserved'>return</strong> <a href='../Y/4640.html' title='Multiple used in 2 places.'>ruleset_next_id</a>++;
+<a id='L142' name='L142' /><em class='brace'>}</em>
+<a id='L143' name='L143' />
+<a id='L144' name='L144' /><em class='comment'>/* Generates a new RuleSet */</em>
+<a id='L145' name='L145' /><a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../R/3999.html' title='Multiple refered from 7 places.'>lmn_ruleset_make</a>(<a href='../S/347.html#L133' title='Defined at 133 in src/lmntal.h.'>LmnRulesetId</a> <a href='../Y/2754.html' title='Multiple used in 204 places.'>id</a>, <strong class='reserved'>int</strong> <a href='../Y/2812.html' title='Multiple used in 32 places.'>init_size</a>)
+<a id='L146' name='L146' /><em class='brace'>{</em>
+<a id='L147' name='L147' />  <a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a> = <a href='../S/347.html#L218' title='Defined at 218 in src/lmntal.h.'>LMN_MALLOC</a>(<strong class='reserved'>struct</strong> <a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a>);
+<a id='L148' name='L148' />
+<a id='L149' name='L149' />  <a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>-&gt;<a href='../Y/2754.html' title='Multiple used in 204 places.'>id</a> = <a href='../Y/2754.html' title='Multiple used in 204 places.'>id</a>;
+<a id='L150' name='L150' />  <a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>-&gt;<a href='../Y/4634.html' title='Multiple used in 35 places.'>rules</a> = <a href='../S/347.html#L217' title='Defined at 217 in src/lmntal.h.'>LMN_CALLOC</a>(<a href='../D/1677.html' title='Multiple defined in 2 places.'>LmnRule</a>, <a href='../Y/2812.html' title='Multiple used in 32 places.'>init_size</a>);
+<a id='L151' name='L151' />  <a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>-&gt;<a href='../Y/3856.html' title='Multiple used in 168 places.'>num</a> = 0;
+<a id='L152' name='L152' />  <a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>-&gt;<a href='../Y/1745.html' title='Multiple used in 127 places.'>cap</a> = <a href='../Y/2812.html' title='Multiple used in 32 places.'>init_size</a>;
+<a id='L153' name='L153' />  <a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>-&gt;<a href='../Y/1540.html' title='Multiple used in 5 places.'>atomic</a> = <a href='../S/366.html#L134' title='Defined at 134 in src/rule.h.'>ATOMIC_NONE</a>;
+<a id='L154' name='L154' />  <a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>-&gt;<a href='../Y/2899.html' title='Multiple used in 6 places.'>is_atomic_valid</a> = <a href='../S/347.html#L66' title='Defined at 66 in src/lmntal.h.'>FALSE</a>;
+<a id='L155' name='L155' />  <a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>-&gt;<a href='../Y/2900.html' title='Multiple used in 4 places.'>is_copy</a> = <a href='../S/347.html#L66' title='Defined at 66 in src/lmntal.h.'>FALSE</a>;
+<a id='L156' name='L156' />  <a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>-&gt;<a href='../Y/2627.html' title='Multiple used in 4 places.'>has_uniqrule</a> = <a href='../S/347.html#L66' title='Defined at 66 in src/lmntal.h.'>FALSE</a>;
+<a id='L157' name='L157' />
+<a id='L158' name='L158' />  <strong class='reserved'>return</strong> <a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>;
+<a id='L159' name='L159' /><em class='brace'>}</em>
+<a id='L160' name='L160' />
+<a id='L161' name='L161' /><em class='comment'>/* Frees RuleSet and its elements */</em>
+<a id='L162' name='L162' /><strong class='reserved'>void</strong> <a href='../R/3990.html' title='Multiple refered from 5 places.'>lmn_ruleset_free</a>(<a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>)
+<a id='L163' name='L163' /><em class='brace'>{</em>
+<a id='L164' name='L164' />  <strong class='reserved'>int</strong> <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>;
+<a id='L165' name='L165' />
+<a id='L166' name='L166' />  <strong class='reserved'>for</strong> (<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> = 0; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> &lt; <a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>-&gt;<a href='../Y/3856.html' title='Multiple used in 168 places.'>num</a>; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>++) <em class='brace'>{</em>
+<a id='L167' name='L167' />    <a href='../S/365.html#L109' title='Defined at 109 in src/rule.c.'>lmn_rule_free</a>(<a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>-&gt;<a href='../Y/4634.html' title='Multiple used in 35 places.'>rules</a>[<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>]);
+<a id='L168' name='L168' />  <em class='brace'>}</em>
+<a id='L169' name='L169' />  <a href='../S/347.html#L220' title='Defined at 220 in src/lmntal.h.'>LMN_FREE</a>(<a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>-&gt;<a href='../Y/4634.html' title='Multiple used in 35 places.'>rules</a>);
+<a id='L170' name='L170' />  <a href='../S/347.html#L220' title='Defined at 220 in src/lmntal.h.'>LMN_FREE</a>(<a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>);
+<a id='L171' name='L171' /><em class='brace'>}</em>
+<a id='L172' name='L172' />
+<a id='L173' name='L173' /><em class='comment'>/* Adds rule into ruleset */</em>
+<a id='L174' name='L174' /><strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../R/4000.html' title='Multiple refered from 7 places.'>lmn_ruleset_put</a>(<a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>, <a href='../D/1677.html' title='Multiple defined in 2 places.'>LmnRule</a> <a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>)
+<a id='L175' name='L175' /><em class='brace'>{</em>
+<a id='L176' name='L176' />  <strong class='reserved'>if</strong> (<a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>-&gt;<a href='../Y/3856.html' title='Multiple used in 168 places.'>num</a> == <a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>-&gt;<a href='../Y/1745.html' title='Multiple used in 127 places.'>cap</a>) <em class='brace'>{</em>
+<a id='L177' name='L177' />    <a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>-&gt;<a href='../Y/1745.html' title='Multiple used in 127 places.'>cap</a> = (<a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>-&gt;<a href='../Y/1745.html' title='Multiple used in 127 places.'>cap</a> * 2);
+<a id='L178' name='L178' />    <a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>-&gt;<a href='../Y/4634.html' title='Multiple used in 35 places.'>rules</a> = <a href='../S/347.html#L219' title='Defined at 219 in src/lmntal.h.'>LMN_REALLOC</a>(<a href='../D/1677.html' title='Multiple defined in 2 places.'>LmnRule</a>, <a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>-&gt;<a href='../Y/4634.html' title='Multiple used in 35 places.'>rules</a>, <a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>-&gt;<a href='../Y/1745.html' title='Multiple used in 127 places.'>cap</a>);
+<a id='L179' name='L179' />  <em class='brace'>}</em>
+<a id='L180' name='L180' />  <a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>-&gt;<a href='../Y/4634.html' title='Multiple used in 35 places.'>rules</a>[<a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>-&gt;<a href='../Y/3856.html' title='Multiple used in 168 places.'>num</a>++] = <a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>;
+<a id='L181' name='L181' />
+<a id='L182' name='L182' />  <em class='comment'>/* 非uniqrulesetにuniq ruleが追加されたら, フラグを立てる. */</em>
+<a id='L183' name='L183' />  <strong class='reserved'>if</strong> (!<a href='../S/366.html#L217' title='Defined at 217 in src/rule.h.'>lmn_ruleset_has_uniqrule</a>(<a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>) &amp;&amp;
+<a id='L184' name='L184' />      <a href='../S/366.html#L78' title='Defined at 78 in src/rule.h.'>lmn_rule_get_history_tbl</a>(<a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>)) <em class='brace'>{</em>
+<a id='L185' name='L185' />    <a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>-&gt;<a href='../Y/2627.html' title='Multiple used in 4 places.'>has_uniqrule</a> = <a href='../S/347.html#L69' title='Defined at 69 in src/lmntal.h.'>TRUE</a>;
+<a id='L186' name='L186' />  <em class='brace'>}</em>
+<a id='L187' name='L187' /><em class='brace'>}</em>
+<a id='L188' name='L188' />
+<a id='L189' name='L189' />
+<a id='L190' name='L190' /><em class='comment'>/* ルールセットテーブルの初期化 */</em>
+<a id='L191' name='L191' /><strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/365.html#L562' title='Refered from 562 in src/rule.c.'>init_ruleset_table</a>()
+<a id='L192' name='L192' /><em class='brace'>{</em>
+<a id='L193' name='L193' />  <a href='../Y/4642.html' title='Multiple used in 24 places.'>ruleset_table</a> = <a href='../S/347.html#L218' title='Defined at 218 in src/lmntal.h.'>LMN_MALLOC</a>(<strong class='reserved'>struct</strong> <a href='../S/366.html#L152' title='Defined at 152 in src/rule.h.'>LmnRuleSetTable</a>);
+<a id='L194' name='L194' />  <a href='../Y/4642.html' title='Multiple used in 24 places.'>ruleset_table</a>-&gt;<a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a> = 64;
+<a id='L195' name='L195' />  <a href='../Y/4642.html' title='Multiple used in 24 places.'>ruleset_table</a>-&gt;<a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a> = <a href='../S/347.html#L216' title='Defined at 216 in src/lmntal.h.'>LMN_NALLOC</a>(<a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a>, <a href='../Y/4642.html' title='Multiple used in 24 places.'>ruleset_table</a>-&gt;<a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>);
+<a id='L196' name='L196' />  <em class='comment'>/* 安全なメモリ解放の為ゼロクリア */</em>
+<a id='L197' name='L197' />  <a href='../Y/3518.html' title='Multiple used in 105 places.'>memset</a>(<a href='../Y/4642.html' title='Multiple used in 24 places.'>ruleset_table</a>-&gt;<a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>, 0, <a href='../Y/4642.html' title='Multiple used in 24 places.'>ruleset_table</a>-&gt;<a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a> * <strong class='reserved'>sizeof</strong>(<a href='../Y/4642.html' title='Multiple used in 24 places.'>ruleset_table</a>-&gt;<a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>[0]));
+<a id='L198' name='L198' /><em class='brace'>}</em>
+<a id='L199' name='L199' />
+<a id='L200' name='L200' /><em class='comment'>/* ルールセットテーブルの解放処理 */</em>
+<a id='L201' name='L201' /><strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/365.html#L570' title='Refered from 570 in src/rule.c.'>destroy_ruleset_table</a>()
+<a id='L202' name='L202' /><em class='brace'>{</em>
+<a id='L203' name='L203' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>;
+<a id='L204' name='L204' />
+<a id='L205' name='L205' />  <strong class='reserved'>for</strong> (<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> = 0; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>&lt; <a href='../Y/4642.html' title='Multiple used in 24 places.'>ruleset_table</a>-&gt;<a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>++) <em class='brace'>{</em>
+<a id='L206' name='L206' />    <strong class='reserved'>if</strong> (<a href='../Y/4642.html' title='Multiple used in 24 places.'>ruleset_table</a>-&gt;<a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>[<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>]) <em class='brace'>{</em>
+<a id='L207' name='L207' />      <a href='../S/365.html#L162' title='Defined at 162 in src/rule.c.'>lmn_ruleset_free</a>(<a href='../Y/4642.html' title='Multiple used in 24 places.'>ruleset_table</a>-&gt;<a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>[<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>]);
+<a id='L208' name='L208' />    <em class='brace'>}</em>
+<a id='L209' name='L209' />  <em class='brace'>}</em>
+<a id='L210' name='L210' />  <a href='../S/347.html#L220' title='Defined at 220 in src/lmntal.h.'>LMN_FREE</a>(<a href='../Y/4642.html' title='Multiple used in 24 places.'>ruleset_table</a>-&gt;<a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>);
+<a id='L211' name='L211' />  <a href='../S/347.html#L220' title='Defined at 220 in src/lmntal.h.'>LMN_FREE</a>(<a href='../Y/4642.html' title='Multiple used in 24 places.'>ruleset_table</a>);
+<a id='L212' name='L212' /><em class='brace'>}</em>
+<a id='L213' name='L213' />
+<a id='L214' name='L214' /><em class='comment'>/* Associates id with ruleset */</em>
+<a id='L215' name='L215' /><strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../R/4017.html' title='Multiple refered from 3 places.'>lmn_set_ruleset</a>(<a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>, <strong class='reserved'>int</strong> <a href='../Y/2754.html' title='Multiple used in 204 places.'>id</a>)
+<a id='L216' name='L216' /><em class='brace'>{</em>
+<a id='L217' name='L217' />  <em class='comment'>/* 必要ならば容量を拡張 */</em>
+<a id='L218' name='L218' />  <strong class='reserved'>while</strong> (<a href='../Y/4642.html' title='Multiple used in 24 places.'>ruleset_table</a>-&gt;<a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a> &lt; (<strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong>)<a href='../Y/2754.html' title='Multiple used in 204 places.'>id</a>) <em class='brace'>{</em>
+<a id='L219' name='L219' />    <strong class='reserved'>int</strong> <a href='../Y/3946.html' title='Multiple used in 32 places.'>old_size</a> = <a href='../Y/4642.html' title='Multiple used in 24 places.'>ruleset_table</a>-&gt;<a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>;
+<a id='L220' name='L220' />    <a href='../Y/4642.html' title='Multiple used in 24 places.'>ruleset_table</a>-&gt;<a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a> *= 2;
+<a id='L221' name='L221' />    <a href='../Y/4642.html' title='Multiple used in 24 places.'>ruleset_table</a>-&gt;<a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a> = <a href='../S/347.html#L219' title='Defined at 219 in src/lmntal.h.'>LMN_REALLOC</a>(<a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a>, <a href='../Y/4642.html' title='Multiple used in 24 places.'>ruleset_table</a>-&gt;<a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>, <a href='../Y/4642.html' title='Multiple used in 24 places.'>ruleset_table</a>-&gt;<a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>);
+<a id='L222' name='L222' />    <em class='comment'>/* 安全なメモリ解放の為ゼロクリア */</em>
+<a id='L223' name='L223' />    <a href='../Y/3518.html' title='Multiple used in 105 places.'>memset</a>(<a href='../Y/4642.html' title='Multiple used in 24 places.'>ruleset_table</a>-&gt;<a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a> + <a href='../Y/3946.html' title='Multiple used in 32 places.'>old_size</a>, 0, (<a href='../Y/4642.html' title='Multiple used in 24 places.'>ruleset_table</a>-&gt;<a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a> - <a href='../Y/3946.html' title='Multiple used in 32 places.'>old_size</a>) * <strong class='reserved'>sizeof</strong>(<a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a>));
+<a id='L224' name='L224' />  <em class='brace'>}</em>
+<a id='L225' name='L225' />
+<a id='L226' name='L226' />  <a href='../Y/4642.html' title='Multiple used in 24 places.'>ruleset_table</a>-&gt;<a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>[<a href='../Y/2754.html' title='Multiple used in 204 places.'>id</a>] = <a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>;
+<a id='L227' name='L227' /><em class='brace'>}</em>
+<a id='L228' name='L228' />
+<a id='L229' name='L229' /><em class='comment'>/* uniq rulesetに存在する各ruleの履歴の総数を返す.</em>
+<a id='L230' name='L230' /><em class='comment'> * uniq rulesetではない場合, -1を返す.</em>
+<a id='L231' name='L231' /><em class='comment'> */</em>
+<a id='L232' name='L232' /><strong class='reserved'>long</strong> <a href='../S/366.html#L164' title='Refered from 164 in src/rule.h.'>lmn_ruleset_history_num</a>(<a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../Y/4585.html' title='Multiple used in 137 places.'>rs</a>)
+<a id='L233' name='L233' /><em class='brace'>{</em>
+<a id='L234' name='L234' />  <strong class='reserved'>if</strong> (<a href='../S/366.html#L217' title='Defined at 217 in src/rule.h.'>lmn_ruleset_has_uniqrule</a>(<a href='../Y/4585.html' title='Multiple used in 137 places.'>rs</a>)) <em class='brace'>{</em>
+<a id='L235' name='L235' />    <strong class='reserved'>return</strong> -1;
+<a id='L236' name='L236' />  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L237' name='L237' />    <strong class='reserved'>int</strong> <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>, <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>, <a href='../Y/2700.html' title='Multiple used in 18 places.'>his_num</a>;
+<a id='L238' name='L238' />
+<a id='L239' name='L239' />    <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a> = 0;
+<a id='L240' name='L240' />    <a href='../Y/2700.html' title='Multiple used in 18 places.'>his_num</a> = 0;
+<a id='L241' name='L241' />    <strong class='reserved'>for</strong> (<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> = 0; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> &lt; <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>++)<em class='brace'>{</em>
+<a id='L242' name='L242' />      <a href='../D/1677.html' title='Multiple defined in 2 places.'>LmnRule</a> <a href='../Y/4406.html' title='Multiple used in 354 places.'>r</a> = <a href='../S/366.html#L190' title='Defined at 190 in src/rule.h.'>lmn_ruleset_get_rule</a>(<a href='../Y/4585.html' title='Multiple used in 137 places.'>rs</a>, <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>);
+<a id='L243' name='L243' />      <strong class='reserved'>if</strong> (<a href='../S/366.html#L78' title='Defined at 78 in src/rule.h.'>lmn_rule_get_history_tbl</a>(<a href='../Y/4406.html' title='Multiple used in 354 places.'>r</a>)) <em class='brace'>{</em>
+<a id='L244' name='L244' />        <a href='../Y/2700.html' title='Multiple used in 18 places.'>his_num</a> += <a href='../S/405.html#L60' title='Defined at 60 in src/utility/st.h.'>st_num</a>(<a href='../S/366.html#L78' title='Defined at 78 in src/rule.h.'>lmn_rule_get_history_tbl</a>(<a href='../Y/4406.html' title='Multiple used in 354 places.'>r</a>));
+<a id='L245' name='L245' />      <em class='brace'>}</em>
+<a id='L246' name='L246' />    <em class='brace'>}</em>
+<a id='L247' name='L247' />    <strong class='reserved'>return</strong> <a href='../Y/2700.html' title='Multiple used in 18 places.'>his_num</a>;
+<a id='L248' name='L248' />  <em class='brace'>}</em>
+<a id='L249' name='L249' /><em class='brace'>}</em>
+<a id='L250' name='L250' />
+<a id='L251' name='L251' /><em class='comment'>/* 実態をコピーしたルールセットを開放する */</em>
+<a id='L252' name='L252' /><strong class='reserved'>void</strong> <a href='../R/3986.html' title='Multiple refered from 3 places.'>lmn_ruleset_copied_free</a>(<a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../Y/4585.html' title='Multiple used in 137 places.'>rs</a>)
+<a id='L253' name='L253' /><em class='brace'>{</em>
+<a id='L254' name='L254' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>;
+<a id='L255' name='L255' />  <strong class='reserved'>for</strong> (<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> = 0; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> &lt; <a href='../S/366.html#L185' title='Defined at 185 in src/rule.h.'>lmn_ruleset_rule_num</a>(<a href='../Y/4585.html' title='Multiple used in 137 places.'>rs</a>); <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>++) <em class='brace'>{</em>
+<a id='L256' name='L256' />    <a href='../D/1677.html' title='Multiple defined in 2 places.'>LmnRule</a> <a href='../Y/4406.html' title='Multiple used in 354 places.'>r</a> = <a href='../S/366.html#L190' title='Defined at 190 in src/rule.h.'>lmn_ruleset_get_rule</a>(<a href='../Y/4585.html' title='Multiple used in 137 places.'>rs</a>, <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>);
+<a id='L257' name='L257' />    <a href='../S/365.html#L109' title='Defined at 109 in src/rule.c.'>lmn_rule_free</a>(<a href='../Y/4406.html' title='Multiple used in 354 places.'>r</a>); <em class='comment'>/* free copied rule object */</em>
+<a id='L258' name='L258' />  <em class='brace'>}</em>
+<a id='L259' name='L259' />
+<a id='L260' name='L260' />  <em class='comment'>/* free copied ruleset object */</em>
+<a id='L261' name='L261' />  <a href='../S/347.html#L220' title='Defined at 220 in src/lmntal.h.'>LMN_FREE</a>(<a href='../Y/4585.html' title='Multiple used in 137 places.'>rs</a>-&gt;<a href='../Y/4634.html' title='Multiple used in 35 places.'>rules</a>);
+<a id='L262' name='L262' />  <a href='../S/347.html#L220' title='Defined at 220 in src/lmntal.h.'>LMN_FREE</a>(<a href='../Y/4585.html' title='Multiple used in 137 places.'>rs</a>);
+<a id='L263' name='L263' /><em class='brace'>}</em>
+<a id='L264' name='L264' />
+<a id='L265' name='L265' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../S/365.html#L298' title='Refered from 298 in src/rule.c.'>lmn_ruleset_copy_object</a>(<a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../Y/4954.html' title='Multiple used in 136 places.'>src</a>)
+<a id='L266' name='L266' /><em class='brace'>{</em>
+<a id='L267' name='L267' />  <a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../D/4755.html' title='Multiple defined in 3 places.'>new</a>;
+<a id='L268' name='L268' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>, <a href='../Y/4420.html' title='Multiple used in 4 places.'>r_n</a>;
+<a id='L269' name='L269' />
+<a id='L270' name='L270' />  <a href='../Y/4420.html' title='Multiple used in 4 places.'>r_n</a> = <a href='../S/366.html#L185' title='Defined at 185 in src/rule.h.'>lmn_ruleset_rule_num</a>(<a href='../Y/4954.html' title='Multiple used in 136 places.'>src</a>);
+<a id='L271' name='L271' />  <a href='../D/4755.html' title='Multiple defined in 3 places.'>new</a> = <a href='../S/365.html#L145' title='Defined at 145 in src/rule.c.'>lmn_ruleset_make</a>(<a href='../S/366.html#L195' title='Defined at 195 in src/rule.h.'>lmn_ruleset_get_id</a>(<a href='../Y/4954.html' title='Multiple used in 136 places.'>src</a>), <a href='../Y/4420.html' title='Multiple used in 4 places.'>r_n</a>);
+<a id='L272' name='L272' />  <a href='../D/4755.html' title='Multiple defined in 3 places.'>new</a>-&gt;<a href='../Y/2900.html' title='Multiple used in 4 places.'>is_copy</a> = <a href='../S/347.html#L69' title='Defined at 69 in src/lmntal.h.'>TRUE</a>;
+<a id='L273' name='L273' />  <a href='../D/4755.html' title='Multiple defined in 3 places.'>new</a>-&gt;<a href='../Y/1540.html' title='Multiple used in 5 places.'>atomic</a> = <a href='../Y/4954.html' title='Multiple used in 136 places.'>src</a>-&gt;<a href='../Y/1540.html' title='Multiple used in 5 places.'>atomic</a>;
+<a id='L274' name='L274' />  <a href='../D/4755.html' title='Multiple defined in 3 places.'>new</a>-&gt;<a href='../Y/2899.html' title='Multiple used in 6 places.'>is_atomic_valid</a> = <a href='../Y/4954.html' title='Multiple used in 136 places.'>src</a>-&gt;<a href='../Y/2899.html' title='Multiple used in 6 places.'>is_atomic_valid</a>;
+<a id='L275' name='L275' />
+<a id='L276' name='L276' />  <em class='comment'>/* ルール単位のオブジェクト複製 */</em>
+<a id='L277' name='L277' />  <strong class='reserved'>for</strong> (<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> = 0; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> &lt; <a href='../Y/4420.html' title='Multiple used in 4 places.'>r_n</a>; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>++) <em class='brace'>{</em>
+<a id='L278' name='L278' />    <a href='../D/1677.html' title='Multiple defined in 2 places.'>LmnRule</a> <a href='../Y/4406.html' title='Multiple used in 354 places.'>r</a> = <a href='../S/366.html#L190' title='Defined at 190 in src/rule.h.'>lmn_ruleset_get_rule</a>(<a href='../Y/4954.html' title='Multiple used in 136 places.'>src</a>, <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>);
+<a id='L279' name='L279' />    <a href='../S/365.html#L174' title='Defined at 174 in src/rule.c.'>lmn_ruleset_put</a>(<a href='../D/4755.html' title='Multiple defined in 3 places.'>new</a>, <a href='../S/365.html#L88' title='Defined at 88 in src/rule.c.'>lmn_rule_copy</a>(<a href='../Y/4406.html' title='Multiple used in 354 places.'>r</a>));
+<a id='L280' name='L280' />  <em class='brace'>}</em>
+<a id='L281' name='L281' />  <strong class='reserved'>return</strong> <a href='../D/4755.html' title='Multiple defined in 3 places.'>new</a>;
+<a id='L282' name='L282' /><em class='brace'>}</em>
+<a id='L283' name='L283' />
+<a id='L284' name='L284' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../S/347.html#L62' title='Defined at 62 in src/lmntal.h.'>BOOL</a> <a href='../S/365.html#L297' title='Refered from 297 in src/rule.c.'>ruleset_cp_is_need_object</a>(<a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../Y/4954.html' title='Multiple used in 136 places.'>src</a>)
+<a id='L285' name='L285' /><em class='brace'>{</em>
+<a id='L286' name='L286' />  <strong class='reserved'>return</strong> <a href='../S/366.html#L217' title='Defined at 217 in src/rule.h.'>lmn_ruleset_has_uniqrule</a>(<a href='../Y/4954.html' title='Multiple used in 136 places.'>src</a>) ||
+<a id='L287' name='L287' />         (<a href='../S/366.html#L199' title='Defined at 199 in src/rule.h.'>lmn_ruleset_atomic_type</a>(<a href='../Y/4954.html' title='Multiple used in 136 places.'>src</a>) != <a href='../S/366.html#L134' title='Defined at 134 in src/rule.h.'>ATOMIC_NONE</a>);
+<a id='L288' name='L288' /><em class='brace'>}</em>
+<a id='L289' name='L289' />
+<a id='L290' name='L290' /><em class='comment'>/* ルールセットsrcを複製して返す.</em>
+<a id='L291' name='L291' /><em class='comment'> * 基本的にはオリジナルのobjectへの参照を返すのみ.</em>
+<a id='L292' name='L292' /><em class='comment'> * ただし, uniqルールセットである場合(現在はuniq使用時のみ),</em>
+<a id='L293' name='L293' /><em class='comment'> * ルールセットオブジェクトを独立に扱うため新たにmallocして複製したオブジェクトを返す.</em>
+<a id='L294' name='L294' /><em class='comment'> * uniqルールの場合, ルール単位でobjectを複製する */</em>
+<a id='L295' name='L295' /><a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../R/3987.html' title='Multiple refered from 8 places.'>lmn_ruleset_copy</a>(<a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../Y/4954.html' title='Multiple used in 136 places.'>src</a>)
+<a id='L296' name='L296' /><em class='brace'>{</em>
+<a id='L297' name='L297' />  <strong class='reserved'>if</strong> (<a href='../S/365.html#L284' title='Defined at 284 in src/rule.c.'>ruleset_cp_is_need_object</a>(<a href='../Y/4954.html' title='Multiple used in 136 places.'>src</a>)) <em class='brace'>{</em>
+<a id='L298' name='L298' />    <strong class='reserved'>return</strong> <a href='../S/365.html#L265' title='Defined at 265 in src/rule.c.'>lmn_ruleset_copy_object</a>(<a href='../Y/4954.html' title='Multiple used in 136 places.'>src</a>);
+<a id='L299' name='L299' />  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L300' name='L300' />    <strong class='reserved'>return</strong> <a href='../Y/4954.html' title='Multiple used in 136 places.'>src</a>;
+<a id='L301' name='L301' />  <em class='brace'>}</em>
+<a id='L302' name='L302' /><em class='brace'>}</em>
+<a id='L303' name='L303' />
+<a id='L304' name='L304' /><strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../R/4003.html' title='Multiple refered from 2 places.'>lmn_ruleset_space</a>(<a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../Y/4585.html' title='Multiple used in 137 places.'>rs</a>)
+<a id='L305' name='L305' /><em class='brace'>{</em>
+<a id='L306' name='L306' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a> = 0;
+<a id='L307' name='L307' />  <strong class='reserved'>if</strong> (<a href='../S/366.html#L217' title='Defined at 217 in src/rule.h.'>lmn_ruleset_has_uniqrule</a>(<a href='../Y/4585.html' title='Multiple used in 137 places.'>rs</a>) || <a href='../S/366.html#L213' title='Defined at 213 in src/rule.h.'>lmn_ruleset_is_copy</a>(<a href='../Y/4585.html' title='Multiple used in 137 places.'>rs</a>)) <em class='brace'>{</em>
+<a id='L308' name='L308' />    <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>, <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>;
+<a id='L309' name='L309' />
+<a id='L310' name='L310' />    <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a> = <a href='../S/366.html#L185' title='Defined at 185 in src/rule.h.'>lmn_ruleset_rule_num</a>(<a href='../Y/4585.html' title='Multiple used in 137 places.'>rs</a>);
+<a id='L311' name='L311' />    <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a> += <strong class='reserved'>sizeof</strong>(<strong class='reserved'>struct</strong> <a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a>);
+<a id='L312' name='L312' />    <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a> += <strong class='reserved'>sizeof</strong>(<strong class='reserved'>struct</strong> <a href='../D/1677.html' title='Multiple defined in 2 places.'>LmnRule</a>*) * <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>;
+<a id='L313' name='L313' />    <strong class='reserved'>for</strong> (<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> = 0; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> &lt; <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>++) <em class='brace'>{</em>
+<a id='L314' name='L314' />      <a href='../D/1677.html' title='Multiple defined in 2 places.'>LmnRule</a> <a href='../Y/4406.html' title='Multiple used in 354 places.'>r</a> = <a href='../S/366.html#L190' title='Defined at 190 in src/rule.h.'>lmn_ruleset_get_rule</a>(<a href='../Y/4585.html' title='Multiple used in 137 places.'>rs</a>, <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>);
+<a id='L315' name='L315' />      <strong class='reserved'>if</strong> (<a href='../S/366.html#L78' title='Defined at 78 in src/rule.h.'>lmn_rule_get_history_tbl</a>(<a href='../Y/4406.html' title='Multiple used in 354 places.'>r</a>)) <em class='brace'>{</em> <em class='comment'>/* 履歴表を持っている場合  */</em>
+<a id='L316' name='L316' />        <a href='../S/404.html#L191' title='Defined at 191 in src/utility/st.c.'>st_table_space</a>(<a href='../S/366.html#L78' title='Defined at 78 in src/rule.h.'>lmn_rule_get_history_tbl</a>(<a href='../Y/4406.html' title='Multiple used in 354 places.'>r</a>));
+<a id='L317' name='L317' />      <em class='brace'>}</em>
+<a id='L318' name='L318' />    <em class='brace'>}</em>
+<a id='L319' name='L319' />  <em class='brace'>}</em>
+<a id='L320' name='L320' />  <strong class='reserved'>return</strong> <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a>;
+<a id='L321' name='L321' /><em class='brace'>}</em>
+<a id='L322' name='L322' />
+<a id='L323' name='L323' /><em class='comment'>/* 2つのrulesetが同じruleを持つか判定する.</em>
+<a id='L324' name='L324' /><em class='comment'> * (ruleの順序はソースコード依存) */</em>
+<a id='L325' name='L325' /><a href='../S/347.html#L62' title='Defined at 62 in src/lmntal.h.'>BOOL</a> <a href='../R/3989.html' title='Multiple refered from 3 places.'>lmn_ruleset_equals</a>(<a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../Y/4775.html' title='Multiple used in 10 places.'>set1</a>, <a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../Y/4776.html' title='Multiple used in 9 places.'>set2</a>)
+<a id='L326' name='L326' /><em class='brace'>{</em>
+<a id='L327' name='L327' />  <em class='comment'>/* rulesetの種類をチェック */</em>
+<a id='L328' name='L328' />  <strong class='reserved'>if</strong> (<a href='../S/366.html#L195' title='Defined at 195 in src/rule.h.'>lmn_ruleset_get_id</a>(<a href='../Y/4775.html' title='Multiple used in 10 places.'>set1</a>) != <a href='../S/366.html#L195' title='Defined at 195 in src/rule.h.'>lmn_ruleset_get_id</a>(<a href='../Y/4776.html' title='Multiple used in 9 places.'>set2</a>))  <em class='brace'>{</em>
+<a id='L329' name='L329' />    <strong class='reserved'>return</strong> <a href='../S/347.html#L66' title='Defined at 66 in src/lmntal.h.'>FALSE</a>;
+<a id='L330' name='L330' />  <em class='brace'>}</em>
+<a id='L331' name='L331' />  <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L332' name='L332' />    <a href='../S/347.html#L62' title='Defined at 62 in src/lmntal.h.'>BOOL</a> <a href='../Y/5270.html' title='Multiple used in 66 places.'>t1</a>, <a href='../Y/5271.html' title='Multiple used in 57 places.'>t2</a>;
+<a id='L333' name='L333' />    <a href='../Y/5270.html' title='Multiple used in 66 places.'>t1</a> = <a href='../S/366.html#L217' title='Defined at 217 in src/rule.h.'>lmn_ruleset_has_uniqrule</a>(<a href='../Y/4775.html' title='Multiple used in 10 places.'>set1</a>);
+<a id='L334' name='L334' />    <a href='../Y/5271.html' title='Multiple used in 57 places.'>t2</a> = <a href='../S/366.html#L217' title='Defined at 217 in src/rule.h.'>lmn_ruleset_has_uniqrule</a>(<a href='../Y/4776.html' title='Multiple used in 9 places.'>set2</a>);
+<a id='L335' name='L335' />
+<a id='L336' name='L336' />    <strong class='reserved'>if</strong> (!<a href='../Y/5270.html' title='Multiple used in 66 places.'>t1</a> &amp;&amp; !<a href='../Y/5271.html' title='Multiple used in 57 places.'>t2</a>) <em class='brace'>{</em>
+<a id='L337' name='L337' />      <em class='comment'>/* 互いにuniq rulsetでなければruleset idの比較でok */</em>
+<a id='L338' name='L338' />      <strong class='reserved'>return</strong> <a href='../S/347.html#L69' title='Defined at 69 in src/lmntal.h.'>TRUE</a>;
+<a id='L339' name='L339' />    <em class='brace'>}</em>
+<a id='L340' name='L340' />    <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> ((!<a href='../Y/5270.html' title='Multiple used in 66 places.'>t1</a> &amp;&amp; <a href='../Y/5271.html' title='Multiple used in 57 places.'>t2</a>) || (<a href='../Y/5270.html' title='Multiple used in 66 places.'>t1</a> &amp;&amp; !<a href='../Y/5271.html' title='Multiple used in 57 places.'>t2</a>)) <em class='brace'>{</em>
+<a id='L341' name='L341' />      <em class='comment'>/* uniq ruleset同士ではなければ当然FALSE */</em>
+<a id='L342' name='L342' />      <strong class='reserved'>return</strong> <a href='../S/347.html#L66' title='Defined at 66 in src/lmntal.h.'>FALSE</a>;
+<a id='L343' name='L343' />    <em class='brace'>}</em>
+<a id='L344' name='L344' />    <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L345' name='L345' />      <em class='comment'>/* uniq ruleset同士の場合:</em>
+<a id='L346' name='L346' /><em class='comment'>       *   ruleの適用ヒストリまで比較 */</em>
+<a id='L347' name='L347' />      <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>, <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>;
+<a id='L348' name='L348' />
+<a id='L349' name='L349' />      <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a> = <a href='../S/366.html#L185' title='Defined at 185 in src/rule.h.'>lmn_ruleset_rule_num</a>(<a href='../Y/4775.html' title='Multiple used in 10 places.'>set1</a>);
+<a id='L350' name='L350' />      <strong class='reserved'>if</strong> (<a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a> != <a href='../S/366.html#L185' title='Defined at 185 in src/rule.h.'>lmn_ruleset_rule_num</a>(<a href='../Y/4776.html' title='Multiple used in 9 places.'>set2</a>)) <em class='brace'>{</em>
+<a id='L351' name='L351' />        <strong class='reserved'>return</strong> <a href='../S/347.html#L66' title='Defined at 66 in src/lmntal.h.'>FALSE</a>;
+<a id='L352' name='L352' />      <em class='brace'>}</em>
+<a id='L353' name='L353' />      <strong class='reserved'>for</strong> (<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> = 0; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> &lt; <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>++) <em class='brace'>{</em>
+<a id='L354' name='L354' />        <a href='../D/1677.html' title='Multiple defined in 2 places.'>LmnRule</a> <a href='../Y/4623.html' title='Multiple used in 3 places.'>rule1</a>, <a href='../Y/4624.html' title='Multiple used in 5 places.'>rule2</a>;
+<a id='L355' name='L355' />        <a href='../S/405.html#L18' title='Defined at 18 in src/utility/st.h.'>st_table_t</a> <a href='../Y/2703.html' title='Multiple used in 4 places.'>hist1</a>, <a href='../Y/2704.html' title='Multiple used in 4 places.'>hist2</a>;
+<a id='L356' name='L356' />
+<a id='L357' name='L357' />        <a href='../Y/4623.html' title='Multiple used in 3 places.'>rule1</a> = <a href='../S/366.html#L190' title='Defined at 190 in src/rule.h.'>lmn_ruleset_get_rule</a>(<a href='../Y/4775.html' title='Multiple used in 10 places.'>set1</a>, <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>);
+<a id='L358' name='L358' />        <a href='../Y/4624.html' title='Multiple used in 5 places.'>rule2</a> = <a href='../S/366.html#L190' title='Defined at 190 in src/rule.h.'>lmn_ruleset_get_rule</a>(<a href='../Y/4776.html' title='Multiple used in 9 places.'>set2</a>, <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>);
+<a id='L359' name='L359' />        <a href='../Y/2703.html' title='Multiple used in 4 places.'>hist1</a> = <a href='../S/366.html#L78' title='Defined at 78 in src/rule.h.'>lmn_rule_get_history_tbl</a>(<a href='../Y/4623.html' title='Multiple used in 3 places.'>rule1</a>);
+<a id='L360' name='L360' />        <a href='../Y/2704.html' title='Multiple used in 4 places.'>hist2</a> = <a href='../S/366.html#L78' title='Defined at 78 in src/rule.h.'>lmn_rule_get_history_tbl</a>(<a href='../Y/4624.html' title='Multiple used in 5 places.'>rule2</a>);
+<a id='L361' name='L361' />
+<a id='L362' name='L362' />        <strong class='reserved'>if</strong> (!<a href='../Y/2703.html' title='Multiple used in 4 places.'>hist1</a> &amp;&amp; !<a href='../Y/2704.html' title='Multiple used in 4 places.'>hist2</a>) <em class='brace'>{</em>
+<a id='L363' name='L363' />          <strong class='reserved'>continue</strong>;
+<a id='L364' name='L364' />        <em class='brace'>}</em>
+<a id='L365' name='L365' />        <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> ((!<a href='../Y/2703.html' title='Multiple used in 4 places.'>hist1</a> &amp;&amp; <a href='../Y/2704.html' title='Multiple used in 4 places.'>hist2</a>) || (<a href='../Y/2703.html' title='Multiple used in 4 places.'>hist1</a> &amp;&amp; !<a href='../Y/2704.html' title='Multiple used in 4 places.'>hist2</a>) || !<a href='../S/404.html#L712' title='Defined at 712 in src/utility/st.c.'>st_equals</a>(<a href='../Y/2703.html' title='Multiple used in 4 places.'>hist1</a>, <a href='../Y/2704.html' title='Multiple used in 4 places.'>hist2</a>)) <em class='brace'>{</em>
+<a id='L366' name='L366' />          <strong class='reserved'>return</strong> <a href='../S/347.html#L66' title='Defined at 66 in src/lmntal.h.'>FALSE</a>;
+<a id='L367' name='L367' />        <em class='brace'>}</em>
+<a id='L368' name='L368' />      <em class='brace'>}</em>
+<a id='L369' name='L369' />
+<a id='L370' name='L370' />      <strong class='reserved'>return</strong> <a href='../S/347.html#L69' title='Defined at 69 in src/lmntal.h.'>TRUE</a>;
+<a id='L371' name='L371' />    <em class='brace'>}</em>
+<a id='L372' name='L372' />  <em class='brace'>}</em>
+<a id='L373' name='L373' /><em class='brace'>}</em>
+<a id='L374' name='L374' />
+<a id='L375' name='L375' /><em class='comment'>/* rulesetsにrulesetが含まれているか判定 */</em>
+<a id='L376' name='L376' /><a href='../S/347.html#L62' title='Defined at 62 in src/lmntal.h.'>BOOL</a> <a href='../S/366.html#L168' title='Refered from 168 in src/rule.h.'>lmn_rulesets_contains</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/4595.html' title='Multiple used in 3 places.'>rs_vec</a>, <a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../Y/4775.html' title='Multiple used in 10 places.'>set1</a>)
+<a id='L377' name='L377' /><em class='brace'>{</em>
+<a id='L378' name='L378' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>, <a href='../Y/4587.html' title='Multiple used in 3 places.'>rs1_id</a>;
+<a id='L379' name='L379' />
+<a id='L380' name='L380' />  <a href='../Y/4587.html' title='Multiple used in 3 places.'>rs1_id</a> = <a href='../S/366.html#L195' title='Defined at 195 in src/rule.h.'>lmn_ruleset_get_id</a>(<a href='../Y/4775.html' title='Multiple used in 10 places.'>set1</a>);
+<a id='L381' name='L381' />  <strong class='reserved'>for</strong> (<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> = 0; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> &lt; <a href='../S/409.html#L54' title='Defined at 54 in src/utility/vector.h.'>vec_num</a>(<a href='../Y/4595.html' title='Multiple used in 3 places.'>rs_vec</a>); <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>++) <em class='brace'>{</em>
+<a id='L382' name='L382' />    <a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../Y/4776.html' title='Multiple used in 9 places.'>set2</a> = (<a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a>)<a href='../S/409.html#L143' title='Defined at 143 in src/utility/vector.h.'>vec_get</a>(<a href='../Y/4595.html' title='Multiple used in 3 places.'>rs_vec</a>, <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>);
+<a id='L383' name='L383' />
+<a id='L384' name='L384' />    <em class='comment'>/* 同じrulesetが見つかればTRUEを返す */</em>
+<a id='L385' name='L385' />    <strong class='reserved'>if</strong> (<a href='../Y/4587.html' title='Multiple used in 3 places.'>rs1_id</a> == <a href='../S/366.html#L195' title='Defined at 195 in src/rule.h.'>lmn_ruleset_get_id</a>(<a href='../Y/4776.html' title='Multiple used in 9 places.'>set2</a>) &amp;&amp;
+<a id='L386' name='L386' />        <a href='../S/365.html#L325' title='Defined at 325 in src/rule.c.'>lmn_ruleset_equals</a>(<a href='../Y/4775.html' title='Multiple used in 10 places.'>set1</a>, <a href='../Y/4776.html' title='Multiple used in 9 places.'>set2</a>)) <em class='brace'>{</em>
+<a id='L387' name='L387' />      <strong class='reserved'>return</strong> <a href='../S/347.html#L69' title='Defined at 69 in src/lmntal.h.'>TRUE</a>;
+<a id='L388' name='L388' />    <em class='brace'>}</em>
+<a id='L389' name='L389' />  <em class='brace'>}</em>
+<a id='L390' name='L390' />  <em class='comment'>/* 見つからなければFALSE */</em>
+<a id='L391' name='L391' />  <strong class='reserved'>return</strong> <a href='../S/347.html#L66' title='Defined at 66 in src/lmntal.h.'>FALSE</a>;
+<a id='L392' name='L392' /><em class='brace'>}</em>
+<a id='L393' name='L393' />
+<a id='L394' name='L394' /><em class='comment'>/* 2つの(Vector *)rulesetsが等価であるか判定, 等価の場合に真を返す.</em>
+<a id='L395' name='L395' /><em class='comment'> * Vectorはルールセットの整数IDで整列済みであることが前提 */</em>
+<a id='L396' name='L396' /><a href='../S/347.html#L62' title='Defined at 62 in src/lmntal.h.'>BOOL</a> <a href='../R/4006.html' title='Multiple refered from 3 places.'>lmn_rulesets_equals</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/4593.html' title='Multiple used in 4 places.'>rs_v1</a>, <a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/4594.html' title='Multiple used in 4 places.'>rs_v2</a>)
+<a id='L397' name='L397' /><em class='brace'>{</em>
+<a id='L398' name='L398' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>;
+<a id='L399' name='L399' />
+<a id='L400' name='L400' />  <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a> = <a href='../S/409.html#L54' title='Defined at 54 in src/utility/vector.h.'>vec_num</a>(<a href='../Y/4593.html' title='Multiple used in 4 places.'>rs_v1</a>);
+<a id='L401' name='L401' />  <strong class='reserved'>if</strong> (<a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a> != <a href='../S/409.html#L54' title='Defined at 54 in src/utility/vector.h.'>vec_num</a>(<a href='../Y/4594.html' title='Multiple used in 4 places.'>rs_v2</a>)) <em class='brace'>{</em>
+<a id='L402' name='L402' />    <strong class='reserved'>return</strong> <a href='../S/347.html#L66' title='Defined at 66 in src/lmntal.h.'>FALSE</a>;
+<a id='L403' name='L403' />  <em class='brace'>}</em>
+<a id='L404' name='L404' />  <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L405' name='L405' />    <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>, <a href='../Y/5520.html' title='Multiple used in 5 places.'>un1</a>, <a href='../Y/5521.html' title='Multiple used in 4 places.'>un2</a>;
+<a id='L406' name='L406' />
+<a id='L407' name='L407' />    <em class='comment'>/* ルールセットの種類の比較 (IDで昇順に並べておくコードに依存) */</em>
+<a id='L408' name='L408' />    <a href='../Y/5520.html' title='Multiple used in 5 places.'>un1</a> = 0;
+<a id='L409' name='L409' />    <a href='../Y/5521.html' title='Multiple used in 4 places.'>un2</a> = 0;
+<a id='L410' name='L410' />    <strong class='reserved'>for</strong> (<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> = 0; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> &lt; <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>++) <em class='brace'>{</em>
+<a id='L411' name='L411' />      <a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../Y/4586.html' title='Multiple used in 9 places.'>rs1</a>, <a href='../Y/4588.html' title='Multiple used in 8 places.'>rs2</a>;
+<a id='L412' name='L412' />      <a href='../Y/4586.html' title='Multiple used in 9 places.'>rs1</a> = (<a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a>)<a href='../S/409.html#L143' title='Defined at 143 in src/utility/vector.h.'>vec_get</a>(<a href='../Y/4593.html' title='Multiple used in 4 places.'>rs_v1</a>, <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>);
+<a id='L413' name='L413' />      <a href='../Y/4588.html' title='Multiple used in 8 places.'>rs2</a> = (<a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a>)<a href='../S/409.html#L143' title='Defined at 143 in src/utility/vector.h.'>vec_get</a>(<a href='../Y/4594.html' title='Multiple used in 4 places.'>rs_v2</a>, <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>);
+<a id='L414' name='L414' />
+<a id='L415' name='L415' />      <em class='comment'>/* 異なるidであれば等価ではない */</em>
+<a id='L416' name='L416' />      <strong class='reserved'>if</strong> (<a href='../S/366.html#L195' title='Defined at 195 in src/rule.h.'>lmn_ruleset_get_id</a>(<a href='../Y/4586.html' title='Multiple used in 9 places.'>rs1</a>) != <a href='../S/366.html#L195' title='Defined at 195 in src/rule.h.'>lmn_ruleset_get_id</a>(<a href='../Y/4588.html' title='Multiple used in 8 places.'>rs2</a>)) <em class='brace'>{</em>
+<a id='L417' name='L417' />        <strong class='reserved'>return</strong> <a href='../S/347.html#L66' title='Defined at 66 in src/lmntal.h.'>FALSE</a>;
+<a id='L418' name='L418' />      <em class='brace'>}</em>
+<a id='L419' name='L419' />
+<a id='L420' name='L420' />      <em class='comment'>/* rulesetsがuniq ruleを含むrulesetを何個持っているか調べておく */</em>
+<a id='L421' name='L421' />      <strong class='reserved'>if</strong> (<a href='../S/366.html#L217' title='Defined at 217 in src/rule.h.'>lmn_ruleset_has_uniqrule</a>(<a href='../Y/4586.html' title='Multiple used in 9 places.'>rs1</a>)) <a href='../Y/5520.html' title='Multiple used in 5 places.'>un1</a>++;
+<a id='L422' name='L422' />      <strong class='reserved'>if</strong> (<a href='../S/366.html#L217' title='Defined at 217 in src/rule.h.'>lmn_ruleset_has_uniqrule</a>(<a href='../Y/4588.html' title='Multiple used in 8 places.'>rs2</a>)) <a href='../Y/5521.html' title='Multiple used in 4 places.'>un2</a>++;
+<a id='L423' name='L423' />    <em class='brace'>}</em>
+<a id='L424' name='L424' />
+<a id='L425' name='L425' />    <strong class='reserved'>if</strong> (<a href='../Y/5520.html' title='Multiple used in 5 places.'>un1</a> != <a href='../Y/5521.html' title='Multiple used in 4 places.'>un2</a>) <em class='brace'>{</em>
+<a id='L426' name='L426' />      <strong class='reserved'>return</strong> <a href='../S/347.html#L66' title='Defined at 66 in src/lmntal.h.'>FALSE</a>;
+<a id='L427' name='L427' />    <em class='brace'>}</em>
+<a id='L428' name='L428' />    <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (<a href='../Y/5520.html' title='Multiple used in 5 places.'>un1</a> == 0) <em class='brace'>{</em>
+<a id='L429' name='L429' />      <strong class='reserved'>return</strong> <a href='../S/347.html#L69' title='Defined at 69 in src/lmntal.h.'>TRUE</a>;
+<a id='L430' name='L430' />    <em class='brace'>}</em>
+<a id='L431' name='L431' />    <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L432' name='L432' />      <em class='comment'>/* ---uniq制約がある場合の処理--- */</em>
+<a id='L433' name='L433' />      <a href='../D/1415.html' title='Multiple defined in 2 places.'>LMN_ASSERT</a>(<a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a> &gt; 0);
+<a id='L434' name='L434' />      <a href='../S/347.html#L62' title='Defined at 62 in src/lmntal.h.'>BOOL</a> *<a href='../Y/4589.html' title='Multiple used in 6 places.'>rs2v_matched</a>, <a href='../Y/2916.html' title='Multiple used in 5 places.'>is_ok</a>;
+<a id='L435' name='L435' />
+<a id='L436' name='L436' />      <a href='../Y/4589.html' title='Multiple used in 6 places.'>rs2v_matched</a> = <a href='../S/347.html#L216' title='Defined at 216 in src/lmntal.h.'>LMN_NALLOC</a>(<a href='../S/347.html#L62' title='Defined at 62 in src/lmntal.h.'>BOOL</a>, <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>);
+<a id='L437' name='L437' />      <a href='../Y/3518.html' title='Multiple used in 105 places.'>memset</a>(<a href='../Y/4589.html' title='Multiple used in 6 places.'>rs2v_matched</a>, 0U, <strong class='reserved'>sizeof</strong>(<a href='../S/347.html#L62' title='Defined at 62 in src/lmntal.h.'>BOOL</a>) * <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>);
+<a id='L438' name='L438' />
+<a id='L439' name='L439' />      <strong class='reserved'>for</strong> (<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> = 0; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> &lt; <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>++) <em class='brace'>{</em>
+<a id='L440' name='L440' />        <a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../Y/4586.html' title='Multiple used in 9 places.'>rs1</a>;
+<a id='L441' name='L441' />        <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a>;
+<a id='L442' name='L442' />
+<a id='L443' name='L443' />        <a href='../Y/2916.html' title='Multiple used in 5 places.'>is_ok</a>  = <a href='../S/347.html#L66' title='Defined at 66 in src/lmntal.h.'>FALSE</a>;
+<a id='L444' name='L444' />        <a href='../Y/4586.html' title='Multiple used in 9 places.'>rs1</a> = (<a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a>)<a href='../S/409.html#L143' title='Defined at 143 in src/utility/vector.h.'>vec_get</a>(<a href='../Y/4593.html' title='Multiple used in 4 places.'>rs_v1</a>, <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>);
+<a id='L445' name='L445' />        <strong class='reserved'>for</strong> (<a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a> = 0; <a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a> &lt; <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>; <a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a>++) <em class='brace'>{</em>
+<a id='L446' name='L446' />          <a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../Y/4588.html' title='Multiple used in 8 places.'>rs2</a> = (<a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a>)<a href='../S/409.html#L143' title='Defined at 143 in src/utility/vector.h.'>vec_get</a>(<a href='../Y/4594.html' title='Multiple used in 4 places.'>rs_v2</a>, <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>);
+<a id='L447' name='L447' />          <strong class='reserved'>if</strong> (<a href='../S/366.html#L195' title='Defined at 195 in src/rule.h.'>lmn_ruleset_get_id</a>(<a href='../Y/4586.html' title='Multiple used in 9 places.'>rs1</a>) &lt; <a href='../S/366.html#L195' title='Defined at 195 in src/rule.h.'>lmn_ruleset_get_id</a>(<a href='../Y/4588.html' title='Multiple used in 8 places.'>rs2</a>)) <em class='brace'>{</em>
+<a id='L448' name='L448' />            <em class='comment'>/* 比較打ち切り */</em>
+<a id='L449' name='L449' />            <strong class='reserved'>break</strong>; <em class='comment'>/* INNER LOOP */</em>
+<a id='L450' name='L450' />          <em class='brace'>}</em>
+<a id='L451' name='L451' />          <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (<a href='../S/366.html#L195' title='Defined at 195 in src/rule.h.'>lmn_ruleset_get_id</a>(<a href='../Y/4586.html' title='Multiple used in 9 places.'>rs1</a>) == <a href='../S/366.html#L195' title='Defined at 195 in src/rule.h.'>lmn_ruleset_get_id</a>(<a href='../Y/4588.html' title='Multiple used in 8 places.'>rs2</a>) &amp;&amp;
+<a id='L452' name='L452' />                   !<a href='../Y/4589.html' title='Multiple used in 6 places.'>rs2v_matched</a>[<a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a>] &amp;&amp;
+<a id='L453' name='L453' />                   <a href='../S/365.html#L325' title='Defined at 325 in src/rule.c.'>lmn_ruleset_equals</a>(<a href='../Y/4586.html' title='Multiple used in 9 places.'>rs1</a>, <a href='../Y/4588.html' title='Multiple used in 8 places.'>rs2</a>)) <em class='brace'>{</em>
+<a id='L454' name='L454' />            <a href='../Y/2916.html' title='Multiple used in 5 places.'>is_ok</a> = <a href='../S/347.html#L69' title='Defined at 69 in src/lmntal.h.'>TRUE</a>;
+<a id='L455' name='L455' />            <a href='../Y/4589.html' title='Multiple used in 6 places.'>rs2v_matched</a>[<a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a>] = <a href='../S/347.html#L69' title='Defined at 69 in src/lmntal.h.'>TRUE</a>;
+<a id='L456' name='L456' />            <strong class='reserved'>break</strong>; <em class='comment'>/* INNER LOOP */</em>
+<a id='L457' name='L457' />          <em class='brace'>}</em>
+<a id='L458' name='L458' />        <em class='brace'>}</em>
+<a id='L459' name='L459' />
+<a id='L460' name='L460' />        <strong class='reserved'>if</strong> (!<a href='../Y/2916.html' title='Multiple used in 5 places.'>is_ok</a>) <em class='brace'>{</em>
+<a id='L461' name='L461' />          <em class='comment'>/* rs1にマッチするルールセットが存在しなかった */</em>
+<a id='L462' name='L462' />          <strong class='reserved'>break</strong>; <em class='comment'>/* OUTER LOOP */</em>
+<a id='L463' name='L463' />        <em class='brace'>}</em>
+<a id='L464' name='L464' />      <em class='brace'>}</em>
+<a id='L465' name='L465' />
+<a id='L466' name='L466' />      <a href='../S/347.html#L220' title='Defined at 220 in src/lmntal.h.'>LMN_FREE</a>(<a href='../Y/4589.html' title='Multiple used in 6 places.'>rs2v_matched</a>);
+<a id='L467' name='L467' />      <strong class='reserved'>return</strong> <a href='../Y/2916.html' title='Multiple used in 5 places.'>is_ok</a>;
+<a id='L468' name='L468' />    <em class='brace'>}</em>
+<a id='L469' name='L469' />  <em class='brace'>}</em>
+<a id='L470' name='L470' /><em class='brace'>}</em>
+<a id='L471' name='L471' />
+<a id='L472' name='L472' />
+<a id='L473' name='L473' /><em class='comment'>/*----------------------------------------------------------------------</em>
+<a id='L474' name='L474' /><em class='comment'> * System RuleSet</em>
+<a id='L475' name='L475' /><em class='comment'> */</em>
+<a id='L476' name='L476' />
+<a id='L477' name='L477' /><a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../Y/5265.html' title='Multiple used in 13 places.'>system_ruleset</a>;
+<a id='L478' name='L478' />
+<a id='L479' name='L479' /><strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/365.html#L564' title='Refered from 564 in src/rule.c.'>init_system_rulset</a>()
+<a id='L480' name='L480' /><em class='brace'>{</em>
+<a id='L481' name='L481' />  <a href='../Y/5265.html' title='Multiple used in 13 places.'>system_ruleset</a> = <a href='../S/365.html#L145' title='Defined at 145 in src/rule.c.'>lmn_ruleset_make</a>(<a href='../S/365.html#L137' title='Defined at 137 in src/rule.c.'>lmn_gen_ruleset_id</a>(), 10);
+<a id='L482' name='L482' /><em class='brace'>}</em>
+<a id='L483' name='L483' />
+<a id='L484' name='L484' /><strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/365.html#L572' title='Refered from 572 in src/rule.c.'>destroy_system_ruleset</a>()
+<a id='L485' name='L485' /><em class='brace'>{</em>
+<a id='L486' name='L486' />  <a href='../S/365.html#L162' title='Defined at 162 in src/rule.c.'>lmn_ruleset_free</a>(<a href='../Y/5265.html' title='Multiple used in 13 places.'>system_ruleset</a>);
+<a id='L487' name='L487' /><em class='brace'>}</em>
+<a id='L488' name='L488' />
+<a id='L489' name='L489' /><em class='comment'>/* Adds rule to the system ruleset.</em>
+<a id='L490' name='L490' /><em class='comment'>   ruleの解放は呼び出され側が行う */</em>
+<a id='L491' name='L491' /><strong class='reserved'>void</strong> <a href='../R/3775.html' title='Multiple refered from 6 places.'>lmn_add_system_rule</a>(<a href='../D/1677.html' title='Multiple defined in 2 places.'>LmnRule</a> <a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>)
+<a id='L492' name='L492' /><em class='brace'>{</em>
+<a id='L493' name='L493' />  <a href='../S/365.html#L174' title='Defined at 174 in src/rule.c.'>lmn_ruleset_put</a>(<a href='../Y/5265.html' title='Multiple used in 13 places.'>system_ruleset</a>, <a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>);
+<a id='L494' name='L494' /><em class='brace'>}</em>
+<a id='L495' name='L495' />
+<a id='L496' name='L496' /><em class='comment'>/*----------------------------------------------------------------------</em>
+<a id='L497' name='L497' /><em class='comment'> * Initial RuleSet</em>
+<a id='L498' name='L498' /><em class='comment'> */</em>
+<a id='L499' name='L499' />
+<a id='L500' name='L500' /><a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../Y/2819.html' title='Multiple used in 9 places.'>initial_ruleset</a>;
+<a id='L501' name='L501' /><a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../Y/2820.html' title='Multiple used in 8 places.'>initial_system_ruleset</a>;
+<a id='L502' name='L502' />
+<a id='L503' name='L503' /><strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/365.html#L565' title='Refered from 565 in src/rule.c.'>init_initial_rulset</a>()
+<a id='L504' name='L504' /><em class='brace'>{</em>
+<a id='L505' name='L505' />  <a href='../Y/2819.html' title='Multiple used in 9 places.'>initial_ruleset</a> = <a href='../S/365.html#L145' title='Defined at 145 in src/rule.c.'>lmn_ruleset_make</a>(<a href='../S/365.html#L137' title='Defined at 137 in src/rule.c.'>lmn_gen_ruleset_id</a>(), 10);
+<a id='L506' name='L506' />  <a href='../Y/2820.html' title='Multiple used in 8 places.'>initial_system_ruleset</a> = <a href='../S/365.html#L145' title='Defined at 145 in src/rule.c.'>lmn_ruleset_make</a>(<a href='../S/365.html#L137' title='Defined at 137 in src/rule.c.'>lmn_gen_ruleset_id</a>(), 10);
+<a id='L507' name='L507' /><em class='brace'>}</em>
+<a id='L508' name='L508' />
+<a id='L509' name='L509' /><strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/365.html#L573' title='Refered from 573 in src/rule.c.'>destroy_initial_ruleset</a>()
+<a id='L510' name='L510' /><em class='brace'>{</em>
+<a id='L511' name='L511' />  <a href='../S/365.html#L162' title='Defined at 162 in src/rule.c.'>lmn_ruleset_free</a>(<a href='../Y/2819.html' title='Multiple used in 9 places.'>initial_ruleset</a>);
+<a id='L512' name='L512' />  <a href='../S/365.html#L162' title='Defined at 162 in src/rule.c.'>lmn_ruleset_free</a>(<a href='../Y/2820.html' title='Multiple used in 8 places.'>initial_system_ruleset</a>);
+<a id='L513' name='L513' /><em class='brace'>}</em>
+<a id='L514' name='L514' />
+<a id='L515' name='L515' /><em class='comment'>/* Adds rule to the system ruleset.</em>
+<a id='L516' name='L516' /><em class='comment'>   ruleの解放は呼び出され側が行う */</em>
+<a id='L517' name='L517' /><strong class='reserved'>void</strong> <a href='../R/3773.html' title='Multiple refered from 5 places.'>lmn_add_initial_rule</a>(<a href='../D/1677.html' title='Multiple defined in 2 places.'>LmnRule</a> <a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>)
+<a id='L518' name='L518' /><em class='brace'>{</em>
+<a id='L519' name='L519' />  <a href='../S/365.html#L174' title='Defined at 174 in src/rule.c.'>lmn_ruleset_put</a>(<a href='../Y/2819.html' title='Multiple used in 9 places.'>initial_ruleset</a>, <a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>);
+<a id='L520' name='L520' /><em class='brace'>}</em>
+<a id='L521' name='L521' />
+<a id='L522' name='L522' /><strong class='reserved'>void</strong> <a href='../R/3774.html' title='Multiple refered from 4 places.'>lmn_add_initial_system_rule</a>(<a href='../D/1677.html' title='Multiple defined in 2 places.'>LmnRule</a> <a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>)
+<a id='L523' name='L523' /><em class='brace'>{</em>
+<a id='L524' name='L524' />  <a href='../S/365.html#L174' title='Defined at 174 in src/rule.c.'>lmn_ruleset_put</a>(<a href='../Y/2820.html' title='Multiple used in 8 places.'>initial_system_ruleset</a>, <a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>);
+<a id='L525' name='L525' /><em class='brace'>}</em>
+<a id='L526' name='L526' />
+<a id='L527' name='L527' /><em class='comment'>/*----------------------------------------------------------------------</em>
+<a id='L528' name='L528' /><em class='comment'> * Module</em>
+<a id='L529' name='L529' /><em class='comment'> */</em>
+<a id='L530' name='L530' />
+<a id='L531' name='L531' /><a href='../S/405.html#L18' title='Defined at 18 in src/utility/st.h.'>st_table_t</a> <a href='../Y/3595.html' title='Multiple used in 11 places.'>module_table</a>;
+<a id='L532' name='L532' />
+<a id='L533' name='L533' /><strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/365.html#L563' title='Refered from 563 in src/rule.c.'>init_module_table</a>()
+<a id='L534' name='L534' /><em class='brace'>{</em>
+<a id='L535' name='L535' />  <a href='../Y/3595.html' title='Multiple used in 11 places.'>module_table</a> = <a href='../S/404.html#L143' title='Defined at 143 in src/utility/st.c.'>st_init_numtable</a>();
+<a id='L536' name='L536' /><em class='brace'>}</em>
+<a id='L537' name='L537' />
+<a id='L538' name='L538' /><strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/365.html#L571' title='Refered from 571 in src/rule.c.'>destroy_module_table</a>()
+<a id='L539' name='L539' /><em class='brace'>{</em>
+<a id='L540' name='L540' />  <a href='../S/404.html#L175' title='Defined at 175 in src/utility/st.c.'>st_free_table</a>(<a href='../Y/3595.html' title='Multiple used in 11 places.'>module_table</a>);
+<a id='L541' name='L541' /><em class='brace'>}</em>
+<a id='L542' name='L542' />
+<a id='L543' name='L543' /><em class='comment'>/* Associates module_name with ruleset */</em>
+<a id='L544' name='L544' /><strong class='reserved'>void</strong> <a href='../R/4016.html' title='Multiple refered from 3 places.'>lmn_set_module</a>(<a href='../S/347.html#L126' title='Defined at 126 in src/lmntal.h.'>lmn_interned_str</a> <a href='../Y/3593.html' title='Multiple used in 10 places.'>module_name</a>, <a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>)
+<a id='L545' name='L545' /><em class='brace'>{</em>
+<a id='L546' name='L546' />  <a href='../S/404.html#L314' title='Defined at 314 in src/utility/st.c.'>st_insert</a>(<a href='../Y/3595.html' title='Multiple used in 11 places.'>module_table</a>, (<a href='../S/405.html#L17' title='Defined at 17 in src/utility/st.h.'>st_data_t</a>)<a href='../Y/3593.html' title='Multiple used in 10 places.'>module_name</a>, (<a href='../S/405.html#L17' title='Defined at 17 in src/utility/st.h.'>st_data_t</a>)<a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>);
+<a id='L547' name='L547' /><em class='brace'>}</em>
+<a id='L548' name='L548' />
+<a id='L549' name='L549' /><em class='comment'>/* Returns RuleSet associated with module_name. If nothing is, returns NULL. */</em>
+<a id='L550' name='L550' /><a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../R/3826.html' title='Multiple refered from 5 places.'>lmn_get_module_ruleset</a>(<a href='../S/347.html#L126' title='Defined at 126 in src/lmntal.h.'>lmn_interned_str</a> <a href='../Y/3593.html' title='Multiple used in 10 places.'>module_name</a>)
+<a id='L551' name='L551' /><em class='brace'>{</em>
+<a id='L552' name='L552' />  <a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>;
+<a id='L553' name='L553' />
+<a id='L554' name='L554' />  <strong class='reserved'>if</strong> (<a href='../S/404.html#L238' title='Defined at 238 in src/utility/st.c.'>st_lookup</a>(<a href='../Y/3595.html' title='Multiple used in 11 places.'>module_table</a>, (<a href='../S/405.html#L17' title='Defined at 17 in src/utility/st.h.'>st_data_t</a>)<a href='../Y/3593.html' title='Multiple used in 10 places.'>module_name</a>, (<strong class='reserved'>void</strong> *)&amp;<a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>)) <strong class='reserved'>return</strong> <a href='../Y/4636.html' title='Multiple used in 100 places.'>ruleset</a>;
+<a id='L555' name='L555' />  <strong class='reserved'>return</strong> <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>;
+<a id='L556' name='L556' /><em class='brace'>}</em>
+<a id='L557' name='L557' />
+<a id='L558' name='L558' /><em class='comment'>/*----------------------------------------------------------------------*/</em>
+<a id='L559' name='L559' />
+<a id='L560' name='L560' /><strong class='reserved'>void</strong> <a href='../R/3626.html' title='Multiple refered from 3 places.'>init_rules</a>()
+<a id='L561' name='L561' /><em class='brace'>{</em>
+<a id='L562' name='L562' />  <a href='../S/365.html#L191' title='Defined at 191 in src/rule.c.'>init_ruleset_table</a>();
+<a id='L563' name='L563' />  <a href='../S/365.html#L533' title='Defined at 533 in src/rule.c.'>init_module_table</a>();
+<a id='L564' name='L564' />  <a href='../S/365.html#L479' title='Defined at 479 in src/rule.c.'>init_system_rulset</a>();
+<a id='L565' name='L565' />  <a href='../S/365.html#L503' title='Defined at 503 in src/rule.c.'>init_initial_rulset</a>();
+<a id='L566' name='L566' /><em class='brace'>}</em>
+<a id='L567' name='L567' />
+<a id='L568' name='L568' /><strong class='reserved'>void</strong> <a href='../R/3207.html' title='Multiple refered from 3 places.'>destroy_rules</a>()
+<a id='L569' name='L569' /><em class='brace'>{</em>
+<a id='L570' name='L570' />  <a href='../S/365.html#L201' title='Defined at 201 in src/rule.c.'>destroy_ruleset_table</a>();
+<a id='L571' name='L571' />  <a href='../S/365.html#L538' title='Defined at 538 in src/rule.c.'>destroy_module_table</a>();
+<a id='L572' name='L572' />  <a href='../S/365.html#L484' title='Defined at 484 in src/rule.c.'>destroy_system_ruleset</a>();
+<a id='L573' name='L573' />  <a href='../S/365.html#L509' title='Defined at 509 in src/rule.c.'>destroy_initial_ruleset</a>();
+<a id='L574' name='L574' /> <em class='brace'>}</em>
+<a id='L575' name='L575' />
+<a id='L576' name='L576' />
+<a id='L577' name='L577' />
+<a id='L578' name='L578' /><em class='sharp'>#undef</em> GROWN_RATE
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;]<a href='#L52'>[^]</a><a href='#L568'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

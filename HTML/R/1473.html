@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>LmnLinkAttr</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/311.html#L87'>LmnLinkAttr</a>        87 src/atom.h     #define LMN_ATOM_ATTR(X)                ((LmnLinkAttr)(X))</span>
+<span class='curline'><a href='../S/311.html#L88'>LmnLinkAttr</a>        88 src/atom.h     #define LMN_ATTR_BYTES                  (sizeof(LmnLinkAttr))</span>
+<span class='curline'><a href='../S/311.html#L129'>LmnLinkAttr</a>       129 src/atom.h     #define LMN_SATOM_PATTR(ATOM, N)        ((LmnLinkAttr *)(((BYTE *)(((LmnWord *)(ATOM)) + LMN_LINK_SHIFT)) + (N) * LMN_ATTR_BYTES))</span>
+<span class='curline'><a href='../S/311.html#L199'>LmnLinkAttr</a>       199 src/atom.h     static inline LmnAtom lmn_copy_atom(LmnAtom atom, LmnLinkAttr attr);</span>
+<span class='curline'><a href='../S/311.html#L201'>LmnLinkAttr</a>       201 src/atom.h     static inline LmnAtom lmn_copy_data_atom(LmnAtom atom, LmnLinkAttr attr);</span>
+<span class='curline'><a href='../S/311.html#L203'>LmnLinkAttr</a>       203 src/atom.h     static inline void lmn_free_atom(LmnAtom atom, LmnLinkAttr attr);</span>
+<span class='curline'><a href='../S/311.html#L205'>LmnLinkAttr</a>       205 src/atom.h     static inline BOOL lmn_eq_func(LmnAtom atom0, LmnLinkAttr attr0,</span>
+<span class='curline'><a href='../S/311.html#L206'>LmnLinkAttr</a>       206 src/atom.h                                    LmnAtom atom1,LmnLinkAttr attr1);</span>
+<span class='curline'><a href='../S/311.html#L207'>LmnLinkAttr</a>       207 src/atom.h     static inline BOOL lmn_data_atom_is_ground(LmnAtom atom, LmnLinkAttr attr);</span>
+<span class='curline'><a href='../S/311.html#L208'>LmnLinkAttr</a>       208 src/atom.h     static inline BOOL lmn_data_atom_eq(LmnAtom atom1, LmnLinkAttr attr1,</span>
+<span class='curline'><a href='../S/311.html#L209'>LmnLinkAttr</a>       209 src/atom.h                                         LmnAtom atom2, LmnLinkAttr attr2);</span>
+<span class='curline'><a href='../S/311.html#L220'>LmnLinkAttr</a>       220 src/atom.h     static inline LmnAtom lmn_copy_atom(LmnAtom atom, LmnLinkAttr attr) {</span>
+<span class='curline'><a href='../S/311.html#L243'>LmnLinkAttr</a>       243 src/atom.h     static inline LmnAtom lmn_copy_data_atom(LmnAtom atom, LmnLinkAttr attr) {</span>
+<span class='curline'><a href='../S/311.html#L299'>LmnLinkAttr</a>       299 src/atom.h     static inline void free_data_atom(LmnAtom atom, LmnLinkAttr attr) {</span>
+<span class='curline'><a href='../S/311.html#L323'>LmnLinkAttr</a>       323 src/atom.h     static inline void lmn_free_atom(LmnAtom atom, LmnLinkAttr attr) {</span>
+<span class='curline'><a href='../S/311.html#L350'>LmnLinkAttr</a>       350 src/atom.h     static inline BOOL lmn_eq_func(LmnAtom     atom0, LmnLinkAttr attr0,</span>
+<span class='curline'><a href='../S/311.html#L351'>LmnLinkAttr</a>       351 src/atom.h                                    LmnAtom     atom1, LmnLinkAttr attr1) {</span>
+<span class='curline'><a href='../S/311.html#L368'>LmnLinkAttr</a>       368 src/atom.h     static inline BOOL lmn_data_atom_is_ground(LmnAtom atom, LmnLinkAttr attr) {</span>
+<span class='curline'><a href='../S/311.html#L381'>LmnLinkAttr</a>       381 src/atom.h     static inline BOOL lmn_data_atom_eq(LmnAtom atom1, LmnLinkAttr attr1,</span>
+<span class='curline'><a href='../S/311.html#L382'>LmnLinkAttr</a>       382 src/atom.h                                         LmnAtom atom2, LmnLinkAttr attr2) {</span>
+<span class='curline'><a href='../S/317.html#L90'>LmnLinkAttr</a>        90 src/dumper.c                         LmnLinkAttr attr,</span>
+<span class='curline'><a href='../S/317.html#L248'>LmnLinkAttr</a>       248 src/dumper.c                              LmnLinkAttr attr)</span>
+<span class='curline'><a href='../S/317.html#L294'>LmnLinkAttr</a>       294 src/dumper.c     LmnLinkAttr attr;</span>
+<span class='curline'><a href='../S/317.html#L352'>LmnLinkAttr</a>       352 src/dumper.c                                    LmnLinkAttr attr,</span>
+<span class='curline'><a href='../S/317.html#L398'>LmnLinkAttr</a>       398 src/dumper.c       LmnLinkAttr attr = LMN_SATOM_GET_ATTR(atom, 1);</span>
+<span class='curline'><a href='../S/317.html#L505'>LmnLinkAttr</a>       505 src/dumper.c                         LmnLinkAttr attr,</span>
+<span class='curline'><a href='../S/317.html#L850'>LmnLinkAttr</a>       850 src/dumper.c       LmnLinkAttr attr;</span>
+<span class='curline'><a href='../S/317.html#L957'>LmnLinkAttr</a>       957 src/dumper.c           LmnLinkAttr attr = LMN_SATOM_GET_ATTR(atom, i);</span>
+<span class='curline'><a href='../S/317.html#L975'>LmnLinkAttr</a>       975 src/dumper.c           LmnLinkAttr attr = LMN_SATOM_GET_ATTR(LMN_SATOM(atom), i);</span>
+<span class='curline'><a href='../S/317.html#L1035'>LmnLinkAttr</a>      1035 src/dumper.c                    LmnAtom a0, LmnLinkAttr t0,</span>
+<span class='curline'><a href='../S/317.html#L1036'>LmnLinkAttr</a>      1036 src/dumper.c                    LmnAtom a1, LmnLinkAttr t1,</span>
+<span class='curline'><a href='../S/317.html#L1037'>LmnLinkAttr</a>      1037 src/dumper.c                    LmnAtom a2, LmnLinkAttr t2)</span>
+<span class='curline'><a href='../S/317.html#L1080'>LmnLinkAttr</a>      1080 src/dumper.c   void lmn_dump_atom(LmnPort port, LmnWord atom, LmnLinkAttr attr)</span>
+<span class='curline'><a href='../S/318.html#L56'>LmnLinkAttr</a>        56 src/dumper.h   LMN_EXTERN void lmn_dump_atom(LmnPort port, LmnWord atom, LmnLinkAttr attr);</span>
+<span class='curline'><a href='../S/322.html#L53'>LmnLinkAttr</a>        53 src/ext/atomic.c                     LmnAtom a0, LmnLinkAttr t0)</span>
+<span class='curline'><a href='../S/325.html#L60'>LmnLinkAttr</a>        60 src/ext/integer.c                  LmnAtom a0, LmnLinkAttr t0,</span>
+<span class='curline'><a href='../S/325.html#L61'>LmnLinkAttr</a>        61 src/ext/integer.c                  LmnAtom a1, LmnLinkAttr t1,</span>
+<span class='curline'><a href='../S/325.html#L62'>LmnLinkAttr</a>        62 src/ext/integer.c                  LmnAtom a2, LmnLinkAttr t2)</span>
+<span class='curline'><a href='../S/325.html#L106'>LmnLinkAttr</a>       106 src/ext/integer.c                    LmnAtom a0, LmnLinkAttr t0)</span>
+<span class='curline'><a href='../S/325.html#L120'>LmnLinkAttr</a>       120 src/ext/integer.c                   LmnAtom a0, LmnLinkAttr t0,</span>
+<span class='curline'><a href='../S/325.html#L121'>LmnLinkAttr</a>       121 src/ext/integer.c                   LmnAtom a1, LmnLinkAttr t1)</span>
+<span class='curline'><a href='../S/325.html#L140'>LmnLinkAttr</a>       140 src/ext/integer.c                        LmnAtom a0, LmnLinkAttr t0,</span>
+<span class='curline'><a href='../S/325.html#L141'>LmnLinkAttr</a>       141 src/ext/integer.c                        LmnAtom a1, LmnLinkAttr t1)</span>
+<span class='curline'><a href='../S/326.html#L53'>LmnLinkAttr</a>        53 src/ext/io.c                                   LmnAtom a0, LmnLinkAttr t0,</span>
+<span class='curline'><a href='../S/326.html#L54'>LmnLinkAttr</a>        54 src/ext/io.c                                   LmnAtom a1, LmnLinkAttr t1)</span>
+<span class='curline'><a href='../S/326.html#L70'>LmnLinkAttr</a>        70 src/ext/io.c                                LmnAtom a0, LmnLinkAttr t0,</span>
+<span class='curline'><a href='../S/326.html#L71'>LmnLinkAttr</a>        71 src/ext/io.c                                LmnAtom a1, LmnLinkAttr t1,</span>
+<span class='curline'><a href='../S/326.html#L72'>LmnLinkAttr</a>        72 src/ext/io.c                                LmnAtom a2, LmnLinkAttr t2)</span>
+<span class='curline'><a href='../S/326.html#L91'>LmnLinkAttr</a>        91 src/ext/io.c                                LmnAtom a0, LmnLinkAttr t0,</span>
+<span class='curline'><a href='../S/326.html#L92'>LmnLinkAttr</a>        92 src/ext/io.c                                LmnAtom a1, LmnLinkAttr t1,</span>
+<span class='curline'><a href='../S/326.html#L93'>LmnLinkAttr</a>        93 src/ext/io.c                                LmnAtom a2, LmnLinkAttr t2)</span>
+<span class='curline'><a href='../S/327.html#L55'>LmnLinkAttr</a>        55 src/ext/nd_conf.c                              LmnAtom a0, LmnLinkAttr t0,</span>
+<span class='curline'><a href='../S/327.html#L56'>LmnLinkAttr</a>        56 src/ext/nd_conf.c                              LmnAtom a1, LmnLinkAttr t1,</span>
+<span class='curline'><a href='../S/327.html#L57'>LmnLinkAttr</a>        57 src/ext/nd_conf.c                              LmnAtom a2, LmnLinkAttr t2)</span>
+<span class='curline'><a href='../S/328.html#L49'>LmnLinkAttr</a>        49 src/ext/nlmem.c                 LmnAtom a0, LmnLinkAttr t0,</span>
+<span class='curline'><a href='../S/328.html#L50'>LmnLinkAttr</a>        50 src/ext/nlmem.c                 LmnAtom a1, LmnLinkAttr t1,</span>
+<span class='curline'><a href='../S/328.html#L51'>LmnLinkAttr</a>        51 src/ext/nlmem.c                 LmnAtom a2, LmnLinkAttr t2)</span>
+<span class='curline'><a href='../S/328.html#L99'>LmnLinkAttr</a>        99 src/ext/nlmem.c                 LmnAtom a0, LmnLinkAttr t0,</span>
+<span class='curline'><a href='../S/328.html#L100'>LmnLinkAttr</a>       100 src/ext/nlmem.c                 LmnAtom a1, LmnLinkAttr t1)</span>
+<span class='curline'><a href='../S/328.html#L118'>LmnLinkAttr</a>       118 src/ext/nlmem.c       LmnLinkAttr out_attr;</span>
+<span class='curline'><a href='../S/329.html#L46'>LmnLinkAttr</a>        46 src/ext/time.c              LmnAtom a0, LmnLinkAttr t0)</span>
+<span class='curline'><a href='../S/334.html#L481'>LmnLinkAttr</a>       481 src/hyperlink.c BOOL lmn_hyperlink_eq(LmnSAtom atom1, LmnLinkAttr attr1, LmnSAtom atom2, LmnLinkAttr attr2)</span>
+<span class='curline'><a href='../S/334.html#L938'>LmnLinkAttr</a>       938 src/hyperlink.c     LmnLinkAttr linked_attr;</span>
+<span class='curline'><a href='../S/334.html#L988'>LmnLinkAttr</a>       988 src/hyperlink.c     LmnLinkAttr linked_attr;</span>
+<span class='curline'><a href='../S/335.html#L102'>LmnLinkAttr</a>       102 src/hyperlink.h BOOL lmn_hyperlink_eq(LmnSAtom atom1, LmnLinkAttr attr1, LmnSAtom atom2, LmnLinkAttr attr2);</span>
+<span class='curline'><a href='../S/335.html#L132'>LmnLinkAttr</a>       132 src/hyperlink.h   LmnLinkAttr start_attr;</span>
+<span class='curline'><a href='../S/344.html#L87'>LmnLinkAttr</a>        87 src/interpret_generated.c   LmnLinkAttr targ2_attr;</span>
+<span class='curline'><a href='../S/344.html#L163'>LmnLinkAttr</a>       163 src/interpret_generated.c   LmnLinkAttr targ2_attr;</span>
+<span class='curline'><a href='../S/344.html#L445'>LmnLinkAttr</a>       445 src/interpret_generated.c   LmnLinkAttr targ1_attr;</span>
+<span class='curline'><a href='../S/344.html#L480'>LmnLinkAttr</a>       480 src/interpret_generated.c   LmnLinkAttr targ1_attr;</span>
+<span class='curline'><a href='../S/344.html#L1037'>LmnLinkAttr</a>      1037 src/interpret_generated.c   LmnLinkAttr targ1_attr;</span>
+<span class='curline'><a href='../S/344.html#L1149'>LmnLinkAttr</a>      1149 src/interpret_generated.c   LmnLinkAttr targ1_attr;</span>
+<span class='curline'><a href='../S/351.html#L396'>LmnLinkAttr</a>       396 src/load.c             WRITE_MOVE(LmnLinkAttr, LMN_ATTR_MAKE_LINK(0), c);</span>
+<span class='curline'><a href='../S/351.html#L400'>LmnLinkAttr</a>       400 src/load.c             WRITE_MOVE(LmnLinkAttr, LMN_INT_ATTR, c);</span>
+<span class='curline'><a href='../S/351.html#L404'>LmnLinkAttr</a>       404 src/load.c             WRITE_MOVE(LmnLinkAttr, LMN_DBL_ATTR, c);</span>
+<span class='curline'><a href='../S/351.html#L408'>LmnLinkAttr</a>       408 src/load.c             WRITE_MOVE(LmnLinkAttr, LMN_STRING_ATTR, c);</span>
+<span class='curline'><a href='../S/351.html#L412'>LmnLinkAttr</a>       412 src/load.c             WRITE_MOVE(LmnLinkAttr, LMN_ATTR_MAKE_LINK(0), c);</span>
+<span class='curline'><a href='../S/351.html#L416'>LmnLinkAttr</a>       416 src/load.c             WRITE_MOVE(LmnLinkAttr, LMN_ATTR_MAKE_LINK(0), c);</span>
+<span class='curline'><a href='../S/351.html#L420'>LmnLinkAttr</a>       420 src/load.c             WRITE_MOVE(LmnLinkAttr, LMN_ATTR_MAKE_LINK(0), c);</span>
+<span class='curline'><a href='../S/357.html#L331'>LmnLinkAttr</a>       331 src/membrane.c                              LmnLinkAttr attr0,</span>
+<span class='curline'><a href='../S/357.html#L333'>LmnLinkAttr</a>       333 src/membrane.c                              LmnLinkAttr attr1)</span>
+<span class='curline'><a href='../S/357.html#L349'>LmnLinkAttr</a>       349 src/membrane.c   LmnLinkAttr attr1, attr2;</span>
+<span class='curline'><a href='../S/357.html#L368'>LmnLinkAttr</a>       368 src/membrane.c   LmnLinkAttr attr1, attr2;</span>
+<span class='curline'><a href='../S/357.html#L406'>LmnLinkAttr</a>       406 src/membrane.c                          LmnSAtom atom0, LmnLinkAttr attr0, int pos0,</span>
+<span class='curline'><a href='../S/357.html#L407'>LmnLinkAttr</a>       407 src/membrane.c                          LmnSAtom atom1, LmnLinkAttr attr1, int pos1)</span>
+<span class='curline'><a href='../S/357.html#L437'>LmnLinkAttr</a>       437 src/membrane.c                                                 LmnLinkAttr attr)</span>
+<span class='curline'><a href='../S/357.html#L449'>LmnLinkAttr</a>       449 src/membrane.c                      LmnAtom atom0, LmnLinkAttr attr0, int pos0,</span>
+<span class='curline'><a href='../S/357.html#L450'>LmnLinkAttr</a>       450 src/membrane.c                      LmnAtom atom1, LmnLinkAttr attr1, int pos1)</span>
+<span class='curline'><a href='../S/357.html#L485'>LmnLinkAttr</a>       485 src/membrane.c                               LmnAtom atom0, LmnLinkAttr attr0, int pos0,</span>
+<span class='curline'><a href='../S/357.html#L486'>LmnLinkAttr</a>       486 src/membrane.c                               LmnAtom atom1, LmnLinkAttr attr1, int pos1)</span>
+<span class='curline'><a href='../S/357.html#L928'>LmnLinkAttr</a>       928 src/membrane.c         LmnLinkAttr attr = LMN_SATOM_GET_ATTR(srcatom, i);</span>
+<span class='curline'><a href='../S/357.html#L989'>LmnLinkAttr</a>       989 src/membrane.c LinkObj LinkObj_make(LmnAtom ap, LmnLinkAttr pos)</span>
+<span class='curline'><a href='../S/357.html#L1056'>LmnLinkAttr</a>      1056 src/membrane.c       LmnLinkAttr next_attr = LMN_SATOM_GET_ATTR(src_atom, i);</span>
+<span class='curline'><a href='../S/357.html#L1276'>LmnLinkAttr</a>      1276 src/membrane.c     LmnLinkAttr l_pos;</span>
+<span class='curline'><a href='../S/357.html#L1429'>LmnLinkAttr</a>      1429 src/membrane.c           LmnLinkAttr next_attr = LMN_SATOM_GET_ATTR(src_atom, i);</span>
+<span class='curline'><a href='../S/357.html#L2062'>LmnLinkAttr</a>      2062 src/membrane.c   LmnLinkAttr attr1, attr2;</span>
+<span class='curline'><a href='../S/357.html#L2181'>LmnLinkAttr</a>      2181 src/membrane.c     LmnLinkAttr attr1, attr2;</span>
+<span class='curline'><a href='../S/357.html#L2641'>LmnLinkAttr</a>      2641 src/membrane.c     LmnLinkAttr attr1, attr2;</span>
+<span class='curline'><a href='../S/358.html#L306'>LmnLinkAttr</a>       306 src/membrane.h static inline void lmn_mem_remove_data_atom(LmnMembrane *mem, LmnAtom atom, LmnLinkAttr attr);</span>
+<span class='curline'><a href='../S/358.html#L309'>LmnLinkAttr</a>       309 src/membrane.h static inline void lmn_mem_remove_atom(LmnMembrane *mem, LmnAtom atom, LmnLinkAttr attr);</span>
+<span class='curline'><a href='../S/358.html#L310'>LmnLinkAttr</a>       310 src/membrane.h static inline void lmn_mem_delete_atom(LmnMembrane *mem, LmnAtom atom, LmnLinkAttr attr);</span>
+<span class='curline'><a href='../S/358.html#L311'>LmnLinkAttr</a>       311 src/membrane.h static inline void lmn_mem_push_atom(LmnMembrane *mem, LmnAtom atom, LmnLinkAttr attr);</span>
+<span class='curline'><a href='../S/358.html#L441'>LmnLinkAttr</a>       441 src/membrane.h static inline void lmn_mem_remove_data_atom(LmnMembrane *mem, LmnAtom atom, LmnLinkAttr attr) {</span>
+<span class='curline'><a href='../S/358.html#L478'>LmnLinkAttr</a>       478 src/membrane.h static inline void lmn_mem_remove_atom(LmnMembrane *mem, LmnAtom atom, LmnLinkAttr attr) {</span>
+<span class='curline'><a href='../S/358.html#L486'>LmnLinkAttr</a>       486 src/membrane.h static inline void lmn_mem_delete_atom(LmnMembrane *mem, LmnAtom atom, LmnLinkAttr attr) {</span>
+<span class='curline'><a href='../S/358.html#L491'>LmnLinkAttr</a>       491 src/membrane.h static inline void lmn_mem_push_atom(LmnMembrane *mem, LmnAtom atom, LmnLinkAttr attr) {</span>
+<span class='curline'><a href='../S/358.html#L531'>LmnLinkAttr</a>       531 src/membrane.h                      LmnAtom atom0, LmnLinkAttr attr0, int pos0,</span>
+<span class='curline'><a href='../S/358.html#L532'>LmnLinkAttr</a>       532 src/membrane.h                      LmnAtom atom1, LmnLinkAttr attr1, int pos1);</span>
+<span class='curline'><a href='../S/358.html#L536'>LmnLinkAttr</a>       536 src/membrane.h                          LmnSAtom atom0, LmnLinkAttr attr0, int pos0,</span>
+<span class='curline'><a href='../S/358.html#L537'>LmnLinkAttr</a>       537 src/membrane.h                          LmnSAtom atom1, LmnLinkAttr attr1, int pos1);</span>
+<span class='curline'><a href='../S/358.html#L539'>LmnLinkAttr</a>       539 src/membrane.h                              LmnAtom d1, LmnLinkAttr attr1,</span>
+<span class='curline'><a href='../S/358.html#L540'>LmnLinkAttr</a>       540 src/membrane.h                              LmnAtom d2, LmnLinkAttr attr2);</span>
+<span class='curline'><a href='../S/358.html#L549'>LmnLinkAttr</a>       549 src/membrane.h                               LmnAtom atom0, LmnLinkAttr attr0, int pos0,</span>
+<span class='curline'><a href='../S/358.html#L550'>LmnLinkAttr</a>       550 src/membrane.h                               LmnAtom atom1, LmnLinkAttr attr1, int pos1);</span>
+<span class='curline'><a href='../S/358.html#L639'>LmnLinkAttr</a>       639 src/membrane.h   LmnLinkAttr pos;</span>
+<span class='curline'><a href='../S/358.html#L642'>LmnLinkAttr</a>       642 src/membrane.h LinkObj LinkObj_make(LmnAtom ap, LmnLinkAttr pos);</span>
+<span class='curline'><a href='../S/362.html#L402'>LmnLinkAttr</a>       402 src/port.c                        LmnAtom a0, LmnLinkAttr t0,</span>
+<span class='curline'><a href='../S/362.html#L403'>LmnLinkAttr</a>       403 src/port.c                        LmnAtom a1, LmnLinkAttr t1)</span>
+<span class='curline'><a href='../S/362.html#L420'>LmnLinkAttr</a>       420 src/port.c                       LmnAtom a0, LmnLinkAttr t0)</span>
+<span class='curline'><a href='../S/362.html#L431'>LmnLinkAttr</a>       431 src/port.c                        LmnAtom a0, LmnLinkAttr t0)</span>
+<span class='curline'><a href='../S/362.html#L434'>LmnLinkAttr</a>       434 src/port.c       LmnLinkAttr attr = LMN_SP_ATOM_ATTR;</span>
+<span class='curline'><a href='../S/362.html#L447'>LmnLinkAttr</a>       447 src/port.c                         LmnAtom a0, LmnLinkAttr t0)</span>
+<span class='curline'><a href='../S/362.html#L450'>LmnLinkAttr</a>       450 src/port.c       LmnLinkAttr attr = LMN_SP_ATOM_ATTR;</span>
+<span class='curline'><a href='../S/362.html#L463'>LmnLinkAttr</a>       463 src/port.c                         LmnAtom a0, LmnLinkAttr t0)</span>
+<span class='curline'><a href='../S/362.html#L466'>LmnLinkAttr</a>       466 src/port.c       LmnLinkAttr attr = LMN_SP_ATOM_ATTR;</span>
+<span class='curline'><a href='../S/362.html#L481'>LmnLinkAttr</a>       481 src/port.c                       LmnAtom a0, LmnLinkAttr t0,</span>
+<span class='curline'><a href='../S/362.html#L482'>LmnLinkAttr</a>       482 src/port.c                       LmnAtom a1, LmnLinkAttr t1,</span>
+<span class='curline'><a href='../S/362.html#L483'>LmnLinkAttr</a>       483 src/port.c                       LmnAtom a2, LmnLinkAttr t2)</span>
+<span class='curline'><a href='../S/362.html#L511'>LmnLinkAttr</a>       511 src/port.c                       LmnAtom a0, LmnLinkAttr t0,</span>
+<span class='curline'><a href='../S/362.html#L512'>LmnLinkAttr</a>       512 src/port.c                       LmnAtom a1, LmnLinkAttr t1,</span>
+<span class='curline'><a href='../S/362.html#L513'>LmnLinkAttr</a>       513 src/port.c                       LmnAtom a2, LmnLinkAttr t2)</span>
+<span class='curline'><a href='../S/362.html#L531'>LmnLinkAttr</a>       531 src/port.c                       LmnAtom a0, LmnLinkAttr t0,</span>
+<span class='curline'><a href='../S/362.html#L532'>LmnLinkAttr</a>       532 src/port.c                       LmnAtom a1, LmnLinkAttr t1,</span>
+<span class='curline'><a href='../S/362.html#L533'>LmnLinkAttr</a>       533 src/port.c                       LmnAtom a2, LmnLinkAttr t2)</span>
+<span class='curline'><a href='../S/362.html#L551'>LmnLinkAttr</a>       551 src/port.c                            LmnAtom a0, LmnLinkAttr t0,</span>
+<span class='curline'><a href='../S/362.html#L552'>LmnLinkAttr</a>       552 src/port.c                            LmnAtom a1, LmnLinkAttr t1,</span>
+<span class='curline'><a href='../S/362.html#L553'>LmnLinkAttr</a>       553 src/port.c                            LmnAtom a2, LmnLinkAttr t2)</span>
+<span class='curline'><a href='../S/362.html#L582'>LmnLinkAttr</a>       582 src/port.c                                LmnAtom a0, LmnLinkAttr t0)</span>
+<span class='curline'><a href='../S/362.html#L599'>LmnLinkAttr</a>       599 src/port.c                               LmnAtom a0, LmnLinkAttr t0,</span>
+<span class='curline'><a href='../S/362.html#L600'>LmnLinkAttr</a>       600 src/port.c                               LmnAtom a1, LmnLinkAttr t1)</span>
+<span class='curline'><a href='../S/362.html#L619'>LmnLinkAttr</a>       619 src/port.c                                LmnAtom a0, LmnLinkAttr t0,</span>
+<span class='curline'><a href='../S/362.html#L620'>LmnLinkAttr</a>       620 src/port.c                                LmnAtom a1, LmnLinkAttr t1,</span>
+<span class='curline'><a href='../S/362.html#L621'>LmnLinkAttr</a>       621 src/port.c                                LmnAtom a2, LmnLinkAttr t2)</span>
+<span class='curline'><a href='../S/372.html#L56'>LmnLinkAttr</a>        56 src/slim_header/string.h BOOL lmn_is_string(LmnAtom atom, LmnLinkAttr attr);</span>
+<span class='curline'><a href='../S/373.html#L91'>LmnLinkAttr</a>        91 src/so.h             LmnLinkAttr attr1 = LINKED_ATTR(link1);                           \</span>
+<span class='curline'><a href='../S/373.html#L92'>LmnLinkAttr</a>        92 src/so.h             LmnLinkAttr attr2 = LINKED_ATTR(link2);                           \</span>
+<span class='curline'><a href='../S/373.html#L231'>LmnLinkAttr</a>       231 src/so.h           LmnLinkAttr attr = LMN_SATOM_GET_ATTR(LMN_SATOM(wt(rc, atomi)), pos);  \</span>
+<span class='curline'><a href='../S/377.html#L75'>LmnLinkAttr</a>        75 src/string.c   BOOL lmn_is_string(LmnAtom atom, LmnLinkAttr attr)</span>
+<span class='curline'><a href='../S/377.html#L209'>LmnLinkAttr</a>       209 src/string.c                       LmnAtom a0, LmnLinkAttr t0,</span>
+<span class='curline'><a href='../S/377.html#L210'>LmnLinkAttr</a>       210 src/string.c                       LmnAtom a1, LmnLinkAttr t1)</span>
+<span class='curline'><a href='../S/377.html#L241'>LmnLinkAttr</a>       241 src/string.c                         LmnAtom a0, LmnLinkAttr t0,</span>
+<span class='curline'><a href='../S/377.html#L242'>LmnLinkAttr</a>       242 src/string.c                         LmnAtom a1, LmnLinkAttr t1,</span>
+<span class='curline'><a href='../S/377.html#L243'>LmnLinkAttr</a>       243 src/string.c                         LmnAtom a2, LmnLinkAttr t2)</span>
+<span class='curline'><a href='../S/377.html#L254'>LmnLinkAttr</a>       254 src/string.c                         LmnAtom a0, LmnLinkAttr t0,</span>
+<span class='curline'><a href='../S/377.html#L255'>LmnLinkAttr</a>       255 src/string.c                         LmnAtom a1, LmnLinkAttr t1)</span>
+<span class='curline'><a href='../S/377.html#L267'>LmnLinkAttr</a>       267 src/string.c                          LmnAtom a0, LmnLinkAttr t0,</span>
+<span class='curline'><a href='../S/377.html#L268'>LmnLinkAttr</a>       268 src/string.c                          LmnAtom a1, LmnLinkAttr t1)</span>
+<span class='curline'><a href='../S/377.html#L285'>LmnLinkAttr</a>       285 src/string.c                         LmnAtom a0, LmnLinkAttr t0,</span>
+<span class='curline'><a href='../S/377.html#L286'>LmnLinkAttr</a>       286 src/string.c                         long begin, LmnLinkAttr t1,</span>
+<span class='curline'><a href='../S/377.html#L287'>LmnLinkAttr</a>       287 src/string.c                         long end, LmnLinkAttr t2,</span>
+<span class='curline'><a href='../S/377.html#L288'>LmnLinkAttr</a>       288 src/string.c                         LmnAtom a3, LmnLinkAttr t3)</span>
+<span class='curline'><a href='../S/377.html#L316'>LmnLinkAttr</a>       316 src/string.c                               LmnAtom a0, LmnLinkAttr t0,</span>
+<span class='curline'><a href='../S/377.html#L317'>LmnLinkAttr</a>       317 src/string.c                               long begin, LmnLinkAttr t1,</span>
+<span class='curline'><a href='../S/377.html#L318'>LmnLinkAttr</a>       318 src/string.c                               LmnAtom a2, LmnLinkAttr t2)</span>
+<span class='curline'><a href='../S/382.html#L139'>LmnLinkAttr</a>       139 src/system_ruleset.c     LmnLinkAttr out_attr0, out_attr1, ret_attr;</span>
+<span class='curline'><a href='../S/384.html#L69'>LmnLinkAttr</a>        69 src/task.c                                 LmnAtom, LmnLinkAttr);</span>
+<span class='curline'><a href='../S/384.html#L72'>LmnLinkAttr</a>        72 src/task.c                                 LmnAtom, LmnLinkAttr,</span>
+<span class='curline'><a href='../S/384.html#L73'>LmnLinkAttr</a>        73 src/task.c                                 LmnAtom, LmnLinkAttr);</span>
+<span class='curline'><a href='../S/384.html#L76'>LmnLinkAttr</a>        76 src/task.c                                 LmnAtom, LmnLinkAttr,</span>
+<span class='curline'><a href='../S/384.html#L77'>LmnLinkAttr</a>        77 src/task.c                                 LmnAtom, LmnLinkAttr,</span>
+<span class='curline'><a href='../S/384.html#L78'>LmnLinkAttr</a>        78 src/task.c                                 LmnAtom, LmnLinkAttr);</span>
+<span class='curline'><a href='../S/384.html#L81'>LmnLinkAttr</a>        81 src/task.c                                 LmnAtom, LmnLinkAttr,</span>
+<span class='curline'><a href='../S/384.html#L82'>LmnLinkAttr</a>        82 src/task.c                                 LmnAtom, LmnLinkAttr,</span>
+<span class='curline'><a href='../S/384.html#L83'>LmnLinkAttr</a>        83 src/task.c                                 LmnAtom, LmnLinkAttr,</span>
+<span class='curline'><a href='../S/384.html#L84'>LmnLinkAttr</a>        84 src/task.c                                 LmnAtom, LmnLinkAttr);</span>
+<span class='curline'><a href='../S/384.html#L584'>LmnLinkAttr</a>       584 src/task.c             LmnLinkAttr t1, t2;</span>
+<span class='curline'><a href='../S/384.html#L930'>LmnLinkAttr</a>       930 src/task.c                       v[i].wt = (LmnWord)lmn_copy_data_atom((LmnAtom)wt(rc, i), (LmnLinkAttr)v[i].at);</span>
+<span class='curline'><a href='../S/384.html#L966'>LmnLinkAttr</a>       966 src/task.c                   v[i].wt = (LmnWord)lmn_copy_data_atom((LmnAtom)wt(rc, i), (LmnLinkAttr)v[i].at);</span>
+<span class='curline'><a href='../S/384.html#L1018'>LmnLinkAttr</a>      1018 src/task.c           LmnLinkAttr attr;</span>
+<span class='curline'><a href='../S/384.html#L1022'>LmnLinkAttr</a>      1022 src/task.c           READ_VAL(LmnLinkAttr, instr, attr);</span>
+<span class='curline'><a href='../S/384.html#L1125'>LmnLinkAttr</a>      1125 src/task.c           LmnLinkAttr attr;</span>
+<span class='curline'><a href='../S/384.html#L1134'>LmnLinkAttr</a>      1134 src/task.c           READ_VAL(LmnLinkAttr, instr, attr);</span>
+<span class='curline'><a href='../S/384.html#L1289'>LmnLinkAttr</a>      1289 src/task.c           LmnLinkAttr attr;</span>
+<span class='curline'><a href='../S/384.html#L1293'>LmnLinkAttr</a>      1293 src/task.c           READ_VAL(LmnLinkAttr, instr, attr);</span>
+<span class='curline'><a href='../S/384.html#L1366'>LmnLinkAttr</a>      1366 src/task.c           LmnLinkAttr attr1, attr2;</span>
+<span class='curline'><a href='../S/384.html#L1763'>LmnLinkAttr</a>      1763 src/task.c           LmnLinkAttr attr;</span>
+<span class='curline'><a href='../S/384.html#L1765'>LmnLinkAttr</a>      1765 src/task.c           READ_VAL(LmnLinkAttr, instr, attr);</span>
+<span class='curline'><a href='../S/384.html#L1795'>LmnLinkAttr</a>      1795 src/task.c           LmnLinkAttr attr;</span>
+<span class='curline'><a href='../S/384.html#L1797'>LmnLinkAttr</a>      1797 src/task.c           READ_VAL(LmnLinkAttr, instr, attr);</span>
+<span class='curline'><a href='../S/384.html#L1884'>LmnLinkAttr</a>      1884 src/task.c           LmnLinkAttr attr;</span>
+<span class='curline'><a href='../S/384.html#L1910'>LmnLinkAttr</a>      1910 src/task.c             attr = (LmnLinkAttr)at(rc, vec_get(srcvec, 0));</span>
+<span class='curline'><a href='../S/384.html#L1943'>LmnLinkAttr</a>      1943 src/task.c                               (LmnLinkAttr)at(rc, vec_get(srcvec, 0)));</span>
+<span class='curline'><a href='../S/384.html#L1948'>LmnLinkAttr</a>      1948 src/task.c                             (LmnLinkAttr)at(rc, vec_get(srcvec, 0)));</span>
+<span class='curline'><a href='../S/384.html#L2018'>LmnLinkAttr</a>      2018 src/task.c           LmnLinkAttr attr1, attr2;</span>
+<span class='curline'><a href='../S/384.html#L2726'>LmnLinkAttr</a>      2726 src/task.c           LmnLinkAttr attr;</span>
+<span class='curline'><a href='../S/384.html#L2729'>LmnLinkAttr</a>      2729 src/task.c           READ_VAL(LmnLinkAttr, instr, attr);</span>
+<span class='curline'><a href='../S/384.html#L2897'>LmnLinkAttr</a>      2897 src/task.c           LmnLinkAttr attr;</span>
+<span class='curline'><a href='../S/384.html#L2901'>LmnLinkAttr</a>      2901 src/task.c           READ_VAL(LmnLinkAttr, instr, pos);</span>
+<span class='curline'><a href='../S/384.html#L2921'>LmnLinkAttr</a>      2921 src/task.c           LmnLinkAttr attr;</span>
+<span class='curline'><a href='../S/384.html#L2924'>LmnLinkAttr</a>      2924 src/task.c           READ_VAL(LmnLinkAttr, instr, attr);</span>
+<span class='curline'><a href='../S/384.html#L3423'>LmnLinkAttr</a>      3423 src/task.c           LmnLinkAttr attr;</span>
+<span class='curline'><a href='../S/384.html#L3427'>LmnLinkAttr</a>      3427 src/task.c           READ_VAL(LmnLinkAttr, instr, attr);</span>
+<span class='curline'><a href='../S/384.html#L3867'>LmnLinkAttr</a>      3867 src/task.c           LmnLinkAttr attr;</span>
+<span class='curline'><a href='../S/384.html#L3870'>LmnLinkAttr</a>      3870 src/task.c           READ_VAL(LmnLinkAttr, instr, attr);</span>
+<span class='curline'><a href='../S/386.html#L130'>LmnLinkAttr</a>       130 src/translate.c             v[i].wt = (LmnWord)lmn_copy_data_atom((LmnAtom)wt(rc, i), (LmnLinkAttr)v[i].at);</span>
+<span class='curline'><a href='../S/386.html#L156'>LmnLinkAttr</a>       156 src/translate.c           v[i].wt = (LmnWord)lmn_copy_data_atom((LmnAtom)wt(rc, i), (LmnLinkAttr)v[i].at);</span>
+<span class='curline'><a href='../S/387.html#L55'>LmnLinkAttr</a>        55 src/translate.h     READ_VAL(LmnLinkAttr, I, X##_attr);         \</span>
+<span class='curline'><a href='../S/388.html#L120'>LmnLinkAttr</a>       120 src/translate_generated.c   LmnLinkAttr targ2_attr;</span>
+<span class='curline'><a href='../S/388.html#L220'>LmnLinkAttr</a>       220 src/translate_generated.c   LmnLinkAttr targ2_attr;</span>
+<span class='curline'><a href='../S/388.html#L515'>LmnLinkAttr</a>       515 src/translate_generated.c   LmnLinkAttr targ1_attr;</span>
+<span class='curline'><a href='../S/388.html#L550'>LmnLinkAttr</a>       550 src/translate_generated.c   LmnLinkAttr targ1_attr;</span>
+<span class='curline'><a href='../S/388.html#L1134'>LmnLinkAttr</a>      1134 src/translate_generated.c   LmnLinkAttr targ1_attr;</span>
+<span class='curline'><a href='../S/388.html#L1247'>LmnLinkAttr</a>      1247 src/translate_generated.c   LmnLinkAttr targ1_attr;</span>
+<span class='curline'><a href='../S/417.html#L86'>LmnLinkAttr</a>        86 src/verifier/delta_membrane.c static inline void dmem_put_atom(struct MemDelta *d, LmnMembrane *m, LmnAtom atom, LmnLinkAttr attr);</span>
+<span class='curline'><a href='../S/417.html#L92'>LmnLinkAttr</a>        92 src/verifier/delta_membrane.c                                  LmnLinkAttr attr0,</span>
+<span class='curline'><a href='../S/417.html#L94'>LmnLinkAttr</a>        94 src/verifier/delta_membrane.c                                  LmnLinkAttr attr1);</span>
+<span class='curline'><a href='../S/417.html#L96'>LmnLinkAttr</a>        96 src/verifier/delta_membrane.c static inline void dmem_modify_link(struct MemDelta *d, LmnMembrane *m, LmnSAtom atom, int i, LmnAtom l, LmnLinkAttr attr);</span>
+<span class='curline'><a href='../S/417.html#L111'>LmnLinkAttr</a>       111 src/verifier/delta_membrane.c static inline void dmem_remove_atom(struct MemDelta *d, LmnMembrane *m, LmnAtom atom, LmnLinkAttr attr);</span>
+<span class='curline'><a href='../S/417.html#L336'>LmnLinkAttr</a>       336 src/verifier/delta_membrane.c                          LmnLinkAttr attr)</span>
+<span class='curline'><a href='../S/417.html#L348'>LmnLinkAttr</a>       348 src/verifier/delta_membrane.c                            LmnLinkAttr attr)</span>
+<span class='curline'><a href='../S/417.html#L358'>LmnLinkAttr</a>       358 src/verifier/delta_membrane.c                        LmnAtom atom0, LmnLinkAttr attr0, int pos0,</span>
+<span class='curline'><a href='../S/417.html#L359'>LmnLinkAttr</a>       359 src/verifier/delta_membrane.c                        LmnAtom atom1, LmnLinkAttr attr1, int pos1)</span>
+<span class='curline'><a href='../S/417.html#L382'>LmnLinkAttr</a>       382 src/verifier/delta_membrane.c                                LmnAtom d1, LmnLinkAttr attr1,</span>
+<span class='curline'><a href='../S/417.html#L383'>LmnLinkAttr</a>       383 src/verifier/delta_membrane.c                                LmnAtom d2, LmnLinkAttr attr2)</span>
+<span class='curline'><a href='../S/417.html#L394'>LmnLinkAttr</a>       394 src/verifier/delta_membrane.c   LmnLinkAttr attr1, attr2;</span>
+<span class='curline'><a href='../S/417.html#L444'>LmnLinkAttr</a>       444 src/verifier/delta_membrane.c                            LmnAtom atom1, LmnLinkAttr attr1,</span>
+<span class='curline'><a href='../S/417.html#L445'>LmnLinkAttr</a>       445 src/verifier/delta_membrane.c                            LmnAtom atom2, LmnLinkAttr attr2)</span>
+<span class='curline'><a href='../S/417.html#L495'>LmnLinkAttr</a>       495 src/verifier/delta_membrane.c                       LmnLinkAttr attr1,</span>
+<span class='curline'><a href='../S/417.html#L498'>LmnLinkAttr</a>       498 src/verifier/delta_membrane.c                       LmnLinkAttr attr2,</span>
+<span class='curline'><a href='../S/417.html#L503'>LmnLinkAttr</a>       503 src/verifier/delta_membrane.c   LmnLinkAttr attr;</span>
+<span class='curline'><a href='../S/417.html#L703'>LmnLinkAttr</a>       703 src/verifier/delta_membrane.c         LmnLinkAttr attr;</span>
+<span class='curline'><a href='../S/417.html#L955'>LmnLinkAttr</a>       955 src/verifier/delta_membrane.c       LmnLinkAttr next_attr = LMN_SATOM_GET_ATTR(src_atom, i);</span>
+<span class='curline'><a href='../S/417.html#L1078'>LmnLinkAttr</a>      1078 src/verifier/delta_membrane.c     LmnLinkAttr attr = LMN_SATOM_GET_ATTR(new, i);</span>
+<span class='curline'><a href='../S/417.html#L1172'>LmnLinkAttr</a>      1172 src/verifier/delta_membrane.c     LmnLinkAttr attr = LMN_SATOM_GET_ATTR(src, i);</span>
+<span class='curline'><a href='../S/417.html#L1729'>LmnLinkAttr</a>      1729 src/verifier/delta_membrane.c LmnAtom dmem_root_copy_atom(struct MemDeltaRoot *d, LmnAtom atom, LmnLinkAttr attr)</span>
+<span class='curline'><a href='../S/417.html#L1747'>LmnLinkAttr</a>      1747 src/verifier/delta_membrane.c void dmem_root_free_atom(struct MemDeltaRoot *d, LmnAtom atom, LmnLinkAttr attr)</span>
+<span class='curline'><a href='../S/417.html#L1873'>LmnLinkAttr</a>      1873 src/verifier/delta_membrane.c static inline void dmem_remove_atom(struct MemDelta *d, LmnMembrane *m, LmnAtom atom, LmnLinkAttr attr)</span>
+<span class='curline'><a href='../S/417.html#L1883'>LmnLinkAttr</a>      1883 src/verifier/delta_membrane.c static inline void dmem_put_atom(struct MemDelta *d, LmnMembrane *m, LmnAtom atom, LmnLinkAttr attr)</span>
+<span class='curline'><a href='../S/417.html#L1938'>LmnLinkAttr</a>      1938 src/verifier/delta_membrane.c                                     LmnAtom l, LmnLinkAttr attr)</span>
+<span class='curline'><a href='../S/417.html#L2010'>LmnLinkAttr</a>      2010 src/verifier/delta_membrane.c                                  LmnLinkAttr attr0,</span>
+<span class='curline'><a href='../S/417.html#L2012'>LmnLinkAttr</a>      2012 src/verifier/delta_membrane.c                                  LmnLinkAttr attr1)</span>
+<span class='curline'><a href='../S/417.html#L2055'>LmnLinkAttr</a>      2055 src/verifier/delta_membrane.c   LmnLinkAttr attr;</span>
+<span class='curline'><a href='../S/417.html#L2102'>LmnLinkAttr</a>      2102 src/verifier/delta_membrane.c   LmnLinkAttr attr1, attr2;</span>
+<span class='curline'><a href='../S/418.html#L120'>LmnLinkAttr</a>       120 src/verifier/delta_membrane.h void dmem_root_free_atom(struct MemDeltaRoot *d, LmnAtom atom, LmnLinkAttr attr);</span>
+<span class='curline'><a href='../S/418.html#L121'>LmnLinkAttr</a>       121 src/verifier/delta_membrane.h LmnAtom dmem_root_copy_atom(struct MemDeltaRoot *d, LmnAtom atom, LmnLinkAttr attr);</span>
+<span class='curline'><a href='../S/418.html#L126'>LmnLinkAttr</a>       126 src/verifier/delta_membrane.h                          LmnLinkAttr attr);</span>
+<span class='curline'><a href='../S/418.html#L132'>LmnLinkAttr</a>       132 src/verifier/delta_membrane.h                        LmnAtom atom0, LmnLinkAttr attr0, int pos0,</span>
+<span class='curline'><a href='../S/418.html#L133'>LmnLinkAttr</a>       133 src/verifier/delta_membrane.h                        LmnAtom atom1, LmnLinkAttr attr1, int pos1);</span>
+<span class='curline'><a href='../S/418.html#L135'>LmnLinkAttr</a>       135 src/verifier/delta_membrane.h                                LmnAtom d1, LmnLinkAttr attr1,</span>
+<span class='curline'><a href='../S/418.html#L136'>LmnLinkAttr</a>       136 src/verifier/delta_membrane.h                                LmnAtom d2,LmnLinkAttr attr2);</span>
+<span class='curline'><a href='../S/418.html#L141'>LmnLinkAttr</a>       141 src/verifier/delta_membrane.h                            LmnAtom atom1, LmnLinkAttr attr1,</span>
+<span class='curline'><a href='../S/418.html#L142'>LmnLinkAttr</a>       142 src/verifier/delta_membrane.h                            LmnAtom atom2, LmnLinkAttr attr2);</span>
+<span class='curline'><a href='../S/418.html#L144'>LmnLinkAttr</a>       144 src/verifier/delta_membrane.h                       LmnAtom atom1, LmnLinkAttr attr1, int pos1,</span>
+<span class='curline'><a href='../S/418.html#L145'>LmnLinkAttr</a>       145 src/verifier/delta_membrane.h                       LmnAtom atom2, LmnLinkAttr attr2, int pos2);</span>
+<span class='curline'><a href='../S/418.html#L149'>LmnLinkAttr</a>       149 src/verifier/delta_membrane.h                            LmnLinkAttr attr);</span>
+<span class='curline'><a href='../S/436.html#L965'>LmnLinkAttr</a>       965 src/verifier/mem_encode.c                                        LmnAtom atom, LmnLinkAttr attr,</span>
+<span class='curline'><a href='../S/436.html#L1012'>LmnLinkAttr</a>      1012 src/verifier/mem_encode.c                                              LmnAtom atom, LmnLinkAttr attr,</span>
+<span class='curline'><a href='../S/436.html#L1106'>LmnLinkAttr</a>      1106 src/verifier/mem_encode.c                       LmnLinkAttr attr,</span>
+<span class='curline'><a href='../S/436.html#L1115'>LmnLinkAttr</a>      1115 src/verifier/mem_encode.c                       LmnLinkAttr attr,</span>
+<span class='curline'><a href='../S/436.html#L1194'>LmnLinkAttr</a>      1194 src/verifier/mem_encode.c                       LmnLinkAttr attr,</span>
+<span class='curline'><a href='../S/436.html#L1290'>LmnLinkAttr</a>      1290 src/verifier/mem_encode.c static void write_mol(LmnAtom atom, LmnLinkAttr attr, int from,</span>
+<span class='curline'><a href='../S/436.html#L1831'>LmnLinkAttr</a>      1831 src/verifier/mem_encode.c       LmnLinkAttr n_attr;</span>
+<span class='curline'><a href='../S/436.html#L2188'>LmnLinkAttr</a>      2188 src/verifier/mem_encode.c                     LmnMembrane *mem,     LmnAtom   atom, LmnLinkAttr attr,</span>
+<span class='curline'><a href='../S/436.html#L2194'>LmnLinkAttr</a>      2194 src/verifier/mem_encode.c                      LmnMembrane *mem,     LmnAtom atom,   LmnLinkAttr attr,</span>
+<span class='curline'><a href='../S/436.html#L2198'>LmnLinkAttr</a>      2198 src/verifier/mem_encode.c                           LmnAtom      atom, LmnLinkAttr attr, LmnMeqLog log);</span>
+<span class='curline'><a href='../S/436.html#L2213'>LmnLinkAttr</a>      2213 src/verifier/mem_encode.c                                          LmnLinkAttr attr,</span>
+<span class='curline'><a href='../S/436.html#L2221'>LmnLinkAttr</a>      2221 src/verifier/mem_encode.c                                          LmnLinkAttr attr,</span>
+<span class='curline'><a href='../S/436.html#L2227'>LmnLinkAttr</a>      2227 src/verifier/mem_encode.c                                       LmnAtom      atom,     LmnLinkAttr attr,</span>
+<span class='curline'><a href='../S/436.html#L2234'>LmnLinkAttr</a>      2234 src/verifier/mem_encode.c                                     LmnLinkAttr attr,</span>
+<span class='curline'><a href='../S/436.html#L2471'>LmnLinkAttr</a>      2471 src/verifier/mem_encode.c           LmnLinkAttr data_attr;</span>
+<span class='curline'><a href='../S/436.html#L2575'>LmnLinkAttr</a>      2575 src/verifier/mem_encode.c                             LmnMembrane *mem,     LmnAtom atom,   LmnLinkAttr attr,</span>
+<span class='curline'><a href='../S/436.html#L2627'>LmnLinkAttr</a>      2627 src/verifier/mem_encode.c                            LmnMembrane *mem,     LmnAtom atom,   LmnLinkAttr attr,</span>
+<span class='curline'><a href='../S/436.html#L2714'>LmnLinkAttr</a>      2714 src/verifier/mem_encode.c                                         LmnLinkAttr  attr,</span>
+<span class='curline'><a href='../S/436.html#L2774'>LmnLinkAttr</a>      2774 src/verifier/mem_encode.c                                   LmnLinkAttr attr,</span>
+<span class='curline'><a href='../S/436.html#L2866'>LmnLinkAttr</a>      2866 src/verifier/mem_encode.c                                        LmnAtom     atom,     LmnLinkAttr  attr,</span>
+<span class='curline'><a href='../S/436.html#L2870'>LmnLinkAttr</a>      2870 src/verifier/mem_encode.c                                       LmnAtom      atom,     LmnLinkAttr attr,</span>
+<span class='curline'><a href='../S/436.html#L2874'>LmnLinkAttr</a>      2874 src/verifier/mem_encode.c                                         LmnAtom      atom,     LmnLinkAttr attr,</span>
+<span class='curline'><a href='../S/436.html#L2881'>LmnLinkAttr</a>      2881 src/verifier/mem_encode.c                                       LmnAtom      atom,     LmnLinkAttr attr,</span>
+<span class='curline'><a href='../S/436.html#L2925'>LmnLinkAttr</a>      2925 src/verifier/mem_encode.c                                        LmnAtom     atom,     LmnLinkAttr  attr,</span>
+<span class='curline'><a href='../S/436.html#L2954'>LmnLinkAttr</a>      2954 src/verifier/mem_encode.c                                       LmnAtom      atom,     LmnLinkAttr  attr,</span>
+<span class='curline'><a href='../S/436.html#L2993'>LmnLinkAttr</a>      2993 src/verifier/mem_encode.c                                         LmnAtom      atom,     LmnLinkAttr  attr,</span>
+<span class='curline'><a href='../S/436.html#L3024'>LmnLinkAttr</a>      3024 src/verifier/mem_encode.c                                          LmnLinkAttr attr,</span>
+<span class='curline'><a href='../S/436.html#L3053'>LmnLinkAttr</a>      3053 src/verifier/mem_encode.c                                     LmnLinkAttr attr,</span>
+<span class='curline'><a href='../S/438.html#L195'>LmnLinkAttr</a>       195 src/verifier/mhash.c                                LmnLinkAttr attr,</span>
+<span class='curline'><a href='../S/438.html#L219'>LmnLinkAttr</a>       219 src/verifier/mhash.c                                  LmnLinkAttr attr,</span>
+<span class='curline'><a href='../S/438.html#L223'>LmnLinkAttr</a>       223 src/verifier/mhash.c static inline mhash_t mhash_data(LmnAtom atom, LmnLinkAttr attr);</span>
+<span class='curline'><a href='../S/438.html#L228'>LmnLinkAttr</a>       228 src/verifier/mhash.c                                LmnLinkAttr attr,</span>
+<span class='curline'><a href='../S/438.html#L257'>LmnLinkAttr</a>       257 src/verifier/mhash.c         LmnLinkAttr to_attr;</span>
+<span class='curline'><a href='../S/438.html#L275'>LmnLinkAttr</a>       275 src/verifier/mhash.c static inline mhash_t mhash_data(LmnAtom atom, LmnLinkAttr attr);</span>
+<span class='curline'><a href='../S/438.html#L291'>LmnLinkAttr</a>       291 src/verifier/mhash.c                           LmnLinkAttr attr,</span>
+<span class='curline'><a href='../S/438.html#L419'>LmnLinkAttr</a>       419 src/verifier/mhash.c   LmnLinkAttr attr;</span>
+<span class='curline'><a href='../S/438.html#L449'>LmnLinkAttr</a>       449 src/verifier/mhash.c static inline mhash_t mhash_data(LmnAtom atom, LmnLinkAttr attr) {</span>
+</pre>
+</body>
+</html>

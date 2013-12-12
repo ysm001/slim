@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>ptrs</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/436.html#L279'>ptrs</a>              279 src/verifier/mem_encode.c   Vector *ptrs;   /* バッファの位置を指し示す、BinStrPtrのベクタ : BinStrPtrへのポインタ列 */</span>
+<span class='curline'><a href='../S/436.html#L296'>ptrs</a>              296 src/verifier/mem_encode.c   p-&gt;ptrs  = vec_make(64);</span>
+<span class='curline'><a href='../S/436.html#L304'>ptrs</a>              304 src/verifier/mem_encode.c   vec_free(p-&gt;ptrs);</span>
+<span class='curline'><a href='../S/436.html#L529'>ptrs</a>              529 src/verifier/mem_encode.c   int len = vec_num(p-&gt;ptrs);</span>
+<span class='curline'><a href='../S/436.html#L532'>ptrs</a>              532 src/verifier/mem_encode.c     BinStrPtr bsp = (BinStrPtr)vec_get(p-&gt;ptrs, i);</span>
+<span class='curline'><a href='../S/436.html#L538'>ptrs</a>              538 src/verifier/mem_encode.c   tmp = p-&gt;ptrs;</span>
+<span class='curline'><a href='../S/436.html#L539'>ptrs</a>              539 src/verifier/mem_encode.c   p-&gt;ptrs = p-&gt;ptrs2;</span>
+<span class='curline'><a href='../S/436.html#L571'>ptrs</a>              571 src/verifier/mem_encode.c   vec_push(bs-&gt;ptrs, (vec_data_t)ptr);</span>
+<span class='curline'><a href='../S/594.html#L220'>ptrs</a>              220 third_party/google-perftools-1.8.3/src/pagemap.h     Node* ptrs[INTERIOR_LENGTH];</span>
+<span class='curline'><a href='../S/594.html#L252'>ptrs</a>              252 third_party/google-perftools-1.8.3/src/pagemap.h         root_-&gt;ptrs[i1] == NULL || root_-&gt;ptrs[i1]-&gt;ptrs[i2] == NULL) {</span>
+<span class='curline'><a href='../S/594.html#L255'>ptrs</a>              255 third_party/google-perftools-1.8.3/src/pagemap.h     return reinterpret_cast&lt;Leaf*&gt;(root_-&gt;ptrs[i1]-&gt;ptrs[i2])-&gt;values[i3];</span>
+<span class='curline'><a href='../S/594.html#L263'>ptrs</a>              263 third_party/google-perftools-1.8.3/src/pagemap.h     reinterpret_cast&lt;Leaf*&gt;(root_-&gt;ptrs[i1]-&gt;ptrs[i2])-&gt;values[i3] = v;</span>
+<span class='curline'><a href='../S/594.html#L276'>ptrs</a>              276 third_party/google-perftools-1.8.3/src/pagemap.h       if (root_-&gt;ptrs[i1] == NULL) {</span>
+<span class='curline'><a href='../S/594.html#L279'>ptrs</a>              279 third_party/google-perftools-1.8.3/src/pagemap.h         root_-&gt;ptrs[i1] = n;</span>
+<span class='curline'><a href='../S/594.html#L283'>ptrs</a>              283 third_party/google-perftools-1.8.3/src/pagemap.h       if (root_-&gt;ptrs[i1]-&gt;ptrs[i2] == NULL) {</span>
+<span class='curline'><a href='../S/594.html#L287'>ptrs</a>              287 third_party/google-perftools-1.8.3/src/pagemap.h         root_-&gt;ptrs[i1]-&gt;ptrs[i2] = reinterpret_cast&lt;Node*&gt;(leaf);</span>
+<span class='curline'><a href='../S/594.html#L303'>ptrs</a>              303 third_party/google-perftools-1.8.3/src/pagemap.h       if (root_-&gt;ptrs[i1] == NULL) {</span>
+<span class='curline'><a href='../S/594.html#L307'>ptrs</a>              307 third_party/google-perftools-1.8.3/src/pagemap.h         Leaf* leaf = reinterpret_cast&lt;Leaf*&gt;(root_-&gt;ptrs[i1]-&gt;ptrs[i2]);</span>
+<span class='curline'><a href='../S/637.html#L788'>ptrs</a>              788 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   typename Alloc::pointer ptrs[kSize];</span>
+<span class='curline'><a href='../S/637.html#L795'>ptrs</a>              795 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     ptrs[i] = p;</span>
+<span class='curline'><a href='../S/637.html#L798'>ptrs</a>              798 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     allocator.deallocate(ptrs[i], i*3+1);</span>
+<span class='curline'><a href='../S/637.html#L799'>ptrs</a>              799 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     ptrs[i] = NULL;</span>
+<span class='curline'><a href='../S/664.html#L755'>ptrs</a>              755 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   void* ptrs[kNum];</span>
+<span class='curline'><a href='../S/664.html#L757'>ptrs</a>              757 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     ptrs[i] = malloc(size);</span>
+<span class='curline'><a href='../S/664.html#L758'>ptrs</a>              758 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     uintptr_t p = reinterpret_cast&lt;uintptr_t&gt;(ptrs[i]);</span>
+<span class='curline'><a href='../S/664.html#L768'>ptrs</a>              768 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     free(ptrs[i]);</span>
+</pre>
+</body>
+</html>

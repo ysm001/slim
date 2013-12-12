@@ -1,0 +1,344 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>buf</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/317.html#L261'>buf</a>               261 src/dumper.c         char buf[64];</span>
+<span class='curline'><a href='../S/317.html#L262'>buf</a>               262 src/dumper.c         sprintf(buf, "%f", *(double*)data);</span>
+<span class='curline'><a href='../S/317.html#L263'>buf</a>               263 src/dumper.c         port_put_raw_s(port, buf);</span>
+<span class='curline'><a href='../S/317.html#L271'>buf</a>               271 src/dumper.c         char buf[16];</span>
+<span class='curline'><a href='../S/317.html#L274'>buf</a>               274 src/dumper.c           sprintf(buf, "H%lx", LMN_HL_ID(lmn_hyperlink_at_to_hl(LMN_SATOM(data))));</span>
+<span class='curline'><a href='../S/317.html#L276'>buf</a>               276 src/dumper.c           sprintf(buf, "H%lx", LMN_HL_ID(LMN_HL_ATOM_ROOT_HL(LMN_SATOM(data))));</span>
+<span class='curline'><a href='../S/317.html#L278'>buf</a>               278 src/dumper.c         port_put_raw_s(port, buf);</span>
+<span class='curline'><a href='../S/326.html#L96'>buf</a>                96 src/ext/io.c     char buf[N], *s=NULL, *p; /* sは行の文字列の先頭、pは作業用 */</span>
+<span class='curline'><a href='../S/326.html#L101'>buf</a>               101 src/ext/io.c     while (fgets(buf, N, stdin)) {</span>
+<span class='curline'><a href='../S/326.html#L102'>buf</a>               102 src/ext/io.c       int len = strlen(buf);</span>
+<span class='curline'><a href='../S/326.html#L110'>buf</a>               110 src/ext/io.c       strcat(p, buf);</span>
+<span class='curline'><a href='../S/336.html#L783'>buf</a>               783 src/il_lexer.c #define YY_INPUT(buf,result,max_size) \</span>
+<span class='curline'><a href='../S/336.html#L790'>buf</a>               790 src/il_lexer.c 			buf[n] = (char) c; \</span>
+<span class='curline'><a href='../S/336.html#L792'>buf</a>               792 src/il_lexer.c 			buf[n++] = (char) c; \</span>
+<span class='curline'><a href='../S/336.html#L800'>buf</a>               800 src/il_lexer.c 		while ( (result = fread(buf, 1, max_size, yyin))==0 &amp;&amp; ferror(yyin)) \</span>
+<span class='curline'><a href='../S/336.html#L1990'>buf</a>              1990 src/il_lexer.c 	char *buf;</span>
+<span class='curline'><a href='../S/336.html#L1995'>buf</a>              1995 src/il_lexer.c 	buf = (char *) ilalloc(n ,yyscanner );</span>
+<span class='curline'><a href='../S/336.html#L1996'>buf</a>              1996 src/il_lexer.c 	if ( ! buf )</span>
+<span class='curline'><a href='../S/336.html#L2000'>buf</a>              2000 src/il_lexer.c 		buf[i] = yybytes[i];</span>
+<span class='curline'><a href='../S/336.html#L2002'>buf</a>              2002 src/il_lexer.c 	buf[_yybytes_len] = buf[_yybytes_len+1] = YY_END_OF_BUFFER_CHAR;</span>
+<span class='curline'><a href='../S/336.html#L2004'>buf</a>              2004 src/il_lexer.c 	b = il_scan_buffer(buf,n ,yyscanner);</span>
+<span class='curline'><a href='../S/345.html#L63'>buf</a>                63 src/jni_lmntal.c   char *cmd, *result, buf[128];</span>
+<span class='curline'><a href='../S/345.html#L73'>buf</a>                73 src/jni_lmntal.c     while((fgets(buf, 128, fp)) != NULL){</span>
+<span class='curline'><a href='../S/345.html#L76'>buf</a>                76 src/jni_lmntal.c       strcat(result, buf);</span>
+<span class='curline'><a href='../S/351.html#L63'>buf</a>                63 src/load.c     void build_cmd(char *buf, char *file_name);</span>
+<span class='curline'><a href='../S/351.html#L696'>buf</a>               696 src/load.c                                                     char *buf, int buf_len,</span>
+<span class='curline'><a href='../S/351.html#L707'>buf</a>               707 src/load.c       char *basename, *buf;</span>
+<span class='curline'><a href='../S/351.html#L713'>buf</a>               713 src/load.c       buf      = lmn_malloc(buf_len + 1); /* 必要ないけど一応最後に1byte余分をとっておく */</span>
+<span class='curline'><a href='../S/351.html#L715'>buf</a>               715 src/load.c       ret      = load_compiled_il_inner(basename, buf, buf_len, sohandle, filename);</span>
+<span class='curline'><a href='../S/351.html#L717'>buf</a>               717 src/load.c       lmn_free(buf);</span>
+<span class='curline'><a href='../S/351.html#L724'>buf</a>               724 src/load.c                                                     char *buf, int buf_len,</span>
+<span class='curline'><a href='../S/351.html#L730'>buf</a>               730 src/load.c       snprintf(buf, buf_len, "init_%s", basename);</span>
+<span class='curline'><a href='../S/351.html#L731'>buf</a>               731 src/load.c       init_f = dlsym(sohandle, buf);</span>
+<span class='curline'><a href='../S/351.html#L734'>buf</a>               734 src/load.c         fprintf(stderr, "init function \"%s\" not found in %s.\n", buf, filename);</span>
+<span class='curline'><a href='../S/351.html#L744'>buf</a>               744 src/load.c         snprintf(buf, buf_len, "trans_%s_maindata", basename);</span>
+<span class='curline'><a href='../S/351.html#L745'>buf</a>               745 src/load.c         maindata = dlsym(sohandle, buf);</span>
+<span class='curline'><a href='../S/351.html#L748'>buf</a>               748 src/load.c           fprintf(stderr, "maindata \"%s\" not found in %s.\n", buf, basename);</span>
+<span class='curline'><a href='../S/351.html#L874'>buf</a>               874 src/load.c       char *buf;</span>
+<span class='curline'><a href='../S/351.html#L877'>buf</a>               877 src/load.c       buf       = LMN_NALLOC(char, strlen((char *)path) + NAME_MAX + 2);</span>
+<span class='curline'><a href='../S/351.html#L879'>buf</a>               879 src/load.c       sprintf(buf, "%s%s%s.%s", (char *)path, DIR_SEPARATOR_STR,</span>
+<span class='curline'><a href='../S/351.html#L881'>buf</a>               881 src/load.c       load_file(buf);</span>
+<span class='curline'><a href='../S/351.html#L883'>buf</a>               883 src/load.c       LMN_FREE(buf);</span>
+<span class='curline'><a href='../S/351.html#L898'>buf</a>               898 src/load.c       char *buf;</span>
+<span class='curline'><a href='../S/351.html#L902'>buf</a>               902 src/load.c       buf      = LMN_NALLOC(char, path_len + NAME_MAX + 2);</span>
+<span class='curline'><a href='../S/351.html#L914'>buf</a>               914 src/load.c           sprintf(buf, "%s%s%s", path, DIR_SEPARATOR_STR, dp-&gt;d_name);</span>
+<span class='curline'><a href='../S/351.html#L915'>buf</a>               915 src/load.c           stat(buf, &amp;st);</span>
+<span class='curline'><a href='../S/351.html#L950'>buf</a>               950 src/load.c       LMN_FREE(buf);</span>
+<span class='curline'><a href='../S/362.html#L486'>buf</a>               486 src/port.c       char buf[8];</span>
+<span class='curline'><a href='../S/362.html#L490'>buf</a>               490 src/port.c       if (c == EOF) sprintf(buf, "eof");</span>
+<span class='curline'><a href='../S/362.html#L491'>buf</a>               491 src/port.c       else sprintf(buf, "%c", c);</span>
+<span class='curline'><a href='../S/362.html#L492'>buf</a>               492 src/port.c       a = lmn_new_atom(lmn_functor_intern(ANONYMOUS, lmn_intern(buf), 1));</span>
+<span class='curline'><a href='../S/377.html#L58'>buf</a>                58 src/string.c     char *buf; /* Cの文字列形式 */</span>
+<span class='curline'><a href='../S/377.html#L62'>buf</a>                62 src/string.c   #define LMN_STRING_BUF(obj) (LMN_STRING(obj)-&gt;buf)</span>
+<span class='curline'><a href='../S/377.html#L98'>buf</a>                98 src/string.c     p-&gt;buf = LMN_NALLOC(char, p-&gt;buf_size);</span>
+<span class='curline'><a href='../S/377.html#L99'>buf</a>                99 src/string.c     strcpy(p-&gt;buf, s);</span>
+<span class='curline'><a href='../S/377.html#L109'>buf</a>               109 src/string.c     p-&gt;buf = LMN_NALLOC(char, p-&gt;buf_size);</span>
+<span class='curline'><a href='../S/377.html#L110'>buf</a>               110 src/string.c     p-&gt;buf[0] = '\0';</span>
+<span class='curline'><a href='../S/377.html#L123'>buf</a>               123 src/string.c     p-&gt;buf = LMN_NALLOC(char, p-&gt;buf_size);</span>
+<span class='curline'><a href='../S/377.html#L124'>buf</a>               124 src/string.c     strcpy(p-&gt;buf, s-&gt;buf);</span>
+<span class='curline'><a href='../S/377.html#L131'>buf</a>               131 src/string.c       if (s-&gt;buf) LMN_FREE(s-&gt;buf);</span>
+<span class='curline'><a href='../S/377.html#L145'>buf</a>               145 src/string.c     s-&gt;buf = LMN_REALLOC(char, s-&gt;buf, size);</span>
+<span class='curline'><a href='../S/377.html#L155'>buf</a>               155 src/string.c     s-&gt;buf[s-&gt;len-1] = c;</span>
+<span class='curline'><a href='../S/377.html#L156'>buf</a>               156 src/string.c     s-&gt;buf[s-&gt;len] = '\0';</span>
+<span class='curline'><a href='../S/377.html#L162'>buf</a>               162 src/string.c     lmn_string_push_raw_s(dst, src-&gt;buf);</span>
+<span class='curline'><a href='../S/377.html#L174'>buf</a>               174 src/string.c     strcat(dst-&gt;buf, src);</span>
+<span class='curline'><a href='../S/377.html#L190'>buf</a>               190 src/string.c     else return s-&gt;buf[i];</span>
+<span class='curline'><a href='../S/377.html#L195'>buf</a>               195 src/string.c     s-&gt;buf[i] = c;</span>
+<span class='curline'><a href='../S/384.html#L1925'>buf</a>              1925 src/task.c                   char buf[64];</span>
+<span class='curline'><a href='../S/384.html#L1926'>buf</a>              1926 src/task.c                   sprintf(buf, "%f", *(double*)wt(rc, vec_get(srcvec, 0)));</span>
+<span class='curline'><a href='../S/384.html#L1927'>buf</a>              1927 src/task.c                   port_put_raw_s(port, buf);</span>
+<span class='curline'><a href='../S/384.html#L1932'>buf</a>              1932 src/task.c                   char buf[16];</span>
+<span class='curline'><a href='../S/384.html#L1934'>buf</a>              1934 src/task.c                   sprintf(buf,</span>
+<span class='curline'><a href='../S/384.html#L1937'>buf</a>              1937 src/task.c                   port_put_raw_s(port, buf);</span>
+<span class='curline'><a href='../S/386.html#L279'>buf</a>               279 src/translate.c   char *buf;</span>
+<span class='curline'><a href='../S/386.html#L285'>buf</a>               285 src/translate.c   buf = lmn_malloc(buf_len + 1);</span>
+<span class='curline'><a href='../S/386.html#L288'>buf</a>               288 src/translate.c   vsnprintf(buf, buf_len+1, format, ap);</span>
+<span class='curline'><a href='../S/386.html#L291'>buf</a>               291 src/translate.c   return buf;</span>
+<span class='curline'><a href='../S/386.html#L446'>buf</a>               446 src/translate.c   char *buf;</span>
+<span class='curline'><a href='../S/386.html#L451'>buf</a>               451 src/translate.c   buf         = lmn_malloc(buf_len + 1);</span>
+<span class='curline'><a href='../S/386.html#L460'>buf</a>               460 src/translate.c     snprintf(buf, buf_len, "%s_%d", header, i); /* ルールのシグネチャ */</span>
+<span class='curline'><a href='../S/386.html#L461'>buf</a>               461 src/translate.c     translate_rule(lmn_ruleset_get_rule(ruleset, i), buf);</span>
+<span class='curline'><a href='../S/386.html#L473'>buf</a>               473 src/translate.c   lmn_free(buf);</span>
+<span class='curline'><a href='../S/386.html#L582'>buf</a>               582 src/translate.c   char *buf;</span>
+<span class='curline'><a href='../S/386.html#L587'>buf</a>               587 src/translate.c   buf     = lmn_malloc(buf_len + 1);</span>
+<span class='curline'><a href='../S/386.html#L590'>buf</a>               590 src/translate.c   snprintf(buf, buf_len, "trans_%s_1", filename);</span>
+<span class='curline'><a href='../S/386.html#L591'>buf</a>               591 src/translate.c   translate_ruleset(system_ruleset, buf);</span>
+<span class='curline'><a href='../S/386.html#L594'>buf</a>               594 src/translate.c   snprintf(buf, buf_len, "trans_%s_2", filename);</span>
+<span class='curline'><a href='../S/386.html#L595'>buf</a>               595 src/translate.c   translate_ruleset(initial_ruleset, buf);</span>
+<span class='curline'><a href='../S/386.html#L598'>buf</a>               598 src/translate.c   snprintf(buf, buf_len, "trans_%s_3", filename);</span>
+<span class='curline'><a href='../S/386.html#L599'>buf</a>               599 src/translate.c   translate_ruleset(initial_system_ruleset, buf);</span>
+<span class='curline'><a href='../S/386.html#L603'>buf</a>               603 src/translate.c     snprintf(buf, buf_len, "trans_%s_%d", filename, i);</span>
+<span class='curline'><a href='../S/386.html#L604'>buf</a>               604 src/translate.c     translate_ruleset(lmn_ruleset_from_id(i), buf);</span>
+<span class='curline'><a href='../S/386.html#L607'>buf</a>               607 src/translate.c   free(buf);</span>
+<span class='curline'><a href='../S/391.html#L50'>buf</a>                50 src/utility/file_util.c   char *buf;</span>
+<span class='curline'><a href='../S/391.html#L53'>buf</a>                53 src/utility/file_util.c     buf = malloc(sizeof(char) * dir_len + comp_len + 1);</span>
+<span class='curline'><a href='../S/391.html#L54'>buf</a>                54 src/utility/file_util.c     sprintf(buf, "%s%s", dir, component);</span>
+<span class='curline'><a href='../S/391.html#L56'>buf</a>                56 src/utility/file_util.c     buf = malloc(sizeof(char) * dir_len + comp_len +</span>
+<span class='curline'><a href='../S/391.html#L58'>buf</a>                58 src/utility/file_util.c     sprintf(buf, "%s%s%s", dir, DIR_SEPARATOR_STR, component);</span>
+<span class='curline'><a href='../S/391.html#L61'>buf</a>                61 src/utility/file_util.c   return buf;</span>
+<span class='curline'><a href='../S/391.html#L66'>buf</a>                66 src/utility/file_util.c   char *buf = strdup(path);</span>
+<span class='curline'><a href='../S/391.html#L67'>buf</a>                67 src/utility/file_util.c   int len = strlen(buf);</span>
+<span class='curline'><a href='../S/391.html#L71'>buf</a>                71 src/utility/file_util.c     if (buf[i] == '.') {</span>
+<span class='curline'><a href='../S/391.html#L72'>buf</a>                72 src/utility/file_util.c       buf[i] = '\0';</span>
+<span class='curline'><a href='../S/391.html#L77'>buf</a>                77 src/utility/file_util.c   return buf;</span>
+<span class='curline'><a href='../S/423.html#L48'>buf</a>                48 src/verifier/ltl2ba_adapter.c   char buf[2048] = {0};</span>
+<span class='curline'><a href='../S/423.html#L51'>buf</a>                51 src/verifier/ltl2ba_adapter.c     sprintf(buf, "%s -f \"%s\"", cmd, ltl);</span>
+<span class='curline'><a href='../S/423.html#L52'>buf</a>                52 src/verifier/ltl2ba_adapter.c     return popen(buf, "r");</span>
+<span class='curline'><a href='../S/440.html#L696'>buf</a>               696 src/verifier/nc_lexer.c #define YY_INPUT(buf,result,max_size) \</span>
+<span class='curline'><a href='../S/440.html#L703'>buf</a>               703 src/verifier/nc_lexer.c 			buf[n] = (char) c; \</span>
+<span class='curline'><a href='../S/440.html#L705'>buf</a>               705 src/verifier/nc_lexer.c 			buf[n++] = (char) c; \</span>
+<span class='curline'><a href='../S/440.html#L713'>buf</a>               713 src/verifier/nc_lexer.c 		while ( (result = fread(buf, 1, max_size, yyin))==0 &amp;&amp; ferror(yyin)) \</span>
+<span class='curline'><a href='../S/440.html#L1822'>buf</a>              1822 src/verifier/nc_lexer.c 	char *buf;</span>
+<span class='curline'><a href='../S/440.html#L1827'>buf</a>              1827 src/verifier/nc_lexer.c 	buf = (char *) ncalloc(n ,yyscanner );</span>
+<span class='curline'><a href='../S/440.html#L1828'>buf</a>              1828 src/verifier/nc_lexer.c 	if ( ! buf )</span>
+<span class='curline'><a href='../S/440.html#L1832'>buf</a>              1832 src/verifier/nc_lexer.c 		buf[i] = yybytes[i];</span>
+<span class='curline'><a href='../S/440.html#L1834'>buf</a>              1834 src/verifier/nc_lexer.c 	buf[_yybytes_len] = buf[_yybytes_len+1] = YY_END_OF_BUFFER_CHAR;</span>
+<span class='curline'><a href='../S/440.html#L1836'>buf</a>              1836 src/verifier/nc_lexer.c 	b = nc_scan_buffer(buf,n ,yyscanner);</span>
+<span class='curline'><a href='../S/446.html#L124'>buf</a>               124 src/verifier/propositional_symbol.c   char *buf;</span>
+<span class='curline'><a href='../S/446.html#L129'>buf</a>               129 src/verifier/propositional_symbol.c   buf = LMN_NALLOC(char,</span>
+<span class='curline'><a href='../S/446.html#L131'>buf</a>               131 src/verifier/propositional_symbol.c   buf[0] = '\0';</span>
+<span class='curline'><a href='../S/446.html#L132'>buf</a>               132 src/verifier/propositional_symbol.c   strcat(buf, head_s);</span>
+<span class='curline'><a href='../S/446.html#L133'>buf</a>               133 src/verifier/propositional_symbol.c   strcat(buf, " :- ");</span>
+<span class='curline'><a href='../S/446.html#L134'>buf</a>               134 src/verifier/propositional_symbol.c   strcat(buf, guard_s);</span>
+<span class='curline'><a href='../S/446.html#L135'>buf</a>               135 src/verifier/propositional_symbol.c   strcat(buf, " | ");</span>
+<span class='curline'><a href='../S/446.html#L136'>buf</a>               136 src/verifier/propositional_symbol.c   strcat(buf, body_s);</span>
+<span class='curline'><a href='../S/446.html#L137'>buf</a>               137 src/verifier/propositional_symbol.c   strcat(buf, ".");</span>
+<span class='curline'><a href='../S/446.html#L139'>buf</a>               139 src/verifier/propositional_symbol.c   return buf;</span>
+<span class='curline'><a href='../S/448.html#L695'>buf</a>               695 src/verifier/propsym_lexer.c #define YY_INPUT(buf,result,max_size) \</span>
+<span class='curline'><a href='../S/448.html#L702'>buf</a>               702 src/verifier/propsym_lexer.c 			buf[n] = (char) c; \</span>
+<span class='curline'><a href='../S/448.html#L704'>buf</a>               704 src/verifier/propsym_lexer.c 			buf[n++] = (char) c; \</span>
+<span class='curline'><a href='../S/448.html#L712'>buf</a>               712 src/verifier/propsym_lexer.c 		while ( (result = fread(buf, 1, max_size, yyin))==0 &amp;&amp; ferror(yyin)) \</span>
+<span class='curline'><a href='../S/448.html#L944'>buf</a>               944 src/verifier/propsym_lexer.c      char *buf;</span>
+<span class='curline'><a href='../S/448.html#L950'>buf</a>               950 src/verifier/propsym_lexer.c      buf = malloc(sizeof(char) * buf_size);</span>
+<span class='curline'><a href='../S/448.html#L957'>buf</a>               957 src/verifier/propsym_lexer.c          buf = realloc(buf, buf_size);</span>
+<span class='curline'><a href='../S/448.html#L977'>buf</a>               977 src/verifier/propsym_lexer.c        buf[i++] = c;</span>
+<span class='curline'><a href='../S/448.html#L979'>buf</a>               979 src/verifier/propsym_lexer.c      buf[i] = '\0';</span>
+<span class='curline'><a href='../S/448.html#L981'>buf</a>               981 src/verifier/propsym_lexer.c      yylval-&gt;str = buf;</span>
+<span class='curline'><a href='../S/448.html#L1759'>buf</a>              1759 src/verifier/propsym_lexer.c 	char *buf;</span>
+<span class='curline'><a href='../S/448.html#L1764'>buf</a>              1764 src/verifier/propsym_lexer.c 	buf = (char *) propsymalloc(n ,yyscanner );</span>
+<span class='curline'><a href='../S/448.html#L1765'>buf</a>              1765 src/verifier/propsym_lexer.c 	if ( ! buf )</span>
+<span class='curline'><a href='../S/448.html#L1769'>buf</a>              1769 src/verifier/propsym_lexer.c 		buf[i] = yybytes[i];</span>
+<span class='curline'><a href='../S/448.html#L1771'>buf</a>              1771 src/verifier/propsym_lexer.c 	buf[_yybytes_len] = buf[_yybytes_len+1] = YY_END_OF_BUFFER_CHAR;</span>
+<span class='curline'><a href='../S/448.html#L1773'>buf</a>              1773 src/verifier/propsym_lexer.c 	b = propsym_scan_buffer(buf,n ,yyscanner);</span>
+<span class='curline'><a href='../S/525.html#L2808'>buf</a>              2808 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     LSS_INLINE ssize_t LSS_NAME(sendto)(int s, const void *buf, size_t len,</span>
+<span class='curline'><a href='../S/525.html#L2812'>buf</a>              2812 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       LSS_BODY(6, ssize_t, 11, s, buf, len, flags, to, tolen);</span>
+<span class='curline'><a href='../S/525.html#L2859'>buf</a>              2859 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     LSS_INLINE ssize_t LSS_NAME(sendto)(int s, const void *buf, size_t len,</span>
+<span class='curline'><a href='../S/525.html#L2865'>buf</a>              2865 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         (unsigned long) buf,</span>
+<span class='curline'><a href='../S/525.html#L3047'>buf</a>              3047 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     LSS_INLINE ssize_t LSS_NAME(pread64)(int fd, void *buf, size_t count,</span>
+<span class='curline'><a href='../S/525.html#L3050'>buf</a>              3050 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       return LSS_NAME(_pread64)(fd, buf, count, o.arg[0], o.arg[1]);</span>
+<span class='curline'><a href='../S/525.html#L3052'>buf</a>              3052 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     LSS_INLINE ssize_t LSS_NAME(pwrite64)(int fd, const void *buf,</span>
+<span class='curline'><a href='../S/525.html#L3055'>buf</a>              3055 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       return LSS_NAME(_pwrite64)(fd, buf, count, o.arg[0], o.arg[1]);</span>
+<span class='curline'><a href='../S/526.html#L66'>buf</a>                66 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc static char *local_itoa(char *buf, int i) {</span>
+<span class='curline'><a href='../S/526.html#L68'>buf</a>                68 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc     *buf++ = '-';</span>
+<span class='curline'><a href='../S/526.html#L69'>buf</a>                69 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc     return local_itoa(buf, -i);</span>
+<span class='curline'><a href='../S/526.html#L72'>buf</a>                72 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc       buf = local_itoa(buf, i/10);</span>
+<span class='curline'><a href='../S/526.html#L73'>buf</a>                73 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc     *buf++ = (i%10) + '0';</span>
+<span class='curline'><a href='../S/526.html#L74'>buf</a>                74 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc     *buf   = '\000';</span>
+<span class='curline'><a href='../S/526.html#L75'>buf</a>                75 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc     return buf;</span>
+<span class='curline'><a href='../S/526.html#L227'>buf</a>               227 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc   char buf[amount];</span>
+<span class='curline'><a href='../S/526.html#L228'>buf</a>               228 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc   memset(buf, 0, amount);</span>
+<span class='curline'><a href='../S/526.html#L229'>buf</a>               229 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc   sys_read(-1, buf, amount);</span>
+<span class='curline'><a href='../S/526.html#L355'>buf</a>               355 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc         char buf[4096];</span>
+<span class='curline'><a href='../S/526.html#L356'>buf</a>               356 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc         ssize_t nbytes = sys_getdents(proc, (struct kernel_dirent *)buf,</span>
+<span class='curline'><a href='../S/526.html#L357'>buf</a>               357 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc                                       sizeof(buf));</span>
+<span class='curline'><a href='../S/526.html#L373'>buf</a>               373 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc         for (entry = (struct kernel_dirent *)buf;</span>
+<span class='curline'><a href='../S/526.html#L374'>buf</a>               374 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc              entry &lt; (struct kernel_dirent *)&amp;buf[nbytes];</span>
+<span class='curline'><a href='../S/528.html#L59'>buf</a>                59 third_party/google-perftools-1.8.3/src/base/logging.cc void RawWrite(RawFD handle, const char* buf, size_t len) {</span>
+<span class='curline'><a href='../S/528.html#L62'>buf</a>                62 third_party/google-perftools-1.8.3/src/base/logging.cc     BOOL ok = WriteFile(handle, buf, len, &amp;wrote, NULL);</span>
+<span class='curline'><a href='../S/528.html#L65'>buf</a>                65 third_party/google-perftools-1.8.3/src/base/logging.cc     buf += wrote;</span>
+<span class='curline'><a href='../S/528.html#L93'>buf</a>                93 third_party/google-perftools-1.8.3/src/base/logging.cc void RawWrite(RawFD fd, const char* buf, size_t len) {</span>
+<span class='curline'><a href='../S/528.html#L96'>buf</a>                96 third_party/google-perftools-1.8.3/src/base/logging.cc     NO_INTR(r = write(fd, buf, len));</span>
+<span class='curline'><a href='../S/528.html#L98'>buf</a>                98 third_party/google-perftools-1.8.3/src/base/logging.cc     buf += r;</span>
+<span class='curline'><a href='../S/529.html#L57'>buf</a>                57 third_party/google-perftools-1.8.3/src/base/logging.h #define WRITE_TO_STDERR(buf, len) WriteToStderr(buf, len);  // in port.cc</span>
+<span class='curline'><a href='../S/529.html#L60'>buf</a>                60 third_party/google-perftools-1.8.3/src/base/logging.h #define WRITE_TO_STDERR(buf, len) syscall(SYS_write, STDERR_FILENO, buf, len)</span>
+<span class='curline'><a href='../S/529.html#L62'>buf</a>                62 third_party/google-perftools-1.8.3/src/base/logging.h #define WRITE_TO_STDERR(buf, len) write(STDERR_FILENO, buf, len)</span>
+<span class='curline'><a href='../S/529.html#L200'>buf</a>               200 third_party/google-perftools-1.8.3/src/base/logging.h   char buf[600];</span>
+<span class='curline'><a href='../S/529.html#L201'>buf</a>               201 third_party/google-perftools-1.8.3/src/base/logging.h   perftools_vsnprintf(buf, sizeof(buf)-1, pat, ap);</span>
+<span class='curline'><a href='../S/529.html#L202'>buf</a>               202 third_party/google-perftools-1.8.3/src/base/logging.h   if (buf[0] != '\0' &amp;&amp; buf[strlen(buf)-1] != '\n') {</span>
+<span class='curline'><a href='../S/529.html#L203'>buf</a>               203 third_party/google-perftools-1.8.3/src/base/logging.h     assert(strlen(buf)+1 &lt; sizeof(buf));</span>
+<span class='curline'><a href='../S/529.html#L204'>buf</a>               204 third_party/google-perftools-1.8.3/src/base/logging.h     strcat(buf, "\n");</span>
+<span class='curline'><a href='../S/529.html#L206'>buf</a>               206 third_party/google-perftools-1.8.3/src/base/logging.h   WRITE_TO_STDERR(buf, strlen(buf));</span>
+<span class='curline'><a href='../S/529.html#L255'>buf</a>               255 third_party/google-perftools-1.8.3/src/base/logging.h void RawWrite(RawFD fd, const char* buf, size_t len);</span>
+<span class='curline'><a href='../S/542.html#L487'>buf</a>               487 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   char buf[32];</span>
+<span class='curline'><a href='../S/542.html#L490'>buf</a>               490 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   if (confstr(_CS_GNU_LIBPTHREAD_VERSION, buf, sizeof(buf)) == 0)</span>
+<span class='curline'><a href='../S/542.html#L492'>buf</a>               492 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   return strncmp(buf, "NPTL", 4) == 0;</span>
+<span class='curline'><a href='../S/542.html#L504'>buf</a>               504 third_party/google-perftools-1.8.3/src/base/sysinfo.cc                               char* buf, int buf_size) {</span>
+<span class='curline'><a href='../S/542.html#L505'>buf</a>               505 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   CHECK_LT(snprintf(buf, buf_size,</span>
+<span class='curline'><a href='../S/542.html#L935'>buf</a>               935 third_party/google-perftools-1.8.3/src/base/sysinfo.cc int FillProcSelfMaps(char buf[], int size, bool* wrote_all) {</span>
+<span class='curline'><a href='../S/542.html#L945'>buf</a>               945 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     const int line_length = it.FormatLine(buf + bytes_written,</span>
+<span class='curline'><a href='../S/543.html#L231'>buf</a>               231 third_party/google-perftools-1.8.3/src/base/sysinfo.h int FillProcSelfMaps(char buf[], int size, bool* wrote_all);</span>
+<span class='curline'><a href='../S/555.html#L688'>buf</a>               688 third_party/google-perftools-1.8.3/src/debugallocation.cc       union { void* alignment; char buf[sizeof(SymbolTable)]; } tablebuf;</span>
+<span class='curline'><a href='../S/555.html#L689'>buf</a>               689 third_party/google-perftools-1.8.3/src/debugallocation.cc       SymbolTable* symbolization_table = new (tablebuf.buf) SymbolTable;</span>
+<span class='curline'><a href='../S/555.html#L851'>buf</a>               851 third_party/google-perftools-1.8.3/src/debugallocation.cc   char buf[64];</span>
+<span class='curline'><a href='../S/555.html#L911'>buf</a>               911 third_party/google-perftools-1.8.3/src/debugallocation.cc       if (i == sizeof(buf)) {</span>
+<span class='curline'><a href='../S/555.html#L912'>buf</a>               912 third_party/google-perftools-1.8.3/src/debugallocation.cc         write(fd, buf, i);</span>
+<span class='curline'><a href='../S/555.html#L915'>buf</a>               915 third_party/google-perftools-1.8.3/src/debugallocation.cc       buf[i++] = *s++;</span>
+<span class='curline'><a href='../S/555.html#L919'>buf</a>               919 third_party/google-perftools-1.8.3/src/debugallocation.cc     write(fd, buf, i);</span>
+<span class='curline'><a href='../S/555.html#L974'>buf</a>               974 third_party/google-perftools-1.8.3/src/debugallocation.cc void __malloctrace_write(const char *buf, size_t size) {</span>
+<span class='curline'><a href='../S/555.html#L976'>buf</a>               976 third_party/google-perftools-1.8.3/src/debugallocation.cc     write(TraceFd(), buf, size);</span>
+<span class='curline'><a href='../S/568.html#L112'>buf</a>               112 third_party/google-perftools-1.8.3/src/heap-checker.cc   char buf[256];   // TracerPid comes relatively earlier in status output</span>
+<span class='curline'><a href='../S/568.html#L117'>buf</a>               117 third_party/google-perftools-1.8.3/src/heap-checker.cc   const int len = read(fd, buf, sizeof(buf));</span>
+<span class='curline'><a href='../S/568.html#L121'>buf</a>               121 third_party/google-perftools-1.8.3/src/heap-checker.cc     buf[len - 1] = '\0';</span>
+<span class='curline'><a href='../S/568.html#L122'>buf</a>               122 third_party/google-perftools-1.8.3/src/heap-checker.cc     const char *p = strstr(buf, kTracerPid);</span>
+<span class='curline'><a href='../S/569.html#L269'>buf</a>               269 third_party/google-perftools-1.8.3/src/heap-profile-table.cc                                     char* buf, int buflen, int bufsize,</span>
+<span class='curline'><a href='../S/569.html#L279'>buf</a>               279 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     snprintf(buf + buflen, bufsize - buflen, "%6d: %8"PRId64" [%6d: %8"PRId64"] @%s",</span>
+<span class='curline'><a href='../S/569.html#L289'>buf</a>               289 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     printed = snprintf(buf + buflen, bufsize - buflen, " 0x%08" PRIxPTR,</span>
+<span class='curline'><a href='../S/569.html#L294'>buf</a>               294 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   printed = snprintf(buf + buflen, bufsize - buflen, "\n");</span>
+<span class='curline'><a href='../S/569.html#L331'>buf</a>               331 third_party/google-perftools-1.8.3/src/heap-profile-table.cc int HeapProfileTable::FillOrderedProfile(char buf[], int size) const {</span>
+<span class='curline'><a href='../S/569.html#L341'>buf</a>               341 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   int map_length = snprintf(buf, size, "%s", kProcSelfMapsHeader);</span>
+<span class='curline'><a href='../S/569.html#L344'>buf</a>               344 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   map_length += FillProcSelfMaps(buf + map_length, size - map_length, &amp;dummy);</span>
+<span class='curline'><a href='../S/569.html#L346'>buf</a>               346 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   char* const map_start = buf + size - map_length;      // move to end</span>
+<span class='curline'><a href='../S/569.html#L347'>buf</a>               347 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   memmove(map_start, buf, map_length);</span>
+<span class='curline'><a href='../S/569.html#L352'>buf</a>               352 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   int bucket_length = snprintf(buf, size, "%s", kProfileHeader);</span>
+<span class='curline'><a href='../S/569.html#L354'>buf</a>               354 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   bucket_length = UnparseBucket(total_, buf, bucket_length, size,</span>
+<span class='curline'><a href='../S/569.html#L357'>buf</a>               357 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     bucket_length = UnparseBucket(*list[i], buf, bucket_length, size, "",</span>
+<span class='curline'><a href='../S/569.html#L364'>buf</a>               364 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   RAW_DCHECK(buf + bucket_length &lt;= map_start, "");</span>
+<span class='curline'><a href='../S/569.html#L365'>buf</a>               365 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   memmove(buf + bucket_length, map_start, map_length);  // close the gap</span>
+<span class='curline'><a href='../S/569.html#L386'>buf</a>               386 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   char buf[1024];</span>
+<span class='curline'><a href='../S/569.html#L387'>buf</a>               387 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   int len = UnparseBucket(b, buf, 0, sizeof(buf), "", args.profile_stats);</span>
+<span class='curline'><a href='../S/569.html#L388'>buf</a>               388 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   RawWrite(args.fd, buf, len);</span>
+<span class='curline'><a href='../S/569.html#L413'>buf</a>               413 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     char buf[512];</span>
+<span class='curline'><a href='../S/569.html#L414'>buf</a>               414 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     int len = UnparseBucket(total, buf, 0, sizeof(buf), " heapprofile",</span>
+<span class='curline'><a href='../S/569.html#L416'>buf</a>               416 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     RawWrite(fd, buf, len);</span>
+<span class='curline'><a href='../S/570.html#L167'>buf</a>               167 third_party/google-perftools-1.8.3/src/heap-profile-table.h   int FillOrderedProfile(char buf[], int size) const;</span>
+<span class='curline'><a href='../S/570.html#L262'>buf</a>               262 third_party/google-perftools-1.8.3/src/heap-profile-table.h                            char* buf, int buflen, int bufsize,</span>
+<span class='curline'><a href='../S/571.html#L202'>buf</a>               202 third_party/google-perftools-1.8.3/src/heap-profiler.cc static char* DoGetHeapProfileLocked(char* buf, int buflen) {</span>
+<span class='curline'><a href='../S/571.html#L205'>buf</a>               205 third_party/google-perftools-1.8.3/src/heap-profiler.cc   if (buf == NULL || buflen &lt; 1)</span>
+<span class='curline'><a href='../S/571.html#L214'>buf</a>               214 third_party/google-perftools-1.8.3/src/heap-profiler.cc     bytes_written = heap_profile-&gt;FillOrderedProfile(buf, buflen - 1);</span>
+<span class='curline'><a href='../S/571.html#L222'>buf</a>               222 third_party/google-perftools-1.8.3/src/heap-profiler.cc   buf[bytes_written] = '\0';</span>
+<span class='curline'><a href='../S/571.html#L223'>buf</a>               223 third_party/google-perftools-1.8.3/src/heap-profiler.cc   RAW_DCHECK(bytes_written == strlen(buf), "");</span>
+<span class='curline'><a href='../S/571.html#L225'>buf</a>               225 third_party/google-perftools-1.8.3/src/heap-profiler.cc   return buf;</span>
+<span class='curline'><a href='../S/571.html#L292'>buf</a>               292 third_party/google-perftools-1.8.3/src/heap-profiler.cc     char buf[128];</span>
+<span class='curline'><a href='../S/571.html#L296'>buf</a>               296 third_party/google-perftools-1.8.3/src/heap-profiler.cc       snprintf(buf, sizeof(buf), ("%"PRId64" MB allocated cumulatively, "</span>
+<span class='curline'><a href='../S/571.html#L303'>buf</a>               303 third_party/google-perftools-1.8.3/src/heap-profiler.cc       snprintf(buf, sizeof(buf), ("%"PRId64" MB freed cumulatively, "</span>
+<span class='curline'><a href='../S/571.html#L310'>buf</a>               310 third_party/google-perftools-1.8.3/src/heap-profiler.cc       snprintf(buf, sizeof(buf), "%"PRId64" MB currently in use",</span>
+<span class='curline'><a href='../S/571.html#L315'>buf</a>               315 third_party/google-perftools-1.8.3/src/heap-profiler.cc       DumpProfileLocked(buf);</span>
+<span class='curline'><a href='../S/573.html#L132'>buf</a>               132 third_party/google-perftools-1.8.3/src/internal_logging.h   TCMalloc_Printer(char* buf, int length) : buf_(buf), left_(length) {</span>
+<span class='curline'><a href='../S/573.html#L133'>buf</a>               133 third_party/google-perftools-1.8.3/src/internal_logging.h     buf[0] = '\0';</span>
+<span class='curline'><a href='../S/580.html#L245'>buf</a>               245 third_party/google-perftools-1.8.3/src/malloc_extension.cc   char buf[100];</span>
+<span class='curline'><a href='../S/580.html#L246'>buf</a>               246 third_party/google-perftools-1.8.3/src/malloc_extension.cc   snprintf(buf, sizeof(buf),</span>
+<span class='curline'><a href='../S/580.html#L252'>buf</a>               252 third_party/google-perftools-1.8.3/src/malloc_extension.cc   writer-&gt;append(buf, strlen(buf));</span>
+<span class='curline'><a href='../S/580.html#L277'>buf</a>               277 third_party/google-perftools-1.8.3/src/malloc_extension.cc     char buf[32];</span>
+<span class='curline'><a href='../S/580.html#L278'>buf</a>               278 third_party/google-perftools-1.8.3/src/malloc_extension.cc     snprintf(buf, sizeof(buf), " %p", PC(entry, i));</span>
+<span class='curline'><a href='../S/580.html#L279'>buf</a>               279 third_party/google-perftools-1.8.3/src/malloc_extension.cc     writer-&gt;append(buf, strlen(buf));</span>
+<span class='curline'><a href='../S/598.html#L138'>buf</a>               138 third_party/google-perftools-1.8.3/src/profiledata.cc static void FDWrite(int fd, const char* buf, size_t len) {</span>
+<span class='curline'><a href='../S/598.html#L141'>buf</a>               141 third_party/google-perftools-1.8.3/src/profiledata.cc     NO_INTR(r = write(fd, buf, len));</span>
+<span class='curline'><a href='../S/598.html#L143'>buf</a>               143 third_party/google-perftools-1.8.3/src/profiledata.cc     buf += r;</span>
+<span class='curline'><a href='../S/598.html#L325'>buf</a>               325 third_party/google-perftools-1.8.3/src/profiledata.cc     const char* buf = reinterpret_cast&lt;char*&gt;(evict_);</span>
+<span class='curline'><a href='../S/598.html#L328'>buf</a>               328 third_party/google-perftools-1.8.3/src/profiledata.cc     FDWrite(out_, buf, bytes);</span>
+<span class='curline'><a href='../S/601.html#L41'>buf</a>                41 third_party/google-perftools-1.8.3/src/raw_printer.cc RawPrinter::RawPrinter(char* buf, int length)</span>
+<span class='curline'><a href='../S/601.html#L42'>buf</a>                42 third_party/google-perftools-1.8.3/src/raw_printer.cc     : base_(buf),</span>
+<span class='curline'><a href='../S/601.html#L43'>buf</a>                43 third_party/google-perftools-1.8.3/src/raw_printer.cc       ptr_(buf),</span>
+<span class='curline'><a href='../S/601.html#L44'>buf</a>                44 third_party/google-perftools-1.8.3/src/raw_printer.cc       limit_(buf + length - 1) {</span>
+<span class='curline'><a href='../S/602.html#L55'>buf</a>                55 third_party/google-perftools-1.8.3/src/raw_printer.h   RawPrinter(char* buf, int length);</span>
+<span class='curline'><a href='../S/644.html#L211'>buf</a>               211 third_party/google-perftools-1.8.3/src/tests/malloc_hook_test.cc   char buf[64];</span>
+<span class='curline'><a href='../S/644.html#L230'>buf</a>               230 third_party/google-perftools-1.8.3/src/tests/malloc_hook_test.cc     snprintf(buf, sizeof(buf), "[%d/%d; ", value_index, num_values);</span>
+<span class='curline'><a href='../S/644.html#L231'>buf</a>               231 third_party/google-perftools-1.8.3/src/tests/malloc_hook_test.cc     message += buf;</span>
+<span class='curline'><a href='../S/644.html#L241'>buf</a>               241 third_party/google-perftools-1.8.3/src/tests/malloc_hook_test.cc     snprintf(buf, sizeof(buf), "%d]", num_values);</span>
+<span class='curline'><a href='../S/644.html#L242'>buf</a>               242 third_party/google-perftools-1.8.3/src/tests/malloc_hook_test.cc     message += buf;</span>
+<span class='curline'><a href='../S/652.html#L74'>buf</a>                74 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc static ssize_t ReadPersistent(const int fd, void *buf, const size_t count) {</span>
+<span class='curline'><a href='../S/652.html#L76'>buf</a>                76 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   char *buf0 = reinterpret_cast&lt;char *&gt;(buf);</span>
+<span class='curline'><a href='../S/657.html#L87'>buf</a>                87 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   char buf[256];   // should be big enough for all logging</span>
+<span class='curline'><a href='../S/657.html#L90'>buf</a>                90 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   perftools_vsnprintf(buf, sizeof(buf), format, ap);</span>
+<span class='curline'><a href='../S/657.html#L92'>buf</a>                92 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   return buf;</span>
+<span class='curline'><a href='../S/669.html#L88'>buf</a>                88 third_party/google-perftools-1.8.3/src/thread_cache.cc       struct utsname buf;</span>
+<span class='curline'><a href='../S/669.html#L89'>buf</a>                89 third_party/google-perftools-1.8.3/src/thread_cache.cc       if (uname(&amp;buf) != 0) {   // should be impossible</span>
+<span class='curline'><a href='../S/669.html#L93'>buf</a>                93 third_party/google-perftools-1.8.3/src/thread_cache.cc       } else if (strcasecmp(buf.sysname, "linux") == 0) {</span>
+<span class='curline'><a href='../S/669.html#L95'>buf</a>                95 third_party/google-perftools-1.8.3/src/thread_cache.cc         if (buf.release[0] &lt; '2' &amp;&amp; buf.release[1] == '.')    // 0.x or 1.x</span>
+<span class='curline'><a href='../S/669.html#L97'>buf</a>                97 third_party/google-perftools-1.8.3/src/thread_cache.cc         else if (buf.release[0] == '2' &amp;&amp; buf.release[1] == '.' &amp;&amp;</span>
+<span class='curline'><a href='../S/669.html#L98'>buf</a>                98 third_party/google-perftools-1.8.3/src/thread_cache.cc                  buf.release[2] &gt;= '0' &amp;&amp; buf.release[2] &lt; '6' &amp;&amp;</span>
+<span class='curline'><a href='../S/669.html#L99'>buf</a>                99 third_party/google-perftools-1.8.3/src/thread_cache.cc                  buf.release[3] == '.')                       // 2.0 - 2.5</span>
+<span class='curline'><a href='../S/671.html#L63'>buf</a>                63 third_party/google-perftools-1.8.3/src/windows/addr2line-pdb.c   char buf[256];   /* Enough to hold one hex address, I trust! */</span>
+<span class='curline'><a href='../S/671.html#L131'>buf</a>               131 third_party/google-perftools-1.8.3/src/windows/addr2line-pdb.c   buf[sizeof(buf)-1] = '\0';  /* Just to be safe */</span>
+<span class='curline'><a href='../S/671.html#L132'>buf</a>               132 third_party/google-perftools-1.8.3/src/windows/addr2line-pdb.c   while (fgets(buf, sizeof(buf)-1, stdin)) {</span>
+<span class='curline'><a href='../S/671.html#L136'>buf</a>               136 third_party/google-perftools-1.8.3/src/windows/addr2line-pdb.c     unsigned __int64 addr = _strtoui64(buf, NULL, 16);</span>
+<span class='curline'><a href='../S/685.html#L73'>buf</a>                73 third_party/google-perftools-1.8.3/src/windows/port.cc extern "C" PERFTOOLS_DLL_DECL void WriteToStderr(const char* buf, int len) {</span>
+<span class='curline'><a href='../S/685.html#L76'>buf</a>                76 third_party/google-perftools-1.8.3/src/windows/port.cc     write(STDERR_FILENO, buf + i, std::min(80, len - i));</span>
+<span class='curline'><a href='../S/686.html#L364'>buf</a>               364 third_party/google-perftools-1.8.3/src/windows/port.h inline ssize_t read(int fd, void *buf, size_t count) {</span>
+<span class='curline'><a href='../S/686.html#L365'>buf</a>               365 third_party/google-perftools-1.8.3/src/windows/port.h   return _read(fd, buf, count);</span>
+<span class='curline'><a href='../S/686.html#L367'>buf</a>               367 third_party/google-perftools-1.8.3/src/windows/port.h inline ssize_t write(int fd, const void *buf, size_t count) {</span>
+<span class='curline'><a href='../S/686.html#L368'>buf</a>               368 third_party/google-perftools-1.8.3/src/windows/port.h   return _write(fd, buf, count);</span>
+<span class='curline'><a href='../S/686.html#L373'>buf</a>               373 third_party/google-perftools-1.8.3/src/windows/port.h inline char *getcwd(char *buf, size_t size) {</span>
+<span class='curline'><a href='../S/686.html#L374'>buf</a>               374 third_party/google-perftools-1.8.3/src/windows/port.h   return _getcwd(buf, size);</span>
+<span class='curline'><a href='../S/686.html#L388'>buf</a>               388 third_party/google-perftools-1.8.3/src/windows/port.h EXTERN_C PERFTOOLS_DLL_DECL void WriteToStderr(const char* buf, int len);</span>
+<span class='curline'><a href='../S/698.html#L20'>buf</a>                20 third_party/zdelta-2.1/adler32.c #define DO1(buf,i)  {s1 += buf[i]; s2 += s1;}</span>
+<span class='curline'><a href='../S/698.html#L21'>buf</a>                21 third_party/zdelta-2.1/adler32.c #define DO2(buf,i)  DO1(buf,i); DO1(buf,i+1);</span>
+<span class='curline'><a href='../S/698.html#L22'>buf</a>                22 third_party/zdelta-2.1/adler32.c #define DO4(buf,i)  DO2(buf,i); DO2(buf,i+2);</span>
+<span class='curline'><a href='../S/698.html#L23'>buf</a>                23 third_party/zdelta-2.1/adler32.c #define DO8(buf,i)  DO4(buf,i); DO4(buf,i+4);</span>
+<span class='curline'><a href='../S/698.html#L24'>buf</a>                24 third_party/zdelta-2.1/adler32.c #define DO16(buf)   DO8(buf,0); DO8(buf,8);</span>
+<span class='curline'><a href='../S/698.html#L28'>buf</a>                28 third_party/zdelta-2.1/adler32.c uLong ZEXPORT zd_adler32(adler, buf, len)</span>
+<span class='curline'><a href='../S/698.html#L30'>buf</a>                30 third_party/zdelta-2.1/adler32.c     const Bytef *buf;</span>
+<span class='curline'><a href='../S/698.html#L37'>buf</a>                37 third_party/zdelta-2.1/adler32.c     if (buf == ZD_NULL) return 1L;</span>
+<span class='curline'><a href='../S/698.html#L43'>buf</a>                43 third_party/zdelta-2.1/adler32.c             DO16(buf);</span>
+<span class='curline'><a href='../S/698.html#L44'>buf</a>                44 third_party/zdelta-2.1/adler32.c 	    buf += 16;</span>
+<span class='curline'><a href='../S/698.html#L48'>buf</a>                48 third_party/zdelta-2.1/adler32.c             s1 += *buf++;</span>
+<span class='curline'><a href='../S/699.html#L126'>buf</a>               126 third_party/zdelta-2.1/deflate.c local int read_buf        OF((zd_streamp strm, Bytef *buf, unsigned size));</span>
+<span class='curline'><a href='../S/699.html#L128'>buf</a>               128 third_party/zdelta-2.1/deflate.c local int read_ref_buf OF((zd_streamp strm, Bytef *buf, unsigned size, int rw));</span>
+<span class='curline'><a href='../S/699.html#L697'>buf</a>               697 third_party/zdelta-2.1/deflate.c local int read_buf(strm, buf, size)</span>
+<span class='curline'><a href='../S/699.html#L699'>buf</a>               699 third_party/zdelta-2.1/deflate.c      Bytef *buf;</span>
+<span class='curline'><a href='../S/699.html#L713'>buf</a>               713 third_party/zdelta-2.1/deflate.c   zmemcpy(buf, strm-&gt;next_in, len);</span>
+<span class='curline'><a href='../S/699.html#L725'>buf</a>               725 third_party/zdelta-2.1/deflate.c local int read_ref_buf(strm, buf, size, rw)</span>
+<span class='curline'><a href='../S/699.html#L727'>buf</a>               727 third_party/zdelta-2.1/deflate.c      Bytef *buf;</span>
+<span class='curline'><a href='../S/699.html#L737'>buf</a>               737 third_party/zdelta-2.1/deflate.c   zmemcpy(buf, strm-&gt;base[rw], len);</span>
+<span class='curline'><a href='../S/700.html#L361'>buf</a>               361 third_party/zdelta-2.1/deflate.h void zd_tr_flush_block  OF((deflate_state *s, charf *buf, ulg stored_len,</span>
+<span class='curline'><a href='../S/700.html#L364'>buf</a>               364 third_party/zdelta-2.1/deflate.h void zd_tr_stored_block OF((deflate_state *s, charf *buf, ulg stored_len,</span>
+<span class='curline'><a href='../S/719.html#L198'>buf</a>               198 third_party/zdelta-2.1/trees.c local void copy_block     OF((deflate_state *s, charf *buf, unsigned len,</span>
+<span class='curline'><a href='../S/719.html#L1009'>buf</a>              1009 third_party/zdelta-2.1/trees.c void zd_tr_stored_block(s, buf, stored_len, eof)</span>
+<span class='curline'><a href='../S/719.html#L1011'>buf</a>              1011 third_party/zdelta-2.1/trees.c      charf *buf;       /* input block */</span>
+<span class='curline'><a href='../S/719.html#L1020'>buf</a>              1020 third_party/zdelta-2.1/trees.c   copy_block(s, buf, (unsigned)stored_len, 1); /* with header */</span>
+<span class='curline'><a href='../S/719.html#L1081'>buf</a>              1081 third_party/zdelta-2.1/trees.c void zd_tr_flush_block(s, buf, stored_len, eof)</span>
+<span class='curline'><a href='../S/719.html#L1083'>buf</a>              1083 third_party/zdelta-2.1/trees.c     charf *buf;       /* input block, or NULL if too old */</span>
+<span class='curline'><a href='../S/719.html#L1123'>buf</a>              1123 third_party/zdelta-2.1/trees.c     Assert(buf != (char*)0, "lost buf");</span>
+<span class='curline'><a href='../S/719.html#L1128'>buf</a>              1128 third_party/zdelta-2.1/trees.c   if (buf != (char*)0) { /* force stored block */</span>
+<span class='curline'><a href='../S/719.html#L1135'>buf</a>              1135 third_party/zdelta-2.1/trees.c   if (stored_allowed &amp;&amp; stored_len+4 &lt;= opt_lenb &amp;&amp; buf != (char*)0){ </span>
+<span class='curline'><a href='../S/719.html#L1148'>buf</a>              1148 third_party/zdelta-2.1/trees.c     zd_tr_stored_block(s, buf, stored_len, eof);</span>
+<span class='curline'><a href='../S/719.html#L1409'>buf</a>              1409 third_party/zdelta-2.1/trees.c local void copy_block(s, buf, len, header)</span>
+<span class='curline'><a href='../S/719.html#L1411'>buf</a>              1411 third_party/zdelta-2.1/trees.c     charf    *buf;    /* the input data */</span>
+<span class='curline'><a href='../S/719.html#L1429'>buf</a>              1429 third_party/zdelta-2.1/trees.c     put_byte(s, *buf++);</span>
+<span class='curline'><a href='../S/726.html#L683'>buf</a>               683 third_party/zdelta-2.1/zdlib.h ZEXTERN uLong ZEXPORT zd_adler32 OF((uLong adler, const Bytef *buf, uInt len));</span>
+<span class='curline'><a href='../S/729.html#L171'>buf</a>               171 third_party/zdelta-2.1/zutil.c     voidpf buf = opaque; /* just to make some compilers happy */</span>
+<span class='curline'><a href='../S/729.html#L178'>buf</a>               178 third_party/zdelta-2.1/zutil.c         buf = farmalloc(bsize);</span>
+<span class='curline'><a href='../S/729.html#L179'>buf</a>               179 third_party/zdelta-2.1/zutil.c         if (*(ush*)&amp;buf != 0) return buf;</span>
+<span class='curline'><a href='../S/729.html#L181'>buf</a>               181 third_party/zdelta-2.1/zutil.c         buf = farmalloc(bsize + 16L);</span>
+<span class='curline'><a href='../S/729.html#L183'>buf</a>               183 third_party/zdelta-2.1/zutil.c     if (buf == NULL || next_ptr &gt;= MAX_PTR) return NULL;</span>
+<span class='curline'><a href='../S/729.html#L184'>buf</a>               184 third_party/zdelta-2.1/zutil.c     table[next_ptr].org_ptr = buf;</span>
+<span class='curline'><a href='../S/729.html#L187'>buf</a>               187 third_party/zdelta-2.1/zutil.c     *((ush*)&amp;buf+1) += ((ush)((uch*)buf-0) + 15) &gt;&gt; 4;</span>
+<span class='curline'><a href='../S/729.html#L188'>buf</a>               188 third_party/zdelta-2.1/zutil.c     *(ush*)&amp;buf = 0;</span>
+<span class='curline'><a href='../S/729.html#L189'>buf</a>               189 third_party/zdelta-2.1/zutil.c     table[next_ptr++].new_ptr = buf;</span>
+<span class='curline'><a href='../S/729.html#L190'>buf</a>               190 third_party/zdelta-2.1/zutil.c     return buf;</span>
+<span class='curline'><a href='../S/730.html#L239'>buf</a>               239 third_party/zdelta-2.1/zutil.h typedef uLong (ZEXPORT *check_func) OF((uLong check, const Bytef *buf,</span>
+</pre>
+</body>
+</html>

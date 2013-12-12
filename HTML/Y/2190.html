@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>end_addr</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/568.html#L649'>end_addr</a>          649 third_party/google-perftools-1.8.3/src/heap-checker.cc                   top_ptr, region.end_addr - top);</span>
+<span class='curline'><a href='../S/568.html#L650'>end_addr</a>          650 third_party/google-perftools-1.8.3/src/heap-checker.cc       live_objects-&gt;push_back(AllocObject(top_ptr, region.end_addr - top,</span>
+<span class='curline'><a href='../S/568.html#L685'>end_addr</a>          685 third_party/google-perftools-1.8.3/src/heap-checker.cc             if (stack_start &lt; r-&gt;end_addr  &amp;&amp;  r-&gt;end_addr &lt;= top) {</span>
+<span class='curline'><a href='../S/568.html#L686'>end_addr</a>          686 third_party/google-perftools-1.8.3/src/heap-checker.cc               stack_start = r-&gt;end_addr;</span>
+<span class='curline'><a href='../S/568.html#L1178'>end_addr</a>         1178 third_party/google-perftools-1.8.3/src/heap-checker.cc             if (region-&gt;start_addr &lt;= start  &amp;&amp;  end &lt;= region-&gt;end_addr) {</span>
+<span class='curline'><a href='../S/568.html#L1181'>end_addr</a>         1181 third_party/google-perftools-1.8.3/src/heap-checker.cc                        region-&gt;end_addr &lt; end) {  // cutting-out split</span>
+<span class='curline'><a href='../S/568.html#L1185'>end_addr</a>         1185 third_party/google-perftools-1.8.3/src/heap-checker.cc               live_objects-&gt;push_back(AllocObject(AsPtr(region-&gt;end_addr),</span>
+<span class='curline'><a href='../S/568.html#L1186'>end_addr</a>         1186 third_party/google-perftools-1.8.3/src/heap-checker.cc                                                   end - region-&gt;end_addr,</span>
+<span class='curline'><a href='../S/568.html#L1188'>end_addr</a>         1188 third_party/google-perftools-1.8.3/src/heap-checker.cc             } else if (region-&gt;end_addr &gt; start  &amp;&amp;</span>
+<span class='curline'><a href='../S/568.html#L1190'>end_addr</a>         1190 third_party/google-perftools-1.8.3/src/heap-checker.cc               live_objects-&gt;push_back(AllocObject(AsPtr(region-&gt;end_addr),</span>
+<span class='curline'><a href='../S/568.html#L1191'>end_addr</a>         1191 third_party/google-perftools-1.8.3/src/heap-checker.cc                                                   end - region-&gt;end_addr,</span>
+<span class='curline'><a href='../S/571.html#L193'>end_addr</a>          193 third_party/google-perftools-1.8.3/src/heap-profiler.cc         r-&gt;end_addr - r-&gt;start_addr,</span>
+<span class='curline'><a href='../S/588.html#L303'>end_addr</a>          303 third_party/google-perftools-1.8.3/src/memory_region_map.cc       RAW_CHECK(addr &lt;= region-&gt;end_addr, "");</span>
+<span class='curline'><a href='../S/588.html#L304'>end_addr</a>          304 third_party/google-perftools-1.8.3/src/memory_region_map.cc       if (region-&gt;start_addr &lt;= addr  &amp;&amp;  addr &lt; region-&gt;end_addr) {</span>
+<span class='curline'><a href='../S/588.html#L328'>end_addr</a>          328 third_party/google-perftools-1.8.3/src/memory_region_map.cc                 reinterpret_cast&lt;void*&gt;(region-&gt;end_addr));</span>
+<span class='curline'><a href='../S/588.html#L352'>end_addr</a>          352 third_party/google-perftools-1.8.3/src/memory_region_map.cc               reinterpret_cast&lt;void*&gt;(region.end_addr),</span>
+<span class='curline'><a href='../S/588.html#L356'>end_addr</a>          356 third_party/google-perftools-1.8.3/src/memory_region_map.cc     RAW_DCHECK(region.end_addr &lt;= i-&gt;end_addr, "");  // lower_bound ensures this</span>
+<span class='curline'><a href='../S/588.html#L376'>end_addr</a>          376 third_party/google-perftools-1.8.3/src/memory_region_map.cc               reinterpret_cast&lt;void*&gt;(region.end_addr));</span>
+<span class='curline'><a href='../S/588.html#L416'>end_addr</a>          416 third_party/google-perftools-1.8.3/src/memory_region_map.cc                 reinterpret_cast&lt;void*&gt;(region.end_addr),</span>
+<span class='curline'><a href='../S/588.html#L461'>end_addr</a>          461 third_party/google-perftools-1.8.3/src/memory_region_map.cc               reinterpret_cast&lt;void*&gt;(region.end_addr),</span>
+<span class='curline'><a href='../S/588.html#L479'>end_addr</a>          479 third_party/google-perftools-1.8.3/src/memory_region_map.cc     uintptr_t end_addr = start_addr + size;</span>
+<span class='curline'><a href='../S/588.html#L484'>end_addr</a>          484 third_party/google-perftools-1.8.3/src/memory_region_map.cc       if (r.start_addr == start_addr &amp;&amp; r.end_addr == end_addr) {</span>
+<span class='curline'><a href='../S/588.html#L491'>end_addr</a>          491 third_party/google-perftools-1.8.3/src/memory_region_map.cc                  reinterpret_cast&lt;void*&gt;(end_addr),</span>
+<span class='curline'><a href='../S/588.html#L510'>end_addr</a>          510 third_party/google-perftools-1.8.3/src/memory_region_map.cc   uintptr_t end_addr = start_addr + size;</span>
+<span class='curline'><a href='../S/588.html#L514'>end_addr</a>          514 third_party/google-perftools-1.8.3/src/memory_region_map.cc               reinterpret_cast&lt;void*&gt;(end_addr),</span>
+<span class='curline'><a href='../S/588.html#L520'>end_addr</a>          520 third_party/google-perftools-1.8.3/src/memory_region_map.cc        region != regions_-&gt;end()  &amp;&amp;  region-&gt;start_addr &lt; end_addr;</span>
+<span class='curline'><a href='../S/588.html#L524'>end_addr</a>          524 third_party/google-perftools-1.8.3/src/memory_region_map.cc                 reinterpret_cast&lt;void*&gt;(region-&gt;end_addr));</span>
+<span class='curline'><a href='../S/588.html#L526'>end_addr</a>          526 third_party/google-perftools-1.8.3/src/memory_region_map.cc         region-&gt;end_addr &lt;= end_addr) {  // full deletion</span>
+<span class='curline'><a href='../S/588.html#L529'>end_addr</a>          529 third_party/google-perftools-1.8.3/src/memory_region_map.cc                   reinterpret_cast&lt;void*&gt;(region-&gt;end_addr));</span>
+<span class='curline'><a href='../S/588.html#L535'>end_addr</a>          535 third_party/google-perftools-1.8.3/src/memory_region_map.cc                end_addr &lt; region-&gt;end_addr) {  // cutting-out split</span>
+<span class='curline'><a href='../S/588.html#L538'>end_addr</a>          538 third_party/google-perftools-1.8.3/src/memory_region_map.cc                   reinterpret_cast&lt;void*&gt;(region-&gt;end_addr));</span>
+<span class='curline'><a href='../S/588.html#L546'>end_addr</a>          546 third_party/google-perftools-1.8.3/src/memory_region_map.cc       const_cast&lt;Region&amp;&gt;(*region).set_start_addr(end_addr);</span>
+<span class='curline'><a href='../S/588.html#L547'>end_addr</a>          547 third_party/google-perftools-1.8.3/src/memory_region_map.cc     } else if (end_addr &gt; region-&gt;start_addr  &amp;&amp;</span>
+<span class='curline'><a href='../S/588.html#L551'>end_addr</a>          551 third_party/google-perftools-1.8.3/src/memory_region_map.cc                   reinterpret_cast&lt;void*&gt;(region-&gt;end_addr));</span>
+<span class='curline'><a href='../S/588.html#L552'>end_addr</a>          552 third_party/google-perftools-1.8.3/src/memory_region_map.cc       const_cast&lt;Region&amp;&gt;(*region).set_start_addr(end_addr);</span>
+<span class='curline'><a href='../S/588.html#L554'>end_addr</a>          554 third_party/google-perftools-1.8.3/src/memory_region_map.cc                start_addr &lt; region-&gt;end_addr) {  // cut from end</span>
+<span class='curline'><a href='../S/588.html#L557'>end_addr</a>          557 third_party/google-perftools-1.8.3/src/memory_region_map.cc                   reinterpret_cast&lt;void*&gt;(region-&gt;end_addr));</span>
+<span class='curline'><a href='../S/588.html#L573'>end_addr</a>          573 third_party/google-perftools-1.8.3/src/memory_region_map.cc               reinterpret_cast&lt;void*&gt;(end_addr),</span>
+<span class='curline'><a href='../S/588.html#L642'>end_addr</a>          642 third_party/google-perftools-1.8.3/src/memory_region_map.cc                   r-&gt;start_addr, r-&gt;end_addr, r-&gt;caller(), r-&gt;is_stack);</span>
+<span class='curline'><a href='../S/588.html#L643'>end_addr</a>          643 third_party/google-perftools-1.8.3/src/memory_region_map.cc     RAW_CHECK(previous &lt; r-&gt;end_addr, "wow, we messed up the set order");</span>
+<span class='curline'><a href='../S/588.html#L645'>end_addr</a>          645 third_party/google-perftools-1.8.3/src/memory_region_map.cc     previous = r-&gt;end_addr;</span>
+<span class='curline'><a href='../S/589.html#L126'>end_addr</a>          126 third_party/google-perftools-1.8.3/src/memory_region_map.h     uintptr_t end_addr;  // region end address</span>
+<span class='curline'><a href='../S/589.html#L147'>end_addr</a>          147 third_party/google-perftools-1.8.3/src/memory_region_map.h       return start_addr &lt; x.end_addr  &amp;&amp;  end_addr &gt; x.start_addr;</span>
+<span class='curline'><a href='../S/589.html#L156'>end_addr</a>          156 third_party/google-perftools-1.8.3/src/memory_region_map.h       end_addr = start_addr + size;</span>
+<span class='curline'><a href='../S/589.html#L174'>end_addr</a>          174 third_party/google-perftools-1.8.3/src/memory_region_map.h       end_addr = addr;</span>
+<span class='curline'><a href='../S/589.html#L180'>end_addr</a>          180 third_party/google-perftools-1.8.3/src/memory_region_map.h       RAW_DCHECK(start_addr &lt; end_addr, "");</span>
+<span class='curline'><a href='../S/589.html#L190'>end_addr</a>          190 third_party/google-perftools-1.8.3/src/memory_region_map.h       end_addr = addr;</span>
+<span class='curline'><a href='../S/589.html#L222'>end_addr</a>          222 third_party/google-perftools-1.8.3/src/memory_region_map.h       return x.end_addr &lt; y.end_addr;</span>
+</pre>
+</body>
+</html>

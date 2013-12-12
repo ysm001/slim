@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>succ_tbl</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/363.html#L147'>succ_tbl</a>          147 src/react_context.c   v-&gt;succ_tbl       = st_init_ptrtable();</span>
+<span class='curline'><a href='../S/363.html#L171'>succ_tbl</a>          171 src/react_context.c   st_free_table(v-&gt;succ_tbl);</span>
+<span class='curline'><a href='../S/364.html#L150'>succ_tbl</a>          150 src/react_context.h   st_table_t   succ_tbl;       /* 多重辺除去用 */</span>
+<span class='curline'><a href='../S/364.html#L190'>succ_tbl</a>          190 src/react_context.h #define RC_SUCC_TBL(RC)                 ((RC_ND_DATA(RC))-&gt;succ_tbl)</span>
+<span class='curline'><a href='../S/419.html#L816'>succ_tbl</a>          816 src/verifier/dpor.c   st_table_t succ_tbl;         /* サクセッサのポインタの重複検査に使用 */</span>
+<span class='curline'><a href='../S/419.html#L821'>succ_tbl</a>          821 src/verifier/dpor.c   succ_tbl     = RC_SUCC_TBL(rc);</span>
+<span class='curline'><a href='../S/419.html#L875'>succ_tbl</a>          875 src/verifier/dpor.c     if (!st_lookup(succ_tbl, (st_data_t)succ, (st_data_t *)&amp;tmp)) {</span>
+<span class='curline'><a href='../S/419.html#L877'>succ_tbl</a>          877 src/verifier/dpor.c       st_add_direct(succ_tbl, (st_data_t)succ, ins);</span>
+<span class='curline'><a href='../S/419.html#L926'>succ_tbl</a>          926 src/verifier/dpor.c       if (!st_lookup(succ_tbl, (st_data_t)succ, (st_data_t *)&amp;tmp)) {</span>
+<span class='curline'><a href='../S/419.html#L928'>succ_tbl</a>          928 src/verifier/dpor.c         st_add_direct(succ_tbl, (st_data_t)succ, ins);</span>
+<span class='curline'><a href='../S/421.html#L442'>succ_tbl</a>          442 src/verifier/dpor_naive.c   st_table_t succ_tbl;</span>
+<span class='curline'><a href='../S/421.html#L446'>succ_tbl</a>          446 src/verifier/dpor_naive.c   succ_tbl = RC_SUCC_TBL(rc);</span>
+<span class='curline'><a href='../S/421.html#L472'>succ_tbl</a>          472 src/verifier/dpor_naive.c     if (!st_lookup(succ_tbl, (st_data_t)succ, (st_data_t *)&amp;tmp)) {</span>
+<span class='curline'><a href='../S/421.html#L473'>succ_tbl</a>          473 src/verifier/dpor_naive.c       st_add_direct(succ_tbl, (st_data_t)succ, (st_data_t)src_t);</span>
+</pre>
+</body>
+</html>

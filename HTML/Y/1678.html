@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>buf_size</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/377.html#L57'>buf_size</a>           57 src/string.c     unsigned long buf_size, len;</span>
+<span class='curline'><a href='../S/377.html#L63'>buf_size</a>           63 src/string.c   #define LMN_STRING_BUF_SIZE(obj) (LMN_STRING(obj)-&gt;buf_size)</span>
+<span class='curline'><a href='../S/377.html#L97'>buf_size</a>           97 src/string.c     p-&gt;buf_size = p-&gt;len + 1;</span>
+<span class='curline'><a href='../S/377.html#L98'>buf_size</a>           98 src/string.c     p-&gt;buf = LMN_NALLOC(char, p-&gt;buf_size);</span>
+<span class='curline'><a href='../S/377.html#L103'>buf_size</a>          103 src/string.c   LmnString string_make_empty_with_size(unsigned long buf_size)</span>
+<span class='curline'><a href='../S/377.html#L108'>buf_size</a>          108 src/string.c     p-&gt;buf_size = buf_size &gt; 0 ? buf_size : 1;</span>
+<span class='curline'><a href='../S/377.html#L109'>buf_size</a>          109 src/string.c     p-&gt;buf = LMN_NALLOC(char, p-&gt;buf_size);</span>
+<span class='curline'><a href='../S/377.html#L123'>buf_size</a>          123 src/string.c     p-&gt;buf = LMN_NALLOC(char, p-&gt;buf_size);</span>
+<span class='curline'><a href='../S/377.html#L144'>buf_size</a>          144 src/string.c     s-&gt;buf_size = size;</span>
+<span class='curline'><a href='../S/377.html#L150'>buf_size</a>          150 src/string.c     if (s-&gt;len+1 == s-&gt;buf_size) {</span>
+<span class='curline'><a href='../S/377.html#L152'>buf_size</a>          152 src/string.c       string_expand_buf(s, s-&gt;buf_size+1);</span>
+<span class='curline'><a href='../S/377.html#L169'>buf_size</a>          169 src/string.c     if (len &gt;= dst-&gt;buf_size) {</span>
+<span class='curline'><a href='../S/448.html#L945'>buf_size</a>          945 src/verifier/propsym_lexer.c      int buf_size, i;</span>
+<span class='curline'><a href='../S/448.html#L949'>buf_size</a>          949 src/verifier/propsym_lexer.c      buf_size = 256;</span>
+<span class='curline'><a href='../S/448.html#L950'>buf_size</a>          950 src/verifier/propsym_lexer.c      buf = malloc(sizeof(char) * buf_size);</span>
+<span class='curline'><a href='../S/448.html#L955'>buf_size</a>          955 src/verifier/propsym_lexer.c        if (i &gt;= buf_size) {</span>
+<span class='curline'><a href='../S/448.html#L956'>buf_size</a>          956 src/verifier/propsym_lexer.c          buf_size *= 2;</span>
+<span class='curline'><a href='../S/448.html#L957'>buf_size</a>          957 src/verifier/propsym_lexer.c          buf = realloc(buf, buf_size);</span>
+<span class='curline'><a href='../S/542.html#L504'>buf_size</a>          504 third_party/google-perftools-1.8.3/src/base/sysinfo.cc                               char* buf, int buf_size) {</span>
+<span class='curline'><a href='../S/542.html#L505'>buf_size</a>          505 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   CHECK_LT(snprintf(buf, buf_size,</span>
+<span class='curline'><a href='../S/542.html#L507'>buf_size</a>          507 third_party/google-perftools-1.8.3/src/base/sysinfo.cc                     static_cast&lt;int&gt;(pid ? pid : getpid())), buf_size);</span>
+<span class='curline'><a href='../S/598.html#L226'>buf_size</a>          226 third_party/google-perftools-1.8.3/src/profiledata.cc     int buf_size = sizeof(state-&gt;profile_name);</span>
+<span class='curline'><a href='../S/598.html#L227'>buf_size</a>          227 third_party/google-perftools-1.8.3/src/profiledata.cc     strncpy(state-&gt;profile_name, fname_, buf_size);</span>
+<span class='curline'><a href='../S/598.html#L228'>buf_size</a>          228 third_party/google-perftools-1.8.3/src/profiledata.cc     state-&gt;profile_name[buf_size-1] = '\0';</span>
+<span class='curline'><a href='../S/600.html#L238'>buf_size</a>          238 third_party/google-perftools-1.8.3/src/profiler.cc   int buf_size = sizeof(state-&gt;profile_name);</span>
+<span class='curline'><a href='../S/600.html#L239'>buf_size</a>          239 third_party/google-perftools-1.8.3/src/profiler.cc   strncpy(state-&gt;profile_name, collector_state.profile_name, buf_size);</span>
+<span class='curline'><a href='../S/600.html#L240'>buf_size</a>          240 third_party/google-perftools-1.8.3/src/profiler.cc   state-&gt;profile_name[buf_size-1] = '\0';</span>
+</pre>
+</body>
+</html>

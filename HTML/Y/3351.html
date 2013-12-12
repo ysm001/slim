@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>lv2</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/367.html#L134'>lv2</a>               134 src/runtime_status.c     MCProfiler2 *p = &amp;lmn_prof.lv2[i];</span>
+<span class='curline'><a href='../S/367.html#L270'>lv2</a>               270 src/runtime_status.c   lmn_prof.lv2                   = NULL;</span>
+<span class='curline'><a href='../S/367.html#L293'>lv2</a>               293 src/runtime_status.c   if (lmn_prof.lv2) {</span>
+<span class='curline'><a href='../S/367.html#L294'>lv2</a>               294 src/runtime_status.c     mc_profiler2_destroy(lmn_prof.lv2);</span>
+<span class='curline'><a href='../S/367.html#L359'>lv2</a>               359 src/runtime_status.c     lmn_prof.lv2 = LMN_NALLOC(MCProfiler2, lmn_prof.thread_num);</span>
+<span class='curline'><a href='../S/367.html#L361'>lv2</a>               361 src/runtime_status.c       mc_profiler2_init(&amp;lmn_prof.lv2[i]);</span>
+<span class='curline'><a href='../S/367.html#L368'>lv2</a>               368 src/runtime_status.c       mc_profiler2_destroy(&amp;lmn_prof.lv2[i]);</span>
+<span class='curline'><a href='../S/367.html#L370'>lv2</a>               370 src/runtime_status.c     LMN_FREE(lmn_prof.lv2);</span>
+<span class='curline'><a href='../S/367.html#L373'>lv2</a>               373 src/runtime_status.c     lmn_prof.lv2 = total;</span>
+<span class='curline'><a href='../S/367.html#L383'>lv2</a>               383 src/runtime_status.c   p  = &amp;lmn_prof.lv2[lmn_OMP_get_my_id()];</span>
+<span class='curline'><a href='../S/367.html#L560'>lv2</a>               560 src/runtime_status.c   if (lmn_prof.lv2) {</span>
+<span class='curline'><a href='../S/367.html#L561'>lv2</a>               561 src/runtime_status.c     tmp_total_mem = (double)(lmn_prof.lv2-&gt;state_space</span>
+<span class='curline'><a href='../S/367.html#L562'>lv2</a>               562 src/runtime_status.c                              + lmn_prof.lv2-&gt;transition_space</span>
+<span class='curline'><a href='../S/367.html#L563'>lv2</a>               563 src/runtime_status.c                              + lmn_prof.lv2-&gt;binstr_space</span>
+<span class='curline'><a href='../S/367.html#L564'>lv2</a>               564 src/runtime_status.c                              + lmn_prof.lv2-&gt;membrane_space</span>
+<span class='curline'><a href='../S/367.html#L565'>lv2</a>               565 src/runtime_status.c                              + lmn_prof.lv2-&gt;statespace_space);</span>
+<span class='curline'><a href='../S/367.html#L566'>lv2</a>               566 src/runtime_status.c     total_hash_num = lmn_prof.lv2-&gt;mhash_num + lmn_prof.lv2-&gt;midhash_num</span>
+<span class='curline'><a href='../S/367.html#L567'>lv2</a>               567 src/runtime_status.c                                              - lmn_prof.lv2-&gt;rehashed_num;</span>
+<span class='curline'><a href='../S/367.html#L579'>lv2</a>               579 src/runtime_status.c              , lmn_prof.lv2-&gt;transition_num</span>
+<span class='curline'><a href='../S/367.html#L583'>lv2</a>               583 src/runtime_status.c              , (double)lmn_prof.lv2-&gt;state_space / 1024 / 1024</span>
+<span class='curline'><a href='../S/367.html#L585'>lv2</a>               585 src/runtime_status.c                ? (double)lmn_prof.lv2-&gt;binstr_space   / 1024 / 1024</span>
+<span class='curline'><a href='../S/367.html#L586'>lv2</a>               586 src/runtime_status.c                : (double)lmn_prof.lv2-&gt;membrane_space / 1024 / 1024</span>
+<span class='curline'><a href='../S/367.html#L587'>lv2</a>               587 src/runtime_status.c              , (double)lmn_prof.lv2-&gt;transition_space / 1024 / 1024</span>
+<span class='curline'><a href='../S/367.html#L588'>lv2</a>               588 src/runtime_status.c              , (double)lmn_prof.lv2-&gt;statespace_space / 1024 / 1024</span>
+<span class='curline'><a href='../S/367.html#L693'>lv2</a>               693 src/runtime_status.c       fprintf(f, "%-18s%10s  : %15lu\n",   " ",                  "Successors", lmn_prof.lv2-&gt;transition_num);</span>
+<span class='curline'><a href='../S/367.html#L696'>lv2</a>               696 src/runtime_status.c         fprintf(f, "%-10s%18s  : %15lu\n",   " ",                  "Accepted", lmn_prof.lv2-&gt;accept_num);</span>
+<span class='curline'><a href='../S/367.html#L697'>lv2</a>               697 src/runtime_status.c         fprintf(f, "%-10s%18s  : %15lu\n",   " ",              "Invalid Ends", lmn_prof.lv2-&gt;invalid_end_num);</span>
+<span class='curline'><a href='../S/367.html#L702'>lv2</a>               702 src/runtime_status.c       fprintf(f, "%-6s%22s  : %15lu\n",   " ",            "Default -  M_Hash", lmn_prof.lv2-&gt;mhash_num);</span>
+<span class='curline'><a href='../S/367.html#L703'>lv2</a>               703 src/runtime_status.c       fprintf(f, "%-6s%22s  : %15lu\n",   " ",           "ReHashed -  M_Hash", lmn_prof.lv2-&gt;rehashed_num);</span>
+<span class='curline'><a href='../S/367.html#L704'>lv2</a>               704 src/runtime_status.c       fprintf(f, "%-6s%22s  : %15lu\n",   " ",          "Optimized - BS_Hash", lmn_prof.lv2-&gt;midhash_num);</span>
+<span class='curline'><a href='../S/367.html#L710'>lv2</a>               710 src/runtime_status.c                , (double)lmn_prof.lv2-&gt;state_space / 1024 / 1024</span>
+<span class='curline'><a href='../S/367.html#L711'>lv2</a>               711 src/runtime_status.c                , (double)lmn_prof.lv2-&gt;state_space / lmn_prof.state_num_stored);</span>
+<span class='curline'><a href='../S/367.html#L714'>lv2</a>               714 src/runtime_status.c                  , (double)lmn_prof.lv2-&gt;binstr_space / 1024 / 1024</span>
+<span class='curline'><a href='../S/367.html#L715'>lv2</a>               715 src/runtime_status.c                  , (double)lmn_prof.lv2-&gt;binstr_space / lmn_prof.state_num_stored);</span>
+<span class='curline'><a href='../S/367.html#L718'>lv2</a>               718 src/runtime_status.c                  , (double)lmn_prof.lv2-&gt;membrane_space / 1024 / 1024</span>
+<span class='curline'><a href='../S/367.html#L719'>lv2</a>               719 src/runtime_status.c                  , (double)lmn_prof.lv2-&gt;membrane_space / lmn_prof.state_num_stored);</span>
+<span class='curline'><a href='../S/367.html#L722'>lv2</a>               722 src/runtime_status.c                , (double)lmn_prof.lv2-&gt;transition_space / 1024 / 1024</span>
+<span class='curline'><a href='../S/367.html#L723'>lv2</a>               723 src/runtime_status.c                , (double)lmn_prof.lv2-&gt;transition_space / lmn_prof.state_num_stored);</span>
+<span class='curline'><a href='../S/367.html#L725'>lv2</a>               725 src/runtime_status.c                , (double)lmn_prof.lv2-&gt;statespace_space / 1024 / 1024</span>
+<span class='curline'><a href='../S/367.html#L726'>lv2</a>               726 src/runtime_status.c                , (double)lmn_prof.lv2-&gt;statespace_space / lmn_prof.state_num_stored);</span>
+<span class='curline'><a href='../S/368.html#L178'>lv2</a>               178 src/runtime_status.h   MCProfiler2    *lv2;</span>
+</pre>
+</body>
+</html>

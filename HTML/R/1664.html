@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>MemDelta</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/417.html#L78'>MemDelta</a>           78 src/verifier/delta_membrane.c static inline struct MemDelta *dmem_root_get_mem_delta(struct MemDeltaRoot *d, LmnMembrane *m);</span>
+<span class='curline'><a href='../S/417.html#L80'>MemDelta</a>           80 src/verifier/delta_membrane.c static struct MemDelta *mem_delta_make(struct MemDeltaRoot *root_d, LmnMembrane *m, unsigned long next_id);</span>
+<span class='curline'><a href='../S/417.html#L81'>MemDelta</a>           81 src/verifier/delta_membrane.c static void mem_delta_free(struct MemDelta *p);</span>
+<span class='curline'><a href='../S/417.html#L83'>MemDelta</a>           83 src/verifier/delta_membrane.c static inline BOOL dmem_is_new_atom(struct MemDelta *d, LmnMembrane *m, LmnSAtom a);</span>
+<span class='curline'><a href='../S/417.html#L84'>MemDelta</a>           84 src/verifier/delta_membrane.c static inline BOOL dmem_is_removed_atom(struct MemDelta *d, LmnMembrane *m, LmnSAtom a);</span>
+<span class='curline'><a href='../S/417.html#L85'>MemDelta</a>           85 src/verifier/delta_membrane.c static inline BOOL dmem_is_removed_mem(struct MemDelta *d, LmnMembrane *parent, LmnMembrane *child);</span>
+<span class='curline'><a href='../S/417.html#L86'>MemDelta</a>           86 src/verifier/delta_membrane.c static inline void dmem_put_atom(struct MemDelta *d, LmnMembrane *m, LmnAtom atom, LmnLinkAttr attr);</span>
+<span class='curline'><a href='../S/417.html#L87'>MemDelta</a>           87 src/verifier/delta_membrane.c static inline void dmem_put_symbol_atom(struct MemDelta *d, LmnMembrane *m, LmnSAtom atom);</span>
+<span class='curline'><a href='../S/417.html#L88'>MemDelta</a>           88 src/verifier/delta_membrane.c static inline void dmem_remove_symbol_atom(struct MemDelta *d, LmnMembrane *m, LmnSAtom atom);</span>
+<span class='curline'><a href='../S/417.html#L89'>MemDelta</a>           89 src/verifier/delta_membrane.c static void dmem_link_data_atoms(struct MemDelta *d,</span>
+<span class='curline'><a href='../S/417.html#L95'>MemDelta</a>           95 src/verifier/delta_membrane.c static inline LmnSAtom dmem_modify_atom(struct MemDelta *d, LmnMembrane *mem, LmnSAtom src);</span>
+<span class='curline'><a href='../S/417.html#L96'>MemDelta</a>           96 src/verifier/delta_membrane.c static inline void dmem_modify_link(struct MemDelta *d, LmnMembrane *m, LmnSAtom atom, int i, LmnAtom l, LmnLinkAttr attr);</span>
+<span class='curline'><a href='../S/417.html#L99'>MemDelta</a>           99 src/verifier/delta_membrane.c                             struct MemDelta *d,</span>
+<span class='curline'><a href='../S/417.html#L101'>MemDelta</a>          101 src/verifier/delta_membrane.c                             struct MemDelta *d2,</span>
+<span class='curline'><a href='../S/417.html#L104'>MemDelta</a>          104 src/verifier/delta_membrane.c static void dmem_add_ruleset(struct MemDelta *d,</span>
+<span class='curline'><a href='../S/417.html#L107'>MemDelta</a>          107 src/verifier/delta_membrane.c static inline void dmem_clear_ruleset(struct MemDelta *d, LmnMembrane *m);</span>
+<span class='curline'><a href='../S/417.html#L108'>MemDelta</a>          108 src/verifier/delta_membrane.c static void dmem_add_child_mem(struct MemDelta *d,</span>
+<span class='curline'><a href='../S/417.html#L111'>MemDelta</a>          111 src/verifier/delta_membrane.c static inline void dmem_remove_atom(struct MemDelta *d, LmnMembrane *m, LmnAtom atom, LmnLinkAttr attr);</span>
+<span class='curline'><a href='../S/417.html#L116'>MemDelta</a>          116 src/verifier/delta_membrane.c static inline void dmem_copy_rules(struct MemDelta *d, LmnMembrane *dest, LmnMembrane *src);</span>
+<span class='curline'><a href='../S/417.html#L117'>MemDelta</a>          117 src/verifier/delta_membrane.c static void dmem_drop(struct MemDelta *d, LmnMembrane *mem);</span>
+<span class='curline'><a href='../S/417.html#L118'>MemDelta</a>          118 src/verifier/delta_membrane.c static void dmem_commit(struct MemDelta *d);</span>
+<span class='curline'><a href='../S/417.html#L119'>MemDelta</a>          119 src/verifier/delta_membrane.c static inline void dmem_commit_delete_mem(struct MemDelta *d);</span>
+<span class='curline'><a href='../S/417.html#L120'>MemDelta</a>          120 src/verifier/delta_membrane.c static void dmem_revert(struct MemDelta *d);</span>
+<span class='curline'><a href='../S/417.html#L121'>MemDelta</a>          121 src/verifier/delta_membrane.c static inline void dmem_revert_new_mem(struct MemDelta *d);</span>
+<span class='curline'><a href='../S/417.html#L122'>MemDelta</a>          122 src/verifier/delta_membrane.c static void dmem_dump(struct MemDelta *d);</span>
+<span class='curline'><a href='../S/417.html#L123'>MemDelta</a>          123 src/verifier/delta_membrane.c static inline void dmem_relink(struct MemDelta *d,</span>
+<span class='curline'><a href='../S/417.html#L129'>MemDelta</a>          129 src/verifier/delta_membrane.c static void dmem_unify_atom_args(struct MemDelta *d,</span>
+<span class='curline'><a href='../S/417.html#L263'>MemDelta</a>          263 src/verifier/delta_membrane.c     mem_delta_free((struct MemDelta *)vec_get(&amp;p-&gt;mem_deltas, i));</span>
+<span class='curline'><a href='../S/417.html#L304'>MemDelta</a>          304 src/verifier/delta_membrane.c static inline struct MemDelta *dmem_root_get_mem_delta(struct MemDeltaRoot *d, LmnMembrane *m)</span>
+<span class='curline'><a href='../S/417.html#L308'>MemDelta</a>          308 src/verifier/delta_membrane.c   if (proc_tbl_get_by_mem(&amp;d-&gt;proc_tbl, m, &amp;t)) return (struct MemDelta *)t;</span>
+<span class='curline'><a href='../S/417.html#L310'>MemDelta</a>          310 src/verifier/delta_membrane.c     struct MemDelta *mem_delta = mem_delta_make(d, m, d-&gt;next_id);</span>
+<span class='curline'><a href='../S/417.html#L364'>MemDelta</a>          364 src/verifier/delta_membrane.c     struct MemDelta *d = dmem_root_get_mem_delta(root_d, m); /* 膜m用の差分データを呼び出す */</span>
+<span class='curline'><a href='../S/417.html#L622'>MemDelta</a>          622 src/verifier/delta_membrane.c                             struct MemDelta *d,</span>
+<span class='curline'><a href='../S/417.html#L624'>MemDelta</a>          624 src/verifier/delta_membrane.c                             struct MemDelta *d2,</span>
+<span class='curline'><a href='../S/417.html#L727'>MemDelta</a>          727 src/verifier/delta_membrane.c   struct MemDelta *d;</span>
+<span class='curline'><a href='../S/417.html#L814'>MemDelta</a>          814 src/verifier/delta_membrane.c   struct MemDelta *d;</span>
+<span class='curline'><a href='../S/417.html#L819'>MemDelta</a>          819 src/verifier/delta_membrane.c   d = (struct MemDelta *)_arg;</span>
+<span class='curline'><a href='../S/417.html#L895'>MemDelta</a>          895 src/verifier/delta_membrane.c   struct MemDelta *d;</span>
+<span class='curline'><a href='../S/417.html#L1008'>MemDelta</a>         1008 src/verifier/delta_membrane.c     dmem_commit_delete_mem((struct MemDelta *)vec_get(&amp;d-&gt;mem_deltas, i));</span>
+<span class='curline'><a href='../S/417.html#L1012'>MemDelta</a>         1012 src/verifier/delta_membrane.c     dmem_commit((struct MemDelta *)vec_get(&amp;d-&gt;mem_deltas, i));</span>
+<span class='curline'><a href='../S/417.html#L1126'>MemDelta</a>         1126 src/verifier/delta_membrane.c     dmem_revert_new_mem((struct MemDelta *)vec_get(&amp;d-&gt;mem_deltas, i));</span>
+<span class='curline'><a href='../S/417.html#L1130'>MemDelta</a>         1130 src/verifier/delta_membrane.c     dmem_revert((struct MemDelta *)vec_get(&amp;d-&gt;mem_deltas, i));</span>
+<span class='curline'><a href='../S/417.html#L1212'>MemDelta</a>         1212 src/verifier/delta_membrane.c     struct MemDelta *d = dmem_root_get_mem_delta(root_d, parent);</span>
+<span class='curline'><a href='../S/417.html#L1237'>MemDelta</a>         1237 src/verifier/delta_membrane.c     struct MemDelta *d;</span>
+<span class='curline'><a href='../S/417.html#L1295'>MemDelta</a>         1295 src/verifier/delta_membrane.c     struct MemDelta *d;</span>
+<span class='curline'><a href='../S/417.html#L1376'>MemDelta</a>         1376 src/verifier/delta_membrane.c   struct MemDelta *parent_d, *child_d;</span>
+<span class='curline'><a href='../S/417.html#L1456'>MemDelta</a>         1456 src/verifier/delta_membrane.c   struct MemDelta *d;</span>
+<span class='curline'><a href='../S/417.html#L1524'>MemDelta</a>         1524 src/verifier/delta_membrane.c     struct MemDelta *d = dmem_root_get_mem_delta(root_d, mem);</span>
+<span class='curline'><a href='../S/417.html#L1581'>MemDelta</a>         1581 src/verifier/delta_membrane.c     dmem_dump((struct MemDelta *)vec_get(&amp;d-&gt;mem_deltas, i));</span>
+<span class='curline'><a href='../S/417.html#L1585'>MemDelta</a>         1585 src/verifier/delta_membrane.c static void dmem_dump(struct MemDelta *d)</span>
+<span class='curline'><a href='../S/417.html#L1635'>MemDelta</a>         1635 src/verifier/delta_membrane.c     struct MemDelta *d = dmem_root_get_mem_delta(root_d, m);</span>
+<span class='curline'><a href='../S/417.html#L1799'>MemDelta</a>         1799 src/verifier/delta_membrane.c static struct MemDelta *mem_delta_make(struct MemDeltaRoot *root_d, LmnMembrane *m, unsigned long next_id)</span>
+<span class='curline'><a href='../S/417.html#L1801'>MemDelta</a>         1801 src/verifier/delta_membrane.c   struct MemDelta *p = LMN_MALLOC(struct MemDelta);</span>
+<span class='curline'><a href='../S/417.html#L1831'>MemDelta</a>         1831 src/verifier/delta_membrane.c static void mem_delta_free(struct MemDelta *p)</span>
+<span class='curline'><a href='../S/417.html#L1852'>MemDelta</a>         1852 src/verifier/delta_membrane.c LmnMembrane *dmem_mem(struct MemDelta *d)</span>
+<span class='curline'><a href='../S/417.html#L1857'>MemDelta</a>         1857 src/verifier/delta_membrane.c static inline void dmem_remove_symbol_atom(struct MemDelta *d, LmnMembrane *m, LmnSAtom atom)</span>
+<span class='curline'><a href='../S/417.html#L1873'>MemDelta</a>         1873 src/verifier/delta_membrane.c static inline void dmem_remove_atom(struct MemDelta *d, LmnMembrane *m, LmnAtom atom, LmnLinkAttr attr)</span>
+<span class='curline'><a href='../S/417.html#L1883'>MemDelta</a>         1883 src/verifier/delta_membrane.c static inline void dmem_put_atom(struct MemDelta *d, LmnMembrane *m, LmnAtom atom, LmnLinkAttr attr)</span>
+<span class='curline'><a href='../S/417.html#L1892'>MemDelta</a>         1892 src/verifier/delta_membrane.c static inline BOOL dmem_is_new_atom(struct MemDelta *d, LmnMembrane *m, LmnSAtom a)</span>
+<span class='curline'><a href='../S/417.html#L1899'>MemDelta</a>         1899 src/verifier/delta_membrane.c static inline LmnSAtom dmem_modify_atom(struct MemDelta *d, LmnMembrane *mem, LmnSAtom src)</span>
+<span class='curline'><a href='../S/417.html#L1935'>MemDelta</a>         1935 src/verifier/delta_membrane.c static inline void dmem_modify_link(struct MemDelta *d,</span>
+<span class='curline'><a href='../S/417.html#L1948'>MemDelta</a>         1948 src/verifier/delta_membrane.c static inline BOOL dmem_is_removed_atom(struct MemDelta *d, LmnMembrane *m, LmnSAtom a)</span>
+<span class='curline'><a href='../S/417.html#L1954'>MemDelta</a>         1954 src/verifier/delta_membrane.c static inline BOOL dmem_is_removed_mem(struct MemDelta *d, LmnMembrane *parent, LmnMembrane *child)</span>
+<span class='curline'><a href='../S/417.html#L1961'>MemDelta</a>         1961 src/verifier/delta_membrane.c static inline void dmem_put_symbol_atom(struct MemDelta *d, LmnMembrane *m, LmnSAtom atom)</span>
+<span class='curline'><a href='../S/417.html#L1985'>MemDelta</a>         1985 src/verifier/delta_membrane.c static void dmem_add_child_mem(struct MemDelta *d,</span>
+<span class='curline'><a href='../S/417.html#L1992'>MemDelta</a>         1992 src/verifier/delta_membrane.c static void dmem_add_ruleset(struct MemDelta *d,</span>
+<span class='curline'><a href='../S/417.html#L2002'>MemDelta</a>         2002 src/verifier/delta_membrane.c static inline void dmem_clear_ruleset(struct MemDelta *d, LmnMembrane *m)</span>
+<span class='curline'><a href='../S/417.html#L2007'>MemDelta</a>         2007 src/verifier/delta_membrane.c static void dmem_link_data_atoms(struct MemDelta *d,</span>
+<span class='curline'><a href='../S/417.html#L2022'>MemDelta</a>         2022 src/verifier/delta_membrane.c static void dmem_drop(struct MemDelta *d, LmnMembrane *mem)</span>
+<span class='curline'><a href='../S/417.html#L2050'>MemDelta</a>         2050 src/verifier/delta_membrane.c static inline void dmem_relink(struct MemDelta *d, LmnMembrane *m,</span>
+<span class='curline'><a href='../S/417.html#L2077'>MemDelta</a>         2077 src/verifier/delta_membrane.c         struct MemDelta *d2 = dmem_root_get_mem_delta(d-&gt;root_d, m2);</span>
+<span class='curline'><a href='../S/417.html#L2094'>MemDelta</a>         2094 src/verifier/delta_membrane.c static void dmem_unify_atom_args(struct MemDelta *d,</span>
+<span class='curline'><a href='../S/417.html#L2142'>MemDelta</a>         2142 src/verifier/delta_membrane.c static inline void dmem_copy_rules(struct MemDelta *d, LmnMembrane *dest, LmnMembrane *src)</span>
+<span class='curline'><a href='../S/417.html#L2157'>MemDelta</a>         2157 src/verifier/delta_membrane.c static void dmem_commit(struct MemDelta *d)</span>
+<span class='curline'><a href='../S/417.html#L2205'>MemDelta</a>         2205 src/verifier/delta_membrane.c static inline void dmem_commit_delete_mem(struct MemDelta *d)</span>
+<span class='curline'><a href='../S/417.html#L2214'>MemDelta</a>         2214 src/verifier/delta_membrane.c static void dmem_revert(struct MemDelta *d)</span>
+<span class='curline'><a href='../S/417.html#L2252'>MemDelta</a>         2252 src/verifier/delta_membrane.c static inline void dmem_revert_new_mem(struct MemDelta *d)</span>
+<span class='curline'><a href='../S/419.html#L256'>MemDelta</a>          256 src/verifier/dpor.c static void contextC1_expand_RHS_inner(ContextC1 c, struct MemDelta *d)</span>
+<span class='curline'><a href='../S/419.html#L348'>MemDelta</a>          348 src/verifier/dpor.c     contextC1_expand_RHS_inner(c, (struct MemDelta *)vec_get(&amp;d-&gt;mem_deltas, i));</span>
+</pre>
+</body>
+</html>

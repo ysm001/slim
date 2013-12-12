@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>MmapHook</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/561.html#L168'>MmapHook</a>          168 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static bool AddMmapHook(MmapHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L171'>MmapHook</a>          171 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static bool RemoveMmapHook(MmapHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L289'>MmapHook</a>          289 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static MmapHook GetMmapHook();</span>
+<span class='curline'><a href='../S/561.html#L290'>MmapHook</a>          290 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static MmapHook SetMmapHook(MmapHook hook) {</span>
+<span class='curline'><a href='../S/571.html#L456'>MmapHook</a>          456 third_party/google-perftools-1.8.3/src/heap-profiler.cc     RAW_CHECK(MallocHook::AddMmapHook(&amp;MmapHook), "");</span>
+<span class='curline'><a href='../S/571.html#L512'>MmapHook</a>          512 third_party/google-perftools-1.8.3/src/heap-profiler.cc     RAW_CHECK(MallocHook::RemoveMmapHook(&amp;MmapHook), "");</span>
+<span class='curline'><a href='../S/581.html#L94'>MmapHook</a>           94 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h extern AtomicPtr&lt;MallocHook::MmapHook&gt;    mmap_hook_;</span>
+<span class='curline'><a href='../S/581.html#L144'>MmapHook</a>          144 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h extern HookList&lt;MallocHook::MmapHook&gt; mmap_hooks_;</span>
+<span class='curline'><a href='../S/581.html#L207'>MmapHook</a>          207 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h inline MallocHook::MmapHook MallocHook::GetMmapHook() {</span>
+<span class='curline'><a href='../S/581.html#L222'>MmapHook</a>          222 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h   MallocHook::MmapHook hook = MallocHook::GetMmapHook();</span>
+<span class='curline'><a href='../S/582.html#L191'>MmapHook</a>          191 third_party/google-perftools-1.8.3/src/malloc_hook.cc AtomicPtr&lt;MallocHook::MmapHook&gt;   mmap_hook_ = { 0 };</span>
+<span class='curline'><a href='../S/582.html#L285'>MmapHook</a>          285 third_party/google-perftools-1.8.3/src/malloc_hook.cc HookList&lt;MallocHook::MmapHook&gt; mmap_hooks_ = INIT_HOOK_LIST;</span>
+<span class='curline'><a href='../S/582.html#L549'>MmapHook</a>          549 third_party/google-perftools-1.8.3/src/malloc_hook.cc   INVOKE_HOOKS(MmapHook, mmap_hooks_, (result, start, size, protection, flags,</span>
+<span class='curline'><a href='../S/588.html#L199'>MmapHook</a>          199 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RAW_CHECK(MallocHook::AddMmapHook(&amp;MmapHook), "");</span>
+<span class='curline'><a href='../S/588.html#L229'>MmapHook</a>          229 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RAW_CHECK(MallocHook::RemoveMmapHook(&amp;MmapHook), "");</span>
+<span class='curline'><a href='../S/589.html#L314'>MmapHook</a>          314 third_party/google-perftools-1.8.3/src/memory_region_map.h   static void MmapHook(const void* result,</span>
+<span class='curline'><a href='../S/664.html#L747'>MmapHook</a>          747 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc MAKE_HOOK_CALLBACK(MmapHook);</span>
+</pre>
+</body>
+</html>

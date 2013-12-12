@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>options</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/345.html#L209'>options</a>           209 src/jni_lmntal.c   JavaVMOption options[4];</span>
+<span class='curline'><a href='../S/345.html#L235'>options</a>           235 src/jni_lmntal.c   options[0].optionString = LMN_CALLOC(char, strlen(JNI_OPTION_JAVA_CLASS_PATH) + strlen(path) + 1);</span>
+<span class='curline'><a href='../S/345.html#L236'>options</a>           236 src/jni_lmntal.c   sprintf(options[0].optionString, "%s%s", JNI_OPTION_JAVA_CLASS_PATH, path);</span>
+<span class='curline'><a href='../S/345.html#L246'>options</a>           246 src/jni_lmntal.c   options[1].optionString = LMN_CALLOC(char, strlen(JNI_OPTION_LMNTAL_HOME) + strlen(path) + 1);</span>
+<span class='curline'><a href='../S/345.html#L247'>options</a>           247 src/jni_lmntal.c   sprintf(options[1].optionString, "%s%s", JNI_OPTION_LMNTAL_HOME, path);</span>
+<span class='curline'><a href='../S/345.html#L254'>options</a>           254 src/jni_lmntal.c   vm_args.options = options;</span>
+<span class='curline'><a href='../S/345.html#L262'>options</a>           262 src/jni_lmntal.c   LMN_FREE(options[1].optionString);</span>
+<span class='curline'><a href='../S/345.html#L263'>options</a>           263 src/jni_lmntal.c   LMN_FREE(options[0].optionString);</span>
+<span class='curline'><a href='../S/525.html#L2477'>options</a>          2477 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     LSS_INLINE pid_t LSS_NAME(waitpid)(pid_t pid, int *status, int options){</span>
+<span class='curline'><a href='../S/525.html#L2478'>options</a>          2478 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       return LSS_NAME(wait4)(pid, status, options, 0);</span>
+<span class='curline'><a href='../S/563.html#L129'>options</a>           129 third_party/google-perftools-1.8.3/src/google/profiler.h     const char *fname, const struct ProfilerOptions *options);</span>
+<span class='curline'><a href='../S/598.html#L92'>options</a>            92 third_party/google-perftools-1.8.3/src/profiledata.cc                         const ProfileData::Options&amp; options) {</span>
+<span class='curline'><a href='../S/598.html#L121'>options</a>           121 third_party/google-perftools-1.8.3/src/profiledata.cc   CHECK_NE(0, options.frequency());</span>
+<span class='curline'><a href='../S/598.html#L122'>options</a>           122 third_party/google-perftools-1.8.3/src/profiledata.cc   int period = 1000000 / options.frequency();</span>
+<span class='curline'><a href='../S/599.html#L115'>options</a>           115 third_party/google-perftools-1.8.3/src/profiledata.h   bool Start(const char *fname, const Options&amp; options);</span>
+<span class='curline'><a href='../S/600.html#L81'>options</a>            81 third_party/google-perftools-1.8.3/src/profiler.cc   bool Start(const char* fname, const ProfilerOptions* options);</span>
+<span class='curline'><a href='../S/600.html#L156'>options</a>           156 third_party/google-perftools-1.8.3/src/profiler.cc bool CpuProfiler::Start(const char* fname, const ProfilerOptions* options) {</span>
+<span class='curline'><a href='../S/600.html#L173'>options</a>           173 third_party/google-perftools-1.8.3/src/profiler.cc   if (options != NULL &amp;&amp; options-&gt;filter_in_thread != NULL) {</span>
+<span class='curline'><a href='../S/600.html#L174'>options</a>           174 third_party/google-perftools-1.8.3/src/profiler.cc     filter_ = options-&gt;filter_in_thread;</span>
+<span class='curline'><a href='../S/600.html#L175'>options</a>           175 third_party/google-perftools-1.8.3/src/profiler.cc     filter_arg_ = options-&gt;filter_in_thread_arg;</span>
+<span class='curline'><a href='../S/600.html#L306'>options</a>           306 third_party/google-perftools-1.8.3/src/profiler.cc     const char *fname, const ProfilerOptions *options) {</span>
+<span class='curline'><a href='../S/600.html#L307'>options</a>           307 third_party/google-perftools-1.8.3/src/profiler.cc   return CpuProfiler::instance_.Start(fname, options);</span>
+<span class='curline'><a href='../S/600.html#L330'>options</a>           330 third_party/google-perftools-1.8.3/src/profiler.cc                                         const ProfilerOptions *options) {</span>
+<span class='curline'><a href='../S/652.html#L410'>options</a>           410 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   ProfileData::Options options;</span>
+<span class='curline'><a href='../S/652.html#L411'>options</a>           411 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   options.set_frequency(frequency);</span>
+<span class='curline'><a href='../S/652.html#L412'>options</a>           412 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   EXPECT_TRUE(collector_.Start(checker_.filename().c_str(), options));</span>
+<span class='curline'><a href='../S/652.html#L452'>options</a>           452 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   ProfileData::Options options;</span>
+<span class='curline'><a href='../S/652.html#L453'>options</a>           453 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   options.set_frequency(frequency);</span>
+<span class='curline'><a href='../S/652.html#L454'>options</a>           454 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   EXPECT_TRUE(collector_.Start(checker_.filename().c_str(), options));</span>
+<span class='curline'><a href='../S/652.html#L459'>options</a>           459 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   options.set_frequency(frequency * 2);</span>
+<span class='curline'><a href='../S/652.html#L460'>options</a>           460 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   CHECK(!collector_.Start("foobar", options));</span>
+<span class='curline'><a href='../S/652.html#L481'>options</a>           481 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   ProfileData::Options options;</span>
+<span class='curline'><a href='../S/652.html#L482'>options</a>           482 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   options.set_frequency(frequency);</span>
+<span class='curline'><a href='../S/652.html#L483'>options</a>           483 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   EXPECT_TRUE(collector_.Start(checker_.filename().c_str(), options));</span>
+<span class='curline'><a href='../S/652.html#L500'>options</a>           500 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   ProfileData::Options options;</span>
+<span class='curline'><a href='../S/652.html#L501'>options</a>           501 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   options.set_frequency(frequency);</span>
+<span class='curline'><a href='../S/652.html#L502'>options</a>           502 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   EXPECT_TRUE(collector_.Start(checker_.filename().c_str(), options));</span>
+<span class='curline'><a href='../S/652.html#L524'>options</a>           524 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   ProfileData::Options options;</span>
+<span class='curline'><a href='../S/652.html#L525'>options</a>           525 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   options.set_frequency(frequency);</span>
+<span class='curline'><a href='../S/652.html#L526'>options</a>           526 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   EXPECT_TRUE(collector_.Start(checker_.filename().c_str(), options));</span>
+<span class='curline'><a href='../S/652.html#L551'>options</a>           551 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   ProfileData::Options options;</span>
+<span class='curline'><a href='../S/652.html#L552'>options</a>           552 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   options.set_frequency(frequency);</span>
+<span class='curline'><a href='../S/652.html#L553'>options</a>           553 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   EXPECT_TRUE(collector_.Start(checker_.filename().c_str(), options));</span>
+<span class='curline'><a href='../S/652.html#L575'>options</a>           575 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   ProfileData::Options options;</span>
+<span class='curline'><a href='../S/652.html#L576'>options</a>           576 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   options.set_frequency(1);</span>
+<span class='curline'><a href='../S/652.html#L577'>options</a>           577 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   EXPECT_TRUE(collector_.Start(checker_.filename().c_str(), options));</span>
+<span class='curline'><a href='../S/652.html#L595'>options</a>           595 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   options.set_frequency(frequency);</span>
+<span class='curline'><a href='../S/652.html#L596'>options</a>           596 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   EXPECT_TRUE(collector_.Start(checker_.filename().c_str(), options));</span>
+</pre>
+</body>
+</html>

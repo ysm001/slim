@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>dist</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/699.html#L1017'>dist</a>             1017 third_party/zdelta-2.1/deflate.c #define GetBenefit(len,dist) {  \</span>
+<span class='curline'><a href='../S/699.html#L1019'>dist</a>             1019 third_party/zdelta-2.1/deflate.c   uInt d = dist;                \</span>
+<span class='curline'><a href='../S/699.html#L1373'>dist</a>             1373 third_party/zdelta-2.1/deflate.c #define UPDATE_REF_POINTERS(ptr, pos, len, dist) \</span>
+<span class='curline'><a href='../S/699.html#L1374'>dist</a>             1374 third_party/zdelta-2.1/deflate.c if(dist&gt;ZD_FAR){                                 \</span>
+<span class='curline'><a href='../S/700.html#L367'>dist</a>              367 third_party/zdelta-2.1/deflate.h #define d_code(dist) \</span>
+<span class='curline'><a href='../S/700.html#L368'>dist</a>              368 third_party/zdelta-2.1/deflate.h    ((dist) &lt; 256 ? zd_dist_code[dist] : zd_dist_code[256+((dist)&gt;&gt;7)])</span>
+<span class='curline'><a href='../S/700.html#L411'>dist</a>              411 third_party/zdelta-2.1/deflate.h     ush dist = (distance); \</span>
+<span class='curline'><a href='../S/700.html#L412'>dist</a>              412 third_party/zdelta-2.1/deflate.h     s-&gt;d_buf[s-&gt;last_lit]   = dist; \</span>
+<span class='curline'><a href='../S/700.html#L416'>dist</a>              416 third_party/zdelta-2.1/deflate.h     s-&gt;dyn_dtree[LITERALS+1+d_code(dist)].Freq++; \</span>
+<span class='curline'><a href='../S/700.html#L423'>dist</a>              423 third_party/zdelta-2.1/deflate.h     ush dist = (distance); \</span>
+<span class='curline'><a href='../S/700.html#L424'>dist</a>              424 third_party/zdelta-2.1/deflate.h     s-&gt;d_buf[s-&gt;last_lit]   = dist; \</span>
+<span class='curline'><a href='../S/700.html#L428'>dist</a>              428 third_party/zdelta-2.1/deflate.h     s-&gt;dyn_dtree[LITERALS+1+d_code(dist)].Freq++; \</span>
+<span class='curline'><a href='../S/703.html#L55'>dist</a>               55 third_party/zdelta-2.1/infcodes.c   uInt  dist;   /* distance from pointer to beginning of the match */</span>
+<span class='curline'><a href='../S/703.html#L68'>dist</a>               68 third_party/zdelta-2.1/infcodes.c       uInt dist;                /* distance back to copy from */</span>
+<span class='curline'><a href='../S/703.html#L179'>dist</a>              179 third_party/zdelta-2.1/infcodes.c       c-&gt;dist = t-&gt;base;</span>
+<span class='curline'><a href='../S/703.html#L202'>dist</a>              202 third_party/zdelta-2.1/infcodes.c     c-&gt;dist += (uInt)((uInt)b &amp; inflate_mask[j]);</span>
+<span class='curline'><a href='../S/703.html#L204'>dist</a>              204 third_party/zdelta-2.1/infcodes.c     Tracevv((stderr, "inflate:         distance %u\n", c-&gt;dist));</span>
+<span class='curline'><a href='../S/703.html#L259'>dist</a>              259 third_party/zdelta-2.1/infcodes.c 	c-&gt;bp = rwptr[best_ptr] + c-&gt;dist;</span>
+<span class='curline'><a href='../S/703.html#L261'>dist</a>              261 third_party/zdelta-2.1/infcodes.c 	c-&gt;bp = rwptr[best_ptr] - c-&gt;dist;</span>
+<span class='curline'><a href='../S/703.html#L265'>dist</a>              265 third_party/zdelta-2.1/infcodes.c       if(c-&gt;dist &gt; ZD_FAR){              /* updated base pointers */</span>
+<span class='curline'><a href='../S/703.html#L306'>dist</a>              306 third_party/zdelta-2.1/infcodes.c     f = (uInt)(q - s-&gt;window) &lt; c-&gt;dist ?</span>
+<span class='curline'><a href='../S/703.html#L307'>dist</a>              307 third_party/zdelta-2.1/infcodes.c       s-&gt;end - (c-&gt;dist - (q - s-&gt;window)) :</span>
+<span class='curline'><a href='../S/703.html#L308'>dist</a>              308 third_party/zdelta-2.1/infcodes.c 	q - c-&gt;dist;</span>
+<span class='curline'><a href='../S/703.html#L310'>dist</a>              310 third_party/zdelta-2.1/infcodes.c     f = q - c-&gt;dist;</span>
+<span class='curline'><a href='../S/703.html#L311'>dist</a>              311 third_party/zdelta-2.1/infcodes.c     if ((uInt)(q - s-&gt;window) &lt; c-&gt;dist)</span>
+<span class='curline'><a href='../S/703.html#L312'>dist</a>              312 third_party/zdelta-2.1/infcodes.c       f = s-&gt;end - (c-&gt;dist - (uInt)(q - s-&gt;window));</span>
+<span class='curline'><a href='../S/719.html#L290'>dist</a>              290 third_party/zdelta-2.1/trees.c   int dist;     /* distance index */</span>
+<span class='curline'><a href='../S/719.html#L332'>dist</a>              332 third_party/zdelta-2.1/trees.c   dist = 0;</span>
+<span class='curline'><a href='../S/719.html#L334'>dist</a>              334 third_party/zdelta-2.1/trees.c     base_dist[code] = dist;</span>
+<span class='curline'><a href='../S/719.html#L336'>dist</a>              336 third_party/zdelta-2.1/trees.c       zd_dist_code[dist++] = (uch)code;</span>
+<span class='curline'><a href='../S/719.html#L339'>dist</a>              339 third_party/zdelta-2.1/trees.c   Assert (dist == 256, "tr_static_init: dist != 256");</span>
+<span class='curline'><a href='../S/719.html#L340'>dist</a>              340 third_party/zdelta-2.1/trees.c   dist &gt;&gt;= 7; /* from now on, all distances are divided by 128 */</span>
+<span class='curline'><a href='../S/719.html#L342'>dist</a>              342 third_party/zdelta-2.1/trees.c     base_dist[code] = dist &lt;&lt; 7;</span>
+<span class='curline'><a href='../S/719.html#L344'>dist</a>              344 third_party/zdelta-2.1/trees.c       zd_dist_code[256 + dist++] = (uch)code;</span>
+<span class='curline'><a href='../S/719.html#L347'>dist</a>              347 third_party/zdelta-2.1/trees.c   Assert (dist == 256, "tr_static_init: 256+dist != 512");</span>
+<span class='curline'><a href='../S/719.html#L1218'>dist</a>             1218 third_party/zdelta-2.1/trees.c int zd_tr_tally (s, dist, lc)</span>
+<span class='curline'><a href='../S/719.html#L1220'>dist</a>             1220 third_party/zdelta-2.1/trees.c      unsigned dist; /* distance of matched string */</span>
+<span class='curline'><a href='../S/719.html#L1223'>dist</a>             1223 third_party/zdelta-2.1/trees.c   s-&gt;d_buf[s-&gt;last_lit] = (ush)dist;</span>
+<span class='curline'><a href='../S/719.html#L1225'>dist</a>             1225 third_party/zdelta-2.1/trees.c   if (dist == 0) {</span>
+<span class='curline'><a href='../S/719.html#L1231'>dist</a>             1231 third_party/zdelta-2.1/trees.c     dist--;             /* dist = match distance - 1 */</span>
+<span class='curline'><a href='../S/719.html#L1232'>dist</a>             1232 third_party/zdelta-2.1/trees.c     Assert((ush)dist &lt; (ush)MAX_DIST(s) &amp;&amp;</span>
+<span class='curline'><a href='../S/719.html#L1234'>dist</a>             1234 third_party/zdelta-2.1/trees.c 	   (ush)d_code(dist) &lt; (ush)D_CODES,  "_tr_tally: bad match");</span>
+<span class='curline'><a href='../S/719.html#L1237'>dist</a>             1237 third_party/zdelta-2.1/trees.c     s-&gt;dyn_dtree[d_code(dist)].Freq++;</span>
+<span class='curline'><a href='../S/719.html#L1276'>dist</a>             1276 third_party/zdelta-2.1/trees.c   unsigned dist;      /* distance of matched string */</span>
+<span class='curline'><a href='../S/719.html#L1286'>dist</a>             1286 third_party/zdelta-2.1/trees.c     dist = s-&gt;d_buf[lx];</span>
+<span class='curline'><a href='../S/719.html#L1289'>dist</a>             1289 third_party/zdelta-2.1/trees.c       send_code(s, dist, dtree); /* send a literal byte */</span>
+<span class='curline'><a href='../S/719.html#L1290'>dist</a>             1290 third_party/zdelta-2.1/trees.c       TraceHuf( (stderr, "d:%u\n", dist) );</span>
+<span class='curline'><a href='../S/719.html#L1291'>dist</a>             1291 third_party/zdelta-2.1/trees.c       Tracecv(isgraph(dist), (stderr," '%c' ", dist));</span>
+<span class='curline'><a href='../S/719.html#L1294'>dist</a>             1294 third_party/zdelta-2.1/trees.c       code = d_code(dist);</span>
+<span class='curline'><a href='../S/719.html#L1299'>dist</a>             1299 third_party/zdelta-2.1/trees.c 	dist -= base_dist[code];</span>
+<span class='curline'><a href='../S/719.html#L1300'>dist</a>             1300 third_party/zdelta-2.1/trees.c 	send_bits(s, dist, extra);          /* send the extra distance bits */</span>
+</pre>
+</body>
+</html>

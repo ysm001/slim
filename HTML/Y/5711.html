@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>wt_gatoms</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/419.html#L221'>wt_gatoms</a>         221 src/verifier/dpor.c   for (i = 0; i &lt; vec_num(d-&gt;wt_gatoms); i++) {</span>
+<span class='curline'><a href='../S/419.html#L222'>wt_gatoms</a>         222 src/verifier/dpor.c     ProcessTbl g_atoms = (ProcessTbl)vec_get(d-&gt;wt_gatoms, i);</span>
+<span class='curline'><a href='../S/419.html#L367'>wt_gatoms</a>         367 src/verifier/dpor.c   d-&gt;wt_gatoms = vec_make(4);</span>
+<span class='curline'><a href='../S/419.html#L380'>wt_gatoms</a>         380 src/verifier/dpor.c   vec_free(d-&gt;wt_gatoms);</span>
+<span class='curline'><a href='../S/419.html#L396'>wt_gatoms</a>         396 src/verifier/dpor.c   vec_clear(d-&gt;wt_gatoms);</span>
+<span class='curline'><a href='../S/420.html#L63'>wt_gatoms</a>          63 src/verifier/dpor.h   Vector     *wt_gatoms;  /* マッチング中, ground命令によるProcessTblを集める作業場 */</span>
+<span class='curline'><a href='../S/420.html#L158'>wt_gatoms</a>         158 src/verifier/dpor.h   vec_push(d-&gt;wt_gatoms, (vec_data_t)atoms);</span>
+<span class='curline'><a href='../S/420.html#L162'>wt_gatoms</a>         162 src/verifier/dpor.h   if (vec_peek(d-&gt;wt_gatoms) == (vec_data_t)atoms) {</span>
+<span class='curline'><a href='../S/420.html#L163'>wt_gatoms</a>         163 src/verifier/dpor.h     vec_pop(d-&gt;wt_gatoms);</span>
+<span class='curline'><a href='../S/420.html#L167'>wt_gatoms</a>         167 src/verifier/dpor.h     for (i = 0; i &lt; vec_num(d-&gt;wt_gatoms); i++) {</span>
+<span class='curline'><a href='../S/420.html#L168'>wt_gatoms</a>         168 src/verifier/dpor.h       vec_data_t t = vec_get(d-&gt;wt_gatoms, i);</span>
+<span class='curline'><a href='../S/420.html#L170'>wt_gatoms</a>         170 src/verifier/dpor.h         vec_pop_n(d-&gt;wt_gatoms, i);</span>
+</pre>
+</body>
+</html>

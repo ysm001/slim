@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>ctl</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/585.html#L104'>ctl</a>               104 third_party/google-perftools-1.8.3/src/maybe_threads.cc int perftools_pthread_once(pthread_once_t *ctl,</span>
+<span class='curline'><a href='../S/585.html#L125'>ctl</a>               125 third_party/google-perftools-1.8.3/src/maybe_threads.cc     return pthread_once(ctl, init_routine);</span>
+<span class='curline'><a href='../S/585.html#L127'>ctl</a>               127 third_party/google-perftools-1.8.3/src/maybe_threads.cc     if (memcmp(ctl, &amp;pthread_once_init, sizeof(*ctl)) == 0) {</span>
+<span class='curline'><a href='../S/585.html#L129'>ctl</a>               129 third_party/google-perftools-1.8.3/src/maybe_threads.cc       ++*(char*)(ctl);        // make it so it's no longer equal to init</span>
+<span class='curline'><a href='../S/586.html#L49'>ctl</a>                49 third_party/google-perftools-1.8.3/src/maybe_threads.h int perftools_pthread_once(pthread_once_t *ctl,</span>
+</pre>
+</body>
+</html>

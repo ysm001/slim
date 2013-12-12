@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>RAW_CHECK</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/529.html#L108'>RAW_CHECK</a>         108 third_party/google-perftools-1.8.3/src/base/logging.h #define RAW_DCHECK(condition, message)  RAW_CHECK(condition, message)</span>
+<span class='curline'><a href='../S/530.html#L131'>RAW_CHECK</a>         131 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   RAW_CHECK(level &gt;= 1, "block not big enough for even one level");</span>
+<span class='curline'><a href='../S/530.html#L171'>RAW_CHECK</a>         171 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   RAW_CHECK(e == found, "element not in freelist");</span>
+<span class='curline'><a href='../S/530.html#L230'>RAW_CHECK</a>         230 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc         RAW_CHECK(false, "We do not yet support async-signal-safe arena.");</span>
+<span class='curline'><a href='../S/530.html#L235'>RAW_CHECK</a>         235 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     ~ArenaLock() { RAW_CHECK(this-&gt;left_, "haven't left Arena region"); }</span>
+<span class='curline'><a href='../S/530.html#L297'>RAW_CHECK</a>         297 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   RAW_CHECK(meta_data_arena != 0, "must pass a valid arena");</span>
+<span class='curline'><a href='../S/530.html#L315'>RAW_CHECK</a>         315 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   RAW_CHECK(arena != 0 &amp;&amp; arena != &amp;default_arena &amp;&amp; arena != &amp;unhooked_arena,</span>
+<span class='curline'><a href='../S/530.html#L325'>RAW_CHECK</a>         325 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       RAW_CHECK(region-&gt;header.magic ==</span>
+<span class='curline'><a href='../S/530.html#L328'>RAW_CHECK</a>         328 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       RAW_CHECK(region-&gt;header.arena == arena,</span>
+<span class='curline'><a href='../S/530.html#L330'>RAW_CHECK</a>         330 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       RAW_CHECK(size % arena-&gt;pagesize == 0,</span>
+<span class='curline'><a href='../S/530.html#L332'>RAW_CHECK</a>         332 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       RAW_CHECK(reinterpret_cast&lt;intptr_t&gt;(region) % arena-&gt;pagesize == 0,</span>
+<span class='curline'><a href='../S/530.html#L340'>RAW_CHECK</a>         340 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       RAW_CHECK(munmap_result == 0,</span>
+<span class='curline'><a href='../S/530.html#L362'>RAW_CHECK</a>         362 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   RAW_CHECK(i &lt; prev-&gt;levels, "too few levels in Next()");</span>
+<span class='curline'><a href='../S/530.html#L365'>RAW_CHECK</a>         365 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     RAW_CHECK(next-&gt;header.magic == Magic(kMagicUnallocated, &amp;next-&gt;header),</span>
+<span class='curline'><a href='../S/530.html#L367'>RAW_CHECK</a>         367 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     RAW_CHECK(next-&gt;header.arena == arena,</span>
+<span class='curline'><a href='../S/530.html#L370'>RAW_CHECK</a>         370 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       RAW_CHECK(prev &lt; next, "unordered freelist");</span>
+<span class='curline'><a href='../S/530.html#L371'>RAW_CHECK</a>         371 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       RAW_CHECK(reinterpret_cast&lt;char *&gt;(prev) + prev-&gt;header.size &lt;</span>
+<span class='curline'><a href='../S/530.html#L400'>RAW_CHECK</a>         400 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   RAW_CHECK(f-&gt;header.magic == Magic(kMagicAllocated, &amp;f-&gt;header),</span>
+<span class='curline'><a href='../S/530.html#L402'>RAW_CHECK</a>         402 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   RAW_CHECK(f-&gt;header.arena == arena,</span>
+<span class='curline'><a href='../S/530.html#L418'>RAW_CHECK</a>         418 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     RAW_CHECK(f-&gt;header.magic == Magic(kMagicAllocated, &amp;f-&gt;header),</span>
+<span class='curline'><a href='../S/530.html#L426'>RAW_CHECK</a>         426 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     RAW_CHECK(arena-&gt;allocation_count &gt; 0, "nothing in arena to free");</span>
+<span class='curline'><a href='../S/530.html#L468'>RAW_CHECK</a>         468 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       RAW_CHECK(new_pages != MAP_FAILED, "mmap error");</span>
+<span class='curline'><a href='../S/530.html#L490'>RAW_CHECK</a>         490 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     RAW_CHECK(s-&gt;header.arena == arena, "");</span>
+<span class='curline'><a href='../S/530.html#L510'>RAW_CHECK</a>         510 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   RAW_CHECK(arena != 0, "must pass a valid arena");</span>
+<span class='curline'><a href='../S/555.html#L181'>RAW_CHECK</a>         181 third_party/google-perftools-1.8.3/src/debugallocation.cc     RAW_CHECK(q_back_ != q_front_, "Queue is empty");</span>
+<span class='curline'><a href='../S/555.html#L374'>RAW_CHECK</a>         374 third_party/google-perftools-1.8.3/src/debugallocation.cc     RAW_CHECK(IsValidMagicValue(magic1_), "");</span>
+<span class='curline'><a href='../S/555.html#L393'>RAW_CHECK</a>         393 third_party/google-perftools-1.8.3/src/debugallocation.cc       RAW_CHECK(size1_ == *size2_addr(), "should hold");</span>
+<span class='curline'><a href='../S/555.html#L394'>RAW_CHECK</a>         394 third_party/google-perftools-1.8.3/src/debugallocation.cc       RAW_CHECK(magic1_ == *magic2_addr(), "should hold");</span>
+<span class='curline'><a href='../S/555.html#L402'>RAW_CHECK</a>         402 third_party/google-perftools-1.8.3/src/debugallocation.cc       RAW_CHECK(size1_ == *size2_addr(), "should hold");</span>
+<span class='curline'><a href='../S/555.html#L583'>RAW_CHECK</a>         583 third_party/google-perftools-1.8.3/src/debugallocation.cc     RAW_CHECK(!free_queue_-&gt;Full(), "Free queue mustn't be full!");</span>
+<span class='curline'><a href='../S/555.html#L594'>RAW_CHECK</a>         594 third_party/google-perftools-1.8.3/src/debugallocation.cc       RAW_CHECK(num_entries &lt; arraysize(entries), "entries array overflow");</span>
+<span class='curline'><a href='../S/555.html#L612'>RAW_CHECK</a>         612 third_party/google-perftools-1.8.3/src/debugallocation.cc     RAW_CHECK(free_queue_size_ &gt;= 0, "Free queue size went negative!");</span>
+<span class='curline'><a href='../S/555.html#L795'>RAW_CHECK</a>         795 third_party/google-perftools-1.8.3/src/debugallocation.cc       RAW_CHECK(entry &lt; kMallocHistogramSize,</span>
+<span class='curline'><a href='../S/555.html#L1046'>RAW_CHECK</a>        1046 third_party/google-perftools-1.8.3/src/debugallocation.cc       RAW_CHECK(GetOwnership(p) != MallocExtension::kNotOwned,</span>
+<span class='curline'><a href='../S/555.html#L1278'>RAW_CHECK</a>        1278 third_party/google-perftools-1.8.3/src/debugallocation.cc   RAW_CHECK((alignment &amp; (alignment-1)) == 0, "must be power of two");</span>
+<span class='curline'><a href='../S/568.html#L554'>RAW_CHECK</a>         554 third_party/google-perftools-1.8.3/src/heap-checker.cc   RAW_CHECK(len &gt; 0, "Unexpected empty string passed to strstr()");</span>
+<span class='curline'><a href='../S/568.html#L622'>RAW_CHECK</a>         622 third_party/google-perftools-1.8.3/src/heap-checker.cc   RAW_CHECK(0, "");  // Couldn't determine the stack direction.</span>
+<span class='curline'><a href='../S/568.html#L953'>RAW_CHECK</a>         953 third_party/google-perftools-1.8.3/src/heap-checker.cc         RAW_CHECK(0, "");</span>
+<span class='curline'><a href='../S/568.html#L1134'>RAW_CHECK</a>        1134 third_party/google-perftools-1.8.3/src/heap-checker.cc       RAW_CHECK(live_objects-&gt;empty(), "");</span>
+<span class='curline'><a href='../S/568.html#L1250'>RAW_CHECK</a>        1250 third_party/google-perftools-1.8.3/src/heap-checker.cc   RAW_CHECK(live_objects == NULL, "");</span>
+<span class='curline'><a href='../S/568.html#L1706'>RAW_CHECK</a>        1706 third_party/google-perftools-1.8.3/src/heap-checker.cc     RAW_CHECK(pm_result == PROC_MAPS_USED, "");</span>
+<span class='curline'><a href='../S/568.html#L1806'>RAW_CHECK</a>        1806 third_party/google-perftools-1.8.3/src/heap-checker.cc       RAW_CHECK(MallocHook::GetNewHook() == NULL, "");</span>
+<span class='curline'><a href='../S/568.html#L1807'>RAW_CHECK</a>        1807 third_party/google-perftools-1.8.3/src/heap-checker.cc       RAW_CHECK(MallocHook::GetDeleteHook() == NULL, "");</span>
+<span class='curline'><a href='../S/568.html#L1808'>RAW_CHECK</a>        1808 third_party/google-perftools-1.8.3/src/heap-checker.cc       RAW_CHECK(MallocHook::GetMmapHook() == NULL, "");</span>
+<span class='curline'><a href='../S/568.html#L1809'>RAW_CHECK</a>        1809 third_party/google-perftools-1.8.3/src/heap-checker.cc       RAW_CHECK(MallocHook::GetSbrkHook() == NULL, "");</span>
+<span class='curline'><a href='../S/568.html#L1912'>RAW_CHECK</a>        1912 third_party/google-perftools-1.8.3/src/heap-checker.cc     RAW_CHECK(!internal_init_start_has_run,</span>
+<span class='curline'><a href='../S/568.html#L2029'>RAW_CHECK</a>        2029 third_party/google-perftools-1.8.3/src/heap-checker.cc     RAW_CHECK(heap_profile-&gt;FindAlloc(test_str, &amp;size),</span>
+<span class='curline'><a href='../S/568.html#L2037'>RAW_CHECK</a>        2037 third_party/google-perftools-1.8.3/src/heap-checker.cc     RAW_CHECK(!heap_profile-&gt;FindAlloc(test_str, &amp;size),</span>
+<span class='curline'><a href='../S/568.html#L2060'>RAW_CHECK</a>        2060 third_party/google-perftools-1.8.3/src/heap-checker.cc     RAW_CHECK(heap_checker_on  &amp;&amp;  constructor_heap_profiling,</span>
+<span class='curline'><a href='../S/568.html#L2151'>RAW_CHECK</a>        2151 third_party/google-perftools-1.8.3/src/heap-checker.cc   RAW_CHECK(!constructor_heap_profiling,</span>
+<span class='curline'><a href='../S/568.html#L2159'>RAW_CHECK</a>        2159 third_party/google-perftools-1.8.3/src/heap-checker.cc   RAW_CHECK(MallocHook::AddNewHook(&amp;NewHook), "");</span>
+<span class='curline'><a href='../S/568.html#L2160'>RAW_CHECK</a>        2160 third_party/google-perftools-1.8.3/src/heap-checker.cc   RAW_CHECK(MallocHook::AddDeleteHook(&amp;DeleteHook), "");</span>
+<span class='curline'><a href='../S/568.html#L2166'>RAW_CHECK</a>        2166 third_party/google-perftools-1.8.3/src/heap-checker.cc   RAW_CHECK(heap_profile == NULL, "");</span>
+<span class='curline'><a href='../S/568.html#L2180'>RAW_CHECK</a>        2180 third_party/google-perftools-1.8.3/src/heap-checker.cc     RAW_CHECK(heap_checker_on, "");</span>
+<span class='curline'><a href='../S/568.html#L2184'>RAW_CHECK</a>        2184 third_party/google-perftools-1.8.3/src/heap-checker.cc     RAW_CHECK(MallocHook::RemoveNewHook(&amp;NewHook), "");</span>
+<span class='curline'><a href='../S/568.html#L2185'>RAW_CHECK</a>        2185 third_party/google-perftools-1.8.3/src/heap-checker.cc     RAW_CHECK(MallocHook::RemoveDeleteHook(&amp;DeleteHook), "");</span>
+<span class='curline'><a href='../S/568.html#L2194'>RAW_CHECK</a>        2194 third_party/google-perftools-1.8.3/src/heap-checker.cc   RAW_CHECK(!heap_checker_on, "");</span>
+<span class='curline'><a href='../S/568.html#L2271'>RAW_CHECK</a>        2271 third_party/google-perftools-1.8.3/src/heap-checker.cc   RAW_CHECK(!do_main_heap_check, "should have done it");</span>
+<span class='curline'><a href='../S/568.html#L2329'>RAW_CHECK</a>        2329 third_party/google-perftools-1.8.3/src/heap-checker.cc     RAW_CHECK(heap_profile-&gt;FindAllocDetails(ptr, &amp;info), "");</span>
+<span class='curline'><a href='../S/568.html#L2331'>RAW_CHECK</a>        2331 third_party/google-perftools-1.8.3/src/heap-checker.cc   RAW_CHECK(info.stack_depth &gt;= 1, "");</span>
+<span class='curline'><a href='../S/571.html#L456'>RAW_CHECK</a>         456 third_party/google-perftools-1.8.3/src/heap-profiler.cc     RAW_CHECK(MallocHook::AddMmapHook(&amp;MmapHook), "");</span>
+<span class='curline'><a href='../S/571.html#L457'>RAW_CHECK</a>         457 third_party/google-perftools-1.8.3/src/heap-profiler.cc     RAW_CHECK(MallocHook::AddMremapHook(&amp;MremapHook), "");</span>
+<span class='curline'><a href='../S/571.html#L458'>RAW_CHECK</a>         458 third_party/google-perftools-1.8.3/src/heap-profiler.cc     RAW_CHECK(MallocHook::AddMunmapHook(&amp;MunmapHook), "");</span>
+<span class='curline'><a href='../S/571.html#L459'>RAW_CHECK</a>         459 third_party/google-perftools-1.8.3/src/heap-profiler.cc     RAW_CHECK(MallocHook::AddSbrkHook(&amp;SbrkHook), "");</span>
+<span class='curline'><a href='../S/571.html#L483'>RAW_CHECK</a>         483 third_party/google-perftools-1.8.3/src/heap-profiler.cc     RAW_CHECK(MallocHook::AddNewHook(&amp;NewHook), "");</span>
+<span class='curline'><a href='../S/571.html#L484'>RAW_CHECK</a>         484 third_party/google-perftools-1.8.3/src/heap-profiler.cc     RAW_CHECK(MallocHook::AddDeleteHook(&amp;DeleteHook), "");</span>
+<span class='curline'><a href='../S/571.html#L507'>RAW_CHECK</a>         507 third_party/google-perftools-1.8.3/src/heap-profiler.cc     RAW_CHECK(MallocHook::RemoveNewHook(&amp;NewHook), "");</span>
+<span class='curline'><a href='../S/571.html#L508'>RAW_CHECK</a>         508 third_party/google-perftools-1.8.3/src/heap-profiler.cc     RAW_CHECK(MallocHook::RemoveDeleteHook(&amp;DeleteHook), "");</span>
+<span class='curline'><a href='../S/571.html#L512'>RAW_CHECK</a>         512 third_party/google-perftools-1.8.3/src/heap-profiler.cc     RAW_CHECK(MallocHook::RemoveMmapHook(&amp;MmapHook), "");</span>
+<span class='curline'><a href='../S/571.html#L513'>RAW_CHECK</a>         513 third_party/google-perftools-1.8.3/src/heap-profiler.cc     RAW_CHECK(MallocHook::RemoveMremapHook(&amp;MremapHook), "");</span>
+<span class='curline'><a href='../S/571.html#L514'>RAW_CHECK</a>         514 third_party/google-perftools-1.8.3/src/heap-profiler.cc     RAW_CHECK(MallocHook::RemoveSbrkHook(&amp;SbrkHook), "");</span>
+<span class='curline'><a href='../S/571.html#L515'>RAW_CHECK</a>         515 third_party/google-perftools-1.8.3/src/heap-profiler.cc     RAW_CHECK(MallocHook::RemoveMunmapHook(&amp;MunmapHook), "");</span>
+<span class='curline'><a href='../S/582.html#L141'>RAW_CHECK</a>         141 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_CHECK(MallocHook::RemoveNewHook(&amp;InitialNewHook), "");</span>
+<span class='curline'><a href='../S/582.html#L142'>RAW_CHECK</a>         142 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_CHECK(MallocHook::RemovePreMmapHook(&amp;InitialPreMMapHook), "");</span>
+<span class='curline'><a href='../S/582.html#L143'>RAW_CHECK</a>         143 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_CHECK(MallocHook::RemovePreSbrkHook(&amp;InitialPreSbrkHook), "");</span>
+<span class='curline'><a href='../S/582.html#L367'>RAW_CHECK</a>         367 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_CHECK(mmap_replacement_.empty(), "Only one MMapReplacement is allowed.");</span>
+<span class='curline'><a href='../S/582.html#L406'>RAW_CHECK</a>         406 third_party/google-perftools-1.8.3/src/malloc_hook.cc   RAW_CHECK(munmap_replacement_.empty(),</span>
+<span class='curline'><a href='../S/588.html#L185'>RAW_CHECK</a>         185 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RAW_CHECK(max_stack_depth &gt;= 0, "");</span>
+<span class='curline'><a href='../S/588.html#L187'>RAW_CHECK</a>         187 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RAW_CHECK(max_stack_depth &lt;= kMaxStackDepth,</span>
+<span class='curline'><a href='../S/588.html#L199'>RAW_CHECK</a>         199 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RAW_CHECK(MallocHook::AddMmapHook(&amp;MmapHook), "");</span>
+<span class='curline'><a href='../S/588.html#L200'>RAW_CHECK</a>         200 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RAW_CHECK(MallocHook::AddMremapHook(&amp;MremapHook), "");</span>
+<span class='curline'><a href='../S/588.html#L201'>RAW_CHECK</a>         201 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RAW_CHECK(MallocHook::AddSbrkHook(&amp;SbrkHook), "");</span>
+<span class='curline'><a href='../S/588.html#L202'>RAW_CHECK</a>         202 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RAW_CHECK(MallocHook::AddMunmapHook(&amp;MunmapHook), "");</span>
+<span class='curline'><a href='../S/588.html#L222'>RAW_CHECK</a>         222 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RAW_CHECK(client_count_ &gt; 0, "");</span>
+<span class='curline'><a href='../S/588.html#L229'>RAW_CHECK</a>         229 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RAW_CHECK(MallocHook::RemoveMmapHook(&amp;MmapHook), "");</span>
+<span class='curline'><a href='../S/588.html#L230'>RAW_CHECK</a>         230 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RAW_CHECK(MallocHook::RemoveMremapHook(&amp;MremapHook), "");</span>
+<span class='curline'><a href='../S/588.html#L231'>RAW_CHECK</a>         231 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RAW_CHECK(MallocHook::RemoveSbrkHook(&amp;SbrkHook), "");</span>
+<span class='curline'><a href='../S/588.html#L232'>RAW_CHECK</a>         232 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RAW_CHECK(MallocHook::RemoveMunmapHook(&amp;MunmapHook), "");</span>
+<span class='curline'><a href='../S/588.html#L260'>RAW_CHECK</a>         260 third_party/google-perftools-1.8.3/src/memory_region_map.cc       RAW_CHECK(lock_.IsHeld(), "Invariants violated");</span>
+<span class='curline'><a href='../S/588.html#L262'>RAW_CHECK</a>         262 third_party/google-perftools-1.8.3/src/memory_region_map.cc       RAW_CHECK(recursion_count_ &lt;= 5,</span>
+<span class='curline'><a href='../S/588.html#L270'>RAW_CHECK</a>         270 third_party/google-perftools-1.8.3/src/memory_region_map.cc     RAW_CHECK(recursion_count_ == 0,</span>
+<span class='curline'><a href='../S/588.html#L280'>RAW_CHECK</a>         280 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RAW_CHECK(recursion_count_ &gt;  0, "unlock when not held");</span>
+<span class='curline'><a href='../S/588.html#L281'>RAW_CHECK</a>         281 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RAW_CHECK(lock_.IsHeld(),</span>
+<span class='curline'><a href='../S/588.html#L283'>RAW_CHECK</a>         283 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RAW_CHECK(current_thread_is(lock_owner_tid_), "unlock by non-holder");</span>
+<span class='curline'><a href='../S/588.html#L297'>RAW_CHECK</a>         297 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RAW_CHECK(LockIsHeld(), "should be held (by this thread)");</span>
+<span class='curline'><a href='../S/588.html#L303'>RAW_CHECK</a>         303 third_party/google-perftools-1.8.3/src/memory_region_map.cc       RAW_CHECK(addr &lt;= region-&gt;end_addr, "");</span>
+<span class='curline'><a href='../S/588.html#L338'>RAW_CHECK</a>         338 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RAW_CHECK(LockIsHeld(), "should be held (by this thread)");</span>
+<span class='curline'><a href='../S/588.html#L339'>RAW_CHECK</a>         339 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RAW_CHECK(regions_ != NULL, "");</span>
+<span class='curline'><a href='../S/588.html#L344'>RAW_CHECK</a>         344 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RAW_CHECK(LockIsHeld(), "should be held (by this thread)");</span>
+<span class='curline'><a href='../S/588.html#L345'>RAW_CHECK</a>         345 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RAW_CHECK(regions_ != NULL, "");</span>
+<span class='curline'><a href='../S/588.html#L362'>RAW_CHECK</a>         362 third_party/google-perftools-1.8.3/src/memory_region_map.cc     RAW_CHECK(i == regions_-&gt;end()  ||  !region.Overlaps(*i),</span>
+<span class='curline'><a href='../S/588.html#L367'>RAW_CHECK</a>         367 third_party/google-perftools-1.8.3/src/memory_region_map.cc     RAW_CHECK(i == regions_-&gt;end()  ||  !region.Overlaps(*i),</span>
+<span class='curline'><a href='../S/588.html#L406'>RAW_CHECK</a>         406 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RAW_CHECK(LockIsHeld(), "should be held (by this thread)");</span>
+<span class='curline'><a href='../S/588.html#L418'>RAW_CHECK</a>         418 third_party/google-perftools-1.8.3/src/memory_region_map.cc     RAW_CHECK(saved_regions_count &lt; arraysize(saved_regions), "");</span>
+<span class='curline'><a href='../S/588.html#L635'>RAW_CHECK</a>         635 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RAW_CHECK(LockIsHeld(), "should be held (by this thread)");</span>
+<span class='curline'><a href='../S/588.html#L643'>RAW_CHECK</a>         643 third_party/google-perftools-1.8.3/src/memory_region_map.cc     RAW_CHECK(previous &lt; r-&gt;end_addr, "wow, we messed up the set order");</span>
+<span class='curline'><a href='../S/596.html#L364'>RAW_CHECK</a>         364 third_party/google-perftools-1.8.3/src/profile-handler.cc       RAW_CHECK(callback_count_ &gt; 0, "Invalid callback count");</span>
+<span class='curline'><a href='../S/596.html#L444'>RAW_CHECK</a>         444 third_party/google-perftools-1.8.3/src/profile-handler.cc   RAW_CHECK(0 == getitimer(timer_type_, &amp;current_timer), "getitimer");</span>
+<span class='curline'><a href='../S/596.html#L458'>RAW_CHECK</a>         458 third_party/google-perftools-1.8.3/src/profile-handler.cc   RAW_CHECK(sigaction(signal_number, &amp;sa, NULL) == 0, "sigprof (enable)");</span>
+<span class='curline'><a href='../S/596.html#L470'>RAW_CHECK</a>         470 third_party/google-perftools-1.8.3/src/profile-handler.cc   RAW_CHECK(sigaction(signal_number, &amp;sa, NULL) == 0, "sigprof (disable)");</span>
+<span class='curline'><a href='../S/596.html#L476'>RAW_CHECK</a>         476 third_party/google-perftools-1.8.3/src/profile-handler.cc   RAW_CHECK(sigaction(signal_number, NULL, &amp;sa) == 0, "is-signal-handler avail");</span>
+<span class='curline'><a href='../S/596.html#L494'>RAW_CHECK</a>         494 third_party/google-perftools-1.8.3/src/profile-handler.cc   RAW_CHECK(instance != NULL, "ProfileHandler is not initialized");</span>
+<span class='curline'><a href='../S/598.html#L142'>RAW_CHECK</a>         142 third_party/google-perftools-1.8.3/src/profiledata.cc     RAW_CHECK(r &gt;= 0, "write failed");</span>
+<span class='curline'><a href='../S/598.html#L266'>RAW_CHECK</a>         266 third_party/google-perftools-1.8.3/src/profiledata.cc   RAW_CHECK(depth &gt; 0, "ProfileData::Add depth &lt;= 0");</span>
+<span class='curline'><a href='../S/600.html#L244'>RAW_CHECK</a>         244 third_party/google-perftools-1.8.3/src/profiler.cc   RAW_CHECK(prof_handler_token_ == NULL, "SIGPROF handler already registered");</span>
+<span class='curline'><a href='../S/600.html#L246'>RAW_CHECK</a>         246 third_party/google-perftools-1.8.3/src/profiler.cc   RAW_CHECK(prof_handler_token_ != NULL, "Failed to set up SIGPROF handler");</span>
+<span class='curline'><a href='../S/600.html#L250'>RAW_CHECK</a>         250 third_party/google-perftools-1.8.3/src/profiler.cc   RAW_CHECK(prof_handler_token_ != NULL, "SIGPROF handler is not registered");</span>
+</pre>
+</body>
+</html>

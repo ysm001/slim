@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>alloc</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/505.html#L112'>alloc</a>             112 third_party/google-perftools-1.8.3/src/addressmap-inl.h   AddressMap(Allocator alloc, DeAllocator dealloc);</span>
+<span class='curline'><a href='../S/505.html#L270'>alloc</a>             270 third_party/google-perftools-1.8.3/src/addressmap-inl.h AddressMap&lt;Value&gt;::AddressMap(Allocator alloc, DeAllocator dealloc)</span>
+<span class='curline'><a href='../S/505.html#L272'>alloc</a>             272 third_party/google-perftools-1.8.3/src/addressmap-inl.h     alloc_(alloc),</span>
+<span class='curline'><a href='../S/568.html#L1444'>alloc</a>            1444 third_party/google-perftools-1.8.3/src/heap-checker.cc             HeapProfileTable::AllocInfo alloc;</span>
+<span class='curline'><a href='../S/568.html#L1445'>alloc</a>            1445 third_party/google-perftools-1.8.3/src/heap-checker.cc             if (!heap_profile-&gt;FindAllocDetails(ptr, &amp;alloc)) {</span>
+<span class='curline'><a href='../S/568.html#L1449'>alloc</a>            1449 third_party/google-perftools-1.8.3/src/heap-checker.cc             for (int i = 0; i &lt; alloc.stack_depth; ++i) {</span>
+<span class='curline'><a href='../S/568.html#L1450'>alloc</a>            1450 third_party/google-perftools-1.8.3/src/heap-checker.cc               RAW_LOG(INFO, "  @ %p", alloc.call_stack[i]);</span>
+<span class='curline'><a href='../S/569.html#L123'>alloc</a>             123 third_party/google-perftools-1.8.3/src/heap-profile-table.cc HeapProfileTable::HeapProfileTable(Allocator alloc, DeAllocator dealloc)</span>
+<span class='curline'><a href='../S/569.html#L124'>alloc</a>             124 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     : alloc_(alloc), dealloc_(dealloc) {</span>
+<span class='curline'><a href='../S/569.html#L252'>alloc</a>             252 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   AllocValue* alloc = allocation_-&gt;FindMutable(ptr);</span>
+<span class='curline'><a href='../S/569.html#L253'>alloc</a>             253 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   if (alloc &amp;&amp; !alloc-&gt;live()) {</span>
+<span class='curline'><a href='../S/569.html#L254'>alloc</a>             254 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     alloc-&gt;set_live(true);</span>
+<span class='curline'><a href='../S/569.html#L261'>alloc</a>             261 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   AllocValue* alloc = allocation_-&gt;FindMutable(ptr);</span>
+<span class='curline'><a href='../S/569.html#L262'>alloc</a>             262 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   if (alloc) {</span>
+<span class='curline'><a href='../S/569.html#L263'>alloc</a>             263 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     alloc-&gt;set_ignore(true);</span>
+<span class='curline'><a href='../S/570.html#L97'>alloc</a>              97 third_party/google-perftools-1.8.3/src/heap-profile-table.h   HeapProfileTable(Allocator alloc, DeAllocator dealloc);</span>
+<span class='curline'><a href='../S/570.html#L368'>alloc</a>             368 third_party/google-perftools-1.8.3/src/heap-profile-table.h   Snapshot(Allocator alloc, DeAllocator dealloc) : map_(alloc, dealloc) {</span>
+<span class='curline'><a href='../S/587.html#L259'>alloc</a>             259 third_party/google-perftools-1.8.3/src/memfs_malloc.cc     SysAllocator* alloc = MallocExtension::instance()-&gt;GetSystemAllocator();</span>
+<span class='curline'><a href='../S/587.html#L260'>alloc</a>             260 third_party/google-perftools-1.8.3/src/memfs_malloc.cc     HugetlbSysAllocator* hp = new (hugetlb_space) HugetlbSysAllocator(alloc);</span>
+<span class='curline'><a href='../S/624.html#L167'>alloc</a>             167 third_party/google-perftools-1.8.3/src/system-alloc.cc   void SetChildAllocator(SysAllocator* alloc, unsigned int index,</span>
+<span class='curline'><a href='../S/624.html#L169'>alloc</a>             169 third_party/google-perftools-1.8.3/src/system-alloc.cc     if (index &lt; kMaxAllocators &amp;&amp; alloc != NULL) {</span>
+<span class='curline'><a href='../S/624.html#L170'>alloc</a>             170 third_party/google-perftools-1.8.3/src/system-alloc.cc       allocs_[index] = alloc;</span>
+<span class='curline'><a href='../S/626.html#L707'>alloc</a>             707 third_party/google-perftools-1.8.3/src/tcmalloc.cc   virtual void SetSystemAllocator(SysAllocator* alloc) {</span>
+<span class='curline'><a href='../S/626.html#L709'>alloc</a>             709 third_party/google-perftools-1.8.3/src/tcmalloc.cc     sys_alloc = alloc;</span>
+<span class='curline'><a href='../S/626.html#L1275'>alloc</a>            1275 third_party/google-perftools-1.8.3/src/tcmalloc.cc   const Length alloc = tcmalloc::pages(size + align);</span>
+<span class='curline'><a href='../S/626.html#L1276'>alloc</a>            1276 third_party/google-perftools-1.8.3/src/tcmalloc.cc   Span* span = Static::pageheap()-&gt;New(alloc);</span>
+<span class='curline'><a href='../S/626.html#L1284'>alloc</a>            1284 third_party/google-perftools-1.8.3/src/tcmalloc.cc   ASSERT(skip &lt; alloc);</span>
+<span class='curline'><a href='../S/664.html#L422'>alloc</a>             422 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     object.ptr = static_cast&lt;char*&gt;(rnd_.alloc(object.size));</span>
+<span class='curline'><a href='../S/664.html#L550'>alloc</a>             550 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   void* p = rnd-&gt;alloc(s);</span>
+<span class='curline'><a href='../S/664.html#L565'>alloc</a>             565 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     p = rnd-&gt;alloc(kMaxSignedSize + i);</span>
+<span class='curline'><a href='../S/664.html#L567'>alloc</a>             567 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     p = rnd-&gt;alloc(kMaxSignedSize - i);</span>
+<span class='curline'><a href='../S/664.html#L1003'>alloc</a>            1003 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc       void *test1 = rnd.alloc(size);</span>
+<span class='curline'><a href='../S/664.html#L1020'>alloc</a>            1020 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     void* p1 = rnd.alloc(0);</span>
+<span class='curline'><a href='../S/664.html#L1022'>alloc</a>            1022 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     void* p2 = rnd.alloc(0);</span>
+<span class='curline'><a href='../S/664.html#L1225'>alloc</a>            1225 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     void* p = rnd.alloc(mb_to_allocate &lt;&lt; 20);</span>
+<span class='curline'><a href='../S/664.html#L1290'>alloc</a>            1290 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     void* large_object = rnd.alloc(s);</span>
+</pre>
+</body>
+</html>

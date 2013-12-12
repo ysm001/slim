@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>I</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/335.html#L138'>I</a>                 138 src/hyperlink.h #define LMN_SPC_PC(SPC, I) ((SPC)-&gt;proccxts[(I)])</span>
+<span class='curline'><a href='../S/358.html#L220'>I</a>                 220 src/membrane.h #define lmn_mem_get_ruleset(M, I)    ((LmnRuleSet)vec_get(lmn_mem_get_rulesets(M), (I)))</span>
+<span class='curline'><a href='../S/364.html#L89'>I</a>                  89 src/react_context.h #define warry_cur_update(RC, I)                                                \</span>
+<span class='curline'><a href='../S/364.html#L90'>I</a>                  90 src/react_context.h   if (warry_cur_size(RC) &lt;= (I)) {                                             \</span>
+<span class='curline'><a href='../S/364.html#L91'>I</a>                  91 src/react_context.h     warry_cur_size_set((RC), (I) + 1);                                         \</span>
+<span class='curline'><a href='../S/364.html#L97'>I</a>                  97 src/react_context.h #define wt(RC, I)                      ((RC)-&gt;work_arry[I].wt)</span>
+<span class='curline'><a href='../S/364.html#L98'>I</a>                  98 src/react_context.h #define wt_set(RC, I, O)                                                       \</span>
+<span class='curline'><a href='../S/364.html#L100'>I</a>                 100 src/react_context.h     (RC)-&gt;work_arry[I].wt = (LmnWord)(O);                                      \</span>
+<span class='curline'><a href='../S/364.html#L101'>I</a>                 101 src/react_context.h     warry_cur_update(RC, I);                                                   \</span>
+<span class='curline'><a href='../S/364.html#L103'>I</a>                 103 src/react_context.h #define at(RC, I)                      ((RC)-&gt;work_arry[I].at)</span>
+<span class='curline'><a href='../S/364.html#L104'>I</a>                 104 src/react_context.h #define at_set(RC, I, O)                                                       \</span>
+<span class='curline'><a href='../S/364.html#L106'>I</a>                 106 src/react_context.h     (RC)-&gt;work_arry[I].at = (LmnByte)(O);                                      \</span>
+<span class='curline'><a href='../S/364.html#L107'>I</a>                 107 src/react_context.h     warry_cur_update(RC, I);                                                   \</span>
+<span class='curline'><a href='../S/364.html#L109'>I</a>                 109 src/react_context.h #define tt(RC, I)                      ((RC)-&gt;work_arry[I].tt)</span>
+<span class='curline'><a href='../S/364.html#L110'>I</a>                 110 src/react_context.h #define tt_set(RC, I, O)                                                       \</span>
+<span class='curline'><a href='../S/364.html#L112'>I</a>                 112 src/react_context.h     (RC)-&gt;work_arry[I].tt = (LmnByte)(O);                                      \</span>
+<span class='curline'><a href='../S/364.html#L113'>I</a>                 113 src/react_context.h     warry_cur_update(RC, I);                                                   \</span>
+<span class='curline'><a href='../S/364.html#L115'>I</a>                 115 src/react_context.h #define warry_set(RC, I, W, A, T) do {                                         \</span>
+<span class='curline'><a href='../S/364.html#L116'>I</a>                 116 src/react_context.h     (RC)-&gt;work_arry[I].wt = (LmnWord)(W);                                      \</span>
+<span class='curline'><a href='../S/364.html#L117'>I</a>                 117 src/react_context.h     (RC)-&gt;work_arry[I].at = (LmnByte)(A);                                      \</span>
+<span class='curline'><a href='../S/364.html#L118'>I</a>                 118 src/react_context.h     (RC)-&gt;work_arry[I].tt = (LmnByte)(T);                                      \</span>
+<span class='curline'><a href='../S/364.html#L119'>I</a>                 119 src/react_context.h     warry_cur_update(RC, I);                                                   \</span>
+<span class='curline'><a href='../S/385.html#L57'>I</a>                  57 src/task.h     #define READ_VAL(T,I,X)      ((X)=*(T*)(I), I+=sizeof(T))</span>
+<span class='curline'><a href='../S/387.html#L53'>I</a>                  53 src/translate.h #define READ_VAL_FUNC(I,X)                      \</span>
+<span class='curline'><a href='../S/387.html#L55'>I</a>                  55 src/translate.h     READ_VAL(LmnLinkAttr, I, X##_attr);         \</span>
+<span class='curline'><a href='../S/387.html#L57'>I</a>                  57 src/translate.h     case LMN_INT_ATTR: READ_VAL(long, I, X.long_data); break;           \</span>
+<span class='curline'><a href='../S/387.html#L58'>I</a>                  58 src/translate.h     case LMN_DBL_ATTR: READ_VAL(double, I, X.double_data); break;       \</span>
+<span class='curline'><a href='../S/387.html#L59'>I</a>                  59 src/translate.h     case LMN_STRING_ATTR: READ_VAL(lmn_interned_str, I, X.string_data); break; \</span>
+<span class='curline'><a href='../S/387.html#L60'>I</a>                  60 src/translate.h     default: READ_VAL(LmnFunctor, I, X.functor_data); break;            \</span>
+<span class='curline'><a href='../S/387.html#L64'>I</a>                  64 src/translate.h #define READ_VAL_LIST(I,X)                      \</span>
+<span class='curline'><a href='../S/387.html#L66'>I</a>                  66 src/translate.h     READ_VAL(LmnInstrVar, I, X##_num);                                  \</span>
+<span class='curline'><a href='../S/387.html#L68'>I</a>                  68 src/translate.h     { int i; for(i=0; i&lt;X##_num; ++i){ READ_VAL(LmnInstrVar, I, X[i]); } } \</span>
+<span class='curline'><a href='../S/394.html#L78'>I</a>                  78 src/utility/internal_hash.h #define hashtbliter_entry(I) (&amp;((I)-&gt;ht-&gt;tbl[(I)-&gt;i]))</span>
+<span class='curline'><a href='../S/394.html#L79'>I</a>                  79 src/utility/internal_hash.h #define hashtbliter_isend(I) ((I)-&gt;i &gt;= (I)-&gt;ht-&gt;cap)</span>
+<span class='curline'><a href='../S/394.html#L104'>I</a>                 104 src/utility/internal_hash.h #define hashsetiter_entry(I) ((I)-&gt;set-&gt;tbl[(I)-&gt;i])</span>
+<span class='curline'><a href='../S/394.html#L105'>I</a>                 105 src/utility/internal_hash.h #define hashsetiter_isend(I) ((I)-&gt;i &gt;= (I)-&gt;set-&gt;cap)</span>
+<span class='curline'><a href='../S/432.html#L154'>I</a>                 154 src/verifier/mc_generator.c #define DFS_HANDOFF_COND_DYNAMIC(I, N, W)                                      \</span>
+<span class='curline'><a href='../S/432.html#L155'>I</a>                 155 src/verifier/mc_generator.c   (worker_on_dynamic_lb(W) &amp;&amp; ((I + 1) &lt; (N)) &amp;&amp; !worker_is_active(worker_next(W)))</span>
+<span class='curline'><a href='../S/432.html#L157'>I</a>                 157 src/verifier/mc_generator.c #define DFS_LOAD_BALANCING(Stack, W, I, N)                                     \</span>
+<span class='curline'><a href='../S/432.html#L158'>I</a>                 158 src/verifier/mc_generator.c   (DFS_HANDOFF_COND_STATIC(W, Stack) || DFS_HANDOFF_COND_DYNAMIC(I, N, W))</span>
+<span class='curline'><a href='../S/432.html#L159'>I</a>                 159 src/verifier/mc_generator.c #define DFS_LOAD_BALANCING_DEQ(Deq, W, I, N)                                   \</span>
+<span class='curline'><a href='../S/432.html#L160'>I</a>                 160 src/verifier/mc_generator.c   (DFS_HANDOFF_COND_STATIC_DEQ(W, Deq) || DFS_HANDOFF_COND_DYNAMIC(I, N, W))</span>
+<span class='curline'><a href='../S/435.html#L112'>I</a>                 112 src/verifier/mc_worker.h #define workers_get_entry(WP, I)     ((WP)-&gt;workers[(I)])</span>
+<span class='curline'><a href='../S/435.html#L113'>I</a>                 113 src/verifier/mc_worker.h #define workers_set_entry(WP, I, W)  ((WP)-&gt;workers[(I)] = (W))</span>
+</pre>
+</body>
+</html>

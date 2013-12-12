@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>cid</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/309.html#L69'>cid</a>                69 src/alloc.c      int arity, cid;</span>
+<span class='curline'><a href='../S/309.html#L71'>cid</a>                71 src/alloc.c      cid   = env_my_thread_id();</span>
+<span class='curline'><a href='../S/309.html#L73'>cid</a>                73 src/alloc.c      if (atom_memory_pools[arity][cid] == 0) {</span>
+<span class='curline'><a href='../S/309.html#L74'>cid</a>                74 src/alloc.c        atom_memory_pools[arity][cid] =</span>
+<span class='curline'><a href='../S/309.html#L77'>cid</a>                77 src/alloc.c      ap = LMN_SATOM(memory_pool_malloc(atom_memory_pools[arity][cid]));</span>
+<span class='curline'><a href='../S/309.html#L86'>cid</a>                86 src/alloc.c      int arity, cid;</span>
+<span class='curline'><a href='../S/309.html#L91'>cid</a>                91 src/alloc.c      cid = env_my_thread_id();</span>
+<span class='curline'><a href='../S/309.html#L92'>cid</a>                92 src/alloc.c      memory_pool_free(atom_memory_pools[arity][cid], ap);</span>
+<span class='curline'><a href='../S/378.html#L92'>cid</a>                92 src/symbol.c     int cid = env_my_thread_id();</span>
+<span class='curline'><a href='../S/378.html#L93'>cid</a>                93 src/symbol.c     lmn_interned_str new_id = next_sym_id[cid];</span>
+<span class='curline'><a href='../S/378.html#L94'>cid</a>                94 src/symbol.c     next_sym_id[cid] += env_threads_num();</span>
+</pre>
+</body>
+</html>

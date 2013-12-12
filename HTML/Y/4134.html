@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>pc</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/334.html#L807'>pc</a>                807 src/hyperlink.c         ProcCxt *pc = LMN_SPC_PC(spc, i);</span>
+<span class='curline'><a href='../S/334.html#L808'>pc</a>                808 src/hyperlink.c         if (pc) LMN_FREE(pc);</span>
+<span class='curline'><a href='../S/334.html#L834'>pc</a>                834 src/hyperlink.c   ProcCxt *pc;</span>
+<span class='curline'><a href='../S/334.html#L836'>pc</a>                836 src/hyperlink.c   pc = LMN_MALLOC(ProcCxt);</span>
+<span class='curline'><a href='../S/334.html#L837'>pc</a>                837 src/hyperlink.c   pc-&gt;atomi    = atomi;</span>
+<span class='curline'><a href='../S/334.html#L838'>pc</a>                838 src/hyperlink.c   pc-&gt;arg      = arg;</span>
+<span class='curline'><a href='../S/334.html#L839'>pc</a>                839 src/hyperlink.c   pc-&gt;start    = NULL;</span>
+<span class='curline'><a href='../S/334.html#L840'>pc</a>                840 src/hyperlink.c   pc-&gt;original = original;</span>
+<span class='curline'><a href='../S/334.html#L842'>pc</a>                842 src/hyperlink.c   return pc;</span>
+<span class='curline'><a href='../S/334.html#L863'>pc</a>                863 src/hyperlink.c   ProcCxt *pc;</span>
+<span class='curline'><a href='../S/334.html#L867'>pc</a>                867 src/hyperlink.c     pc = LMN_SPC_PC(spc, i);</span>
+<span class='curline'><a href='../S/334.html#L868'>pc</a>                868 src/hyperlink.c     if (pc</span>
+<span class='curline'><a href='../S/334.html#L869'>pc</a>                869 src/hyperlink.c         &amp;&amp; !LMN_PC_IS_ORI(pc)</span>
+<span class='curline'><a href='../S/334.html#L870'>pc</a>                870 src/hyperlink.c         &amp;&amp; (LMN_PC_ATOMI(LMN_PC_ORI(pc)) != LMN_PC_ATOMI(pc))) { /* clone proccxtを持つ */</span>
+<span class='curline'><a href='../S/334.html#L897'>pc</a>                897 src/hyperlink.c     ProcCxt *pc = LMN_SPC_PC(spc, i);</span>
+<span class='curline'><a href='../S/334.html#L898'>pc</a>                898 src/hyperlink.c     if (pc &amp;&amp; !LMN_PC_IS_ORI(pc)) {</span>
+<span class='curline'><a href='../S/334.html#L902'>pc</a>                902 src/hyperlink.c       hl = LMN_PC_START(LMN_PC_ORI(pc));</span>
+<span class='curline'><a href='../S/334.html#L903'>pc</a>                903 src/hyperlink.c       LMN_PC_START(pc) = hl;</span>
+<span class='curline'><a href='../S/334.html#L936'>pc</a>                936 src/hyperlink.c     ProcCxt *pc;</span>
+<span class='curline'><a href='../S/334.html#L940'>pc</a>                940 src/hyperlink.c     pc = LMN_SPC_PC(spc, i);</span>
+<span class='curline'><a href='../S/334.html#L941'>pc</a>                941 src/hyperlink.c     if (!pc) continue; /* atom(spc)の第i引数が同名プロセス文脈 */</span>
+<span class='curline'><a href='../S/334.html#L949'>pc</a>                949 src/hyperlink.c     else if (!LMN_PC_IS_ORI(pc) &amp;&amp;</span>
+<span class='curline'><a href='../S/334.html#L950'>pc</a>                950 src/hyperlink.c              !lmn_hyperlink_eq_hl(LMN_PC_START(LMN_PC_ORI(pc)),</span>
+<span class='curline'><a href='../S/334.html#L960'>pc</a>                960 src/hyperlink.c       LMN_PC_START(pc) = lmn_hyperlink_at_to_hl(linked_atom);</span>
+<span class='curline'><a href='../S/334.html#L986'>pc</a>                986 src/hyperlink.c     ProcCxt *pc;</span>
+<span class='curline'><a href='../S/334.html#L990'>pc</a>                990 src/hyperlink.c     pc = LMN_SPC_PC(spc, i);</span>
+<span class='curline'><a href='../S/334.html#L991'>pc</a>                991 src/hyperlink.c     if (!pc) continue;</span>
+<span class='curline'><a href='../S/334.html#L1002'>pc</a>               1002 src/hyperlink.c       if (LMN_PC_IS_ORI(pc)) { /* 第i引数がオリジナルであれば、クローン側での探索の始点を保持 */</span>
+<span class='curline'><a href='../S/334.html#L1003'>pc</a>               1003 src/hyperlink.c         LMN_PC_START(pc) = linked_hl;</span>
+<span class='curline'><a href='../S/334.html#L1004'>pc</a>               1004 src/hyperlink.c       } else if (!lmn_hyperlink_eq_hl(linked_hl, LMN_PC_START(pc))) { /* 第i引数がクローンであれば、それの成否を確かめる */</span>
+<span class='curline'><a href='../S/523.html#L276'>pc</a>                276 third_party/google-perftools-1.8.3/src/base/elfcore.h                      register unsigned long pc __asm__("$31");        \</span>
+<span class='curline'><a href='../S/523.html#L311'>pc</a>                311 third_party/google-perftools-1.8.3/src/base/elfcore.h                      __asm__ volatile ("jal 1f; 1:nop" : "=r"(pc));   \</span>
+<span class='curline'><a href='../S/523.html#L314'>pc</a>                314 third_party/google-perftools-1.8.3/src/base/elfcore.h                      f.mips_regs.cp0_epc  = pc;                       \</span>
+<span class='curline'><a href='../S/555.html#L694'>pc</a>                694 third_party/google-perftools-1.8.3/src/debugallocation.cc         char *pc = reinterpret_cast&lt;char*&gt;(queue_entry.deleter_pcs[i]);</span>
+<span class='curline'><a href='../S/555.html#L695'>pc</a>                695 third_party/google-perftools-1.8.3/src/debugallocation.cc         symbolization_table-&gt;Add(pc - 1);</span>
+<span class='curline'><a href='../S/555.html#L700'>pc</a>                700 third_party/google-perftools-1.8.3/src/debugallocation.cc         char *pc = reinterpret_cast&lt;char*&gt;(queue_entry.deleter_pcs[i]);</span>
+<span class='curline'><a href='../S/555.html#L702'>pc</a>                702 third_party/google-perftools-1.8.3/src/debugallocation.cc                     pc, symbolization_table-&gt;GetSymbol(pc - 1));</span>
+<span class='curline'><a href='../S/569.html#L568'>pc</a>                568 third_party/google-perftools-1.8.3/src/heap-profile-table.cc       const void* pc = e.bucket-&gt;stack[j];</span>
+<span class='curline'><a href='../S/569.html#L570'>pc</a>                570 third_party/google-perftools-1.8.3/src/heap-profile-table.cc           reinterpret_cast&lt;uintptr_t&gt;(pc), symbolization_table.GetSymbol(pc));</span>
+</pre>
+</body>
+</html>

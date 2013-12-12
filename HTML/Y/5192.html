@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>symbol_buffer_</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/622.html#L239'>symbol_buffer_</a>    239 third_party/google-perftools-1.8.3/src/symbolize.cc       delete[] symbol_buffer_;</span>
+<span class='curline'><a href='../S/622.html#L240'>symbol_buffer_</a>    240 third_party/google-perftools-1.8.3/src/symbolize.cc       symbol_buffer_ = new char[kSymbolBufferSize];</span>
+<span class='curline'><a href='../S/622.html#L241'>symbol_buffer_</a>    241 third_party/google-perftools-1.8.3/src/symbolize.cc       memset(symbol_buffer_, '\0', kSymbolBufferSize);</span>
+<span class='curline'><a href='../S/622.html#L243'>symbol_buffer_</a>    243 third_party/google-perftools-1.8.3/src/symbolize.cc         int bytes_read = read(child_out[1], symbol_buffer_ + total_bytes_read,</span>
+<span class='curline'><a href='../S/622.html#L259'>symbol_buffer_</a>    259 third_party/google-perftools-1.8.3/src/symbolize.cc       if (total_bytes_read == 0 || symbol_buffer_[total_bytes_read - 1] != '\n')</span>
+<span class='curline'><a href='../S/622.html#L264'>symbol_buffer_</a>    264 third_party/google-perftools-1.8.3/src/symbolize.cc       const char *current_name = symbol_buffer_;</span>
+<span class='curline'><a href='../S/622.html#L266'>symbol_buffer_</a>    266 third_party/google-perftools-1.8.3/src/symbolize.cc         if (symbol_buffer_[i] == '\n') {</span>
+<span class='curline'><a href='../S/622.html#L268'>symbol_buffer_</a>    268 third_party/google-perftools-1.8.3/src/symbolize.cc           symbol_buffer_[i] = '\0';</span>
+<span class='curline'><a href='../S/622.html#L269'>symbol_buffer_</a>    269 third_party/google-perftools-1.8.3/src/symbolize.cc           current_name = symbol_buffer_ + i + 1;</span>
+<span class='curline'><a href='../S/623.html#L52'>symbol_buffer_</a>     52 third_party/google-perftools-1.8.3/src/symbolize.h     : symbol_buffer_(NULL) {}</span>
+<span class='curline'><a href='../S/623.html#L54'>symbol_buffer_</a>     54 third_party/google-perftools-1.8.3/src/symbolize.h     delete[] symbol_buffer_;</span>
+<span class='curline'><a href='../S/623.html#L80'>symbol_buffer_</a>     80 third_party/google-perftools-1.8.3/src/symbolize.h   char *symbol_buffer_;</span>
+</pre>
+</body>
+</html>

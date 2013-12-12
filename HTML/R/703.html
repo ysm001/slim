@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>Functor</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/339.html#L199'>Functor</a>           199 src/il_parser.c   Functor functor;</span>
+<span class='curline'><a href='../S/340.html#L135'>Functor</a>           135 src/il_parser.h   Functor functor;</span>
+<span class='curline'><a href='../S/341.html#L71'>Functor</a>            71 src/il_parser.y   Functor functor;</span>
+<span class='curline'><a href='../S/351.html#L70'>Functor</a>            70 src/load.c     static void dump_functor(Functor f)</span>
+<span class='curline'><a href='../S/351.html#L392'>Functor</a>           392 src/load.c           Functor functor = inst_arg_get_functor(arg);</span>
+<span class='curline'><a href='../S/380.html#L52'>Functor</a>            52 src/syntax.c       Functor functor;</span>
+<span class='curline'><a href='../S/380.html#L115'>Functor</a>           115 src/syntax.c   static void functor_free(Functor f);</span>
+<span class='curline'><a href='../S/380.html#L147'>Functor</a>           147 src/syntax.c   Functor functor_make(enum FunctorType type)</span>
+<span class='curline'><a href='../S/380.html#L149'>Functor</a>           149 src/syntax.c     Functor f = LMN_MALLOC(struct Functor);</span>
+<span class='curline'><a href='../S/380.html#L155'>Functor</a>           155 src/syntax.c   static void functor_free(Functor f)</span>
+<span class='curline'><a href='../S/380.html#L160'>Functor</a>           160 src/syntax.c   Functor int_functor_make(long v)</span>
+<span class='curline'><a href='../S/380.html#L162'>Functor</a>           162 src/syntax.c     Functor f = functor_make(INT_FUNC);</span>
+<span class='curline'><a href='../S/380.html#L168'>Functor</a>           168 src/syntax.c   Functor float_functor_make(double v)</span>
+<span class='curline'><a href='../S/380.html#L170'>Functor</a>           170 src/syntax.c     Functor f = functor_make(FLOAT_FUNC);</span>
+<span class='curline'><a href='../S/380.html#L176'>Functor</a>           176 src/syntax.c   Functor string_functor_make(lmn_interned_str name)</span>
+<span class='curline'><a href='../S/380.html#L178'>Functor</a>           178 src/syntax.c     Functor f = functor_make(STRING_FUNC);</span>
+<span class='curline'><a href='../S/380.html#L184'>Functor</a>           184 src/syntax.c   Functor symbol_functor_make(lmn_interned_str name, int arity)</span>
+<span class='curline'><a href='../S/380.html#L189'>Functor</a>           189 src/syntax.c   Functor module_symbol_functor_make(lmn_interned_str module,</span>
+<span class='curline'><a href='../S/380.html#L193'>Functor</a>           193 src/syntax.c     Functor f = functor_make(STX_SYMBOL);</span>
+<span class='curline'><a href='../S/380.html#L199'>Functor</a>           199 src/syntax.c   enum FunctorType functor_get_type(Functor f)</span>
+<span class='curline'><a href='../S/380.html#L204'>Functor</a>           204 src/syntax.c   long functor_get_int_value(Functor f)</span>
+<span class='curline'><a href='../S/380.html#L209'>Functor</a>           209 src/syntax.c   double functor_get_float_value(Functor f)</span>
+<span class='curline'><a href='../S/380.html#L214'>Functor</a>           214 src/syntax.c   lmn_interned_str functor_get_string_value(Functor f)</span>
+<span class='curline'><a href='../S/380.html#L220'>Functor</a>           220 src/syntax.c   int functor_get_id(Functor f)</span>
+<span class='curline'><a href='../S/380.html#L276'>Functor</a>           276 src/syntax.c   Functor inst_arg_get_functor(InstrArg arg)</span>
+<span class='curline'><a href='../S/380.html#L320'>Functor</a>           320 src/syntax.c   InstrArg functor_arg_make(Functor functor)</span>
+<span class='curline'><a href='../S/381.html#L62'>Functor</a>            62 src/syntax.h   typedef struct Functor *Functor;</span>
+<span class='curline'><a href='../S/381.html#L64'>Functor</a>            64 src/syntax.h   Functor functor_make(enum FunctorType type);</span>
+<span class='curline'><a href='../S/381.html#L65'>Functor</a>            65 src/syntax.h   Functor int_functor_make(long v);</span>
+<span class='curline'><a href='../S/381.html#L66'>Functor</a>            66 src/syntax.h   Functor float_functor_make(double v);</span>
+<span class='curline'><a href='../S/381.html#L67'>Functor</a>            67 src/syntax.h   Functor symbol_functor_make(lmn_interned_str name, int arity);</span>
+<span class='curline'><a href='../S/381.html#L68'>Functor</a>            68 src/syntax.h   Functor string_functor_make(lmn_interned_str name);</span>
+<span class='curline'><a href='../S/381.html#L69'>Functor</a>            69 src/syntax.h   Functor module_symbol_functor_make(lmn_interned_str module,</span>
+<span class='curline'><a href='../S/381.html#L72'>Functor</a>            72 src/syntax.h   enum FunctorType functor_get_type(Functor f);</span>
+<span class='curline'><a href='../S/381.html#L73'>Functor</a>            73 src/syntax.h   long functor_get_int_value(Functor f);</span>
+<span class='curline'><a href='../S/381.html#L74'>Functor</a>            74 src/syntax.h   double functor_get_float_value(Functor f);</span>
+<span class='curline'><a href='../S/381.html#L75'>Functor</a>            75 src/syntax.h   lmn_interned_str functor_get_string_value(Functor f);</span>
+<span class='curline'><a href='../S/381.html#L76'>Functor</a>            76 src/syntax.h   int functor_get_id(Functor f);</span>
+<span class='curline'><a href='../S/381.html#L88'>Functor</a>            88 src/syntax.h   Functor inst_arg_get_functor(InstrArg arg);</span>
+<span class='curline'><a href='../S/381.html#L96'>Functor</a>            96 src/syntax.h   InstrArg functor_arg_make(Functor functor);</span>
+</pre>
+</body>
+</html>

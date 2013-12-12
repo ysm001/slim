@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>int32</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/512.html#L45'>int32</a>              45 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h typedef int32 Atomic32;</span>
+<span class='curline'><a href='../S/516.html#L79'>int32</a>              79 third_party/google-perftools-1.8.3/src/base/basictypes.h const  int32 kint32max  = (   ( int32) 0x7FFFFFFF);</span>
+<span class='curline'><a href='../S/516.html#L84'>int32</a>              84 third_party/google-perftools-1.8.3/src/base/basictypes.h const  int32 kint32min  = (   ( int32) 0x80000000);</span>
+<span class='curline'><a href='../S/517.html#L78'>int32</a>              78 third_party/google-perftools-1.8.3/src/base/commandlineflags.h   DECLARE_VARIABLE(int32, name)</span>
+<span class='curline'><a href='../S/517.html#L80'>int32</a>              80 third_party/google-perftools-1.8.3/src/base/commandlineflags.h   DEFINE_VARIABLE(int32, name, value, meaning)</span>
+<span class='curline'><a href='../S/530.html#L106'>int32</a>             106 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   static int32 r = 1;         // no locking---it's not critical</span>
+<span class='curline'><a href='../S/530.html#L191'>int32</a>             191 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   int32 allocation_count; // count of allocated blocks (under mu)</span>
+<span class='curline'><a href='../S/530.html#L192'>int32</a>             192 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   int32 flags;            // flags passed to NewArena (ro after init)</span>
+<span class='curline'><a href='../S/530.html#L295'>int32</a>             295 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc LowLevelAlloc::Arena *LowLevelAlloc::NewArena(int32 flags,</span>
+<span class='curline'><a href='../S/531.html#L90'>int32</a>              90 third_party/google-perftools-1.8.3/src/base/low_level_alloc.h   static Arena *NewArena(int32 flags, Arena *meta_data_arena);</span>
+<span class='curline'><a href='../S/533.html#L173'>int32</a>             173 third_party/google-perftools-1.8.3/src/base/spinlock.cc inline int32 SpinLock::CalculateWaitCycles(int64 wait_start_time) {</span>
+<span class='curline'><a href='../S/533.html#L174'>int32</a>             174 third_party/google-perftools-1.8.3/src/base/spinlock.cc   int32 wait_cycles = ((CycleClock::Now() - wait_start_time) &gt;&gt;</span>
+<span class='curline'><a href='../S/534.html#L128'>int32</a>             128 third_party/google-perftools-1.8.3/src/base/spinlock.h   inline int32 CalculateWaitCycles(int64 wait_start_time);</span>
+<span class='curline'><a href='../S/535.html#L60'>int32</a>              60 third_party/google-perftools-1.8.3/src/base/spinlock_internal.cc int32 SpinLockWait(volatile Atomic32 *w, int n,</span>
+<span class='curline'><a href='../S/535.html#L62'>int32</a>              62 third_party/google-perftools-1.8.3/src/base/spinlock_internal.cc   int32 v;</span>
+<span class='curline'><a href='../S/536.html#L48'>int32</a>              48 third_party/google-perftools-1.8.3/src/base/spinlock_internal.h   int32 from;</span>
+<span class='curline'><a href='../S/536.html#L49'>int32</a>              49 third_party/google-perftools-1.8.3/src/base/spinlock_internal.h   int32 to;</span>
+<span class='curline'><a href='../S/536.html#L57'>int32</a>              57 third_party/google-perftools-1.8.3/src/base/spinlock_internal.h int32 SpinLockWait(volatile Atomic32 *w, int n,</span>
+<span class='curline'><a href='../S/536.html#L60'>int32</a>              60 third_party/google-perftools-1.8.3/src/base/spinlock_internal.h void SpinLockDelay(volatile Atomic32 *w, int32 value, int loop);</span>
+<span class='curline'><a href='../S/537.html#L73'>int32</a>              73 third_party/google-perftools-1.8.3/src/base/spinlock_linux-inl.h void SpinLockDelay(volatile Atomic32 *w, int32 value, int loop) {</span>
+<span class='curline'><a href='../S/538.html#L44'>int32</a>              44 third_party/google-perftools-1.8.3/src/base/spinlock_posix-inl.h void SpinLockDelay(volatile Atomic32 *w, int32 value, int loop) {</span>
+<span class='curline'><a href='../S/539.html#L40'>int32</a>              40 third_party/google-perftools-1.8.3/src/base/spinlock_win32-inl.h void SpinLockDelay(volatile Atomic32 *w, int32 value, int loop) {</span>
+<span class='curline'><a href='../S/568.html#L1615'>int32</a>            1615 third_party/google-perftools-1.8.3/src/heap-checker.cc static int32 main_thread_pid = getpid();</span>
+<span class='curline'><a href='../S/568.html#L2007'>int32</a>            2007 third_party/google-perftools-1.8.3/src/heap-checker.cc   const int32 our_pid = getpid();   // safest to call getpid() outside lock</span>
+<span class='curline'><a href='../S/570.html#L62'>int32</a>              62 third_party/google-perftools-1.8.3/src/heap-profile-table.h     int32 allocs;      // Number of allocation calls</span>
+<span class='curline'><a href='../S/570.html#L63'>int32</a>              63 third_party/google-perftools-1.8.3/src/heap-profile-table.h     int32 frees;       // Number of free calls</span>
+<span class='curline'><a href='../S/584.html#L106'>int32</a>             106 third_party/google-perftools-1.8.3/src/malloc_hook_mmap_linux.h     int32 args[6] = { (int32) start, (int32) length, prot, flags, fd,</span>
+<span class='curline'><a href='../S/596.html#L118'>int32</a>             118 third_party/google-perftools-1.8.3/src/profile-handler.cc   static const int32 kMaxFrequency = 4000;</span>
+<span class='curline'><a href='../S/596.html#L120'>int32</a>             120 third_party/google-perftools-1.8.3/src/profile-handler.cc   static const int32 kDefaultFrequency = 100;</span>
+<span class='curline'><a href='../S/596.html#L135'>int32</a>             135 third_party/google-perftools-1.8.3/src/profile-handler.cc   int32 frequency_;</span>
+<span class='curline'><a href='../S/596.html#L141'>int32</a>             141 third_party/google-perftools-1.8.3/src/profile-handler.cc   int32 callback_count_ GUARDED_BY(control_lock_);</span>
+<span class='curline'><a href='../S/596.html#L219'>int32</a>             219 third_party/google-perftools-1.8.3/src/profile-handler.cc const int32 ProfileHandler::kMaxFrequency;</span>
+<span class='curline'><a href='../S/596.html#L220'>int32</a>             220 third_party/google-perftools-1.8.3/src/profile-handler.cc const int32 ProfileHandler::kDefaultFrequency;</span>
+<span class='curline'><a href='../S/597.html#L137'>int32</a>             137 third_party/google-perftools-1.8.3/src/profile-handler.h   int32 frequency;  /* Profiling frequency */</span>
+<span class='curline'><a href='../S/597.html#L138'>int32</a>             138 third_party/google-perftools-1.8.3/src/profile-handler.h   int32 callback_count;  /* Number of callbacks registered */</span>
+<span class='curline'><a href='../S/637.html#L412'>int32</a>             412 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   int32 old_FLAGS_verbose = FLAGS_verbose;</span>
+<span class='curline'><a href='../S/641.html#L89'>int32</a>              89 third_party/google-perftools-1.8.3/src/tests/low_level_alloc_unittest.cc     int32 flags = call_malloc_hook?  LowLevelAlloc::kCallMallocHook :  0;</span>
+<span class='curline'><a href='../S/641.html#L147'>int32</a>             147 third_party/google-perftools-1.8.3/src/tests/low_level_alloc_unittest.cc static int32 allocates;</span>
+<span class='curline'><a href='../S/641.html#L148'>int32</a>             148 third_party/google-perftools-1.8.3/src/tests/low_level_alloc_unittest.cc static int32 frees;</span>
+<span class='curline'><a href='../S/664.html#L352'>int32</a>             352 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     int32 seed_;</span>
+<span class='curline'><a href='../S/664.html#L354'>int32</a>             354 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     explicit ACMRandom(int32 seed) { seed_ = seed; }</span>
+<span class='curline'><a href='../S/664.html#L355'>int32</a>             355 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     int32 Next() {</span>
+<span class='curline'><a href='../S/664.html#L356'>int32</a>             356 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc       const int32 M = 2147483647L;   // 2^31-1</span>
+<span class='curline'><a href='../S/664.html#L357'>int32</a>             357 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc       const int32 A = 16807;</span>
+<span class='curline'><a href='../S/664.html#L359'>int32</a>             359 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc       uint32 lo = A * (int32)(seed_ &amp; 0xFFFF);</span>
+<span class='curline'><a href='../S/664.html#L360'>int32</a>             360 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc       uint32 hi = A * (int32)((uint32)seed_ &gt;&gt; 16);</span>
+<span class='curline'><a href='../S/664.html#L371'>int32</a>             371 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc       return (seed_ = (int32) lo);</span>
+</pre>
+</body>
+</html>

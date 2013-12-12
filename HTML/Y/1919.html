@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>cur_mem</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/384.html#L264'>cur_mem</a>           264 src/task.c     BOOL react_all_rulesets(LmnReactCxt *rc, LmnMembrane *cur_mem)</span>
+<span class='curline'><a href='../S/384.html#L267'>cur_mem</a>           267 src/task.c       struct Vector rulesets = cur_mem-&gt;rulesets; /* 本膜のルールセットの集合 */</span>
+<span class='curline'><a href='../S/384.html#L272'>cur_mem</a>           272 src/task.c         if (react_ruleset(rc, cur_mem, (LmnRuleSet)vec_get(&amp;rulesets, i))) {</span>
+<span class='curline'><a href='../S/384.html#L281'>cur_mem</a>           281 src/task.c       ok = ok || react_ruleset_inner(rc, cur_mem, system_ruleset);</span>
+<span class='curline'><a href='../S/385.html#L71'>cur_mem</a>            71 src/task.h     BOOL react_all_rulesets(LmnReactCxt *rc, LmnMembrane *cur_mem);</span>
+<span class='curline'><a href='../S/428.html#L188'>cur_mem</a>           188 src/verifier/mc.c static inline void mc_gen_successors_inner(LmnReactCxt *rc, LmnMembrane *cur_mem);</span>
+<span class='curline'><a href='../S/428.html#L404'>cur_mem</a>           404 src/verifier/mc.c BOOL mc_expand_inner(LmnReactCxt *rc, LmnMembrane *cur_mem)</span>
+<span class='curline'><a href='../S/428.html#L408'>cur_mem</a>           408 src/verifier/mc.c   for (; cur_mem; cur_mem = cur_mem-&gt;next) {</span>
+<span class='curline'><a href='../S/428.html#L412'>cur_mem</a>           412 src/verifier/mc.c     if (mc_expand_inner(rc, cur_mem-&gt;child_head)) {</span>
+<span class='curline'><a href='../S/428.html#L415'>cur_mem</a>           415 src/verifier/mc.c     if (lmn_mem_is_active(cur_mem)) {</span>
+<span class='curline'><a href='../S/428.html#L416'>cur_mem</a>           416 src/verifier/mc.c       react_all_rulesets(rc, cur_mem);</span>
+<span class='curline'><a href='../S/428.html#L420'>cur_mem</a>           420 src/verifier/mc.c       lmn_mem_set_active(cur_mem, FALSE);</span>
+<span class='curline'><a href='../S/428.html#L625'>cur_mem</a>           625 src/verifier/mc.c static inline void mc_gen_successors_inner(LmnReactCxt *rc, LmnMembrane *cur_mem)</span>
+<span class='curline'><a href='../S/428.html#L633'>cur_mem</a>           633 src/verifier/mc.c   mc_expand_inner(rc, cur_mem);</span>
+<span class='curline'><a href='../S/429.html#L99'>cur_mem</a>            99 src/verifier/mc.h BOOL mc_expand_inner(LmnReactCxt *rc, LmnMembrane *cur_mem);</span>
+</pre>
+</body>
+</html>

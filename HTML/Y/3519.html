@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>memstack</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/361.html#L45'>memstack</a>           45 src/memstack.c static void memstack_reconstruct(LmnMemStack memstack, LmnMembrane *mem);</span>
+<span class='curline'><a href='../S/361.html#L52'>memstack</a>           52 src/memstack.c inline void lmn_memstack_free(LmnMemStack memstack)</span>
+<span class='curline'><a href='../S/361.html#L54'>memstack</a>           54 src/memstack.c   vec_free(memstack);</span>
+<span class='curline'><a href='../S/361.html#L57'>memstack</a>           57 src/memstack.c inline BOOL lmn_memstack_isempty(LmnMemStack memstack)</span>
+<span class='curline'><a href='../S/361.html#L59'>memstack</a>           59 src/memstack.c   return vec_num(memstack) == 0;</span>
+<span class='curline'><a href='../S/361.html#L62'>memstack</a>           62 src/memstack.c inline void lmn_memstack_push(LmnMemStack memstack, LmnMembrane *mem)</span>
+<span class='curline'><a href='../S/361.html#L64'>memstack</a>           64 src/memstack.c   vec_push(memstack, (LmnWord)mem);</span>
+<span class='curline'><a href='../S/361.html#L68'>memstack</a>           68 src/memstack.c inline LmnMembrane *lmn_memstack_pop(LmnMemStack memstack)</span>
+<span class='curline'><a href='../S/361.html#L70'>memstack</a>           70 src/memstack.c   LmnMembrane *m = (LmnMembrane *)vec_pop(memstack);</span>
+<span class='curline'><a href='../S/361.html#L75'>memstack</a>           75 src/memstack.c inline LmnMembrane *lmn_memstack_peek(LmnMemStack memstack)</span>
+<span class='curline'><a href='../S/361.html#L77'>memstack</a>           77 src/memstack.c   return (LmnMembrane *)vec_get(memstack, vec_num(memstack)-1);</span>
+<span class='curline'><a href='../S/361.html#L84'>memstack</a>           84 src/memstack.c void lmn_memstack_delete(LmnMemStack memstack, LmnMembrane *mem)</span>
+<span class='curline'><a href='../S/361.html#L86'>memstack</a>           86 src/memstack.c   unsigned long i, j, n = vec_num(memstack);</span>
+<span class='curline'><a href='../S/361.html#L89'>memstack</a>           89 src/memstack.c     if ((LmnMembrane *)vec_get(memstack, i) == mem) {</span>
+<span class='curline'><a href='../S/361.html#L92'>memstack</a>           92 src/memstack.c         vec_set(memstack, j-1, vec_get(memstack, j));</span>
+<span class='curline'><a href='../S/361.html#L97'>memstack</a>           97 src/memstack.c   vec_pop(memstack);</span>
+<span class='curline'><a href='../S/361.html#L100'>memstack</a>          100 src/memstack.c void lmn_memstack_reconstruct(LmnMemStack memstack, LmnMembrane *mem)</span>
+<span class='curline'><a href='../S/361.html#L102'>memstack</a>          102 src/memstack.c   while (lmn_memstack_isempty(memstack)) lmn_memstack_pop(memstack);</span>
+<span class='curline'><a href='../S/361.html#L103'>memstack</a>          103 src/memstack.c   memstack_reconstruct(memstack, mem);</span>
+<span class='curline'><a href='../S/361.html#L106'>memstack</a>          106 src/memstack.c static void memstack_reconstruct(LmnMemStack memstack, LmnMembrane *mem)</span>
+<span class='curline'><a href='../S/361.html#L111'>memstack</a>          111 src/memstack.c   lmn_memstack_push(memstack, mem);</span>
+<span class='curline'><a href='../S/361.html#L113'>memstack</a>          113 src/memstack.c     memstack_reconstruct(memstack, m);</span>
+<span class='curline'><a href='../S/364.html#L232'>memstack</a>          232 src/react_context.h   LmnMemStack memstack; /* 膜主導実行時に使用 */</span>
+<span class='curline'><a href='../S/364.html#L235'>memstack</a>          235 src/react_context.h #define RC_MEMSTACK(RC)  (((struct MemReactCxtData *)(RC)-&gt;v)-&gt;memstack)</span>
+<span class='curline'><a href='../S/370.html#L48'>memstack</a>           48 src/slim_header/memstack.h inline void lmn_memstack_free(LmnMemStack memstack);</span>
+<span class='curline'><a href='../S/370.html#L49'>memstack</a>           49 src/slim_header/memstack.h inline BOOL lmn_memstack_isempty(LmnMemStack memstack);</span>
+<span class='curline'><a href='../S/370.html#L50'>memstack</a>           50 src/slim_header/memstack.h inline void lmn_memstack_push(LmnMemStack memstack, LmnMembrane *mem);</span>
+<span class='curline'><a href='../S/370.html#L51'>memstack</a>           51 src/slim_header/memstack.h inline LmnMembrane *lmn_memstack_pop(LmnMemStack memstack);</span>
+<span class='curline'><a href='../S/370.html#L52'>memstack</a>           52 src/slim_header/memstack.h inline LmnMembrane *lmn_memstack_peek(LmnMemStack memstack);</span>
+<span class='curline'><a href='../S/370.html#L53'>memstack</a>           53 src/slim_header/memstack.h void lmn_memstack_delete(LmnMemStack memstack, LmnMembrane *mem);</span>
+<span class='curline'><a href='../S/370.html#L54'>memstack</a>           54 src/slim_header/memstack.h void lmn_memstack_reconstruct(LmnMemStack memstack, LmnMembrane *mem);</span>
+<span class='curline'><a href='../S/384.html#L249'>memstack</a>          249 src/task.c       LmnMemStack memstack = RC_MEMSTACK(rc);</span>
+<span class='curline'><a href='../S/384.html#L251'>memstack</a>          251 src/task.c       while(!lmn_memstack_isempty(memstack)){</span>
+<span class='curline'><a href='../S/384.html#L252'>memstack</a>          252 src/task.c         LmnMembrane *mem = lmn_memstack_peek(memstack);</span>
+<span class='curline'><a href='../S/384.html#L255'>memstack</a>          255 src/task.c           lmn_memstack_pop(memstack);</span>
+</pre>
+</body>
+</html>

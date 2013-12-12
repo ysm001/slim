@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>mutex_</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/532.html#L177'>mutex_</a>            177 third_party/google-perftools-1.8.3/src/base/simple_mutex.h   MutexType mutex_;</span>
+<span class='curline'><a href='../S/532.html#L207'>mutex_</a>            207 third_party/google-perftools-1.8.3/src/base/simple_mutex.h Mutex::Mutex() : mutex_(0) { }</span>
+<span class='curline'><a href='../S/532.html#L208'>mutex_</a>            208 third_party/google-perftools-1.8.3/src/base/simple_mutex.h Mutex::Mutex(Mutex::LinkerInitialized) : mutex_(0) { }</span>
+<span class='curline'><a href='../S/532.html#L209'>mutex_</a>            209 third_party/google-perftools-1.8.3/src/base/simple_mutex.h Mutex::~Mutex()            { assert(mutex_ == 0); }</span>
+<span class='curline'><a href='../S/532.html#L210'>mutex_</a>            210 third_party/google-perftools-1.8.3/src/base/simple_mutex.h void Mutex::Lock()         { assert(--mutex_ == -1); }</span>
+<span class='curline'><a href='../S/532.html#L211'>mutex_</a>            211 third_party/google-perftools-1.8.3/src/base/simple_mutex.h void Mutex::Unlock()       { assert(mutex_++ == -1); }</span>
+<span class='curline'><a href='../S/532.html#L212'>mutex_</a>            212 third_party/google-perftools-1.8.3/src/base/simple_mutex.h bool Mutex::TryLock()      { if (mutex_) return false; Lock(); return true; }</span>
+<span class='curline'><a href='../S/532.html#L213'>mutex_</a>            213 third_party/google-perftools-1.8.3/src/base/simple_mutex.h void Mutex::ReaderLock()   { assert(++mutex_ &gt; 0); }</span>
+<span class='curline'><a href='../S/532.html#L214'>mutex_</a>            214 third_party/google-perftools-1.8.3/src/base/simple_mutex.h void Mutex::ReaderUnlock() { assert(mutex_-- &gt; 0); }</span>
+<span class='curline'><a href='../S/532.html#L219'>mutex_</a>            219 third_party/google-perftools-1.8.3/src/base/simple_mutex.h   InitializeCriticalSection(&amp;mutex_);</span>
+<span class='curline'><a href='../S/532.html#L223'>mutex_</a>            223 third_party/google-perftools-1.8.3/src/base/simple_mutex.h   InitializeCriticalSection(&amp;mutex_);</span>
+<span class='curline'><a href='../S/532.html#L226'>mutex_</a>            226 third_party/google-perftools-1.8.3/src/base/simple_mutex.h Mutex::~Mutex()            { if (destroy_) DeleteCriticalSection(&amp;mutex_); }</span>
+<span class='curline'><a href='../S/532.html#L227'>mutex_</a>            227 third_party/google-perftools-1.8.3/src/base/simple_mutex.h void Mutex::Lock()         { if (is_safe_) EnterCriticalSection(&amp;mutex_); }</span>
+<span class='curline'><a href='../S/532.html#L228'>mutex_</a>            228 third_party/google-perftools-1.8.3/src/base/simple_mutex.h void Mutex::Unlock()       { if (is_safe_) LeaveCriticalSection(&amp;mutex_); }</span>
+<span class='curline'><a href='../S/532.html#L230'>mutex_</a>            230 third_party/google-perftools-1.8.3/src/base/simple_mutex.h                                  TryEnterCriticalSection(&amp;mutex_) != 0 : true; }</span>
+<span class='curline'><a href='../S/532.html#L237'>mutex_</a>            237 third_party/google-perftools-1.8.3/src/base/simple_mutex.h   if (is_safe_ &amp;&amp; fncall(&amp;mutex_) != 0) abort();                           \</span>
+<span class='curline'><a href='../S/532.html#L242'>mutex_</a>            242 third_party/google-perftools-1.8.3/src/base/simple_mutex.h   if (is_safe_ &amp;&amp; pthread_rwlock_init(&amp;mutex_, NULL) != 0) abort();</span>
+<span class='curline'><a href='../S/532.html#L246'>mutex_</a>            246 third_party/google-perftools-1.8.3/src/base/simple_mutex.h   if (is_safe_ &amp;&amp; pthread_rwlock_init(&amp;mutex_, NULL) != 0) abort();</span>
+<span class='curline'><a href='../S/532.html#L252'>mutex_</a>            252 third_party/google-perftools-1.8.3/src/base/simple_mutex.h                                pthread_rwlock_trywrlock(&amp;mutex_) == 0 : true; }</span>
+<span class='curline'><a href='../S/532.html#L260'>mutex_</a>            260 third_party/google-perftools-1.8.3/src/base/simple_mutex.h   if (is_safe_ &amp;&amp; fncall(&amp;mutex_) != 0) abort();                           \</span>
+<span class='curline'><a href='../S/532.html#L265'>mutex_</a>            265 third_party/google-perftools-1.8.3/src/base/simple_mutex.h   if (is_safe_ &amp;&amp; pthread_mutex_init(&amp;mutex_, NULL) != 0) abort();</span>
+<span class='curline'><a href='../S/532.html#L269'>mutex_</a>            269 third_party/google-perftools-1.8.3/src/base/simple_mutex.h   if (is_safe_ &amp;&amp; pthread_mutex_init(&amp;mutex_, NULL) != 0) abort();</span>
+<span class='curline'><a href='../S/532.html#L275'>mutex_</a>            275 third_party/google-perftools-1.8.3/src/base/simple_mutex.h                                  pthread_mutex_trylock(&amp;mutex_) == 0 : true; }</span>
+<span class='curline'><a href='../S/686.html#L221'>mutex_</a>            221 third_party/google-perftools-1.8.3/src/windows/port.h     EnterCriticalSection(&amp;mutex_);</span>
+<span class='curline'><a href='../S/686.html#L224'>mutex_</a>            224 third_party/google-perftools-1.8.3/src/windows/port.h     LeaveCriticalSection(&amp;mutex_);</span>
+<span class='curline'><a href='../S/686.html#L235'>mutex_</a>            235 third_party/google-perftools-1.8.3/src/windows/port.h   void InitializeMutex() { InitializeCriticalSection(&amp;mutex_); }</span>
+<span class='curline'><a href='../S/686.html#L238'>mutex_</a>            238 third_party/google-perftools-1.8.3/src/windows/port.h   CRITICAL_SECTION mutex_;</span>
+</pre>
+</body>
+</html>

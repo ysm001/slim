@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>Buffer</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/542.html#L557'>Buffer</a>            557 third_party/google-perftools-1.8.3/src/base/sysinfo.cc ProcMapsIterator::ProcMapsIterator(pid_t pid, Buffer *buffer) {</span>
+<span class='curline'><a href='../S/542.html#L561'>Buffer</a>            561 third_party/google-perftools-1.8.3/src/base/sysinfo.cc ProcMapsIterator::ProcMapsIterator(pid_t pid, Buffer *buffer,</span>
+<span class='curline'><a href='../S/542.html#L566'>Buffer</a>            566 third_party/google-perftools-1.8.3/src/base/sysinfo.cc void ProcMapsIterator::Init(pid_t pid, Buffer *buffer,</span>
+<span class='curline'><a href='../S/542.html#L575'>Buffer</a>            575 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     buffer = dynamic_buffer_ = new Buffer;</span>
+<span class='curline'><a href='../S/542.html#L583'>Buffer</a>            583 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   ebuf_ = ibuf_ + Buffer::kBufSize - 1;</span>
+<span class='curline'><a href='../S/542.html#L588'>Buffer</a>            588 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     ConstructFilename("/proc/%d/maps_backing", pid, ibuf_, Buffer::kBufSize);</span>
+<span class='curline'><a href='../S/542.html#L592'>Buffer</a>            592 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     ConstructFilename("/proc/self/maps", 1, ibuf_, Buffer::kBufSize);</span>
+<span class='curline'><a href='../S/542.html#L594'>Buffer</a>            594 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     ConstructFilename("/proc/%d/maps", pid, ibuf_, Buffer::kBufSize);</span>
+<span class='curline'><a href='../S/542.html#L603'>Buffer</a>            603 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     ConstructFilename("/proc/curproc/map", 1, ibuf_, Buffer::kBufSize);</span>
+<span class='curline'><a href='../S/542.html#L605'>Buffer</a>            605 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     ConstructFilename("/proc/%d/map", pid, ibuf_, Buffer::kBufSize);</span>
+<span class='curline'><a href='../S/542.html#L610'>Buffer</a>            610 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     ConstructFilename("/proc/self/map", 1, ibuf_, Buffer::kBufSize);</span>
+<span class='curline'><a href='../S/542.html#L612'>Buffer</a>            612 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     ConstructFilename("/proc/%d/map", pid, ibuf_, Buffer::kBufSize);</span>
+<span class='curline'><a href='../S/542.html#L804'>Buffer</a>            804 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   Buffer object_path;</span>
+<span class='curline'><a href='../S/542.html#L815'>Buffer</a>            815 third_party/google-perftools-1.8.3/src/base/sysinfo.cc       CHECK_LT(snprintf(object_path.buf_, Buffer::kBufSize,</span>
+<span class='curline'><a href='../S/542.html#L817'>Buffer</a>            817 third_party/google-perftools-1.8.3/src/base/sysinfo.cc                Buffer::kBufSize);</span>
+<span class='curline'><a href='../S/542.html#L819'>Buffer</a>            819 third_party/google-perftools-1.8.3/src/base/sysinfo.cc       CHECK_LT(snprintf(object_path.buf_, Buffer::kBufSize,</span>
+<span class='curline'><a href='../S/542.html#L822'>Buffer</a>            822 third_party/google-perftools-1.8.3/src/base/sysinfo.cc                Buffer::kBufSize);</span>
+<span class='curline'><a href='../S/542.html#L936'>Buffer</a>            936 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   ProcMapsIterator::Buffer iterbuf;</span>
+<span class='curline'><a href='../S/542.html#L962'>Buffer</a>            962 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   ProcMapsIterator::Buffer iterbuf;</span>
+<span class='curline'><a href='../S/542.html#L968'>Buffer</a>            968 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   ProcMapsIterator::Buffer linebuf;</span>
+<span class='curline'><a href='../S/543.html#L121'>Buffer</a>            121 third_party/google-perftools-1.8.3/src/base/sysinfo.h   ProcMapsIterator(pid_t pid, Buffer *buffer);</span>
+<span class='curline'><a href='../S/543.html#L126'>Buffer</a>            126 third_party/google-perftools-1.8.3/src/base/sysinfo.h   ProcMapsIterator(pid_t pid, Buffer *buffer,</span>
+<span class='curline'><a href='../S/543.html#L190'>Buffer</a>            190 third_party/google-perftools-1.8.3/src/base/sysinfo.h   void Init(pid_t pid, Buffer *buffer, bool use_maps_backing);</span>
+<span class='curline'><a href='../S/543.html#L222'>Buffer</a>            222 third_party/google-perftools-1.8.3/src/base/sysinfo.h   Buffer* dynamic_buffer_;  // dynamically-allocated Buffer</span>
+<span class='curline'><a href='../S/568.html#L891'>Buffer</a>            891 third_party/google-perftools-1.8.3/src/heap-checker.cc   ProcMapsIterator::Buffer buffer;</span>
+<span class='curline'><a href='../S/598.html#L149'>Buffer</a>            149 third_party/google-perftools-1.8.3/src/profiledata.cc   ProcMapsIterator::Buffer iterbuf;</span>
+<span class='curline'><a href='../S/598.html#L155'>Buffer</a>            155 third_party/google-perftools-1.8.3/src/profiledata.cc   ProcMapsIterator::Buffer linebuf;</span>
+</pre>
+</body>
+</html>

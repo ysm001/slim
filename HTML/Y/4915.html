@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>sohandle</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/351.html#L697'>sohandle</a>          697 src/load.c                                                     void *sohandle,</span>
+<span class='curline'><a href='../S/351.html#L705'>sohandle</a>          705 src/load.c     LmnRuleSet load_compiled_il(char *filename, void *sohandle)</span>
+<span class='curline'><a href='../S/351.html#L715'>sohandle</a>          715 src/load.c       ret      = load_compiled_il_inner(basename, buf, buf_len, sohandle, filename);</span>
+<span class='curline'><a href='../S/351.html#L725'>sohandle</a>          725 src/load.c                                                     void *sohandle,</span>
+<span class='curline'><a href='../S/351.html#L731'>sohandle</a>          731 src/load.c       init_f = dlsym(sohandle, buf);</span>
+<span class='curline'><a href='../S/351.html#L745'>sohandle</a>          745 src/load.c         maindata = dlsym(sohandle, buf);</span>
+<span class='curline'><a href='../S/351.html#L799'>sohandle</a>          799 src/load.c       void *sohandle;</span>
+<span class='curline'><a href='../S/351.html#L806'>sohandle</a>          806 src/load.c         sohandle = dlopen(file_name, RTLD_LAZY);</span>
+<span class='curline'><a href='../S/351.html#L807'>sohandle</a>          807 src/load.c         if (!sohandle) {</span>
+<span class='curline'><a href='../S/351.html#L813'>sohandle</a>          813 src/load.c           vec_push(opened_so_files, (vec_data_t)sohandle);</span>
+<span class='curline'><a href='../S/351.html#L814'>sohandle</a>          814 src/load.c           rs = load_compiled_il(file_name, sohandle);</span>
+</pre>
+</body>
+</html>

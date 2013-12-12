@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>LBL</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/701.html#L259'>LBL</a>               259 third_party/zdelta-2.1/infblock.c     NEEDBITS(LBL+DBL+ZBL+BBL)</span>
+<span class='curline'><a href='../S/701.html#L260'>LBL</a>               260 third_party/zdelta-2.1/infblock.c     s-&gt;sub.trees.table = t = (uInt)b &amp; MASK(LBL+DBL+ZBL+BBL);</span>
+<span class='curline'><a href='../S/701.html#L263'>LBL</a>               263 third_party/zdelta-2.1/infblock.c     if( ((t              ) &amp; MASK(LBL)) &gt; (L_CODES-1) || </span>
+<span class='curline'><a href='../S/701.html#L264'>LBL</a>               264 third_party/zdelta-2.1/infblock.c 	((t &gt;&gt; (LBL)     ) &amp; MASK(DBL)) &gt; (D_CODES-1) || </span>
+<span class='curline'><a href='../S/701.html#L265'>LBL</a>               265 third_party/zdelta-2.1/infblock.c 	((t &gt;&gt; (LBL+DBL) ) &amp; MASK(ZBL)) &gt; (ZD_CODES-1) )</span>
+<span class='curline'><a href='../S/701.html#L273'>LBL</a>               273 third_party/zdelta-2.1/infblock.c     Tracev((stderr, "\n # len codes     :%u",((t)               &amp;MASK(LBL))));</span>
+<span class='curline'><a href='../S/701.html#L274'>LBL</a>               274 third_party/zdelta-2.1/infblock.c     Tracev((stderr, "\n # lit/dist codes:%u",((t&gt;&gt;LBL)          &amp;MASK(DBL))));</span>
+<span class='curline'><a href='../S/701.html#L275'>LBL</a>               275 third_party/zdelta-2.1/infblock.c     Tracev((stderr, "\n # zdelta codes  :%u",((t&gt;&gt;(LBL+DBL))    &amp;MASK(ZBL))));</span>
+<span class='curline'><a href='../S/701.html#L276'>LBL</a>               276 third_party/zdelta-2.1/infblock.c     Tracev((stderr, "\n # bl codes      :%u",((t&gt;&gt;(LBL+DBL+ZBL))&amp;MASK(BBL))));</span>
+<span class='curline'><a href='../S/701.html#L279'>LBL</a>               279 third_party/zdelta-2.1/infblock.c     t = 259 + (t&amp;MASK(LBL))+((t&gt;&gt;(LBL))&amp;MASK(DBL))+((t&gt;&gt;(LBL+DBL))&amp;MASK(ZBL));</span>
+<span class='curline'><a href='../S/701.html#L286'>LBL</a>               286 third_party/zdelta-2.1/infblock.c     DUMPBITS(LBL+DBL+ZBL+BBL)</span>
+<span class='curline'><a href='../S/701.html#L291'>LBL</a>               291 third_party/zdelta-2.1/infblock.c     while (s-&gt;sub.trees.index &lt; 4 + (s-&gt;sub.trees.table &gt;&gt; (LBL+DBL+ZBL)) )</span>
+<span class='curline'><a href='../S/701.html#L319'>LBL</a>               319 third_party/zdelta-2.1/infblock.c 	   s-&gt;sub.trees.index &lt; 259 + (t &amp; MASK(LBL)) + </span>
+<span class='curline'><a href='../S/701.html#L320'>LBL</a>               320 third_party/zdelta-2.1/infblock.c 	   ((t &gt;&gt; LBL) &amp; MASK(DBL)) + ((t &gt;&gt; (LBL+DBL)) &amp; MASK(ZBL)) )</span>
+<span class='curline'><a href='../S/701.html#L323'>LBL</a>               323 third_party/zdelta-2.1/infblock.c 	   s-&gt;sub.trees.index &lt; 258 + (t &amp; MASK(LBL)) + </span>
+<span class='curline'><a href='../S/701.html#L324'>LBL</a>               324 third_party/zdelta-2.1/infblock.c 	   ((t &gt;&gt; LBL) &amp; MASK(DBL)) + ((t &gt;&gt; (LBL+DBL)) &amp; MASK(ZBL)) )</span>
+<span class='curline'><a href='../S/701.html#L353'>LBL</a>               353 third_party/zdelta-2.1/infblock.c 	if (i + j &gt; 259 + (t &amp; MASK(LBL)) + ((t &gt;&gt; LBL) &amp; MASK(DBL)) + </span>
+<span class='curline'><a href='../S/701.html#L354'>LBL</a>               354 third_party/zdelta-2.1/infblock.c 	    ((t &gt;&gt; (LBL+DBL) ) &amp; MASK(ZBL)) || (c == 16 &amp;&amp; i &lt; 1)) </span>
+<span class='curline'><a href='../S/701.html#L356'>LBL</a>               356 third_party/zdelta-2.1/infblock.c 	if (i + j &gt; 258 + (t &amp; MASK(LBL)) + ((t &gt;&gt; LBL) &amp; MASK(DBL)) + </span>
+<span class='curline'><a href='../S/701.html#L357'>LBL</a>               357 third_party/zdelta-2.1/infblock.c 	    ((t &gt;&gt; (LBL+DBL) ) &amp; MASK(ZBL)) || (c == 16 &amp;&amp; i &lt; 1)) </span>
+<span class='curline'><a href='../S/701.html#L389'>LBL</a>               389 third_party/zdelta-2.1/infblock.c       t = inflate_trees_dynamic(1   + (t &amp; MASK(LBL)), </span>
+<span class='curline'><a href='../S/701.html#L390'>LBL</a>               390 third_party/zdelta-2.1/infblock.c 				257 + ((t&gt;&gt;LBL) &amp; MASK(DBL)),</span>
+<span class='curline'><a href='../S/701.html#L391'>LBL</a>               391 third_party/zdelta-2.1/infblock.c 				1   + ((t&gt;&gt;(LBL+DBL)) &amp; MASK(ZBL)),</span>
+</pre>
+</body>
+</html>

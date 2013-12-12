@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>lookahead</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/699.html#L596'>lookahead</a>         596 third_party/zdelta-2.1/deflate.c   if (strm-&gt;avail_in != 0 || s-&gt;lookahead != 0 ||</span>
+<span class='curline'><a href='../S/699.html#L760'>lookahead</a>         760 third_party/zdelta-2.1/deflate.c   s-&gt;lookahead = 0;</span>
+<span class='curline'><a href='../S/699.html#L805'>lookahead</a>         805 third_party/zdelta-2.1/deflate.c     more = (unsigned)(s-&gt;window_size -(ulg)s-&gt;lookahead -(ulg)s-&gt;strstart);</span>
+<span class='curline'><a href='../S/699.html#L808'>lookahead</a>         808 third_party/zdelta-2.1/deflate.c     if (more == 0 &amp;&amp; s-&gt;strstart == 0 &amp;&amp; s-&gt;lookahead == 0) {</span>
+<span class='curline'><a href='../S/699.html#L869'>lookahead</a>         869 third_party/zdelta-2.1/deflate.c     n = read_buf(s-&gt;strm, s-&gt;window + s-&gt;strstart + s-&gt;lookahead, more);</span>
+<span class='curline'><a href='../S/699.html#L870'>lookahead</a>         870 third_party/zdelta-2.1/deflate.c     s-&gt;lookahead += n;</span>
+<span class='curline'><a href='../S/699.html#L873'>lookahead</a>         873 third_party/zdelta-2.1/deflate.c     if (s-&gt;lookahead &gt;= MIN_MATCH) {</span>
+<span class='curline'><a href='../S/699.html#L884'>lookahead</a>         884 third_party/zdelta-2.1/deflate.c   } while (s-&gt;lookahead &lt; MIN_LOOKAHEAD &amp;&amp; s-&gt;strm-&gt;avail_in != 0);</span>
+<span class='curline'><a href='../S/699.html#L976'>lookahead</a>         976 third_party/zdelta-2.1/deflate.c     s-&gt;lookahead = read_buf(s-&gt;strm, s-&gt;window, (unsigned) s-&gt;window_size);</span>
+<span class='curline'><a href='../S/699.html#L979'>lookahead</a>         979 third_party/zdelta-2.1/deflate.c     if (s-&gt;lookahead &gt;= MIN_MATCH) {</span>
+<span class='curline'><a href='../S/699.html#L1109'>lookahead</a>        1109 third_party/zdelta-2.1/deflate.c   if ((uInt)nice_match &gt; s-&gt;lookahead) nice_match = s-&gt;lookahead;</span>
+<span class='curline'><a href='../S/699.html#L1159'>lookahead</a>        1159 third_party/zdelta-2.1/deflate.c     if (len &gt; s-&gt;lookahead) { len = s-&gt;lookahead; }</span>
+<span class='curline'><a href='../S/699.html#L1243'>lookahead</a>        1243 third_party/zdelta-2.1/deflate.c   if ((uInt)nice_match &gt; s-&gt;lookahead) nice_match = s-&gt;lookahead;</span>
+<span class='curline'><a href='../S/699.html#L1278'>lookahead</a>        1278 third_party/zdelta-2.1/deflate.c     if (len &gt; s-&gt;lookahead) { len = s-&gt;lookahead; }</span>
+<span class='curline'><a href='../S/699.html#L1338'>lookahead</a>        1338 third_party/zdelta-2.1/deflate.c         if (s-&gt;lookahead &lt;= 1) {</span>
+<span class='curline'><a href='../S/699.html#L1344'>lookahead</a>        1344 third_party/zdelta-2.1/deflate.c             if (s-&gt;lookahead == 0 &amp;&amp; flush == ZD_NO_FLUSH) return need_more;</span>
+<span class='curline'><a href='../S/699.html#L1346'>lookahead</a>        1346 third_party/zdelta-2.1/deflate.c             if (s-&gt;lookahead == 0) break; /* flush the current block */</span>
+<span class='curline'><a href='../S/699.html#L1350'>lookahead</a>        1350 third_party/zdelta-2.1/deflate.c 	s-&gt;strstart += s-&gt;lookahead;</span>
+<span class='curline'><a href='../S/699.html#L1351'>lookahead</a>        1351 third_party/zdelta-2.1/deflate.c 	s-&gt;lookahead = 0;</span>
+<span class='curline'><a href='../S/699.html#L1357'>lookahead</a>        1357 third_party/zdelta-2.1/deflate.c 	    s-&gt;lookahead = (uInt)(s-&gt;strstart - max_start);</span>
+<span class='curline'><a href='../S/699.html#L1454'>lookahead</a>        1454 third_party/zdelta-2.1/deflate.c     if (s-&gt;lookahead &lt; MIN_LOOKAHEAD) {</span>
+<span class='curline'><a href='../S/699.html#L1456'>lookahead</a>        1456 third_party/zdelta-2.1/deflate.c       if (s-&gt;lookahead &lt; MIN_LOOKAHEAD &amp;&amp; flush == ZD_NO_FLUSH) {</span>
+<span class='curline'><a href='../S/699.html#L1459'>lookahead</a>        1459 third_party/zdelta-2.1/deflate.c       if (s-&gt;lookahead == 0) break; /* flush the current block */</span>
+<span class='curline'><a href='../S/699.html#L1466'>lookahead</a>        1466 third_party/zdelta-2.1/deflate.c     if (s-&gt;lookahead &gt;= MIN_MATCH &amp;&amp; s-&gt;strategy!=ZD_HUFFMAN_ONLY) {</span>
+<span class='curline'><a href='../S/699.html#L1522'>lookahead</a>        1522 third_party/zdelta-2.1/deflate.c       s-&gt;lookahead -= s-&gt;match_length;</span>
+<span class='curline'><a href='../S/699.html#L1528'>lookahead</a>        1528 third_party/zdelta-2.1/deflate.c 	  s-&gt;lookahead &gt;= MIN_MATCH) {</span>
+<span class='curline'><a href='../S/699.html#L1556'>lookahead</a>        1556 third_party/zdelta-2.1/deflate.c       s-&gt;lookahead--;</span>
+<span class='curline'><a href='../S/699.html#L1584'>lookahead</a>        1584 third_party/zdelta-2.1/deflate.c     if (s-&gt;lookahead &lt; MIN_LOOKAHEAD) {</span>
+<span class='curline'><a href='../S/699.html#L1586'>lookahead</a>        1586 third_party/zdelta-2.1/deflate.c       if (s-&gt;lookahead &lt; MIN_LOOKAHEAD &amp;&amp; flush == ZD_NO_FLUSH) {</span>
+<span class='curline'><a href='../S/699.html#L1589'>lookahead</a>        1589 third_party/zdelta-2.1/deflate.c       if (s-&gt;lookahead == 0) break; /* flush the current block */</span>
+<span class='curline'><a href='../S/699.html#L1601'>lookahead</a>        1601 third_party/zdelta-2.1/deflate.c     if (s-&gt;lookahead &gt;= MIN_MATCH &amp;&amp; s-&gt;strategy!=ZD_HUFFMAN_ONLY) {</span>
+<span class='curline'><a href='../S/699.html#L1640'>lookahead</a>        1640 third_party/zdelta-2.1/deflate.c       uInt max_insert = s-&gt;strstart + s-&gt;lookahead - MIN_MATCH;</span>
+<span class='curline'><a href='../S/699.html#L1667'>lookahead</a>        1667 third_party/zdelta-2.1/deflate.c       s-&gt;lookahead -= s-&gt;prev_length-1;</span>
+<span class='curline'><a href='../S/699.html#L1691'>lookahead</a>        1691 third_party/zdelta-2.1/deflate.c       s-&gt;lookahead--;</span>
+<span class='curline'><a href='../S/699.html#L1700'>lookahead</a>        1700 third_party/zdelta-2.1/deflate.c       s-&gt;lookahead--;</span>
+<span class='curline'><a href='../S/700.html#L197'>lookahead</a>         197 third_party/zdelta-2.1/deflate.h   uInt lookahead;              /* number of valid bytes ahead in window */</span>
+</pre>
+</body>
+</html>

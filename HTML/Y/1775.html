@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>checkpoints</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/410.html#L295'>checkpoints</a>       295 src/utility/visitlog.c   vec_init(&amp;p-&gt;checkpoints, PROC_TBL_DEFAULT_SIZE);</span>
+<span class='curline'><a href='../S/410.html#L309'>checkpoints</a>       309 src/utility/visitlog.c   for (i = 0; i &lt; vec_num(&amp;p-&gt;checkpoints); i++) {</span>
+<span class='curline'><a href='../S/410.html#L310'>checkpoints</a>       310 src/utility/visitlog.c     vec_free((Vector *)vec_get(&amp;p-&gt;checkpoints, i));</span>
+<span class='curline'><a href='../S/410.html#L312'>checkpoints</a>       312 src/utility/visitlog.c   vec_destroy(&amp;p-&gt;checkpoints);</span>
+<span class='curline'><a href='../S/410.html#L318'>checkpoints</a>       318 src/utility/visitlog.c   vec_push(&amp;visitlog-&gt;checkpoints, (vec_data_t)checkpoint_make());</span>
+<span class='curline'><a href='../S/410.html#L327'>checkpoints</a>       327 src/utility/visitlog.c   checkpoint = (struct Checkpoint *)vec_pop(&amp;visitlog-&gt;checkpoints);</span>
+<span class='curline'><a href='../S/410.html#L347'>checkpoints</a>       347 src/utility/visitlog.c   struct Checkpoint *last = (struct Checkpoint *)vec_pop(&amp;visitlog-&gt;checkpoints);</span>
+<span class='curline'><a href='../S/410.html#L349'>checkpoints</a>       349 src/utility/visitlog.c   if (vec_num(&amp;visitlog-&gt;checkpoints) &gt; 0) {</span>
+<span class='curline'><a href='../S/410.html#L352'>checkpoints</a>       352 src/utility/visitlog.c         (struct Checkpoint *)vec_last(&amp;visitlog-&gt;checkpoints);</span>
+<span class='curline'><a href='../S/410.html#L368'>checkpoints</a>       368 src/utility/visitlog.c   vec_push(&amp;visitlog-&gt;checkpoints, (vec_data_t)cp);</span>
+<span class='curline'><a href='../S/411.html#L843'>checkpoints</a>       843 src/utility/visitlog.h   Vector            checkpoints; /* Checkpointオブジェクトの配列 */</span>
+<span class='curline'><a href='../S/411.html#L883'>checkpoints</a>       883 src/utility/visitlog.h     if (vec_num(&amp;visitlog-&gt;checkpoints) &gt; 0) {</span>
+<span class='curline'><a href='../S/411.html#L884'>checkpoints</a>       884 src/utility/visitlog.h       Checkpoint checkpoint = (Checkpoint)vec_last(&amp;visitlog-&gt;checkpoints);</span>
+<span class='curline'><a href='../S/411.html#L913'>checkpoints</a>       913 src/utility/visitlog.h   if (vec_num(&amp;visitlog-&gt;checkpoints) &gt; 0) {</span>
+<span class='curline'><a href='../S/411.html#L914'>checkpoints</a>       914 src/utility/visitlog.h     struct Checkpoint *checkpoint = (struct Checkpoint *)vec_last(&amp;visitlog-&gt;checkpoints);</span>
+</pre>
+</body>
+</html>

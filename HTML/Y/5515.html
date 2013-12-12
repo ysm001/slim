@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>uid</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/525.html#L2424'>uid</a>              2424 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     LSS_INLINE int LSS_NAME(setfsuid32)(uid_t uid) {</span>
+<span class='curline'><a href='../S/525.html#L2425'>uid</a>              2425 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       return LSS_NAME(setfsuid)(uid);</span>
+<span class='curline'><a href='../S/525.html#L2514'>uid</a>              2514 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     LSS_INLINE int LSS_NAME(setfsuid32)(uid_t uid) {</span>
+<span class='curline'><a href='../S/525.html#L2516'>uid</a>              2516 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       if ((rc = LSS_NAME(_setfsuid32)(uid)) &lt; 0 &amp;&amp;</span>
+<span class='curline'><a href='../S/525.html#L2518'>uid</a>              2518 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         if ((unsigned int)uid &amp; ~0xFFFFu) {</span>
+<span class='curline'><a href='../S/525.html#L2521'>uid</a>              2521 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h           rc = LSS_NAME(setfsuid)(uid);</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>parent</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/317.html#L1055'>parent</a>           1055 src/dumper.c     lmn_mem_delete_mem(m-&gt;parent, m);</span>
+<span class='curline'><a href='../S/322.html#L85'>parent</a>             85 src/ext/atomic.c   lmn_mem_delete_mem(mem-&gt;parent, mem);</span>
+<span class='curline'><a href='../S/334.html#L89'>parent</a>             89 src/hyperlink.c   hl-&gt;parent   = hl;</span>
+<span class='curline'><a href='../S/334.html#L116'>parent</a>            116 src/hyperlink.c   HyperLink *parent, *current;</span>
+<span class='curline'><a href='../S/334.html#L120'>parent</a>            120 src/hyperlink.c   parent    = hl-&gt;parent;</span>
+<span class='curline'><a href='../S/334.html#L121'>parent</a>            121 src/hyperlink.c   while (parent != current) {</span>
+<span class='curline'><a href='../S/334.html#L123'>parent</a>            123 src/hyperlink.c     parent-&gt;rank += d;</span>
+<span class='curline'><a href='../S/334.html#L124'>parent</a>            124 src/hyperlink.c     current = parent;</span>
+<span class='curline'><a href='../S/334.html#L125'>parent</a>            125 src/hyperlink.c     parent = parent-&gt;parent;</span>
+<span class='curline'><a href='../S/334.html#L183'>parent</a>            183 src/hyperlink.c     HyperLink *parent;</span>
+<span class='curline'><a href='../S/334.html#L191'>parent</a>            191 src/hyperlink.c     parent = hl-&gt;parent;</span>
+<span class='curline'><a href='../S/334.html#L192'>parent</a>            192 src/hyperlink.c     if (parent != hl) {</span>
+<span class='curline'><a href='../S/334.html#L193'>parent</a>            193 src/hyperlink.c       hashset_delete(parent-&gt;children, (HashKeyType)hl);</span>
+<span class='curline'><a href='../S/334.html#L194'>parent</a>            194 src/hyperlink.c       hyperlink_rank_calc(parent, -1);</span>
+<span class='curline'><a href='../S/334.html#L195'>parent</a>            195 src/hyperlink.c       if (parent-&gt;rank == 0) {</span>
+<span class='curline'><a href='../S/334.html#L196'>parent</a>            196 src/hyperlink.c         hashset_free(parent-&gt;children);</span>
+<span class='curline'><a href='../S/334.html#L197'>parent</a>            197 src/hyperlink.c         parent-&gt;children = NULL;</span>
+<span class='curline'><a href='../S/334.html#L213'>parent</a>            213 src/hyperlink.c   HyperLink *hl, *parent;</span>
+<span class='curline'><a href='../S/334.html#L219'>parent</a>            219 src/hyperlink.c   parent   = hl-&gt;parent;</span>
+<span class='curline'><a href='../S/334.html#L222'>parent</a>            222 src/hyperlink.c   if (parent != hl) {</span>
+<span class='curline'><a href='../S/334.html#L229'>parent</a>            229 src/hyperlink.c     hashset_delete(parent-&gt;children, (HashKeyType)hl);</span>
+<span class='curline'><a href='../S/334.html#L231'>parent</a>            231 src/hyperlink.c     hyperlink_rank_calc(parent, -1);</span>
+<span class='curline'><a href='../S/334.html#L232'>parent</a>            232 src/hyperlink.c     if (parent-&gt;rank == 0) {</span>
+<span class='curline'><a href='../S/334.html#L233'>parent</a>            233 src/hyperlink.c       hashset_free(parent-&gt;children);</span>
+<span class='curline'><a href='../S/334.html#L234'>parent</a>            234 src/hyperlink.c       parent-&gt;children = NULL;</span>
+<span class='curline'><a href='../S/334.html#L244'>parent</a>            244 src/hyperlink.c           hashset_add(parent-&gt;children, (HashKeyType)tmp);</span>
+<span class='curline'><a href='../S/334.html#L246'>parent</a>            246 src/hyperlink.c           tmp-&gt;parent = parent;</span>
+<span class='curline'><a href='../S/334.html#L272'>parent</a>            272 src/hyperlink.c       newroot-&gt;parent = newroot;</span>
+<span class='curline'><a href='../S/334.html#L285'>parent</a>            285 src/hyperlink.c           tmp-&gt;parent = newroot;</span>
+<span class='curline'><a href='../S/334.html#L289'>parent</a>            289 src/hyperlink.c       newroot-&gt;rank = parent-&gt;rank - 1;</span>
+<span class='curline'><a href='../S/334.html#L333'>parent</a>            333 src/hyperlink.c     old_parent = hl-&gt;parent;</span>
+<span class='curline'><a href='../S/334.html#L353'>parent</a>            353 src/hyperlink.c       hl-&gt;parent = root;</span>
+<span class='curline'><a href='../S/334.html#L365'>parent</a>            365 src/hyperlink.c   if (hl-&gt;parent == hl) return hl;</span>
+<span class='curline'><a href='../S/334.html#L368'>parent</a>            368 src/hyperlink.c   parent_hl  = hl-&gt;parent;</span>
+<span class='curline'><a href='../S/334.html#L376'>parent</a>            376 src/hyperlink.c       parent_hl  = current_hl-&gt;parent;</span>
+<span class='curline'><a href='../S/334.html#L386'>parent</a>            386 src/hyperlink.c       parent_hl  = current_hl-&gt;parent;</span>
+<span class='curline'><a href='../S/334.html#L401'>parent</a>            401 src/hyperlink.c HyperLink *hyperlink_unify(HyperLink *parent, HyperLink *child)</span>
+<span class='curline'><a href='../S/334.html#L403'>parent</a>            403 src/hyperlink.c   child-&gt;parent = parent;</span>
+<span class='curline'><a href='../S/334.html#L404'>parent</a>            404 src/hyperlink.c   if (!parent-&gt;children) {</span>
+<span class='curline'><a href='../S/334.html#L405'>parent</a>            405 src/hyperlink.c     parent-&gt;children = hashset_make(2);</span>
+<span class='curline'><a href='../S/334.html#L407'>parent</a>            407 src/hyperlink.c   hashset_add(parent-&gt;children, (HashKeyType)child);</span>
+<span class='curline'><a href='../S/334.html#L408'>parent</a>            408 src/hyperlink.c   parent-&gt;rank = parent-&gt;rank + child-&gt;rank + 1;</span>
+<span class='curline'><a href='../S/334.html#L410'>parent</a>            410 src/hyperlink.c   return parent;</span>
+<span class='curline'><a href='../S/334.html#L497'>parent</a>            497 src/hyperlink.c   HyperLink *hl, *parent;</span>
+<span class='curline'><a href='../S/334.html#L522'>parent</a>            522 src/hyperlink.c       if ((parent = hl-&gt;parent) != hl) {</span>
+<span class='curline'><a href='../S/334.html#L524'>parent</a>            524 src/hyperlink.c         fprintf(f, " %9lx", LMN_HL_ID(parent));</span>
+<span class='curline'><a href='../S/335.html#L70'>parent</a>             70 src/hyperlink.h   struct HyperLink *parent; /* root の場合は自身のポインタ */</span>
+<span class='curline'><a href='../S/335.html#L97'>parent</a>             97 src/hyperlink.h HyperLink *hyperlink_unify(HyperLink *parent, HyperLink *child);</span>
+<span class='curline'><a href='../S/357.html#L137'>parent</a>            137 src/membrane.c   mem-&gt;parent        =  NULL;</span>
+<span class='curline'><a href='../S/357.html#L606'>parent</a>            606 src/membrane.c             lmn_mem_unify_atom_args(mem-&gt;parent, a1, 0, a2, 0);</span>
+<span class='curline'><a href='../S/357.html#L619'>parent</a>            619 src/membrane.c     mem_remove_symbol_atom(mem-&gt;parent, LMN_SATOM(vec_get(&amp;remove_list_p, i)));</span>
+<span class='curline'><a href='../S/357.html#L757'>parent</a>            757 src/membrane.c         LMN_PROXY_GET_MEM(a0)-&gt;parent != mem) {</span>
+<span class='curline'><a href='../S/357.html#L763'>parent</a>            763 src/membrane.c               LMN_PROXY_GET_MEM(a10)-&gt;parent != mem) {</span>
+<span class='curline'><a href='../S/357.html#L921'>parent</a>            921 src/membrane.c           LMN_ASSERT(LMN_PROXY_GET_MEM(srcinside)-&gt;parent == LMN_PROXY_GET_MEM(srcatom));</span>
+<span class='curline'><a href='../S/357.html#L955'>parent</a>            955 src/membrane.c             if (orihl-&gt;parent &amp;&amp;</span>
+<span class='curline'><a href='../S/357.html#L956'>parent</a>            956 src/membrane.c                 proc_tbl_get_by_hlink(atoms, orihl-&gt;parent, &amp;t)) {</span>
+<span class='curline'><a href='../S/358.html#L205'>parent</a>            205 src/membrane.h   LmnMembrane          *parent;</span>
+<span class='curline'><a href='../S/358.html#L213'>parent</a>            213 src/membrane.h #define lmn_mem_parent(M)            ((M)-&gt;parent)</span>
+<span class='curline'><a href='../S/358.html#L294'>parent</a>            294 src/membrane.h static inline void lmn_mem_remove_mem(LmnMembrane *parent, LmnMembrane *mem);</span>
+<span class='curline'><a href='../S/358.html#L296'>parent</a>            296 src/membrane.h static inline void lmn_mem_delete_mem(LmnMembrane *parent, LmnMembrane *mem);</span>
+<span class='curline'><a href='../S/358.html#L320'>parent</a>            320 src/membrane.h static inline void lmn_mem_remove_mem(LmnMembrane *parent, LmnMembrane *mem) {</span>
+<span class='curline'><a href='../S/358.html#L321'>parent</a>            321 src/membrane.h   LMN_ASSERT(parent);</span>
+<span class='curline'><a href='../S/358.html#L322'>parent</a>            322 src/membrane.h   if (lmn_mem_child_head(parent) == mem) parent-&gt;child_head = lmn_mem_next(mem);</span>
+<span class='curline'><a href='../S/358.html#L337'>parent</a>            337 src/membrane.h static inline void lmn_mem_delete_mem(LmnMembrane *parent, LmnMembrane *mem) {</span>
+<span class='curline'><a href='../S/358.html#L338'>parent</a>            338 src/membrane.h   lmn_mem_remove_mem(parent, mem);</span>
+<span class='curline'><a href='../S/358.html#L383'>parent</a>            383 src/membrane.h   newmem-&gt;parent = parentmem;</span>
+<span class='curline'><a href='../S/417.html#L85'>parent</a>             85 src/verifier/delta_membrane.c static inline BOOL dmem_is_removed_mem(struct MemDelta *d, LmnMembrane *parent, LmnMembrane *child);</span>
+<span class='curline'><a href='../S/417.html#L109'>parent</a>            109 src/verifier/delta_membrane.c                                LmnMembrane *parent,</span>
+<span class='curline'><a href='../S/417.html#L694'>parent</a>            694 src/verifier/delta_membrane.c                        LMN_PROXY_GET_MEM(srcinside)-&gt;parent == LMN_PROXY_GET_MEM(srcatom));</span>
+<span class='curline'><a href='../S/417.html#L1182'>parent</a>           1182 src/verifier/delta_membrane.c                              LmnMembrane *parent,</span>
+<span class='curline'><a href='../S/417.html#L1186'>parent</a>           1186 src/verifier/delta_membrane.c     child-&gt;parent = parent;</span>
+<span class='curline'><a href='../S/417.html#L1188'>parent</a>           1188 src/verifier/delta_membrane.c     dmem_root_get_mem_delta(d, child)-&gt;new_parent = parent;</span>
+<span class='curline'><a href='../S/417.html#L1190'>parent</a>           1190 src/verifier/delta_membrane.c   if (dmem_root_is_new_mem(d, parent)) { /* 新しい膜 */</span>
+<span class='curline'><a href='../S/417.html#L1191'>parent</a>           1191 src/verifier/delta_membrane.c     vec_push(&amp;dmem_root_get_new_mem_info(d, parent)-&gt;new_child_mems, (vec_data_t)child);</span>
+<span class='curline'><a href='../S/417.html#L1193'>parent</a>           1193 src/verifier/delta_membrane.c     dmem_add_child_mem(dmem_root_get_mem_delta(d, parent), parent, child);</span>
+<span class='curline'><a href='../S/417.html#L1196'>parent</a>           1196 src/verifier/delta_membrane.c   proc_tbl_put_mem(&amp;d-&gt;owner_tbl, child, (LmnWord)parent);</span>
+<span class='curline'><a href='../S/417.html#L1200'>parent</a>           1200 src/verifier/delta_membrane.c                           LmnMembrane *parent,</span>
+<span class='curline'><a href='../S/417.html#L1204'>parent</a>           1204 src/verifier/delta_membrane.c     child-&gt;parent = NULL;</span>
+<span class='curline'><a href='../S/417.html#L1209'>parent</a>           1209 src/verifier/delta_membrane.c   if (dmem_root_is_new_mem(root_d, parent)) {</span>
+<span class='curline'><a href='../S/417.html#L1210'>parent</a>           1210 src/verifier/delta_membrane.c     vec_push(&amp;dmem_root_get_new_mem_info(root_d, parent)-&gt;removed_child_mems, (vec_data_t)child);</span>
+<span class='curline'><a href='../S/417.html#L1212'>parent</a>           1212 src/verifier/delta_membrane.c     struct MemDelta *d = dmem_root_get_mem_delta(root_d, parent);</span>
+<span class='curline'><a href='../S/417.html#L1216'>parent</a>           1216 src/verifier/delta_membrane.c     if (dmem_is_removed_mem(d, parent, child)) lmn_fatal("unexpected");</span>
+<span class='curline'><a href='../S/417.html#L1324'>parent</a>           1324 src/verifier/delta_membrane.c                 LMN_PROXY_GET_MEM(dmem_root_get_link(root_d, a1, 0))-&gt;parent != mem) { /* (3) */</span>
+<span class='curline'><a href='../S/417.html#L1633'>parent</a>           1633 src/verifier/delta_membrane.c   if (dmem_root_is_new_mem(root_d, m)) return m-&gt;parent;</span>
+<span class='curline'><a href='../S/417.html#L1638'>parent</a>           1638 src/verifier/delta_membrane.c     return m-&gt;parent;</span>
+<span class='curline'><a href='../S/417.html#L1825'>parent</a>           1825 src/verifier/delta_membrane.c   p-&gt;new_parent = m-&gt;parent;</span>
+<span class='curline'><a href='../S/417.html#L1954'>parent</a>           1954 src/verifier/delta_membrane.c static inline BOOL dmem_is_removed_mem(struct MemDelta *d, LmnMembrane *parent, LmnMembrane *child)</span>
+<span class='curline'><a href='../S/417.html#L1957'>parent</a>           1957 src/verifier/delta_membrane.c   return proc_tbl_get_by_mem(&amp;d-&gt;root_d-&gt;owner_tbl, child, &amp;t) &amp;&amp; (LmnMembrane *)t != parent;</span>
+<span class='curline'><a href='../S/417.html#L1986'>parent</a>           1986 src/verifier/delta_membrane.c                                LmnMembrane *parent,</span>
+<span class='curline'><a href='../S/418.html#L129'>parent</a>            129 src/verifier/delta_membrane.h                              LmnMembrane *parent,</span>
+<span class='curline'><a href='../S/418.html#L151'>parent</a>            151 src/verifier/delta_membrane.h                           LmnMembrane *parent,</span>
+<span class='curline'><a href='../S/419.html#L334'>parent</a>            334 src/verifier/dpor.c       mem = mem-&gt;parent;</span>
+<span class='curline'><a href='../S/419.html#L1092'>parent</a>           1092 src/verifier/dpor.c       State *s, *parent, *ret, tmp_s;</span>
+<span class='curline'><a href='../S/419.html#L1098'>parent</a>           1098 src/verifier/dpor.c       parent = state_get_parent(s);</span>
+<span class='curline'><a href='../S/419.html#L1099'>parent</a>           1099 src/verifier/dpor.c       state_succ_add(parent, (succ_data_t)t);</span>
+<span class='curline'><a href='../S/436.html#L1872'>parent</a>           1872 src/verifier/mem_encode.c       LmnMembrane *parent = lmn_mem_parent(mem);</span>
+<span class='curline'><a href='../S/436.html#L1877'>parent</a>           1877 src/verifier/mem_encode.c         out = lmn_mem_newatom(parent, LMN_OUT_PROXY_FUNCTOR);</span>
+<span class='curline'><a href='../S/436.html#L1881'>parent</a>           1881 src/verifier/mem_encode.c         pos = binstr_decode_mol(bs, pos, log, nvisit, parent, out, 1);</span>
+<span class='curline'><a href='../S/436.html#L1883'>parent</a>           1883 src/verifier/mem_encode.c         pos = binstr_decode_mol(bs, pos, log, nvisit, parent, NULL, 1);</span>
+<span class='curline'><a href='../S/454.html#L101'>parent</a>            101 src/verifier/state.c   new_s-&gt;parent           = NULL;</span>
+<span class='curline'><a href='../S/455.html#L83'>parent</a>             83 src/verifier/state.h   State             *parent;          /*  8(4)byte: 自身を生成した状態へのポインタを持たせておく */</span>
+<span class='curline'><a href='../S/455.html#L213'>parent</a>            213 src/verifier/state.h static inline void           state_set_parent(State *s, State *parent);</span>
+<span class='curline'><a href='../S/455.html#L424'>parent</a>            424 src/verifier/state.h   return s-&gt;parent;</span>
+<span class='curline'><a href='../S/455.html#L428'>parent</a>            428 src/verifier/state.h static inline void state_set_parent(State *s, State *parent) {</span>
+<span class='curline'><a href='../S/455.html#L429'>parent</a>            429 src/verifier/state.h   s-&gt;parent = parent;</span>
+<span class='curline'><a href='../S/637.html#L1223'>parent</a>           1223 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     Nesting* parent;</span>
+<span class='curline'><a href='../S/637.html#L1224'>parent</a>           1224 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     Inner(Nesting* p) : parent(p) {}</span>
+</pre>
+</body>
+</html>

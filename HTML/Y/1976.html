@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>dbuf</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/725.html#L82'>dbuf</a>               82 third_party/zdelta-2.1/zdelta.c   zd_mem_buffer dbuf;</span>
+<span class='curline'><a href='../S/725.html#L100'>dbuf</a>              100 third_party/zdelta-2.1/zdelta.c   zd_alloc(&amp;dbuf, *dsize);	</span>
+<span class='curline'><a href='../S/725.html#L102'>dbuf</a>              102 third_party/zdelta-2.1/zdelta.c   strm.next_out  = dbuf.pos;</span>
+<span class='curline'><a href='../S/725.html#L122'>dbuf</a>              122 third_party/zdelta-2.1/zdelta.c     dbuf.pos = strm.next_out; </span>
+<span class='curline'><a href='../S/725.html#L125'>dbuf</a>              125 third_party/zdelta-2.1/zdelta.c     zd_realloc(&amp;dbuf,dbuf.size);</span>
+<span class='curline'><a href='../S/725.html#L128'>dbuf</a>              128 third_party/zdelta-2.1/zdelta.c     strm.next_out = (uch*)dbuf.pos;</span>
+<span class='curline'><a href='../S/725.html#L129'>dbuf</a>              129 third_party/zdelta-2.1/zdelta.c     strm.avail_out = dbuf.size - strm.total_out;</span>
+<span class='curline'><a href='../S/725.html#L133'>dbuf</a>              133 third_party/zdelta-2.1/zdelta.c   dbuf.pos = strm.next_out; </span>
+<span class='curline'><a href='../S/725.html#L137'>dbuf</a>              137 third_party/zdelta-2.1/zdelta.c     zd_free(&amp;dbuf);</span>
+<span class='curline'><a href='../S/725.html#L142'>dbuf</a>              142 third_party/zdelta-2.1/zdelta.c   *delta = dbuf.buffer;</span>
+<span class='curline'><a href='../S/725.html#L213'>dbuf</a>              213 third_party/zdelta-2.1/zdelta.c   zd_mem_buffer dbuf;</span>
+<span class='curline'><a href='../S/725.html#L233'>dbuf</a>              233 third_party/zdelta-2.1/zdelta.c   zd_alloc(&amp;dbuf, *dsize);	</span>
+<span class='curline'><a href='../S/725.html#L235'>dbuf</a>              235 third_party/zdelta-2.1/zdelta.c   strm.next_out  = dbuf.pos;</span>
+<span class='curline'><a href='../S/725.html#L255'>dbuf</a>              255 third_party/zdelta-2.1/zdelta.c     dbuf.pos = strm.next_out; </span>
+<span class='curline'><a href='../S/725.html#L258'>dbuf</a>              258 third_party/zdelta-2.1/zdelta.c     zd_realloc(&amp;dbuf,dbuf.size);</span>
+<span class='curline'><a href='../S/725.html#L261'>dbuf</a>              261 third_party/zdelta-2.1/zdelta.c     strm.next_out = (uch*)dbuf.pos;</span>
+<span class='curline'><a href='../S/725.html#L262'>dbuf</a>              262 third_party/zdelta-2.1/zdelta.c     strm.avail_out = dbuf.size - strm.total_out;</span>
+<span class='curline'><a href='../S/725.html#L266'>dbuf</a>              266 third_party/zdelta-2.1/zdelta.c   dbuf.pos = strm.next_out; </span>
+<span class='curline'><a href='../S/725.html#L270'>dbuf</a>              270 third_party/zdelta-2.1/zdelta.c     zd_free(&amp;dbuf);</span>
+<span class='curline'><a href='../S/725.html#L275'>dbuf</a>              275 third_party/zdelta-2.1/zdelta.c   *delta = dbuf.buffer;</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>ample_candidate</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/421.html#L72'>ample_candidate</a>    72 src/verifier/dpor_naive.c   Vector     *ample_candidate;    /* ample(s)の候補を管理するVector．本Vector内のすべての遷移が，C0〜C3のチェック対象となる */</span>
+<span class='curline'><a href='../S/421.html#L157'>ample_candidate</a>   157 src/verifier/dpor_naive.c   mc_por.ample_candidate     = vec_make(POR_VEC_SIZE);</span>
+<span class='curline'><a href='../S/421.html#L168'>ample_candidate</a>   168 src/verifier/dpor_naive.c   vec_free(mc_por.ample_candidate);</span>
+<span class='curline'><a href='../S/421.html#L254'>ample_candidate</a>   254 src/verifier/dpor_naive.c   vec_clear(mc_por.ample_candidate);</span>
+<span class='curline'><a href='../S/421.html#L289'>ample_candidate</a>   289 src/verifier/dpor_naive.c   if (vec_is_empty(mc_por.ample_candidate)) {</span>
+<span class='curline'><a href='../S/421.html#L294'>ample_candidate</a>   294 src/verifier/dpor_naive.c       vec_push(mc_por.ample_candidate, (vec_data_t)transition_id(t));</span>
+<span class='curline'><a href='../S/421.html#L301'>ample_candidate</a>   301 src/verifier/dpor_naive.c         vec_clear(mc_por.ample_candidate);</span>
+<span class='curline'><a href='../S/421.html#L307'>ample_candidate</a>   307 src/verifier/dpor_naive.c     if (vec_is_empty(mc_por.ample_candidate)) {</span>
+<span class='curline'><a href='../S/421.html#L323'>ample_candidate</a>   323 src/verifier/dpor_naive.c     if (vec_num(mc_por.ample_candidate) == state_succ_num(s) ||</span>
+<span class='curline'><a href='../S/421.html#L731'>ample_candidate</a>   731 src/verifier/dpor_naive.c     if (!vec_contains(mc_por.ample_candidate, (vec_data_t)transition_id(t))) {</span>
+<span class='curline'><a href='../S/421.html#L756'>ample_candidate</a>   756 src/verifier/dpor_naive.c           if (!vec_contains(mc_por.ample_candidate, (vec_data_t)transition_id(succ_succ_t))) {</span>
+<span class='curline'><a href='../S/421.html#L784'>ample_candidate</a>   784 src/verifier/dpor_naive.c       if (vec_contains(mc_por.ample_candidate, (vec_data_t)transition_id(t))) {</span>
+<span class='curline'><a href='../S/421.html#L851'>ample_candidate</a>   851 src/verifier/dpor_naive.c     if (!vec_contains(mc_por.ample_candidate, (vec_data_t)transition_id(succ_t))) {</span>
+<span class='curline'><a href='../S/421.html#L875'>ample_candidate</a>   875 src/verifier/dpor_naive.c   for (i = 0; i &lt; vec_num(mc_por.ample_candidate); i++) {</span>
+<span class='curline'><a href='../S/421.html#L879'>ample_candidate</a>   879 src/verifier/dpor_naive.c     id = (unsigned long)vec_get(mc_por.ample_candidate, i);</span>
+<span class='curline'><a href='../S/421.html#L1035'>ample_candidate</a>  1035 src/verifier/dpor_naive.c         if (!vec_contains(mc_por.ample_candidate, (vec_data_t)transition_id(check))) {</span>
+<span class='curline'><a href='../S/421.html#L1036'>ample_candidate</a>  1036 src/verifier/dpor_naive.c           vec_push(mc_por.ample_candidate, (vec_data_t)transition_id(check));</span>
+<span class='curline'><a href='../S/421.html#L1042'>ample_candidate</a>  1042 src/verifier/dpor_naive.c     if (need_to_push_id_key &amp;&amp; !vec_contains(mc_por.ample_candidate, (vec_data_t)id_key)) {</span>
+<span class='curline'><a href='../S/421.html#L1043'>ample_candidate</a>  1043 src/verifier/dpor_naive.c       vec_push(mc_por.ample_candidate, (vec_data_t)id_key);</span>
+<span class='curline'><a href='../S/421.html#L1074'>ample_candidate</a>  1074 src/verifier/dpor_naive.c       } else if (!vec_contains(mc_por.ample_candidate, (vec_data_t)transition_id(succ_t))) {</span>
+<span class='curline'><a href='../S/421.html#L1154'>ample_candidate</a>  1154 src/verifier/dpor_naive.c   for (i = 0; i &lt; vec_num(mc_por.ample_candidate); ++i) {</span>
+<span class='curline'><a href='../S/421.html#L1155'>ample_candidate</a>  1155 src/verifier/dpor_naive.c     fprintf(stdout, " %lu", (unsigned long)vec_get(mc_por.ample_candidate, i));</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>LMN_SATOM_GET_FUNCTOR</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/309.html#L90'>LMN_SATOM_GET_FUNCTOR</a>   90 src/alloc.c      arity = LMN_FUNCTOR_ARITY(LMN_SATOM_GET_FUNCTOR(ap));</span>
+<span class='curline'><a href='../S/311.html#L124'>LMN_SATOM_GET_FUNCTOR</a>  124 src/atom.h     #define LMN_SATOM_GET_ARITY(ATOM)       (LMN_FUNCTOR_ARITY(LMN_SATOM_GET_FUNCTOR(LMN_SATOM(ATOM))))</span>
+<span class='curline'><a href='../S/311.html#L126'>LMN_SATOM_GET_FUNCTOR</a>  126 src/atom.h     #define LMN_SATOM_GET_LINK_NUM(ATOM)    (LMN_FUNCTOR_GET_LINK_NUM(LMN_SATOM_GET_FUNCTOR(LMN_SATOM(ATOM))))</span>
+<span class='curline'><a href='../S/311.html#L142'>LMN_SATOM_GET_FUNCTOR</a>  142 src/atom.h                                       : LMN_SATOM_GET_FUNCTOR(LMN_SATOM(ATOM)) == (FUNC))</span>
+<span class='curline'><a href='../S/311.html#L155'>LMN_SATOM_GET_FUNCTOR</a>  155 src/atom.h     #define LMN_SATOM_IS_PROXY(ATOM)        (LMN_IS_PROXY_FUNCTOR(LMN_SATOM_GET_FUNCTOR((ATOM))))</span>
+<span class='curline'><a href='../S/311.html#L162'>LMN_SATOM_GET_FUNCTOR</a>  162 src/atom.h     #define LMN_SATOM_STR(ATOM)             LMN_SYMBOL_STR(LMN_FUNCTOR_NAME_ID(LMN_SATOM_GET_FUNCTOR(LMN_SATOM(ATOM))))</span>
+<span class='curline'><a href='../S/311.html#L232'>LMN_SATOM_GET_FUNCTOR</a>  232 src/atom.h       f = LMN_SATOM_GET_FUNCTOR(LMN_SATOM(atom));</span>
+<span class='curline'><a href='../S/311.html#L277'>LMN_SATOM_GET_FUNCTOR</a>  277 src/atom.h       f = LMN_SATOM_GET_FUNCTOR(LMN_SATOM(atom));</span>
+<span class='curline'><a href='../S/311.html#L335'>LMN_SATOM_GET_FUNCTOR</a>  335 src/atom.h       unsigned int end = LMN_FUNCTOR_GET_LINK_NUM(LMN_SATOM_GET_FUNCTOR(atom));</span>
+<span class='curline'><a href='../S/311.html#L343'>LMN_SATOM_GET_FUNCTOR</a>  343 src/atom.h       if (LMN_FUNC_IS_HL(LMN_SATOM_GET_FUNCTOR(atom))) {</span>
+<span class='curline'><a href='../S/311.html#L364'>LMN_SATOM_GET_FUNCTOR</a>  364 src/atom.h         return LMN_SATOM_GET_FUNCTOR(atom0) == LMN_SATOM_GET_FUNCTOR(atom1);</span>
+<span class='curline'><a href='../S/317.html#L360'>LMN_SATOM_GET_FUNCTOR</a>  360 src/dumper.c     if (LMN_SATOM_GET_FUNCTOR(atom) != LMN_IN_PROXY_FUNCTOR &amp;&amp;</span>
+<span class='curline'><a href='../S/317.html#L361'>LMN_SATOM_GET_FUNCTOR</a>  361 src/dumper.c         LMN_SATOM_GET_FUNCTOR(atom) != LMN_OUT_PROXY_FUNCTOR) return;</span>
+<span class='curline'><a href='../S/317.html#L413'>LMN_SATOM_GET_FUNCTOR</a>  413 src/dumper.c       if (LMN_SATOM_GET_FUNCTOR(atom) == LMN_OUT_PROXY_FUNCTOR) {</span>
+<span class='curline'><a href='../S/317.html#L416'>LMN_SATOM_GET_FUNCTOR</a>  416 src/dumper.c             LMN_SATOM_GET_FUNCTOR(LMN_SATOM_GET_LINK(in, 1)) == LMN_UNARY_PLUS_FUNCTOR) {</span>
+<span class='curline'><a href='../S/317.html#L443'>LMN_SATOM_GET_FUNCTOR</a>  443 src/dumper.c     f = LMN_SATOM_GET_FUNCTOR(atom);</span>
+<span class='curline'><a href='../S/317.html#L513'>LMN_SATOM_GET_FUNCTOR</a>  513 src/dumper.c       LmnFunctor f = LMN_SATOM_GET_FUNCTOR(atom);</span>
+<span class='curline'><a href='../S/317.html#L536'>LMN_SATOM_GET_FUNCTOR</a>  536 src/dumper.c     const LmnFunctor f = LMN_SATOM_GET_FUNCTOR(atom);</span>
+<span class='curline'><a href='../S/317.html#L677'>LMN_SATOM_GET_FUNCTOR</a>  677 src/dumper.c         if(LMN_SATOM_GET_FUNCTOR(atom)==LMN_RESUME_FUNCTOR)</span>
+<span class='curline'><a href='../S/317.html#L831'>LMN_SATOM_GET_FUNCTOR</a>  831 src/dumper.c     f = LMN_SATOM_GET_FUNCTOR(atom);</span>
+<span class='curline'><a href='../S/317.html#L954'>LMN_SATOM_GET_FUNCTOR</a>  954 src/dumper.c         dump_atomname(out, LMN_SATOM_GET_FUNCTOR(atom));</span>
+<span class='curline'><a href='../S/317.html#L956'>LMN_SATOM_GET_FUNCTOR</a>  956 src/dumper.c         for (i = 0; i &lt; LMN_FUNCTOR_GET_LINK_NUM(LMN_SATOM_GET_FUNCTOR(atom)); i++) {</span>
+<span class='curline'><a href='../S/317.html#L972'>LMN_SATOM_GET_FUNCTOR</a>  972 src/dumper.c         unsigned int arity = LMN_FUNCTOR_GET_LINK_NUM(LMN_SATOM_GET_FUNCTOR(atom));</span>
+<span class='curline'><a href='../S/327.html#L60'>LMN_SATOM_GET_FUNCTOR</a>   60 src/ext/nd_conf.c                                           LMN_FUNCTOR_NAME_ID(LMN_SATOM_GET_FUNCTOR(a1)),</span>
+<span class='curline'><a href='../S/328.html#L58'>LMN_SATOM_GET_FUNCTOR</a>   58 src/ext/nlmem.c   copy_tag_name = LMN_FUNCTOR_NAME_ID(LMN_SATOM_GET_FUNCTOR(a1));</span>
+<span class='curline'><a href='../S/328.html#L102'>LMN_SATOM_GET_FUNCTOR</a>  102 src/ext/nlmem.c   LmnFunctor kill_tag_func = LMN_SATOM_GET_FUNCTOR(a1);</span>
+<span class='curline'><a href='../S/328.html#L106'>LMN_SATOM_GET_FUNCTOR</a>  106 src/ext/nlmem.c   if (LMN_SATOM_GET_FUNCTOR(a0) != LMN_OUT_PROXY_FUNCTOR) {</span>
+<span class='curline'><a href='../S/335.html#L85'>LMN_SATOM_GET_FUNCTOR</a>   85 src/hyperlink.h #define LMN_IS_HL(ATOM)      (LMN_FUNC_IS_HL(LMN_SATOM_GET_FUNCTOR(ATOM)))</span>
+<span class='curline'><a href='../S/344.html#L104'>LMN_SATOM_GET_FUNCTOR</a>  104 src/interpret_generated.c           if(LMN_SATOM_GET_FUNCTOR(atom) != LMN_RESUME_FUNCTOR){</span>
+<span class='curline'><a href='../S/344.html#L474'>LMN_SATOM_GET_FUNCTOR</a>  474 src/interpret_generated.c        LMN_SATOM_GET_FUNCTOR(LMN_SATOM(wt(rc, targ0))) != TR_GFID(targ1.functor_data)) return FALSE;</span>
+<span class='curline'><a href='../S/344.html#L508'>LMN_SATOM_GET_FUNCTOR</a>  508 src/interpret_generated.c           LMN_SATOM_GET_FUNCTOR(LMN_SATOM(wt(rc, targ0))) != TR_GFID(targ1.functor_data))) return FALSE;</span>
+<span class='curline'><a href='../S/344.html#L1087'>LMN_SATOM_GET_FUNCTOR</a> 1087 src/interpret_generated.c     wt_set(rc, targ0, LMN_SATOM_GET_FUNCTOR(wt(rc, targ1)));</span>
+<span class='curline'><a href='../S/357.html#L235'>LMN_SATOM_GET_FUNCTOR</a>  235 src/membrane.c   LmnFunctor f = LMN_SATOM_GET_FUNCTOR(atom);</span>
+<span class='curline'><a href='../S/357.html#L299'>LMN_SATOM_GET_FUNCTOR</a>  299 src/membrane.c       ret += sizeof(LmnWord) * LMN_SATOM_WORDS(LMN_FUNCTOR_ARITY(LMN_SATOM_GET_FUNCTOR(atom)));</span>
+<span class='curline'><a href='../S/357.html#L516'>LMN_SATOM_GET_FUNCTOR</a>  516 src/membrane.c       if (LMN_SATOM_GET_FUNCTOR((a)) != LMN_RESUME_FUNCTOR) {</span>
+<span class='curline'><a href='../S/357.html#L577'>LMN_SATOM_GET_FUNCTOR</a>  577 src/membrane.c         f0 = LMN_SATOM_GET_FUNCTOR(a0);</span>
+<span class='curline'><a href='../S/357.html#L595'>LMN_SATOM_GET_FUNCTOR</a>  595 src/membrane.c       f1 = LMN_SATOM_GET_FUNCTOR(a1);</span>
+<span class='curline'><a href='../S/357.html#L603'>LMN_SATOM_GET_FUNCTOR</a>  603 src/membrane.c           f2 = LMN_SATOM_GET_FUNCTOR(a2);</span>
+<span class='curline'><a href='../S/357.html#L760'>LMN_SATOM_GET_FUNCTOR</a>  760 src/membrane.c         if (LMN_SATOM_GET_FUNCTOR(a1) == LMN_OUT_PROXY_FUNCTOR) {</span>
+<span class='curline'><a href='../S/357.html#L898'>LMN_SATOM_GET_FUNCTOR</a>  898 src/membrane.c       f       = LMN_SATOM_GET_FUNCTOR(srcatom);</span>
+<span class='curline'><a href='../S/357.html#L920'>LMN_SATOM_GET_FUNCTOR</a>  920 src/membrane.c           LMN_ASSERT(LMN_SATOM_GET_FUNCTOR(srcinside) == LMN_IN_PROXY_FUNCTOR);</span>
+<span class='curline'><a href='../S/357.html#L1158'>LMN_SATOM_GET_FUNCTOR</a> 1158 src/membrane.c     if (LMN_SATOM_GET_FUNCTOR(l1-&gt;ap) != LMN_SATOM_GET_FUNCTOR(l2-&gt;ap)) {</span>
+<span class='curline'><a href='../S/357.html#L1770'>LMN_SATOM_GET_FUNCTOR</a> 1770 src/membrane.c   f = LMN_SATOM_GET_FUNCTOR(atom);</span>
+<span class='curline'><a href='../S/357.html#L1953'>LMN_SATOM_GET_FUNCTOR</a> 1953 src/membrane.c   f    = LMN_SATOM_GET_FUNCTOR(root1);</span>
+<span class='curline'><a href='../S/357.html#L2147'>LMN_SATOM_GET_FUNCTOR</a> 2147 src/membrane.c     LmnFunctor f_new = LMN_SATOM_GET_FUNCTOR(atom1);</span>
+<span class='curline'><a href='../S/357.html#L2148'>LMN_SATOM_GET_FUNCTOR</a> 2148 src/membrane.c     if (f_new != LMN_SATOM_GET_FUNCTOR(atom2) || attr1 != attr2) {</span>
+<span class='curline'><a href='../S/357.html#L2201'>LMN_SATOM_GET_FUNCTOR</a> 2201 src/membrane.c       LmnFunctor f_new = LMN_SATOM_GET_FUNCTOR(atom1);</span>
+<span class='curline'><a href='../S/357.html#L2203'>LMN_SATOM_GET_FUNCTOR</a> 2203 src/membrane.c       if (f_new != LMN_SATOM_GET_FUNCTOR(atom2) ||</span>
+<span class='curline'><a href='../S/357.html#L2603'>LMN_SATOM_GET_FUNCTOR</a> 2603 src/membrane.c     LMN_ASSERT(LMN_IS_PROXY_FUNCTOR(LMN_SATOM_GET_FUNCTOR(a1)) &amp;&amp;</span>
+<span class='curline'><a href='../S/357.html#L2604'>LMN_SATOM_GET_FUNCTOR</a> 2604 src/membrane.c                LMN_IS_PROXY_FUNCTOR(LMN_SATOM_GET_FUNCTOR(a2)));</span>
+<span class='curline'><a href='../S/357.html#L2618'>LMN_SATOM_GET_FUNCTOR</a> 2618 src/membrane.c   if (LMN_SATOM_GET_FUNCTOR(a1) != LMN_SATOM_GET_FUNCTOR(a2)) {</span>
+<span class='curline'><a href='../S/357.html#L2624'>LMN_SATOM_GET_FUNCTOR</a> 2624 src/membrane.c   if (LMN_SATOM_GET_FUNCTOR(a1) == LMN_IN_PROXY_FUNCTOR                &amp;&amp;</span>
+<span class='curline'><a href='../S/357.html#L2633'>LMN_SATOM_GET_FUNCTOR</a> 2633 src/membrane.c   if (LMN_SATOM_GET_FUNCTOR(a1) == LMN_IN_PROXY_FUNCTOR &amp;&amp;</span>
+<span class='curline'><a href='../S/357.html#L2640'>LMN_SATOM_GET_FUNCTOR</a> 2640 src/membrane.c   for (; i &lt; LMN_FUNCTOR_GET_LINK_NUM(LMN_SATOM_GET_FUNCTOR(a1)); i++) {</span>
+<span class='curline'><a href='../S/357.html#L2690'>LMN_SATOM_GET_FUNCTOR</a> 2690 src/membrane.c       if (LMN_SATOM_GET_FUNCTOR(l1) == LMN_IN_PROXY_FUNCTOR   &amp;&amp;</span>
+<span class='curline'><a href='../S/357.html#L2691'>LMN_SATOM_GET_FUNCTOR</a> 2691 src/membrane.c           LMN_SATOM_GET_FUNCTOR(a1) == LMN_OUT_PROXY_FUNCTOR  &amp;&amp;</span>
+<span class='curline'><a href='../S/357.html#L2696'>LMN_SATOM_GET_FUNCTOR</a> 2696 src/membrane.c       else if (LMN_SATOM_GET_FUNCTOR(l1) == LMN_OUT_PROXY_FUNCTOR &amp;&amp;</span>
+<span class='curline'><a href='../S/357.html#L2697'>LMN_SATOM_GET_FUNCTOR</a> 2697 src/membrane.c                LMN_SATOM_GET_FUNCTOR(a1) == LMN_IN_PROXY_FUNCTOR  &amp;&amp;</span>
+<span class='curline'><a href='../S/358.html#L155'>LMN_SATOM_GET_FUNCTOR</a>  155 src/membrane.h       if (LMN_SATOM_GET_FUNCTOR(atom) != LMN_RESUME_FUNCTOR) {</span>
+<span class='curline'><a href='../S/358.html#L446'>LMN_SATOM_GET_FUNCTOR</a>  446 src/membrane.h   LmnFunctor f = LMN_SATOM_GET_FUNCTOR(atom);</span>
+<span class='curline'><a href='../S/358.html#L468'>LMN_SATOM_GET_FUNCTOR</a>  468 src/membrane.h   unsigned int end = LMN_FUNCTOR_GET_LINK_NUM(LMN_SATOM_GET_FUNCTOR(atom));</span>
+<span class='curline'><a href='../S/358.html#L601'>LMN_SATOM_GET_FUNCTOR</a>  601 src/membrane.h       if (LMN_SATOM_GET_FUNCTOR((V)) != LMN_RESUME_FUNCTOR) {                  \</span>
+<span class='curline'><a href='../S/358.html#L614'>LMN_SATOM_GET_FUNCTOR</a>  614 src/membrane.h         if (LMN_SATOM_GET_FUNCTOR((V)) != LMN_RESUME_FUNCTOR) {                \</span>
+<span class='curline'><a href='../S/358.html#L628'>LMN_SATOM_GET_FUNCTOR</a>  628 src/membrane.h         if (LMN_SATOM_GET_FUNCTOR((V)) != LMN_RESUME_FUNCTOR) {                \</span>
+<span class='curline'><a href='../S/373.html#L240'>LMN_SATOM_GET_FUNCTOR</a>  240 src/so.h                     LMN_SATOM_GET_FUNCTOR(LMN_SATOM_GET_LINK(LMN_SATOM(wt(rc, atomi)), pos)),\</span>
+<span class='curline'><a href='../S/382.html#L62'>LMN_SATOM_GET_FUNCTOR</a>   62 src/system_ruleset.c     if (LMN_SATOM_GET_FUNCTOR(o0) == LMN_RESUME_FUNCTOR) continue;</span>
+<span class='curline'><a href='../S/382.html#L66'>LMN_SATOM_GET_FUNCTOR</a>   66 src/system_ruleset.c     if (LMN_SATOM_GET_FUNCTOR(o1) == LMN_OUT_PROXY_FUNCTOR) {</span>
+<span class='curline'><a href='../S/382.html#L107'>LMN_SATOM_GET_FUNCTOR</a>  107 src/system_ruleset.c     if (LMN_SATOM_GET_FUNCTOR(o0) == LMN_RESUME_FUNCTOR) continue;</span>
+<span class='curline'><a href='../S/382.html#L113'>LMN_SATOM_GET_FUNCTOR</a>  113 src/system_ruleset.c     if (LMN_SATOM_GET_FUNCTOR(i1) == LMN_IN_PROXY_FUNCTOR) {</span>
+<span class='curline'><a href='../S/382.html#L145'>LMN_SATOM_GET_FUNCTOR</a>  145 src/system_ruleset.c     if (LMN_SATOM_GET_FUNCTOR(out0) != LMN_OUT_PROXY_FUNCTOR) {</span>
+<span class='curline'><a href='../S/382.html#L156'>LMN_SATOM_GET_FUNCTOR</a>  156 src/system_ruleset.c     if (LMN_SATOM_GET_FUNCTOR(out1) != LMN_OUT_PROXY_FUNCTOR) {</span>
+<span class='curline'><a href='../S/384.html#L1086'>LMN_SATOM_GET_FUNCTOR</a> 1086 src/task.c                     if (LMN_SATOM_GET_FUNCTOR(wt(rc, atomi)) != f              ||</span>
+<span class='curline'><a href='../S/384.html#L1171'>LMN_SATOM_GET_FUNCTOR</a> 1171 src/task.c                 if(LMN_SATOM_GET_FUNCTOR(atom) == LMN_RESUME_FUNCTOR)</span>
+<span class='curline'><a href='../S/384.html#L1215'>LMN_SATOM_GET_FUNCTOR</a> 1215 src/task.c           LMN_ASSERT(LMN_IS_PROXY_FUNCTOR(LMN_SATOM_GET_FUNCTOR(LMN_SATOM(wt(rc, atomi)))));</span>
+<span class='curline'><a href='../S/384.html#L1776'>LMN_SATOM_GET_FUNCTOR</a> 1776 src/task.c               if (LMN_SATOM_GET_FUNCTOR(LMN_SATOM(wt(rc, atomi))) != f) {</span>
+<span class='curline'><a href='../S/384.html#L1811'>LMN_SATOM_GET_FUNCTOR</a> 1811 src/task.c               if (LMN_SATOM_GET_FUNCTOR(LMN_SATOM(wt(rc, atomi))) == f) return FALSE;</span>
+<span class='curline'><a href='../S/384.html#L2792'>LMN_SATOM_GET_FUNCTOR</a> 2792 src/task.c             warry_set(rc, funci, LMN_SATOM_GET_FUNCTOR(wt(rc, atomi)), at(rc, atomi), TT_OTHER);</span>
+<span class='curline'><a href='../S/384.html#L2912'>LMN_SATOM_GET_FUNCTOR</a> 2912 src/task.c                       LMN_SATOM_GET_FUNCTOR(LMN_SATOM_GET_LINK(LMN_SATOM(wt(rc, atomi)), pos)),</span>
+<span class='curline'><a href='../S/384.html#L3097'>LMN_SATOM_GET_FUNCTOR</a> 3097 src/task.c           LMN_ASSERT(LMN_IS_PROXY_FUNCTOR(LMN_SATOM_GET_FUNCTOR(wt(rc, atomi))));</span>
+<span class='curline'><a href='../S/384.html#L3205'>LMN_SATOM_GET_FUNCTOR</a> 3205 src/task.c             lmn_interned_str name = LMN_FUNCTOR_NAME_ID(LMN_SATOM_GET_FUNCTOR(f_name));</span>
+<span class='curline'><a href='../S/384.html#L3206'>LMN_SATOM_GET_FUNCTOR</a> 3206 src/task.c             int arity = LMN_FUNCTOR_ARITY(LMN_SATOM_GET_FUNCTOR(atom));</span>
+<span class='curline'><a href='../S/384.html#L3919'>LMN_SATOM_GET_FUNCTOR</a> 3919 src/task.c             wt_set(rc, funci, LMN_SATOM_GET_FUNCTOR(wt(rc, atomi)));</span>
+<span class='curline'><a href='../S/384.html#L4107'>LMN_SATOM_GET_FUNCTOR</a> 4107 src/task.c             lmn_interned_str name = LMN_FUNCTOR_NAME_ID(LMN_SATOM_GET_FUNCTOR(f_name));</span>
+<span class='curline'><a href='../S/384.html#L4108'>LMN_SATOM_GET_FUNCTOR</a> 4108 src/task.c             int arity = LMN_FUNCTOR_ARITY(LMN_SATOM_GET_FUNCTOR(atom));</span>
+<span class='curline'><a href='../S/417.html#L164'>LMN_SATOM_GET_FUNCTOR</a>  164 src/verifier/delta_membrane.c         if (LMN_SATOM_GET_FUNCTOR((V)) != LMN_RESUME_FUNCTOR &amp;&amp;            \</span>
+<span class='curline'><a href='../S/417.html#L179'>LMN_SATOM_GET_FUNCTOR</a>  179 src/verifier/delta_membrane.c         if (LMN_SATOM_GET_FUNCTOR(V) == F &amp;&amp;                               \</span>
+<span class='curline'><a href='../S/417.html#L405'>LMN_SATOM_GET_FUNCTOR</a>  405 src/verifier/delta_membrane.c         if (LMN_IS_PROXY_FUNCTOR(LMN_SATOM_GET_FUNCTOR(ap1)) &amp;&amp;</span>
+<span class='curline'><a href='../S/417.html#L418'>LMN_SATOM_GET_FUNCTOR</a>  418 src/verifier/delta_membrane.c         if (LMN_IS_PROXY_FUNCTOR(LMN_SATOM_GET_FUNCTOR(ap2)) &amp;&amp;</span>
+<span class='curline'><a href='../S/417.html#L518'>LMN_SATOM_GET_FUNCTOR</a>  518 src/verifier/delta_membrane.c     else if (LMN_IS_PROXY_FUNCTOR(LMN_SATOM_GET_FUNCTOR(ap)) &amp;&amp;</span>
+<span class='curline'><a href='../S/417.html#L670'>LMN_SATOM_GET_FUNCTOR</a>  670 src/verifier/delta_membrane.c       f = LMN_SATOM_GET_FUNCTOR(srcatom);</span>
+<span class='curline'><a href='../S/417.html#L693'>LMN_SATOM_GET_FUNCTOR</a>  693 src/verifier/delta_membrane.c             LMN_ASSERT(LMN_SATOM_GET_FUNCTOR(srcinside) == LMN_IN_PROXY_FUNCTOR &amp;&amp;</span>
+<span class='curline'><a href='../S/417.html#L763'>LMN_SATOM_GET_FUNCTOR</a>  763 src/verifier/delta_membrane.c   unsigned int end = LMN_FUNCTOR_GET_LINK_NUM(LMN_SATOM_GET_FUNCTOR(atom));</span>
+<span class='curline'><a href='../S/417.html#L795'>LMN_SATOM_GET_FUNCTOR</a>  795 src/verifier/delta_membrane.c   end = LMN_FUNCTOR_GET_LINK_NUM(LMN_SATOM_GET_FUNCTOR(atom));</span>
+<span class='curline'><a href='../S/417.html#L822'>LMN_SATOM_GET_FUNCTOR</a>  822 src/verifier/delta_membrane.c   end = LMN_FUNCTOR_GET_LINK_NUM(LMN_SATOM_GET_FUNCTOR(atom));</span>
+<span class='curline'><a href='../S/417.html#L921'>LMN_SATOM_GET_FUNCTOR</a>  921 src/verifier/delta_membrane.c       if (LMN_SATOM_GET_FUNCTOR(LMN_SATOM(l-&gt;ap)) == LMN_UNIFY_FUNCTOR) {</span>
+<span class='curline'><a href='../S/417.html#L1251'>LMN_SATOM_GET_FUNCTOR</a> 1251 src/verifier/delta_membrane.c             if (LMN_SATOM_GET_FUNCTOR(a1) == LMN_OUT_PROXY_FUNCTOR) {</span>
+<span class='curline'><a href='../S/417.html#L1315'>LMN_SATOM_GET_FUNCTOR</a> 1315 src/verifier/delta_membrane.c           LmnFunctor f1 = LMN_SATOM_GET_FUNCTOR(a1);</span>
+<span class='curline'><a href='../S/417.html#L1963'>LMN_SATOM_GET_FUNCTOR</a> 1963 src/verifier/delta_membrane.c   LmnFunctor f = LMN_SATOM_GET_FUNCTOR(atom);</span>
+<span class='curline'><a href='../S/417.html#L2070'>LMN_SATOM_GET_FUNCTOR</a> 2070 src/verifier/delta_membrane.c     if (LMN_IS_PROXY_FUNCTOR(LMN_SATOM_GET_FUNCTOR(ap)) &amp;&amp;</span>
+<span class='curline'><a href='../S/417.html#L2115'>LMN_SATOM_GET_FUNCTOR</a> 2115 src/verifier/delta_membrane.c       m1 = LMN_IS_PROXY_FUNCTOR(LMN_SATOM_GET_FUNCTOR(ap1)) ? LMN_PROXY_GET_MEM(ap1) : m;</span>
+<span class='curline'><a href='../S/417.html#L2123'>LMN_SATOM_GET_FUNCTOR</a> 2123 src/verifier/delta_membrane.c       m2 = LMN_IS_PROXY_FUNCTOR(LMN_SATOM_GET_FUNCTOR(ap2)) ? LMN_PROXY_GET_MEM(ap2) : m;</span>
+<span class='curline'><a href='../S/417.html#L2130'>LMN_SATOM_GET_FUNCTOR</a> 2130 src/verifier/delta_membrane.c     m1 = LMN_IS_PROXY_FUNCTOR(LMN_SATOM_GET_FUNCTOR(ap1)) ? LMN_PROXY_GET_MEM(ap1) : m;</span>
+<span class='curline'><a href='../S/417.html#L2131'>LMN_SATOM_GET_FUNCTOR</a> 2131 src/verifier/delta_membrane.c     m2 = LMN_IS_PROXY_FUNCTOR(LMN_SATOM_GET_FUNCTOR(ap2)) ? LMN_PROXY_GET_MEM(ap2) : m;</span>
+<span class='curline'><a href='../S/419.html#L306'>LMN_SATOM_GET_FUNCTOR</a>  306 src/verifier/dpor.c     if (LMN_SATOM_GET_FUNCTOR(a) == LMN_IN_PROXY_FUNCTOR) {</span>
+<span class='curline'><a href='../S/436.html#L934'>LMN_SATOM_GET_FUNCTOR</a>  934 src/verifier/mem_encode.c   LmnFunctor f = (LmnFunctor)FUNCTOR_MAX - LMN_SATOM_GET_FUNCTOR(a);</span>
+<span class='curline'><a href='../S/436.html#L1307'>LMN_SATOM_GET_FUNCTOR</a> 1307 src/verifier/mem_encode.c   f = LMN_SATOM_GET_FUNCTOR(atom);</span>
+<span class='curline'><a href='../S/436.html#L1390'>LMN_SATOM_GET_FUNCTOR</a> 1390 src/verifier/mem_encode.c     else if (last_valid_i &gt;= 0 &amp;&amp; LMN_SATOM_GET_FUNCTOR(atom) != first_func)</span>
+<span class='curline'><a href='../S/436.html#L1404'>LMN_SATOM_GET_FUNCTOR</a> 1404 src/verifier/mem_encode.c           first_func = LMN_SATOM_GET_FUNCTOR(atom);</span>
+<span class='curline'><a href='../S/436.html#L2591'>LMN_SATOM_GET_FUNCTOR</a> 2591 src/verifier/mem_encode.c   if (f != LMN_SATOM_GET_FUNCTOR(atom)) return FALSE;</span>
+<span class='curline'><a href='../S/436.html#L2634'>LMN_SATOM_GET_FUNCTOR</a> 2634 src/verifier/mem_encode.c       LMN_SATOM_GET_FUNCTOR(atom) != LMN_OUT_PROXY_FUNCTOR) {</span>
+<span class='curline'><a href='../S/436.html#L2959'>LMN_SATOM_GET_FUNCTOR</a> 2959 src/verifier/mem_encode.c       LMN_SATOM_GET_FUNCTOR(atom) != LMN_OUT_PROXY_FUNCTOR) {</span>
+<span class='curline'><a href='../S/436.html#L3030'>LMN_SATOM_GET_FUNCTOR</a> 3030 src/verifier/mem_encode.c       LMN_SATOM_GET_FUNCTOR(atom) != LMN_IN_PROXY_FUNCTOR) {</span>
+<span class='curline'><a href='../S/438.html#L243'>LMN_SATOM_GET_FUNCTOR</a>  243 src/verifier/mhash.c   else if (LMN_SATOM_GET_FUNCTOR(atom) != LMN_IN_PROXY_FUNCTOR &amp;&amp;</span>
+<span class='curline'><a href='../S/438.html#L252'>LMN_SATOM_GET_FUNCTOR</a>  252 src/verifier/mhash.c     if (LMN_IS_SYMBOL_FUNCTOR(LMN_SATOM_GET_FUNCTOR(atom))) {</span>
+<span class='curline'><a href='../S/438.html#L302'>LMN_SATOM_GET_FUNCTOR</a>  302 src/verifier/mhash.c   else if (LMN_SATOM_GET_FUNCTOR(atom) == LMN_OUT_PROXY_FUNCTOR) {</span>
+<span class='curline'><a href='../S/438.html#L318'>LMN_SATOM_GET_FUNCTOR</a>  318 src/verifier/mhash.c   else if (LMN_SATOM_GET_FUNCTOR(atom) == LMN_IN_PROXY_FUNCTOR) {</span>
+<span class='curline'><a href='../S/438.html#L427'>LMN_SATOM_GET_FUNCTOR</a>  427 src/verifier/mhash.c         LMN_SATOM_GET_FUNCTOR(atom) != LMN_OUT_PROXY_FUNCTOR) break;</span>
+<span class='curline'><a href='../S/438.html#L444'>LMN_SATOM_GET_FUNCTOR</a>  444 src/verifier/mhash.c   return LMN_SATOM_GET_FUNCTOR(atom);</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>src_succ</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/419.html#L839'>src_succ</a>          839 src/verifier/dpor.c     State *src_succ, *succ;</span>
+<span class='curline'><a href='../S/419.html#L845'>src_succ</a>          845 src/verifier/dpor.c     src_succ = state_make_minimal();</span>
+<span class='curline'><a href='../S/419.html#L846'>src_succ</a>          846 src/verifier/dpor.c     state_set_parent(src_succ, s);</span>
+<span class='curline'><a href='../S/419.html#L847'>src_succ</a>          847 src/verifier/dpor.c     state_set_property_state(src_succ, DEFAULT_STATE_ID);</span>
+<span class='curline'><a href='../S/419.html#L849'>src_succ</a>          849 src/verifier/dpor.c       src_t = transition_make(src_succ, lmn_intern("ample set"));</span>
+<span class='curline'><a href='../S/419.html#L854'>src_succ</a>          854 src/verifier/dpor.c     succ = statespace_insert_delta(ss, src_succ, succ_d);</span>
+<span class='curline'><a href='../S/419.html#L855'>src_succ</a>          855 src/verifier/dpor.c     if (succ == src_succ) {</span>
+<span class='curline'><a href='../S/419.html#L862'>src_succ</a>          862 src/verifier/dpor.c       state_free(src_succ);</span>
+<span class='curline'><a href='../S/419.html#L871'>src_succ</a>          871 src/verifier/dpor.c       satisfied_C3 = dpor_check_cycle_proviso(ss, s, src_succ, succ);</span>
+<span class='curline'><a href='../S/419.html#L891'>src_succ</a>          891 src/verifier/dpor.c       State *src_succ, *succ;</span>
+<span class='curline'><a href='../S/419.html#L900'>src_succ</a>          900 src/verifier/dpor.c       src_succ = state_make_minimal();</span>
+<span class='curline'><a href='../S/419.html#L901'>src_succ</a>          901 src/verifier/dpor.c       state_set_parent(src_succ, s);</span>
+<span class='curline'><a href='../S/419.html#L902'>src_succ</a>          902 src/verifier/dpor.c       state_set_property_state(src_succ, DEFAULT_STATE_ID);</span>
+<span class='curline'><a href='../S/419.html#L904'>src_succ</a>          904 src/verifier/dpor.c         src_t = transition_make(src_succ, ANONYMOUS);</span>
+<span class='curline'><a href='../S/419.html#L909'>src_succ</a>          909 src/verifier/dpor.c       succ = statespace_insert_delta(ss, src_succ, succ_d);</span>
+<span class='curline'><a href='../S/419.html#L910'>src_succ</a>          910 src/verifier/dpor.c       if (succ == src_succ) {</span>
+<span class='curline'><a href='../S/419.html#L917'>src_succ</a>          917 src/verifier/dpor.c         state_free(src_succ);</span>
+<span class='curline'><a href='../S/419.html#L943'>src_succ</a>          943 src/verifier/dpor.c       State *src_succ;</span>
+<span class='curline'><a href='../S/419.html#L953'>src_succ</a>          953 src/verifier/dpor.c       src_succ = state_make_minimal();</span>
+<span class='curline'><a href='../S/419.html#L954'>src_succ</a>          954 src/verifier/dpor.c       state_set_parent(src_succ, s);</span>
+<span class='curline'><a href='../S/419.html#L955'>src_succ</a>          955 src/verifier/dpor.c       state_set_property_state(src_succ, DEFAULT_STATE_ID);</span>
+<span class='curline'><a href='../S/419.html#L956'>src_succ</a>          956 src/verifier/dpor.c       src_t = transition_make(src_succ, lmn_intern("reduced"));</span>
+<span class='curline'><a href='../S/419.html#L959'>src_succ</a>          959 src/verifier/dpor.c       state_set_mem(src_succ, DMEM_ROOT_MEM(succ_d));</span>
+<span class='curline'><a href='../S/419.html#L960'>src_succ</a>          960 src/verifier/dpor.c       state_calc_hash(src_succ, state_mem(src_succ), statespace_use_memenc(ss)); /* それを元にハッシュ値やmem_idを計算 */</span>
+<span class='curline'><a href='../S/419.html#L961'>src_succ</a>          961 src/verifier/dpor.c       if (!is_encoded(src_succ)) {</span>
+<span class='curline'><a href='../S/419.html#L962'>src_succ</a>          962 src/verifier/dpor.c         state_set_binstr(src_succ, state_calc_mem_dump(src_succ));</span>
+<span class='curline'><a href='../S/421.html#L451'>src_succ</a>          451 src/verifier/dpor_naive.c     State *src_succ, *succ;</span>
+<span class='curline'><a href='../S/421.html#L457'>src_succ</a>          457 src/verifier/dpor_naive.c       src_succ = transition_next_state(src_t);</span>
+<span class='curline'><a href='../S/421.html#L459'>src_succ</a>          459 src/verifier/dpor_naive.c       src_succ = (State *)vec_get(RC_EXPANDED(rc), i);</span>
+<span class='curline'><a href='../S/421.html#L460'>src_succ</a>          460 src/verifier/dpor_naive.c       src_t = transition_make(src_succ, (lmn_interned_str)vec_get(RC_EXPANDED_RULES(rc), i));</span>
+<span class='curline'><a href='../S/421.html#L465'>src_succ</a>          465 src/verifier/dpor_naive.c     succ = por_state_insert(src_succ, d);</span>
+<span class='curline'><a href='../S/421.html#L466'>src_succ</a>          466 src/verifier/dpor_naive.c     if (succ != src_succ) {</span>
+<span class='curline'><a href='../S/421.html#L467'>src_succ</a>          467 src/verifier/dpor_naive.c       state_free(src_succ);</span>
+<span class='curline'><a href='../S/428.html#L303'>src_succ</a>          303 src/verifier/mc.c     State *src_succ, *succ;</span>
+<span class='curline'><a href='../S/428.html#L310'>src_succ</a>          310 src/verifier/mc.c       src_succ = (State *)vec_get(RC_EXPANDED(rc), i);</span>
+<span class='curline'><a href='../S/428.html#L313'>src_succ</a>          313 src/verifier/mc.c       src_succ = transition_next_state(src_t);</span>
+<span class='curline'><a href='../S/428.html#L318'>src_succ</a>          318 src/verifier/mc.c       s_set_d(src_succ);</span>
+<span class='curline'><a href='../S/428.html#L324'>src_succ</a>          324 src/verifier/mc.c       succ       = statespace_insert_delta(ss, src_succ, d);</span>
+<span class='curline'><a href='../S/428.html#L327'>src_succ</a>          327 src/verifier/mc.c     else if (is_encoded(src_succ)) {    /* !--delta-mem &amp;&amp; --mem-enc */</span>
+<span class='curline'><a href='../S/428.html#L328'>src_succ</a>          328 src/verifier/mc.c       if (s_is_d(src_succ)) state_calc_binstr_delta(src_succ);</span>
+<span class='curline'><a href='../S/428.html#L329'>src_succ</a>          329 src/verifier/mc.c       succ       = statespace_insert(ss, src_succ);</span>
+<span class='curline'><a href='../S/428.html#L333'>src_succ</a>          333 src/verifier/mc.c       src_succ_m = state_mem(src_succ); /* for free mem pointed by src_succ */</span>
+<span class='curline'><a href='../S/428.html#L334'>src_succ</a>          334 src/verifier/mc.c       succ       = statespace_insert(ss, src_succ);</span>
+<span class='curline'><a href='../S/428.html#L337'>src_succ</a>          337 src/verifier/mc.c     if (succ == src_succ) {</span>
+<span class='curline'><a href='../S/428.html#L348'>src_succ</a>          348 src/verifier/mc.c       state_free(src_succ);</span>
+</pre>
+</body>
+</html>

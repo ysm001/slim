@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>loading_files_type</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/351.html#L906'>loading_files_type</a>  906 src/load.c         st_table_t loading_files_type;</span>
+<span class='curline'><a href='../S/351.html#L910'>loading_files_type</a>  910 src/load.c         loading_files_type = st_init_strtable();</span>
+<span class='curline'><a href='../S/351.html#L928'>loading_files_type</a>  928 src/load.c               if (st_lookup(loading_files_type, (st_data_t)basename, &amp;old_filetype)) {</span>
+<span class='curline'><a href='../S/351.html#L930'>loading_files_type</a>  930 src/load.c                   st_insert(loading_files_type, (st_data_t)basename, filetype);</span>
+<span class='curline'><a href='../S/351.html#L934'>loading_files_type</a>  934 src/load.c                 st_insert(loading_files_type, (st_data_t)basename, filetype);</span>
+<span class='curline'><a href='../S/351.html#L942'>loading_files_type</a>  942 src/load.c         st_foreach(loading_files_type, load_loading_tbl_entry, (st_data_t)path);</span>
+<span class='curline'><a href='../S/351.html#L944'>loading_files_type</a>  944 src/load.c         st_foreach(loading_files_type, free_loading_tbl_entry, (st_data_t)path);</span>
+<span class='curline'><a href='../S/351.html#L945'>loading_files_type</a>  945 src/load.c         st_free_table(loading_files_type);</span>
+</pre>
+</body>
+</html>

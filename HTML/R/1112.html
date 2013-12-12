@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>InstrVar</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/342.html#L42'>InstrVar</a>           42 src/instruction.c     {"deref", INSTR_DEREF, {InstrVar, InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L43'>InstrVar</a>           43 src/instruction.c     {"derefatom", INSTR_DEREFATOM, {InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L44'>InstrVar</a>           44 src/instruction.c     {"dereflink", INSTR_DEREFLINK, {InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L45'>InstrVar</a>           45 src/instruction.c     {"findatom", INSTR_FINDATOM, {InstrVar, InstrVar, ArgFunctor}},</span>
+<span class='curline'><a href='../S/342.html#L46'>InstrVar</a>           46 src/instruction.c     {"findatom2", INSTR_FINDATOM2, {InstrVar, InstrVar, InstrVar, ArgFunctor}},</span>
+<span class='curline'><a href='../S/342.html#L48'>InstrVar</a>           48 src/instruction.c     {"lockmem", INSTR_LOCKMEM, {InstrVar, InstrVar, String}},</span>
+<span class='curline'><a href='../S/342.html#L49'>InstrVar</a>           49 src/instruction.c     {"anymem", INSTR_ANYMEM, {InstrVar, InstrVar, InstrVar, String}},</span>
+<span class='curline'><a href='../S/342.html#L51'>InstrVar</a>           51 src/instruction.c     {"getmem", INSTR_GETMEM, {InstrVar, InstrVar, InstrVar, String}},</span>
+<span class='curline'><a href='../S/342.html#L52'>InstrVar</a>           52 src/instruction.c     {"getparent", INSTR_GETPARENT, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L54'>InstrVar</a>           54 src/instruction.c     {"testmem", INSTR_TESTMEM, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L55'>InstrVar</a>           55 src/instruction.c     {"norules", INSTR_NORULES, {InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L56'>InstrVar</a>           56 src/instruction.c     {"nfreelinks", INSTR_NFREELINKS, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L57'>InstrVar</a>           57 src/instruction.c     {"natoms", INSTR_NATOMS, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L58'>InstrVar</a>           58 src/instruction.c     {"natomsindirect", INSTR_NATOMSINDIRECT, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L59'>InstrVar</a>           59 src/instruction.c     {"nmems", INSTR_NMEMS, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L60'>InstrVar</a>           60 src/instruction.c     {"eqmem", INSTR_EQMEM, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L61'>InstrVar</a>           61 src/instruction.c     {"neqmem", INSTR_NEQMEM, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L62'>InstrVar</a>           62 src/instruction.c     {"stable", INSTR_STABLE, {InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L64'>InstrVar</a>           64 src/instruction.c     {"func", INSTR_FUNC, {InstrVar, ArgFunctor}},</span>
+<span class='curline'><a href='../S/342.html#L65'>InstrVar</a>           65 src/instruction.c     {"notfunc", INSTR_NOTFUNC, {InstrVar, ArgFunctor}},</span>
+<span class='curline'><a href='../S/342.html#L66'>InstrVar</a>           66 src/instruction.c     {"eqatom", INSTR_EQATOM, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L67'>InstrVar</a>           67 src/instruction.c     {"neqatom", INSTR_NEQATOM, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L68'>InstrVar</a>           68 src/instruction.c     {"samefunc", INSTR_SAMEFUNC, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L70'>InstrVar</a>           70 src/instruction.c     {"dereffunc", INSTR_DEREFFUNC, {InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L71'>InstrVar</a>           71 src/instruction.c     {"getfunc", INSTR_GETFUNC, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L72'>InstrVar</a>           72 src/instruction.c     {"loadfunc", INSTR_LOADFUNC, {InstrVar, ArgFunctor}},</span>
+<span class='curline'><a href='../S/342.html#L73'>InstrVar</a>           73 src/instruction.c     {"eqfunc", INSTR_EQFUNC, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L74'>InstrVar</a>           74 src/instruction.c     {"neqfunc", INSTR_NEQFUNC, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L76'>InstrVar</a>           76 src/instruction.c     {"removeatom", INSTR_REMOVEATOM, {InstrVar, InstrVar, ArgFunctor}},</span>
+<span class='curline'><a href='../S/342.html#L77'>InstrVar</a>           77 src/instruction.c     {"removeatom", INSTR_REMOVEATOM, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L78'>InstrVar</a>           78 src/instruction.c     {"newatom", INSTR_NEWATOM, {InstrVar, InstrVar, ArgFunctor}},</span>
+<span class='curline'><a href='../S/342.html#L79'>InstrVar</a>           79 src/instruction.c     {"newatomindirect", INSTR_NEWATOMINDIRECT, {InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L80'>InstrVar</a>           80 src/instruction.c     {"enqueueatom", INSTR_ENQUEUEATOM, {InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L81'>InstrVar</a>           81 src/instruction.c     {"dequeueatom", INSTR_DEQUEUEATOM, {InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L82'>InstrVar</a>           82 src/instruction.c     {"freeatom", INSTR_FREEATOM, {InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L83'>InstrVar</a>           83 src/instruction.c     {"alterfunc", INSTR_ALTERFUNC, {InstrVar, ArgFunctor}},</span>
+<span class='curline'><a href='../S/342.html#L85'>InstrVar</a>           85 src/instruction.c     {"allocatom", INSTR_ALLOCATOM, {InstrVar, ArgFunctor}},</span>
+<span class='curline'><a href='../S/342.html#L86'>InstrVar</a>           86 src/instruction.c     {"allocatomindirect", INSTR_ALLOCATOMINDIRECT, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L87'>InstrVar</a>           87 src/instruction.c     {"copyatom", INSTR_COPYATOM, {InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L88'>InstrVar</a>           88 src/instruction.c     {"addatom", INSTR_ADDATOM, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L90'>InstrVar</a>           90 src/instruction.c     {"removemem", INSTR_REMOVEMEM, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L91'>InstrVar</a>           91 src/instruction.c     {"newmem", INSTR_NEWMEM, {InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L92'>InstrVar</a>           92 src/instruction.c     {"allocmem", INSTR_ALLOCMEM, {InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L93'>InstrVar</a>           93 src/instruction.c     {"newroot", INSTR_NEWROOT, {InstrVar, InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L94'>InstrVar</a>           94 src/instruction.c     {"movecells", INSTR_MOVECELLS, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L95'>InstrVar</a>           95 src/instruction.c     {"enqueueallatoms", INSTR_ENQUEUEALLATOMS, {InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L96'>InstrVar</a>           96 src/instruction.c     {"freemem", INSTR_FREEMEM, {InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L97'>InstrVar</a>           97 src/instruction.c     {"addmem", INSTR_ADDMEM, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L98'>InstrVar</a>           98 src/instruction.c     {"enqueuemem", INSTR_ENQUEUEMEM, {InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L99'>InstrVar</a>           99 src/instruction.c     {"unlockmem", INSTR_UNLOCKMEM, {InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L100'>InstrVar</a>          100 src/instruction.c     {"setmemname", INSTR_SETMEMNAME, {InstrVar, String}},</span>
+<span class='curline'><a href='../S/342.html#L102'>InstrVar</a>          102 src/instruction.c     {"getlink", INSTR_GETLINK, {InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L103'>InstrVar</a>          103 src/instruction.c     {"alloclink", INSTR_ALLOCLINK, {InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L105'>InstrVar</a>          105 src/instruction.c     {"newlink", INSTR_NEWLINK, {InstrVar, InstrVar, InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L106'>InstrVar</a>          106 src/instruction.c     {"relink", INSTR_RELINK, {InstrVar, InstrVar, InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L107'>InstrVar</a>          107 src/instruction.c     {"unify", INSTR_UNIFY, {InstrVar, InstrVar, InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L108'>InstrVar</a>          108 src/instruction.c     {"inheritlink", INSTR_INHERITLINK, {InstrVar, InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L109'>InstrVar</a>          109 src/instruction.c     {"unifylinks", INSTR_UNIFYLINKS, {InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L111'>InstrVar</a>          111 src/instruction.c     {"removeproxies", INSTR_REMOVEPROXIES, {InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L112'>InstrVar</a>          112 src/instruction.c     {"removetoplevelproxies", INSTR_REMOVETOPLEVELPROXIES, {InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L113'>InstrVar</a>          113 src/instruction.c     {"insertproxies", INSTR_INSERTPROXIES, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L114'>InstrVar</a>          114 src/instruction.c     {"removetemporaryproxies", INSTR_REMOVETEMPORARYPROXIES, {InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L116'>InstrVar</a>          116 src/instruction.c     {"loadruleset", INSTR_LOADRULESET, {InstrVar, ArgRuleset}},</span>
+<span class='curline'><a href='../S/342.html#L117'>InstrVar</a>          117 src/instruction.c     {"copyrules", INSTR_COPYRULES, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L118'>InstrVar</a>          118 src/instruction.c     {"clearrules", INSTR_CLEARRULES, {InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L119'>InstrVar</a>          119 src/instruction.c     {"loadmodule", INSTR_LOADMODULE, {InstrVar, String}},</span>
+<span class='curline'><a href='../S/342.html#L121'>InstrVar</a>          121 src/instruction.c     {"recursivelock", INSTR_RECURSIVELOCK, {InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L122'>InstrVar</a>          122 src/instruction.c     {"recursiveunlock", INSTR_RECURSIVEUNLOCK, {InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L123'>InstrVar</a>          123 src/instruction.c     {"copycells", INSTR_COPYCELLS, {InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L124'>InstrVar</a>          124 src/instruction.c     {"dropmem", INSTR_DROPMEM, {InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L125'>InstrVar</a>          125 src/instruction.c     {"lookuplink", INSTR_LOOKUPLINK, {InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L126'>InstrVar</a>          126 src/instruction.c     {"insertconnectors", INSTR_INSERTCONNECTORS, {InstrVar, InstrVarList, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L127'>InstrVar</a>          127 src/instruction.c     {"insertconnectorsinnull", INSTR_INSERTCONNECTORSINNULL, {InstrVar, InstrVarList}},</span>
+<span class='curline'><a href='../S/342.html#L128'>InstrVar</a>          128 src/instruction.c     {"deleteconnectors", INSTR_DELETECONNECTORS, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L130'>InstrVar</a>          130 src/instruction.c     {"react", INSTR_REACT, {InstrVar, InstrVarList, InstrVarList, InstrVarList}},</span>
+<span class='curline'><a href='../S/342.html#L133'>InstrVar</a>          133 src/instruction.c     {"commit", INSTR_COMMIT, {String, LineNum, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L139'>InstrVar</a>          139 src/instruction.c     {"spec", INSTR_SPEC, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L146'>InstrVar</a>          146 src/instruction.c     {"inline", INSTR_INLINE, {InstrVar, String, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L147'>InstrVar</a>          147 src/instruction.c     {"callback", INSTR_CALLBACK, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L148'>InstrVar</a>          148 src/instruction.c     {"unifyhlinks", INSTR_UNIFYHLINKS, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L149'>InstrVar</a>          149 src/instruction.c     {"findproccxt", INSTR_FINDPROCCXT, {InstrVar, InstrVar, InstrVar, InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L156'>InstrVar</a>          156 src/instruction.c     {"eqground", INSTR_EQGROUND, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L157'>InstrVar</a>          157 src/instruction.c     {"neqground", INSTR_NEQGROUND, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L158'>InstrVar</a>          158 src/instruction.c     {"copyground", INSTR_COPYGROUND, {InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L159'>InstrVar</a>          159 src/instruction.c     {"removeground", INSTR_REMOVEGROUND, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L160'>InstrVar</a>          160 src/instruction.c     {"freeground", INSTR_FREEGROUND, {InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L161'>InstrVar</a>          161 src/instruction.c     {"isground", INSTR_ISGROUND, {InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L162'>InstrVar</a>          162 src/instruction.c     {"isunary", INSTR_ISUNARY, {InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L163'>InstrVar</a>          163 src/instruction.c     {"isint", INSTR_ISINT, {InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L164'>InstrVar</a>          164 src/instruction.c     {"isintfunc", INSTR_ISINTFUNC, {InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L166'>InstrVar</a>          166 src/instruction.c     {"isfloat", INSTR_ISFLOAT, {InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L167'>InstrVar</a>          167 src/instruction.c     {"isstring", INSTR_ISSTRING, {InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L172'>InstrVar</a>          172 src/instruction.c     {"newhlink", INSTR_NEWHLINK, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L173'>InstrVar</a>          173 src/instruction.c     {"makehlink", INSTR_MAKEHLINK, {InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L174'>InstrVar</a>          174 src/instruction.c     {"ishlink", INSTR_ISHLINK, {InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L175'>InstrVar</a>          175 src/instruction.c     {"getnum", INSTR_GETNUM, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L178'>InstrVar</a>          178 src/instruction.c     {"fadd", INSTR_FADD, {InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L179'>InstrVar</a>          179 src/instruction.c     {"fsub", INSTR_FSUB, {InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L180'>InstrVar</a>          180 src/instruction.c     {"fmul", INSTR_FMUL, {InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L181'>InstrVar</a>          181 src/instruction.c     {"fdiv", INSTR_FDIV, {InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L182'>InstrVar</a>          182 src/instruction.c     {"fneg", INSTR_FNEG, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L183'>InstrVar</a>          183 src/instruction.c     {"flt", INSTR_FLT, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L184'>InstrVar</a>          184 src/instruction.c     {"fle", INSTR_FLE, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L185'>InstrVar</a>          185 src/instruction.c     {"fgt", INSTR_FGT, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L186'>InstrVar</a>          186 src/instruction.c     {"fge", INSTR_FGE, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L187'>InstrVar</a>          187 src/instruction.c     {"feq", INSTR_FEQ, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L188'>InstrVar</a>          188 src/instruction.c     {"fne", INSTR_FNE, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L190'>InstrVar</a>          190 src/instruction.c     {"newlist", INSTR_NEWLIST, {InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L191'>InstrVar</a>          191 src/instruction.c     {"addtolist", INSTR_ADDTOLIST, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L192'>InstrVar</a>          192 src/instruction.c     {"getfromlist", INSTR_GETFROMLIST, {InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L195'>InstrVar</a>          195 src/instruction.c     {"iadd", INSTR_IADD, {InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L196'>InstrVar</a>          196 src/instruction.c     {"isub", INSTR_ISUB, {InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L197'>InstrVar</a>          197 src/instruction.c     {"imul", INSTR_IMUL, {InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L198'>InstrVar</a>          198 src/instruction.c     {"idiv", INSTR_IDIV, {InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L199'>InstrVar</a>          199 src/instruction.c     {"ineg", INSTR_INEG, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L200'>InstrVar</a>          200 src/instruction.c     {"imod", INSTR_IMOD, {InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L201'>InstrVar</a>          201 src/instruction.c     {"ilt", INSTR_ILT, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L202'>InstrVar</a>          202 src/instruction.c     {"ile", INSTR_ILE, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L203'>InstrVar</a>          203 src/instruction.c     {"igt", INSTR_IGT, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L204'>InstrVar</a>          204 src/instruction.c     {"ige", INSTR_IGE, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L205'>InstrVar</a>          205 src/instruction.c     {"ieq", INSTR_IEQ, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L206'>InstrVar</a>          206 src/instruction.c     {"ine", INSTR_INE, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L208'>InstrVar</a>          208 src/instruction.c     {"iltfunc", INSTR_ILTFUNC, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L209'>InstrVar</a>          209 src/instruction.c     {"ilefunc", INSTR_ILEFUNC, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L210'>InstrVar</a>          210 src/instruction.c     {"igtfunc", INSTR_IGTFUNC, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L211'>InstrVar</a>          211 src/instruction.c     {"igefunc", INSTR_IGEFUNC, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L213'>InstrVar</a>          213 src/instruction.c     {"iaddfunc", INSTR_IADDFUNC, {InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L214'>InstrVar</a>          214 src/instruction.c     {"isubfunc", INSTR_ISUBFUNC, {InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L215'>InstrVar</a>          215 src/instruction.c     {"imulfunc", INSTR_IMULFUNC, {InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L216'>InstrVar</a>          216 src/instruction.c     {"idivfunc", INSTR_IDIVFUNC, {InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L217'>InstrVar</a>          217 src/instruction.c     {"imodfunc", INSTR_IMODFUNC, {InstrVar, InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L219'>InstrVar</a>          219 src/instruction.c     {"getclass", INSTR_GETCLASS, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/342.html#L220'>InstrVar</a>          220 src/instruction.c     {"subclass", INSTR_SUBCLASS, {InstrVar, InstrVar}},</span>
+<span class='curline'><a href='../S/351.html#L107'>InstrVar</a>          107 src/load.c       case InstrVar:</span>
+<span class='curline'><a href='../S/351.html#L366'>InstrVar</a>          366 src/load.c       case InstrVar:</span>
+<span class='curline'><a href='../S/380.html#L298'>InstrVar</a>          298 src/syntax.c     InstrArg arg = inst_arg_make(InstrVar);</span>
+</pre>
+</body>
+</html>

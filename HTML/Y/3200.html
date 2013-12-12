@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>leaks</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/568.html#L1685'>leaks</a>            1685 third_party/google-perftools-1.8.3/src/heap-checker.cc   HeapProfileTable::Snapshot* leaks = NULL;</span>
+<span class='curline'><a href='../S/568.html#L1726'>leaks</a>            1726 third_party/google-perftools-1.8.3/src/heap-checker.cc     leaks = heap_profile-&gt;NonLiveSnapshot(base);</span>
+<span class='curline'><a href='../S/568.html#L1728'>leaks</a>            1728 third_party/google-perftools-1.8.3/src/heap-checker.cc     inuse_bytes_increase_ = static_cast&lt;ssize_t&gt;(leaks-&gt;total().alloc_size);</span>
+<span class='curline'><a href='../S/568.html#L1729'>leaks</a>            1729 third_party/google-perftools-1.8.3/src/heap-checker.cc     inuse_allocs_increase_ = static_cast&lt;ssize_t&gt;(leaks-&gt;total().allocs);</span>
+<span class='curline'><a href='../S/568.html#L1730'>leaks</a>            1730 third_party/google-perftools-1.8.3/src/heap-checker.cc     if (leaks-&gt;Empty()) {</span>
+<span class='curline'><a href='../S/568.html#L1731'>leaks</a>            1731 third_party/google-perftools-1.8.3/src/heap-checker.cc       heap_profile-&gt;ReleaseSnapshot(leaks);</span>
+<span class='curline'><a href='../S/568.html#L1732'>leaks</a>            1732 third_party/google-perftools-1.8.3/src/heap-checker.cc       leaks = NULL;</span>
+<span class='curline'><a href='../S/568.html#L1768'>leaks</a>            1768 third_party/google-perftools-1.8.3/src/heap-checker.cc     if (leaks != NULL) {</span>
+<span class='curline'><a href='../S/568.html#L1774'>leaks</a>            1774 third_party/google-perftools-1.8.3/src/heap-checker.cc   if (leaks == NULL) {</span>
+<span class='curline'><a href='../S/568.html#L1811'>leaks</a>            1811 third_party/google-perftools-1.8.3/src/heap-checker.cc       leaks-&gt;ReportLeaks(name_, pprof_file, true);  // true = should_symbolize</span>
+<span class='curline'><a href='../S/568.html#L1813'>leaks</a>            1813 third_party/google-perftools-1.8.3/src/heap-checker.cc       leaks-&gt;ReportLeaks(name_, pprof_file, false);</span>
+<span class='curline'><a href='../S/568.html#L1816'>leaks</a>            1816 third_party/google-perftools-1.8.3/src/heap-checker.cc       leaks-&gt;ReportIndividualObjects();</span>
+<span class='curline'><a href='../S/568.html#L1823'>leaks</a>            1823 third_party/google-perftools-1.8.3/src/heap-checker.cc       heap_profile-&gt;ReleaseSnapshot(leaks);</span>
+<span class='curline'><a href='../S/568.html#L1828'>leaks</a>            1828 third_party/google-perftools-1.8.3/src/heap-checker.cc   return (leaks == NULL);</span>
+</pre>
+</body>
+</html>

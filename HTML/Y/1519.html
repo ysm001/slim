@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>ask</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/591.html#L408'>ask</a>               408 third_party/google-perftools-1.8.3/src/page_heap.cc   Length ask = (n&gt;kMinSystemAlloc) ? n : static_cast&lt;Length&gt;(kMinSystemAlloc);</span>
+<span class='curline'><a href='../S/591.html#L410'>ask</a>               410 third_party/google-perftools-1.8.3/src/page_heap.cc   void* ptr = TCMalloc_SystemAlloc(ask &lt;&lt; kPageShift, &amp;actual_size, kPageSize);</span>
+<span class='curline'><a href='../S/591.html#L412'>ask</a>               412 third_party/google-perftools-1.8.3/src/page_heap.cc     if (n &lt; ask) {</span>
+<span class='curline'><a href='../S/591.html#L414'>ask</a>               414 third_party/google-perftools-1.8.3/src/page_heap.cc       ask = n;</span>
+<span class='curline'><a href='../S/591.html#L415'>ask</a>               415 third_party/google-perftools-1.8.3/src/page_heap.cc       ptr = TCMalloc_SystemAlloc(ask &lt;&lt; kPageShift, &amp;actual_size, kPageSize);</span>
+<span class='curline'><a href='../S/591.html#L419'>ask</a>               419 third_party/google-perftools-1.8.3/src/page_heap.cc   ask = actual_size &gt;&gt; kPageShift;</span>
+<span class='curline'><a href='../S/591.html#L420'>ask</a>               420 third_party/google-perftools-1.8.3/src/page_heap.cc   RecordGrowth(ask &lt;&lt; kPageShift);</span>
+<span class='curline'><a href='../S/591.html#L423'>ask</a>               423 third_party/google-perftools-1.8.3/src/page_heap.cc   stats_.system_bytes += (ask &lt;&lt; kPageShift);</span>
+<span class='curline'><a href='../S/591.html#L439'>ask</a>               439 third_party/google-perftools-1.8.3/src/page_heap.cc   if (pagemap_.Ensure(p-1, ask+2)) {</span>
+<span class='curline'><a href='../S/591.html#L442'>ask</a>               442 third_party/google-perftools-1.8.3/src/page_heap.cc     Span* span = NewSpan(p, ask);</span>
+</pre>
+</body>
+</html>

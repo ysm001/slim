@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>span</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/549.html#L99'>span</a>               99 third_party/google-perftools-1.8.3/src/central_freelist.cc   Span* span = Static::pageheap()-&gt;GetDescriptor(p);</span>
+<span class='curline'><a href='../S/549.html#L100'>span</a>              100 third_party/google-perftools-1.8.3/src/central_freelist.cc   return span;</span>
+<span class='curline'><a href='../S/549.html#L104'>span</a>              104 third_party/google-perftools-1.8.3/src/central_freelist.cc   Span* span = MapObjectToSpan(object);</span>
+<span class='curline'><a href='../S/549.html#L105'>span</a>              105 third_party/google-perftools-1.8.3/src/central_freelist.cc   ASSERT(span != NULL);</span>
+<span class='curline'><a href='../S/549.html#L106'>span</a>              106 third_party/google-perftools-1.8.3/src/central_freelist.cc   ASSERT(span-&gt;refcount &gt; 0);</span>
+<span class='curline'><a href='../S/549.html#L109'>span</a>              109 third_party/google-perftools-1.8.3/src/central_freelist.cc   if (span-&gt;objects == NULL) {</span>
+<span class='curline'><a href='../S/549.html#L110'>span</a>              110 third_party/google-perftools-1.8.3/src/central_freelist.cc     tcmalloc::DLL_Remove(span);</span>
+<span class='curline'><a href='../S/549.html#L111'>span</a>              111 third_party/google-perftools-1.8.3/src/central_freelist.cc     tcmalloc::DLL_Prepend(&amp;nonempty_, span);</span>
+<span class='curline'><a href='../S/549.html#L112'>span</a>              112 third_party/google-perftools-1.8.3/src/central_freelist.cc     Event(span, 'N', 0);</span>
+<span class='curline'><a href='../S/549.html#L119'>span</a>              119 third_party/google-perftools-1.8.3/src/central_freelist.cc     for (void* p = span-&gt;objects; p != NULL; p = *((void**) p)) {</span>
+<span class='curline'><a href='../S/549.html#L123'>span</a>              123 third_party/google-perftools-1.8.3/src/central_freelist.cc     ASSERT(got + span-&gt;refcount ==</span>
+<span class='curline'><a href='../S/549.html#L124'>span</a>              124 third_party/google-perftools-1.8.3/src/central_freelist.cc            (span-&gt;length&lt;&lt;kPageShift) /</span>
+<span class='curline'><a href='../S/549.html#L125'>span</a>              125 third_party/google-perftools-1.8.3/src/central_freelist.cc            Static::sizemap()-&gt;ByteSizeForClass(span-&gt;sizeclass));</span>
+<span class='curline'><a href='../S/549.html#L129'>span</a>              129 third_party/google-perftools-1.8.3/src/central_freelist.cc   span-&gt;refcount--;</span>
+<span class='curline'><a href='../S/549.html#L130'>span</a>              130 third_party/google-perftools-1.8.3/src/central_freelist.cc   if (span-&gt;refcount == 0) {</span>
+<span class='curline'><a href='../S/549.html#L131'>span</a>              131 third_party/google-perftools-1.8.3/src/central_freelist.cc     Event(span, '#', 0);</span>
+<span class='curline'><a href='../S/549.html#L132'>span</a>              132 third_party/google-perftools-1.8.3/src/central_freelist.cc     counter_ -= ((span-&gt;length&lt;&lt;kPageShift) /</span>
+<span class='curline'><a href='../S/549.html#L133'>span</a>              133 third_party/google-perftools-1.8.3/src/central_freelist.cc                  Static::sizemap()-&gt;ByteSizeForClass(span-&gt;sizeclass));</span>
+<span class='curline'><a href='../S/549.html#L134'>span</a>              134 third_party/google-perftools-1.8.3/src/central_freelist.cc     tcmalloc::DLL_Remove(span);</span>
+<span class='curline'><a href='../S/549.html#L141'>span</a>              141 third_party/google-perftools-1.8.3/src/central_freelist.cc       Static::pageheap()-&gt;Delete(span);</span>
+<span class='curline'><a href='../S/549.html#L145'>span</a>              145 third_party/google-perftools-1.8.3/src/central_freelist.cc     *(reinterpret_cast&lt;void**&gt;(object)) = span-&gt;objects;</span>
+<span class='curline'><a href='../S/549.html#L146'>span</a>              146 third_party/google-perftools-1.8.3/src/central_freelist.cc     span-&gt;objects = object;</span>
+<span class='curline'><a href='../S/549.html#L293'>span</a>              293 third_party/google-perftools-1.8.3/src/central_freelist.cc   Span* span = nonempty_.next;</span>
+<span class='curline'><a href='../S/549.html#L295'>span</a>              295 third_party/google-perftools-1.8.3/src/central_freelist.cc   ASSERT(span-&gt;objects != NULL);</span>
+<span class='curline'><a href='../S/549.html#L296'>span</a>              296 third_party/google-perftools-1.8.3/src/central_freelist.cc   span-&gt;refcount++;</span>
+<span class='curline'><a href='../S/549.html#L297'>span</a>              297 third_party/google-perftools-1.8.3/src/central_freelist.cc   void* result = span-&gt;objects;</span>
+<span class='curline'><a href='../S/549.html#L298'>span</a>              298 third_party/google-perftools-1.8.3/src/central_freelist.cc   span-&gt;objects = *(reinterpret_cast&lt;void**&gt;(result));</span>
+<span class='curline'><a href='../S/549.html#L299'>span</a>              299 third_party/google-perftools-1.8.3/src/central_freelist.cc   if (span-&gt;objects == NULL) {</span>
+<span class='curline'><a href='../S/549.html#L301'>span</a>              301 third_party/google-perftools-1.8.3/src/central_freelist.cc     tcmalloc::DLL_Remove(span);</span>
+<span class='curline'><a href='../S/549.html#L302'>span</a>              302 third_party/google-perftools-1.8.3/src/central_freelist.cc     tcmalloc::DLL_Prepend(&amp;empty_, span);</span>
+<span class='curline'><a href='../S/549.html#L303'>span</a>              303 third_party/google-perftools-1.8.3/src/central_freelist.cc     Event(span, 'E', 0);</span>
+<span class='curline'><a href='../S/549.html#L315'>span</a>              315 third_party/google-perftools-1.8.3/src/central_freelist.cc   Span* span;</span>
+<span class='curline'><a href='../S/549.html#L318'>span</a>              318 third_party/google-perftools-1.8.3/src/central_freelist.cc     span = Static::pageheap()-&gt;New(npages);</span>
+<span class='curline'><a href='../S/549.html#L319'>span</a>              319 third_party/google-perftools-1.8.3/src/central_freelist.cc     if (span) Static::pageheap()-&gt;RegisterSizeClass(span, size_class_);</span>
+<span class='curline'><a href='../S/549.html#L321'>span</a>              321 third_party/google-perftools-1.8.3/src/central_freelist.cc   if (span == NULL) {</span>
+<span class='curline'><a href='../S/549.html#L327'>span</a>              327 third_party/google-perftools-1.8.3/src/central_freelist.cc   ASSERT(span-&gt;length == npages);</span>
+<span class='curline'><a href='../S/549.html#L332'>span</a>              332 third_party/google-perftools-1.8.3/src/central_freelist.cc     Static::pageheap()-&gt;CacheSizeClass(span-&gt;start + i, size_class_);</span>
+<span class='curline'><a href='../S/549.html#L337'>span</a>              337 third_party/google-perftools-1.8.3/src/central_freelist.cc   void** tail = &amp;span-&gt;objects;</span>
+<span class='curline'><a href='../S/549.html#L338'>span</a>              338 third_party/google-perftools-1.8.3/src/central_freelist.cc   char* ptr = reinterpret_cast&lt;char*&gt;(span-&gt;start &lt;&lt; kPageShift);</span>
+<span class='curline'><a href='../S/549.html#L350'>span</a>              350 third_party/google-perftools-1.8.3/src/central_freelist.cc   span-&gt;refcount = 0; // No sub-object in use yet</span>
+<span class='curline'><a href='../S/549.html#L354'>span</a>              354 third_party/google-perftools-1.8.3/src/central_freelist.cc   tcmalloc::DLL_Prepend(&amp;nonempty_, span);</span>
+<span class='curline'><a href='../S/568.html#L664'>span</a>              664 third_party/google-perftools-1.8.3/src/heap-checker.cc       for (LiveObjectsStack::iterator span = lib-&gt;second.begin();</span>
+<span class='curline'><a href='../S/568.html#L665'>span</a>              665 third_party/google-perftools-1.8.3/src/heap-checker.cc            span != lib-&gt;second.end(); ++span) {</span>
+<span class='curline'><a href='../S/568.html#L666'>span</a>              666 third_party/google-perftools-1.8.3/src/heap-checker.cc         uintptr_t start = AsInt(span-&gt;ptr);</span>
+<span class='curline'><a href='../S/568.html#L667'>span</a>              667 third_party/google-perftools-1.8.3/src/heap-checker.cc         uintptr_t end = start + span-&gt;size;</span>
+<span class='curline'><a href='../S/568.html#L705'>span</a>              705 third_party/google-perftools-1.8.3/src/heap-checker.cc           lib-&gt;second.erase(span);  // kill the rest of the region</span>
+<span class='curline'><a href='../S/591.html#L115'>span</a>              115 third_party/google-perftools-1.8.3/src/page_heap.cc   for (Span* span = large_.normal.next;</span>
+<span class='curline'><a href='../S/591.html#L116'>span</a>              116 third_party/google-perftools-1.8.3/src/page_heap.cc        span != &amp;large_.normal;</span>
+<span class='curline'><a href='../S/591.html#L117'>span</a>              117 third_party/google-perftools-1.8.3/src/page_heap.cc        span = span-&gt;next) {</span>
+<span class='curline'><a href='../S/591.html#L118'>span</a>              118 third_party/google-perftools-1.8.3/src/page_heap.cc     if (span-&gt;length &gt;= n) {</span>
+<span class='curline'><a href='../S/591.html#L120'>span</a>              120 third_party/google-perftools-1.8.3/src/page_heap.cc           || (span-&gt;length &lt; best-&gt;length)</span>
+<span class='curline'><a href='../S/591.html#L121'>span</a>              121 third_party/google-perftools-1.8.3/src/page_heap.cc           || ((span-&gt;length == best-&gt;length) &amp;&amp; (span-&gt;start &lt; best-&gt;start))) {</span>
+<span class='curline'><a href='../S/591.html#L122'>span</a>              122 third_party/google-perftools-1.8.3/src/page_heap.cc         best = span;</span>
+<span class='curline'><a href='../S/591.html#L129'>span</a>              129 third_party/google-perftools-1.8.3/src/page_heap.cc   for (Span* span = large_.returned.next;</span>
+<span class='curline'><a href='../S/591.html#L130'>span</a>              130 third_party/google-perftools-1.8.3/src/page_heap.cc        span != &amp;large_.returned;</span>
+<span class='curline'><a href='../S/591.html#L131'>span</a>              131 third_party/google-perftools-1.8.3/src/page_heap.cc        span = span-&gt;next) {</span>
+<span class='curline'><a href='../S/591.html#L132'>span</a>              132 third_party/google-perftools-1.8.3/src/page_heap.cc     if (span-&gt;length &gt;= n) {</span>
+<span class='curline'><a href='../S/591.html#L134'>span</a>              134 third_party/google-perftools-1.8.3/src/page_heap.cc           || (span-&gt;length &lt; best-&gt;length)</span>
+<span class='curline'><a href='../S/591.html#L135'>span</a>              135 third_party/google-perftools-1.8.3/src/page_heap.cc           || ((span-&gt;length == best-&gt;length) &amp;&amp; (span-&gt;start &lt; best-&gt;start))) {</span>
+<span class='curline'><a href='../S/591.html#L136'>span</a>              136 third_party/google-perftools-1.8.3/src/page_heap.cc         best = span;</span>
+<span class='curline'><a href='../S/591.html#L145'>span</a>              145 third_party/google-perftools-1.8.3/src/page_heap.cc Span* PageHeap::Split(Span* span, Length n) {</span>
+<span class='curline'><a href='../S/591.html#L147'>span</a>              147 third_party/google-perftools-1.8.3/src/page_heap.cc   ASSERT(n &lt; span-&gt;length);</span>
+<span class='curline'><a href='../S/591.html#L148'>span</a>              148 third_party/google-perftools-1.8.3/src/page_heap.cc   ASSERT(span-&gt;location == Span::IN_USE);</span>
+<span class='curline'><a href='../S/591.html#L149'>span</a>              149 third_party/google-perftools-1.8.3/src/page_heap.cc   ASSERT(span-&gt;sizeclass == 0);</span>
+<span class='curline'><a href='../S/591.html#L150'>span</a>              150 third_party/google-perftools-1.8.3/src/page_heap.cc   Event(span, 'T', n);</span>
+<span class='curline'><a href='../S/591.html#L152'>span</a>              152 third_party/google-perftools-1.8.3/src/page_heap.cc   const int extra = span-&gt;length - n;</span>
+<span class='curline'><a href='../S/591.html#L153'>span</a>              153 third_party/google-perftools-1.8.3/src/page_heap.cc   Span* leftover = NewSpan(span-&gt;start + n, extra);</span>
+<span class='curline'><a href='../S/591.html#L157'>span</a>              157 third_party/google-perftools-1.8.3/src/page_heap.cc   pagemap_.set(span-&gt;start + n - 1, span); // Update map from pageid to span</span>
+<span class='curline'><a href='../S/591.html#L158'>span</a>              158 third_party/google-perftools-1.8.3/src/page_heap.cc   span-&gt;length = n;</span>
+<span class='curline'><a href='../S/591.html#L163'>span</a>              163 third_party/google-perftools-1.8.3/src/page_heap.cc Span* PageHeap::Carve(Span* span, Length n) {</span>
+<span class='curline'><a href='../S/591.html#L165'>span</a>              165 third_party/google-perftools-1.8.3/src/page_heap.cc   ASSERT(span-&gt;location != Span::IN_USE);</span>
+<span class='curline'><a href='../S/591.html#L166'>span</a>              166 third_party/google-perftools-1.8.3/src/page_heap.cc   const int old_location = span-&gt;location;</span>
+<span class='curline'><a href='../S/591.html#L167'>span</a>              167 third_party/google-perftools-1.8.3/src/page_heap.cc   RemoveFromFreeList(span);</span>
+<span class='curline'><a href='../S/591.html#L168'>span</a>              168 third_party/google-perftools-1.8.3/src/page_heap.cc   span-&gt;location = Span::IN_USE;</span>
+<span class='curline'><a href='../S/591.html#L169'>span</a>              169 third_party/google-perftools-1.8.3/src/page_heap.cc   Event(span, 'A', n);</span>
+<span class='curline'><a href='../S/591.html#L171'>span</a>              171 third_party/google-perftools-1.8.3/src/page_heap.cc   const int extra = span-&gt;length - n;</span>
+<span class='curline'><a href='../S/591.html#L174'>span</a>              174 third_party/google-perftools-1.8.3/src/page_heap.cc     Span* leftover = NewSpan(span-&gt;start + n, extra);</span>
+<span class='curline'><a href='../S/591.html#L179'>span</a>              179 third_party/google-perftools-1.8.3/src/page_heap.cc     span-&gt;length = n;</span>
+<span class='curline'><a href='../S/591.html#L180'>span</a>              180 third_party/google-perftools-1.8.3/src/page_heap.cc     pagemap_.set(span-&gt;start + n - 1, span);</span>
+<span class='curline'><a href='../S/591.html#L183'>span</a>              183 third_party/google-perftools-1.8.3/src/page_heap.cc   return span;</span>
+<span class='curline'><a href='../S/591.html#L186'>span</a>              186 third_party/google-perftools-1.8.3/src/page_heap.cc void PageHeap::Delete(Span* span) {</span>
+<span class='curline'><a href='../S/591.html#L188'>span</a>              188 third_party/google-perftools-1.8.3/src/page_heap.cc   ASSERT(span-&gt;location == Span::IN_USE);</span>
+<span class='curline'><a href='../S/591.html#L189'>span</a>              189 third_party/google-perftools-1.8.3/src/page_heap.cc   ASSERT(span-&gt;length &gt; 0);</span>
+<span class='curline'><a href='../S/591.html#L190'>span</a>              190 third_party/google-perftools-1.8.3/src/page_heap.cc   ASSERT(GetDescriptor(span-&gt;start) == span);</span>
+<span class='curline'><a href='../S/591.html#L191'>span</a>              191 third_party/google-perftools-1.8.3/src/page_heap.cc   ASSERT(GetDescriptor(span-&gt;start + span-&gt;length - 1) == span);</span>
+<span class='curline'><a href='../S/591.html#L192'>span</a>              192 third_party/google-perftools-1.8.3/src/page_heap.cc   const Length n = span-&gt;length;</span>
+<span class='curline'><a href='../S/591.html#L193'>span</a>              193 third_party/google-perftools-1.8.3/src/page_heap.cc   span-&gt;sizeclass = 0;</span>
+<span class='curline'><a href='../S/591.html#L194'>span</a>              194 third_party/google-perftools-1.8.3/src/page_heap.cc   span-&gt;sample = 0;</span>
+<span class='curline'><a href='../S/591.html#L195'>span</a>              195 third_party/google-perftools-1.8.3/src/page_heap.cc   span-&gt;location = Span::ON_NORMAL_FREELIST;</span>
+<span class='curline'><a href='../S/591.html#L196'>span</a>              196 third_party/google-perftools-1.8.3/src/page_heap.cc   Event(span, 'D', span-&gt;length);</span>
+<span class='curline'><a href='../S/591.html#L197'>span</a>              197 third_party/google-perftools-1.8.3/src/page_heap.cc   MergeIntoFreeList(span);  // Coalesces if possible</span>
+<span class='curline'><a href='../S/591.html#L202'>span</a>              202 third_party/google-perftools-1.8.3/src/page_heap.cc void PageHeap::MergeIntoFreeList(Span* span) {</span>
+<span class='curline'><a href='../S/591.html#L203'>span</a>              203 third_party/google-perftools-1.8.3/src/page_heap.cc   ASSERT(span-&gt;location != Span::IN_USE);</span>
+<span class='curline'><a href='../S/591.html#L212'>span</a>              212 third_party/google-perftools-1.8.3/src/page_heap.cc   const PageID p = span-&gt;start;</span>
+<span class='curline'><a href='../S/591.html#L213'>span</a>              213 third_party/google-perftools-1.8.3/src/page_heap.cc   const Length n = span-&gt;length;</span>
+<span class='curline'><a href='../S/591.html#L215'>span</a>              215 third_party/google-perftools-1.8.3/src/page_heap.cc   if (prev != NULL &amp;&amp; prev-&gt;location == span-&gt;location) {</span>
+<span class='curline'><a href='../S/591.html#L221'>span</a>              221 third_party/google-perftools-1.8.3/src/page_heap.cc     span-&gt;start -= len;</span>
+<span class='curline'><a href='../S/591.html#L222'>span</a>              222 third_party/google-perftools-1.8.3/src/page_heap.cc     span-&gt;length += len;</span>
+<span class='curline'><a href='../S/591.html#L223'>span</a>              223 third_party/google-perftools-1.8.3/src/page_heap.cc     pagemap_.set(span-&gt;start, span);</span>
+<span class='curline'><a href='../S/591.html#L224'>span</a>              224 third_party/google-perftools-1.8.3/src/page_heap.cc     Event(span, 'L', len);</span>
+<span class='curline'><a href='../S/591.html#L227'>span</a>              227 third_party/google-perftools-1.8.3/src/page_heap.cc   if (next != NULL &amp;&amp; next-&gt;location == span-&gt;location) {</span>
+<span class='curline'><a href='../S/591.html#L233'>span</a>              233 third_party/google-perftools-1.8.3/src/page_heap.cc     span-&gt;length += len;</span>
+<span class='curline'><a href='../S/591.html#L234'>span</a>              234 third_party/google-perftools-1.8.3/src/page_heap.cc     pagemap_.set(span-&gt;start + span-&gt;length - 1, span);</span>
+<span class='curline'><a href='../S/591.html#L235'>span</a>              235 third_party/google-perftools-1.8.3/src/page_heap.cc     Event(span, 'R', len);</span>
+<span class='curline'><a href='../S/591.html#L238'>span</a>              238 third_party/google-perftools-1.8.3/src/page_heap.cc   PrependToFreeList(span);</span>
+<span class='curline'><a href='../S/591.html#L241'>span</a>              241 third_party/google-perftools-1.8.3/src/page_heap.cc void PageHeap::PrependToFreeList(Span* span) {</span>
+<span class='curline'><a href='../S/591.html#L242'>span</a>              242 third_party/google-perftools-1.8.3/src/page_heap.cc   ASSERT(span-&gt;location != Span::IN_USE);</span>
+<span class='curline'><a href='../S/591.html#L243'>span</a>              243 third_party/google-perftools-1.8.3/src/page_heap.cc   SpanList* list = (span-&gt;length &lt; kMaxPages) ? &amp;free_[span-&gt;length] : &amp;large_;</span>
+<span class='curline'><a href='../S/591.html#L244'>span</a>              244 third_party/google-perftools-1.8.3/src/page_heap.cc   if (span-&gt;location == Span::ON_NORMAL_FREELIST) {</span>
+<span class='curline'><a href='../S/591.html#L245'>span</a>              245 third_party/google-perftools-1.8.3/src/page_heap.cc     stats_.free_bytes += (span-&gt;length &lt;&lt; kPageShift);</span>
+<span class='curline'><a href='../S/591.html#L246'>span</a>              246 third_party/google-perftools-1.8.3/src/page_heap.cc     DLL_Prepend(&amp;list-&gt;normal, span);</span>
+<span class='curline'><a href='../S/591.html#L248'>span</a>              248 third_party/google-perftools-1.8.3/src/page_heap.cc     stats_.unmapped_bytes += (span-&gt;length &lt;&lt; kPageShift);</span>
+<span class='curline'><a href='../S/591.html#L249'>span</a>              249 third_party/google-perftools-1.8.3/src/page_heap.cc     DLL_Prepend(&amp;list-&gt;returned, span);</span>
+<span class='curline'><a href='../S/591.html#L253'>span</a>              253 third_party/google-perftools-1.8.3/src/page_heap.cc void PageHeap::RemoveFromFreeList(Span* span) {</span>
+<span class='curline'><a href='../S/591.html#L254'>span</a>              254 third_party/google-perftools-1.8.3/src/page_heap.cc   ASSERT(span-&gt;location != Span::IN_USE);</span>
+<span class='curline'><a href='../S/591.html#L255'>span</a>              255 third_party/google-perftools-1.8.3/src/page_heap.cc   if (span-&gt;location == Span::ON_NORMAL_FREELIST) {</span>
+<span class='curline'><a href='../S/591.html#L256'>span</a>              256 third_party/google-perftools-1.8.3/src/page_heap.cc     stats_.free_bytes -= (span-&gt;length &lt;&lt; kPageShift);</span>
+<span class='curline'><a href='../S/591.html#L258'>span</a>              258 third_party/google-perftools-1.8.3/src/page_heap.cc     stats_.unmapped_bytes -= (span-&gt;length &lt;&lt; kPageShift);</span>
+<span class='curline'><a href='../S/591.html#L260'>span</a>              260 third_party/google-perftools-1.8.3/src/page_heap.cc   DLL_Remove(span);</span>
+<span class='curline'><a href='../S/591.html#L333'>span</a>              333 third_party/google-perftools-1.8.3/src/page_heap.cc void PageHeap::RegisterSizeClass(Span* span, size_t sc) {</span>
+<span class='curline'><a href='../S/591.html#L335'>span</a>              335 third_party/google-perftools-1.8.3/src/page_heap.cc   ASSERT(span-&gt;location == Span::IN_USE);</span>
+<span class='curline'><a href='../S/591.html#L336'>span</a>              336 third_party/google-perftools-1.8.3/src/page_heap.cc   ASSERT(GetDescriptor(span-&gt;start) == span);</span>
+<span class='curline'><a href='../S/591.html#L337'>span</a>              337 third_party/google-perftools-1.8.3/src/page_heap.cc   ASSERT(GetDescriptor(span-&gt;start+span-&gt;length-1) == span);</span>
+<span class='curline'><a href='../S/591.html#L338'>span</a>              338 third_party/google-perftools-1.8.3/src/page_heap.cc   Event(span, 'C', sc);</span>
+<span class='curline'><a href='../S/591.html#L339'>span</a>              339 third_party/google-perftools-1.8.3/src/page_heap.cc   span-&gt;sizeclass = sc;</span>
+<span class='curline'><a href='../S/591.html#L340'>span</a>              340 third_party/google-perftools-1.8.3/src/page_heap.cc   for (Length i = 1; i &lt; span-&gt;length-1; i++) {</span>
+<span class='curline'><a href='../S/591.html#L341'>span</a>              341 third_party/google-perftools-1.8.3/src/page_heap.cc     pagemap_.set(span-&gt;start+i, span);</span>
+<span class='curline'><a href='../S/591.html#L367'>span</a>              367 third_party/google-perftools-1.8.3/src/page_heap.cc   Span* span = reinterpret_cast&lt;Span*&gt;(pagemap_.Next(start));</span>
+<span class='curline'><a href='../S/591.html#L368'>span</a>              368 third_party/google-perftools-1.8.3/src/page_heap.cc   if (span == NULL) {</span>
+<span class='curline'><a href='../S/591.html#L371'>span</a>              371 third_party/google-perftools-1.8.3/src/page_heap.cc   r-&gt;address = span-&gt;start &lt;&lt; kPageShift;</span>
+<span class='curline'><a href='../S/591.html#L372'>span</a>              372 third_party/google-perftools-1.8.3/src/page_heap.cc   r-&gt;length = span-&gt;length &lt;&lt; kPageShift;</span>
+<span class='curline'><a href='../S/591.html#L374'>span</a>              374 third_party/google-perftools-1.8.3/src/page_heap.cc   switch (span-&gt;location) {</span>
+<span class='curline'><a href='../S/591.html#L378'>span</a>              378 third_party/google-perftools-1.8.3/src/page_heap.cc       if (span-&gt;sizeclass &gt; 0) {</span>
+<span class='curline'><a href='../S/591.html#L380'>span</a>              380 third_party/google-perftools-1.8.3/src/page_heap.cc         const size_t osize = Static::sizemap()-&gt;class_to_size(span-&gt;sizeclass);</span>
+<span class='curline'><a href='../S/591.html#L381'>span</a>              381 third_party/google-perftools-1.8.3/src/page_heap.cc         r-&gt;fraction = (1.0 * osize * span-&gt;refcount) / r-&gt;length;</span>
+<span class='curline'><a href='../S/591.html#L442'>span</a>              442 third_party/google-perftools-1.8.3/src/page_heap.cc     Span* span = NewSpan(p, ask);</span>
+<span class='curline'><a href='../S/591.html#L443'>span</a>              443 third_party/google-perftools-1.8.3/src/page_heap.cc     RecordSpan(span);</span>
+<span class='curline'><a href='../S/591.html#L444'>span</a>              444 third_party/google-perftools-1.8.3/src/page_heap.cc     Delete(span);</span>
+<span class='curline'><a href='../S/592.html#L115'>span</a>              115 third_party/google-perftools-1.8.3/src/page_heap.h   void Delete(Span* span);</span>
+<span class='curline'><a href='../S/592.html#L121'>span</a>              121 third_party/google-perftools-1.8.3/src/page_heap.h   void RegisterSizeClass(Span* span, size_t sc);</span>
+<span class='curline'><a href='../S/592.html#L131'>span</a>              131 third_party/google-perftools-1.8.3/src/page_heap.h   Span* Split(Span* span, Length n);</span>
+<span class='curline'><a href='../S/592.html#L249'>span</a>              249 third_party/google-perftools-1.8.3/src/page_heap.h   Span* Carve(Span* span, Length n);</span>
+<span class='curline'><a href='../S/592.html#L251'>span</a>              251 third_party/google-perftools-1.8.3/src/page_heap.h   void RecordSpan(Span* span) {</span>
+<span class='curline'><a href='../S/592.html#L252'>span</a>              252 third_party/google-perftools-1.8.3/src/page_heap.h     pagemap_.set(span-&gt;start, span);</span>
+<span class='curline'><a href='../S/592.html#L253'>span</a>              253 third_party/google-perftools-1.8.3/src/page_heap.h     if (span-&gt;length &gt; 1) {</span>
+<span class='curline'><a href='../S/592.html#L254'>span</a>              254 third_party/google-perftools-1.8.3/src/page_heap.h       pagemap_.set(span-&gt;start + span-&gt;length - 1, span);</span>
+<span class='curline'><a href='../S/592.html#L264'>span</a>              264 third_party/google-perftools-1.8.3/src/page_heap.h   void MergeIntoFreeList(Span* span);</span>
+<span class='curline'><a href='../S/592.html#L267'>span</a>              267 third_party/google-perftools-1.8.3/src/page_heap.h   void PrependToFreeList(Span* span);</span>
+<span class='curline'><a href='../S/592.html#L270'>span</a>              270 third_party/google-perftools-1.8.3/src/page_heap.h   void RemoveFromFreeList(Span* span);</span>
+<span class='curline'><a href='../S/606.html#L45'>span</a>               45 third_party/google-perftools-1.8.3/src/span.cc void Event(Span* span, char op, int v = 0) {</span>
+<span class='curline'><a href='../S/606.html#L46'>span</a>               46 third_party/google-perftools-1.8.3/src/span.cc   span-&gt;history[span-&gt;nexthistory] = op;</span>
+<span class='curline'><a href='../S/606.html#L47'>span</a>               47 third_party/google-perftools-1.8.3/src/span.cc   span-&gt;value[span-&gt;nexthistory] = v;</span>
+<span class='curline'><a href='../S/606.html#L48'>span</a>               48 third_party/google-perftools-1.8.3/src/span.cc   span-&gt;nexthistory++;</span>
+<span class='curline'><a href='../S/606.html#L49'>span</a>               49 third_party/google-perftools-1.8.3/src/span.cc   if (span-&gt;nexthistory == sizeof(span-&gt;history)) span-&gt;nexthistory = 0;</span>
+<span class='curline'><a href='../S/606.html#L64'>span</a>               64 third_party/google-perftools-1.8.3/src/span.cc void DeleteSpan(Span* span) {</span>
+<span class='curline'><a href='../S/606.html#L67'>span</a>               67 third_party/google-perftools-1.8.3/src/span.cc   memset(span, 0x3f, sizeof(*span));</span>
+<span class='curline'><a href='../S/606.html#L69'>span</a>               69 third_party/google-perftools-1.8.3/src/span.cc   Static::span_allocator()-&gt;Delete(span);</span>
+<span class='curline'><a href='../S/606.html#L77'>span</a>               77 third_party/google-perftools-1.8.3/src/span.cc void DLL_Remove(Span* span) {</span>
+<span class='curline'><a href='../S/606.html#L78'>span</a>               78 third_party/google-perftools-1.8.3/src/span.cc   span-&gt;prev-&gt;next = span-&gt;next;</span>
+<span class='curline'><a href='../S/606.html#L79'>span</a>               79 third_party/google-perftools-1.8.3/src/span.cc   span-&gt;next-&gt;prev = span-&gt;prev;</span>
+<span class='curline'><a href='../S/606.html#L80'>span</a>               80 third_party/google-perftools-1.8.3/src/span.cc   span-&gt;prev = NULL;</span>
+<span class='curline'><a href='../S/606.html#L81'>span</a>               81 third_party/google-perftools-1.8.3/src/span.cc   span-&gt;next = NULL;</span>
+<span class='curline'><a href='../S/606.html#L92'>span</a>               92 third_party/google-perftools-1.8.3/src/span.cc void DLL_Prepend(Span* list, Span* span) {</span>
+<span class='curline'><a href='../S/606.html#L93'>span</a>               93 third_party/google-perftools-1.8.3/src/span.cc   ASSERT(span-&gt;next == NULL);</span>
+<span class='curline'><a href='../S/606.html#L94'>span</a>               94 third_party/google-perftools-1.8.3/src/span.cc   ASSERT(span-&gt;prev == NULL);</span>
+<span class='curline'><a href='../S/606.html#L95'>span</a>               95 third_party/google-perftools-1.8.3/src/span.cc   span-&gt;next = list-&gt;next;</span>
+<span class='curline'><a href='../S/606.html#L96'>span</a>               96 third_party/google-perftools-1.8.3/src/span.cc   span-&gt;prev = list;</span>
+<span class='curline'><a href='../S/606.html#L97'>span</a>               97 third_party/google-perftools-1.8.3/src/span.cc   list-&gt;next-&gt;prev = span;</span>
+<span class='curline'><a href='../S/606.html#L98'>span</a>               98 third_party/google-perftools-1.8.3/src/span.cc   list-&gt;next = span;</span>
+<span class='curline'><a href='../S/607.html#L68'>span</a>               68 third_party/google-perftools-1.8.3/src/span.h void Event(Span* span, char op, int v = 0);</span>
+<span class='curline'><a href='../S/607.html#L75'>span</a>               75 third_party/google-perftools-1.8.3/src/span.h void DeleteSpan(Span* span);</span>
+<span class='curline'><a href='../S/607.html#L86'>span</a>               86 third_party/google-perftools-1.8.3/src/span.h void DLL_Remove(Span* span);</span>
+<span class='curline'><a href='../S/607.html#L94'>span</a>               94 third_party/google-perftools-1.8.3/src/span.h void DLL_Prepend(Span* list, Span* span);</span>
+<span class='curline'><a href='../S/626.html#L774'>span</a>              774 third_party/google-perftools-1.8.3/src/tcmalloc.cc     const Span *span = Static::pageheap()-&gt;GetDescriptor(p);</span>
+<span class='curline'><a href='../S/626.html#L775'>span</a>              775 third_party/google-perftools-1.8.3/src/tcmalloc.cc     return span ? kOwned : kNotOwned;</span>
+<span class='curline'><a href='../S/626.html#L936'>span</a>              936 third_party/google-perftools-1.8.3/src/tcmalloc.cc static inline void* SpanToMallocResult(Span *span) {</span>
+<span class='curline'><a href='../S/626.html#L937'>span</a>              937 third_party/google-perftools-1.8.3/src/tcmalloc.cc   Static::pageheap()-&gt;CacheSizeClass(span-&gt;start, 0);</span>
+<span class='curline'><a href='../S/626.html#L939'>span</a>              939 third_party/google-perftools-1.8.3/src/tcmalloc.cc       CheckedMallocResult(reinterpret_cast&lt;void*&gt;(span-&gt;start &lt;&lt; kPageShift));</span>
+<span class='curline'><a href='../S/626.html#L950'>span</a>              950 third_party/google-perftools-1.8.3/src/tcmalloc.cc   Span *span = Static::pageheap()-&gt;New(tcmalloc::pages(size == 0 ? 1 : size));</span>
+<span class='curline'><a href='../S/626.html#L951'>span</a>              951 third_party/google-perftools-1.8.3/src/tcmalloc.cc   if (span == NULL) {</span>
+<span class='curline'><a href='../S/626.html#L959'>span</a>              959 third_party/google-perftools-1.8.3/src/tcmalloc.cc     return span;</span>
+<span class='curline'><a href='../S/626.html#L962'>span</a>              962 third_party/google-perftools-1.8.3/src/tcmalloc.cc   span-&gt;sample = 1;</span>
+<span class='curline'><a href='../S/626.html#L963'>span</a>              963 third_party/google-perftools-1.8.3/src/tcmalloc.cc   span-&gt;objects = stack;</span>
+<span class='curline'><a href='../S/626.html#L964'>span</a>              964 third_party/google-perftools-1.8.3/src/tcmalloc.cc   tcmalloc::DLL_Prepend(Static::sampled_objects(), span);</span>
+<span class='curline'><a href='../S/626.html#L966'>span</a>              966 third_party/google-perftools-1.8.3/src/tcmalloc.cc   return SpanToMallocResult(span);</span>
+<span class='curline'><a href='../S/626.html#L1040'>span</a>             1040 third_party/google-perftools-1.8.3/src/tcmalloc.cc     Span* span = Static::pageheap()-&gt;New(num_pages);</span>
+<span class='curline'><a href='../S/626.html#L1041'>span</a>             1041 third_party/google-perftools-1.8.3/src/tcmalloc.cc     result = (span == NULL ? NULL : SpanToMallocResult(span));</span>
+<span class='curline'><a href='../S/626.html#L1097'>span</a>             1097 third_party/google-perftools-1.8.3/src/tcmalloc.cc   Span* span = NULL;</span>
+<span class='curline'><a href='../S/626.html#L1101'>span</a>             1101 third_party/google-perftools-1.8.3/src/tcmalloc.cc     span = Static::pageheap()-&gt;GetDescriptor(p);</span>
+<span class='curline'><a href='../S/626.html#L1102'>span</a>             1102 third_party/google-perftools-1.8.3/src/tcmalloc.cc     if (!span) {</span>
+<span class='curline'><a href='../S/626.html#L1113'>span</a>             1113 third_party/google-perftools-1.8.3/src/tcmalloc.cc     cl = span-&gt;sizeclass;</span>
+<span class='curline'><a href='../S/626.html#L1129'>span</a>             1129 third_party/google-perftools-1.8.3/src/tcmalloc.cc     ASSERT(span != NULL &amp;&amp; span-&gt;start == p);</span>
+<span class='curline'><a href='../S/626.html#L1130'>span</a>             1130 third_party/google-perftools-1.8.3/src/tcmalloc.cc     if (span-&gt;sample) {</span>
+<span class='curline'><a href='../S/626.html#L1131'>span</a>             1131 third_party/google-perftools-1.8.3/src/tcmalloc.cc       StackTrace* st = reinterpret_cast&lt;StackTrace*&gt;(span-&gt;objects);</span>
+<span class='curline'><a href='../S/626.html#L1132'>span</a>             1132 third_party/google-perftools-1.8.3/src/tcmalloc.cc       tcmalloc::DLL_Remove(span);</span>
+<span class='curline'><a href='../S/626.html#L1134'>span</a>             1134 third_party/google-perftools-1.8.3/src/tcmalloc.cc       span-&gt;objects = NULL;</span>
+<span class='curline'><a href='../S/626.html#L1136'>span</a>             1136 third_party/google-perftools-1.8.3/src/tcmalloc.cc     Static::pageheap()-&gt;Delete(span);</span>
+<span class='curline'><a href='../S/626.html#L1156'>span</a>             1156 third_party/google-perftools-1.8.3/src/tcmalloc.cc     const Span *span = Static::pageheap()-&gt;GetDescriptor(p);</span>
+<span class='curline'><a href='../S/626.html#L1157'>span</a>             1157 third_party/google-perftools-1.8.3/src/tcmalloc.cc     if (span == NULL) {  // means we do not own this memory</span>
+<span class='curline'><a href='../S/626.html#L1159'>span</a>             1159 third_party/google-perftools-1.8.3/src/tcmalloc.cc     } else if (span-&gt;sizeclass != 0) {</span>
+<span class='curline'><a href='../S/626.html#L1160'>span</a>             1160 third_party/google-perftools-1.8.3/src/tcmalloc.cc       Static::pageheap()-&gt;CacheSizeClass(p, span-&gt;sizeclass);</span>
+<span class='curline'><a href='../S/626.html#L1161'>span</a>             1161 third_party/google-perftools-1.8.3/src/tcmalloc.cc       return Static::sizemap()-&gt;ByteSizeForClass(span-&gt;sizeclass);</span>
+<span class='curline'><a href='../S/626.html#L1163'>span</a>             1163 third_party/google-perftools-1.8.3/src/tcmalloc.cc       return span-&gt;length &lt;&lt; kPageShift;</span>
+<span class='curline'><a href='../S/626.html#L1270'>span</a>             1270 third_party/google-perftools-1.8.3/src/tcmalloc.cc     Span* span = Static::pageheap()-&gt;New(tcmalloc::pages(size));</span>
+<span class='curline'><a href='../S/626.html#L1271'>span</a>             1271 third_party/google-perftools-1.8.3/src/tcmalloc.cc     return span == NULL ? NULL : SpanToMallocResult(span);</span>
+<span class='curline'><a href='../S/626.html#L1276'>span</a>             1276 third_party/google-perftools-1.8.3/src/tcmalloc.cc   Span* span = Static::pageheap()-&gt;New(alloc);</span>
+<span class='curline'><a href='../S/626.html#L1277'>span</a>             1277 third_party/google-perftools-1.8.3/src/tcmalloc.cc   if (span == NULL) return NULL;</span>
+<span class='curline'><a href='../S/626.html#L1281'>span</a>             1281 third_party/google-perftools-1.8.3/src/tcmalloc.cc   while ((((span-&gt;start+skip) &lt;&lt; kPageShift) &amp; (align - 1)) != 0) {</span>
+<span class='curline'><a href='../S/626.html#L1286'>span</a>             1286 third_party/google-perftools-1.8.3/src/tcmalloc.cc     Span* rest = Static::pageheap()-&gt;Split(span, skip);</span>
+<span class='curline'><a href='../S/626.html#L1287'>span</a>             1287 third_party/google-perftools-1.8.3/src/tcmalloc.cc     Static::pageheap()-&gt;Delete(span);</span>
+<span class='curline'><a href='../S/626.html#L1288'>span</a>             1288 third_party/google-perftools-1.8.3/src/tcmalloc.cc     span = rest;</span>
+<span class='curline'><a href='../S/626.html#L1293'>span</a>             1293 third_party/google-perftools-1.8.3/src/tcmalloc.cc   ASSERT(span-&gt;length &gt;= needed);</span>
+<span class='curline'><a href='../S/626.html#L1294'>span</a>             1294 third_party/google-perftools-1.8.3/src/tcmalloc.cc   if (span-&gt;length &gt; needed) {</span>
+<span class='curline'><a href='../S/626.html#L1295'>span</a>             1295 third_party/google-perftools-1.8.3/src/tcmalloc.cc     Span* trailer = Static::pageheap()-&gt;Split(span, needed);</span>
+<span class='curline'><a href='../S/626.html#L1298'>span</a>             1298 third_party/google-perftools-1.8.3/src/tcmalloc.cc   return SpanToMallocResult(span);</span>
+</pre>
+</body>
+</html>

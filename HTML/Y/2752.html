@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>ib</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/351.html#L173'>ib</a>                173 src/load.c     static void dump_instblock(InstBlock ib)</span>
+<span class='curline'><a href='../S/351.html#L178'>ib</a>                178 src/load.c       printf("    Label=%d \n", inst_block_get_label(ib));</span>
+<span class='curline'><a href='../S/351.html#L179'>ib</a>                179 src/load.c       l = inst_block_get_instructions(ib);</span>
+<span class='curline'><a href='../S/351.html#L482'>ib</a>                482 src/load.c     static void load_inst_block(InstBlock ib, Context c)</span>
+<span class='curline'><a href='../S/351.html#L487'>ib</a>                487 src/load.c       if (inst_block_has_label(ib)) {</span>
+<span class='curline'><a href='../S/351.html#L488'>ib</a>                488 src/load.c         st_insert(c-&gt;label_to_loc, (st_data_t)inst_block_get_label(ib), (st_data_t)c-&gt;loc);</span>
+<span class='curline'><a href='../S/351.html#L491'>ib</a>                491 src/load.c       inst_list = inst_block_get_instructions(ib);</span>
+<span class='curline'><a href='../S/380.html#L109'>ib</a>                109 src/syntax.c   static void inst_block_free(InstBlock ib);</span>
+<span class='curline'><a href='../S/380.html#L467'>ib</a>                467 src/syntax.c   static void inst_block_free(InstBlock ib)</span>
+<span class='curline'><a href='../S/380.html#L469'>ib</a>                469 src/syntax.c     inst_list_free(inst_block_get_instructions(ib));</span>
+<span class='curline'><a href='../S/380.html#L470'>ib</a>                470 src/syntax.c     LMN_FREE(ib);</span>
+<span class='curline'><a href='../S/380.html#L473'>ib</a>                473 src/syntax.c   int inst_block_get_label(InstBlock ib)</span>
+<span class='curline'><a href='../S/380.html#L475'>ib</a>                475 src/syntax.c     return ib-&gt;label;</span>
+<span class='curline'><a href='../S/380.html#L478'>ib</a>                478 src/syntax.c   InstList inst_block_get_instructions(InstBlock ib)</span>
+<span class='curline'><a href='../S/380.html#L480'>ib</a>                480 src/syntax.c     return ib-&gt;instrs;</span>
+<span class='curline'><a href='../S/380.html#L483'>ib</a>                483 src/syntax.c   BOOL inst_block_has_label(InstBlock ib)</span>
+<span class='curline'><a href='../S/380.html#L485'>ib</a>                485 src/syntax.c     return ib-&gt;label != 0;</span>
+<span class='curline'><a href='../S/381.html#L130'>ib</a>                130 src/syntax.h   int inst_block_get_label(InstBlock ib);</span>
+<span class='curline'><a href='../S/381.html#L131'>ib</a>                131 src/syntax.h   InstList inst_block_get_instructions(InstBlock ib);</span>
+<span class='curline'><a href='../S/381.html#L132'>ib</a>                132 src/syntax.h   BOOL inst_block_has_label(InstBlock ib);</span>
+</pre>
+</body>
+</html>

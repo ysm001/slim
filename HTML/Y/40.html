@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>AtomicPtr</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/581.html#L57'>AtomicPtr</a>          57 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h class AtomicPtr {</span>
+<span class='curline'><a href='../S/581.html#L91'>AtomicPtr</a>          91 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h extern AtomicPtr&lt;MallocHook::NewHook&gt;     new_hook_;</span>
+<span class='curline'><a href='../S/581.html#L92'>AtomicPtr</a>          92 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h extern AtomicPtr&lt;MallocHook::DeleteHook&gt;  delete_hook_;</span>
+<span class='curline'><a href='../S/581.html#L93'>AtomicPtr</a>          93 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h extern AtomicPtr&lt;MallocHook::PreMmapHook&gt; premmap_hook_;</span>
+<span class='curline'><a href='../S/581.html#L94'>AtomicPtr</a>          94 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h extern AtomicPtr&lt;MallocHook::MmapHook&gt;    mmap_hook_;</span>
+<span class='curline'><a href='../S/581.html#L95'>AtomicPtr</a>          95 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h extern AtomicPtr&lt;MallocHook::MunmapHook&gt;  munmap_hook_;</span>
+<span class='curline'><a href='../S/581.html#L96'>AtomicPtr</a>          96 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h extern AtomicPtr&lt;MallocHook::MremapHook&gt;  mremap_hook_;</span>
+<span class='curline'><a href='../S/581.html#L97'>AtomicPtr</a>          97 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h extern AtomicPtr&lt;MallocHook::PreSbrkHook&gt; presbrk_hook_;</span>
+<span class='curline'><a href='../S/581.html#L98'>AtomicPtr</a>          98 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h extern AtomicPtr&lt;MallocHook::SbrkHook&gt;    sbrk_hook_;</span>
+<span class='curline'><a href='../S/582.html#L162'>AtomicPtr</a>         162 third_party/google-perftools-1.8.3/src/malloc_hook.cc PtrT AtomicPtr&lt;PtrT&gt;::Exchange(PtrT new_val) {</span>
+<span class='curline'><a href='../S/582.html#L177'>AtomicPtr</a>         177 third_party/google-perftools-1.8.3/src/malloc_hook.cc PtrT AtomicPtr&lt;PtrT&gt;::CompareAndSwap(PtrT old_val, PtrT new_val) {</span>
+<span class='curline'><a href='../S/582.html#L188'>AtomicPtr</a>         188 third_party/google-perftools-1.8.3/src/malloc_hook.cc AtomicPtr&lt;MallocHook::NewHook&gt;    new_hook_ = { 0 };</span>
+<span class='curline'><a href='../S/582.html#L189'>AtomicPtr</a>         189 third_party/google-perftools-1.8.3/src/malloc_hook.cc AtomicPtr&lt;MallocHook::DeleteHook&gt; delete_hook_ = { 0 };</span>
+<span class='curline'><a href='../S/582.html#L190'>AtomicPtr</a>         190 third_party/google-perftools-1.8.3/src/malloc_hook.cc AtomicPtr&lt;MallocHook::PreMmapHook&gt; premmap_hook_ = { 0 };</span>
+<span class='curline'><a href='../S/582.html#L191'>AtomicPtr</a>         191 third_party/google-perftools-1.8.3/src/malloc_hook.cc AtomicPtr&lt;MallocHook::MmapHook&gt;   mmap_hook_ = { 0 };</span>
+<span class='curline'><a href='../S/582.html#L192'>AtomicPtr</a>         192 third_party/google-perftools-1.8.3/src/malloc_hook.cc AtomicPtr&lt;MallocHook::MunmapHook&gt; munmap_hook_ = { 0 };</span>
+<span class='curline'><a href='../S/582.html#L193'>AtomicPtr</a>         193 third_party/google-perftools-1.8.3/src/malloc_hook.cc AtomicPtr&lt;MallocHook::MremapHook&gt; mremap_hook_ = { 0 };</span>
+<span class='curline'><a href='../S/582.html#L194'>AtomicPtr</a>         194 third_party/google-perftools-1.8.3/src/malloc_hook.cc AtomicPtr&lt;MallocHook::PreSbrkHook&gt; presbrk_hook_ = { 0 };</span>
+<span class='curline'><a href='../S/582.html#L195'>AtomicPtr</a>         195 third_party/google-perftools-1.8.3/src/malloc_hook.cc AtomicPtr&lt;MallocHook::SbrkHook&gt;   sbrk_hook_ = { 0 };</span>
+</pre>
+</body>
+</html>

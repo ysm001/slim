@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>ignored_objects</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/568.html#L370'>ignored_objects</a>   370 third_party/google-perftools-1.8.3/src/heap-checker.cc static IgnoredObjectsMap* ignored_objects = NULL;</span>
+<span class='curline'><a href='../S/568.html#L1093'>ignored_objects</a>  1093 third_party/google-perftools-1.8.3/src/heap-checker.cc   if (ignored_objects) {</span>
+<span class='curline'><a href='../S/568.html#L1094'>ignored_objects</a>  1094 third_party/google-perftools-1.8.3/src/heap-checker.cc     for (IgnoredObjectsMap::const_iterator object = ignored_objects-&gt;begin();</span>
+<span class='curline'><a href='../S/568.html#L1095'>ignored_objects</a>  1095 third_party/google-perftools-1.8.3/src/heap-checker.cc          object != ignored_objects-&gt;end(); ++object) {</span>
+<span class='curline'><a href='../S/568.html#L1489'>ignored_objects</a>  1489 third_party/google-perftools-1.8.3/src/heap-checker.cc     if (ignored_objects == NULL)  {</span>
+<span class='curline'><a href='../S/568.html#L1490'>ignored_objects</a>  1490 third_party/google-perftools-1.8.3/src/heap-checker.cc       ignored_objects = new(Allocator::Allocate(sizeof(IgnoredObjectsMap)))</span>
+<span class='curline'><a href='../S/568.html#L1493'>ignored_objects</a>  1493 third_party/google-perftools-1.8.3/src/heap-checker.cc     if (!ignored_objects-&gt;insert(make_pair(AsInt(ptr), object_size)).second) {</span>
+<span class='curline'><a href='../S/568.html#L1508'>ignored_objects</a>  1508 third_party/google-perftools-1.8.3/src/heap-checker.cc     if (ignored_objects) {</span>
+<span class='curline'><a href='../S/568.html#L1509'>ignored_objects</a>  1509 third_party/google-perftools-1.8.3/src/heap-checker.cc       IgnoredObjectsMap::iterator object = ignored_objects-&gt;find(AsInt(ptr));</span>
+<span class='curline'><a href='../S/568.html#L1510'>ignored_objects</a>  1510 third_party/google-perftools-1.8.3/src/heap-checker.cc       if (object != ignored_objects-&gt;end()  &amp;&amp;  object_size == object-&gt;second) {</span>
+<span class='curline'><a href='../S/568.html#L1511'>ignored_objects</a>  1511 third_party/google-perftools-1.8.3/src/heap-checker.cc         ignored_objects-&gt;erase(object);</span>
+<span class='curline'><a href='../S/568.html#L2188'>ignored_objects</a>  2188 third_party/google-perftools-1.8.3/src/heap-checker.cc     Allocator::DeleteAndNullIfNot(&amp;ignored_objects);</span>
+</pre>
+</body>
+</html>

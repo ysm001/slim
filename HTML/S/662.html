@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>third_party/google-perftools-1.8.3/src/tests/system-alloc_unittest.cc</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/738.html'>third_party</a>/<a href='../files/739.html'>google-perftools-1.8.3</a>/<a href='../files/740.html'>src</a>/<a href='../files/743.html'>tests</a>/system-alloc_unittest.cc</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L58'>[^]</a><a href='#L148'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L58' title='Defined at 58.'>Alloc</a></li>
+<li><a href='#L85' title='Defined at 85.'>DumpStats</a></li>
+<li><a href='#L98' title='Defined at 98.'>TestBasicInvoked</a></li>
+<li><a href='#L111' title='Defined at 111.'>TEST</a></li>
+<li><a href='#L122' title='Defined at 122.'>TestBasicRetryFailTest</a></li>
+<li><a href='#L148' title='Defined at 148.'>main</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>// Copyright (c) 2007, Google Inc.</em>
+<a id='L2' name='L2' /><em class='comment'>// All rights reserved.</em>
+<a id='L3' name='L3' /><em class='comment'>// </em>
+<a id='L4' name='L4' /><em class='comment'>// Redistribution and use in source and binary forms, with or without</em>
+<a id='L5' name='L5' /><em class='comment'>// modification, are permitted provided that the following conditions are</em>
+<a id='L6' name='L6' /><em class='comment'>// met:</em>
+<a id='L7' name='L7' /><em class='comment'>// </em>
+<a id='L8' name='L8' /><em class='comment'>//     * Redistributions of source code must retain the above copyright</em>
+<a id='L9' name='L9' /><em class='comment'>// notice, this list of conditions and the following disclaimer.</em>
+<a id='L10' name='L10' /><em class='comment'>//     * Redistributions in binary form must reproduce the above</em>
+<a id='L11' name='L11' /><em class='comment'>// copyright notice, this list of conditions and the following disclaimer</em>
+<a id='L12' name='L12' /><em class='comment'>// in the documentation and/or other materials provided with the</em>
+<a id='L13' name='L13' /><em class='comment'>// distribution.</em>
+<a id='L14' name='L14' /><em class='comment'>//     * Neither the name of Google Inc. nor the names of its</em>
+<a id='L15' name='L15' /><em class='comment'>// contributors may be used to endorse or promote products derived from</em>
+<a id='L16' name='L16' /><em class='comment'>// this software without specific prior written permission.</em>
+<a id='L17' name='L17' /><em class='comment'>// </em>
+<a id='L18' name='L18' /><em class='comment'>// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L19' name='L19' /><em class='comment'>// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L20' name='L20' /><em class='comment'>// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L21' name='L21' /><em class='comment'>// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L22' name='L22' /><em class='comment'>// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L23' name='L23' /><em class='comment'>// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L24' name='L24' /><em class='comment'>// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L25' name='L25' /><em class='comment'>// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L26' name='L26' /><em class='comment'>// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L27' name='L27' /><em class='comment'>// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L28' name='L28' /><em class='comment'>// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L29' name='L29' />
+<a id='L30' name='L30' /><em class='comment'>// ---</em>
+<a id='L31' name='L31' /><em class='comment'>// Author: Arun Sharma</em>
+<a id='L32' name='L32' />
+<a id='L33' name='L33' /><em class='sharp'>#include</em> "<a href='554.html'>config_for_unittests.h</a>"
+<a id='L34' name='L34' /><em class='sharp'>#include</em> "<a href='625.html'>system-alloc.h</a>"
+<a id='L35' name='L35' /><em class='sharp'>#include</em> &lt;stdio.h&gt;
+<a id='L36' name='L36' /><em class='sharp'>#if</em> <strong class='reserved'>defined</strong> <a href='../D/935.html' title='Multiple defined in 2 places.'>HAVE_STDINT_H</a>
+<a id='L37' name='L37' /><em class='sharp'>#include</em> &lt;stdint.h&gt;             <em class='comment'>// to get uintptr_t</em>
+<a id='L38' name='L38' /><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong> <a href='../D/911.html' title='Multiple defined in 2 places.'>HAVE_INTTYPES_H</a>
+<a id='L39' name='L39' /><em class='sharp'>#include</em> &lt;inttypes.h&gt;           <em class='comment'>// another place uintptr_t might be defined</em>
+<a id='L40' name='L40' /><em class='sharp'>#endif</em>
+<a id='L41' name='L41' /><em class='sharp'>#include</em> &lt;sys/types.h&gt;
+<a id='L42' name='L42' /><em class='sharp'>#include</em> &lt;algorithm&gt;
+<a id='L43' name='L43' /><em class='sharp'>#include</em> &lt;limits&gt;
+<a id='L44' name='L44' /><em class='sharp'>#include</em> "<a href='529.html'>base/logging.h</a>"               <em class='comment'>// for Check_GEImpl, Check_LTImpl, etc</em>
+<a id='L45' name='L45' /><em class='sharp'>#include</em> &lt;<a href='559.html'>google/malloc_extension.h</a>&gt;    <em class='comment'>// for MallocExtension::instance</em>
+<a id='L46' name='L46' /><em class='sharp'>#include</em> "<a href='552.html'>common.h</a>"                     <em class='comment'>// for kAddressBits</em>
+<a id='L47' name='L47' />
+<a id='L48' name='L48' /><strong class='reserved'>class</strong> <a href='../R/179.html' title='Multiple refered from 2 places.'>ArraySysAllocator</a> : <strong class='reserved'>public</strong> <a href='../S/580.html#L106' title='Defined at 106 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>SysAllocator</a> <em class='brace'>{</em>
+<a id='L49' name='L49' /><strong class='reserved'>public</strong>:
+<a id='L50' name='L50' />  <em class='comment'>// Was this allocator invoked at least once?</em>
+<a id='L51' name='L51' />  <strong class='reserved'>bool</strong> <a href='../Y/2887.html' title='Multiple used in 4 places.'>invoked_</a>;
+<a id='L52' name='L52' />
+<a id='L53' name='L53' />  ArraySysAllocator() : <a href='../S/580.html#L106' title='Defined at 106 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>SysAllocator</a>() <em class='brace'>{</em>
+<a id='L54' name='L54' />    <a href='../Y/4375.html' title='Multiple used in 16 places.'>ptr_</a> = 0;
+<a id='L55' name='L55' />    <a href='../Y/2887.html' title='Multiple used in 4 places.'>invoked_</a> = <strong class='reserved'>false</strong>;
+<a id='L56' name='L56' />  <em class='brace'>}</em>
+<a id='L57' name='L57' />
+<a id='L58' name='L58' />  <strong class='reserved'>void</strong>* <a href='../R/117.html' title='Multiple refered from 23 places.'>Alloc</a>(<a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> *<a href='../Y/1394.html' title='Multiple used in 42 places.'>actual_size</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/1430.html' title='Multiple used in 82 places.'>alignment</a>) <em class='brace'>{</em>
+<a id='L59' name='L59' />    <a href='../Y/2887.html' title='Multiple used in 4 places.'>invoked_</a> = <strong class='reserved'>true</strong>;
+<a id='L60' name='L60' />
+<a id='L61' name='L61' />    <strong class='reserved'>if</strong> (<a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a> &gt; <a href='../Y/2975.html' title='Multiple used in 5 places.'>kArraySize</a>) <em class='brace'>{</em>
+<a id='L62' name='L62' />      <strong class='reserved'>return</strong> <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>;
+<a id='L63' name='L63' />    <em class='brace'>}</em>
+<a id='L64' name='L64' />
+<a id='L65' name='L65' />    <strong class='reserved'>void</strong> *<a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a> = &amp;<a href='../Y/1514.html' title='Multiple used in 19 places.'>array_</a>[<a href='../Y/4375.html' title='Multiple used in 16 places.'>ptr_</a>];
+<a id='L66' name='L66' />    <a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a> <a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a> = <strong class='reserved'>reinterpret_cast</strong>&lt;<a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a>&gt;(<a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>);
+<a id='L67' name='L67' />
+<a id='L68' name='L68' />    <strong class='reserved'>if</strong> (<a href='../Y/1394.html' title='Multiple used in 42 places.'>actual_size</a>) <em class='brace'>{</em>
+<a id='L69' name='L69' />      *<a href='../Y/1394.html' title='Multiple used in 42 places.'>actual_size</a> = <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>;
+<a id='L70' name='L70' />    <em class='brace'>}</em>
+<a id='L71' name='L71' />
+<a id='L72' name='L72' />    <em class='comment'>// Try to get more memory for alignment</em>
+<a id='L73' name='L73' />    <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/2278.html' title='Multiple used in 49 places.'>extra</a> = <a href='../Y/1430.html' title='Multiple used in 82 places.'>alignment</a> - (<a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a> &amp; (<a href='../Y/1430.html' title='Multiple used in 82 places.'>alignment</a>-1));
+<a id='L74' name='L74' />    <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a> += <a href='../Y/2278.html' title='Multiple used in 49 places.'>extra</a>;
+<a id='L75' name='L75' />    <a href='../S/529.html#L145' title='Defined at 145 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_LT</a>(<a href='../Y/4375.html' title='Multiple used in 16 places.'>ptr_</a> + <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>, <a href='../Y/2975.html' title='Multiple used in 5 places.'>kArraySize</a>);
+<a id='L76' name='L76' />
+<a id='L77' name='L77' />    <strong class='reserved'>if</strong> ((<a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a> &amp; (<a href='../Y/1430.html' title='Multiple used in 82 places.'>alignment</a>-1)) != 0) <em class='brace'>{</em>
+<a id='L78' name='L78' />      <a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a> += <a href='../Y/1430.html' title='Multiple used in 82 places.'>alignment</a> - (<a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a> &amp; (<a href='../Y/1430.html' title='Multiple used in 82 places.'>alignment</a>-1));
+<a id='L79' name='L79' />    <em class='brace'>}</em>
+<a id='L80' name='L80' />
+<a id='L81' name='L81' />    <a href='../Y/4375.html' title='Multiple used in 16 places.'>ptr_</a> += <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>;
+<a id='L82' name='L82' />    <strong class='reserved'>return</strong> <strong class='reserved'>reinterpret_cast</strong>&lt;<strong class='reserved'>void</strong> *&gt;(<a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>);
+<a id='L83' name='L83' />  <em class='brace'>}</em>
+<a id='L84' name='L84' />
+<a id='L85' name='L85' />  <strong class='reserved'>void</strong> <a href='../R/563.html' title='Multiple refered from 3 places.'>DumpStats</a>() <em class='brace'>{</em>
+<a id='L86' name='L86' />  <em class='brace'>}</em>
+<a id='L87' name='L87' />
+<a id='L88' name='L88' /><strong class='reserved'>private</strong>:
+<a id='L89' name='L89' />  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> <a href='../Y/2975.html' title='Multiple used in 5 places.'>kArraySize</a> = 8 * 1024 * 1024;
+<a id='L90' name='L90' />  <strong class='reserved'>char</strong> <a href='../Y/1514.html' title='Multiple used in 19 places.'>array_</a>[<a href='../Y/2975.html' title='Multiple used in 5 places.'>kArraySize</a>];
+<a id='L91' name='L91' />  <em class='comment'>// We allocate the next chunk from here</em>
+<a id='L92' name='L92' />  <strong class='reserved'>int</strong> <a href='../Y/4375.html' title='Multiple used in 16 places.'>ptr_</a>;
+<a id='L93' name='L93' />
+<a id='L94' name='L94' /><em class='brace'>}</em>;
+<a id='L95' name='L95' /><strong class='reserved'>const</strong> <strong class='reserved'>int</strong> <a href='../S/662.html#L48' title='Defined at 48 in third_party/google-perftools-1.8.3/src/tests/system-alloc_unittest.cc.'>ArraySysAllocator</a>::<a href='../Y/2975.html' title='Multiple used in 5 places.'>kArraySize</a>;
+<a id='L96' name='L96' /><a href='../S/662.html#L48' title='Defined at 48 in third_party/google-perftools-1.8.3/src/tests/system-alloc_unittest.cc.'>ArraySysAllocator</a> <a href='../Y/1366.html' title='Multiple used in 517 places.'>a</a>;
+<a id='L97' name='L97' />
+<a id='L98' name='L98' /><strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/662.html#L149' title='Refered from 149 in third_party/google-perftools-1.8.3/src/tests/system-alloc_unittest.cc.'>TestBasicInvoked</a>() <em class='brace'>{</em>
+<a id='L99' name='L99' />  <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../S/580.html#L206' title='Defined at 206 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>instance</a>()-&gt;<a href='../D/2565.html' title='Multiple defined in 2 places.'>SetSystemAllocator</a>(&amp;<a href='../Y/1366.html' title='Multiple used in 517 places.'>a</a>);
+<a id='L100' name='L100' />
+<a id='L101' name='L101' />  <em class='comment'>// An allocation size that is likely to trigger the system allocator.</em>
+<a id='L102' name='L102' />  <em class='comment'>// XXX: this is implementation specific.</em>
+<a id='L103' name='L103' />  <strong class='reserved'>char</strong> *<a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a> = <strong class='reserved'>new</strong> <strong class='reserved'>char</strong>[1024 * 1024];
+<a id='L104' name='L104' />  <strong class='reserved'>delete</strong> [] <a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>;
+<a id='L105' name='L105' />
+<a id='L106' name='L106' />  <em class='comment'>// Make sure that our allocator was invoked.</em>
+<a id='L107' name='L107' />  <a href='../S/529.html#L83' title='Defined at 83 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK</a>(<a href='../Y/1366.html' title='Multiple used in 517 places.'>a</a>.<a href='../Y/2887.html' title='Multiple used in 4 places.'>invoked_</a>);
+<a id='L108' name='L108' /><em class='brace'>}</em>
+<a id='L109' name='L109' />
+<a id='L110' name='L110' /><em class='sharp'>#if</em> 0  <em class='comment'>// could port this to various OSs, but won't bother for now</em>
+<a id='L111' name='L111' />TEST(AddressBits, CpuVirtualBits) <em class='brace'>{</em>
+<a id='L112' name='L112' />  <em class='comment'>// Check that kAddressBits is as least as large as either the number of bits</em>
+<a id='L113' name='L113' />  <em class='comment'>// in a pointer or as the number of virtual bits handled by the processor.</em>
+<a id='L114' name='L114' />  <em class='comment'>// To be effective this test must be run on each processor model.</em>
+<a id='L115' name='L115' />  <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> <a href='../Y/3095.html' title='Multiple used in 2 places.'>kPointerBits</a> = 8 * <strong class='reserved'>sizeof</strong>(<strong class='reserved'>void</strong>*);
+<a id='L116' name='L116' />  <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> <a href='../Y/3019.html' title='Multiple used in 2 places.'>kImplementedVirtualBits</a> = NumImplementedVirtualBits();
+<a id='L117' name='L117' />
+<a id='L118' name='L118' />  <a href='../S/529.html#L146' title='Defined at 146 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_GE</a>(<a href='../Y/2966.html' title='Multiple used in 9 places.'>kAddressBits</a>, <a href='../Y/5100.html' title='Multiple used in 181 places.'>std</a>::<a href='../S/568.html#L66' title='Defined at 66 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>min</a>(<a href='../Y/3019.html' title='Multiple used in 2 places.'>kImplementedVirtualBits</a>, <a href='../Y/3095.html' title='Multiple used in 2 places.'>kPointerBits</a>));
+<a id='L119' name='L119' /><em class='brace'>}</em>
+<a id='L120' name='L120' /><em class='sharp'>#endif</em>
+<a id='L121' name='L121' />
+<a id='L122' name='L122' /><strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/662.html#L150' title='Refered from 150 in third_party/google-perftools-1.8.3/src/tests/system-alloc_unittest.cc.'>TestBasicRetryFailTest</a>() <em class='brace'>{</em>
+<a id='L123' name='L123' />  <em class='comment'>// Check with the allocator still works after a failed allocation.</em>
+<a id='L124' name='L124' />  <em class='comment'>//</em>
+<a id='L125' name='L125' />  <em class='comment'>// There is no way to call malloc and guarantee it will fail.  malloc takes a</em>
+<a id='L126' name='L126' />  <em class='comment'>// size_t parameter and the C++ standard does not constrain the size of</em>
+<a id='L127' name='L127' />  <em class='comment'>// size_t.  For example, consider an implementation where size_t is 32 bits</em>
+<a id='L128' name='L128' />  <em class='comment'>// and pointers are 64 bits.</em>
+<a id='L129' name='L129' />  <em class='comment'>//</em>
+<a id='L130' name='L130' />  <em class='comment'>// It is likely, though, that sizeof(size_t) == sizeof(void*).  In that case,</em>
+<a id='L131' name='L131' />  <em class='comment'>// the first allocation here might succeed but the second allocation must</em>
+<a id='L132' name='L132' />  <em class='comment'>// fail.</em>
+<a id='L133' name='L133' />  <em class='comment'>//</em>
+<a id='L134' name='L134' />  <em class='comment'>// If the second allocation succeeds, you will have to rewrite or</em>
+<a id='L135' name='L135' />  <em class='comment'>// disable this test.</em>
+<a id='L136' name='L136' />  <em class='comment'>// The weird parens are to avoid macro-expansion of 'max' on windows.</em>
+<a id='L137' name='L137' />  <strong class='reserved'>const</strong> <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/3016.html' title='Multiple used in 3 places.'>kHugeSize</a> = (<a href='../Y/5100.html' title='Multiple used in 181 places.'>std</a>::<a href='../Y/3894.html' title='Multiple used in 4 places.'>numeric_limits</a>&lt;<a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a>&gt;::<a href='../S/568.html#L65' title='Defined at 65 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>max</a>)() / 2;
+<a id='L138' name='L138' />  <strong class='reserved'>void</strong>* <a href='../Y/4074.html' title='Multiple used in 67 places.'>p1</a> = <a href='../D/4497.html' title='Multiple defined in 2 places.'>malloc</a>(<a href='../Y/3016.html' title='Multiple used in 3 places.'>kHugeSize</a>);
+<a id='L139' name='L139' />  <strong class='reserved'>void</strong>* <a href='../Y/4075.html' title='Multiple used in 49 places.'>p2</a> = <a href='../D/4497.html' title='Multiple defined in 2 places.'>malloc</a>(<a href='../Y/3016.html' title='Multiple used in 3 places.'>kHugeSize</a>);
+<a id='L140' name='L140' />  <a href='../S/529.html#L83' title='Defined at 83 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK</a>(<a href='../Y/4075.html' title='Multiple used in 49 places.'>p2</a> == <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>);
+<a id='L141' name='L141' />  <strong class='reserved'>if</strong> (<a href='../Y/4074.html' title='Multiple used in 67 places.'>p1</a> != <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>) <a href='../D/3828.html' title='Multiple defined in 2 places.'>free</a>(<a href='../Y/4074.html' title='Multiple used in 67 places.'>p1</a>);
+<a id='L142' name='L142' />
+<a id='L143' name='L143' />  <strong class='reserved'>char</strong>* <a href='../Y/4398.html' title='Multiple used in 128 places.'>q</a> = <strong class='reserved'>new</strong> <strong class='reserved'>char</strong>[1024];
+<a id='L144' name='L144' />  <a href='../S/529.html#L83' title='Defined at 83 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK</a>(<a href='../Y/4398.html' title='Multiple used in 128 places.'>q</a> != <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>);
+<a id='L145' name='L145' />  <strong class='reserved'>delete</strong> [] <a href='../Y/4398.html' title='Multiple used in 128 places.'>q</a>;
+<a id='L146' name='L146' /><em class='brace'>}</em>
+<a id='L147' name='L147' />
+<a id='L148' name='L148' /><strong class='reserved'>int</strong> <a href='../S/557.html#L242' title='Refered from 242 in third_party/google-perftools-1.8.3/src/google/heap-checker.h.'>main</a>(<strong class='reserved'>int</strong> <a href='../Y/1497.html' title='Multiple used in 121 places.'>argc</a>, <strong class='reserved'>char</strong>** <a href='../Y/1503.html' title='Multiple used in 153 places.'>argv</a>) <em class='brace'>{</em>
+<a id='L149' name='L149' />  <a href='../S/662.html#L98' title='Defined at 98 in third_party/google-perftools-1.8.3/src/tests/system-alloc_unittest.cc.'>TestBasicInvoked</a>();
+<a id='L150' name='L150' />  <a href='../S/662.html#L122' title='Defined at 122 in third_party/google-perftools-1.8.3/src/tests/system-alloc_unittest.cc.'>TestBasicRetryFailTest</a>();
+<a id='L151' name='L151' />
+<a id='L152' name='L152' />  <a href='../S/572.html#L176' title='Defined at 176 in third_party/google-perftools-1.8.3/src/internal_logging.cc.'>printf</a>("PASS\n");
+<a id='L153' name='L153' />  <strong class='reserved'>return</strong> 0;
+<a id='L154' name='L154' /><em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;]<a href='#L58'>[^]</a><a href='#L148'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

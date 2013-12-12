@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>Posf</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/699.html#L439'>Posf</a>              439 third_party/zdelta-2.1/deflate.c   s-&gt;prev       = (Posf *)  ZALLOC(strm, s-&gt;w_size, sizeof(Pos));  </span>
+<span class='curline'><a href='../S/699.html#L440'>Posf</a>              440 third_party/zdelta-2.1/deflate.c   s-&gt;head       = (Posf *)  ZALLOC(strm, s-&gt;hash_size, sizeof(Pos));</span>
+<span class='curline'><a href='../S/699.html#L443'>Posf</a>              443 third_party/zdelta-2.1/deflate.c   s-&gt;ref_prev[0] = (Posf *)  ZALLOC(strm, s-&gt;w_size*(2*refnum), sizeof(Pos));  </span>
+<span class='curline'><a href='../S/699.html#L444'>Posf</a>              444 third_party/zdelta-2.1/deflate.c   s-&gt;ref_head[0] = (Posf *)  ZALLOC(strm, s-&gt;hash_size*(refnum), sizeof(Pos));</span>
+<span class='curline'><a href='../S/699.html#L468'>Posf</a>              468 third_party/zdelta-2.1/deflate.c     s-&gt;ref_prev[i]   = (Posf *)  (s-&gt;ref_prev[0] + (s-&gt;w_size)*2*i);</span>
+<span class='curline'><a href='../S/699.html#L469'>Posf</a>              469 third_party/zdelta-2.1/deflate.c     s-&gt;ref_head[i]   = (Posf *)  (s-&gt;ref_head[0] + i*(s-&gt;hash_size));</span>
+<span class='curline'><a href='../S/699.html#L800'>Posf</a>              800 third_party/zdelta-2.1/deflate.c   register Posf *p;</span>
+<span class='curline'><a href='../S/699.html#L1224'>Posf</a>             1224 third_party/zdelta-2.1/deflate.c   Posf *prev = s-&gt;prev;</span>
+<span class='curline'><a href='../S/700.html#L161'>Posf</a>              161 third_party/zdelta-2.1/deflate.h   Posf *prev;</span>
+<span class='curline'><a href='../S/700.html#L166'>Posf</a>              166 third_party/zdelta-2.1/deflate.h   Posf *ref_prev[REFNUM];</span>
+<span class='curline'><a href='../S/700.html#L169'>Posf</a>              169 third_party/zdelta-2.1/deflate.h   Posf *head;     /* Heads of the hash chains or NIL.             */</span>
+<span class='curline'><a href='../S/700.html#L170'>Posf</a>              170 third_party/zdelta-2.1/deflate.h   Posf *ref_head[REFNUM]; /* zdelta: Heads the reference file hash chains */</span>
+</pre>
+</body>
+</html>

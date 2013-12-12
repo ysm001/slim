@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>lib</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/568.html#L662'>lib</a>               662 third_party/google-perftools-1.8.3/src/heap-checker.cc     for (LibraryLiveObjectsStacks::iterator lib = library_live_objects-&gt;begin();</span>
+<span class='curline'><a href='../S/568.html#L663'>lib</a>               663 third_party/google-perftools-1.8.3/src/heap-checker.cc          lib != library_live_objects-&gt;end(); ++lib) {</span>
+<span class='curline'><a href='../S/568.html#L664'>lib</a>               664 third_party/google-perftools-1.8.3/src/heap-checker.cc       for (LiveObjectsStack::iterator span = lib-&gt;second.begin();</span>
+<span class='curline'><a href='../S/568.html#L665'>lib</a>               665 third_party/google-perftools-1.8.3/src/heap-checker.cc            span != lib-&gt;second.end(); ++span) {</span>
+<span class='curline'><a href='../S/568.html#L705'>lib</a>               705 third_party/google-perftools-1.8.3/src/heap-checker.cc           lib-&gt;second.erase(span);  // kill the rest of the region</span>
+<span class='curline'><a href='../S/568.html#L708'>lib</a>               708 third_party/google-perftools-1.8.3/src/heap-checker.cc             lib-&gt;second.push_back(AllocObject(AsPtr(start), stack_start - start,</span>
+<span class='curline'><a href='../S/568.html#L712'>lib</a>               712 third_party/google-perftools-1.8.3/src/heap-checker.cc             lib-&gt;second.push_back(AllocObject(AsPtr(stack_end), end - stack_end,</span>
+</pre>
+</body>
+</html>

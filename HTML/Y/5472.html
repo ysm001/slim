@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>trial</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/367.html#L69'>trial</a>              69 src/runtime_status.c   time_profiler_init(&amp;p-&gt;trial);</span>
+<span class='curline'><a href='../S/367.html#L80'>trial</a>              80 src/runtime_status.c   time_profiler_destroy(&amp;p-&gt;trial);</span>
+<span class='curline'><a href='../S/367.html#L640'>trial</a>             640 src/runtime_status.c           if (rp-&gt;trial.called_num &gt; 0) {</span>
+<span class='curline'><a href='../S/367.html#L643'>trial</a>             643 src/runtime_status.c               r_others-&gt;trial.called_num += rp-&gt;trial.called_num;</span>
+<span class='curline'><a href='../S/367.html#L644'>trial</a>             644 src/runtime_status.c               r_others-&gt;trial.total_time += rp-&gt;trial.total_time;</span>
+<span class='curline'><a href='../S/367.html#L651'>trial</a>             651 src/runtime_status.c                        , rp-&gt;trial.called_num</span>
+<span class='curline'><a href='../S/367.html#L654'>trial</a>             654 src/runtime_status.c                        , rp-&gt;trial.total_time / 1e-6);</span>
+<span class='curline'><a href='../S/367.html#L658'>trial</a>             658 src/runtime_status.c             r_total-&gt;trial.called_num += rp-&gt;trial.called_num;</span>
+<span class='curline'><a href='../S/367.html#L659'>trial</a>             659 src/runtime_status.c             r_total-&gt;trial.total_time += rp-&gt;trial.total_time;</span>
+<span class='curline'><a href='../S/367.html#L665'>trial</a>             665 src/runtime_status.c                  , r_others-&gt;trial.called_num</span>
+<span class='curline'><a href='../S/367.html#L668'>trial</a>             668 src/runtime_status.c                  , r_others-&gt;trial.total_time / 1e-6);</span>
+<span class='curline'><a href='../S/367.html#L673'>trial</a>             673 src/runtime_status.c                  , r_total-&gt;trial.called_num</span>
+<span class='curline'><a href='../S/367.html#L676'>trial</a>             676 src/runtime_status.c                  , r_total-&gt;trial.total_time / 1e-6);</span>
+<span class='curline'><a href='../S/368.html#L148'>trial</a>             148 src/runtime_status.h   TimeProfiler   trial;</span>
+<span class='curline'><a href='../S/368.html#L318'>trial</a>             318 src/runtime_status.h #  define profile_start_trial()  if (lmn_prof.cur) time_profiler_start(&amp;(lmn_prof.cur)-&gt;trial)</span>
+<span class='curline'><a href='../S/368.html#L319'>trial</a>             319 src/runtime_status.h #  define profile_finish_trial() if (lmn_prof.cur) time_profiler_finish(&amp;(lmn_prof.cur)-&gt;trial)</span>
+</pre>
+</body>
+</html>

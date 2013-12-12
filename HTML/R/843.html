@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>HashKeyType</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/317.html#L164'>HashKeyType</a>       164 src/dumper.c     if (hashtbl_contains(ht, (HashKeyType)atom)) {</span>
+<span class='curline'><a href='../S/317.html#L165'>HashKeyType</a>       165 src/dumper.c       return (struct AtomRec *)hashtbl_get(ht, (HashKeyType)atom);</span>
+<span class='curline'><a href='../S/317.html#L169'>HashKeyType</a>       169 src/dumper.c       hashtbl_put(ht, (HashKeyType)atom, (HashValueType)t);</span>
+<span class='curline'><a href='../S/317.html#L335'>HashKeyType</a>       335 src/dumper.c         hashtbl_put(ht, (HashKeyType)a, (HashValueType)rec);</span>
+<span class='curline'><a href='../S/317.html#L637'>HashKeyType</a>       637 src/dumper.c     if (hashtbl_contains(ht, (HashKeyType)mem)) return FALSE;</span>
+<span class='curline'><a href='../S/317.html#L639'>HashKeyType</a>       639 src/dumper.c     hashtbl_put(ht, (HashKeyType)mem, (HashValueType)0);</span>
+<span class='curline'><a href='../S/317.html#L741'>HashKeyType</a>       741 src/dumper.c           if (m-&gt;next &amp;&amp; !hashtbl_contains(ht, (HashKeyType)(m-&gt;next))) {</span>
+<span class='curline'><a href='../S/317.html#L971'>HashKeyType</a>       971 src/dumper.c         struct AtomRec *ar = (struct AtomRec *)hashtbl_get_default(ht, (HashKeyType)atom, 0);</span>
+<span class='curline'><a href='../S/317.html#L990'>HashKeyType</a>       990 src/dumper.c               hashtbl_put(ht, (HashKeyType)atom2, (HashValueType)ar);</span>
+<span class='curline'><a href='../S/334.html#L159'>HashKeyType</a>       159 src/hyperlink.c       if ((HashKeyType)child &lt; DELETED_KEY) {</span>
+<span class='curline'><a href='../S/334.html#L193'>HashKeyType</a>       193 src/hyperlink.c       hashset_delete(parent-&gt;children, (HashKeyType)hl);</span>
+<span class='curline'><a href='../S/334.html#L229'>HashKeyType</a>       229 src/hyperlink.c     hashset_delete(parent-&gt;children, (HashKeyType)hl);</span>
+<span class='curline'><a href='../S/334.html#L243'>HashKeyType</a>       243 src/hyperlink.c         if ((HashKeyType)tmp &lt; DELETED_KEY) {</span>
+<span class='curline'><a href='../S/334.html#L244'>HashKeyType</a>       244 src/hyperlink.c           hashset_add(parent-&gt;children, (HashKeyType)tmp);</span>
+<span class='curline'><a href='../S/334.html#L245'>HashKeyType</a>       245 src/hyperlink.c           hashset_delete(children, (HashKeyType)tmp);</span>
+<span class='curline'><a href='../S/334.html#L265'>HashKeyType</a>       265 src/hyperlink.c         if ((HashKeyType)newroot &lt; DELETED_KEY) {</span>
+<span class='curline'><a href='../S/334.html#L271'>HashKeyType</a>       271 src/hyperlink.c       hashset_delete(children, (HashKeyType)newroot); /* rootの子表から新rootを除去 */</span>
+<span class='curline'><a href='../S/334.html#L282'>HashKeyType</a>       282 src/hyperlink.c         if ((HashKeyType)tmp &lt; DELETED_KEY) {</span>
+<span class='curline'><a href='../S/334.html#L283'>HashKeyType</a>       283 src/hyperlink.c           hashset_add(newroot-&gt;children, (HashKeyType)tmp);</span>
+<span class='curline'><a href='../S/334.html#L284'>HashKeyType</a>       284 src/hyperlink.c           hashset_delete(children, (HashKeyType)tmp);</span>
+<span class='curline'><a href='../S/334.html#L341'>HashKeyType</a>       341 src/hyperlink.c       hashset_delete(old_parent_children, (HashKeyType)hl);</span>
+<span class='curline'><a href='../S/334.html#L354'>HashKeyType</a>       354 src/hyperlink.c       hashset_add(root-&gt;children, (HashKeyType)hl);</span>
+<span class='curline'><a href='../S/334.html#L407'>HashKeyType</a>       407 src/hyperlink.c   hashset_add(parent-&gt;children, (HashKeyType)child);</span>
+<span class='curline'><a href='../S/334.html#L551'>HashKeyType</a>       551 src/hyperlink.c           if ((HashKeyType)(ch_hl = (HyperLink *)hashsetiter_entry(&amp;hsit)) &lt; DELETED_KEY) {</span>
+<span class='curline'><a href='../S/357.html#L258'>HashKeyType</a>       258 src/membrane.c     hashtbl_put(&amp;mem-&gt;atomset, (HashKeyType)f, (HashValueType)as);</span>
+<span class='curline'><a href='../S/357.html#L1402'>HashKeyType</a>      1402 src/membrane.c     hashset_add(root, (HashKeyType)LMN_SATOM_GET_LINK(l-&gt;ap, l-&gt;pos));</span>
+<span class='curline'><a href='../S/357.html#L1423'>HashKeyType</a>      1423 src/membrane.c         if (hashset_contains(visited, (HashKeyType)src_atom)) continue;</span>
+<span class='curline'><a href='../S/357.html#L1424'>HashKeyType</a>      1424 src/membrane.c         if (hashset_contains(root, (HashKeyType)src_atom)) {n_reach_root++; continue; }</span>
+<span class='curline'><a href='../S/357.html#L1425'>HashKeyType</a>      1425 src/membrane.c         hashset_add(visited, (HashKeyType)src_atom);</span>
+<span class='curline'><a href='../S/357.html#L1433'>HashKeyType</a>      1433 src/membrane.c               int t = hashtbl_get_default(guard, (HashKeyType)next_src, -1);</span>
+<span class='curline'><a href='../S/364.html#L138'>HashKeyType</a>       138 src/react_context.h          hashtbl_contains(RC_HLINK_SPC(rc), (HashKeyType)atomi);</span>
+<span class='curline'><a href='../S/384.html#L605'>HashKeyType</a>       605 src/task.c             hashset_add(retset, (HashKeyType)eq);</span>
+<span class='curline'><a href='../S/384.html#L1057'>HashKeyType</a>      1057 src/task.c               spc = (SameProcCxt *)hashtbl_get(RC_HLINK_SPC(rc), (HashKeyType)atomi);</span>
+<span class='curline'><a href='../S/384.html#L1152'>HashKeyType</a>      1152 src/task.c                 hashtbl_put(atomlist_ent-&gt;record, findatomid, (HashKeyType)record);</span>
+<span class='curline'><a href='../S/384.html#L1780'>HashKeyType</a>      1780 src/task.c                   !lmn_sameproccxt_all_pc_check_original((SameProcCxt *)hashtbl_get(RC_HLINK_SPC(rc), (HashKeyType)atomi),</span>
+<span class='curline'><a href='../S/384.html#L2074'>HashKeyType</a>      2074 src/task.c           if (!hashtbl_contains(RC_HLINK_SPC(rc), (HashKeyType)atom1)) {</span>
+<span class='curline'><a href='../S/384.html#L2076'>HashKeyType</a>      2076 src/task.c             hashtbl_put(RC_HLINK_SPC(rc), (HashKeyType)atom1, (HashValueType)spc1);</span>
+<span class='curline'><a href='../S/384.html#L2079'>HashKeyType</a>      2079 src/task.c             spc1 = (SameProcCxt *)hashtbl_get(RC_HLINK_SPC(rc), (HashKeyType)atom1);</span>
+<span class='curline'><a href='../S/384.html#L2086'>HashKeyType</a>      2086 src/task.c           if (!hashtbl_contains(RC_HLINK_SPC(rc), (HashKeyType)atom2)) {</span>
+<span class='curline'><a href='../S/384.html#L2088'>HashKeyType</a>      2088 src/task.c             hashtbl_put(RC_HLINK_SPC(rc), (HashKeyType)atom2, (HashValueType)spc2);</span>
+<span class='curline'><a href='../S/384.html#L2091'>HashKeyType</a>      2091 src/task.c             spc2 = (SameProcCxt *)hashtbl_get(RC_HLINK_SPC(rc), (HashKeyType)atom2);</span>
+<span class='curline'><a href='../S/393.html#L86'>HashKeyType</a>        86 src/utility/internal_hash.c static struct HashEntry *hashtbl_get_p(SimpleHashtbl *ht, HashKeyType key);</span>
+<span class='curline'><a href='../S/393.html#L87'>HashKeyType</a>        87 src/utility/internal_hash.c static inline HashKeyType* hashset_get_p(HashSet* set, HashKeyType key, unsigned long dummy_key);</span>
+<span class='curline'><a href='../S/393.html#L116'>HashKeyType</a>       116 src/utility/internal_hash.c HashValueType hashtbl_get(SimpleHashtbl *ht, HashKeyType key)</span>
+<span class='curline'><a href='../S/393.html#L122'>HashKeyType</a>       122 src/utility/internal_hash.c                                   HashKeyType key,</span>
+<span class='curline'><a href='../S/393.html#L130'>HashKeyType</a>       130 src/utility/internal_hash.c int hashtbl_contains(SimpleHashtbl *ht, HashKeyType key)</span>
+<span class='curline'><a href='../S/393.html#L135'>HashKeyType</a>       135 src/utility/internal_hash.c void hashtbl_put(SimpleHashtbl *ht, HashKeyType key, HashValueType data)</span>
+<span class='curline'><a href='../S/393.html#L155'>HashKeyType</a>       155 src/utility/internal_hash.c static struct HashEntry *hashtbl_get_p(SimpleHashtbl *ht, HashKeyType key)</span>
+<span class='curline'><a href='../S/393.html#L157'>HashKeyType</a>       157 src/utility/internal_hash.c   HashKeyType probe;</span>
+<span class='curline'><a href='../S/393.html#L158'>HashKeyType</a>       158 src/utility/internal_hash.c   HashKeyType increment = (key | 1) &amp; (ht-&gt;cap-1);</span>
+<span class='curline'><a href='../S/393.html#L216'>HashKeyType</a>       216 src/utility/internal_hash.c   set-&gt;tbl = (HashKeyType *)malloc(sizeof(HashKeyType) * set-&gt;cap);</span>
+<span class='curline'><a href='../S/393.html#L217'>HashKeyType</a>       217 src/utility/internal_hash.c   memset(set-&gt;tbl, 0xffU, sizeof(HashKeyType) * set-&gt;cap);</span>
+<span class='curline'><a href='../S/393.html#L238'>HashKeyType</a>       238 src/utility/internal_hash.c int hashset_contains(HashSet *set, HashKeyType key)</span>
+<span class='curline'><a href='../S/393.html#L245'>HashKeyType</a>       245 src/utility/internal_hash.c   HashKeyType *tbl, *entry;</span>
+<span class='curline'><a href='../S/393.html#L256'>HashKeyType</a>       256 src/utility/internal_hash.c   set-&gt;tbl = (HashKeyType *)malloc(sizeof(HashKeyType) *  set-&gt;cap);</span>
+<span class='curline'><a href='../S/393.html#L257'>HashKeyType</a>       257 src/utility/internal_hash.c   memset(set-&gt;tbl, 0xffU, sizeof(HashKeyType) * set-&gt;cap);</span>
+<span class='curline'><a href='../S/393.html#L268'>HashKeyType</a>       268 src/utility/internal_hash.c void hashset_add(HashSet *set, HashKeyType key) {</span>
+<span class='curline'><a href='../S/393.html#L269'>HashKeyType</a>       269 src/utility/internal_hash.c   HashKeyType* entry;</span>
+<span class='curline'><a href='../S/393.html#L283'>HashKeyType</a>       283 src/utility/internal_hash.c   memset(set-&gt;tbl, 0xffU, sizeof(HashKeyType) * set-&gt;cap);</span>
+<span class='curline'><a href='../S/393.html#L286'>HashKeyType</a>       286 src/utility/internal_hash.c void hashset_delete(HashSet *set, HashKeyType key) {</span>
+<span class='curline'><a href='../S/393.html#L287'>HashKeyType</a>       287 src/utility/internal_hash.c   HashKeyType* entry;</span>
+<span class='curline'><a href='../S/393.html#L312'>HashKeyType</a>       312 src/utility/internal_hash.c static inline HashKeyType* hashset_get_p(HashSet* set, HashKeyType key, unsigned long dummykey)</span>
+<span class='curline'><a href='../S/393.html#L314'>HashKeyType</a>       314 src/utility/internal_hash.c   HashKeyType probe;</span>
+<span class='curline'><a href='../S/393.html#L315'>HashKeyType</a>       315 src/utility/internal_hash.c   HashKeyType increment = (key | 1) &amp; (set-&gt;cap-1);</span>
+<span class='curline'><a href='../S/394.html#L48'>HashKeyType</a>        48 src/utility/internal_hash.h   HashKeyType key;</span>
+<span class='curline'><a href='../S/394.html#L65'>HashKeyType</a>        65 src/utility/internal_hash.h HashValueType hashtbl_get(SimpleHashtbl *ht, HashKeyType key);</span>
+<span class='curline'><a href='../S/394.html#L67'>HashKeyType</a>        67 src/utility/internal_hash.h                                   HashKeyType key,</span>
+<span class='curline'><a href='../S/394.html#L69'>HashKeyType</a>        69 src/utility/internal_hash.h int hashtbl_contains(SimpleHashtbl *ht, HashKeyType key);</span>
+<span class='curline'><a href='../S/394.html#L70'>HashKeyType</a>        70 src/utility/internal_hash.h void hashtbl_put(SimpleHashtbl *ht, HashKeyType key, HashValueType val);</span>
+<span class='curline'><a href='../S/394.html#L83'>HashKeyType</a>        83 src/utility/internal_hash.h   HashKeyType* tbl;</span>
+<span class='curline'><a href='../S/394.html#L94'>HashKeyType</a>        94 src/utility/internal_hash.h int hashset_contains(HashSet *set, HashKeyType key);</span>
+<span class='curline'><a href='../S/394.html#L95'>HashKeyType</a>        95 src/utility/internal_hash.h void hashset_add(HashSet *set, HashKeyType key);</span>
+<span class='curline'><a href='../S/394.html#L97'>HashKeyType</a>        97 src/utility/internal_hash.h void hashset_delete(HashSet *set, HashKeyType key);</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,445 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>third_party/google-perftools-1.8.3/src/google/heap-checker.h</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/738.html'>third_party</a>/<a href='../files/739.html'>google-perftools-1.8.3</a>/<a href='../files/740.html'>src</a>/<a href='../files/742.html'>google</a>/heap-checker.h</h2>
+<em class='comment'>/* [&lt;][&gt;][^][v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/180.html' title='Multiple included from 3 places.'>INCLUDED FROM</a></h2>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>// Copyright (c) 2005, Google Inc.</em>
+<a id='L2' name='L2' /><em class='comment'>// All rights reserved.</em>
+<a id='L3' name='L3' /><em class='comment'>//</em>
+<a id='L4' name='L4' /><em class='comment'>// Redistribution and use in source and binary forms, with or without</em>
+<a id='L5' name='L5' /><em class='comment'>// modification, are permitted provided that the following conditions are</em>
+<a id='L6' name='L6' /><em class='comment'>// met:</em>
+<a id='L7' name='L7' /><em class='comment'>//</em>
+<a id='L8' name='L8' /><em class='comment'>//     * Redistributions of source code must retain the above copyright</em>
+<a id='L9' name='L9' /><em class='comment'>// notice, this list of conditions and the following disclaimer.</em>
+<a id='L10' name='L10' /><em class='comment'>//     * Redistributions in binary form must reproduce the above</em>
+<a id='L11' name='L11' /><em class='comment'>// copyright notice, this list of conditions and the following disclaimer</em>
+<a id='L12' name='L12' /><em class='comment'>// in the documentation and/or other materials provided with the</em>
+<a id='L13' name='L13' /><em class='comment'>// distribution.</em>
+<a id='L14' name='L14' /><em class='comment'>//     * Neither the name of Google Inc. nor the names of its</em>
+<a id='L15' name='L15' /><em class='comment'>// contributors may be used to endorse or promote products derived from</em>
+<a id='L16' name='L16' /><em class='comment'>// this software without specific prior written permission.</em>
+<a id='L17' name='L17' /><em class='comment'>//</em>
+<a id='L18' name='L18' /><em class='comment'>// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L19' name='L19' /><em class='comment'>// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L20' name='L20' /><em class='comment'>// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L21' name='L21' /><em class='comment'>// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L22' name='L22' /><em class='comment'>// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L23' name='L23' /><em class='comment'>// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L24' name='L24' /><em class='comment'>// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L25' name='L25' /><em class='comment'>// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L26' name='L26' /><em class='comment'>// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L27' name='L27' /><em class='comment'>// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L28' name='L28' /><em class='comment'>// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L29' name='L29' />
+<a id='L30' name='L30' /><em class='comment'>// ---</em>
+<a id='L31' name='L31' /><em class='comment'>// Author: Maxim Lifantsev (with design ideas by Sanjay Ghemawat)</em>
+<a id='L32' name='L32' /><em class='comment'>//</em>
+<a id='L33' name='L33' /><em class='comment'>//</em>
+<a id='L34' name='L34' /><em class='comment'>// Module for detecing heap (memory) leaks.</em>
+<a id='L35' name='L35' /><em class='comment'>//</em>
+<a id='L36' name='L36' /><em class='comment'>// For full(er) information, see doc/heap_checker.html</em>
+<a id='L37' name='L37' /><em class='comment'>//</em>
+<a id='L38' name='L38' /><em class='comment'>// This module can be linked into programs with</em>
+<a id='L39' name='L39' /><em class='comment'>// no slowdown caused by this unless you activate the leak-checker:</em>
+<a id='L40' name='L40' /><em class='comment'>//</em>
+<a id='L41' name='L41' /><em class='comment'>//    1. Set the environment variable HEAPCHEK to _type_ before</em>
+<a id='L42' name='L42' /><em class='comment'>//       running the program.</em>
+<a id='L43' name='L43' /><em class='comment'>//</em>
+<a id='L44' name='L44' /><em class='comment'>// _type_ is usually "normal" but can also be "minimal", "strict", or</em>
+<a id='L45' name='L45' /><em class='comment'>// "draconian".  (See the html file for other options, like 'local'.)</em>
+<a id='L46' name='L46' /><em class='comment'>//</em>
+<a id='L47' name='L47' /><em class='comment'>// After that, just run your binary.  If the heap-checker detects</em>
+<a id='L48' name='L48' /><em class='comment'>// a memory leak at program-exit, it will print instructions on how</em>
+<a id='L49' name='L49' /><em class='comment'>// to track down the leak.</em>
+<a id='L50' name='L50' />
+<a id='L51' name='L51' /><em class='sharp'>#ifndef</em> <a href='../S/557.html#L52' title='Defined at 52 in third_party/google-perftools-1.8.3/src/google/heap-checker.h.'>BASE_HEAP_CHECKER_H_</a>
+<a id='L52' name='L52' /><em class='sharp'>#define</em> <a href='../S/557.html#L51' title='Refered from 51 in third_party/google-perftools-1.8.3/src/google/heap-checker.h.'>BASE_HEAP_CHECKER_H_</a>
+<a id='L53' name='L53' />
+<a id='L54' name='L54' /><em class='sharp'>#include</em> &lt;sys/types.h&gt;  <em class='comment'>// for size_t</em>
+<a id='L55' name='L55' /><em class='comment'>// I can't #include config.h in this public API file, but I should</em>
+<a id='L56' name='L56' /><em class='comment'>// really use configure (and make malloc_extension.h a .in file) to</em>
+<a id='L57' name='L57' /><em class='comment'>// figure out if the system has stdint.h or not.  But I'm lazy, so</em>
+<a id='L58' name='L58' /><em class='comment'>// for now I'm assuming it's a problem only with MSVC.</em>
+<a id='L59' name='L59' /><em class='sharp'>#ifndef</em> <a href='../Y/982.html' title='Multiple used in 81 places.'>_MSC_VER</a>
+<a id='L60' name='L60' /><em class='sharp'>#include</em> &lt;stdint.h&gt;     <em class='comment'>// for uintptr_t</em>
+<a id='L61' name='L61' /><em class='sharp'>#endif</em>
+<a id='L62' name='L62' /><em class='sharp'>#include</em> &lt;stdarg.h&gt;     <em class='comment'>// for va_list</em>
+<a id='L63' name='L63' /><em class='sharp'>#include</em> &lt;vector&gt;
+<a id='L64' name='L64' />
+<a id='L65' name='L65' /><em class='comment'>// Annoying stuff for windows -- makes sure clients can import these functions</em>
+<a id='L66' name='L66' /><em class='sharp'>#ifndef</em> <a href='../D/2076.html' title='Multiple defined in 25 places.'>PERFTOOLS_DLL_DECL</a>
+<a id='L67' name='L67' /><em class='sharp'># ifdef</em> <a href='../Y/997.html' title='Multiple used in 42 places.'>_WIN32</a>
+<a id='L68' name='L68' /><em class='sharp'>#   define</em> <a href='../R/1851.html' title='Multiple refered from 187 places.'>PERFTOOLS_DLL_DECL</a>  <a href='../Y/1130.html' title='Multiple used in 17 places.'>__declspec</a>(<a href='../Y/2070.html' title='Multiple used in 12 places.'>dllimport</a>)
+<a id='L69' name='L69' /><em class='sharp'># else</em>
+<a id='L70' name='L70' /><em class='sharp'>#   define</em> <a href='../R/1851.html' title='Multiple refered from 187 places.'>PERFTOOLS_DLL_DECL</a>
+<a id='L71' name='L71' /><em class='sharp'># endif</em>
+<a id='L72' name='L72' /><em class='sharp'>#endif</em>
+<a id='L73' name='L73' />
+<a id='L74' name='L74' />
+<a id='L75' name='L75' /><em class='comment'>// The class is thread-safe with respect to all the provided static methods,</em>
+<a id='L76' name='L76' /><em class='comment'>// as well as HeapLeakChecker objects: they can be accessed by multiple threads.</em>
+<a id='L77' name='L77' /><a href='../Y/1792.html' title='Multiple used in 90 places.'>class</a> <a href='../D/2076.html' title='Multiple defined in 25 places.'>PERFTOOLS_DLL_DECL</a> <a href='../D/978.html' title='Multiple defined in 4 places.'>HeapLeakChecker</a> <em class='brace'>{</em>
+<a id='L78' name='L78' /> <a href='../Y/4390.html' title='Multiple used in 61 places.'>public</a>:
+<a id='L79' name='L79' />
+<a id='L80' name='L80' />  <em class='comment'>// ----------------------------------------------------------------------- //</em>
+<a id='L81' name='L81' />  <em class='comment'>// Static functions for working with (whole-program) leak checking.</em>
+<a id='L82' name='L82' />
+<a id='L83' name='L83' />  <em class='comment'>// If heap leak checking is currently active in some mode</em>
+<a id='L84' name='L84' />  <em class='comment'>// e.g. if leak checking was started (and is still active now)</em>
+<a id='L85' name='L85' />  <em class='comment'>// due to HEAPCHECK=... defined in the environment.</em>
+<a id='L86' name='L86' />  <em class='comment'>// The return value reflects iff HeapLeakChecker objects manually</em>
+<a id='L87' name='L87' />  <em class='comment'>// constructed right now will be doing leak checking or nothing.</em>
+<a id='L88' name='L88' />  <em class='comment'>// Note that we can go from active to inactive state during InitGoogle()</em>
+<a id='L89' name='L89' />  <em class='comment'>// if FLAGS_heap_check gets set to "" by some code before/during InitGoogle().</em>
+<a id='L90' name='L90' />  <strong class='reserved'>static</strong> <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../S/568.html#L1857' title='Defined at 1857 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>IsActive</a>();
+<a id='L91' name='L91' />
+<a id='L92' name='L92' />  <em class='comment'>// Return pointer to the whole-program checker if it has been created</em>
+<a id='L93' name='L93' />  <em class='comment'>// and NULL otherwise.</em>
+<a id='L94' name='L94' />  <em class='comment'>// Once GlobalChecker() returns non-NULL that object will not disappear and</em>
+<a id='L95' name='L95' />  <em class='comment'>// will be returned by all later GlobalChecker calls.</em>
+<a id='L96' name='L96' />  <em class='comment'>// This is mainly to access BytesLeaked() and ObjectsLeaked() (see below)</em>
+<a id='L97' name='L97' />  <em class='comment'>// for the whole-program checker after one calls NoGlobalLeaks()</em>
+<a id='L98' name='L98' />  <em class='comment'>// or similar and gets false.</em>
+<a id='L99' name='L99' />  <strong class='reserved'>static</strong> <a href='../D/978.html' title='Multiple defined in 4 places.'>HeapLeakChecker</a>* <a href='../S/568.html#L2127' title='Defined at 2127 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>GlobalChecker</a>();
+<a id='L100' name='L100' />
+<a id='L101' name='L101' />  <em class='comment'>// Do whole-program leak check now (if it was activated for this binary);</em>
+<a id='L102' name='L102' />  <em class='comment'>// return false only if it was activated and has failed.</em>
+<a id='L103' name='L103' />  <em class='comment'>// The mode of the check is controlled by the command-line flags.</em>
+<a id='L104' name='L104' />  <em class='comment'>// This method can be called repeatedly.</em>
+<a id='L105' name='L105' />  <em class='comment'>// Things like GlobalChecker()-&gt;SameHeap() can also be called explicitly</em>
+<a id='L106' name='L106' />  <em class='comment'>// to do the desired flavor of the check.</em>
+<a id='L107' name='L107' />  <strong class='reserved'>static</strong> <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../S/568.html#L2133' title='Defined at 2133 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>NoGlobalLeaks</a>();
+<a id='L108' name='L108' />
+<a id='L109' name='L109' />  <em class='comment'>// If whole-program checker if active,</em>
+<a id='L110' name='L110' />  <em class='comment'>// cancel its automatic execution after main() exits.</em>
+<a id='L111' name='L111' />  <em class='comment'>// This requires that some leak check (e.g. NoGlobalLeaks())</em>
+<a id='L112' name='L112' />  <em class='comment'>// has been called at least once on the whole-program checker.</em>
+<a id='L113' name='L113' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/568.html#L2139' title='Defined at 2139 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>CancelGlobalCheck</a>();
+<a id='L114' name='L114' />
+<a id='L115' name='L115' />  <em class='comment'>// ----------------------------------------------------------------------- //</em>
+<a id='L116' name='L116' />  <em class='comment'>// Non-static functions for starting and doing leak checking.</em>
+<a id='L117' name='L117' />
+<a id='L118' name='L118' />  <em class='comment'>// Start checking and name the leak check performed.</em>
+<a id='L119' name='L119' />  <em class='comment'>// The name is used in naming dumped profiles</em>
+<a id='L120' name='L120' />  <em class='comment'>// and needs to be unique only within your binary.</em>
+<a id='L121' name='L121' />  <em class='comment'>// It must also be a string that can be a part of a file name,</em>
+<a id='L122' name='L122' />  <em class='comment'>// in particular not contain path expressions.</em>
+<a id='L123' name='L123' />  <a href='../Y/2272.html' title='Multiple used in 15 places.'>explicit</a> <a href='../D/978.html' title='Multiple defined in 4 places.'>HeapLeakChecker</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/3665.html' title='Multiple used in 438 places.'>name</a>);
+<a id='L124' name='L124' />
+<a id='L125' name='L125' />  <em class='comment'>// Destructor (verifies that some *NoLeaks or *SameHeap method</em>
+<a id='L126' name='L126' />  <em class='comment'>// has been called at least once).</em>
+<a id='L127' name='L127' />  ~<a href='../D/978.html' title='Multiple defined in 4 places.'>HeapLeakChecker</a>();
+<a id='L128' name='L128' />
+<a id='L129' name='L129' />  <em class='comment'>// These used to be different but are all the same now: they return</em>
+<a id='L130' name='L130' />  <em class='comment'>// true iff all memory allocated since this HeapLeakChecker object</em>
+<a id='L131' name='L131' />  <em class='comment'>// was constructor is still reachable from global state.</em>
+<a id='L132' name='L132' />  <em class='comment'>//</em>
+<a id='L133' name='L133' />  <em class='comment'>// Because we fork to convert addresses to symbol-names, and forking</em>
+<a id='L134' name='L134' />  <em class='comment'>// is not thread-safe, and we may be called in a threaded context,</em>
+<a id='L135' name='L135' />  <em class='comment'>// we do not try to symbolize addresses when called manually.</em>
+<a id='L136' name='L136' />  <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../Y/566.html' title='Multiple used in 6 places.'>NoLeaks</a>() <em class='brace'>{</em> <strong class='reserved'>return</strong> <a href='../S/568.html#L1668' title='Defined at 1668 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>DoNoLeaks</a>(<a href='../S/557.html#L224' title='Defined at 224 in third_party/google-perftools-1.8.3/src/google/heap-checker.h.'>DO_NOT_SYMBOLIZE</a>); <em class='brace'>}</em>
+<a id='L137' name='L137' />
+<a id='L138' name='L138' />  <em class='comment'>// These forms are obsolete; use NoLeaks() instead.</em>
+<a id='L139' name='L139' />  <em class='comment'>// TODO(csilvers): mark as DEPRECATED.</em>
+<a id='L140' name='L140' />  <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> QuickNoLeaks()  <em class='brace'>{</em> <strong class='reserved'>return</strong> <a href='../Y/566.html' title='Multiple used in 6 places.'>NoLeaks</a>(); <em class='brace'>}</em>
+<a id='L141' name='L141' />  <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../Y/49.html' title='Multiple used in 5 places.'>BriefNoLeaks</a>()  <em class='brace'>{</em> <strong class='reserved'>return</strong> <a href='../Y/566.html' title='Multiple used in 6 places.'>NoLeaks</a>(); <em class='brace'>}</em>
+<a id='L142' name='L142' />  <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../Y/775.html' title='Multiple used in 7 places.'>SameHeap</a>()      <em class='brace'>{</em> <strong class='reserved'>return</strong> <a href='../Y/566.html' title='Multiple used in 6 places.'>NoLeaks</a>(); <em class='brace'>}</em>
+<a id='L143' name='L143' />  <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> QuickSameHeap() <em class='brace'>{</em> <strong class='reserved'>return</strong> <a href='../Y/566.html' title='Multiple used in 6 places.'>NoLeaks</a>(); <em class='brace'>}</em>
+<a id='L144' name='L144' />  <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../Y/50.html' title='Multiple used in 7 places.'>BriefSameHeap</a>() <em class='brace'>{</em> <strong class='reserved'>return</strong> <a href='../Y/566.html' title='Multiple used in 6 places.'>NoLeaks</a>(); <em class='brace'>}</em>
+<a id='L145' name='L145' />
+<a id='L146' name='L146' />  <em class='comment'>// Detailed information about the number of leaked bytes and objects</em>
+<a id='L147' name='L147' />  <em class='comment'>// (both of these can be negative as well).</em>
+<a id='L148' name='L148' />  <em class='comment'>// These are available only after a *SameHeap or *NoLeaks</em>
+<a id='L149' name='L149' />  <em class='comment'>// method has been called.</em>
+<a id='L150' name='L150' />  <em class='comment'>// Note that it's possible for both of these to be zero</em>
+<a id='L151' name='L151' />  <em class='comment'>// while SameHeap() or NoLeaks() returned false in case</em>
+<a id='L152' name='L152' />  <em class='comment'>// of a heap state change that is significant</em>
+<a id='L153' name='L153' />  <em class='comment'>// but preserves the byte and object counts.</em>
+<a id='L154' name='L154' />  <a href='../S/686.html#L114' title='Defined at 114 in third_party/google-perftools-1.8.3/src/windows/port.h.'>ssize_t</a> <a href='../S/568.html#L1598' title='Defined at 1598 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>BytesLeaked</a>() <strong class='reserved'>const</strong>;
+<a id='L155' name='L155' />  <a href='../S/686.html#L114' title='Defined at 114 in third_party/google-perftools-1.8.3/src/windows/port.h.'>ssize_t</a> <a href='../S/568.html#L1606' title='Defined at 1606 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>ObjectsLeaked</a>() <strong class='reserved'>const</strong>;
+<a id='L156' name='L156' />
+<a id='L157' name='L157' />  <em class='comment'>// ----------------------------------------------------------------------- //</em>
+<a id='L158' name='L158' />  <em class='comment'>// Static helpers to make us ignore certain leaks.</em>
+<a id='L159' name='L159' />
+<a id='L160' name='L160' />  <em class='comment'>// Scoped helper class.  Should be allocated on the stack inside a</em>
+<a id='L161' name='L161' />  <em class='comment'>// block of code.  Any heap allocations done in the code block</em>
+<a id='L162' name='L162' />  <em class='comment'>// covered by the scoped object (including in nested function calls</em>
+<a id='L163' name='L163' />  <em class='comment'>// done by the code block) will not be reported as leaks.  This is</em>
+<a id='L164' name='L164' />  <em class='comment'>// the recommended replacement for the GetDisableChecksStart() and</em>
+<a id='L165' name='L165' />  <em class='comment'>// DisableChecksToHereFrom() routines below.</em>
+<a id='L166' name='L166' />  <em class='comment'>//</em>
+<a id='L167' name='L167' />  <em class='comment'>// Example:</em>
+<a id='L168' name='L168' />  <em class='comment'>//   void Foo() {</em>
+<a id='L169' name='L169' />  <em class='comment'>//     HeapLeakChecker::Disabler disabler;</em>
+<a id='L170' name='L170' />  <em class='comment'>//     ... code that allocates objects whose leaks should be ignored ...</em>
+<a id='L171' name='L171' />  <em class='comment'>//   }</em>
+<a id='L172' name='L172' />  <em class='comment'>//</em>
+<a id='L173' name='L173' />  <em class='comment'>// REQUIRES: Destructor runs in same thread as constructor</em>
+<a id='L174' name='L174' />  <a href='../Y/1792.html' title='Multiple used in 90 places.'>class</a> <a href='../D/632.html' title='Multiple defined in 2 places.'>Disabler</a> <em class='brace'>{</em>
+<a id='L175' name='L175' />   <a href='../Y/4390.html' title='Multiple used in 61 places.'>public</a>:
+<a id='L176' name='L176' />    <a href='../D/632.html' title='Multiple defined in 2 places.'>Disabler</a>();
+<a id='L177' name='L177' />    ~<a href='../D/632.html' title='Multiple defined in 2 places.'>Disabler</a>();
+<a id='L178' name='L178' />   <a href='../Y/4261.html' title='Multiple used in 50 places.'>private</a>:
+<a id='L179' name='L179' />    <a href='../D/632.html' title='Multiple defined in 2 places.'>Disabler</a>(<strong class='reserved'>const</strong> <a href='../D/632.html' title='Multiple defined in 2 places.'>Disabler</a>&amp;);        <em class='comment'>// disallow copy</em>
+<a id='L180' name='L180' />    <strong class='reserved'>void</strong> <a href='../Y/3992.html' title='Multiple used in 30 places.'>operator</a>=(<strong class='reserved'>const</strong> <a href='../D/632.html' title='Multiple defined in 2 places.'>Disabler</a>&amp;);  <em class='comment'>// and assign</em>
+<a id='L181' name='L181' />  <em class='brace'>}</em>;
+<a id='L182' name='L182' />
+<a id='L183' name='L183' />  <em class='comment'>// Ignore an object located at 'ptr' (can go at the start or into the object)</em>
+<a id='L184' name='L184' />  <em class='comment'>// as well as all heap objects (transitively) referenced from it for the</em>
+<a id='L185' name='L185' />  <em class='comment'>// purposes of heap leak checking. Returns 'ptr' so that one can write</em>
+<a id='L186' name='L186' />  <em class='comment'>//   static T* obj = IgnoreObject(new T(...));</em>
+<a id='L187' name='L187' />  <em class='comment'>//</em>
+<a id='L188' name='L188' />  <em class='comment'>// If 'ptr' does not point to an active allocated object at the time of this</em>
+<a id='L189' name='L189' />  <em class='comment'>// call, it is ignored; but if it does, the object must not get deleted from</em>
+<a id='L190' name='L190' />  <em class='comment'>// the heap later on.</em>
+<a id='L191' name='L191' />  <em class='comment'>//</em>
+<a id='L192' name='L192' />  <em class='comment'>// See also HiddenPointer, below, if you need to prevent a pointer from</em>
+<a id='L193' name='L193' />  <em class='comment'>// being traversed by the heap checker but do not wish to transitively</em>
+<a id='L194' name='L194' />  <em class='comment'>// whitelist objects referenced through it.</em>
+<a id='L195' name='L195' />  <a href='../Y/5333.html' title='Multiple used in 38 places.'>template</a> &lt;<a href='../Y/5504.html' title='Multiple used in 5 places.'>typename</a> <a href='../Y/845.html' title='Multiple used in 153 places.'>T</a>&gt;
+<a id='L196' name='L196' />  <strong class='reserved'>static</strong> <a href='../Y/845.html' title='Multiple used in 153 places.'>T</a>* <a href='../Y/377.html' title='Multiple used in 7 places.'>IgnoreObject</a>(<a href='../Y/845.html' title='Multiple used in 153 places.'>T</a>* <a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>) <em class='brace'>{</em>
+<a id='L197' name='L197' />    <a href='../S/568.html#L1480' title='Defined at 1480 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>DoIgnoreObject</a>(<a href='../Y/5080.html' title='Multiple used in 31 places.'>static_cast</a>&lt;<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>*&gt;(<a href='../Y/1849.html' title='Multiple used in 43 places.'>const_cast</a>&lt;<strong class='reserved'>const</strong> <a href='../Y/845.html' title='Multiple used in 153 places.'>T</a>*&gt;(<a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>)));
+<a id='L198' name='L198' />    <strong class='reserved'>return</strong> <a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>;
+<a id='L199' name='L199' />  <em class='brace'>}</em>
+<a id='L200' name='L200' />
+<a id='L201' name='L201' />  <em class='comment'>// Undo what an earlier IgnoreObject() call promised and asked to do.</em>
+<a id='L202' name='L202' />  <em class='comment'>// At the time of this call 'ptr' must point at or inside of an active</em>
+<a id='L203' name='L203' />  <em class='comment'>// allocated object which was previously registered with IgnoreObject().</em>
+<a id='L204' name='L204' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/568.html#L1500' title='Defined at 1500 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>UnIgnoreObject</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>);
+<a id='L205' name='L205' />
+<a id='L206' name='L206' />  <em class='comment'>// ----------------------------------------------------------------------- //</em>
+<a id='L207' name='L207' />  <em class='comment'>// Internal types defined in .cc</em>
+<a id='L208' name='L208' />
+<a id='L209' name='L209' />  <a href='../Y/1792.html' title='Multiple used in 90 places.'>class</a> <a href='../Y/34.html' title='Multiple used in 45 places.'>Allocator</a>;
+<a id='L210' name='L210' />  <strong class='reserved'>struct</strong> <a href='../D/2365.html' title='Multiple defined in 2 places.'>RangeValue</a>;
+<a id='L211' name='L211' />
+<a id='L212' name='L212' /> <a href='../Y/4261.html' title='Multiple used in 50 places.'>private</a>:
+<a id='L213' name='L213' />
+<a id='L214' name='L214' />  <em class='comment'>// ----------------------------------------------------------------------- //</em>
+<a id='L215' name='L215' />  <em class='comment'>// Various helpers</em>
+<a id='L216' name='L216' />
+<a id='L217' name='L217' />  <em class='comment'>// Create the name of the heap profile file.</em>
+<a id='L218' name='L218' />  <em class='comment'>// Should be deleted via Allocator::Free().</em>
+<a id='L219' name='L219' />  <strong class='reserved'>char</strong>* <a href='../S/568.html#L1525' title='Defined at 1525 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>MakeProfileNameLocked</a>();
+<a id='L220' name='L220' />
+<a id='L221' name='L221' />  <em class='comment'>// Helper for constructors</em>
+<a id='L222' name='L222' />  <strong class='reserved'>void</strong> <a href='../S/568.html#L1537' title='Defined at 1537 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>Create</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/3665.html' title='Multiple used in 438 places.'>name</a>, <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../Y/3392.html' title='Multiple used in 3 places.'>make_start_snapshot</a>);
+<a id='L223' name='L223' />
+<a id='L224' name='L224' />  <strong class='reserved'>enum</strong> <a href='../R/2302.html' title='Multiple refered from 4 places.'>ShouldSymbolize</a> <em class='brace'>{</em> <a href='../R/2277.html' title='Multiple refered from 2 places.'>SYMBOLIZE</a>, <a href='../R/491.html' title='Multiple refered from 2 places.'>DO_NOT_SYMBOLIZE</a> <em class='brace'>}</em>;
+<a id='L225' name='L225' />
+<a id='L226' name='L226' />  <em class='comment'>// Helper for *NoLeaks and *SameHeap</em>
+<a id='L227' name='L227' />  <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../S/568.html#L1668' title='Defined at 1668 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>DoNoLeaks</a>(<a href='../S/557.html#L224' title='Defined at 224 in third_party/google-perftools-1.8.3/src/google/heap-checker.h.'>ShouldSymbolize</a> <a href='../Y/4829.html' title='Multiple used in 9 places.'>should_symbolize</a>);
+<a id='L228' name='L228' />
+<a id='L229' name='L229' />  <em class='comment'>// Helper for NoGlobalLeaks, also called by the global destructor.</em>
+<a id='L230' name='L230' />  <strong class='reserved'>static</strong> <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../S/568.html#L2087' title='Defined at 2087 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>NoGlobalLeaksMaybeSymbolize</a>(<a href='../S/557.html#L224' title='Defined at 224 in third_party/google-perftools-1.8.3/src/google/heap-checker.h.'>ShouldSymbolize</a> <a href='../Y/4829.html' title='Multiple used in 9 places.'>should_symbolize</a>);
+<a id='L231' name='L231' />
+<a id='L232' name='L232' />  <em class='comment'>// These used to be public, but they are now deprecated.</em>
+<a id='L233' name='L233' />  <em class='comment'>// Will remove entirely when all internal uses are fixed.</em>
+<a id='L234' name='L234' />  <em class='comment'>// In the meantime, use friendship so the unittest can still test them.</em>
+<a id='L235' name='L235' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong>* GetDisableChecksStart();
+<a id='L236' name='L236' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> DisableChecksToHereFrom(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/5040.html' title='Multiple used in 28 places.'>start_address</a>);
+<a id='L237' name='L237' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/568.html#L1475' title='Defined at 1475 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>DisableChecksIn</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../Y/4133.html' title='Multiple used in 5 places.'>pattern</a>);
+<a id='L238' name='L238' />  <a href='../Y/2470.html' title='Multiple used in 15 places.'>friend</a> <strong class='reserved'>void</strong> RangeDisabledLeaks();
+<a id='L239' name='L239' />  <a href='../Y/2470.html' title='Multiple used in 15 places.'>friend</a> <strong class='reserved'>void</strong> NamedTwoDisabledLeaks();
+<a id='L240' name='L240' />  <a href='../Y/2470.html' title='Multiple used in 15 places.'>friend</a> <strong class='reserved'>void</strong>* RunNamedDisabledLeaks(<strong class='reserved'>void</strong>*);
+<a id='L241' name='L241' />  <a href='../Y/2470.html' title='Multiple used in 15 places.'>friend</a> <strong class='reserved'>void</strong> TestHeapLeakCheckerNamedDisabling();
+<a id='L242' name='L242' />  <a href='../Y/2470.html' title='Multiple used in 15 places.'>friend</a> <strong class='reserved'>int</strong> <a href='../D/4486.html' title='Multiple defined in 38 places.'>main</a>(<strong class='reserved'>int</strong>, <strong class='reserved'>char</strong>**);
+<a id='L243' name='L243' />
+<a id='L244' name='L244' />
+<a id='L245' name='L245' />  <em class='comment'>// Actually implements IgnoreObject().</em>
+<a id='L246' name='L246' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/568.html#L1480' title='Defined at 1480 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>DoIgnoreObject</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>);
+<a id='L247' name='L247' />
+<a id='L248' name='L248' />  <em class='comment'>// Disable checks based on stack trace entry at a depth &lt;=</em>
+<a id='L249' name='L249' />  <em class='comment'>// max_depth.  Used to hide allocations done inside some special</em>
+<a id='L250' name='L250' />  <em class='comment'>// libraries.</em>
+<a id='L251' name='L251' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/568.html#L2281' title='Defined at 2281 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>DisableChecksFromToLocked</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/5040.html' title='Multiple used in 28 places.'>start_address</a>,
+<a id='L252' name='L252' />                                        <strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/2191.html' title='Multiple used in 22 places.'>end_address</a>,
+<a id='L253' name='L253' />                                        <strong class='reserved'>int</strong> <a href='../Y/3446.html' title='Multiple used in 38 places.'>max_depth</a>);
+<a id='L254' name='L254' />
+<a id='L255' name='L255' />  <em class='comment'>// Helper for DoNoLeaks to ignore all objects reachable from all live data</em>
+<a id='L256' name='L256' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/568.html#L1248' title='Defined at 1248 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>IgnoreAllLiveObjectsLocked</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/4767.html' title='Multiple used in 3 places.'>self_stack_top</a>);
+<a id='L257' name='L257' />
+<a id='L258' name='L258' />  <em class='comment'>// Callback we pass to ListAllProcessThreads (see thread_lister.h)</em>
+<a id='L259' name='L259' />  <em class='comment'>// that is invoked when all threads of our process are found and stopped.</em>
+<a id='L260' name='L260' />  <em class='comment'>// The call back does the things needed to ignore live data reachable from</em>
+<a id='L261' name='L261' />  <em class='comment'>// thread stacks and registers for all our threads</em>
+<a id='L262' name='L262' />  <em class='comment'>// as well as do other global-live-data ignoring</em>
+<a id='L263' name='L263' />  <em class='comment'>// (via IgnoreNonThreadLiveObjectsLocked)</em>
+<a id='L264' name='L264' />  <em class='comment'>// during the quiet state of all threads being stopped.</em>
+<a id='L265' name='L265' />  <em class='comment'>// For the argument meaning see the comment by ListAllProcessThreads.</em>
+<a id='L266' name='L266' />  <em class='comment'>// Here we only use num_threads and thread_pids, that ListAllProcessThreads</em>
+<a id='L267' name='L267' />  <em class='comment'>// fills for us with the number and pids of all the threads of our process</em>
+<a id='L268' name='L268' />  <em class='comment'>// it found and attached to.</em>
+<a id='L269' name='L269' />  <strong class='reserved'>static</strong> <strong class='reserved'>int</strong> <a href='../S/568.html#L1007' title='Defined at 1007 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>IgnoreLiveThreadsLocked</a>(<strong class='reserved'>void</strong>* <a href='../Y/4114.html' title='Multiple used in 11 places.'>parameter</a>,
+<a id='L270' name='L270' />                                     <strong class='reserved'>int</strong> <a href='../Y/3884.html' title='Multiple used in 39 places.'>num_threads</a>,
+<a id='L271' name='L271' />                                     <a href='../S/686.html#L392' title='Defined at 392 in third_party/google-perftools-1.8.3/src/windows/port.h.'>pid_t</a>* <a href='../Y/5365.html' title='Multiple used in 14 places.'>thread_pids</a>,
+<a id='L272' name='L272' />                                     <a href='../Y/5593.html' title='Multiple used in 27 places.'>va_list</a> <a href='../Y/1470.html' title='Multiple used in 194 places.'>ap</a>);
+<a id='L273' name='L273' />
+<a id='L274' name='L274' />  <em class='comment'>// Helper for IgnoreAllLiveObjectsLocked and IgnoreLiveThreadsLocked</em>
+<a id='L275' name='L275' />  <em class='comment'>// that we prefer to execute from IgnoreLiveThreadsLocked</em>
+<a id='L276' name='L276' />  <em class='comment'>// while all threads are stopped.</em>
+<a id='L277' name='L277' />  <em class='comment'>// This helper does live object discovery and ignoring</em>
+<a id='L278' name='L278' />  <em class='comment'>// for all objects that are reachable from everything</em>
+<a id='L279' name='L279' />  <em class='comment'>// not related to thread stacks and registers.</em>
+<a id='L280' name='L280' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/568.html#L1080' title='Defined at 1080 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>IgnoreNonThreadLiveObjectsLocked</a>();
+<a id='L281' name='L281' />
+<a id='L282' name='L282' />  <em class='comment'>// Helper for IgnoreNonThreadLiveObjectsLocked and IgnoreLiveThreadsLocked</em>
+<a id='L283' name='L283' />  <em class='comment'>// to discover and ignore all heap objects</em>
+<a id='L284' name='L284' />  <em class='comment'>// reachable from currently considered live objects</em>
+<a id='L285' name='L285' />  <em class='comment'>// (live_objects static global variable in out .cc file).</em>
+<a id='L286' name='L286' />  <em class='comment'>// "name", "name2" are two strings that we print one after another</em>
+<a id='L287' name='L287' />  <em class='comment'>// in a debug message to describe what kind of live object sources</em>
+<a id='L288' name='L288' />  <em class='comment'>// are being used.</em>
+<a id='L289' name='L289' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/568.html#L1378' title='Defined at 1378 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>IgnoreLiveObjectsLocked</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../Y/3665.html' title='Multiple used in 438 places.'>name</a>, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../Y/3666.html' title='Multiple used in 7 places.'>name2</a>);
+<a id='L290' name='L290' />
+<a id='L291' name='L291' />  <em class='comment'>// Do the overall whole-program heap leak check if needed;</em>
+<a id='L292' name='L292' />  <em class='comment'>// returns true when did the leak check.</em>
+<a id='L293' name='L293' />  <strong class='reserved'>static</strong> <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../S/568.html#L2099' title='Defined at 2099 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>DoMainHeapCheck</a>();
+<a id='L294' name='L294' />
+<a id='L295' name='L295' />  <em class='comment'>// Type of task for UseProcMapsLocked</em>
+<a id='L296' name='L296' />  <strong class='reserved'>enum</strong> <a href='../R/1986.html' title='Multiple refered from 2 places.'>ProcMapsTask</a> <em class='brace'>{</em>
+<a id='L297' name='L297' />    <a href='../R/2087.html' title='Multiple refered from 3 places.'>RECORD_GLOBAL_DATA</a>,
+<a id='L298' name='L298' />    <a href='../R/468.html' title='Multiple refered from 3 places.'>DISABLE_LIBRARY_ALLOCS</a>
+<a id='L299' name='L299' />  <em class='brace'>}</em>;
+<a id='L300' name='L300' />
+<a id='L301' name='L301' />  <em class='comment'>// Success/Error Return codes for UseProcMapsLocked.</em>
+<a id='L302' name='L302' />  <strong class='reserved'>enum</strong> <a href='../R/1985.html' title='Multiple refered from 4 places.'>ProcMapsResult</a> <em class='brace'>{</em>
+<a id='L303' name='L303' />    <a href='../R/1880.html' title='Multiple refered from 3 places.'>PROC_MAPS_USED</a>,
+<a id='L304' name='L304' />    <a href='../S/568.html#L897' title='Refered from 897 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>CANT_OPEN_PROC_MAPS</a>,
+<a id='L305' name='L305' />    <a href='../S/568.html#L965' title='Refered from 965 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>NO_SHARED_LIBS_IN_PROC_MAPS</a>
+<a id='L306' name='L306' />  <em class='brace'>}</em>;
+<a id='L307' name='L307' />
+<a id='L308' name='L308' />  <em class='comment'>// Read /proc/self/maps, parse it, and do the 'proc_maps_task' for each line.</em>
+<a id='L309' name='L309' />  <strong class='reserved'>static</strong> <a href='../S/557.html#L302' title='Defined at 302 in third_party/google-perftools-1.8.3/src/google/heap-checker.h.'>ProcMapsResult</a> <a href='../S/568.html#L887' title='Defined at 887 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>UseProcMapsLocked</a>(<a href='../S/557.html#L296' title='Defined at 296 in third_party/google-perftools-1.8.3/src/google/heap-checker.h.'>ProcMapsTask</a> <a href='../Y/4270.html' title='Multiple used in 3 places.'>proc_maps_task</a>);
+<a id='L310' name='L310' />
+<a id='L311' name='L311' />  <em class='comment'>// A ProcMapsTask to disable allocations from 'library'</em>
+<a id='L312' name='L312' />  <em class='comment'>// that is mapped to [start_address..end_address)</em>
+<a id='L313' name='L313' />  <em class='comment'>// (only if library is a certain system library).</em>
+<a id='L314' name='L314' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/568.html#L822' title='Defined at 822 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>DisableLibraryAllocsLocked</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../Y/3235.html' title='Multiple used in 15 places.'>library</a>,
+<a id='L315' name='L315' />                                         <a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a> <a href='../Y/5040.html' title='Multiple used in 28 places.'>start_address</a>,
+<a id='L316' name='L316' />                                         <a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a> <a href='../Y/2191.html' title='Multiple used in 22 places.'>end_address</a>);
+<a id='L317' name='L317' />
+<a id='L318' name='L318' />  <em class='comment'>// Return true iff "*ptr" points to a heap object</em>
+<a id='L319' name='L319' />  <em class='comment'>// ("*ptr" can point at the start or inside of a heap object</em>
+<a id='L320' name='L320' />  <em class='comment'>//  so that this works e.g. for pointers to C++ arrays, C++ strings,</em>
+<a id='L321' name='L321' />  <em class='comment'>//  multiple-inherited objects, or pointers to members).</em>
+<a id='L322' name='L322' />  <em class='comment'>// We also fill *object_size for this object then</em>
+<a id='L323' name='L323' />  <em class='comment'>// and we move "*ptr" to point to the very start of the heap object.</em>
+<a id='L324' name='L324' />  <strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../S/568.html#L2310' title='Defined at 2310 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>HaveOnHeapLocked</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>** <a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a>* <a href='../Y/3913.html' title='Multiple used in 36 places.'>object_size</a>);
+<a id='L325' name='L325' />
+<a id='L326' name='L326' />  <em class='comment'>// Helper to shutdown heap leak checker when it's not needed</em>
+<a id='L327' name='L327' />  <em class='comment'>// or can't function properly.</em>
+<a id='L328' name='L328' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/568.html#L2174' title='Defined at 2174 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>TurnItselfOffLocked</a>();
+<a id='L329' name='L329' />
+<a id='L330' name='L330' />  <em class='comment'>// Internally-used c-tor to start whole-executable checking.</em>
+<a id='L331' name='L331' />  <a href='../D/978.html' title='Multiple defined in 4 places.'>HeapLeakChecker</a>();
+<a id='L332' name='L332' />
+<a id='L333' name='L333' />  <em class='comment'>// ----------------------------------------------------------------------- //</em>
+<a id='L334' name='L334' />  <em class='comment'>// Friends and externally accessed helpers.</em>
+<a id='L335' name='L335' />
+<a id='L336' name='L336' />  <em class='comment'>// Helper for VerifyHeapProfileTableStackGet in the unittest</em>
+<a id='L337' name='L337' />  <em class='comment'>// to get the recorded allocation caller for ptr,</em>
+<a id='L338' name='L338' />  <em class='comment'>// which must be a heap object.</em>
+<a id='L339' name='L339' />  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../S/568.html#L2325' title='Defined at 2325 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>GetAllocCaller</a>(<strong class='reserved'>void</strong>* <a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>);
+<a id='L340' name='L340' />  <a href='../Y/2470.html' title='Multiple used in 15 places.'>friend</a> <strong class='reserved'>void</strong> <a href='../S/637.html#L1312' title='Defined at 1312 in third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc.'>VerifyHeapProfileTableStackGet</a>();
+<a id='L341' name='L341' />
+<a id='L342' name='L342' />  <em class='comment'>// This gets to execute before constructors for all global objects</em>
+<a id='L343' name='L343' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/568.html#L2149' title='Defined at 2149 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>BeforeConstructorsLocked</a>();
+<a id='L344' name='L344' />  <a href='../Y/2470.html' title='Multiple used in 15 places.'>friend</a> <strong class='reserved'>void</strong> <a href='../S/568.html#L2204' title='Defined at 2204 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>HeapLeakChecker_BeforeConstructors</a>();
+<a id='L345' name='L345' />
+<a id='L346' name='L346' />  <em class='comment'>// This gets to execute after destructors for all global objects</em>
+<a id='L347' name='L347' />  <a href='../Y/2470.html' title='Multiple used in 15 places.'>friend</a> <strong class='reserved'>void</strong> <a href='../S/568.html#L2256' title='Defined at 2256 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>HeapLeakChecker_AfterDestructors</a>();
+<a id='L348' name='L348' />
+<a id='L349' name='L349' />  <em class='comment'>// Full starting of recommended whole-program checking.</em>
+<a id='L350' name='L350' />  <a href='../Y/2470.html' title='Multiple used in 15 places.'>friend</a> <strong class='reserved'>void</strong> <a href='../S/568.html#L1910' title='Defined at 1910 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>HeapLeakChecker_InternalInitStart</a>();
+<a id='L351' name='L351' />
+<a id='L352' name='L352' />  <em class='comment'>// Runs REGISTER_HEAPCHECK_CLEANUP cleanups and potentially</em>
+<a id='L353' name='L353' />  <em class='comment'>// calls DoMainHeapCheck</em>
+<a id='L354' name='L354' />  <a href='../Y/2470.html' title='Multiple used in 15 places.'>friend</a> <strong class='reserved'>void</strong> <a href='../S/568.html#L1887' title='Defined at 1887 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>HeapLeakChecker_RunHeapCleanups</a>();
+<a id='L355' name='L355' />
+<a id='L356' name='L356' />  <em class='comment'>// ----------------------------------------------------------------------- //</em>
+<a id='L357' name='L357' />  <em class='comment'>// Member data.</em>
+<a id='L358' name='L358' />
+<a id='L359' name='L359' />  <a href='../Y/1792.html' title='Multiple used in 90 places.'>class</a> <a href='../Y/802.html' title='Multiple used in 48 places.'>SpinLock</a>* <a href='../Y/3314.html' title='Multiple used in 57 places.'>lock_</a>;  <em class='comment'>// to make HeapLeakChecker objects thread-safe</em>
+<a id='L360' name='L360' />  <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../Y/3667.html' title='Multiple used in 21 places.'>name_</a>;  <em class='comment'>// our remembered name (we own it)</em>
+<a id='L361' name='L361' />                      <em class='comment'>// NULL means this leak checker is a noop</em>
+<a id='L362' name='L362' />
+<a id='L363' name='L363' />  <em class='comment'>// Snapshot taken when the checker was created.  May be NULL</em>
+<a id='L364' name='L364' />  <em class='comment'>// for the global heap checker object.  We use void* instead of</em>
+<a id='L365' name='L365' />  <em class='comment'>// HeapProfileTable::Snapshot* to avoid including heap-profile-table.h.</em>
+<a id='L366' name='L366' />  <strong class='reserved'>void</strong>* <a href='../Y/5053.html' title='Multiple used in 6 places.'>start_snapshot_</a>;
+<a id='L367' name='L367' />
+<a id='L368' name='L368' />  <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../Y/2620.html' title='Multiple used in 6 places.'>has_checked_</a>;  <em class='comment'>// if we have done the leak check, so these are ready:</em>
+<a id='L369' name='L369' />  <a href='../S/686.html#L114' title='Defined at 114 in third_party/google-perftools-1.8.3/src/windows/port.h.'>ssize_t</a> <a href='../Y/2879.html' title='Multiple used in 4 places.'>inuse_bytes_increase_</a>;  <em class='comment'>// bytes-in-use increase for this checker</em>
+<a id='L370' name='L370' />  <a href='../S/686.html#L114' title='Defined at 114 in third_party/google-perftools-1.8.3/src/windows/port.h.'>ssize_t</a> <a href='../Y/2877.html' title='Multiple used in 4 places.'>inuse_allocs_increase_</a>;  <em class='comment'>// allocations-in-use increase</em>
+<a id='L371' name='L371' />                                   <em class='comment'>// for this checker</em>
+<a id='L372' name='L372' />  <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../Y/3134.html' title='Multiple used in 2 places.'>keep_profiles_</a>;  <em class='comment'>// iff we should keep the heap profiles we've made</em>
+<a id='L373' name='L373' />
+<a id='L374' name='L374' />  <em class='comment'>// ----------------------------------------------------------------------- //</em>
+<a id='L375' name='L375' />
+<a id='L376' name='L376' />  <em class='comment'>// Disallow "evil" constructors.</em>
+<a id='L377' name='L377' />  <a href='../D/978.html' title='Multiple defined in 4 places.'>HeapLeakChecker</a>(<strong class='reserved'>const</strong> <a href='../D/978.html' title='Multiple defined in 4 places.'>HeapLeakChecker</a>&amp;);
+<a id='L378' name='L378' />  <strong class='reserved'>void</strong> <a href='../Y/3992.html' title='Multiple used in 30 places.'>operator</a>=(<strong class='reserved'>const</strong> <a href='../D/978.html' title='Multiple defined in 4 places.'>HeapLeakChecker</a>&amp;);
+<a id='L379' name='L379' /><em class='brace'>}</em>;
+<a id='L380' name='L380' />
+<a id='L381' name='L381' />
+<a id='L382' name='L382' /><em class='comment'>// Holds a pointer that will not be traversed by the heap checker.</em>
+<a id='L383' name='L383' /><em class='comment'>// Contrast with HeapLeakChecker::IgnoreObject(o), in which o and</em>
+<a id='L384' name='L384' /><em class='comment'>// all objects reachable from o are ignored by the heap checker.</em>
+<a id='L385' name='L385' /><a href='../Y/5333.html' title='Multiple used in 38 places.'>template</a> &lt;<a href='../Y/1792.html' title='Multiple used in 90 places.'>class</a> <a href='../Y/845.html' title='Multiple used in 153 places.'>T</a>&gt;
+<a id='L386' name='L386' /><a href='../Y/1792.html' title='Multiple used in 90 places.'>class</a> <a href='../Y/359.html' title='Multiple used in 3 places.'>HiddenPointer</a> <em class='brace'>{</em>
+<a id='L387' name='L387' /> <a href='../Y/4390.html' title='Multiple used in 61 places.'>public</a>:
+<a id='L388' name='L388' />  <a href='../Y/2272.html' title='Multiple used in 15 places.'>explicit</a> <a href='../Y/359.html' title='Multiple used in 3 places.'>HiddenPointer</a>(<a href='../Y/845.html' title='Multiple used in 153 places.'>T</a>* <a href='../Y/5268.html' title='Multiple used in 639 places.'>t</a>)
+<a id='L389' name='L389' />      : <a href='../Y/3426.html' title='Multiple used in 3 places.'>masked_t_</a>(<a href='../Y/4495.html' title='Multiple used in 76 places.'>reinterpret_cast</a>&lt;<a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a>&gt;(<a href='../Y/5268.html' title='Multiple used in 639 places.'>t</a>) ^ <a href='../Y/3014.html' title='Multiple used in 11 places.'>kHideMask</a>) <em class='brace'>{</em>
+<a id='L390' name='L390' />  <em class='brace'>}</em>
+<a id='L391' name='L391' />  <em class='comment'>// Returns unhidden pointer.  Be careful where you save the result.</em>
+<a id='L392' name='L392' />  <a href='../Y/845.html' title='Multiple used in 153 places.'>T</a>* <a href='../D/3858.html' title='Multiple defined in 3 places.'>get</a>() <strong class='reserved'>const</strong> <em class='brace'>{</em> <strong class='reserved'>return</strong> <a href='../Y/4495.html' title='Multiple used in 76 places.'>reinterpret_cast</a>&lt;<a href='../Y/845.html' title='Multiple used in 153 places.'>T</a>*&gt;(<a href='../Y/3426.html' title='Multiple used in 3 places.'>masked_t_</a> ^ <a href='../Y/3014.html' title='Multiple used in 11 places.'>kHideMask</a>); <em class='brace'>}</em>
+<a id='L393' name='L393' />
+<a id='L394' name='L394' /> <a href='../Y/4261.html' title='Multiple used in 50 places.'>private</a>:
+<a id='L395' name='L395' />  <em class='comment'>// Arbitrary value, but not such that xor'ing with it is likely</em>
+<a id='L396' name='L396' />  <em class='comment'>// to map one valid pointer to another valid pointer:</em>
+<a id='L397' name='L397' />  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a> <a href='../Y/3014.html' title='Multiple used in 11 places.'>kHideMask</a> =
+<a id='L398' name='L398' />      <a href='../Y/5080.html' title='Multiple used in 31 places.'>static_cast</a>&lt;<a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a>&gt;(0xF03A5F7BF03A5F7Bll);
+<a id='L399' name='L399' />  <a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a> <a href='../Y/3426.html' title='Multiple used in 3 places.'>masked_t_</a>;
+<a id='L400' name='L400' /><em class='brace'>}</em>;
+<a id='L401' name='L401' />
+<a id='L402' name='L402' /><em class='comment'>// A class that exists solely to run its destructor.  This class should not be</em>
+<a id='L403' name='L403' /><em class='comment'>// used directly, but instead by the REGISTER_HEAPCHECK_CLEANUP macro below.</em>
+<a id='L404' name='L404' /><a href='../Y/1792.html' title='Multiple used in 90 places.'>class</a> <a href='../D/2076.html' title='Multiple defined in 25 places.'>PERFTOOLS_DLL_DECL</a> <a href='../S/568.html#L1866' title='Defined at 1866 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>HeapCleaner</a> <em class='brace'>{</em>
+<a id='L405' name='L405' /> <a href='../Y/4390.html' title='Multiple used in 61 places.'>public</a>:
+<a id='L406' name='L406' />  <strong class='reserved'>typedef</strong> <strong class='reserved'>void</strong> (*<a href='../Y/5648.html' title='Multiple used in 6 places.'>void_function</a>)(<strong class='reserved'>void</strong>);
+<a id='L407' name='L407' />  <a href='../S/568.html#L1866' title='Defined at 1866 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>HeapCleaner</a>(<a href='../Y/5648.html' title='Multiple used in 6 places.'>void_function</a> <a href='../D/3802.html' title='Multiple defined in 5 places.'>f</a>);
+<a id='L408' name='L408' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/568.html#L1873' title='Defined at 1873 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>RunHeapCleanups</a>();
+<a id='L409' name='L409' /> <a href='../Y/4261.html' title='Multiple used in 50 places.'>private</a>:
+<a id='L410' name='L410' />  <strong class='reserved'>static</strong> <a href='../Y/5100.html' title='Multiple used in 181 places.'>std</a>::<a href='../Y/5622.html' title='Multiple used in 63 places.'>vector</a>&lt;<a href='../Y/5648.html' title='Multiple used in 6 places.'>void_function</a>&gt;* <a href='../Y/2674.html' title='Multiple used in 10 places.'>heap_cleanups_</a>;
+<a id='L411' name='L411' /><em class='brace'>}</em>;
+<a id='L412' name='L412' />
+<a id='L413' name='L413' /><em class='comment'>// A macro to declare module heap check cleanup tasks</em>
+<a id='L414' name='L414' /><em class='comment'>// (they run only if we are doing heap leak checking.)</em>
+<a id='L415' name='L415' /><em class='comment'>// 'body' should be the cleanup code to run.  'name' doesn't matter,</em>
+<a id='L416' name='L416' /><em class='comment'>// but must be unique amongst all REGISTER_HEAPCHECK_CLEANUP calls.</em>
+<a id='L417' name='L417' /><em class='sharp'>#define</em> REGISTER_HEAPCHECK_CLEANUP(<a href='../Y/3665.html' title='Multiple used in 438 places.'>name</a>, <a href='../Y/1645.html' title='Multiple used in 27 places.'>body</a>)  \
+<a id='L418' name='L418' />  <a href='../Y/3671.html' title='Multiple used in 66 places.'>namespace</a> <em class='brace'>{</em> \
+<a id='L419' name='L419' />  <strong class='reserved'>void</strong> <a href='../Y/2690.html' title='Multiple used in 2 places.'>heapcheck_cleanup_</a>##<a href='../Y/3665.html' title='Multiple used in 438 places.'>name</a>() <em class='brace'>{</em> <a href='../Y/1645.html' title='Multiple used in 27 places.'>body</a>; <em class='brace'>}</em> \
+<a id='L420' name='L420' />  <strong class='reserved'>static</strong> <a href='../S/568.html#L1866' title='Defined at 1866 in third_party/google-perftools-1.8.3/src/heap-checker.cc.'>HeapCleaner</a> heapcheck_cleaner_##<a href='../Y/3665.html' title='Multiple used in 438 places.'>name</a>(&amp;<a href='../Y/2690.html' title='Multiple used in 2 places.'>heapcheck_cleanup_</a>##<a href='../Y/3665.html' title='Multiple used in 438 places.'>name</a>); \
+<a id='L421' name='L421' />  <em class='brace'>}</em>
+<a id='L422' name='L422' />
+<a id='L423' name='L423' /><em class='sharp'>#endif</em>  <em class='comment'>// BASE_HEAP_CHECKER_H_</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^][v]<a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

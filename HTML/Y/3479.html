@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>mc</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/419.html#L341'>mc</a>                341 src/verifier/dpor.c static void contextC1_expand_RHS(McDporData *mc,</span>
+<span class='curline'><a href='../S/419.html#L573'>mc</a>                573 src/verifier/dpor.c static inline BOOL dpor_explored_cycle(McDporData *mc,</span>
+<span class='curline'><a href='../S/419.html#L583'>mc</a>                583 src/verifier/dpor.c     if (st_lookup(mc-&gt;delta_tbl, (st_data_t)d, &amp;t)) {</span>
+<span class='curline'><a href='../S/419.html#L597'>mc</a>                597 src/verifier/dpor.c static BOOL dpor_explore_subgraph(McDporData *mc,</span>
+<span class='curline'><a href='../S/419.html#L613'>mc</a>                613 src/verifier/dpor.c     printf("explore rec%u, delta_reacted_id=%u\n", mc-&gt;cur_depth, c-&gt;id);</span>
+<span class='curline'><a href='../S/419.html#L620'>mc</a>                620 src/verifier/dpor.c   if (dpor_explored_cycle(mc, c, &amp;rc)) {</span>
+<span class='curline'><a href='../S/419.html#L627'>mc</a>                627 src/verifier/dpor.c   if (dpor_dependency_check(mc, RC_MEM_DELTAS(&amp;rc), NULL) &amp;&amp; mc-&gt;cur_depth &lt; 200) {</span>
+<span class='curline'><a href='../S/419.html#L637'>mc</a>                637 src/verifier/dpor.c       if (st_lookup(mc-&gt;delta_tbl, (st_data_t)succ_d, &amp;t)) {</span>
+<span class='curline'><a href='../S/419.html#L651'>mc</a>                651 src/verifier/dpor.c           mc-&gt;cur_depth++;</span>
+<span class='curline'><a href='../S/419.html#L654'>mc</a>                654 src/verifier/dpor.c           ret = dpor_explore_subgraph(mc, succ_c, &amp;nxt_checked_ids);</span>
+<span class='curline'><a href='../S/419.html#L658'>mc</a>                658 src/verifier/dpor.c           mc-&gt;cur_depth--;</span>
+<span class='curline'><a href='../S/419.html#L712'>mc</a>                712 src/verifier/dpor.c void dpor_transition_gen_LHS(McDporData   *mc,</span>
+<span class='curline'><a href='../S/419.html#L719'>mc</a>                719 src/verifier/dpor.c   c = contextC1_make(d, mc-&gt;nxt_tr_id++);</span>
+<span class='curline'><a href='../S/419.html#L720'>mc</a>                720 src/verifier/dpor.c   contextC1_expand_LHS(mc, c, rc, v);</span>
+<span class='curline'><a href='../S/419.html#L721'>mc</a>                721 src/verifier/dpor.c   mc-&gt;tmp = c;</span>
+<span class='curline'><a href='../S/419.html#L725'>mc</a>                725 src/verifier/dpor.c BOOL dpor_transition_gen_RHS(McDporData   *mc,</span>
+<span class='curline'><a href='../S/419.html#L732'>mc</a>                732 src/verifier/dpor.c   c = mc-&gt;tmp;</span>
+<span class='curline'><a href='../S/419.html#L733'>mc</a>                733 src/verifier/dpor.c   mc-&gt;tmp = NULL;</span>
+<span class='curline'><a href='../S/419.html#L735'>mc</a>                735 src/verifier/dpor.c   contextC1_expand_RHS(mc, c, d);</span>
+<span class='curline'><a href='../S/419.html#L737'>mc</a>                737 src/verifier/dpor.c   ret = contextC1_lookup(mc-&gt;delta_tbl, c);</span>
+<span class='curline'><a href='../S/419.html#L763'>mc</a>                763 src/verifier/dpor.c     st_add_direct(mc-&gt;delta_tbl, (st_data_t)d, (st_data_t)c);</span>
+<span class='curline'><a href='../S/419.html#L764'>mc</a>                764 src/verifier/dpor.c     vec_push(mc-&gt;free_deltas, (vec_data_t)d);</span>
+<span class='curline'><a href='../S/420.html#L116'>mc</a>                116 src/verifier/dpor.h void dpor_transition_gen_LHS(McDporData   *mc,</span>
+<span class='curline'><a href='../S/420.html#L120'>mc</a>                120 src/verifier/dpor.h BOOL dpor_transition_gen_RHS(McDporData   *mc,</span>
+<span class='curline'><a href='../S/430.html#L140'>mc</a>                140 src/verifier/mc_explorer.c   McSearchNDFS *mc = LMN_MALLOC(McSearchNDFS);</span>
+<span class='curline'><a href='../S/430.html#L141'>mc</a>                141 src/verifier/mc_explorer.c   mc-&gt;open = vec_make(1024);</span>
+<span class='curline'><a href='../S/430.html#L142'>mc</a>                142 src/verifier/mc_explorer.c   mc-&gt;path = vec_make(512);</span>
+<span class='curline'><a href='../S/430.html#L143'>mc</a>                143 src/verifier/mc_explorer.c   NDFS_WORKER_OBJ_SET(w, mc);</span>
+<span class='curline'><a href='../S/430.html#L292'>mc</a>                292 src/verifier/mc_explorer.c   McSearchOWCTY *mc = LMN_MALLOC(McSearchOWCTY);</span>
+<span class='curline'><a href='../S/430.html#L298'>mc</a>                298 src/verifier/mc_explorer.c       mc-&gt;accepts1 = make_parallel_queue(LMN_Q_MRMW);</span>
+<span class='curline'><a href='../S/430.html#L299'>mc</a>                299 src/verifier/mc_explorer.c       mc-&gt;accepts2 = make_parallel_queue(LMN_Q_MRMW);</span>
+<span class='curline'><a href='../S/430.html#L301'>mc</a>                301 src/verifier/mc_explorer.c       mc-&gt;accepts1 = new_queue();</span>
+<span class='curline'><a href='../S/430.html#L302'>mc</a>                302 src/verifier/mc_explorer.c       mc-&gt;accepts2 = new_queue();</span>
+<span class='curline'><a href='../S/430.html#L307'>mc</a>                307 src/verifier/mc_explorer.c     mc-&gt;accepts1 = OWCTY_WORKER_AQ1(primary);</span>
+<span class='curline'><a href='../S/430.html#L308'>mc</a>                308 src/verifier/mc_explorer.c     mc-&gt;accepts2 = OWCTY_WORKER_AQ2(primary);</span>
+<span class='curline'><a href='../S/430.html#L311'>mc</a>                311 src/verifier/mc_explorer.c   mc-&gt;traversed = st_init_ptrtable();</span>
+<span class='curline'><a href='../S/430.html#L312'>mc</a>                312 src/verifier/mc_explorer.c   mc-&gt;old       = 0;</span>
+<span class='curline'><a href='../S/430.html#L313'>mc</a>                313 src/verifier/mc_explorer.c   mc-&gt;iteration = 0;</span>
+<span class='curline'><a href='../S/430.html#L315'>mc</a>                315 src/verifier/mc_explorer.c   OWCTY_WORKER_OBJ_SET(w, mc);</span>
+<span class='curline'><a href='../S/430.html#L428'>mc</a>                428 src/verifier/mc_explorer.c   McSearchOWCTY *mc = OWCTY_WORKER_OBJ(w);</span>
+<span class='curline'><a href='../S/430.html#L429'>mc</a>                429 src/verifier/mc_explorer.c   mc-&gt;old = queue_entry_num(mc-&gt;accepts2);</span>
+<span class='curline'><a href='../S/430.html#L438'>mc</a>                438 src/verifier/mc_explorer.c   McSearchOWCTY *mc;</span>
+<span class='curline'><a href='../S/430.html#L441'>mc</a>                441 src/verifier/mc_explorer.c   mc = OWCTY_WORKER_OBJ(w);</span>
+<span class='curline'><a href='../S/430.html#L442'>mc</a>                442 src/verifier/mc_explorer.c   mc-&gt;iteration++;</span>
+<span class='curline'><a href='../S/430.html#L444'>mc</a>                444 src/verifier/mc_explorer.c                          , mc-&gt;iteration</span>
+<span class='curline'><a href='../S/430.html#L445'>mc</a>                445 src/verifier/mc_explorer.c                          , queue_entry_num(mc-&gt;accepts1)</span>
+<span class='curline'><a href='../S/430.html#L446'>mc</a>                446 src/verifier/mc_explorer.c                          , mc-&gt;old</span>
+<span class='curline'><a href='../S/430.html#L447'>mc</a>                447 src/verifier/mc_explorer.c                          , (mc-&gt;iteration % 3 == 0) ? "\n" : ""));</span>
+<span class='curline'><a href='../S/430.html#L449'>mc</a>                449 src/verifier/mc_explorer.c   q_num = queue_entry_num(mc-&gt;accepts1);</span>
+<span class='curline'><a href='../S/430.html#L450'>mc</a>                450 src/verifier/mc_explorer.c   if (q_num == 0 || q_num == mc-&gt;old) {</span>
+<span class='curline'><a href='../S/430.html#L623'>mc</a>                623 src/verifier/mc_explorer.c   McSearchMAP *mc = LMN_MALLOC(McSearchMAP);</span>
+<span class='curline'><a href='../S/430.html#L627'>mc</a>                627 src/verifier/mc_explorer.c       mc-&gt;propagate   = make_parallel_queue(LMN_Q_MRMW);</span>
+<span class='curline'><a href='../S/430.html#L628'>mc</a>                628 src/verifier/mc_explorer.c       mc-&gt;waitingSeed = make_parallel_queue(LMN_Q_MRMW);</span>
+<span class='curline'><a href='../S/430.html#L630'>mc</a>                630 src/verifier/mc_explorer.c       mc-&gt;propagate   = new_queue();</span>
+<span class='curline'><a href='../S/430.html#L631'>mc</a>                631 src/verifier/mc_explorer.c       mc-&gt;waitingSeed = new_queue();</span>
+<span class='curline'><a href='../S/430.html#L636'>mc</a>                636 src/verifier/mc_explorer.c     mc-&gt;propagate   = MAP_WORKER_PROPAG_G(prim);</span>
+<span class='curline'><a href='../S/430.html#L637'>mc</a>                637 src/verifier/mc_explorer.c     mc-&gt;waitingSeed = MAP_WORKER_DEL_G(prim);</span>
+<span class='curline'><a href='../S/430.html#L640'>mc</a>                640 src/verifier/mc_explorer.c   mc-&gt;traversed = st_init_ptrtable();</span>
+<span class='curline'><a href='../S/430.html#L642'>mc</a>                642 src/verifier/mc_explorer.c   MAP_WORKER_OBJ_SET(w, mc);</span>
+<span class='curline'><a href='../S/430.html#L947'>mc</a>                947 src/verifier/mc_explorer.c   McSearchBLE *mc = LMN_MALLOC(McSearchBLE);</span>
+<span class='curline'><a href='../S/430.html#L950'>mc</a>                950 src/verifier/mc_explorer.c       mc-&gt;layer = make_parallel_queue(LMN_Q_MRMW);</span>
+<span class='curline'><a href='../S/430.html#L952'>mc</a>                952 src/verifier/mc_explorer.c       mc-&gt;layer = new_queue();</span>
+<span class='curline'><a href='../S/430.html#L956'>mc</a>                956 src/verifier/mc_explorer.c     mc-&gt;layer = BLE_WORKER_LAYER_Q(workers_get_worker(worker_group(w), LMN_PRIMARY_ID));</span>
+<span class='curline'><a href='../S/430.html#L959'>mc</a>                959 src/verifier/mc_explorer.c   mc-&gt;path = vec_make(32);</span>
+<span class='curline'><a href='../S/430.html#L960'>mc</a>                960 src/verifier/mc_explorer.c   mc-&gt;search = vec_make(64);</span>
+<span class='curline'><a href='../S/430.html#L961'>mc</a>                961 src/verifier/mc_explorer.c   mc-&gt;traversed = st_init_ptrtable();</span>
+<span class='curline'><a href='../S/430.html#L963'>mc</a>                963 src/verifier/mc_explorer.c   BLE_WORKER_OBJ_SET(w, mc);</span>
+<span class='curline'><a href='../S/432.html#L188'>mc</a>                188 src/verifier/mc_generator.c   McExpandDFS *mc = LMN_MALLOC(McExpandDFS);</span>
+<span class='curline'><a href='../S/432.html#L189'>mc</a>                189 src/verifier/mc_generator.c   mc-&gt;cutoff_depth = lmn_env.cutoff_depth;</span>
+<span class='curline'><a href='../S/432.html#L194'>mc</a>                194 src/verifier/mc_generator.c       deq_init(&amp;mc-&gt;deq, 8192);</span>
+<span class='curline'><a href='../S/432.html#L197'>mc</a>                197 src/verifier/mc_generator.c       vec_init(&amp;mc-&gt;stack, 8192);</span>
+<span class='curline'><a href='../S/432.html#L202'>mc</a>                202 src/verifier/mc_generator.c       deq_init(&amp;mc-&gt;deq, mc-&gt;cutoff_depth + 1);</span>
+<span class='curline'><a href='../S/432.html#L205'>mc</a>                205 src/verifier/mc_generator.c       vec_init(&amp;mc-&gt;stack, mc-&gt;cutoff_depth + 1);</span>
+<span class='curline'><a href='../S/432.html#L208'>mc</a>                208 src/verifier/mc_generator.c       mc-&gt;q = new_queue();</span>
+<span class='curline'><a href='../S/432.html#L210'>mc</a>                210 src/verifier/mc_generator.c       mc-&gt;q = make_parallel_queue(LMN_Q_MRSW);</span>
+<span class='curline'><a href='../S/432.html#L212'>mc</a>                212 src/verifier/mc_generator.c       mc-&gt;q = make_parallel_queue(LMN_Q_SRSW);</span>
+<span class='curline'><a href='../S/432.html#L216'>mc</a>                216 src/verifier/mc_generator.c   DFS_WORKER_OBJ_SET(w, mc);</span>
+<span class='curline'><a href='../S/432.html#L545'>mc</a>                545 src/verifier/mc_generator.c   McExpandBFS *mc = LMN_MALLOC(McExpandBFS);</span>
+<span class='curline'><a href='../S/432.html#L548'>mc</a>                548 src/verifier/mc_generator.c     mc-&gt;cur = new_queue();</span>
+<span class='curline'><a href='../S/432.html#L549'>mc</a>                549 src/verifier/mc_generator.c     mc-&gt;nxt = new_queue();</span>
+<span class='curline'><a href='../S/432.html#L553'>mc</a>                553 src/verifier/mc_generator.c     mc-&gt;cur = make_parallel_queue(LMN_Q_MRMW);</span>
+<span class='curline'><a href='../S/432.html#L554'>mc</a>                554 src/verifier/mc_generator.c     mc-&gt;nxt = worker_use_lsync(w) ? make_parallel_queue(LMN_Q_MRMW)</span>
+<span class='curline'><a href='../S/432.html#L555'>mc</a>                555 src/verifier/mc_generator.c                                   : mc-&gt;cur;</span>
+<span class='curline'><a href='../S/432.html#L558'>mc</a>                558 src/verifier/mc_generator.c     mc-&gt;cur = BFS_WORKER_Q_CUR(workers_get_worker(worker_group(w), 0));</span>
+<span class='curline'><a href='../S/432.html#L559'>mc</a>                559 src/verifier/mc_generator.c     mc-&gt;nxt = BFS_WORKER_Q_NXT(workers_get_worker(worker_group(w), 0));</span>
+<span class='curline'><a href='../S/432.html#L562'>mc</a>                562 src/verifier/mc_generator.c   BFS_WORKER_OBJ_SET(w, mc);</span>
+<span class='curline'><a href='../S/432.html#L568'>mc</a>                568 src/verifier/mc_generator.c   McExpandBFS *mc = (McExpandBFS *)BFS_WORKER_OBJ(w);</span>
+<span class='curline'><a href='../S/432.html#L570'>mc</a>                570 src/verifier/mc_generator.c     q_free(mc-&gt;cur);</span>
+<span class='curline'><a href='../S/432.html#L571'>mc</a>                571 src/verifier/mc_generator.c     q_free(mc-&gt;nxt);</span>
+<span class='curline'><a href='../S/432.html#L573'>mc</a>                573 src/verifier/mc_generator.c     q_free(mc-&gt;cur);</span>
+<span class='curline'><a href='../S/432.html#L574'>mc</a>                574 src/verifier/mc_generator.c     if (worker_use_lsync(w)) q_free(mc-&gt;nxt);</span>
+<span class='curline'><a href='../S/432.html#L576'>mc</a>                576 src/verifier/mc_generator.c   LMN_FREE(mc);</span>
+<span class='curline'><a href='../S/434.html#L58'>mc</a>                 58 src/verifier/mc_worker.c static inline void lmn_mc_obj_init(LmnMCObj *mc, LmnWorker *w) {</span>
+<span class='curline'><a href='../S/434.html#L59'>mc</a>                 59 src/verifier/mc_worker.c   mc-&gt;type     = 0x00U;</span>
+<span class='curline'><a href='../S/434.html#L60'>mc</a>                 60 src/verifier/mc_worker.c   mc-&gt;obj      = NULL;</span>
+<span class='curline'><a href='../S/434.html#L61'>mc</a>                 61 src/verifier/mc_worker.c   mc-&gt;init     = NULL;</span>
+<span class='curline'><a href='../S/434.html#L62'>mc</a>                 62 src/verifier/mc_worker.c   mc-&gt;finalize = NULL;</span>
+<span class='curline'><a href='../S/434.html#L63'>mc</a>                 63 src/verifier/mc_worker.c   mc-&gt;owner    = w;</span>
+</pre>
+</body>
+</html>

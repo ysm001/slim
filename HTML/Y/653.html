@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>PtrT</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/581.html#L56'>PtrT</a>               56 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h template&lt;typename PtrT&gt;</span>
+<span class='curline'><a href='../S/581.html#L59'>PtrT</a>               59 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h   COMPILE_ASSERT(sizeof(PtrT) &lt;= sizeof(AtomicWord),</span>
+<span class='curline'><a href='../S/581.html#L62'>PtrT</a>               62 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h   PtrT Get() const {</span>
+<span class='curline'><a href='../S/581.html#L68'>PtrT</a>               68 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h     return reinterpret_cast&lt;PtrT&gt;(static_cast&lt;AtomicWord&gt;(</span>
+<span class='curline'><a href='../S/581.html#L75'>PtrT</a>               75 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h   PtrT Exchange(PtrT new_val);</span>
+<span class='curline'><a href='../S/581.html#L83'>PtrT</a>               83 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h   PtrT CompareAndSwap(PtrT old_val, PtrT new_val);</span>
+<span class='curline'><a href='../S/582.html#L161'>PtrT</a>              161 third_party/google-perftools-1.8.3/src/malloc_hook.cc template&lt;typename PtrT&gt;</span>
+<span class='curline'><a href='../S/582.html#L162'>PtrT</a>              162 third_party/google-perftools-1.8.3/src/malloc_hook.cc PtrT AtomicPtr&lt;PtrT&gt;::Exchange(PtrT new_val) {</span>
+<span class='curline'><a href='../S/582.html#L168'>PtrT</a>              168 third_party/google-perftools-1.8.3/src/malloc_hook.cc   PtrT old_val = reinterpret_cast&lt;PtrT&gt;(static_cast&lt;AtomicWord&gt;(</span>
+<span class='curline'><a href='../S/582.html#L176'>PtrT</a>              176 third_party/google-perftools-1.8.3/src/malloc_hook.cc template&lt;typename PtrT&gt;</span>
+<span class='curline'><a href='../S/582.html#L177'>PtrT</a>              177 third_party/google-perftools-1.8.3/src/malloc_hook.cc PtrT AtomicPtr&lt;PtrT&gt;::CompareAndSwap(PtrT old_val, PtrT new_val) {</span>
+<span class='curline'><a href='../S/582.html#L179'>PtrT</a>              179 third_party/google-perftools-1.8.3/src/malloc_hook.cc   PtrT retval = reinterpret_cast&lt;PtrT&gt;(static_cast&lt;AtomicWord&gt;(</span>
+</pre>
+</body>
+</html>

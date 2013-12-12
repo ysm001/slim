@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>ret_bs</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/436.html#L578'>ret_bs</a>            578 src/verifier/mem_encode.c   struct LmnBinStr *ret_bs;</span>
+<span class='curline'><a href='../S/436.html#L580'>ret_bs</a>            580 src/verifier/mem_encode.c   ret_bs       = LMN_MALLOC(struct LmnBinStr);</span>
+<span class='curline'><a href='../S/436.html#L581'>ret_bs</a>            581 src/verifier/mem_encode.c   ret_bs-&gt;v    = LMN_NALLOC(BYTE, size);</span>
+<span class='curline'><a href='../S/436.html#L582'>ret_bs</a>            582 src/verifier/mem_encode.c   ret_bs-&gt;type = 0x00U;</span>
+<span class='curline'><a href='../S/436.html#L583'>ret_bs</a>            583 src/verifier/mem_encode.c   memcpy(ret_bs-&gt;v, bs-&gt;v, size);</span>
+<span class='curline'><a href='../S/436.html#L584'>ret_bs</a>            584 src/verifier/mem_encode.c   ret_bs-&gt;len  = bs-&gt;cur;</span>
+<span class='curline'><a href='../S/436.html#L585'>ret_bs</a>            585 src/verifier/mem_encode.c   if (ret_bs-&gt;len &amp; 1) {</span>
+<span class='curline'><a href='../S/436.html#L586'>ret_bs</a>            586 src/verifier/mem_encode.c     ret_bs-&gt;v[ret_bs-&gt;len &gt;&gt; 1] = ret_bs-&gt;v[ret_bs-&gt;len &gt;&gt; 1] &amp; 0x0f;</span>
+<span class='curline'><a href='../S/436.html#L589'>ret_bs</a>            589 src/verifier/mem_encode.c   return ret_bs;</span>
+<span class='curline'><a href='../S/436.html#L1149'>ret_bs</a>           1149 src/verifier/mem_encode.c   LmnBinStr ret_bs;</span>
+<span class='curline'><a href='../S/436.html#L1152'>ret_bs</a>           1152 src/verifier/mem_encode.c   ret_bs = lmn_mem_encode_sub(dmem_root_get_root_mem(d), dmem_root_get_next_id(d));</span>
+<span class='curline'><a href='../S/436.html#L1155'>ret_bs</a>           1155 src/verifier/mem_encode.c   return ret_bs;</span>
+<span class='curline'><a href='../S/436.html#L1163'>ret_bs</a>           1163 src/verifier/mem_encode.c   LmnBinStr ret_bs;</span>
+<span class='curline'><a href='../S/436.html#L1174'>ret_bs</a>           1174 src/verifier/mem_encode.c   ret_bs = binstr_to_lmn_binstr(bs);</span>
+<span class='curline'><a href='../S/436.html#L1180'>ret_bs</a>           1180 src/verifier/mem_encode.c   return ret_bs;</span>
+<span class='curline'><a href='../S/436.html#L2084'>ret_bs</a>           2084 src/verifier/mem_encode.c   LmnBinStr ret_bs;</span>
+<span class='curline'><a href='../S/436.html#L2097'>ret_bs</a>           2097 src/verifier/mem_encode.c   ret_bs  = binstr_to_lmn_binstr(bs);</span>
+<span class='curline'><a href='../S/436.html#L2103'>ret_bs</a>           2103 src/verifier/mem_encode.c   return ret_bs;</span>
+</pre>
+</body>
+</html>

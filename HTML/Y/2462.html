@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>freelist</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/530.html#L190'>freelist</a>          190 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   AllocList freelist;     // head of free list; sorted by addr (under mu)</span>
+<span class='curline'><a href='../S/530.html#L268'>freelist</a>          268 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     while (arena-&gt;roundup &lt; sizeof (arena-&gt;freelist.header)) {</span>
+<span class='curline'><a href='../S/530.html#L274'>freelist</a>          274 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     arena-&gt;freelist.header.size = 0;</span>
+<span class='curline'><a href='../S/530.html#L275'>freelist</a>          275 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     arena-&gt;freelist.header.magic =</span>
+<span class='curline'><a href='../S/530.html#L276'>freelist</a>          276 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc         Magic(kMagicUnallocated, &amp;arena-&gt;freelist.header);</span>
+<span class='curline'><a href='../S/530.html#L277'>freelist</a>          277 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     arena-&gt;freelist.header.arena = arena;</span>
+<span class='curline'><a href='../S/530.html#L278'>freelist</a>          278 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     arena-&gt;freelist.levels = 0;</span>
+<span class='curline'><a href='../S/530.html#L279'>freelist</a>          279 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     memset(arena-&gt;freelist.next, 0, sizeof (arena-&gt;freelist.next));</span>
+<span class='curline'><a href='../S/530.html#L321'>freelist</a>          321 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     while (arena-&gt;freelist.next[0] != 0) {</span>
+<span class='curline'><a href='../S/530.html#L322'>freelist</a>          322 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       AllocList *region = arena-&gt;freelist.next[0];</span>
+<span class='curline'><a href='../S/530.html#L324'>freelist</a>          324 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       arena-&gt;freelist.next[0] = region-&gt;next[0];</span>
+<span class='curline'><a href='../S/530.html#L369'>freelist</a>          369 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     if (prev != &amp;arena-&gt;freelist) {</span>
+<span class='curline'><a href='../S/530.html#L388'>freelist</a>          388 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     LLA_SkiplistDelete(&amp;arena-&gt;freelist, n, prev);</span>
+<span class='curline'><a href='../S/530.html#L389'>freelist</a>          389 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     LLA_SkiplistDelete(&amp;arena-&gt;freelist, a, prev);</span>
+<span class='curline'><a href='../S/530.html#L391'>freelist</a>          391 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     LLA_SkiplistInsert(&amp;arena-&gt;freelist, a, prev);</span>
+<span class='curline'><a href='../S/530.html#L406'>freelist</a>          406 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   LLA_SkiplistInsert(&amp;arena-&gt;freelist, f, prev);</span>
+<span class='curline'><a href='../S/530.html#L445'>freelist</a>          445 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       if (i &lt; arena-&gt;freelist.levels) {   // potential blocks exist</span>
+<span class='curline'><a href='../S/530.html#L446'>freelist</a>          446 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc         AllocList *before = &amp;arena-&gt;freelist;  // predecessor of s</span>
+<span class='curline'><a href='../S/530.html#L478'>freelist</a>          478 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     LLA_SkiplistDelete(&amp;arena-&gt;freelist, s, prev);    // remove from free list</span>
+<span class='curline'><a href='../S/591.html#L472'>freelist</a>          472 third_party/google-perftools-1.8.3/src/page_heap.cc                          int freelist) {</span>
+<span class='curline'><a href='../S/591.html#L474'>freelist</a>          474 third_party/google-perftools-1.8.3/src/page_heap.cc     CHECK_CONDITION(s-&gt;location == freelist);  // NORMAL or RETURNED</span>
+<span class='curline'><a href='../S/592.html#L172'>freelist</a>          172 third_party/google-perftools-1.8.3/src/page_heap.h                  int freelist);  // ON_NORMAL_FREELIST or ON_RETURNED_FREELIST</span>
+</pre>
+</body>
+</html>

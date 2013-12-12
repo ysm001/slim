@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>third_party/google-perftools-1.8.3/src/tests/stack_trace_table_test.cc</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/738.html'>third_party</a>/<a href='../files/739.html'>google-perftools-1.8.3</a>/<a href='../files/740.html'>src</a>/<a href='../files/743.html'>tests</a>/stack_trace_table_test.cc</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L14'>[^]</a><a href='#L34'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L14' title='Defined at 14.'>CheckTracesAndReset</a></li>
+<li><a href='#L23' title='Defined at 23.'>AddTrace</a></li>
+<li><a href='#L34' title='Defined at 34.'>main</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>// Copyright 2009 Google Inc. All Rights Reserved.</em>
+<a id='L2' name='L2' /><em class='comment'>// Author: fikes@google.com (Andrew Fikes)</em>
+<a id='L3' name='L3' />
+<a id='L4' name='L4' /><em class='sharp'>#include</em> "<a href='554.html'>config_for_unittests.h</a>"
+<a id='L5' name='L5' /><em class='sharp'>#include</em> &lt;stdio.h&gt;   <em class='comment'>// for puts()</em>
+<a id='L6' name='L6' /><em class='sharp'>#include</em> "<a href='609.html'>stack_trace_table.h</a>"
+<a id='L7' name='L7' /><em class='sharp'>#include</em> "<a href='529.html'>base/logging.h</a>"
+<a id='L8' name='L8' /><em class='sharp'>#include</em> "<a href='534.html'>base/spinlock.h</a>"
+<a id='L9' name='L9' /><em class='sharp'>#include</em> "<a href='621.html'>static_vars.h</a>"
+<a id='L10' name='L10' />
+<a id='L11' name='L11' /><em class='sharp'>#undef</em> <a href='../R/70.html' title='Multiple refered from 5 places.'>ARRAYSIZE</a>   <em class='comment'>// may be defined on, eg, windows</em>
+<a id='L12' name='L12' /><em class='sharp'>#define</em> <a href='../R/70.html' title='Multiple refered from 5 places.'>ARRAYSIZE</a>(<a href='../Y/1366.html' title='Multiple used in 517 places.'>a</a>)  ( <strong class='reserved'>sizeof</strong>(<a href='../Y/1366.html' title='Multiple used in 517 places.'>a</a>) / <strong class='reserved'>sizeof</strong>(*(<a href='../Y/1366.html' title='Multiple used in 517 places.'>a</a>)) )
+<a id='L13' name='L13' />
+<a id='L14' name='L14' /><strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../R/392.html' title='Multiple refered from 5 places.'>CheckTracesAndReset</a>(<a href='../D/5409.html' title='Multiple defined in 10 places.'>tcmalloc</a>::<a href='../S/608.html#L63' title='Defined at 63 in third_party/google-perftools-1.8.3/src/stack_trace_table.cc.'>StackTraceTable</a>* <a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>,
+<a id='L15' name='L15' />                        <strong class='reserved'>const</strong> <a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a>* <a href='../Y/2266.html' title='Multiple used in 9 places.'>expected</a>, <strong class='reserved'>int</strong> <a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a>) <em class='brace'>{</em>
+<a id='L16' name='L16' />  <strong class='reserved'>void</strong>** <a href='../Y/2211.html' title='Multiple used in 30 places.'>entries</a> = <a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>-&gt;<a href='../S/608.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/stack_trace_table.cc.'>ReadStackTracesAndClear</a>();
+<a id='L17' name='L17' />  <strong class='reserved'>for</strong> (<strong class='reserved'>int</strong> <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> = 0; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> &lt; <a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a>; ++<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>) <em class='brace'>{</em>
+<a id='L18' name='L18' />    <a href='../S/529.html#L142' title='Defined at 142 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_EQ</a>(<strong class='reserved'>reinterpret_cast</strong>&lt;<a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a>&gt;(<a href='../Y/2211.html' title='Multiple used in 30 places.'>entries</a>[<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>]), <a href='../Y/2266.html' title='Multiple used in 9 places.'>expected</a>[<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>]);
+<a id='L19' name='L19' />  <em class='brace'>}</em>
+<a id='L20' name='L20' />  <strong class='reserved'>delete</strong>[] <a href='../Y/2211.html' title='Multiple used in 30 places.'>entries</a>;
+<a id='L21' name='L21' /><em class='brace'>}</em>
+<a id='L22' name='L22' />
+<a id='L23' name='L23' /><strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../R/112.html' title='Multiple refered from 11 places.'>AddTrace</a>(<a href='../D/5409.html' title='Multiple defined in 10 places.'>tcmalloc</a>::<a href='../S/608.html#L63' title='Defined at 63 in third_party/google-perftools-1.8.3/src/stack_trace_table.cc.'>StackTraceTable</a>* <a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>,
+<a id='L24' name='L24' />                     <strong class='reserved'>const</strong> <a href='../D/5409.html' title='Multiple defined in 10 places.'>tcmalloc</a>::<a href='../S/552.html#L238' title='Defined at 238 in third_party/google-perftools-1.8.3/src/common.h.'>StackTrace</a>&amp; <a href='../Y/5268.html' title='Multiple used in 639 places.'>t</a>) <em class='brace'>{</em>
+<a id='L25' name='L25' />  <em class='comment'>// Normally we'd need this lock, but since the test is single-threaded</em>
+<a id='L26' name='L26' />  <em class='comment'>// we don't.  I comment it out on windows because the DLL-decl thing</em>
+<a id='L27' name='L27' />  <em class='comment'>// is really annoying in this case.</em>
+<a id='L28' name='L28' /><em class='sharp'>#ifndef</em> <a href='../Y/982.html' title='Multiple used in 81 places.'>_MSC_VER</a>
+<a id='L29' name='L29' />  <a href='../S/534.html#L148' title='Defined at 148 in third_party/google-perftools-1.8.3/src/base/spinlock.h.'>SpinLockHolder</a> <a href='../Y/2604.html' title='Multiple used in 127 places.'>h</a>(<a href='../D/5409.html' title='Multiple defined in 10 places.'>tcmalloc</a>::<a href='../Y/815.html' title='Multiple used in 140 places.'>Static</a>::<a href='../Y/4102.html' title='Multiple used in 30 places.'>pageheap_lock</a>());
+<a id='L30' name='L30' /><em class='sharp'>#endif</em>
+<a id='L31' name='L31' />  <a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>-&gt;<a href='../D/147.html' title='Multiple defined in 2 places.'>AddTrace</a>(<a href='../Y/5268.html' title='Multiple used in 639 places.'>t</a>);
+<a id='L32' name='L32' /><em class='brace'>}</em>
+<a id='L33' name='L33' />
+<a id='L34' name='L34' /><strong class='reserved'>int</strong> <a href='../S/557.html#L242' title='Refered from 242 in third_party/google-perftools-1.8.3/src/google/heap-checker.h.'>main</a>(<strong class='reserved'>int</strong> <a href='../Y/1497.html' title='Multiple used in 121 places.'>argc</a>, <strong class='reserved'>char</strong> **<a href='../Y/1503.html' title='Multiple used in 153 places.'>argv</a>) <em class='brace'>{</em>
+<a id='L35' name='L35' />  <a href='../D/5409.html' title='Multiple defined in 10 places.'>tcmalloc</a>::<a href='../S/608.html#L63' title='Defined at 63 in third_party/google-perftools-1.8.3/src/stack_trace_table.cc.'>StackTraceTable</a> <a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>;
+<a id='L36' name='L36' />
+<a id='L37' name='L37' />  <em class='comment'>// Empty table</em>
+<a id='L38' name='L38' />  <a href='../S/529.html#L142' title='Defined at 142 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_EQ</a>(<a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>.<a href='../Y/2025.html' title='Multiple used in 6 places.'>depth_total</a>(), 0);
+<a id='L39' name='L39' />  <a href='../S/529.html#L142' title='Defined at 142 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_EQ</a>(<a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>.<a href='../Y/1668.html' title='Multiple used in 6 places.'>bucket_total</a>(), 0);
+<a id='L40' name='L40' />  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a> <a href='../Y/2961.html' title='Multiple used in 2 places.'>k1</a>[] = <em class='brace'>{</em>0<em class='brace'>}</em>;
+<a id='L41' name='L41' />  <a href='../S/660.html#L14' title='Defined at 14 in third_party/google-perftools-1.8.3/src/tests/stack_trace_table_test.cc.'>CheckTracesAndReset</a>(&amp;<a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>, <a href='../Y/2961.html' title='Multiple used in 2 places.'>k1</a>, <a href='../D/102.html' title='Multiple defined in 2 places.'>ARRAYSIZE</a>(<a href='../Y/2961.html' title='Multiple used in 2 places.'>k1</a>));
+<a id='L42' name='L42' />
+<a id='L43' name='L43' />  <a href='../D/5409.html' title='Multiple defined in 10 places.'>tcmalloc</a>::<a href='../S/552.html#L238' title='Defined at 238 in third_party/google-perftools-1.8.3/src/common.h.'>StackTrace</a> <a href='../Y/5270.html' title='Multiple used in 66 places.'>t1</a>;
+<a id='L44' name='L44' />  <a href='../Y/5270.html' title='Multiple used in 66 places.'>t1</a>.<a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a> = <strong class='reserved'>static_cast</strong>&lt;<a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a>&gt;(1024);
+<a id='L45' name='L45' />  <a href='../Y/5270.html' title='Multiple used in 66 places.'>t1</a>.<a href='../Y/2023.html' title='Multiple used in 103 places.'>depth</a> = <strong class='reserved'>static_cast</strong>&lt;<a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a>&gt;(2);
+<a id='L46' name='L46' />  <a href='../Y/5270.html' title='Multiple used in 66 places.'>t1</a>.<a href='../Y/5021.html' title='Multiple used in 116 places.'>stack</a>[0] = <strong class='reserved'>reinterpret_cast</strong>&lt;<strong class='reserved'>void</strong>*&gt;(1);
+<a id='L47' name='L47' />  <a href='../Y/5270.html' title='Multiple used in 66 places.'>t1</a>.<a href='../Y/5021.html' title='Multiple used in 116 places.'>stack</a>[1] = <strong class='reserved'>reinterpret_cast</strong>&lt;<strong class='reserved'>void</strong>*&gt;(2);
+<a id='L48' name='L48' />
+<a id='L49' name='L49' />
+<a id='L50' name='L50' />  <a href='../D/5409.html' title='Multiple defined in 10 places.'>tcmalloc</a>::<a href='../S/552.html#L238' title='Defined at 238 in third_party/google-perftools-1.8.3/src/common.h.'>StackTrace</a> <a href='../Y/5271.html' title='Multiple used in 57 places.'>t2</a>;
+<a id='L51' name='L51' />  <a href='../Y/5271.html' title='Multiple used in 57 places.'>t2</a>.<a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a> = <strong class='reserved'>static_cast</strong>&lt;<a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a>&gt;(512);
+<a id='L52' name='L52' />  <a href='../Y/5271.html' title='Multiple used in 57 places.'>t2</a>.<a href='../Y/2023.html' title='Multiple used in 103 places.'>depth</a> = <strong class='reserved'>static_cast</strong>&lt;<a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a>&gt;(2);
+<a id='L53' name='L53' />  <a href='../Y/5271.html' title='Multiple used in 57 places.'>t2</a>.<a href='../Y/5021.html' title='Multiple used in 116 places.'>stack</a>[0] = <strong class='reserved'>reinterpret_cast</strong>&lt;<strong class='reserved'>void</strong>*&gt;(2);
+<a id='L54' name='L54' />  <a href='../Y/5271.html' title='Multiple used in 57 places.'>t2</a>.<a href='../Y/5021.html' title='Multiple used in 116 places.'>stack</a>[1] = <strong class='reserved'>reinterpret_cast</strong>&lt;<strong class='reserved'>void</strong>*&gt;(1);
+<a id='L55' name='L55' />
+<a id='L56' name='L56' />  <em class='comment'>// Table w/ just t1</em>
+<a id='L57' name='L57' />  <a href='../D/147.html' title='Multiple defined in 2 places.'>AddTrace</a>(&amp;<a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>, <a href='../Y/5270.html' title='Multiple used in 66 places.'>t1</a>);
+<a id='L58' name='L58' />  <a href='../S/529.html#L142' title='Defined at 142 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_EQ</a>(<a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>.<a href='../Y/2025.html' title='Multiple used in 6 places.'>depth_total</a>(), 2);
+<a id='L59' name='L59' />  <a href='../S/529.html#L142' title='Defined at 142 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_EQ</a>(<a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>.<a href='../Y/1668.html' title='Multiple used in 6 places.'>bucket_total</a>(), 1);
+<a id='L60' name='L60' />  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a> <a href='../Y/2962.html' title='Multiple used in 2 places.'>k2</a>[] = <em class='brace'>{</em>1, 1024, 2, 1, 2, 0<em class='brace'>}</em>;
+<a id='L61' name='L61' />  <a href='../S/660.html#L14' title='Defined at 14 in third_party/google-perftools-1.8.3/src/tests/stack_trace_table_test.cc.'>CheckTracesAndReset</a>(&amp;<a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>, <a href='../Y/2962.html' title='Multiple used in 2 places.'>k2</a>, <a href='../D/102.html' title='Multiple defined in 2 places.'>ARRAYSIZE</a>(<a href='../Y/2962.html' title='Multiple used in 2 places.'>k2</a>));
+<a id='L62' name='L62' />
+<a id='L63' name='L63' />  <em class='comment'>// Table w/ t1, t2</em>
+<a id='L64' name='L64' />  <a href='../D/147.html' title='Multiple defined in 2 places.'>AddTrace</a>(&amp;<a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>, <a href='../Y/5270.html' title='Multiple used in 66 places.'>t1</a>);
+<a id='L65' name='L65' />  <a href='../D/147.html' title='Multiple defined in 2 places.'>AddTrace</a>(&amp;<a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>, <a href='../Y/5271.html' title='Multiple used in 57 places.'>t2</a>);
+<a id='L66' name='L66' />  <a href='../S/529.html#L142' title='Defined at 142 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_EQ</a>(<a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>.<a href='../Y/2025.html' title='Multiple used in 6 places.'>depth_total</a>(), 4);
+<a id='L67' name='L67' />  <a href='../S/529.html#L142' title='Defined at 142 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_EQ</a>(<a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>.<a href='../Y/1668.html' title='Multiple used in 6 places.'>bucket_total</a>(), 2);
+<a id='L68' name='L68' />  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a> <a href='../Y/2963.html' title='Multiple used in 2 places.'>k3</a>[] = <em class='brace'>{</em>1, 1024, 2, 1, 2, 1,  512, 2, 2, 1, 0<em class='brace'>}</em>;
+<a id='L69' name='L69' />  <a href='../S/660.html#L14' title='Defined at 14 in third_party/google-perftools-1.8.3/src/tests/stack_trace_table_test.cc.'>CheckTracesAndReset</a>(&amp;<a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>, <a href='../Y/2963.html' title='Multiple used in 2 places.'>k3</a>, <a href='../D/102.html' title='Multiple defined in 2 places.'>ARRAYSIZE</a>(<a href='../Y/2963.html' title='Multiple used in 2 places.'>k3</a>));
+<a id='L70' name='L70' />
+<a id='L71' name='L71' />  <em class='comment'>// Table w/ 2 x t1, 1 x t2</em>
+<a id='L72' name='L72' />  <a href='../D/147.html' title='Multiple defined in 2 places.'>AddTrace</a>(&amp;<a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>, <a href='../Y/5270.html' title='Multiple used in 66 places.'>t1</a>);
+<a id='L73' name='L73' />  <a href='../D/147.html' title='Multiple defined in 2 places.'>AddTrace</a>(&amp;<a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>, <a href='../Y/5271.html' title='Multiple used in 57 places.'>t2</a>);
+<a id='L74' name='L74' />  <a href='../D/147.html' title='Multiple defined in 2 places.'>AddTrace</a>(&amp;<a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>, <a href='../Y/5270.html' title='Multiple used in 66 places.'>t1</a>);
+<a id='L75' name='L75' />  <a href='../S/529.html#L142' title='Defined at 142 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_EQ</a>(<a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>.<a href='../Y/2025.html' title='Multiple used in 6 places.'>depth_total</a>(), 4);
+<a id='L76' name='L76' />  <a href='../S/529.html#L142' title='Defined at 142 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_EQ</a>(<a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>.<a href='../Y/1668.html' title='Multiple used in 6 places.'>bucket_total</a>(), 2);
+<a id='L77' name='L77' />  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a> <a href='../Y/2964.html' title='Multiple used in 2 places.'>k4</a>[] = <em class='brace'>{</em>2, 2048, 2, 1, 2, 1,  512, 2, 2, 1, 0<em class='brace'>}</em>;
+<a id='L78' name='L78' />  <a href='../S/660.html#L14' title='Defined at 14 in third_party/google-perftools-1.8.3/src/tests/stack_trace_table_test.cc.'>CheckTracesAndReset</a>(&amp;<a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>, <a href='../Y/2964.html' title='Multiple used in 2 places.'>k4</a>, <a href='../D/102.html' title='Multiple defined in 2 places.'>ARRAYSIZE</a>(<a href='../Y/2964.html' title='Multiple used in 2 places.'>k4</a>));
+<a id='L79' name='L79' />
+<a id='L80' name='L80' />  <em class='comment'>// Same stack as t1, but w/ different size</em>
+<a id='L81' name='L81' />  <a href='../D/5409.html' title='Multiple defined in 10 places.'>tcmalloc</a>::<a href='../S/552.html#L238' title='Defined at 238 in third_party/google-perftools-1.8.3/src/common.h.'>StackTrace</a> <a href='../Y/5272.html' title='Multiple used in 8 places.'>t3</a>;
+<a id='L82' name='L82' />  <a href='../Y/5272.html' title='Multiple used in 8 places.'>t3</a>.<a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a> = <strong class='reserved'>static_cast</strong>&lt;<a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a>&gt;(2);
+<a id='L83' name='L83' />  <a href='../Y/5272.html' title='Multiple used in 8 places.'>t3</a>.<a href='../Y/2023.html' title='Multiple used in 103 places.'>depth</a> = <strong class='reserved'>static_cast</strong>&lt;<a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a>&gt;(2);
+<a id='L84' name='L84' />  <a href='../Y/5272.html' title='Multiple used in 8 places.'>t3</a>.<a href='../Y/5021.html' title='Multiple used in 116 places.'>stack</a>[0] = <strong class='reserved'>reinterpret_cast</strong>&lt;<strong class='reserved'>void</strong>*&gt;(1);
+<a id='L85' name='L85' />  <a href='../Y/5272.html' title='Multiple used in 8 places.'>t3</a>.<a href='../Y/5021.html' title='Multiple used in 116 places.'>stack</a>[1] = <strong class='reserved'>reinterpret_cast</strong>&lt;<strong class='reserved'>void</strong>*&gt;(2);
+<a id='L86' name='L86' />
+<a id='L87' name='L87' />  <em class='comment'>// Table w/ t1, t3</em>
+<a id='L88' name='L88' />  <a href='../D/147.html' title='Multiple defined in 2 places.'>AddTrace</a>(&amp;<a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>, <a href='../Y/5270.html' title='Multiple used in 66 places.'>t1</a>);
+<a id='L89' name='L89' />  <a href='../D/147.html' title='Multiple defined in 2 places.'>AddTrace</a>(&amp;<a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>, <a href='../Y/5272.html' title='Multiple used in 8 places.'>t3</a>);
+<a id='L90' name='L90' />  <a href='../S/529.html#L142' title='Defined at 142 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_EQ</a>(<a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>.<a href='../Y/2025.html' title='Multiple used in 6 places.'>depth_total</a>(), 2);
+<a id='L91' name='L91' />  <a href='../S/529.html#L142' title='Defined at 142 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_EQ</a>(<a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>.<a href='../Y/1668.html' title='Multiple used in 6 places.'>bucket_total</a>(), 1);
+<a id='L92' name='L92' />  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a> <a href='../Y/2965.html' title='Multiple used in 2 places.'>k5</a>[] = <em class='brace'>{</em>2, 1026, 2, 1, 2, 0<em class='brace'>}</em>;
+<a id='L93' name='L93' />  <a href='../S/660.html#L14' title='Defined at 14 in third_party/google-perftools-1.8.3/src/tests/stack_trace_table_test.cc.'>CheckTracesAndReset</a>(&amp;<a href='../Y/5276.html' title='Multiple used in 152 places.'>table</a>, <a href='../Y/2965.html' title='Multiple used in 2 places.'>k5</a>, <a href='../D/102.html' title='Multiple defined in 2 places.'>ARRAYSIZE</a>(<a href='../Y/2965.html' title='Multiple used in 2 places.'>k5</a>));
+<a id='L94' name='L94' />
+<a id='L95' name='L95' />  <a href='../Y/4394.html' title='Multiple used in 14 places.'>puts</a>("PASS");
+<a id='L96' name='L96' />  <strong class='reserved'>return</strong> 0;
+<a id='L97' name='L97' /><em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;]<a href='#L14'>[^]</a><a href='#L34'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

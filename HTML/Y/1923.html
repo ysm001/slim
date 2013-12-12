@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>curlen</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/719.html#L824'>curlen</a>            824 third_party/zdelta-2.1/trees.c   int curlen;                /* length of current code           */</span>
+<span class='curline'><a href='../S/719.html#L834'>curlen</a>            834 third_party/zdelta-2.1/trees.c     curlen = nextlen; nextlen = tree[n+1].Len;</span>
+<span class='curline'><a href='../S/719.html#L835'>curlen</a>            835 third_party/zdelta-2.1/trees.c     if (++count &lt; max_count &amp;&amp; curlen == nextlen) {</span>
+<span class='curline'><a href='../S/719.html#L838'>curlen</a>            838 third_party/zdelta-2.1/trees.c       s-&gt;bl_tree[curlen].Freq += count;</span>
+<span class='curline'><a href='../S/719.html#L839'>curlen</a>            839 third_party/zdelta-2.1/trees.c     } else if (curlen != 0) {</span>
+<span class='curline'><a href='../S/719.html#L840'>curlen</a>            840 third_party/zdelta-2.1/trees.c       if (curlen != prevlen) s-&gt;bl_tree[curlen].Freq++;</span>
+<span class='curline'><a href='../S/719.html#L847'>curlen</a>            847 third_party/zdelta-2.1/trees.c     count = 0; prevlen = curlen;</span>
+<span class='curline'><a href='../S/719.html#L850'>curlen</a>            850 third_party/zdelta-2.1/trees.c     } else if (curlen == nextlen) {</span>
+<span class='curline'><a href='../S/719.html#L869'>curlen</a>            869 third_party/zdelta-2.1/trees.c   int curlen;                /* length of current code */</span>
+<span class='curline'><a href='../S/719.html#L880'>curlen</a>            880 third_party/zdelta-2.1/trees.c     curlen = nextlen; nextlen = tree[n+1].Len;</span>
+<span class='curline'><a href='../S/719.html#L881'>curlen</a>            881 third_party/zdelta-2.1/trees.c     if (++count &lt; max_count &amp;&amp; curlen == nextlen) {</span>
+<span class='curline'><a href='../S/719.html#L884'>curlen</a>            884 third_party/zdelta-2.1/trees.c       do { send_code(s, curlen, s-&gt;bl_tree); </span>
+<span class='curline'><a href='../S/719.html#L887'>curlen</a>            887 third_party/zdelta-2.1/trees.c     } else if (curlen != 0) {</span>
+<span class='curline'><a href='../S/719.html#L888'>curlen</a>            888 third_party/zdelta-2.1/trees.c       if (curlen != prevlen) {</span>
+<span class='curline'><a href='../S/719.html#L889'>curlen</a>            889 third_party/zdelta-2.1/trees.c 	send_code(s, curlen, s-&gt;bl_tree); count--; </span>
+<span class='curline'><a href='../S/719.html#L899'>curlen</a>            899 third_party/zdelta-2.1/trees.c     count = 0; prevlen = curlen;</span>
+<span class='curline'><a href='../S/719.html#L902'>curlen</a>            902 third_party/zdelta-2.1/trees.c     } else if (curlen == nextlen) {</span>
+</pre>
+</body>
+</html>

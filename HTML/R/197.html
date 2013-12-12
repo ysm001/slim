@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>AutomataTransition</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/413.html#L51'>AutomataTransition</a>   51 src/verifier/automata.c static void atm_transition_free(AutomataTransition t);</span>
+<span class='curline'><a href='../S/413.html#L261'>AutomataTransition</a>  261 src/verifier/automata.c     atm_transition_free((AutomataTransition)vec_get(&amp;s-&gt;transitions, i));</span>
+<span class='curline'><a href='../S/413.html#L267'>AutomataTransition</a>  267 src/verifier/automata.c void atmstate_add_transition(AutomataState s, AutomataTransition t)</span>
+<span class='curline'><a href='../S/413.html#L282'>AutomataTransition</a>  282 src/verifier/automata.c AutomataTransition atmstate_get_transition(AutomataState s, unsigned int index)</span>
+<span class='curline'><a href='../S/413.html#L284'>AutomataTransition</a>  284 src/verifier/automata.c   return (AutomataTransition)vec_get(&amp;s-&gt;transitions, index);</span>
+<span class='curline'><a href='../S/413.html#L490'>AutomataTransition</a>  490 src/verifier/automata.c AutomataTransition atm_transition_make(unsigned int next, PLFormula f)</span>
+<span class='curline'><a href='../S/413.html#L492'>AutomataTransition</a>  492 src/verifier/automata.c   AutomataTransition t = LMN_MALLOC(struct AutomataTransition);</span>
+<span class='curline'><a href='../S/413.html#L499'>AutomataTransition</a>  499 src/verifier/automata.c void atm_transition_free(AutomataTransition t)</span>
+<span class='curline'><a href='../S/413.html#L505'>AutomataTransition</a>  505 src/verifier/automata.c BYTE atm_transition_next(AutomataTransition t)</span>
+<span class='curline'><a href='../S/413.html#L510'>AutomataTransition</a>  510 src/verifier/automata.c PLFormula atm_transition_get_formula(AutomataTransition t)</span>
+<span class='curline'><a href='../S/414.html#L49'>AutomataTransition</a>   49 src/verifier/automata.h typedef struct AutomataTransition  *AutomataTransition;</span>
+<span class='curline'><a href='../S/414.html#L81'>AutomataTransition</a>   81 src/verifier/automata.h void               atmstate_add_transition(AutomataState s, AutomataTransition t);</span>
+<span class='curline'><a href='../S/414.html#L85'>AutomataTransition</a>   85 src/verifier/automata.h AutomataTransition atmstate_get_transition(AutomataState s, unsigned int index);</span>
+<span class='curline'><a href='../S/414.html#L95'>AutomataTransition</a>   95 src/verifier/automata.h AutomataTransition atm_transition_make(unsigned int next, PLFormula f);</span>
+<span class='curline'><a href='../S/414.html#L96'>AutomataTransition</a>   96 src/verifier/automata.h BYTE               atm_transition_next(AutomataTransition t);</span>
+<span class='curline'><a href='../S/414.html#L97'>AutomataTransition</a>   97 src/verifier/automata.h PLFormula          atm_transition_get_formula(AutomataTransition t);</span>
+<span class='curline'><a href='../S/428.html#L516'>AutomataTransition</a>  516 src/verifier/mc.c     AutomataTransition p_t = atmstate_get_transition(p_s, i);</span>
+<span class='curline'><a href='../S/443.html#L171'>AutomataTransition</a>  171 src/verifier/nc_parser.c   struct AutomataTransition *transition;</span>
+<span class='curline'><a href='../S/443.html#L1501'>AutomataTransition</a> 1501 src/verifier/nc_parser.c       atmstate_add_transition(s, (AutomataTransition)vec_get((yyvsp[(4) - (6)].vector), i));</span>
+<span class='curline'><a href='../S/444.html#L108'>AutomataTransition</a>  108 src/verifier/nc_parser.h   struct AutomataTransition *transition;</span>
+<span class='curline'><a href='../S/445.html#L58'>AutomataTransition</a>   58 src/verifier/nc_parser.y   struct AutomataTransition *transition;</span>
+<span class='curline'><a href='../S/445.html#L120'>AutomataTransition</a>  120 src/verifier/nc_parser.y       atmstate_add_transition(s, (AutomataTransition)vec_get($4, i));</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>sp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/611.html#L106'>sp</a>                106 third_party/google-perftools-1.8.3/src/stacktrace_arm-inl.h   void **sp = reinterpret_cast&lt;void**&gt;(__builtin_frame_address(0));</span>
+<span class='curline'><a href='../S/611.html#L119'>sp</a>                119 third_party/google-perftools-1.8.3/src/stacktrace_arm-inl.h   while (sp &amp;&amp; n &lt; max_depth) {</span>
+<span class='curline'><a href='../S/611.html#L125'>sp</a>                125 third_party/google-perftools-1.8.3/src/stacktrace_arm-inl.h     void **next_sp = NextStackFrame&lt;IS_STACK_FRAMES == 0&gt;(sp);</span>
+<span class='curline'><a href='../S/611.html#L130'>sp</a>                130 third_party/google-perftools-1.8.3/src/stacktrace_arm-inl.h       result[n] = *sp;</span>
+<span class='curline'><a href='../S/611.html#L133'>sp</a>                133 third_party/google-perftools-1.8.3/src/stacktrace_arm-inl.h       if (next_sp &gt; sp) {</span>
+<span class='curline'><a href='../S/611.html#L134'>sp</a>                134 third_party/google-perftools-1.8.3/src/stacktrace_arm-inl.h         sizes[n] = (uintptr_t)next_sp - (uintptr_t)sp;</span>
+<span class='curline'><a href='../S/611.html#L142'>sp</a>                142 third_party/google-perftools-1.8.3/src/stacktrace_arm-inl.h     sp = next_sp;</span>
+<span class='curline'><a href='../S/614.html#L82'>sp</a>                 82 third_party/google-perftools-1.8.3/src/stacktrace_libunwind-inl.h   unw_word_t sp = 0, next_sp = 0;</span>
+<span class='curline'><a href='../S/614.html#L118'>sp</a>                118 third_party/google-perftools-1.8.3/src/stacktrace_libunwind-inl.h     sp = next_sp;</span>
+<span class='curline'><a href='../S/614.html#L122'>sp</a>                122 third_party/google-perftools-1.8.3/src/stacktrace_libunwind-inl.h     sizes[n - 1] = next_sp - sp;</span>
+<span class='curline'><a href='../S/616.html#L96'>sp</a>                 96 third_party/google-perftools-1.8.3/src/stacktrace_powerpc-inl.h   void **sp;</span>
+<span class='curline'><a href='../S/616.html#L103'>sp</a>                103 third_party/google-perftools-1.8.3/src/stacktrace_powerpc-inl.h   __asm__ volatile ("mr %0,r1" : "=r" (sp));</span>
+<span class='curline'><a href='../S/616.html#L105'>sp</a>                105 third_party/google-perftools-1.8.3/src/stacktrace_powerpc-inl.h   __asm__ volatile ("mr %0,1" : "=r" (sp));</span>
+<span class='curline'><a href='../S/616.html#L128'>sp</a>                128 third_party/google-perftools-1.8.3/src/stacktrace_powerpc-inl.h   while (sp &amp;&amp; n &lt; max_depth) {</span>
+<span class='curline'><a href='../S/616.html#L134'>sp</a>                134 third_party/google-perftools-1.8.3/src/stacktrace_powerpc-inl.h     void **next_sp = NextStackFrame&lt;!IS_STACK_FRAMES&gt;(sp);</span>
+<span class='curline'><a href='../S/616.html#L144'>sp</a>                144 third_party/google-perftools-1.8.3/src/stacktrace_powerpc-inl.h       result[n] = *(sp+2);</span>
+<span class='curline'><a href='../S/616.html#L146'>sp</a>                146 third_party/google-perftools-1.8.3/src/stacktrace_powerpc-inl.h       result[n] = *(sp+1);</span>
+<span class='curline'><a href='../S/616.html#L149'>sp</a>                149 third_party/google-perftools-1.8.3/src/stacktrace_powerpc-inl.h       result[n] = *(sp+2);</span>
+<span class='curline'><a href='../S/616.html#L152'>sp</a>                152 third_party/google-perftools-1.8.3/src/stacktrace_powerpc-inl.h       result[n] = *(sp+1);</span>
+<span class='curline'><a href='../S/616.html#L158'>sp</a>                158 third_party/google-perftools-1.8.3/src/stacktrace_powerpc-inl.h       if (next_sp &gt; sp) {</span>
+<span class='curline'><a href='../S/616.html#L159'>sp</a>                159 third_party/google-perftools-1.8.3/src/stacktrace_powerpc-inl.h         sizes[n] = (uintptr_t)next_sp - (uintptr_t)sp;</span>
+<span class='curline'><a href='../S/616.html#L167'>sp</a>                167 third_party/google-perftools-1.8.3/src/stacktrace_powerpc-inl.h     sp = next_sp;</span>
+<span class='curline'><a href='../S/618.html#L291'>sp</a>                291 third_party/google-perftools-1.8.3/src/stacktrace_x86-inl.h   void **sp;</span>
+<span class='curline'><a href='../S/618.html#L297'>sp</a>                297 third_party/google-perftools-1.8.3/src/stacktrace_x86-inl.h   sp = reinterpret_cast&lt;void**&gt;(__builtin_frame_address(0));</span>
+<span class='curline'><a href='../S/618.html#L305'>sp</a>                305 third_party/google-perftools-1.8.3/src/stacktrace_x86-inl.h   sp = (void **)&amp;result - 2;</span>
+<span class='curline'><a href='../S/618.html#L318'>sp</a>                318 third_party/google-perftools-1.8.3/src/stacktrace_x86-inl.h   sp = (void **) rbp;</span>
+<span class='curline'><a href='../S/618.html#L324'>sp</a>                324 third_party/google-perftools-1.8.3/src/stacktrace_x86-inl.h   while (sp &amp;&amp; n &lt; max_depth) {</span>
+<span class='curline'><a href='../S/618.html#L325'>sp</a>                325 third_party/google-perftools-1.8.3/src/stacktrace_x86-inl.h     if (*(sp+1) == reinterpret_cast&lt;void *&gt;(0)) {</span>
+<span class='curline'><a href='../S/618.html#L333'>sp</a>                333 third_party/google-perftools-1.8.3/src/stacktrace_x86-inl.h     void **next_sp = NextStackFrame&lt;!IS_STACK_FRAMES, IS_WITH_CONTEXT&gt;(sp, ucp);</span>
+<span class='curline'><a href='../S/618.html#L337'>sp</a>                337 third_party/google-perftools-1.8.3/src/stacktrace_x86-inl.h       result[n] = *(sp+1);</span>
+<span class='curline'><a href='../S/618.html#L339'>sp</a>                339 third_party/google-perftools-1.8.3/src/stacktrace_x86-inl.h       if (next_sp &gt; sp) {</span>
+<span class='curline'><a href='../S/618.html#L340'>sp</a>                340 third_party/google-perftools-1.8.3/src/stacktrace_x86-inl.h         sizes[n] = (uintptr_t)next_sp - (uintptr_t)sp;</span>
+<span class='curline'><a href='../S/618.html#L348'>sp</a>                348 third_party/google-perftools-1.8.3/src/stacktrace_x86-inl.h     sp = next_sp;</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>initialized</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/624.html#L335'>initialized</a>       335 third_party/google-perftools-1.8.3/src/system-alloc.cc   static bool initialized = false;</span>
+<span class='curline'><a href='../S/624.html#L350'>initialized</a>       350 third_party/google-perftools-1.8.3/src/system-alloc.cc   if (!initialized) {</span>
+<span class='curline'><a href='../S/624.html#L357'>initialized</a>       357 third_party/google-perftools-1.8.3/src/system-alloc.cc     initialized = true;</span>
+<span class='curline'><a href='../S/637.html#L243'>initialized</a>       243 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc static Initialized initialized;</span>
+<span class='curline'><a href='../S/637.html#L360'>initialized</a>       360 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   void* p = new(initialized) char[size];</span>
+<span class='curline'><a href='../S/637.html#L398'>initialized</a>       398 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc       void** p = reinterpret_cast&lt;void**&gt;(new(initialized) char[size]);</span>
+<span class='curline'><a href='../S/637.html#L459'>initialized</a>       459 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   void** a1 = new(initialized) void*[2];</span>
+<span class='curline'><a href='../S/637.html#L460'>initialized</a>       460 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   void** a2 = new(initialized) void*[2];</span>
+<span class='curline'><a href='../S/637.html#L725'>initialized</a>       725 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   IntSet* x = new(initialized) IntSet[1];</span>
+<span class='curline'><a href='../S/637.html#L744'>initialized</a>       744 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   IntSet* x = new(initialized) IntSet[1];</span>
+<span class='curline'><a href='../S/637.html#L834'>initialized</a>       834 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc       p = new(initialized) char[77 + i];</span>
+<span class='curline'><a href='../S/637.html#L886'>initialized</a>       886 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc       ptr = new(initialized) int*[1];</span>
+<span class='curline'><a href='../S/637.html#L887'>initialized</a>       887 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc       *ptr = new(initialized) int[1];</span>
+<span class='curline'><a href='../S/637.html#L889'>initialized</a>       889 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     set&lt;int&gt;* s2 = new(initialized) set&lt;int&gt;[1];</span>
+<span class='curline'><a href='../S/637.html#L1023'>initialized</a>      1023 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     ptr = new(initialized) T[size];</span>
+<span class='curline'><a href='../S/637.html#L1028'>initialized</a>      1028 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     ptr = new(initialized) T[size];</span>
+<span class='curline'><a href='../S/637.html#L1036'>initialized</a>      1036 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     ptr = new(initialized) T[size];</span>
+<span class='curline'><a href='../S/637.html#L1042'>initialized</a>      1042 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     T* p = new(initialized) T[size + x.size];</span>
+<span class='curline'><a href='../S/637.html#L1059'>initialized</a>      1059 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc REGISTER_OBJ_MAKER(plain, int* p = new(initialized) int;)</span>
+<span class='curline'><a href='../S/637.html#L1060'>initialized</a>      1060 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc REGISTER_OBJ_MAKER(int_array_1, int* p = new(initialized) int[1];)</span>
+<span class='curline'><a href='../S/637.html#L1061'>initialized</a>      1061 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc REGISTER_OBJ_MAKER(int_array, int* p = new(initialized) int[10];)</span>
+<span class='curline'><a href='../S/637.html#L1062'>initialized</a>      1062 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc REGISTER_OBJ_MAKER(string, Array&lt;char&gt;* p = new(initialized) Array&lt;char&gt;();)</span>
+<span class='curline'><a href='../S/637.html#L1064'>initialized</a>      1064 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc                    Array&lt;char&gt;* p = new(initialized) Array&lt;char&gt;[5];)</span>
+<span class='curline'><a href='../S/637.html#L1065'>initialized</a>      1065 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc REGISTER_OBJ_MAKER(char_array, char* p = new(initialized) char[5];)</span>
+<span class='curline'><a href='../S/637.html#L1070'>initialized</a>      1070 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc REGISTER_OBJ_MAKER(plain_ptr, int** p = new(initialized) int*;)</span>
+<span class='curline'><a href='../S/637.html#L1072'>initialized</a>      1072 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   int** p = new(initialized) int*;</span>
+<span class='curline'><a href='../S/637.html#L1073'>initialized</a>      1073 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   *p = new(initialized) int;</span>
+<span class='curline'><a href='../S/637.html#L1088'>initialized</a>      1088 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   set&lt;int&gt;* p = new(initialized) set&lt;int&gt;(set_data, set_data + 13);</span>
+<span class='curline'><a href='../S/637.html#L1141'>initialized</a>      1141 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc REGISTER_OBJ_MAKER(B,  ClassB*  p = new(initialized) ClassB;)</span>
+<span class='curline'><a href='../S/637.html#L1142'>initialized</a>      1142 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc REGISTER_OBJ_MAKER(D1, ClassD1* p = new(initialized) ClassD1;)</span>
+<span class='curline'><a href='../S/637.html#L1143'>initialized</a>      1143 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc REGISTER_OBJ_MAKER(D2, ClassD2* p = new(initialized) ClassD2;)</span>
+<span class='curline'><a href='../S/637.html#L1144'>initialized</a>      1144 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc REGISTER_OBJ_MAKER(D,  ClassD*  p = new(initialized) ClassD;)</span>
+<span class='curline'><a href='../S/637.html#L1146'>initialized</a>      1146 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc REGISTER_OBJ_MAKER(D1_as_B,  ClassB*  p = new(initialized) ClassD1;)</span>
+<span class='curline'><a href='../S/637.html#L1147'>initialized</a>      1147 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc REGISTER_OBJ_MAKER(D2_as_B2, ClassB2* p = new(initialized) ClassD2;)</span>
+<span class='curline'><a href='../S/637.html#L1148'>initialized</a>      1148 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc REGISTER_OBJ_MAKER(D_as_B,   ClassB*  p = new(initialized)  ClassD;)</span>
+<span class='curline'><a href='../S/637.html#L1149'>initialized</a>      1149 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc REGISTER_OBJ_MAKER(D_as_D1,  ClassD1* p = new(initialized) ClassD;)</span>
+<span class='curline'><a href='../S/637.html#L1151'>initialized</a>      1151 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc REGISTER_OBJ_MAKER(D_as_B2,  ClassB2* p = new(initialized) ClassD;)</span>
+<span class='curline'><a href='../S/637.html#L1152'>initialized</a>      1152 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc REGISTER_OBJ_MAKER(D_as_D2,  ClassD2* p = new(initialized) ClassD;)</span>
+<span class='curline'><a href='../S/637.html#L1197'>initialized</a>      1197 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc REGISTER_OBJ_MAKER(MltD1,       ClassMltD1* p = new(initialized) ClassMltD1;)</span>
+<span class='curline'><a href='../S/637.html#L1198'>initialized</a>      1198 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc REGISTER_OBJ_MAKER(MltD1_as_B,  ClassB*     p = new(initialized) ClassMltD1;)</span>
+<span class='curline'><a href='../S/637.html#L1199'>initialized</a>      1199 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc REGISTER_OBJ_MAKER(MltD1_as_IA, InterfaceA* p = new(initialized) ClassMltD1;)</span>
+<span class='curline'><a href='../S/637.html#L1200'>initialized</a>      1200 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc REGISTER_OBJ_MAKER(MltD1_as_IB, InterfaceB* p = new(initialized) ClassMltD1;)</span>
+<span class='curline'><a href='../S/637.html#L1201'>initialized</a>      1201 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc REGISTER_OBJ_MAKER(MltD1_as_IC, InterfaceC* p = new(initialized) ClassMltD1;)</span>
+<span class='curline'><a href='../S/637.html#L1203'>initialized</a>      1203 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc REGISTER_OBJ_MAKER(MltD2,       ClassMltD2* p = new(initialized) ClassMltD2;)</span>
+<span class='curline'><a href='../S/637.html#L1204'>initialized</a>      1204 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc REGISTER_OBJ_MAKER(MltD2_as_B,  ClassB*     p = new(initialized) ClassMltD2;)</span>
+<span class='curline'><a href='../S/637.html#L1205'>initialized</a>      1205 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc REGISTER_OBJ_MAKER(MltD2_as_IA, InterfaceA* p = new(initialized) ClassMltD2;)</span>
+<span class='curline'><a href='../S/637.html#L1206'>initialized</a>      1206 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc REGISTER_OBJ_MAKER(MltD2_as_IB, InterfaceB* p = new(initialized) ClassMltD2;)</span>
+<span class='curline'><a href='../S/637.html#L1244'>initialized</a>      1244 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   live_leak_mutable.ptr = new(initialized) char[77];</span>
+<span class='curline'><a href='../S/637.html#L1245'>initialized</a>      1245 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   live_leak_templ_mutable.ptr = new(initialized) Array&lt;char&gt;();</span>
+<span class='curline'><a href='../S/637.html#L1333'>initialized</a>      1333 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   void* a = new(initialized) int[10];</span>
+</pre>
+</body>
+</html>

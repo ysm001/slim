@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>Bucket</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/569.html#L127'>Bucket</a>            127 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   table_ = reinterpret_cast&lt;Bucket**&gt;(alloc_(table_bytes));</span>
+<span class='curline'><a href='../S/569.html#L144'>Bucket</a>            144 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     for (Bucket* x = table_[b]; x != 0; /**/) {</span>
+<span class='curline'><a href='../S/569.html#L145'>Bucket</a>            145 third_party/google-perftools-1.8.3/src/heap-profile-table.cc       Bucket* b = x;</span>
+<span class='curline'><a href='../S/569.html#L155'>Bucket</a>            155 third_party/google-perftools-1.8.3/src/heap-profile-table.cc HeapProfileTable::Bucket* HeapProfileTable::GetBucket(int depth,</span>
+<span class='curline'><a href='../S/569.html#L169'>Bucket</a>            169 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   for (Bucket* b = table_[buck]; b != 0; b = b-&gt;next) {</span>
+<span class='curline'><a href='../S/569.html#L181'>Bucket</a>            181 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   Bucket* b = reinterpret_cast&lt;Bucket*&gt;(alloc_(sizeof(Bucket)));</span>
+<span class='curline'><a href='../S/569.html#L201'>Bucket</a>            201 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   Bucket* b = GetBucket(stack_depth, call_stack);</span>
+<span class='curline'><a href='../S/569.html#L216'>Bucket</a>            216 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     Bucket* b = v.bucket();</span>
+<span class='curline'><a href='../S/569.html#L268'>Bucket</a>            268 third_party/google-perftools-1.8.3/src/heap-profile-table.cc int HeapProfileTable::UnparseBucket(const Bucket&amp; b,</span>
+<span class='curline'><a href='../S/569.html#L300'>Bucket</a>            300 third_party/google-perftools-1.8.3/src/heap-profile-table.cc HeapProfileTable::Bucket**</span>
+<span class='curline'><a href='../S/569.html#L302'>Bucket</a>            302 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   Bucket** list =</span>
+<span class='curline'><a href='../S/569.html#L303'>Bucket</a>            303 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     reinterpret_cast&lt;Bucket**&gt;(alloc_(sizeof(Bucket) * num_buckets_));</span>
+<span class='curline'><a href='../S/569.html#L307'>Bucket</a>            307 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     for (Bucket* x = table_[b]; x != 0; x = x-&gt;next) {</span>
+<span class='curline'><a href='../S/569.html#L320'>Bucket</a>            320 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   Bucket** list = MakeSortedBucketList();</span>
+<span class='curline'><a href='../S/569.html#L332'>Bucket</a>            332 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   Bucket** list = MakeSortedBucketList();</span>
+<span class='curline'><a href='../S/569.html#L380'>Bucket</a>            380 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   Bucket b;</span>
+<span class='curline'><a href='../S/569.html#L407'>Bucket</a>            407 third_party/google-perftools-1.8.3/src/heap-profile-table.cc                                     const Bucket&amp; total,</span>
+<span class='curline'><a href='../S/569.html#L491'>Bucket</a>            491 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   Bucket* bucket;</span>
+<span class='curline'><a href='../S/569.html#L503'>Bucket</a>            503 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   map&lt;Bucket*, Entry&gt; buckets_;</span>
+<span class='curline'><a href='../S/569.html#L536'>Bucket</a>            536 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   for (map&lt;Bucket*,Entry&gt;::const_iterator iter = state.buckets_.begin();</span>
+<span class='curline'><a href='../S/570.html#L195'>Bucket</a>            195 third_party/google-perftools-1.8.3/src/heap-profile-table.h   struct Bucket : public Stats {</span>
+<span class='curline'><a href='../S/570.html#L199'>Bucket</a>            199 third_party/google-perftools-1.8.3/src/heap-profile-table.h     Bucket*      next;   // Next entry in hash-table</span>
+<span class='curline'><a href='../S/570.html#L205'>Bucket</a>            205 third_party/google-perftools-1.8.3/src/heap-profile-table.h     Bucket* bucket() const {</span>
+<span class='curline'><a href='../S/570.html#L206'>Bucket</a>            206 third_party/google-perftools-1.8.3/src/heap-profile-table.h       return reinterpret_cast&lt;Bucket*&gt;(bucket_rep &amp; ~uintptr_t(kMask));</span>
+<span class='curline'><a href='../S/570.html#L209'>Bucket</a>            209 third_party/google-perftools-1.8.3/src/heap-profile-table.h     void set_bucket(Bucket* b) { bucket_rep = reinterpret_cast&lt;uintptr_t&gt;(b); }</span>
+<span class='curline'><a href='../S/570.html#L261'>Bucket</a>            261 third_party/google-perftools-1.8.3/src/heap-profile-table.h   static int UnparseBucket(const Bucket&amp; b,</span>
+<span class='curline'><a href='../S/570.html#L268'>Bucket</a>            268 third_party/google-perftools-1.8.3/src/heap-profile-table.h   Bucket* GetBucket(int depth, const void* const key[]);</span>
+<span class='curline'><a href='../S/570.html#L291'>Bucket</a>            291 third_party/google-perftools-1.8.3/src/heap-profile-table.h   Bucket** MakeSortedBucketList() const;</span>
+<span class='curline'><a href='../S/570.html#L311'>Bucket</a>            311 third_party/google-perftools-1.8.3/src/heap-profile-table.h                            const Bucket&amp; total,</span>
+<span class='curline'><a href='../S/570.html#L322'>Bucket</a>            322 third_party/google-perftools-1.8.3/src/heap-profile-table.h   Bucket total_;</span>
+<span class='curline'><a href='../S/570.html#L328'>Bucket</a>            328 third_party/google-perftools-1.8.3/src/heap-profile-table.h   Bucket** table_;</span>
+<span class='curline'><a href='../S/570.html#L362'>Bucket</a>            362 third_party/google-perftools-1.8.3/src/heap-profile-table.h   Bucket total_;</span>
+<span class='curline'><a href='../S/598.html#L113'>Bucket</a>            113 third_party/google-perftools-1.8.3/src/profiledata.cc   hash_ = new Bucket[kBuckets];</span>
+<span class='curline'><a href='../S/598.html#L171'>Bucket</a>            171 third_party/google-perftools-1.8.3/src/profiledata.cc     Bucket* bucket = &amp;hash_[b];</span>
+<span class='curline'><a href='../S/598.html#L246'>Bucket</a>            246 third_party/google-perftools-1.8.3/src/profiledata.cc     Bucket* bucket = &amp;hash_[b];</span>
+<span class='curline'><a href='../S/598.html#L280'>Bucket</a>            280 third_party/google-perftools-1.8.3/src/profiledata.cc   Bucket* bucket = &amp;hash_[h % kBuckets];</span>
+<span class='curline'><a href='../S/599.html#L164'>Bucket</a>            164 third_party/google-perftools-1.8.3/src/profiledata.h   Bucket*       hash_;          // hash table</span>
+<span class='curline'><a href='../S/608.html#L44'>Bucket</a>             44 third_party/google-perftools-1.8.3/src/stack_trace_table.cc bool StackTraceTable::Bucket::KeyEqual(uintptr_t h,</span>
+<span class='curline'><a href='../S/608.html#L59'>Bucket</a>             59 third_party/google-perftools-1.8.3/src/stack_trace_table.cc       table_(new Bucket*[kHashTableSize]()) {</span>
+<span class='curline'><a href='../S/608.html#L60'>Bucket</a>             60 third_party/google-perftools-1.8.3/src/stack_trace_table.cc   memset(table_, 0, kHashTableSize * sizeof(Bucket*));</span>
+<span class='curline'><a href='../S/608.html#L84'>Bucket</a>             84 third_party/google-perftools-1.8.3/src/stack_trace_table.cc   Bucket* b = table_[idx];</span>
+<span class='curline'><a href='../S/608.html#L127'>Bucket</a>            127 third_party/google-perftools-1.8.3/src/stack_trace_table.cc     Bucket* b = table_[i];</span>
+<span class='curline'><a href='../S/608.html#L147'>Bucket</a>            147 third_party/google-perftools-1.8.3/src/stack_trace_table.cc     Bucket* b = table_[i];</span>
+<span class='curline'><a href='../S/608.html#L149'>Bucket</a>            149 third_party/google-perftools-1.8.3/src/stack_trace_table.cc       Bucket* next = b-&gt;next;</span>
+<span class='curline'><a href='../S/609.html#L71'>Bucket</a>             71 third_party/google-perftools-1.8.3/src/stack_trace_table.h     Bucket* next;</span>
+<span class='curline'><a href='../S/609.html#L86'>Bucket</a>             86 third_party/google-perftools-1.8.3/src/stack_trace_table.h   Bucket** table_;</span>
+<span class='curline'><a href='../S/620.html#L48'>Bucket</a>             48 third_party/google-perftools-1.8.3/src/static_vars.cc PageHeapAllocator&lt;StackTraceTable::Bucket&gt; Static::bucket_allocator_;</span>
+<span class='curline'><a href='../S/621.html#L81'>Bucket</a>             81 third_party/google-perftools-1.8.3/src/static_vars.h   static PageHeapAllocator&lt;StackTraceTable::Bucket&gt;* bucket_allocator() {</span>
+<span class='curline'><a href='../S/621.html#L98'>Bucket</a>             98 third_party/google-perftools-1.8.3/src/static_vars.h   static PageHeapAllocator&lt;StackTraceTable::Bucket&gt; bucket_allocator_;</span>
+</pre>
+</body>
+</html>

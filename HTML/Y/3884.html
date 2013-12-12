@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>num_threads</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/523.html#L373'>num_threads</a>       373 third_party/google-perftools-1.8.3/src/base/elfcore.h int InternalGetCoreDump(void *frame, int num_threads, pid_t *thread_pids,</span>
+<span class='curline'><a href='../S/526.html#L252'>num_threads</a>       252 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc   int                proc = -1, marker = -1, num_threads = 0;</span>
+<span class='curline'><a href='../S/526.html#L351'>num_threads</a>       351 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc       sig_num_threads     = num_threads;</span>
+<span class='curline'><a href='../S/526.html#L404'>num_threads</a>       404 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc                 for (i = 0; i &lt; num_threads; i++) {</span>
+<span class='curline'><a href='../S/526.html#L415'>num_threads</a>       415 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc                 if (num_threads &gt;= max_threads) {</span>
+<span class='curline'><a href='../S/526.html#L422'>num_threads</a>       422 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc                 pids[num_threads++] = pid;</span>
+<span class='curline'><a href='../S/526.html#L423'>num_threads</a>       423 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc                 sig_num_threads     = num_threads;</span>
+<span class='curline'><a href='../S/526.html#L433'>num_threads</a>       433 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc                   num_threads--;</span>
+<span class='curline'><a href='../S/526.html#L434'>num_threads</a>       434 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc                   sig_num_threads = num_threads;</span>
+<span class='curline'><a href='../S/526.html#L440'>num_threads</a>       440 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc                     num_threads--;</span>
+<span class='curline'><a href='../S/526.html#L441'>num_threads</a>       441 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc                     sig_num_threads = num_threads;</span>
+<span class='curline'><a href='../S/526.html#L453'>num_threads</a>       453 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc                   num_threads--;</span>
+<span class='curline'><a href='../S/526.html#L454'>num_threads</a>       454 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc                   sig_num_threads = num_threads;</span>
+<span class='curline'><a href='../S/526.html#L471'>num_threads</a>       471 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc       if (num_threads &gt; 1 || !*++proc_path) {</span>
+<span class='curline'><a href='../S/526.html#L481'>num_threads</a>       481 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc           ResumeAllProcessThreads(num_threads, pids);</span>
+<span class='curline'><a href='../S/526.html#L488'>num_threads</a>       488 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc         args-&gt;result = args-&gt;callback(args-&gt;parameter, num_threads,</span>
+<span class='curline'><a href='../S/526.html#L493'>num_threads</a>       493 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc         if (ResumeAllProcessThreads(num_threads, pids)) {</span>
+<span class='curline'><a href='../S/526.html#L503'>num_threads</a>       503 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc       ResumeAllProcessThreads(num_threads, pids);</span>
+<span class='curline'><a href='../S/526.html#L505'>num_threads</a>       505 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc       num_threads = 0;</span>
+<span class='curline'><a href='../S/526.html#L506'>num_threads</a>       506 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc       sig_num_threads = num_threads;</span>
+<span class='curline'><a href='../S/526.html#L654'>num_threads</a>       654 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc int ResumeAllProcessThreads(int num_threads, pid_t *thread_pids) {</span>
+<span class='curline'><a href='../S/526.html#L656'>num_threads</a>       656 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc   while (num_threads-- &gt; 0) {</span>
+<span class='curline'><a href='../S/526.html#L657'>num_threads</a>       657 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc     detached_at_least_one |= sys_ptrace_detach(thread_pids[num_threads]) &gt;= 0;</span>
+<span class='curline'><a href='../S/545.html#L73'>num_threads</a>        73 third_party/google-perftools-1.8.3/src/base/thread_lister.c int ResumeAllProcessThreads(int num_threads, pid_t *thread_pids) {</span>
+<span class='curline'><a href='../S/546.html#L45'>num_threads</a>        45 third_party/google-perftools-1.8.3/src/base/thread_lister.h                                              int num_threads,</span>
+<span class='curline'><a href='../S/546.html#L76'>num_threads</a>        76 third_party/google-perftools-1.8.3/src/base/thread_lister.h int ResumeAllProcessThreads(int num_threads, pid_t *thread_pids);</span>
+<span class='curline'><a href='../S/557.html#L270'>num_threads</a>       270 third_party/google-perftools-1.8.3/src/google/heap-checker.h                                      int num_threads,</span>
+<span class='curline'><a href='../S/568.html#L1008'>num_threads</a>      1008 third_party/google-perftools-1.8.3/src/heap-checker.cc                                                         int num_threads,</span>
+<span class='curline'><a href='../S/568.html#L1013'>num_threads</a>      1013 third_party/google-perftools-1.8.3/src/heap-checker.cc   RAW_VLOG(11, "Found %d threads (from pid %d)", num_threads, getpid());</span>
+<span class='curline'><a href='../S/568.html#L1024'>num_threads</a>      1024 third_party/google-perftools-1.8.3/src/heap-checker.cc   for (int i = 0; i &lt; num_threads; ++i) {</span>
+<span class='curline'><a href='../S/568.html#L1070'>num_threads</a>      1070 third_party/google-perftools-1.8.3/src/heap-checker.cc   ResumeAllProcessThreads(num_threads, thread_pids);</span>
+<span class='curline'><a href='../S/568.html#L1233'>num_threads</a>      1233 third_party/google-perftools-1.8.3/src/heap-checker.cc static int IsOneThread(void* parameter, int num_threads,</span>
+<span class='curline'><a href='../S/568.html#L1235'>num_threads</a>      1235 third_party/google-perftools-1.8.3/src/heap-checker.cc   if (num_threads != 1) {</span>
+<span class='curline'><a href='../S/568.html#L1239'>num_threads</a>      1239 third_party/google-perftools-1.8.3/src/heap-checker.cc   ResumeAllProcessThreads(num_threads, thread_pids);</span>
+<span class='curline'><a href='../S/568.html#L1240'>num_threads</a>      1240 third_party/google-perftools-1.8.3/src/heap-checker.cc   return num_threads;</span>
+<span class='curline'><a href='../S/653.html#L95'>num_threads</a>        95 third_party/google-perftools-1.8.3/src/tests/profiler_unittest.cc   int num_threads = 1;</span>
+<span class='curline'><a href='../S/653.html#L98'>num_threads</a>        98 third_party/google-perftools-1.8.3/src/tests/profiler_unittest.cc     num_threads = atoi(argv[2]);</span>
+<span class='curline'><a href='../S/653.html#L113'>num_threads</a>       113 third_party/google-perftools-1.8.3/src/tests/profiler_unittest.cc   RunManyThreads(test_other_thread, num_threads);</span>
+<span class='curline'><a href='../S/653.html#L118'>num_threads</a>       118 third_party/google-perftools-1.8.3/src/tests/profiler_unittest.cc   for (; num_threads &lt; 0; ++num_threads) {   // -&lt;num_threads&gt; to fork</span>
+</pre>
+</body>
+</html>

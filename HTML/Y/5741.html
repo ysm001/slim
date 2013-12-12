@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>yy_ch_buf</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/336.html#L220'>yy_ch_buf</a>         220 src/il_lexer.c 	char *yy_ch_buf;		/* input buffer */</span>
+<span class='curline'><a href='../S/336.html#L1235'>yy_ch_buf</a>        1235 src/il_lexer.c 		if ( yyg-&gt;yy_c_buf_p &lt;= &amp;YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[yyg-&gt;yy_n_chars] )</span>
+<span class='curline'><a href='../S/336.html#L1314'>yy_ch_buf</a>        1314 src/il_lexer.c 				&amp;YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[yyg-&gt;yy_n_chars];</span>
+<span class='curline'><a href='../S/336.html#L1342'>yy_ch_buf</a>        1342 src/il_lexer.c 	register char *dest = YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf;</span>
+<span class='curline'><a href='../S/336.html#L1347'>yy_ch_buf</a>        1347 src/il_lexer.c 	if ( yyg-&gt;yy_c_buf_p &gt; &amp;YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[yyg-&gt;yy_n_chars + 1] )</span>
+<span class='curline'><a href='../S/336.html#L1396'>yy_ch_buf</a>        1396 src/il_lexer.c 				(int) (yyg-&gt;yy_c_buf_p - b-&gt;yy_ch_buf);</span>
+<span class='curline'><a href='../S/336.html#L1407'>yy_ch_buf</a>        1407 src/il_lexer.c 				b-&gt;yy_ch_buf = (char *)</span>
+<span class='curline'><a href='../S/336.html#L1409'>yy_ch_buf</a>        1409 src/il_lexer.c 					ilrealloc((void *) b-&gt;yy_ch_buf,b-&gt;yy_buf_size + 2 ,yyscanner );</span>
+<span class='curline'><a href='../S/336.html#L1413'>yy_ch_buf</a>        1413 src/il_lexer.c 				b-&gt;yy_ch_buf = 0;</span>
+<span class='curline'><a href='../S/336.html#L1415'>yy_ch_buf</a>        1415 src/il_lexer.c 			if ( ! b-&gt;yy_ch_buf )</span>
+<span class='curline'><a href='../S/336.html#L1419'>yy_ch_buf</a>        1419 src/il_lexer.c 			yyg-&gt;yy_c_buf_p = &amp;b-&gt;yy_ch_buf[yy_c_buf_p_offset];</span>
+<span class='curline'><a href='../S/336.html#L1430'>yy_ch_buf</a>        1430 src/il_lexer.c 		YY_INPUT( (&amp;YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[number_to_move]),</span>
+<span class='curline'><a href='../S/336.html#L1458'>yy_ch_buf</a>        1458 src/il_lexer.c 		YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf = (char *) ilrealloc((void *) YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf,new_size ,yyscanner );</span>
+<span class='curline'><a href='../S/336.html#L1459'>yy_ch_buf</a>        1459 src/il_lexer.c 		if ( ! YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf )</span>
+<span class='curline'><a href='../S/336.html#L1464'>yy_ch_buf</a>        1464 src/il_lexer.c 	YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[yyg-&gt;yy_n_chars] = YY_END_OF_BUFFER_CHAR;</span>
+<span class='curline'><a href='../S/336.html#L1465'>yy_ch_buf</a>        1465 src/il_lexer.c 	YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[yyg-&gt;yy_n_chars + 1] = YY_END_OF_BUFFER_CHAR;</span>
+<span class='curline'><a href='../S/336.html#L1467'>yy_ch_buf</a>        1467 src/il_lexer.c 	yyg-&gt;yytext_ptr = &amp;YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[0];</span>
+<span class='curline'><a href='../S/336.html#L1541'>yy_ch_buf</a>        1541 src/il_lexer.c 	if ( yy_cp &lt; YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf + 2 )</span>
+<span class='curline'><a href='../S/336.html#L1545'>yy_ch_buf</a>        1545 src/il_lexer.c 		register char *dest = &amp;YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[</span>
+<span class='curline'><a href='../S/336.html#L1548'>yy_ch_buf</a>        1548 src/il_lexer.c 				&amp;YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[number_to_move];</span>
+<span class='curline'><a href='../S/336.html#L1550'>yy_ch_buf</a>        1550 src/il_lexer.c 		while ( source &gt; YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf )</span>
+<span class='curline'><a href='../S/336.html#L1558'>yy_ch_buf</a>        1558 src/il_lexer.c 		if ( yy_cp &lt; YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf + 2 )</span>
+<span class='curline'><a href='../S/336.html#L1592'>yy_ch_buf</a>        1592 src/il_lexer.c 		if ( yyg-&gt;yy_c_buf_p &lt; &amp;YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[yyg-&gt;yy_n_chars] )</span>
+<span class='curline'><a href='../S/336.html#L1738'>yy_ch_buf</a>        1738 src/il_lexer.c 	b-&gt;yy_ch_buf = (char *) ilalloc(b-&gt;yy_buf_size + 2 ,yyscanner );</span>
+<span class='curline'><a href='../S/336.html#L1739'>yy_ch_buf</a>        1739 src/il_lexer.c 	if ( ! b-&gt;yy_ch_buf )</span>
+<span class='curline'><a href='../S/336.html#L1764'>yy_ch_buf</a>        1764 src/il_lexer.c 		ilfree((void *) b-&gt;yy_ch_buf ,yyscanner );</span>
+<span class='curline'><a href='../S/336.html#L1818'>yy_ch_buf</a>        1818 src/il_lexer.c 	b-&gt;yy_ch_buf[0] = YY_END_OF_BUFFER_CHAR;</span>
+<span class='curline'><a href='../S/336.html#L1819'>yy_ch_buf</a>        1819 src/il_lexer.c 	b-&gt;yy_ch_buf[1] = YY_END_OF_BUFFER_CHAR;</span>
+<span class='curline'><a href='../S/336.html#L1821'>yy_ch_buf</a>        1821 src/il_lexer.c 	b-&gt;yy_buf_pos = &amp;b-&gt;yy_ch_buf[0];</span>
+<span class='curline'><a href='../S/336.html#L1952'>yy_ch_buf</a>        1952 src/il_lexer.c 	b-&gt;yy_buf_pos = b-&gt;yy_ch_buf = base;</span>
+<span class='curline'><a href='../S/337.html#L154'>yy_ch_buf</a>         154 src/il_lexer.h 	char *yy_ch_buf;		/* input buffer */</span>
+<span class='curline'><a href='../S/440.html#L220'>yy_ch_buf</a>         220 src/verifier/nc_lexer.c 	char *yy_ch_buf;		/* input buffer */</span>
+<span class='curline'><a href='../S/440.html#L1067'>yy_ch_buf</a>        1067 src/verifier/nc_lexer.c 		if ( yyg-&gt;yy_c_buf_p &lt;= &amp;YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[yyg-&gt;yy_n_chars] )</span>
+<span class='curline'><a href='../S/440.html#L1146'>yy_ch_buf</a>        1146 src/verifier/nc_lexer.c 				&amp;YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[yyg-&gt;yy_n_chars];</span>
+<span class='curline'><a href='../S/440.html#L1174'>yy_ch_buf</a>        1174 src/verifier/nc_lexer.c 	register char *dest = YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf;</span>
+<span class='curline'><a href='../S/440.html#L1179'>yy_ch_buf</a>        1179 src/verifier/nc_lexer.c 	if ( yyg-&gt;yy_c_buf_p &gt; &amp;YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[yyg-&gt;yy_n_chars + 1] )</span>
+<span class='curline'><a href='../S/440.html#L1228'>yy_ch_buf</a>        1228 src/verifier/nc_lexer.c 				(int) (yyg-&gt;yy_c_buf_p - b-&gt;yy_ch_buf);</span>
+<span class='curline'><a href='../S/440.html#L1239'>yy_ch_buf</a>        1239 src/verifier/nc_lexer.c 				b-&gt;yy_ch_buf = (char *)</span>
+<span class='curline'><a href='../S/440.html#L1241'>yy_ch_buf</a>        1241 src/verifier/nc_lexer.c 					ncrealloc((void *) b-&gt;yy_ch_buf,b-&gt;yy_buf_size + 2 ,yyscanner );</span>
+<span class='curline'><a href='../S/440.html#L1245'>yy_ch_buf</a>        1245 src/verifier/nc_lexer.c 				b-&gt;yy_ch_buf = 0;</span>
+<span class='curline'><a href='../S/440.html#L1247'>yy_ch_buf</a>        1247 src/verifier/nc_lexer.c 			if ( ! b-&gt;yy_ch_buf )</span>
+<span class='curline'><a href='../S/440.html#L1251'>yy_ch_buf</a>        1251 src/verifier/nc_lexer.c 			yyg-&gt;yy_c_buf_p = &amp;b-&gt;yy_ch_buf[yy_c_buf_p_offset];</span>
+<span class='curline'><a href='../S/440.html#L1262'>yy_ch_buf</a>        1262 src/verifier/nc_lexer.c 		YY_INPUT( (&amp;YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[number_to_move]),</span>
+<span class='curline'><a href='../S/440.html#L1290'>yy_ch_buf</a>        1290 src/verifier/nc_lexer.c 		YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf = (char *) ncrealloc((void *) YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf,new_size ,yyscanner );</span>
+<span class='curline'><a href='../S/440.html#L1291'>yy_ch_buf</a>        1291 src/verifier/nc_lexer.c 		if ( ! YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf )</span>
+<span class='curline'><a href='../S/440.html#L1296'>yy_ch_buf</a>        1296 src/verifier/nc_lexer.c 	YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[yyg-&gt;yy_n_chars] = YY_END_OF_BUFFER_CHAR;</span>
+<span class='curline'><a href='../S/440.html#L1297'>yy_ch_buf</a>        1297 src/verifier/nc_lexer.c 	YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[yyg-&gt;yy_n_chars + 1] = YY_END_OF_BUFFER_CHAR;</span>
+<span class='curline'><a href='../S/440.html#L1299'>yy_ch_buf</a>        1299 src/verifier/nc_lexer.c 	yyg-&gt;yytext_ptr = &amp;YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[0];</span>
+<span class='curline'><a href='../S/440.html#L1373'>yy_ch_buf</a>        1373 src/verifier/nc_lexer.c 	if ( yy_cp &lt; YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf + 2 )</span>
+<span class='curline'><a href='../S/440.html#L1377'>yy_ch_buf</a>        1377 src/verifier/nc_lexer.c 		register char *dest = &amp;YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[</span>
+<span class='curline'><a href='../S/440.html#L1380'>yy_ch_buf</a>        1380 src/verifier/nc_lexer.c 				&amp;YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[number_to_move];</span>
+<span class='curline'><a href='../S/440.html#L1382'>yy_ch_buf</a>        1382 src/verifier/nc_lexer.c 		while ( source &gt; YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf )</span>
+<span class='curline'><a href='../S/440.html#L1390'>yy_ch_buf</a>        1390 src/verifier/nc_lexer.c 		if ( yy_cp &lt; YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf + 2 )</span>
+<span class='curline'><a href='../S/440.html#L1424'>yy_ch_buf</a>        1424 src/verifier/nc_lexer.c 		if ( yyg-&gt;yy_c_buf_p &lt; &amp;YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[yyg-&gt;yy_n_chars] )</span>
+<span class='curline'><a href='../S/440.html#L1570'>yy_ch_buf</a>        1570 src/verifier/nc_lexer.c 	b-&gt;yy_ch_buf = (char *) ncalloc(b-&gt;yy_buf_size + 2 ,yyscanner );</span>
+<span class='curline'><a href='../S/440.html#L1571'>yy_ch_buf</a>        1571 src/verifier/nc_lexer.c 	if ( ! b-&gt;yy_ch_buf )</span>
+<span class='curline'><a href='../S/440.html#L1596'>yy_ch_buf</a>        1596 src/verifier/nc_lexer.c 		ncfree((void *) b-&gt;yy_ch_buf ,yyscanner );</span>
+<span class='curline'><a href='../S/440.html#L1650'>yy_ch_buf</a>        1650 src/verifier/nc_lexer.c 	b-&gt;yy_ch_buf[0] = YY_END_OF_BUFFER_CHAR;</span>
+<span class='curline'><a href='../S/440.html#L1651'>yy_ch_buf</a>        1651 src/verifier/nc_lexer.c 	b-&gt;yy_ch_buf[1] = YY_END_OF_BUFFER_CHAR;</span>
+<span class='curline'><a href='../S/440.html#L1653'>yy_ch_buf</a>        1653 src/verifier/nc_lexer.c 	b-&gt;yy_buf_pos = &amp;b-&gt;yy_ch_buf[0];</span>
+<span class='curline'><a href='../S/440.html#L1784'>yy_ch_buf</a>        1784 src/verifier/nc_lexer.c 	b-&gt;yy_buf_pos = b-&gt;yy_ch_buf = base;</span>
+<span class='curline'><a href='../S/441.html#L154'>yy_ch_buf</a>         154 src/verifier/nc_lexer.h 	char *yy_ch_buf;		/* input buffer */</span>
+<span class='curline'><a href='../S/448.html#L220'>yy_ch_buf</a>         220 src/verifier/propsym_lexer.c 	char *yy_ch_buf;		/* input buffer */</span>
+<span class='curline'><a href='../S/448.html#L1038'>yy_ch_buf</a>        1038 src/verifier/propsym_lexer.c 		if ( yyg-&gt;yy_c_buf_p &lt;= &amp;YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[yyg-&gt;yy_n_chars] )</span>
+<span class='curline'><a href='../S/448.html#L1117'>yy_ch_buf</a>        1117 src/verifier/propsym_lexer.c 				&amp;YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[yyg-&gt;yy_n_chars];</span>
+<span class='curline'><a href='../S/448.html#L1145'>yy_ch_buf</a>        1145 src/verifier/propsym_lexer.c 	register char *dest = YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf;</span>
+<span class='curline'><a href='../S/448.html#L1150'>yy_ch_buf</a>        1150 src/verifier/propsym_lexer.c 	if ( yyg-&gt;yy_c_buf_p &gt; &amp;YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[yyg-&gt;yy_n_chars + 1] )</span>
+<span class='curline'><a href='../S/448.html#L1204'>yy_ch_buf</a>        1204 src/verifier/propsym_lexer.c 		YY_INPUT( (&amp;YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[number_to_move]),</span>
+<span class='curline'><a href='../S/448.html#L1232'>yy_ch_buf</a>        1232 src/verifier/propsym_lexer.c 		YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf = (char *) propsymrealloc((void *) YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf,new_size ,yyscanner );</span>
+<span class='curline'><a href='../S/448.html#L1233'>yy_ch_buf</a>        1233 src/verifier/propsym_lexer.c 		if ( ! YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf )</span>
+<span class='curline'><a href='../S/448.html#L1238'>yy_ch_buf</a>        1238 src/verifier/propsym_lexer.c 	YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[yyg-&gt;yy_n_chars] = YY_END_OF_BUFFER_CHAR;</span>
+<span class='curline'><a href='../S/448.html#L1239'>yy_ch_buf</a>        1239 src/verifier/propsym_lexer.c 	YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[yyg-&gt;yy_n_chars + 1] = YY_END_OF_BUFFER_CHAR;</span>
+<span class='curline'><a href='../S/448.html#L1241'>yy_ch_buf</a>        1241 src/verifier/propsym_lexer.c 	yyg-&gt;yytext_ptr = &amp;YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[0];</span>
+<span class='curline'><a href='../S/448.html#L1310'>yy_ch_buf</a>        1310 src/verifier/propsym_lexer.c 	if ( yy_cp &lt; YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf + 2 )</span>
+<span class='curline'><a href='../S/448.html#L1314'>yy_ch_buf</a>        1314 src/verifier/propsym_lexer.c 		register char *dest = &amp;YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[</span>
+<span class='curline'><a href='../S/448.html#L1317'>yy_ch_buf</a>        1317 src/verifier/propsym_lexer.c 				&amp;YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[number_to_move];</span>
+<span class='curline'><a href='../S/448.html#L1319'>yy_ch_buf</a>        1319 src/verifier/propsym_lexer.c 		while ( source &gt; YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf )</span>
+<span class='curline'><a href='../S/448.html#L1327'>yy_ch_buf</a>        1327 src/verifier/propsym_lexer.c 		if ( yy_cp &lt; YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf + 2 )</span>
+<span class='curline'><a href='../S/448.html#L1361'>yy_ch_buf</a>        1361 src/verifier/propsym_lexer.c 		if ( yyg-&gt;yy_c_buf_p &lt; &amp;YY_CURRENT_BUFFER_LVALUE-&gt;yy_ch_buf[yyg-&gt;yy_n_chars] )</span>
+<span class='curline'><a href='../S/448.html#L1507'>yy_ch_buf</a>        1507 src/verifier/propsym_lexer.c 	b-&gt;yy_ch_buf = (char *) propsymalloc(b-&gt;yy_buf_size + 2 ,yyscanner );</span>
+<span class='curline'><a href='../S/448.html#L1508'>yy_ch_buf</a>        1508 src/verifier/propsym_lexer.c 	if ( ! b-&gt;yy_ch_buf )</span>
+<span class='curline'><a href='../S/448.html#L1533'>yy_ch_buf</a>        1533 src/verifier/propsym_lexer.c 		propsymfree((void *) b-&gt;yy_ch_buf ,yyscanner );</span>
+<span class='curline'><a href='../S/448.html#L1587'>yy_ch_buf</a>        1587 src/verifier/propsym_lexer.c 	b-&gt;yy_ch_buf[0] = YY_END_OF_BUFFER_CHAR;</span>
+<span class='curline'><a href='../S/448.html#L1588'>yy_ch_buf</a>        1588 src/verifier/propsym_lexer.c 	b-&gt;yy_ch_buf[1] = YY_END_OF_BUFFER_CHAR;</span>
+<span class='curline'><a href='../S/448.html#L1590'>yy_ch_buf</a>        1590 src/verifier/propsym_lexer.c 	b-&gt;yy_buf_pos = &amp;b-&gt;yy_ch_buf[0];</span>
+<span class='curline'><a href='../S/448.html#L1721'>yy_ch_buf</a>        1721 src/verifier/propsym_lexer.c 	b-&gt;yy_buf_pos = b-&gt;yy_ch_buf = base;</span>
+<span class='curline'><a href='../S/449.html#L154'>yy_ch_buf</a>         154 src/verifier/propsym_lexer.h 	char *yy_ch_buf;		/* input buffer */</span>
+</pre>
+</body>
+</html>

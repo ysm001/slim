@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>tag</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/436.html#L593'>tag</a>               593 src/verifier/mem_encode.c static inline void binstr_dump_data_atom(BYTE *bs, int *pos, unsigned int tag)</span>
+<span class='curline'><a href='../S/436.html#L595'>tag</a>               595 src/verifier/mem_encode.c   switch (tag) {</span>
+<span class='curline'><a href='../S/436.html#L633'>tag</a>               633 src/verifier/mem_encode.c     unsigned int tag = BS_GET(bs, pos);</span>
+<span class='curline'><a href='../S/436.html#L636'>tag</a>               636 src/verifier/mem_encode.c     switch (tag) {</span>
+<span class='curline'><a href='../S/436.html#L654'>tag</a>               654 src/verifier/mem_encode.c         if (tag == TAG_MEM_START) {</span>
+<span class='curline'><a href='../S/436.html#L730'>tag</a>               730 src/verifier/mem_encode.c       binstr_dump_data_atom(bs, &amp;pos, tag);</span>
+<span class='curline'><a href='../S/436.html#L1685'>tag</a>              1685 src/verifier/mem_encode.c     unsigned int tag = BS_GET(bs-&gt;v, pos);</span>
+<span class='curline'><a href='../S/436.html#L1687'>tag</a>              1687 src/verifier/mem_encode.c     if (tag == TAG_MEM_END) {</span>
+<span class='curline'><a href='../S/436.html#L1692'>tag</a>              1692 src/verifier/mem_encode.c     else if (tag == TAG_RULESET1) {</span>
+<span class='curline'><a href='../S/436.html#L1700'>tag</a>              1700 src/verifier/mem_encode.c     else if (tag == TAG_RULESET) {</span>
+<span class='curline'><a href='../S/436.html#L1712'>tag</a>              1712 src/verifier/mem_encode.c     else if (tag == TAG_RULESET_UNIQ) {</span>
+<span class='curline'><a href='../S/436.html#L1783'>tag</a>              1783 src/verifier/mem_encode.c   unsigned int tag;</span>
+<span class='curline'><a href='../S/436.html#L1788'>tag</a>              1788 src/verifier/mem_encode.c   tag = BS_GET(bs-&gt;v, pos);</span>
+<span class='curline'><a href='../S/436.html#L1793'>tag</a>              1793 src/verifier/mem_encode.c   switch (tag) {</span>
+<span class='curline'><a href='../S/436.html#L1994'>tag</a>              1994 src/verifier/mem_encode.c     printf("tag = %d\n", tag);</span>
+<span class='curline'><a href='../S/436.html#L2033'>tag</a>              2033 src/verifier/mem_encode.c     unsigned int tag = BS_GET(bs-&gt;v, pos);</span>
+<span class='curline'><a href='../S/436.html#L2035'>tag</a>              2035 src/verifier/mem_encode.c     switch (tag) {</span>
+<span class='curline'><a href='../S/436.html#L2197'>tag</a>              2197 src/verifier/mem_encode.c BOOL mem_eq_enc_data_atom(unsigned int tag,  LmnBinStr   bs,   int       *i_bs,</span>
+<span class='curline'><a href='../S/436.html#L2225'>tag</a>              2225 src/verifier/mem_encode.c static inline BOOL mem_eq_enc_visited(unsigned int tag,</span>
+<span class='curline'><a href='../S/436.html#L2328'>tag</a>              2328 src/verifier/mem_encode.c   unsigned int tag;</span>
+<span class='curline'><a href='../S/436.html#L2334'>tag</a>              2334 src/verifier/mem_encode.c     tag =  BS_GET(bs-&gt;v, *i_bs);</span>
+<span class='curline'><a href='../S/436.html#L2337'>tag</a>              2337 src/verifier/mem_encode.c     switch (tag) {</span>
+<span class='curline'><a href='../S/436.html#L2408'>tag</a>              2408 src/verifier/mem_encode.c         if (tag == TAG_NAMED_MEM_START) {</span>
+<span class='curline'><a href='../S/436.html#L2710'>tag</a>              2710 src/verifier/mem_encode.c static inline BOOL mem_eq_enc_data_atom(unsigned int tag,</span>
+<span class='curline'><a href='../S/436.html#L2725'>tag</a>              2725 src/verifier/mem_encode.c   if (tag == TAG_INT_DATA) {</span>
+<span class='curline'><a href='../S/436.html#L2736'>tag</a>              2736 src/verifier/mem_encode.c   else if (tag == TAG_DBL_DATA) {</span>
+<span class='curline'><a href='../S/436.html#L2747'>tag</a>              2747 src/verifier/mem_encode.c   else if (tag == TAG_STR_DATA) {</span>
+<span class='curline'><a href='../S/436.html#L2779'>tag</a>              2779 src/verifier/mem_encode.c   unsigned int tag;</span>
+<span class='curline'><a href='../S/436.html#L2781'>tag</a>              2781 src/verifier/mem_encode.c   tag =  BS_GET(bs-&gt;v, *i_bs);</span>
+<span class='curline'><a href='../S/436.html#L2783'>tag</a>              2783 src/verifier/mem_encode.c   switch (tag) {</span>
+<span class='curline'><a href='../S/436.html#L2794'>tag</a>              2794 src/verifier/mem_encode.c     return mem_eq_enc_visited(tag, bs, i_bs, atom, attr, ref_log, i_ref, log);</span>
+<span class='curline'><a href='../S/436.html#L2804'>tag</a>              2804 src/verifier/mem_encode.c     return mem_eq_enc_data_atom(tag, bs, i_bs, atom, attr, log);</span>
+<span class='curline'><a href='../S/436.html#L2879'>tag</a>              2879 src/verifier/mem_encode.c static inline BOOL mem_eq_enc_visited(unsigned int tag,</span>
+<span class='curline'><a href='../S/436.html#L2892'>tag</a>              2892 src/verifier/mem_encode.c   if (tag == TAG_VISITED_MEM) {</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>lv3</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/367.html#L186'>lv3</a>               186 src/runtime_status.c       TimeProfiler *p = &amp;(lmn_prof.lv3[th_id].times[data_i]);</span>
+<span class='curline'><a href='../S/367.html#L197'>lv3</a>               197 src/runtime_status.c       total-&gt;counters[data_i] += lmn_prof.lv3[th_id].counters[data_i];</span>
+<span class='curline'><a href='../S/367.html#L203'>lv3</a>               203 src/runtime_status.c       MCProfiler3 *p = &amp;lmn_prof.lv3[th_id];</span>
+<span class='curline'><a href='../S/367.html#L271'>lv3</a>               271 src/runtime_status.c   lmn_prof.lv3                   = NULL;</span>
+<span class='curline'><a href='../S/367.html#L277'>lv3</a>               277 src/runtime_status.c       lmn_prof.lv3 = LMN_NALLOC(MCProfiler3, nthreads);</span>
+<span class='curline'><a href='../S/367.html#L279'>lv3</a>               279 src/runtime_status.c         mc_profiler3_init(&amp;lmn_prof.lv3[i]);</span>
+<span class='curline'><a href='../S/367.html#L297'>lv3</a>               297 src/runtime_status.c   if (lmn_prof.lv3) {</span>
+<span class='curline'><a href='../S/367.html#L300'>lv3</a>               300 src/runtime_status.c       mc_profiler3_destroy(&amp;lmn_prof.lv3[i]);</span>
+<span class='curline'><a href='../S/367.html#L302'>lv3</a>               302 src/runtime_status.c     LMN_FREE(lmn_prof.lv3);</span>
+<span class='curline'><a href='../S/367.html#L734'>lv3</a>               734 src/runtime_status.c           lmn_prof.lv3[i].times[PROFILE_TIME__ACTIVE_FOR_IDLE_PROF].total_time =</span>
+<span class='curline'><a href='../S/367.html#L738'>lv3</a>               738 src/runtime_status.c              - lmn_prof.lv3[i].times[PROFILE_TIME__ACTIVE_FOR_IDLE_PROF].total_time;</span>
+<span class='curline'><a href='../S/368.html#L183'>lv3</a>               183 src/runtime_status.h   MCProfiler3    *lv3;                /* for verifier only */</span>
+<span class='curline'><a href='../S/368.html#L236'>lv3</a>               236 src/runtime_status.h   p = &amp;(lmn_prof.lv3[env_my_thread_id()]);</span>
+<span class='curline'><a href='../S/368.html#L256'>lv3</a>               256 src/runtime_status.h   MemoryProfiler *p = &amp;(lmn_prof.lv3[env_my_thread_id()].spaces[type]);</span>
+<span class='curline'><a href='../S/368.html#L264'>lv3</a>               264 src/runtime_status.h     MemoryProfiler *p = &amp;(lmn_prof.lv3[env_my_thread_id()].spaces[type]);</span>
+<span class='curline'><a href='../S/368.html#L283'>lv3</a>               283 src/runtime_status.h   TimeProfiler *p = &amp;(lmn_prof.lv3[env_my_thread_id()].times[type]);</span>
+<span class='curline'><a href='../S/368.html#L289'>lv3</a>               289 src/runtime_status.h   TimeProfiler *p = &amp;(lmn_prof.lv3[env_my_thread_id()].times[type]);</span>
+<span class='curline'><a href='../S/368.html#L295'>lv3</a>               295 src/runtime_status.h   MCProfiler3 *p = &amp;lmn_prof.lv3[env_my_thread_id()];</span>
+<span class='curline'><a href='../S/368.html#L301'>lv3</a>               301 src/runtime_status.h   lmn_prof.lv3[env_my_thread_id()].counters[type] += num;</span>
+</pre>
+</body>
+</html>

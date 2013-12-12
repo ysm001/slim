@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>old_ptr</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/626.html#L289'>old_ptr</a>           289 third_party/google-perftools-1.8.3/src/tcmalloc.cc size_t InvalidGetSizeForRealloc(void* old_ptr) {</span>
+<span class='curline'><a href='../S/626.html#L291'>old_ptr</a>           291 third_party/google-perftools-1.8.3/src/tcmalloc.cc       "Attempt to realloc invalid pointer", old_ptr);</span>
+<span class='curline'><a href='../S/626.html#L1171'>old_ptr</a>          1171 third_party/google-perftools-1.8.3/src/tcmalloc.cc     void* old_ptr, size_t new_size,</span>
+<span class='curline'><a href='../S/626.html#L1175'>old_ptr</a>          1175 third_party/google-perftools-1.8.3/src/tcmalloc.cc   const size_t old_size = GetSizeWithCallback(old_ptr, invalid_get_size_fn);</span>
+<span class='curline'><a href='../S/626.html#L1200'>old_ptr</a>          1200 third_party/google-perftools-1.8.3/src/tcmalloc.cc     memcpy(new_ptr, old_ptr, ((old_size &lt; new_size) ? old_size : new_size));</span>
+<span class='curline'><a href='../S/626.html#L1201'>old_ptr</a>          1201 third_party/google-perftools-1.8.3/src/tcmalloc.cc     MallocHook::InvokeDeleteHook(old_ptr);</span>
+<span class='curline'><a href='../S/626.html#L1205'>old_ptr</a>          1205 third_party/google-perftools-1.8.3/src/tcmalloc.cc     do_free_with_callback(old_ptr, invalid_free_fn);</span>
+<span class='curline'><a href='../S/626.html#L1209'>old_ptr</a>          1209 third_party/google-perftools-1.8.3/src/tcmalloc.cc     MallocHook::InvokeDeleteHook(old_ptr);</span>
+<span class='curline'><a href='../S/626.html#L1210'>old_ptr</a>          1210 third_party/google-perftools-1.8.3/src/tcmalloc.cc     MallocHook::InvokeNewHook(old_ptr, new_size);</span>
+<span class='curline'><a href='../S/626.html#L1211'>old_ptr</a>          1211 third_party/google-perftools-1.8.3/src/tcmalloc.cc     return old_ptr;</span>
+<span class='curline'><a href='../S/626.html#L1215'>old_ptr</a>          1215 third_party/google-perftools-1.8.3/src/tcmalloc.cc inline void* do_realloc(void* old_ptr, size_t new_size) {</span>
+<span class='curline'><a href='../S/626.html#L1216'>old_ptr</a>          1216 third_party/google-perftools-1.8.3/src/tcmalloc.cc   return do_realloc_with_callback(old_ptr, new_size,</span>
+<span class='curline'><a href='../S/626.html#L1503'>old_ptr</a>          1503 third_party/google-perftools-1.8.3/src/tcmalloc.cc extern "C" PERFTOOLS_DLL_DECL void* tc_realloc(void* old_ptr,</span>
+<span class='curline'><a href='../S/626.html#L1505'>old_ptr</a>          1505 third_party/google-perftools-1.8.3/src/tcmalloc.cc   if (old_ptr == NULL) {</span>
+<span class='curline'><a href='../S/626.html#L1511'>old_ptr</a>          1511 third_party/google-perftools-1.8.3/src/tcmalloc.cc     MallocHook::InvokeDeleteHook(old_ptr);</span>
+<span class='curline'><a href='../S/626.html#L1512'>old_ptr</a>          1512 third_party/google-perftools-1.8.3/src/tcmalloc.cc     do_free(old_ptr);</span>
+<span class='curline'><a href='../S/626.html#L1515'>old_ptr</a>          1515 third_party/google-perftools-1.8.3/src/tcmalloc.cc   return do_realloc(old_ptr, new_size);</span>
+<span class='curline'><a href='../S/684.html#L810'>old_ptr</a>           810 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc     void* old_ptr, size_t new_size) __THROW {</span>
+<span class='curline'><a href='../S/684.html#L811'>old_ptr</a>           811 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc   if (old_ptr == NULL) {</span>
+<span class='curline'><a href='../S/684.html#L817'>old_ptr</a>           817 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc     MallocHook::InvokeDeleteHook(old_ptr);</span>
+<span class='curline'><a href='../S/684.html#L818'>old_ptr</a>           818 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc     do_free_with_callback(old_ptr,</span>
+<span class='curline'><a href='../S/684.html#L823'>old_ptr</a>           823 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc       old_ptr, new_size,</span>
+</pre>
+</body>
+</html>

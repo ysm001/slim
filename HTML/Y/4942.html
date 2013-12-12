@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>spc</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/334.html#L797'>spc</a>               797 src/hyperlink.c     SameProcCxt *spc = (SameProcCxt *)(hashtbliter_entry(&amp;it)-&gt;data);</span>
+<span class='curline'><a href='../S/334.html#L799'>spc</a>               799 src/hyperlink.c     if (!spc) {</span>
+<span class='curline'><a href='../S/334.html#L802'>spc</a>               802 src/hyperlink.c     else if (spc-&gt;proccxts) {</span>
+<span class='curline'><a href='../S/334.html#L806'>spc</a>               806 src/hyperlink.c       for (i = 0; i &lt; spc-&gt;length; i++) {</span>
+<span class='curline'><a href='../S/334.html#L807'>spc</a>               807 src/hyperlink.c         ProcCxt *pc = LMN_SPC_PC(spc, i);</span>
+<span class='curline'><a href='../S/334.html#L811'>spc</a>               811 src/hyperlink.c       tree = LMN_SPC_TREE(spc);</span>
+<span class='curline'><a href='../S/334.html#L814'>spc</a>               814 src/hyperlink.c       LMN_FREE(spc-&gt;proccxts);</span>
+<span class='curline'><a href='../S/334.html#L817'>spc</a>               817 src/hyperlink.c     LMN_FREE(spc);</span>
+<span class='curline'><a href='../S/334.html#L847'>spc</a>               847 src/hyperlink.c   SameProcCxt *spc;</span>
+<span class='curline'><a href='../S/334.html#L849'>spc</a>               849 src/hyperlink.c   spc = LMN_MALLOC(SameProcCxt);</span>
+<span class='curline'><a href='../S/334.html#L850'>spc</a>               850 src/hyperlink.c   spc-&gt;atomi      = atomi;</span>
+<span class='curline'><a href='../S/334.html#L851'>spc</a>               851 src/hyperlink.c   spc-&gt;length     = length;</span>
+<span class='curline'><a href='../S/334.html#L852'>spc</a>               852 src/hyperlink.c   spc-&gt;tree       = NULL;</span>
+<span class='curline'><a href='../S/334.html#L853'>spc</a>               853 src/hyperlink.c   spc-&gt;start_attr = 0;</span>
+<span class='curline'><a href='../S/334.html#L854'>spc</a>               854 src/hyperlink.c   spc-&gt;proccxts   = LMN_NALLOC(void *, length);</span>
+<span class='curline'><a href='../S/334.html#L856'>spc</a>               856 src/hyperlink.c     spc-&gt;proccxts[i] = NULL;</span>
+<span class='curline'><a href='../S/334.html#L858'>spc</a>               858 src/hyperlink.c   return spc;</span>
+<span class='curline'><a href='../S/334.html#L861'>spc</a>               861 src/hyperlink.c BOOL lmn_sameproccxt_from_clone(SameProcCxt *spc, int n)</span>
+<span class='curline'><a href='../S/334.html#L867'>spc</a>               867 src/hyperlink.c     pc = LMN_SPC_PC(spc, i);</span>
+<span class='curline'><a href='../S/334.html#L881'>spc</a>               881 src/hyperlink.c HyperLink *lmn_sameproccxt_start(SameProcCxt *spc, int atom_arity)</span>
+<span class='curline'><a href='../S/334.html#L891'>spc</a>               891 src/hyperlink.c   if (LMN_SPC_TREE(spc)) {</span>
+<span class='curline'><a href='../S/334.html#L892'>spc</a>               892 src/hyperlink.c     vec_free(LMN_SPC_TREE(spc));</span>
+<span class='curline'><a href='../S/334.html#L893'>spc</a>               893 src/hyperlink.c     LMN_SPC_TREE(spc) = NULL;</span>
+<span class='curline'><a href='../S/334.html#L897'>spc</a>               897 src/hyperlink.c     ProcCxt *pc = LMN_SPC_PC(spc, i);</span>
+<span class='curline'><a href='../S/334.html#L918'>spc</a>               918 src/hyperlink.c   LMN_SPC_TREE(spc) = vec_make(element_num &lt;= 0 ? 1 : element_num);</span>
+<span class='curline'><a href='../S/334.html#L919'>spc</a>               919 src/hyperlink.c   LMN_SPC_SATTR(spc) = start_arity;</span>
+<span class='curline'><a href='../S/334.html#L929'>spc</a>               929 src/hyperlink.c BOOL lmn_sameproccxt_all_pc_check_original(SameProcCxt *spc, LmnSAtom atom, int atom_arity)</span>
+<span class='curline'><a href='../S/334.html#L940'>spc</a>               940 src/hyperlink.c     pc = LMN_SPC_PC(spc, i);</span>
+<span class='curline'><a href='../S/334.html#L979'>spc</a>               979 src/hyperlink.c BOOL lmn_sameproccxt_all_pc_check_clone(SameProcCxt *spc, LmnSAtom atom, int atom_arity)</span>
+<span class='curline'><a href='../S/334.html#L990'>spc</a>               990 src/hyperlink.c     pc = LMN_SPC_PC(spc, i);</span>
+<span class='curline'><a href='../S/335.html#L145'>spc</a>               145 src/hyperlink.h BOOL lmn_sameproccxt_from_clone(SameProcCxt *spc, int n);</span>
+<span class='curline'><a href='../S/335.html#L146'>spc</a>               146 src/hyperlink.h HyperLink *lmn_sameproccxt_start(SameProcCxt *spc, int atom_arity);</span>
+<span class='curline'><a href='../S/335.html#L147'>spc</a>               147 src/hyperlink.h BOOL lmn_sameproccxt_all_pc_check_original(SameProcCxt *spc, LmnSAtom atom, int atom_arity);</span>
+<span class='curline'><a href='../S/335.html#L148'>spc</a>               148 src/hyperlink.h BOOL lmn_sameproccxt_all_pc_check_clone(SameProcCxt *spc, LmnSAtom atom, int atom_arity);</span>
+<span class='curline'><a href='../S/384.html#L1047'>spc</a>              1047 src/task.c               SameProcCxt *spc;</span>
+<span class='curline'><a href='../S/384.html#L1057'>spc</a>              1057 src/task.c               spc = (SameProcCxt *)hashtbl_get(RC_HLINK_SPC(rc), (HashKeyType)atomi);</span>
+<span class='curline'><a href='../S/384.html#L1058'>spc</a>              1058 src/task.c               if (lmn_sameproccxt_from_clone(spc, atom_arity)) {</span>
+<span class='curline'><a href='../S/384.html#L1066'>spc</a>              1066 src/task.c                 lmn_hyperlink_get_elements(LMN_SPC_TREE(spc),</span>
+<span class='curline'><a href='../S/384.html#L1067'>spc</a>              1067 src/task.c                                            lmn_sameproccxt_start(spc, atom_arity));</span>
+<span class='curline'><a href='../S/384.html#L1068'>spc</a>              1068 src/task.c                 element_num = vec_num(LMN_SPC_TREE(spc)) - 1;</span>
+<span class='curline'><a href='../S/384.html#L1081'>spc</a>              1081 src/task.c                     LmnSAtom linked_pc = ((HyperLink *)vec_get(LMN_SPC_TREE(spc), i))-&gt;atom;</span>
+<span class='curline'><a href='../S/384.html#L1087'>spc</a>              1087 src/task.c                         LMN_SPC_SATTR(spc) != LMN_SATOM_GET_ATTR(linked_pc, 0) ||</span>
+<span class='curline'><a href='../S/384.html#L1093'>spc</a>              1093 src/task.c                     if (lmn_sameproccxt_all_pc_check_clone(spc,</span>
+<span class='curline'><a href='../S/384.html#L1109'>spc</a>              1109 src/task.c                     if (lmn_sameproccxt_all_pc_check_original(spc, atom, atom_arity) &amp;&amp;</span>
+</pre>
+</body>
+</html>

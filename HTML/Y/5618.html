@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>vec</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/357.html#L2255'>vec</a>              2255 src/membrane.c static void mem_mk_sorted_children(Vector *vec);</span>
+<span class='curline'><a href='../S/357.html#L2360'>vec</a>              2360 src/membrane.c static void mem_mk_sorted_children(Vector *vec)</span>
+<span class='curline'><a href='../S/357.html#L2366'>vec</a>              2366 src/membrane.c   LMN_ASSERT(vec_num(vec));</span>
+<span class='curline'><a href='../S/357.html#L2369'>vec</a>              2369 src/membrane.c   for (i = 0; i &lt; vec_num(vec); i++) {</span>
+<span class='curline'><a href='../S/357.html#L2370'>vec</a>              2370 src/membrane.c     n = lmn_mem_count_descendants((LmnMembrane *)vec_get(vec, i));</span>
+<span class='curline'><a href='../S/357.html#L2375'>vec</a>              2375 src/membrane.c   v_mems_tmp = vec_make(vec_num(vec));</span>
+<span class='curline'><a href='../S/357.html#L2377'>vec</a>              2377 src/membrane.c     for (i = 0; i &lt; vec_num(vec); i++) {</span>
+<span class='curline'><a href='../S/357.html#L2378'>vec</a>              2378 src/membrane.c       if (n == lmn_mem_count_descendants((LmnMembrane *)vec_get(vec, i))) {</span>
+<span class='curline'><a href='../S/357.html#L2379'>vec</a>              2379 src/membrane.c         vec_push(v_mems_tmp, vec_get(vec, i));</span>
+<span class='curline'><a href='../S/357.html#L2383'>vec</a>              2383 src/membrane.c   vec_clear(vec);</span>
+<span class='curline'><a href='../S/357.html#L2385'>vec</a>              2385 src/membrane.c     vec_push(vec, vec_pop(v_mems_tmp));</span>
+<span class='curline'><a href='../S/357.html#L2404'>vec</a>              2404 src/membrane.c static void free_atomvec_data(Vector *vec);</span>
+<span class='curline'><a href='../S/357.html#L2482'>vec</a>              2482 src/membrane.c static void free_atomvec_data(Vector *vec)</span>
+<span class='curline'><a href='../S/357.html#L2486'>vec</a>              2486 src/membrane.c   for (i = 0; i &lt; vec_num(vec); ++i) {</span>
+<span class='curline'><a href='../S/357.html#L2487'>vec</a>              2487 src/membrane.c     atomvec_data *ad = (atomvec_data *)vec_get(vec, i);</span>
+<span class='curline'><a href='../S/357.html#L2493'>vec</a>              2493 src/membrane.c   vec_free(vec);</span>
+<span class='curline'><a href='../S/357.html#L2745'>vec</a>              2745 src/membrane.c   Vector *vec, *v_tmp;</span>
+<span class='curline'><a href='../S/357.html#L2752'>vec</a>              2752 src/membrane.c   vec = vec_make(1);</span>
+<span class='curline'><a href='../S/357.html#L2753'>vec</a>              2753 src/membrane.c   memset(vec-&gt;tbl, 0, sizeof(atomvec_data *) * vec-&gt;cap);</span>
+<span class='curline'><a href='../S/357.html#L2778'>vec</a>              2778 src/membrane.c       vec_push(vec, (vec_data_t)ad);</span>
+<span class='curline'><a href='../S/357.html#L2784'>vec</a>              2784 src/membrane.c     v_tmp = vec_make(vec_num(vec));</span>
+<span class='curline'><a href='../S/357.html#L2787'>vec</a>              2787 src/membrane.c       for (j = 0; j &lt; vec_num(vec); j++) {</span>
+<span class='curline'><a href='../S/357.html#L2788'>vec</a>              2788 src/membrane.c         atomvec_data *ad = (atomvec_data *)vec_get(vec, j);</span>
+<span class='curline'><a href='../S/357.html#L2794'>vec</a>              2794 src/membrane.c     vec_clear(vec);</span>
+<span class='curline'><a href='../S/357.html#L2797'>vec</a>              2797 src/membrane.c       vec_push(vec, vec_pop(v_tmp));</span>
+<span class='curline'><a href='../S/357.html#L2802'>vec</a>              2802 src/membrane.c   return vec;</span>
+<span class='curline'><a href='../S/385.html#L80'>vec</a>                80 src/task.h       Vector *vec = vec_make(16);</span>
+<span class='curline'><a href='../S/385.html#L88'>vec</a>                88 src/task.h         vec_push(vec, (LmnWord)l);</span>
+<span class='curline'><a href='../S/385.html#L90'>vec</a>                90 src/task.h       return vec;</span>
+<span class='curline'><a href='../S/404.html#L677'>vec</a>               677 src/utility/st.c void st_get_entries_key(st_table_t st, Vector *vec)</span>
+<span class='curline'><a href='../S/404.html#L679'>vec</a>               679 src/utility/st.c   st_foreach(st, st_key_push_vec_f, (st_data_t)vec);</span>
+<span class='curline'><a href='../S/404.html#L682'>vec</a>               682 src/utility/st.c void st_get_entries_value(st_table_t st, Vector *vec)</span>
+<span class='curline'><a href='../S/404.html#L684'>vec</a>               684 src/utility/st.c   st_foreach(st, st_value_push_vec_f, (st_data_t)vec);</span>
+<span class='curline'><a href='../S/405.html#L93'>vec</a>                93 src/utility/st.h void st_get_entries_key(st_table_t tbl, Vector *vec);</span>
+<span class='curline'><a href='../S/405.html#L94'>vec</a>                94 src/utility/st.h void st_get_entries_value(st_table_t tbl, Vector *vec);</span>
+<span class='curline'><a href='../S/408.html#L42'>vec</a>                42 src/utility/vector.c LmnWord vec_pop_n(Vector *vec, unsigned int n) {</span>
+<span class='curline'><a href='../S/408.html#L46'>vec</a>                46 src/utility/vector.c   LMN_ASSERT(vec-&gt;num &gt; 0 &amp;&amp; n &gt;= 0 &amp;&amp; n &lt; vec-&gt;num);</span>
+<span class='curline'><a href='../S/408.html#L48'>vec</a>                48 src/utility/vector.c   if (vec-&gt;num &lt;= vec-&gt;cap/2) {</span>
+<span class='curline'><a href='../S/408.html#L49'>vec</a>                49 src/utility/vector.c     vec_reduce(vec);</span>
+<span class='curline'><a href='../S/408.html#L51'>vec</a>                51 src/utility/vector.c   ret = vec_get(vec, n);</span>
+<span class='curline'><a href='../S/408.html#L52'>vec</a>                52 src/utility/vector.c   for (i = n; i &lt; vec-&gt;num-1; ++i) {</span>
+<span class='curline'><a href='../S/408.html#L53'>vec</a>                53 src/utility/vector.c     vec_set(vec, i, vec_get(vec, i+1));</span>
+<span class='curline'><a href='../S/408.html#L55'>vec</a>                55 src/utility/vector.c   vec-&gt;num--;</span>
+<span class='curline'><a href='../S/408.html#L61'>vec</a>                61 src/utility/vector.c BOOL vec_contains(const Vector *vec, LmnWord keyp) {</span>
+<span class='curline'><a href='../S/408.html#L63'>vec</a>                63 src/utility/vector.c   while (i &lt; vec_num(vec)) {</span>
+<span class='curline'><a href='../S/408.html#L64'>vec</a>                64 src/utility/vector.c     if (vec_get(vec, i++) == (LmnWord)keyp) {</span>
+<span class='curline'><a href='../S/408.html#L72'>vec</a>                72 src/utility/vector.c void vec_resize(Vector *vec, unsigned int size, vec_data_t val)</span>
+<span class='curline'><a href='../S/408.html#L76'>vec</a>                76 src/utility/vector.c   while (size &gt; vec-&gt;cap) {</span>
+<span class='curline'><a href='../S/408.html#L77'>vec</a>                77 src/utility/vector.c     vec_extend(vec);</span>
+<span class='curline'><a href='../S/408.html#L81'>vec</a>                81 src/utility/vector.c   for (i=vec-&gt;num; i&lt;size; i++) {</span>
+<span class='curline'><a href='../S/408.html#L82'>vec</a>                82 src/utility/vector.c     vec-&gt;tbl[i] = val;</span>
+<span class='curline'><a href='../S/408.html#L84'>vec</a>                84 src/utility/vector.c   vec-&gt;num = size;</span>
+<span class='curline'><a href='../S/408.html#L87'>vec</a>                87 src/utility/vector.c void vec_sort(const Vector *vec,</span>
+<span class='curline'><a href='../S/408.html#L90'>vec</a>                90 src/utility/vector.c   qsort(vec-&gt;tbl, vec-&gt;num, sizeof(vec_data_t), compare);</span>
+<span class='curline'><a href='../S/408.html#L94'>vec</a>                94 src/utility/vector.c void vec_reverse(Vector *vec)</span>
+<span class='curline'><a href='../S/408.html#L99'>vec</a>                99 src/utility/vector.c   l = vec_num(vec) - 1;</span>
+<span class='curline'><a href='../S/408.html#L102'>vec</a>               102 src/utility/vector.c     vec_data_t tmp = vec-&gt;tbl[r];</span>
+<span class='curline'><a href='../S/408.html#L103'>vec</a>               103 src/utility/vector.c     vec_set(vec, r, vec-&gt;tbl[l]);</span>
+<span class='curline'><a href='../S/408.html#L104'>vec</a>               104 src/utility/vector.c     vec_set(vec, l, tmp);</span>
+<span class='curline'><a href='../S/408.html#L110'>vec</a>               110 src/utility/vector.c Vector *vec_copy(Vector *vec)</span>
+<span class='curline'><a href='../S/408.html#L115'>vec</a>               115 src/utility/vector.c   new_vec = vec_make(vec-&gt;num &gt; 0 ? vec-&gt;num : 1);</span>
+<span class='curline'><a href='../S/408.html#L117'>vec</a>               117 src/utility/vector.c   for (i = 0; i &lt; vec_num(vec); i++) {</span>
+<span class='curline'><a href='../S/408.html#L118'>vec</a>               118 src/utility/vector.c     new_vec-&gt;tbl[i] = vec-&gt;tbl[i];</span>
+<span class='curline'><a href='../S/408.html#L120'>vec</a>               120 src/utility/vector.c   new_vec-&gt;num = vec-&gt;num;</span>
+<span class='curline'><a href='../S/409.html#L57'>vec</a>                57 src/utility/vector.h static inline Vector *vec_init(Vector *vec, unsigned int init_size);</span>
+<span class='curline'><a href='../S/409.html#L59'>vec</a>                59 src/utility/vector.h static inline void    vec_push(Vector *vec, LmnWord keyp);</span>
+<span class='curline'><a href='../S/409.html#L60'>vec</a>                60 src/utility/vector.h static inline LmnWord vec_pop(Vector *vec);</span>
+<span class='curline'><a href='../S/409.html#L61'>vec</a>                61 src/utility/vector.h static inline LmnWord vec_peek(const Vector *vec);</span>
+<span class='curline'><a href='../S/409.html#L62'>vec</a>                62 src/utility/vector.h static inline void    vec_set(Vector *vec, unsigned int index, LmnWord keyp);</span>
+<span class='curline'><a href='../S/409.html#L63'>vec</a>                63 src/utility/vector.h static inline LmnWord vec_get(const Vector *vec, unsigned int index);</span>
+<span class='curline'><a href='../S/409.html#L64'>vec</a>                64 src/utility/vector.h static inline LmnWord vec_last(Vector *vec);</span>
+<span class='curline'><a href='../S/409.html#L65'>vec</a>                65 src/utility/vector.h static inline void    vec_clear(Vector *vec);</span>
+<span class='curline'><a href='../S/409.html#L66'>vec</a>                66 src/utility/vector.h static inline void    vec_destroy(Vector *vec);</span>
+<span class='curline'><a href='../S/409.html#L67'>vec</a>                67 src/utility/vector.h static inline void    vec_free(Vector *vec);</span>
+<span class='curline'><a href='../S/409.html#L71'>vec</a>                71 src/utility/vector.h LmnWord vec_pop_n(Vector *vec, unsigned int n);</span>
+<span class='curline'><a href='../S/409.html#L72'>vec</a>                72 src/utility/vector.h BOOL    vec_contains(const Vector *vec, LmnWord keyp);</span>
+<span class='curline'><a href='../S/409.html#L73'>vec</a>                73 src/utility/vector.h Vector *vec_copy(Vector *vec);</span>
+<span class='curline'><a href='../S/409.html#L74'>vec</a>                74 src/utility/vector.h void    vec_reverse(Vector *vec);</span>
+<span class='curline'><a href='../S/409.html#L75'>vec</a>                75 src/utility/vector.h void    vec_resize(Vector *vec, unsigned int size, vec_data_t val);</span>
+<span class='curline'><a href='../S/409.html#L76'>vec</a>                76 src/utility/vector.h void    vec_sort(const Vector *vec,</span>
+<span class='curline'><a href='../S/409.html#L81'>vec</a>                81 src/utility/vector.h static inline Vector *vec_init(Vector *vec, unsigned int init_size) {</span>
+<span class='curline'><a href='../S/409.html#L82'>vec</a>                82 src/utility/vector.h   vec-&gt;tbl = LMN_NALLOC(LmnWord, init_size);</span>
+<span class='curline'><a href='../S/409.html#L83'>vec</a>                83 src/utility/vector.h   vec-&gt;num = 0;</span>
+<span class='curline'><a href='../S/409.html#L84'>vec</a>                84 src/utility/vector.h   vec-&gt;cap = init_size;</span>
+<span class='curline'><a href='../S/409.html#L85'>vec</a>                85 src/utility/vector.h   return vec;</span>
+<span class='curline'><a href='../S/409.html#L91'>vec</a>                91 src/utility/vector.h   Vector* vec = LMN_MALLOC(Vector);</span>
+<span class='curline'><a href='../S/409.html#L92'>vec</a>                92 src/utility/vector.h   return vec_init(vec, init_size);</span>
+<span class='curline'><a href='../S/409.html#L96'>vec</a>                96 src/utility/vector.h static inline void vec_extend(Vector *vec) {</span>
+<span class='curline'><a href='../S/409.html#L97'>vec</a>                97 src/utility/vector.h   vec-&gt;cap *= 2;</span>
+<span class='curline'><a href='../S/409.html#L98'>vec</a>                98 src/utility/vector.h   vec-&gt;tbl = LMN_REALLOC(LmnWord, vec-&gt;tbl, vec-&gt;cap);</span>
+<span class='curline'><a href='../S/409.html#L102'>vec</a>               102 src/utility/vector.h static inline void vec_push(Vector *vec, LmnWord keyp) {</span>
+<span class='curline'><a href='../S/409.html#L103'>vec</a>               103 src/utility/vector.h   if(vec-&gt;num == vec-&gt;cap) {</span>
+<span class='curline'><a href='../S/409.html#L104'>vec</a>               104 src/utility/vector.h     vec_extend(vec);</span>
+<span class='curline'><a href='../S/409.html#L106'>vec</a>               106 src/utility/vector.h   (vec-&gt;tbl)[vec-&gt;num] = keyp;</span>
+<span class='curline'><a href='../S/409.html#L107'>vec</a>               107 src/utility/vector.h   vec-&gt;num++;</span>
+<span class='curline'><a href='../S/409.html#L111'>vec</a>               111 src/utility/vector.h static inline void vec_reduce(Vector *vec) {</span>
+<span class='curline'><a href='../S/409.html#L112'>vec</a>               112 src/utility/vector.h   vec-&gt;cap /= 2;</span>
+<span class='curline'><a href='../S/409.html#L113'>vec</a>               113 src/utility/vector.h   vec-&gt;tbl = LMN_REALLOC(LmnWord, vec-&gt;tbl, vec-&gt;cap);</span>
+<span class='curline'><a href='../S/409.html#L117'>vec</a>               117 src/utility/vector.h static inline LmnWord vec_pop(Vector *vec) {</span>
+<span class='curline'><a href='../S/409.html#L119'>vec</a>               119 src/utility/vector.h   LMN_ASSERT(vec-&gt;num &gt; 0);</span>
+<span class='curline'><a href='../S/409.html#L123'>vec</a>               123 src/utility/vector.h   if (vec-&gt;num &lt;= vec-&gt;cap/2 &amp;&amp; vec-&gt;cap &gt; 1024) {</span>
+<span class='curline'><a href='../S/409.html#L124'>vec</a>               124 src/utility/vector.h     vec_reduce(vec);</span>
+<span class='curline'><a href='../S/409.html#L126'>vec</a>               126 src/utility/vector.h   ret = vec_get(vec, (vec-&gt;num-1));</span>
+<span class='curline'><a href='../S/409.html#L127'>vec</a>               127 src/utility/vector.h   vec-&gt;num--;</span>
+<span class='curline'><a href='../S/409.html#L132'>vec</a>               132 src/utility/vector.h static inline LmnWord vec_peek(const Vector *vec) {</span>
+<span class='curline'><a href='../S/409.html#L133'>vec</a>               133 src/utility/vector.h   return vec_get(vec, vec-&gt;num - 1);</span>
+<span class='curline'><a href='../S/409.html#L137'>vec</a>               137 src/utility/vector.h static inline void vec_set(Vector *vec, unsigned int index, LmnWord keyp) {</span>
+<span class='curline'><a href='../S/409.html#L138'>vec</a>               138 src/utility/vector.h   LMN_ASSERT(index &lt; vec-&gt;cap);</span>
+<span class='curline'><a href='../S/409.html#L139'>vec</a>               139 src/utility/vector.h   (vec-&gt;tbl)[index] = keyp;</span>
+<span class='curline'><a href='../S/409.html#L143'>vec</a>               143 src/utility/vector.h static inline LmnWord vec_get(const Vector *vec, unsigned int index) {</span>
+<span class='curline'><a href='../S/409.html#L144'>vec</a>               144 src/utility/vector.h   LMN_ASSERT(index &lt; vec-&gt;num);</span>
+<span class='curline'><a href='../S/409.html#L145'>vec</a>               145 src/utility/vector.h   return(vec-&gt;tbl[index]);</span>
+<span class='curline'><a href='../S/409.html#L148'>vec</a>               148 src/utility/vector.h static inline LmnWord vec_last(Vector *vec)</span>
+<span class='curline'><a href='../S/409.html#L150'>vec</a>               150 src/utility/vector.h   return vec-&gt;tbl[vec-&gt;num-1];</span>
+<span class='curline'><a href='../S/409.html#L154'>vec</a>               154 src/utility/vector.h static inline void vec_clear(Vector *vec) {</span>
+<span class='curline'><a href='../S/409.html#L155'>vec</a>               155 src/utility/vector.h   vec-&gt;num = 0;</span>
+<span class='curline'><a href='../S/409.html#L159'>vec</a>               159 src/utility/vector.h static inline void vec_destroy(Vector *vec) {</span>
+<span class='curline'><a href='../S/409.html#L160'>vec</a>               160 src/utility/vector.h   LMN_FREE(vec-&gt;tbl);</span>
+<span class='curline'><a href='../S/409.html#L164'>vec</a>               164 src/utility/vector.h static inline void vec_free(Vector *vec) {</span>
+<span class='curline'><a href='../S/409.html#L165'>vec</a>               165 src/utility/vector.h   LMN_FREE(vec-&gt;tbl);</span>
+<span class='curline'><a href='../S/409.html#L166'>vec</a>               166 src/utility/vector.h   LMN_FREE(vec);</span>
+<span class='curline'><a href='../S/421.html#L120'>vec</a>               120 src/verifier/dpor_naive.c static int  independency_vec_free(st_data_t _k, st_data_t vec, st_data_t _a);</span>
+<span class='curline'><a href='../S/421.html#L145'>vec</a>               145 src/verifier/dpor_naive.c int dump__strans_independency(st_data_t key, st_data_t vec, st_data_t _a);</span>
+<span class='curline'><a href='../S/421.html#L210'>vec</a>               210 src/verifier/dpor_naive.c static int independency_vec_free(st_data_t _k, st_data_t vec, st_data_t _a)</span>
+<span class='curline'><a href='../S/421.html#L212'>vec</a>               212 src/verifier/dpor_naive.c   vec_free((Vector *)vec);</span>
+<span class='curline'><a href='../S/421.html#L1130'>vec</a>              1130 src/verifier/dpor_naive.c int dump__strans_independency(st_data_t key, st_data_t vec, st_data_t _a)</span>
+<span class='curline'><a href='../S/421.html#L1136'>vec</a>              1136 src/verifier/dpor_naive.c   v = (Vector *)vec;</span>
+</pre>
+</body>
+</html>

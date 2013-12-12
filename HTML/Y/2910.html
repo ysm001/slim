@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>is_head</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/448.html#L530'>is_head</a>           530 src/verifier/propsym_lexer.c int is_head = 0, is_guard=0;</span>
+<span class='curline'><a href='../S/448.html#L918'>is_head</a>           918 src/verifier/propsym_lexer.c { is_head = is_guard=0; return LINE_TERM; }</span>
+<span class='curline'><a href='../S/448.html#L937'>is_head</a>           937 src/verifier/propsym_lexer.c { is_head = 1; return EQUAL; }</span>
+<span class='curline'><a href='../S/448.html#L947'>is_head</a>           947 src/verifier/propsym_lexer.c      if (!(is_head || is_guard)) REJECT;</span>
+<span class='curline'><a href='../S/448.html#L967'>is_head</a>           967 src/verifier/propsym_lexer.c        if (is_head &amp;&amp; c == ':' &amp;&amp; depth == 0) {</span>
+<span class='curline'><a href='../S/448.html#L982'>is_head</a>           982 src/verifier/propsym_lexer.c      if (is_head) { is_head = 0; return HEAD; }</span>
+<span class='curline'><a href='../S/448.html#L990'>is_head</a>           990 src/verifier/propsym_lexer.c     if ((is_head || is_guard)) REJECT; /* これがないとなぜかうまく動かない */</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>elem_size</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/626.html#L1074'>elem_size</a>        1074 third_party/google-perftools-1.8.3/src/tcmalloc.cc inline void* do_calloc(size_t n, size_t elem_size) {</span>
+<span class='curline'><a href='../S/626.html#L1076'>elem_size</a>        1076 third_party/google-perftools-1.8.3/src/tcmalloc.cc   const size_t size = n * elem_size;</span>
+<span class='curline'><a href='../S/626.html#L1077'>elem_size</a>        1077 third_party/google-perftools-1.8.3/src/tcmalloc.cc   if (elem_size != 0 &amp;&amp; size / elem_size != n) return NULL;</span>
+<span class='curline'><a href='../S/626.html#L1492'>elem_size</a>        1492 third_party/google-perftools-1.8.3/src/tcmalloc.cc                                               size_t elem_size) __THROW {</span>
+<span class='curline'><a href='../S/626.html#L1493'>elem_size</a>        1493 third_party/google-perftools-1.8.3/src/tcmalloc.cc   void* result = do_calloc(n, elem_size);</span>
+<span class='curline'><a href='../S/626.html#L1494'>elem_size</a>        1494 third_party/google-perftools-1.8.3/src/tcmalloc.cc   MallocHook::InvokeNewHook(result, n * elem_size);</span>
+<span class='curline'><a href='../S/684.html#L830'>elem_size</a>         830 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc     size_t n, size_t elem_size) __THROW {</span>
+<span class='curline'><a href='../S/684.html#L831'>elem_size</a>         831 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc   void* result = do_calloc(n, elem_size);</span>
+<span class='curline'><a href='../S/684.html#L832'>elem_size</a>         832 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc   MallocHook::InvokeNewHook(result, n * elem_size);</span>
+</pre>
+</body>
+</html>

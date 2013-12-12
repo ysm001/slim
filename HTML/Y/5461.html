@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>transitions</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/413.html#L73'>transitions</a>        73 src/verifier/automata.c   Vector         transitions; /* Vector of Successors (AutomataTransition) */</span>
+<span class='curline'><a href='../S/413.html#L248'>transitions</a>       248 src/verifier/automata.c   vec_init(&amp;s-&gt;transitions, 16);</span>
+<span class='curline'><a href='../S/413.html#L260'>transitions</a>       260 src/verifier/automata.c   for (i = 0; i &lt; vec_num(&amp;s-&gt;transitions); i++) {</span>
+<span class='curline'><a href='../S/413.html#L261'>transitions</a>       261 src/verifier/automata.c     atm_transition_free((AutomataTransition)vec_get(&amp;s-&gt;transitions, i));</span>
+<span class='curline'><a href='../S/413.html#L263'>transitions</a>       263 src/verifier/automata.c   vec_destroy(&amp;s-&gt;transitions);</span>
+<span class='curline'><a href='../S/413.html#L269'>transitions</a>       269 src/verifier/automata.c   vec_push(&amp;s-&gt;transitions, (vec_data_t)t);</span>
+<span class='curline'><a href='../S/413.html#L279'>transitions</a>       279 src/verifier/automata.c   return vec_num(&amp;s-&gt;transitions);</span>
+<span class='curline'><a href='../S/413.html#L284'>transitions</a>       284 src/verifier/automata.c   return (AutomataTransition)vec_get(&amp;s-&gt;transitions, index);</span>
+<span class='curline'><a href='../S/445.html#L75'>transitions</a>        75 src/verifier/nc_parser.y %type &lt;vector&gt; transitions;</span>
+<span class='curline'><a href='../S/445.html#L111'>transitions</a>       111 src/verifier/nc_parser.y   SYMBOL COLON KW_IF transitions KW_FI SEMI_COLON {</span>
+<span class='curline'><a href='../S/445.html#L141'>transitions</a>       141 src/verifier/nc_parser.y transitions:</span>
+<span class='curline'><a href='../S/445.html#L143'>transitions</a>       143 src/verifier/nc_parser.y | transitions transition { vec_push($1, (vec_data_t)$2); $$ = $1; }</span>
+</pre>
+</body>
+</html>

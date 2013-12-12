@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>deflate_state</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/699.html#L109'>deflate_state</a>     109 third_party/zdelta-2.1/deflate.c typedef block_state (*compress_func) OF((deflate_state *s, int flush));</span>
+<span class='curline'><a href='../S/699.html#L112'>deflate_state</a>     112 third_party/zdelta-2.1/deflate.c local void fill_window     OF((deflate_state *s));</span>
+<span class='curline'><a href='../S/699.html#L113'>deflate_state</a>     113 third_party/zdelta-2.1/deflate.c local void fill_ref_window OF((deflate_state *s, int rw)); /* zdelta: added  */</span>
+<span class='curline'><a href='../S/699.html#L114'>deflate_state</a>     114 third_party/zdelta-2.1/deflate.c local void lm_init         OF((deflate_state *s)); /* zdelta: modified */</span>
+<span class='curline'><a href='../S/699.html#L115'>deflate_state</a>     115 third_party/zdelta-2.1/deflate.c local void init_window     OF((deflate_state *s)); /* zdelta: added    */</span>
+<span class='curline'><a href='../S/699.html#L116'>deflate_state</a>     116 third_party/zdelta-2.1/deflate.c local void init_ref_window OF((deflate_state *s, int rw)); /* zdelta: added  */</span>
+<span class='curline'><a href='../S/699.html#L118'>deflate_state</a>     118 third_party/zdelta-2.1/deflate.c local block_state deflate_stored OF((deflate_state *s, int flush));</span>
+<span class='curline'><a href='../S/699.html#L120'>deflate_state</a>     120 third_party/zdelta-2.1/deflate.c local block_state delta_deflate_fast OF((deflate_state *s, int flush));</span>
+<span class='curline'><a href='../S/699.html#L121'>deflate_state</a>     121 third_party/zdelta-2.1/deflate.c local block_state delta_deflate_slow OF((deflate_state *s, int flush));</span>
+<span class='curline'><a href='../S/699.html#L123'>deflate_state</a>     123 third_party/zdelta-2.1/deflate.c local void putShortMSB    OF((deflate_state *s, uInt b));</span>
+<span class='curline'><a href='../S/699.html#L130'>deflate_state</a>     130 third_party/zdelta-2.1/deflate.c local void target_longest_match     OF((deflate_state *s, IPos cur_match));</span>
+<span class='curline'><a href='../S/699.html#L131'>deflate_state</a>     131 third_party/zdelta-2.1/deflate.c local void reference_longest_match  OF((deflate_state *s, </span>
+<span class='curline'><a href='../S/699.html#L255'>deflate_state</a>     255 third_party/zdelta-2.1/deflate.c   deflate_state *s;</span>
+<span class='curline'><a href='../S/699.html#L268'>deflate_state</a>     268 third_party/zdelta-2.1/deflate.c   s = (deflate_state *)strm-&gt;state;</span>
+<span class='curline'><a href='../S/699.html#L310'>deflate_state</a>     310 third_party/zdelta-2.1/deflate.c     deflate_state *s;</span>
+<span class='curline'><a href='../S/699.html#L369'>deflate_state</a>     369 third_party/zdelta-2.1/deflate.c   deflate_state *s;</span>
+<span class='curline'><a href='../S/699.html#L416'>deflate_state</a>     416 third_party/zdelta-2.1/deflate.c   s = (deflate_state *) ZALLOC(strm, 1, sizeof(deflate_state));</span>
+<span class='curline'><a href='../S/699.html#L490'>deflate_state</a>     490 third_party/zdelta-2.1/deflate.c      deflate_state *s;</span>
+<span class='curline'><a href='../S/699.html#L532'>deflate_state</a>     532 third_party/zdelta-2.1/deflate.c   deflate_state *s;</span>
+<span class='curline'><a href='../S/699.html#L751'>deflate_state</a>     751 third_party/zdelta-2.1/deflate.c     deflate_state *s;</span>
+<span class='curline'><a href='../S/699.html#L797'>deflate_state</a>     797 third_party/zdelta-2.1/deflate.c     deflate_state *s;</span>
+<span class='curline'><a href='../S/699.html#L897'>deflate_state</a>     897 third_party/zdelta-2.1/deflate.c     deflate_state *s;</span>
+<span class='curline'><a href='../S/699.html#L941'>deflate_state</a>     941 third_party/zdelta-2.1/deflate.c     deflate_state *s;</span>
+<span class='curline'><a href='../S/699.html#L973'>deflate_state</a>     973 third_party/zdelta-2.1/deflate.c     deflate_state *s;</span>
+<span class='curline'><a href='../S/699.html#L1041'>deflate_state</a>    1041 third_party/zdelta-2.1/deflate.c      deflate_state *s;</span>
+<span class='curline'><a href='../S/699.html#L1206'>deflate_state</a>    1206 third_party/zdelta-2.1/deflate.c      deflate_state *s;</span>
+<span class='curline'><a href='../S/699.html#L1322'>deflate_state</a>    1322 third_party/zdelta-2.1/deflate.c     deflate_state *s;</span>
+<span class='curline'><a href='../S/699.html#L1400'>deflate_state</a>    1400 third_party/zdelta-2.1/deflate.c local void slide_ref_window(deflate_state *s, pointer_history *h, </span>
+<span class='curline'><a href='../S/699.html#L1437'>deflate_state</a>    1437 third_party/zdelta-2.1/deflate.c local block_state delta_deflate_fast(deflate_state *s, int flush){</span>
+<span class='curline'><a href='../S/699.html#L1567'>deflate_state</a>    1567 third_party/zdelta-2.1/deflate.c local block_state delta_deflate_slow(deflate_state *s, int flush){</span>
+<span class='curline'><a href='../S/700.html#L357'>deflate_state</a>     357 third_party/zdelta-2.1/deflate.h void zd_tr_init         OF((deflate_state *s));</span>
+<span class='curline'><a href='../S/700.html#L361'>deflate_state</a>     361 third_party/zdelta-2.1/deflate.h void zd_tr_flush_block  OF((deflate_state *s, charf *buf, ulg stored_len,</span>
+<span class='curline'><a href='../S/700.html#L363'>deflate_state</a>     363 third_party/zdelta-2.1/deflate.h void zd_tr_align        OF((deflate_state *s));</span>
+<span class='curline'><a href='../S/700.html#L364'>deflate_state</a>     364 third_party/zdelta-2.1/deflate.h void zd_tr_stored_block OF((deflate_state *s, charf *buf, ulg stored_len,</span>
+<span class='curline'><a href='../S/719.html#L180'>deflate_state</a>     180 third_party/zdelta-2.1/trees.c local void scan_tree      OF((deflate_state *s, ct_data *tree, int max_code));</span>
+<span class='curline'><a href='../S/719.html#L181'>deflate_state</a>     181 third_party/zdelta-2.1/trees.c local void send_tree      OF((deflate_state *s, ct_data *tree, int max_code));</span>
+<span class='curline'><a href='../S/719.html#L182'>deflate_state</a>     182 third_party/zdelta-2.1/trees.c local int  build_bl_tree  OF((deflate_state *s));</span>
+<span class='curline'><a href='../S/719.html#L183'>deflate_state</a>     183 third_party/zdelta-2.1/trees.c local void send_all_trees OF((deflate_state *s, int lcodes, int dcodes,</span>
+<span class='curline'><a href='../S/719.html#L185'>deflate_state</a>     185 third_party/zdelta-2.1/trees.c local void compress_block OF((deflate_state *s, ct_data *ltree,</span>
+<span class='curline'><a href='../S/719.html#L189'>deflate_state</a>     189 third_party/zdelta-2.1/trees.c local void init_block     OF((deflate_state *s));</span>
+<span class='curline'><a href='../S/719.html#L190'>deflate_state</a>     190 third_party/zdelta-2.1/trees.c local void pqdownheap     OF((deflate_state *s, ct_data *tree, int k));</span>
+<span class='curline'><a href='../S/719.html#L191'>deflate_state</a>     191 third_party/zdelta-2.1/trees.c local void gen_bitlen     OF((deflate_state *s, tree_desc *desc));</span>
+<span class='curline'><a href='../S/719.html#L193'>deflate_state</a>     193 third_party/zdelta-2.1/trees.c local void build_tree     OF((deflate_state *s, tree_desc *desc));</span>
+<span class='curline'><a href='../S/719.html#L196'>deflate_state</a>     196 third_party/zdelta-2.1/trees.c local void bi_windup      OF((deflate_state *s));</span>
+<span class='curline'><a href='../S/719.html#L197'>deflate_state</a>     197 third_party/zdelta-2.1/trees.c local void bi_flush       OF((deflate_state *s));</span>
+<span class='curline'><a href='../S/719.html#L198'>deflate_state</a>     198 third_party/zdelta-2.1/trees.c local void copy_block     OF((deflate_state *s, charf *buf, unsigned len,</span>
+<span class='curline'><a href='../S/719.html#L230'>deflate_state</a>     230 third_party/zdelta-2.1/trees.c local void send_bits      OF((deflate_state *s, int value, int length));</span>
+<span class='curline'><a href='../S/719.html#L233'>deflate_state</a>     233 third_party/zdelta-2.1/trees.c      deflate_state *s;</span>
+<span class='curline'><a href='../S/719.html#L484'>deflate_state</a>     484 third_party/zdelta-2.1/trees.c     deflate_state *s;</span>
+<span class='curline'><a href='../S/719.html#L519'>deflate_state</a>     519 third_party/zdelta-2.1/trees.c     deflate_state *s;</span>
+<span class='curline'><a href='../S/719.html#L564'>deflate_state</a>     564 third_party/zdelta-2.1/trees.c     deflate_state *s;</span>
+<span class='curline'><a href='../S/719.html#L599'>deflate_state</a>     599 third_party/zdelta-2.1/trees.c     deflate_state *s;</span>
+<span class='curline'><a href='../S/719.html#L731'>deflate_state</a>     731 third_party/zdelta-2.1/trees.c      deflate_state *s;</span>
+<span class='curline'><a href='../S/719.html#L818'>deflate_state</a>     818 third_party/zdelta-2.1/trees.c      deflate_state *s;</span>
+<span class='curline'><a href='../S/719.html#L863'>deflate_state</a>     863 third_party/zdelta-2.1/trees.c      deflate_state *s;</span>
+<span class='curline'><a href='../S/719.html#L916'>deflate_state</a>     916 third_party/zdelta-2.1/trees.c     deflate_state *s;</span>
+<span class='curline'><a href='../S/719.html#L960'>deflate_state</a>     960 third_party/zdelta-2.1/trees.c      deflate_state *s;</span>
+<span class='curline'><a href='../S/719.html#L1010'>deflate_state</a>    1010 third_party/zdelta-2.1/trees.c      deflate_state *s;</span>
+<span class='curline'><a href='../S/719.html#L1051'>deflate_state</a>    1051 third_party/zdelta-2.1/trees.c      deflate_state *s;</span>
+<span class='curline'><a href='../S/719.html#L1082'>deflate_state</a>    1082 third_party/zdelta-2.1/trees.c     deflate_state *s;</span>
+<span class='curline'><a href='../S/719.html#L1219'>deflate_state</a>    1219 third_party/zdelta-2.1/trees.c      deflate_state *s;</span>
+<span class='curline'><a href='../S/719.html#L1271'>deflate_state</a>    1271 third_party/zdelta-2.1/trees.c     deflate_state *s;</span>
+<span class='curline'><a href='../S/719.html#L1341'>deflate_state</a>    1341 third_party/zdelta-2.1/trees.c      deflate_state *s;</span>
+<span class='curline'><a href='../S/719.html#L1374'>deflate_state</a>    1374 third_party/zdelta-2.1/trees.c      deflate_state *s;</span>
+<span class='curline'><a href='../S/719.html#L1391'>deflate_state</a>    1391 third_party/zdelta-2.1/trees.c      deflate_state *s;</span>
+<span class='curline'><a href='../S/719.html#L1410'>deflate_state</a>    1410 third_party/zdelta-2.1/trees.c     deflate_state *s;</span>
+</pre>
+</body>
+</html>

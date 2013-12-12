@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>new_ss</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/419.html#L813'>new_ss</a>            813 src/verifier/dpor.c                                        Vector       *new_ss,</span>
+<span class='curline'><a href='../S/419.html#L858'>new_ss</a>            858 src/verifier/dpor.c       if (new_ss) {</span>
+<span class='curline'><a href='../S/419.html#L859'>new_ss</a>            859 src/verifier/dpor.c         vec_push(new_ss, (vec_data_t)succ);</span>
+<span class='curline'><a href='../S/419.html#L913'>new_ss</a>            913 src/verifier/dpor.c         if (new_ss) {</span>
+<span class='curline'><a href='../S/419.html#L914'>new_ss</a>            914 src/verifier/dpor.c           vec_push(new_ss, (vec_data_t)succ);</span>
+<span class='curline'><a href='../S/419.html#L1073'>new_ss</a>           1073 src/verifier/dpor.c     Vector *new_ss, *search;</span>
+<span class='curline'><a href='../S/419.html#L1087'>new_ss</a>           1087 src/verifier/dpor.c     new_ss = vec_make(32);</span>
+<span class='curline'><a href='../S/419.html#L1124'>new_ss</a>           1124 src/verifier/dpor.c       mc_expand(ss, s, p_s, &amp;rc, new_ss, statespace_propsyms(ss), f);</span>
+<span class='curline'><a href='../S/419.html#L1132'>new_ss</a>           1132 src/verifier/dpor.c       for (i = 0; i &lt; vec_num(new_ss); i++) {</span>
+<span class='curline'><a href='../S/419.html#L1133'>new_ss</a>           1133 src/verifier/dpor.c         vec_push(search, vec_get(new_ss, i));</span>
+<span class='curline'><a href='../S/419.html#L1136'>new_ss</a>           1136 src/verifier/dpor.c       vec_clear(new_ss);</span>
+<span class='curline'><a href='../S/419.html#L1145'>new_ss</a>           1145 src/verifier/dpor.c     vec_free(new_ss);</span>
+<span class='curline'><a href='../S/421.html#L127'>new_ss</a>            127 src/verifier/dpor_naive.c                      Vector      *new_ss,</span>
+<span class='curline'><a href='../S/421.html#L137'>new_ss</a>            137 src/verifier/dpor_naive.c                                    Vector      *new_ss,</span>
+<span class='curline'><a href='../S/421.html#L142'>new_ss</a>            142 src/verifier/dpor_naive.c                                         Vector      *new_ss,</span>
+<span class='curline'><a href='../S/421.html#L415'>new_ss</a>            415 src/verifier/dpor_naive.c                                                  Vector     *new_ss,</span>
+<span class='curline'><a href='../S/421.html#L430'>new_ss</a>            430 src/verifier/dpor_naive.c     if (new_ss) vec_push(new_ss, (vec_data_t)succ_s);</span>
+<span class='curline'><a href='../S/421.html#L837'>new_ss</a>            837 src/verifier/dpor_naive.c                      Vector      *new_ss,</span>
+<span class='curline'><a href='../S/421.html#L857'>new_ss</a>            857 src/verifier/dpor_naive.c     t = por_state_insert_statespace(ss, succ_t, succ_s, new_ss, f);</span>
+<span class='curline'><a href='../S/421.html#L1056'>new_ss</a>           1056 src/verifier/dpor_naive.c                                    Vector      *new_ss,</span>
+<span class='curline'><a href='../S/421.html#L1081'>new_ss</a>           1081 src/verifier/dpor_naive.c           por_state_insert_statespace(ss, succ_t, succ_s, new_ss, f);</span>
+<span class='curline'><a href='../S/421.html#L1105'>new_ss</a>           1105 src/verifier/dpor_naive.c                                         Vector      *new_ss,</span>
+<span class='curline'><a href='../S/421.html#L1120'>new_ss</a>           1120 src/verifier/dpor_naive.c         por_state_insert_statespace(ss, succ_t, succ_s, new_ss, f);</span>
+<span class='curline'><a href='../S/428.html#L202'>new_ss</a>            202 src/verifier/mc.c                Vector           *new_ss,</span>
+<span class='curline'><a href='../S/428.html#L225'>new_ss</a>            225 src/verifier/mc.c     dpor_start(ss, s, rc, new_ss, f);</span>
+<span class='curline'><a href='../S/428.html#L229'>new_ss</a>            229 src/verifier/mc.c     mc_store_successors(ss, s, rc, new_ss, f);</span>
+<span class='curline'><a href='../S/428.html#L259'>new_ss</a>            259 src/verifier/mc.c void mc_update_cost(State *s, Vector *new_ss, EWLock *ewlock)</span>
+<span class='curline'><a href='../S/428.html#L276'>new_ss</a>            276 src/verifier/mc.c     state_update_cost(succ, transition(s, i), s, new_ss, f, ewlock);</span>
+<span class='curline'><a href='../S/428.html#L293'>new_ss</a>            293 src/verifier/mc.c                          Vector           *new_ss,</span>
+<span class='curline'><a href='../S/428.html#L343'>new_ss</a>            343 src/verifier/mc.c       if (new_ss)        vec_push(new_ss, (vec_data_t)succ);</span>
+<span class='curline'><a href='../S/429.html#L82'>new_ss</a>             82 src/verifier/mc.h void mc_update_cost(State *s, Vector *new_ss, EWLock *ewlock);</span>
+<span class='curline'><a href='../S/429.html#L97'>new_ss</a>             97 src/verifier/mc.h                          Vector           *new_ss,</span>
+<span class='curline'><a href='../S/432.html#L310'>new_ss</a>            310 src/verifier/mc_generator.c   struct Vector new_ss;</span>
+<span class='curline'><a href='../S/432.html#L316'>new_ss</a>            316 src/verifier/mc_generator.c   vec_init(&amp;new_ss, 32);</span>
+<span class='curline'><a href='../S/432.html#L327'>new_ss</a>            327 src/verifier/mc_generator.c       costed_dfs_loop(w, &amp;DFS_WORKER_DEQUE(w), &amp;new_ss, statespace_automata(ss), statespace_propsyms(ss));</span>
+<span class='curline'><a href='../S/432.html#L332'>new_ss</a>            332 src/verifier/mc_generator.c       dfs_loop(w, &amp;DFS_WORKER_STACK(w), &amp;new_ss, statespace_automata(ss), statespace_propsyms(ss));</span>
+<span class='curline'><a href='../S/432.html#L353'>new_ss</a>            353 src/verifier/mc_generator.c             costed_dfs_loop(w, &amp;DFS_WORKER_DEQUE(w), &amp;new_ss, statespace_automata(ss), statespace_propsyms(ss));</span>
+<span class='curline'><a href='../S/432.html#L360'>new_ss</a>            360 src/verifier/mc_generator.c             dfs_loop(w, &amp;DFS_WORKER_STACK(w), &amp;new_ss, statespace_automata(ss), statespace_propsyms(ss));</span>
+<span class='curline'><a href='../S/432.html#L364'>new_ss</a>            364 src/verifier/mc_generator.c           vec_clear(&amp;new_ss);</span>
+<span class='curline'><a href='../S/432.html#L373'>new_ss</a>            373 src/verifier/mc_generator.c   vec_destroy(&amp;new_ss);</span>
+<span class='curline'><a href='../S/432.html#L379'>new_ss</a>            379 src/verifier/mc_generator.c                             Vector    *new_ss,</span>
+<span class='curline'><a href='../S/432.html#L407'>new_ss</a>            407 src/verifier/mc_generator.c     mc_expand(worker_states(w), s, p_s, &amp;worker_rc(w), new_ss, psyms, worker_flags(w));</span>
+<span class='curline'><a href='../S/432.html#L424'>new_ss</a>            424 src/verifier/mc_generator.c         dfs_handoff_all_task(w, new_ss);</span>
+<span class='curline'><a href='../S/432.html#L426'>new_ss</a>            426 src/verifier/mc_generator.c         n = vec_num(new_ss);</span>
+<span class='curline'><a href='../S/432.html#L428'>new_ss</a>            428 src/verifier/mc_generator.c           State *new_s = (State *)vec_get(new_ss, i);</span>
+<span class='curline'><a href='../S/432.html#L439'>new_ss</a>            439 src/verifier/mc_generator.c     vec_clear(new_ss);</span>
+<span class='curline'><a href='../S/432.html#L447'>new_ss</a>            447 src/verifier/mc_generator.c                      Vector    *new_ss,</span>
+<span class='curline'><a href='../S/432.html#L471'>new_ss</a>            471 src/verifier/mc_generator.c       mc_expand(worker_states(w), s, p_s, &amp;worker_rc(w), new_ss, psyms, worker_flags(w));</span>
+<span class='curline'><a href='../S/432.html#L472'>new_ss</a>            472 src/verifier/mc_generator.c       mc_update_cost(s, new_ss, workers_ewlock(worker_group(w)));</span>
+<span class='curline'><a href='../S/432.html#L474'>new_ss</a>            474 src/verifier/mc_generator.c       mc_update_cost(s, new_ss, workers_ewlock(worker_group(w)));</span>
+<span class='curline'><a href='../S/432.html#L494'>new_ss</a>            494 src/verifier/mc_generator.c         dfs_handoff_all_task(w, new_ss);</span>
+<span class='curline'><a href='../S/432.html#L496'>new_ss</a>            496 src/verifier/mc_generator.c         n = vec_num(new_ss);</span>
+<span class='curline'><a href='../S/432.html#L498'>new_ss</a>            498 src/verifier/mc_generator.c           State *new_s = (State *)vec_get(new_ss, i);</span>
+<span class='curline'><a href='../S/432.html#L513'>new_ss</a>            513 src/verifier/mc_generator.c     vec_clear(new_ss);</span>
+<span class='curline'><a href='../S/432.html#L607'>new_ss</a>            607 src/verifier/mc_generator.c   Vector *new_ss;</span>
+<span class='curline'><a href='../S/432.html#L614'>new_ss</a>            614 src/verifier/mc_generator.c   new_ss = vec_make(32);</span>
+<span class='curline'><a href='../S/432.html#L626'>new_ss</a>            626 src/verifier/mc_generator.c       bfs_loop(w, new_ss, statespace_automata(ss), statespace_propsyms(ss));</span>
+<span class='curline'><a href='../S/432.html#L645'>new_ss</a>            645 src/verifier/mc_generator.c         bfs_loop(w, new_ss, statespace_automata(ss), statespace_propsyms(ss));</span>
+<span class='curline'><a href='../S/432.html#L648'>new_ss</a>            648 src/verifier/mc_generator.c         vec_clear(new_ss);</span>
+<span class='curline'><a href='../S/432.html#L665'>new_ss</a>            665 src/verifier/mc_generator.c         bfs_loop(w, new_ss, statespace_automata(ss), statespace_propsyms(ss));</span>
+<span class='curline'><a href='../S/432.html#L667'>new_ss</a>            667 src/verifier/mc_generator.c         vec_clear(new_ss);</span>
+<span class='curline'><a href='../S/432.html#L681'>new_ss</a>            681 src/verifier/mc_generator.c   vec_free(new_ss);</span>
+<span class='curline'><a href='../S/432.html#L685'>new_ss</a>            685 src/verifier/mc_generator.c static inline void bfs_loop(LmnWorker *w, Vector *new_ss, Automata a, Vector *psyms)</span>
+<span class='curline'><a href='../S/432.html#L708'>new_ss</a>            708 src/verifier/mc_generator.c     mc_expand(worker_states(w), s, p_s, &amp;worker_rc(w), new_ss, psyms, worker_flags(w));</span>
+<span class='curline'><a href='../S/432.html#L721'>new_ss</a>            721 src/verifier/mc_generator.c       for (i = 0; i &lt; vec_num(new_ss); i++) {</span>
+<span class='curline'><a href='../S/432.html#L722'>new_ss</a>            722 src/verifier/mc_generator.c         enqueue(BFS_WORKER_Q_NXT(w), (LmnWord)vec_get(new_ss, i));</span>
+<span class='curline'><a href='../S/432.html#L726'>new_ss</a>            726 src/verifier/mc_generator.c     vec_clear(new_ss);</span>
+<span class='curline'><a href='../S/455.html#L228'>new_ss</a>            228 src/verifier/state.h                                                Vector *new_ss,</span>
+<span class='curline'><a href='../S/455.html#L541'>new_ss</a>            541 src/verifier/state.h                                      Vector *new_ss,</span>
+<span class='curline'><a href='../S/455.html#L550'>new_ss</a>            550 src/verifier/state.h     if (is_expanded(s) &amp;&amp; new_ss) vec_push(new_ss, (vec_data_t)s);</span>
+</pre>
+</body>
+</html>

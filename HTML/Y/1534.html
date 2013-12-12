@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>atom_memory_pools</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/309.html#L53'>atom_memory_pools</a>   53 src/alloc.c    static memory_pool **atom_memory_pools[128];</span>
+<span class='curline'><a href='../S/309.html#L58'>atom_memory_pools</a>   58 src/alloc.c      arity_num = ARY_SIZEOF(atom_memory_pools);</span>
+<span class='curline'><a href='../S/309.html#L61'>atom_memory_pools</a>   61 src/alloc.c        atom_memory_pools[i] = (memory_pool **)malloc(sizeof(memory_pool *) * core_num);</span>
+<span class='curline'><a href='../S/309.html#L62'>atom_memory_pools</a>   62 src/alloc.c        memset(atom_memory_pools[i], 0, sizeof(memory_pool *) * core_num);</span>
+<span class='curline'><a href='../S/309.html#L73'>atom_memory_pools</a>   73 src/alloc.c      if (atom_memory_pools[arity][cid] == 0) {</span>
+<span class='curline'><a href='../S/309.html#L74'>atom_memory_pools</a>   74 src/alloc.c        atom_memory_pools[arity][cid] =</span>
+<span class='curline'><a href='../S/309.html#L77'>atom_memory_pools</a>   77 src/alloc.c      ap = LMN_SATOM(memory_pool_malloc(atom_memory_pools[arity][cid]));</span>
+<span class='curline'><a href='../S/309.html#L92'>atom_memory_pools</a>   92 src/alloc.c      memory_pool_free(atom_memory_pools[arity][cid], ap);</span>
+<span class='curline'><a href='../S/309.html#L99'>atom_memory_pools</a>   99 src/alloc.c      arity_num = ARY_SIZEOF(atom_memory_pools);</span>
+<span class='curline'><a href='../S/309.html#L103'>atom_memory_pools</a>  103 src/alloc.c          if (atom_memory_pools[i][j]) {</span>
+<span class='curline'><a href='../S/309.html#L104'>atom_memory_pools</a>  104 src/alloc.c            memory_pool_delete(atom_memory_pools[i][j]);</span>
+<span class='curline'><a href='../S/309.html#L107'>atom_memory_pools</a>  107 src/alloc.c        free(atom_memory_pools[i]);</span>
+</pre>
+</body>
+</html>

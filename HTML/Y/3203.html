@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>left_</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/530.html#L219'>left_</a>             219 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc         : left_(false), mask_valid_(false), arena_(arena) {</span>
+<span class='curline'><a href='../S/530.html#L235'>left_</a>             235 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     ~ArenaLock() { RAW_CHECK(this-&gt;left_, "haven't left Arena region"); }</span>
+<span class='curline'><a href='../S/530.html#L243'>left_</a>             243 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       this-&gt;left_ = true;</span>
+<span class='curline'><a href='../S/530.html#L246'>left_</a>             246 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     bool left_;       // whether left region</span>
+<span class='curline'><a href='../S/572.html#L177'>left_</a>             177 third_party/google-perftools-1.8.3/src/internal_logging.cc   if (left_ &gt; 0) {</span>
+<span class='curline'><a href='../S/572.html#L180'>left_</a>             180 third_party/google-perftools-1.8.3/src/internal_logging.cc     const int r = perftools_vsnprintf(buf_, left_, format, ap);</span>
+<span class='curline'><a href='../S/572.html#L184'>left_</a>             184 third_party/google-perftools-1.8.3/src/internal_logging.cc       left_ = 0;</span>
+<span class='curline'><a href='../S/572.html#L185'>left_</a>             185 third_party/google-perftools-1.8.3/src/internal_logging.cc     } else if (r &gt; left_) {</span>
+<span class='curline'><a href='../S/572.html#L187'>left_</a>             187 third_party/google-perftools-1.8.3/src/internal_logging.cc       left_ = 0;</span>
+<span class='curline'><a href='../S/572.html#L189'>left_</a>             189 third_party/google-perftools-1.8.3/src/internal_logging.cc       left_ -= r;</span>
+<span class='curline'><a href='../S/573.html#L128'>left_</a>             128 third_party/google-perftools-1.8.3/src/internal_logging.h   int   left_;          // Space left in buffer (including space for \0)</span>
+<span class='curline'><a href='../S/573.html#L132'>left_</a>             132 third_party/google-perftools-1.8.3/src/internal_logging.h   TCMalloc_Printer(char* buf, int length) : buf_(buf), left_(length) {</span>
+</pre>
+</body>
+</html>

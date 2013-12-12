@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>log1</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/357.html#L1573'>log1</a>             1573 src/membrane.c static BOOL mem_equals_rec(LmnMembrane *mem1, TraceLog  log1,</span>
+<span class='curline'><a href='../S/357.html#L1592'>log1</a>             1592 src/membrane.c   struct TraceLog log1;</span>
+<span class='curline'><a href='../S/357.html#L1595'>log1</a>             1595 src/membrane.c   tracelog_init(&amp;log1);</span>
+<span class='curline'><a href='../S/357.html#L1598'>log1</a>             1598 src/membrane.c   t = mem_equals_rec(mem1, &amp;log1, mem2, &amp;log2, CHECKED_MEM_DEPTH);</span>
+<span class='curline'><a href='../S/357.html#L1601'>log1</a>             1601 src/membrane.c   tracelog_destroy(&amp;log1);</span>
+<span class='curline'><a href='../S/357.html#L1615'>log1</a>             1615 src/membrane.c static BOOL mem_equals_isomorphism(LmnMembrane *mem1, TraceLog log1,</span>
+<span class='curline'><a href='../S/357.html#L1622'>log1</a>             1622 src/membrane.c static BOOL mem_equals_rec(LmnMembrane *mem1, TraceLog  log1,</span>
+<span class='curline'><a href='../S/357.html#L1628'>log1</a>             1628 src/membrane.c   if (tracelog_contains_mem(log1, mem1)) {</span>
+<span class='curline'><a href='../S/357.html#L1633'>log1</a>             1633 src/membrane.c       return lmn_mem_id(mem2) == tracelog_get_memMatched(log1, mem1);</span>
+<span class='curline'><a href='../S/357.html#L1640'>log1</a>             1640 src/membrane.c   tracelog_put_mem(log1, mem1, lmn_mem_id(mem2));</span>
+<span class='curline'><a href='../S/357.html#L1675'>log1</a>             1675 src/membrane.c       /* 3.X */ !mem_equals_isomorphism(mem1, log1, mem2, log2, current_depth))</span>
+<span class='curline'><a href='../S/357.html#L1728'>log1</a>             1728 src/membrane.c static BOOL mem_isomor_mols(LmnMembrane *mem1, TraceLog  log1,</span>
+<span class='curline'><a href='../S/357.html#L1734'>log1</a>             1734 src/membrane.c static BOOL mem_equals_isomorphism(LmnMembrane *mem1, TraceLog  log1,</span>
+<span class='curline'><a href='../S/357.html#L1749'>log1</a>             1749 src/membrane.c   ret = /* Step 3.X */ mem_isomor_mols(mem1, log1, mem2, log2, &amp;iter);</span>
+<span class='curline'><a href='../S/357.html#L1887'>log1</a>             1887 src/membrane.c static inline BOOL mem_isomor_mol_atoms(LmnMembrane *mem1, TraceLog  log1,</span>
+<span class='curline'><a href='../S/357.html#L1890'>log1</a>             1890 src/membrane.c static inline BOOL mem_isomor_mol_mems(LmnMembrane *mem1, TraceLog  log1,</span>
+<span class='curline'><a href='../S/357.html#L1897'>log1</a>             1897 src/membrane.c static BOOL mem_isomor_mols(LmnMembrane *mem1, TraceLog  log1,</span>
+<span class='curline'><a href='../S/357.html#L1907'>log1</a>             1907 src/membrane.c   } while (root1 &amp;&amp; tracelog_contains_atom(log1, root1));</span>
+<span class='curline'><a href='../S/357.html#L1911'>log1</a>             1911 src/membrane.c     return mem_isomor_mol_atoms(mem1, log1,</span>
+<span class='curline'><a href='../S/357.html#L1918'>log1</a>             1918 src/membrane.c     } while (child &amp;&amp; tracelog_contains_mem(log1, child));</span>
+<span class='curline'><a href='../S/357.html#L1922'>log1</a>             1922 src/membrane.c       return mem_isomor_mol_mems(mem1, log1,</span>
+<span class='curline'><a href='../S/357.html#L1931'>log1</a>             1931 src/membrane.c       return tracelog_eq_traversed_proc_num(log1,</span>
+<span class='curline'><a href='../S/357.html#L1940'>log1</a>             1940 src/membrane.c static inline int mem_isomor_trace(LmnAtom cur1, LmnMembrane *mem1, TraceLog log1,</span>
+<span class='curline'><a href='../S/357.html#L1944'>log1</a>             1944 src/membrane.c static inline BOOL mem_isomor_mol_atoms(LmnMembrane *mem1, TraceLog  log1,</span>
+<span class='curline'><a href='../S/357.html#L1960'>log1</a>             1960 src/membrane.c     tracelog_set_btpoint(log1);</span>
+<span class='curline'><a href='../S/357.html#L1964'>log1</a>             1964 src/membrane.c     switch (mem_isomor_trace((LmnAtom)root1, mem1, log1,</span>
+<span class='curline'><a href='../S/357.html#L1970'>log1</a>             1970 src/membrane.c         tracelog_continue_trace(log1);</span>
+<span class='curline'><a href='../S/357.html#L1972'>log1</a>             1972 src/membrane.c         return mem_isomor_mols(mem1, log1, mem2, log2, iter);</span>
+<span class='curline'><a href='../S/357.html#L1976'>log1</a>             1976 src/membrane.c         if (mem_isomor_mols(mem1, log1, mem2, log2, iter)) {</span>
+<span class='curline'><a href='../S/357.html#L1977'>log1</a>             1977 src/membrane.c           tracelog_continue_trace(log1);</span>
+<span class='curline'><a href='../S/357.html#L1989'>log1</a>             1989 src/membrane.c     tracelog_backtrack(log1);</span>
+<span class='curline'><a href='../S/357.html#L1999'>log1</a>             1999 src/membrane.c static inline BOOL mem_isomor_mol_mems(LmnMembrane *mem1, TraceLog  log1,</span>
+<span class='curline'><a href='../S/357.html#L2007'>log1</a>             2007 src/membrane.c       tracelog_set_btpoint(log1);</span>
+<span class='curline'><a href='../S/357.html#L2009'>log1</a>             2009 src/membrane.c       if (!mem_equals_rec(root1, log1, root2, log2, CHECKED_MEM_DEPTH) ||</span>
+<span class='curline'><a href='../S/357.html#L2010'>log1</a>             2010 src/membrane.c           !mem_isomor_mols(mem1, log1, mem2, log2, iter)) {</span>
+<span class='curline'><a href='../S/357.html#L2011'>log1</a>             2011 src/membrane.c         tracelog_backtrack(log1);</span>
+<span class='curline'><a href='../S/357.html#L2015'>log1</a>             2015 src/membrane.c         tracelog_continue_trace(log1);</span>
+<span class='curline'><a href='../S/357.html#L2027'>log1</a>             2027 src/membrane.c static inline BOOL mem_isomor_trace_proxies(LmnAtom cur1, LmnMembrane *mem1, TraceLog log1,</span>
+<span class='curline'><a href='../S/357.html#L2030'>log1</a>             2030 src/membrane.c static inline int mem_isomor_trace_symbols(LmnAtom cur1, LmnMembrane *mem1, TraceLog log1,</span>
+<span class='curline'><a href='../S/357.html#L2037'>log1</a>             2037 src/membrane.c static inline int mem_isomor_trace(LmnAtom cur1, LmnMembrane *mem1, TraceLog log1,</span>
+<span class='curline'><a href='../S/357.html#L2043'>log1</a>             2043 src/membrane.c     if (!mem_isomor_trace_proxies(cur1, mem1, log1, f,</span>
+<span class='curline'><a href='../S/357.html#L2052'>log1</a>             2052 src/membrane.c     return mem_isomor_trace_symbols(cur1, mem1, log1, f, from_i,</span>
+<span class='curline'><a href='../S/357.html#L2057'>log1</a>             2057 src/membrane.c static inline BOOL mem_isomor_trace_proxies(LmnAtom cur1, LmnMembrane *mem1, TraceLog log1,</span>
+<span class='curline'><a href='../S/357.html#L2096'>log1</a>             2096 src/membrane.c     if (tracelog_contains_atom(log1, (LmnSAtom)in1)) {</span>
+<span class='curline'><a href='../S/357.html#L2098'>log1</a>             2098 src/membrane.c           LMN_SATOM_ID(in2) != tracelog_get_atomMatched(log1, (LmnSAtom)in1)) {</span>
+<span class='curline'><a href='../S/357.html#L2109'>log1</a>             2109 src/membrane.c       tracelog_put_atom(log1, (LmnSAtom)in1, LMN_SATOM_ID(in2), LMN_PROXY_GET_MEM(in1));</span>
+<span class='curline'><a href='../S/357.html#L2115'>log1</a>             2115 src/membrane.c   if (!tracelog_contains_mem(log1, nxtM1)) {</span>
+<span class='curline'><a href='../S/357.html#L2122'>log1</a>             2122 src/membrane.c            lmn_mem_id(nxtM2) != tracelog_get_memMatched(log1, nxtM1)) {</span>
+<span class='curline'><a href='../S/357.html#L2139'>log1</a>             2139 src/membrane.c       if (f == LMN_OUT_PROXY_FUNCTOR &amp;&amp; !tracelog_contains_mem(log1, nxtM1)) {</span>
+<span class='curline'><a href='../S/357.html#L2141'>log1</a>             2141 src/membrane.c         ret = mem_equals_rec(nxtM1, log1, nxtM2, log2, CHECKED_MEM_DEPTH);</span>
+<span class='curline'><a href='../S/357.html#L2152'>log1</a>             2152 src/membrane.c       BOOL ret = mem_isomor_trace(atom1, nxtM1, log1,</span>
+<span class='curline'><a href='../S/357.html#L2156'>log1</a>             2156 src/membrane.c           f == LMN_OUT_PROXY_FUNCTOR &amp;&amp; !tracelog_contains_mem(log1, nxtM1)) {</span>
+<span class='curline'><a href='../S/357.html#L2158'>log1</a>             2158 src/membrane.c         ret = mem_equals_rec(nxtM1, log1,</span>
+<span class='curline'><a href='../S/357.html#L2168'>log1</a>             2168 src/membrane.c static inline int mem_isomor_trace_symbols(LmnAtom cur1, LmnMembrane *mem1, TraceLog log1,</span>
+<span class='curline'><a href='../S/357.html#L2174'>log1</a>             2174 src/membrane.c   tracelog_put_atom(log1, (LmnSAtom)cur1, LMN_SATOM_ID(cur2), mem1);</span>
+<span class='curline'><a href='../S/357.html#L2210'>log1</a>             2210 src/membrane.c       if (tracelog_contains_atom(log1, (LmnSAtom)atom1)) {</span>
+<span class='curline'><a href='../S/357.html#L2213'>log1</a>             2213 src/membrane.c             LMN_SATOM_ID(atom2) != tracelog_get_atomMatched(log1, (LmnSAtom)atom1))</span>
+<span class='curline'><a href='../S/357.html#L2227'>log1</a>             2227 src/membrane.c         switch (mem_isomor_trace(atom1, mem1, log1,</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>child_in</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/622.html#L138'>child_in</a>          138 third_party/google-perftools-1.8.3/src/symbolize.cc   int *child_in = NULL;   // file descriptors</span>
+<span class='curline'><a href='../S/622.html#L158'>child_in</a>          158 third_party/google-perftools-1.8.3/src/symbolize.cc         if (child_in == NULL) {</span>
+<span class='curline'><a href='../S/622.html#L159'>child_in</a>          159 third_party/google-perftools-1.8.3/src/symbolize.cc           child_in = child_fds[i];</span>
+<span class='curline'><a href='../S/622.html#L163'>child_in</a>          163 third_party/google-perftools-1.8.3/src/symbolize.cc             if (child_fds[j] == child_in) continue;</span>
+<span class='curline'><a href='../S/622.html#L175'>child_in</a>          175 third_party/google-perftools-1.8.3/src/symbolize.cc       close(child_in[0]);</span>
+<span class='curline'><a href='../S/622.html#L176'>child_in</a>          176 third_party/google-perftools-1.8.3/src/symbolize.cc       close(child_in[1]);</span>
+<span class='curline'><a href='../S/622.html#L183'>child_in</a>          183 third_party/google-perftools-1.8.3/src/symbolize.cc       close(child_in[1]);   // child uses the 0's, parent uses the 1's</span>
+<span class='curline'><a href='../S/622.html#L187'>child_in</a>          187 third_party/google-perftools-1.8.3/src/symbolize.cc       if (dup2(child_in[0], 0) == -1) _exit(1);</span>
+<span class='curline'><a href='../S/622.html#L199'>child_in</a>          199 third_party/google-perftools-1.8.3/src/symbolize.cc       close(child_in[0]);   // child uses the 0's, parent uses the 1's</span>
+<span class='curline'><a href='../S/622.html#L208'>child_in</a>          208 third_party/google-perftools-1.8.3/src/symbolize.cc       struct pollfd pfd = { child_in[1], POLLOUT, 0 };</span>
+<span class='curline'><a href='../S/622.html#L217'>child_in</a>          217 third_party/google-perftools-1.8.3/src/symbolize.cc       const HANDLE symbols_handle = (HANDLE) get_osfhandle(child_in[1]);</span>
+<span class='curline'><a href='../S/622.html#L220'>child_in</a>          220 third_party/google-perftools-1.8.3/src/symbolize.cc       DumpProcSelfMaps(child_in[1]);  // what pprof expects on stdin</span>
+<span class='curline'><a href='../S/622.html#L234'>child_in</a>          234 third_party/google-perftools-1.8.3/src/symbolize.cc       write(child_in[1], pprof_buffer, strlen(pprof_buffer));</span>
+<span class='curline'><a href='../S/622.html#L235'>child_in</a>          235 third_party/google-perftools-1.8.3/src/symbolize.cc       close(child_in[1]);             // that's all we need to write</span>
+</pre>
+</body>
+</html>

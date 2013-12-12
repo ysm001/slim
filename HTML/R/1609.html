@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>MallocExtension</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/555.html#L1046'>MallocExtension</a>  1046 third_party/google-perftools-1.8.3/src/debugallocation.cc       RAW_CHECK(GetOwnership(p) != MallocExtension::kNotOwned,</span>
+<span class='curline'><a href='../S/555.html#L1053'>MallocExtension</a>  1053 third_party/google-perftools-1.8.3/src/debugallocation.cc   virtual MallocExtension::Ownership GetOwnership(const void* p) {</span>
+<span class='curline'><a href='../S/555.html#L1058'>MallocExtension</a>  1058 third_party/google-perftools-1.8.3/src/debugallocation.cc     return MallocExtension::kNotOwned;   // nobody owns NULL</span>
+<span class='curline'><a href='../S/555.html#L1061'>MallocExtension</a>  1061 third_party/google-perftools-1.8.3/src/debugallocation.cc   virtual void GetFreeListSizes(vector&lt;MallocExtension::FreeListInfo&gt;* v) {</span>
+<span class='curline'><a href='../S/555.html#L1066'>MallocExtension</a>  1066 third_party/google-perftools-1.8.3/src/debugallocation.cc     MallocExtension::FreeListInfo i;</span>
+<span class='curline'><a href='../S/555.html#L1083'>MallocExtension</a>  1083 third_party/google-perftools-1.8.3/src/debugallocation.cc     MallocExtension::Register(&amp;debug_malloc_implementation);</span>
+<span class='curline'><a href='../S/555.html#L1417'>MallocExtension</a>  1417 third_party/google-perftools-1.8.3/src/debugallocation.cc   return MallocExtension::instance()-&gt;GetAllocatedSize(ptr);</span>
+<span class='curline'><a href='../S/559.html#L89'>MallocExtension</a>    89 third_party/google-perftools-1.8.3/src/google/malloc_extension.h class PERFTOOLS_DLL_DECL MallocExtension {</span>
+<span class='curline'><a href='../S/559.html#L91'>MallocExtension</a>    91 third_party/google-perftools-1.8.3/src/google/malloc_extension.h   virtual ~MallocExtension();</span>
+<span class='curline'><a href='../S/559.html#L306'>MallocExtension</a>   306 third_party/google-perftools-1.8.3/src/google/malloc_extension.h   static MallocExtension* instance();</span>
+<span class='curline'><a href='../S/559.html#L310'>MallocExtension</a>   310 third_party/google-perftools-1.8.3/src/google/malloc_extension.h   static void Register(MallocExtension* implementation);</span>
+<span class='curline'><a href='../S/567.html#L74'>MallocExtension</a>    74 third_party/google-perftools-1.8.3/src/heap-checker-bcad.cc       MallocExtension::Initialize();</span>
+<span class='curline'><a href='../S/571.html#L442'>MallocExtension</a>   442 third_party/google-perftools-1.8.3/src/heap-profiler.cc   MallocExtension::Initialize();</span>
+<span class='curline'><a href='../S/572.html#L115'>MallocExtension</a>   115 third_party/google-perftools-1.8.3/src/internal_logging.cc     MallocExtension::instance()-&gt;GetStats(stats_buffer, kStatsBufferSize);</span>
+<span class='curline'><a href='../S/577.html#L103'>MallocExtension</a>   103 third_party/google-perftools-1.8.3/src/libc_override_osx.h   if (MallocExtension::instance()-&gt;GetOwnership(ptr) != MallocExtension::kOwned)</span>
+<span class='curline'><a href='../S/577.html#L107'>MallocExtension</a>   107 third_party/google-perftools-1.8.3/src/libc_override_osx.h   return MallocExtension::instance()-&gt;GetAllocatedSize(const_cast&lt;void*&gt;(ptr));</span>
+<span class='curline'><a href='../S/577.html#L153'>MallocExtension</a>   153 third_party/google-perftools-1.8.3/src/libc_override_osx.h   return MallocExtension::instance()-&gt;VerifyAllMemory();</span>
+<span class='curline'><a href='../S/577.html#L161'>MallocExtension</a>   161 third_party/google-perftools-1.8.3/src/libc_override_osx.h   MallocExtension::instance()-&gt;GetStats(buffer, bufsize);</span>
+<span class='curline'><a href='../S/580.html#L77'>MallocExtension</a>    77 third_party/google-perftools-1.8.3/src/malloc_extension.cc void MallocExtension::Initialize() {</span>
+<span class='curline'><a href='../S/580.html#L109'>MallocExtension</a>   109 third_party/google-perftools-1.8.3/src/malloc_extension.cc MallocExtension::~MallocExtension() { }</span>
+<span class='curline'><a href='../S/580.html#L110'>MallocExtension</a>   110 third_party/google-perftools-1.8.3/src/malloc_extension.cc bool MallocExtension::VerifyAllMemory() { return true; }</span>
+<span class='curline'><a href='../S/580.html#L111'>MallocExtension</a>   111 third_party/google-perftools-1.8.3/src/malloc_extension.cc bool MallocExtension::VerifyNewMemory(void* p) { return true; }</span>
+<span class='curline'><a href='../S/580.html#L112'>MallocExtension</a>   112 third_party/google-perftools-1.8.3/src/malloc_extension.cc bool MallocExtension::VerifyArrayNewMemory(void* p) { return true; }</span>
+<span class='curline'><a href='../S/580.html#L113'>MallocExtension</a>   113 third_party/google-perftools-1.8.3/src/malloc_extension.cc bool MallocExtension::VerifyMallocMemory(void* p) { return true; }</span>
+<span class='curline'><a href='../S/580.html#L115'>MallocExtension</a>   115 third_party/google-perftools-1.8.3/src/malloc_extension.cc bool MallocExtension::GetNumericProperty(const char* property, size_t* value) {</span>
+<span class='curline'><a href='../S/580.html#L119'>MallocExtension</a>   119 third_party/google-perftools-1.8.3/src/malloc_extension.cc bool MallocExtension::SetNumericProperty(const char* property, size_t value) {</span>
+<span class='curline'><a href='../S/580.html#L123'>MallocExtension</a>   123 third_party/google-perftools-1.8.3/src/malloc_extension.cc void MallocExtension::GetStats(char* buffer, int length) {</span>
+<span class='curline'><a href='../S/580.html#L128'>MallocExtension</a>   128 third_party/google-perftools-1.8.3/src/malloc_extension.cc bool MallocExtension::MallocMemoryStats(int* blocks, size_t* total,</span>
+<span class='curline'><a href='../S/580.html#L136'>MallocExtension</a>   136 third_party/google-perftools-1.8.3/src/malloc_extension.cc void** MallocExtension::ReadStackTraces(int* sample_period) {</span>
+<span class='curline'><a href='../S/580.html#L140'>MallocExtension</a>   140 third_party/google-perftools-1.8.3/src/malloc_extension.cc void** MallocExtension::ReadHeapGrowthStackTraces() {</span>
+<span class='curline'><a href='../S/580.html#L144'>MallocExtension</a>   144 third_party/google-perftools-1.8.3/src/malloc_extension.cc void MallocExtension::MarkThreadIdle() {</span>
+<span class='curline'><a href='../S/580.html#L148'>MallocExtension</a>   148 third_party/google-perftools-1.8.3/src/malloc_extension.cc void MallocExtension::MarkThreadBusy() {</span>
+<span class='curline'><a href='../S/580.html#L152'>MallocExtension</a>   152 third_party/google-perftools-1.8.3/src/malloc_extension.cc SysAllocator* MallocExtension::GetSystemAllocator() {</span>
+<span class='curline'><a href='../S/580.html#L156'>MallocExtension</a>   156 third_party/google-perftools-1.8.3/src/malloc_extension.cc void MallocExtension::SetSystemAllocator(SysAllocator *a) {</span>
+<span class='curline'><a href='../S/580.html#L160'>MallocExtension</a>   160 third_party/google-perftools-1.8.3/src/malloc_extension.cc void MallocExtension::ReleaseToSystem(size_t num_bytes) {</span>
+<span class='curline'><a href='../S/580.html#L164'>MallocExtension</a>   164 third_party/google-perftools-1.8.3/src/malloc_extension.cc void MallocExtension::ReleaseFreeMemory() {</span>
+<span class='curline'><a href='../S/580.html#L168'>MallocExtension</a>   168 third_party/google-perftools-1.8.3/src/malloc_extension.cc void MallocExtension::SetMemoryReleaseRate(double rate) {</span>
+<span class='curline'><a href='../S/580.html#L172'>MallocExtension</a>   172 third_party/google-perftools-1.8.3/src/malloc_extension.cc double MallocExtension::GetMemoryReleaseRate() {</span>
+<span class='curline'><a href='../S/580.html#L176'>MallocExtension</a>   176 third_party/google-perftools-1.8.3/src/malloc_extension.cc size_t MallocExtension::GetEstimatedAllocatedSize(size_t size) {</span>
+<span class='curline'><a href='../S/580.html#L180'>MallocExtension</a>   180 third_party/google-perftools-1.8.3/src/malloc_extension.cc size_t MallocExtension::GetAllocatedSize(void* p) {</span>
+<span class='curline'><a href='../S/580.html#L185'>MallocExtension</a>   185 third_party/google-perftools-1.8.3/src/malloc_extension.cc MallocExtension::Ownership MallocExtension::GetOwnership(const void* p) {</span>
+<span class='curline'><a href='../S/580.html#L189'>MallocExtension</a>   189 third_party/google-perftools-1.8.3/src/malloc_extension.cc void MallocExtension::GetFreeListSizes(</span>
+<span class='curline'><a href='../S/580.html#L190'>MallocExtension</a>   190 third_party/google-perftools-1.8.3/src/malloc_extension.cc     vector&lt;MallocExtension::FreeListInfo&gt;* v) {</span>
+<span class='curline'><a href='../S/580.html#L197'>MallocExtension</a>   197 third_party/google-perftools-1.8.3/src/malloc_extension.cc static MallocExtension* current_instance = NULL;</span>
+<span class='curline'><a href='../S/580.html#L200'>MallocExtension</a>   200 third_party/google-perftools-1.8.3/src/malloc_extension.cc   current_instance = new MallocExtension;</span>
+<span class='curline'><a href='../S/580.html#L206'>MallocExtension</a>   206 third_party/google-perftools-1.8.3/src/malloc_extension.cc MallocExtension* MallocExtension::instance() {</span>
+<span class='curline'><a href='../S/580.html#L211'>MallocExtension</a>   211 third_party/google-perftools-1.8.3/src/malloc_extension.cc void MallocExtension::Register(MallocExtension* implementation) {</span>
+<span class='curline'><a href='../S/580.html#L286'>MallocExtension</a>   286 third_party/google-perftools-1.8.3/src/malloc_extension.cc void MallocExtension::GetHeapSample(MallocExtensionWriter* writer) {</span>
+<span class='curline'><a href='../S/580.html#L310'>MallocExtension</a>   310 third_party/google-perftools-1.8.3/src/malloc_extension.cc void MallocExtension::GetHeapGrowthStacks(MallocExtensionWriter* writer) {</span>
+<span class='curline'><a href='../S/580.html#L334'>MallocExtension</a>   334 third_party/google-perftools-1.8.3/src/malloc_extension.cc void MallocExtension::Ranges(void* arg, RangeFunction func) {</span>
+<span class='curline'><a href='../S/580.html#L342'>MallocExtension</a>   342 third_party/google-perftools-1.8.3/src/malloc_extension.cc     return MallocExtension::instance()-&gt;fn arglist;     \</span>
+<span class='curline'><a href='../S/580.html#L371'>MallocExtension</a>   371 third_party/google-perftools-1.8.3/src/malloc_extension.cc       MallocExtension::instance()-&gt;GetOwnership(p));</span>
+<span class='curline'><a href='../S/587.html#L259'>MallocExtension</a>   259 third_party/google-perftools-1.8.3/src/memfs_malloc.cc     SysAllocator* alloc = MallocExtension::instance()-&gt;GetSystemAllocator();</span>
+<span class='curline'><a href='../S/587.html#L262'>MallocExtension</a>   262 third_party/google-perftools-1.8.3/src/memfs_malloc.cc       MallocExtension::instance()-&gt;SetSystemAllocator(hp);</span>
+<span class='curline'><a href='../S/626.html#L532'>MallocExtension</a>   532 third_party/google-perftools-1.8.3/src/tcmalloc.cc static void IterateOverRanges(void* arg, MallocExtension::RangeFunction func) {</span>
+<span class='curline'><a href='../S/626.html#L561'>MallocExtension</a>   561 third_party/google-perftools-1.8.3/src/tcmalloc.cc class TCMallocImplementation : public MallocExtension {</span>
+<span class='curline'><a href='../S/626.html#L601'>MallocExtension</a>   601 third_party/google-perftools-1.8.3/src/tcmalloc.cc     MallocExtension::GetHeapSample(writer);</span>
+<span class='curline'><a href='../S/626.html#L778'>MallocExtension</a>   778 third_party/google-perftools-1.8.3/src/tcmalloc.cc   virtual void GetFreeListSizes(vector&lt;MallocExtension::FreeListInfo&gt;* v) {</span>
+<span class='curline'><a href='../S/626.html#L793'>MallocExtension</a>   793 third_party/google-perftools-1.8.3/src/tcmalloc.cc       MallocExtension::FreeListInfo i;</span>
+<span class='curline'><a href='../S/626.html#L821'>MallocExtension</a>   821 third_party/google-perftools-1.8.3/src/tcmalloc.cc       MallocExtension::FreeListInfo i;</span>
+<span class='curline'><a href='../S/626.html#L840'>MallocExtension</a>   840 third_party/google-perftools-1.8.3/src/tcmalloc.cc     MallocExtension::FreeListInfo span_info;</span>
+<span class='curline'><a href='../S/626.html#L854'>MallocExtension</a>   854 third_party/google-perftools-1.8.3/src/tcmalloc.cc       MallocExtension::FreeListInfo i;</span>
+<span class='curline'><a href='../S/626.html#L900'>MallocExtension</a>   900 third_party/google-perftools-1.8.3/src/tcmalloc.cc       MallocExtension::Register(new TCMallocImplementation);</span>
+<span class='curline'><a href='../S/626.html#L1638'>MallocExtension</a>  1638 third_party/google-perftools-1.8.3/src/tcmalloc.cc   return MallocExtension::instance()-&gt;GetAllocatedSize(ptr);</span>
+<span class='curline'><a href='../S/631.html#L55'>MallocExtension</a>    55 third_party/google-perftools-1.8.3/src/tests/current_allocated_bytes_test.cc   MallocExtension::instance()-&gt;GetNumericProperty(kCurrent, &amp;before_bytes);</span>
+<span class='curline'><a href='../S/631.html#L57'>MallocExtension</a>    57 third_party/google-perftools-1.8.3/src/tests/current_allocated_bytes_test.cc   MallocExtension::instance()-&gt;GetNumericProperty(kCurrent, &amp;after_bytes);</span>
+<span class='curline'><a href='../S/632.html#L233'>MallocExtension</a>   233 third_party/google-perftools-1.8.3/src/tests/debugallocation_test.cc   CHECK(MallocExtension::instance()-&gt;GetNumericProperty(</span>
+<span class='curline'><a href='../S/632.html#L264'>MallocExtension</a>   264 third_party/google-perftools-1.8.3/src/tests/debugallocation_test.cc     EXPECT_EQ(i, MallocExtension::instance()-&gt;GetAllocatedSize(p));</span>
+<span class='curline'><a href='../S/632.html#L269'>MallocExtension</a>   269 third_party/google-perftools-1.8.3/src/tests/debugallocation_test.cc   EXPECT_GE(MallocExtension::instance()-&gt;GetAllocatedSize(a), 1000);</span>
+<span class='curline'><a href='../S/632.html#L271'>MallocExtension</a>   271 third_party/google-perftools-1.8.3/src/tests/debugallocation_test.cc   EXPECT_LE(MallocExtension::instance()-&gt;GetAllocatedSize(a), 5000);</span>
+<span class='curline'><a href='../S/632.html#L272'>MallocExtension</a>   272 third_party/google-perftools-1.8.3/src/tests/debugallocation_test.cc   EXPECT_GE(MallocExtension::instance()-&gt;GetEstimatedAllocatedSize(1000), 1000);</span>
+<span class='curline'><a href='../S/634.html#L67'>MallocExtension</a>    67 third_party/google-perftools-1.8.3/src/tests/frag_unittest.cc   MallocExtension::instance()-&gt;GetNumericProperty("tcmalloc.slack_bytes",</span>
+<span class='curline'><a href='../S/634.html#L79'>MallocExtension</a>    79 third_party/google-perftools-1.8.3/src/tests/frag_unittest.cc   MallocExtension::instance()-&gt;GetNumericProperty("tcmalloc.slack_bytes",</span>
+<span class='curline'><a href='../S/634.html#L90'>MallocExtension</a>    90 third_party/google-perftools-1.8.3/src/tests/frag_unittest.cc   MallocExtension::instance()-&gt;GetStats(buffer, kBufSize);</span>
+<span class='curline'><a href='../S/634.html#L109'>MallocExtension</a>   109 third_party/google-perftools-1.8.3/src/tests/frag_unittest.cc       MallocExtension::instance()-&gt;GetNumericProperty("tcmalloc.slack_bytes",</span>
+<span class='curline'><a href='../S/637.html#L265'>MallocExtension</a>   265 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   CHECK(MallocExtension::instance()-&gt;VerifyAllMemory());</span>
+<span class='curline'><a href='../S/637.html#L269'>MallocExtension</a>   269 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   if (MallocExtension::instance()</span>
+<span class='curline'><a href='../S/643.html#L48'>MallocExtension</a>    48 third_party/google-perftools-1.8.3/src/tests/malloc_extension_test.cc   ASSERT_TRUE(MallocExtension::instance()-&gt;GetNumericProperty(</span>
+<span class='curline'><a href='../S/643.html#L55'>MallocExtension</a>    55 third_party/google-perftools-1.8.3/src/tests/malloc_extension_test.cc   ASSERT_TRUE(MallocExtension::instance()-&gt;VerifyAllMemory());</span>
+<span class='curline'><a href='../S/643.html#L58'>MallocExtension</a>    58 third_party/google-perftools-1.8.3/src/tests/malloc_extension_test.cc   ASSERT_EQ(MallocExtension::kOwned,</span>
+<span class='curline'><a href='../S/643.html#L59'>MallocExtension</a>    59 third_party/google-perftools-1.8.3/src/tests/malloc_extension_test.cc             MallocExtension::instance()-&gt;GetOwnership(a));</span>
+<span class='curline'><a href='../S/643.html#L62'>MallocExtension</a>    62 third_party/google-perftools-1.8.3/src/tests/malloc_extension_test.cc   ASSERT_EQ(MallocExtension::kNotOwned,</span>
+<span class='curline'><a href='../S/643.html#L63'>MallocExtension</a>    63 third_party/google-perftools-1.8.3/src/tests/malloc_extension_test.cc             MallocExtension::instance()-&gt;GetOwnership(&amp;cxx_bytes_used));</span>
+<span class='curline'><a href='../S/643.html#L64'>MallocExtension</a>    64 third_party/google-perftools-1.8.3/src/tests/malloc_extension_test.cc   ASSERT_EQ(MallocExtension::kNotOwned,</span>
+<span class='curline'><a href='../S/643.html#L65'>MallocExtension</a>    65 third_party/google-perftools-1.8.3/src/tests/malloc_extension_test.cc             MallocExtension::instance()-&gt;GetOwnership(NULL));</span>
+<span class='curline'><a href='../S/643.html#L66'>MallocExtension</a>    66 third_party/google-perftools-1.8.3/src/tests/malloc_extension_test.cc   ASSERT_GE(MallocExtension::instance()-&gt;GetAllocatedSize(a), 1000);</span>
+<span class='curline'><a href='../S/643.html#L68'>MallocExtension</a>    68 third_party/google-perftools-1.8.3/src/tests/malloc_extension_test.cc   ASSERT_LE(MallocExtension::instance()-&gt;GetAllocatedSize(a), 5000);</span>
+<span class='curline'><a href='../S/643.html#L69'>MallocExtension</a>    69 third_party/google-perftools-1.8.3/src/tests/malloc_extension_test.cc   ASSERT_GE(MallocExtension::instance()-&gt;GetEstimatedAllocatedSize(1000), 1000);</span>
+<span class='curline'><a href='../S/643.html#L73'>MallocExtension</a>    73 third_party/google-perftools-1.8.3/src/tests/malloc_extension_test.cc     ASSERT_GE(MallocExtension::instance()-&gt;GetAllocatedSize(p),</span>
+<span class='curline'><a href='../S/643.html#L74'>MallocExtension</a>    74 third_party/google-perftools-1.8.3/src/tests/malloc_extension_test.cc              MallocExtension::instance()-&gt;GetEstimatedAllocatedSize(i));</span>
+<span class='curline'><a href='../S/643.html#L90'>MallocExtension</a>    90 third_party/google-perftools-1.8.3/src/tests/malloc_extension_test.cc   ASSERT_EQ(static_cast&lt;int&gt;(MallocExtension::kUnknownOwnership),</span>
+<span class='curline'><a href='../S/643.html#L92'>MallocExtension</a>    92 third_party/google-perftools-1.8.3/src/tests/malloc_extension_test.cc   ASSERT_EQ(static_cast&lt;int&gt;(MallocExtension::kOwned),</span>
+<span class='curline'><a href='../S/643.html#L94'>MallocExtension</a>    94 third_party/google-perftools-1.8.3/src/tests/malloc_extension_test.cc   ASSERT_EQ(static_cast&lt;int&gt;(MallocExtension::kNotOwned),</span>
+<span class='curline'><a href='../S/645.html#L59'>MallocExtension</a>    59 third_party/google-perftools-1.8.3/src/tests/markidle_unittest.cc     MallocExtension::instance()-&gt;MarkThreadIdle();</span>
+<span class='curline'><a href='../S/645.html#L68'>MallocExtension</a>    68 third_party/google-perftools-1.8.3/src/tests/markidle_unittest.cc     MallocExtension::instance()-&gt;MarkThreadIdle();</span>
+<span class='curline'><a href='../S/645.html#L75'>MallocExtension</a>    75 third_party/google-perftools-1.8.3/src/tests/markidle_unittest.cc   CHECK(MallocExtension::instance()-&gt;GetNumericProperty(</span>
+<span class='curline'><a href='../S/645.html#L90'>MallocExtension</a>    90 third_party/google-perftools-1.8.3/src/tests/markidle_unittest.cc   MallocExtension::instance()-&gt;MarkThreadIdle();</span>
+<span class='curline'><a href='../S/658.html#L74'>MallocExtension</a>    74 third_party/google-perftools-1.8.3/src/tests/sampling_test.cc   MallocExtension::instance()-&gt;GetHeapSample(&amp;s);</span>
+<span class='curline'><a href='../S/658.html#L78'>MallocExtension</a>    78 third_party/google-perftools-1.8.3/src/tests/sampling_test.cc   MallocExtension::instance()-&gt;GetHeapGrowthStacks(&amp;s);</span>
+<span class='curline'><a href='../S/662.html#L99'>MallocExtension</a>    99 third_party/google-perftools-1.8.3/src/tests/system-alloc_unittest.cc   MallocExtension::instance()-&gt;SetSystemAllocator(&amp;a);</span>
+<span class='curline'><a href='../S/664.html#L574'>MallocExtension</a>   574 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   MallocExtension* inst = MallocExtension::instance();</span>
+<span class='curline'><a href='../S/664.html#L831'>MallocExtension</a>   831 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   MallocExtension::instance()-&gt;Ranges(&amp;state, RangeCallback);</span>
+<span class='curline'><a href='../S/664.html#L846'>MallocExtension</a>   846 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   MallocExtension::instance()-&gt;ReleaseFreeMemory();</span>
+<span class='curline'><a href='../S/664.html#L857'>MallocExtension</a>   857 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   CHECK(MallocExtension::instance()-&gt;GetNumericProperty(</span>
+<span class='curline'><a href='../S/664.html#L874'>MallocExtension</a>   874 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   MallocExtension::instance()-&gt;ReleaseFreeMemory();</span>
+<span class='curline'><a href='../S/664.html#L878'>MallocExtension</a>   878 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   MallocExtension::instance()-&gt;ReleaseFreeMemory();</span>
+<span class='curline'><a href='../S/664.html#L882'>MallocExtension</a>   882 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   MallocExtension::instance()-&gt;ReleaseToSystem(MB);</span>
+<span class='curline'><a href='../S/664.html#L888'>MallocExtension</a>   888 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   MallocExtension::instance()-&gt;ReleaseToSystem(MB/2);</span>
+<span class='curline'><a href='../S/664.html#L892'>MallocExtension</a>   892 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   MallocExtension::instance()-&gt;ReleaseToSystem(MB/4);</span>
+<span class='curline'><a href='../S/664.html#L898'>MallocExtension</a>   898 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   MallocExtension::instance()-&gt;ReleaseToSystem(MB/2);</span>
+<span class='curline'><a href='../S/664.html#L902'>MallocExtension</a>   902 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   MallocExtension::instance()-&gt;ReleaseToSystem(MB/2);</span>
+<span class='curline'><a href='../S/664.html#L906'>MallocExtension</a>   906 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   MallocExtension::instance()-&gt;ReleaseFreeMemory();</span>
+<span class='curline'><a href='../S/664.html#L914'>MallocExtension</a>   914 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   MallocExtension::instance()-&gt;ReleaseToSystem(1);</span>
+<span class='curline'><a href='../S/667.html#L72'>MallocExtension</a>    72 third_party/google-perftools-1.8.3/src/tests/thread_dealloc_unittest.cc       MallocExtension::instance()-&gt;GetStats(display, kDisplaySize);</span>
+<span class='curline'><a href='../S/683.html#L65'>MallocExtension</a>    65 third_party/google-perftools-1.8.3/src/windows/override_functions.cc   return MallocExtension::instance()-&gt;GetAllocatedSize(p);</span>
+</pre>
+</body>
+</html>

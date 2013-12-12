@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>num_cpus</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/542.html#L322'>num_cpus</a>          322 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   int num_cpus = 0;</span>
+<span class='curline'><a href='../S/542.html#L363'>num_cpus</a>          363 third_party/google-perftools-1.8.3/src/base/sysinfo.cc       num_cpus++;  // count up every time we see an "processor :" entry</span>
+<span class='curline'><a href='../S/542.html#L381'>num_cpus</a>          381 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   if (num_cpus &gt; 0) {</span>
+<span class='curline'><a href='../S/542.html#L382'>num_cpus</a>          382 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     cpuinfo_num_cpus = num_cpus;</span>
+<span class='curline'><a href='../S/542.html#L450'>num_cpus</a>          450 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   int num_cpus = 0;</span>
+<span class='curline'><a href='../S/542.html#L451'>num_cpus</a>          451 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   size_t size = sizeof(num_cpus);</span>
+<span class='curline'><a href='../S/542.html#L453'>num_cpus</a>          453 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   if (::sysctl(numcpus_name, arraysize(numcpus_name), &amp;num_cpus, &amp;size, 0, 0)</span>
+<span class='curline'><a href='../S/542.html#L455'>num_cpus</a>          455 third_party/google-perftools-1.8.3/src/base/sysinfo.cc       &amp;&amp; (size == sizeof(num_cpus)))</span>
+<span class='curline'><a href='../S/542.html#L456'>num_cpus</a>          456 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     cpuinfo_num_cpus = num_cpus;</span>
+</pre>
+</body>
+</html>

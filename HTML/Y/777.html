@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>Sampler</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/603.html#L60'>Sampler</a>            60 third_party/google-perftools-1.8.3/src/sampler.cc double Sampler::log_table_[1&lt;&lt;kFastlogNumBits];</span>
+<span class='curline'><a href='../S/603.html#L65'>Sampler</a>            65 third_party/google-perftools-1.8.3/src/sampler.cc void Sampler::PopulateFastLog2Table() {</span>
+<span class='curline'><a href='../S/603.html#L72'>Sampler</a>            72 third_party/google-perftools-1.8.3/src/sampler.cc int Sampler::GetSamplePeriod() {</span>
+<span class='curline'><a href='../S/603.html#L77'>Sampler</a>            77 third_party/google-perftools-1.8.3/src/sampler.cc void Sampler::Init(uint32_t seed) {</span>
+<span class='curline'><a href='../S/603.html#L96'>Sampler</a>            96 third_party/google-perftools-1.8.3/src/sampler.cc void Sampler::InitStatics() {</span>
+<span class='curline'><a href='../S/603.html#L111'>Sampler</a>           111 third_party/google-perftools-1.8.3/src/sampler.cc size_t Sampler::PickNextSamplingPoint() {</span>
+<span class='curline'><a href='../S/604.html#L102'>Sampler</a>           102 third_party/google-perftools-1.8.3/src/sampler.h class PERFTOOLS_DLL_DECL Sampler {</span>
+<span class='curline'><a href='../S/604.html#L140'>Sampler</a>           140 third_party/google-perftools-1.8.3/src/sampler.h inline bool Sampler::SampleAllocation(size_t k) {</span>
+<span class='curline'><a href='../S/604.html#L155'>Sampler</a>           155 third_party/google-perftools-1.8.3/src/sampler.h inline uint64_t Sampler::NextRandom(uint64_t rnd) {</span>
+<span class='curline'><a href='../S/604.html#L166'>Sampler</a>           166 third_party/google-perftools-1.8.3/src/sampler.h inline double Sampler::FastLog2(const double &amp; d) {</span>
+<span class='curline'><a href='../S/620.html#L70'>Sampler</a>            70 third_party/google-perftools-1.8.3/src/static_vars.cc   Sampler::InitStatics();</span>
+<span class='curline'><a href='../S/657.html#L119'>Sampler</a>           119 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc TEST(Sampler, TestGetSamplePeriod) {</span>
+<span class='curline'><a href='../S/657.html#L120'>Sampler</a>           120 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   tcmalloc::Sampler sampler;</span>
+<span class='curline'><a href='../S/657.html#L224'>Sampler</a>           224 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   tcmalloc::Sampler sampler;</span>
+<span class='curline'><a href='../S/657.html#L255'>Sampler</a>           255 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc TEST(Sampler, TestNextRandom_MultipleValues) {</span>
+<span class='curline'><a href='../S/657.html#L267'>Sampler</a>           267 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   tcmalloc::Sampler sampler;</span>
+<span class='curline'><a href='../S/657.html#L298'>Sampler</a>           298 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc TEST(Sampler, TestPickNextSample_MultipleValues) {</span>
+<span class='curline'><a href='../S/657.html#L312'>Sampler</a>           312 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   tcmalloc::Sampler sampler;</span>
+<span class='curline'><a href='../S/657.html#L331'>Sampler</a>           331 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc TEST(Sampler, FastLog2) {</span>
+<span class='curline'><a href='../S/657.html#L332'>Sampler</a>           332 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   tcmalloc::Sampler sampler;</span>
+<span class='curline'><a href='../S/657.html#L352'>Sampler</a>           352 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   tcmalloc::Sampler sampler;</span>
+<span class='curline'><a href='../S/657.html#L365'>Sampler</a>           365 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   tcmalloc::Sampler sampler;</span>
+<span class='curline'><a href='../S/657.html#L384'>Sampler</a>           384 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc TEST(Sampler, LargeAndSmallAllocs_CombinedTest) {</span>
+<span class='curline'><a href='../S/657.html#L385'>Sampler</a>           385 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   tcmalloc::Sampler sampler;</span>
+<span class='curline'><a href='../S/657.html#L417'>Sampler</a>           417 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc TEST(Sampler, IsMeanRight) {</span>
+<span class='curline'><a href='../S/657.html#L523'>Sampler</a>           523 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc TEST(Sampler, bytes_until_sample_Overflow_Underflow) {</span>
+<span class='curline'><a href='../S/657.html#L524'>Sampler</a>           524 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   tcmalloc::Sampler sampler;</span>
+<span class='curline'><a href='../S/657.html#L574'>Sampler</a>           574 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc TEST(Sampler, NextRand_range) {</span>
+<span class='curline'><a href='../S/657.html#L575'>Sampler</a>           575 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   tcmalloc::Sampler sampler;</span>
+<span class='curline'><a href='../S/657.html#L591'>Sampler</a>           591 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc TEST(Sampler, arithmetic_1) {</span>
+<span class='curline'><a href='../S/657.html#L592'>Sampler</a>           592 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   tcmalloc::Sampler sampler;</span>
+<span class='curline'><a href='../S/657.html#L636'>Sampler</a>           636 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc TEST(Sampler, arithmetic_2) {</span>
+<span class='curline'><a href='../S/657.html#L644'>Sampler</a>           644 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   tcmalloc::Sampler sampler;</span>
+<span class='curline'><a href='../S/657.html#L646'>Sampler</a>           646 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   LOG(INFO) &lt;&lt; "Size of Sampler class is: " &lt;&lt; sizeof(tcmalloc::Sampler);</span>
+<span class='curline'><a href='../S/670.html#L300'>Sampler</a>           300 third_party/google-perftools-1.8.3/src/thread_cache.h   Sampler       sampler_;               // A sampler</span>
+</pre>
+</body>
+</html>

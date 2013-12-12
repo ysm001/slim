@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>free_</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/505.html#L193'>free_</a>             193 third_party/google-perftools-1.8.3/src/addressmap-inl.h   Entry*        free_;                   // Free list of unused Entry objects</span>
+<span class='curline'><a href='../S/505.html#L271'>free_</a>             271 third_party/google-perftools-1.8.3/src/addressmap-inl.h   : free_(NULL),</span>
+<span class='curline'><a href='../S/505.html#L322'>free_</a>             322 third_party/google-perftools-1.8.3/src/addressmap-inl.h   if (free_ == NULL) {</span>
+<span class='curline'><a href='../S/505.html#L328'>free_</a>             328 third_party/google-perftools-1.8.3/src/addressmap-inl.h     array[ALLOC_COUNT-1].next = free_;</span>
+<span class='curline'><a href='../S/505.html#L329'>free_</a>             329 third_party/google-perftools-1.8.3/src/addressmap-inl.h     free_ = &amp;array[0];</span>
+<span class='curline'><a href='../S/505.html#L331'>free_</a>             331 third_party/google-perftools-1.8.3/src/addressmap-inl.h   Entry* e = free_;</span>
+<span class='curline'><a href='../S/505.html#L332'>free_</a>             332 third_party/google-perftools-1.8.3/src/addressmap-inl.h   free_ = e-&gt;next;</span>
+<span class='curline'><a href='../S/505.html#L349'>free_</a>             349 third_party/google-perftools-1.8.3/src/addressmap-inl.h         e-&gt;next = free_;      // Add e to free-list</span>
+<span class='curline'><a href='../S/505.html#L350'>free_</a>             350 third_party/google-perftools-1.8.3/src/addressmap-inl.h         free_ = e;</span>
+<span class='curline'><a href='../S/591.html#L65'>free_</a>              65 third_party/google-perftools-1.8.3/src/page_heap.cc     DLL_Init(&amp;free_[i].normal);</span>
+<span class='curline'><a href='../S/591.html#L66'>free_</a>              66 third_party/google-perftools-1.8.3/src/page_heap.cc     DLL_Init(&amp;free_[i].returned);</span>
+<span class='curline'><a href='../S/591.html#L76'>free_</a>              76 third_party/google-perftools-1.8.3/src/page_heap.cc     Span* ll = &amp;free_[s].normal;</span>
+<span class='curline'><a href='../S/591.html#L83'>free_</a>              83 third_party/google-perftools-1.8.3/src/page_heap.cc     ll = &amp;free_[s].returned;</span>
+<span class='curline'><a href='../S/591.html#L243'>free_</a>             243 third_party/google-perftools-1.8.3/src/page_heap.cc   SpanList* list = (span-&gt;length &lt; kMaxPages) ? &amp;free_[span-&gt;length] : &amp;large_;</span>
+<span class='curline'><a href='../S/591.html#L323'>free_</a>             323 third_party/google-perftools-1.8.3/src/page_heap.cc           &amp;large_ : &amp;free_[release_index_];</span>
+<span class='curline'><a href='../S/591.html#L347'>free_</a>             347 third_party/google-perftools-1.8.3/src/page_heap.cc     result-&gt;normal_length[s] = DLL_Length(&amp;free_[s].normal);</span>
+<span class='curline'><a href='../S/591.html#L348'>free_</a>             348 third_party/google-perftools-1.8.3/src/page_heap.cc     result-&gt;returned_length[s] = DLL_Length(&amp;free_[s].returned);</span>
+<span class='curline'><a href='../S/591.html#L455'>free_</a>             455 third_party/google-perftools-1.8.3/src/page_heap.cc   ASSERT(free_[0].normal.next == &amp;free_[0].normal);</span>
+<span class='curline'><a href='../S/591.html#L456'>free_</a>             456 third_party/google-perftools-1.8.3/src/page_heap.cc   ASSERT(free_[0].returned.next == &amp;free_[0].returned);</span>
+<span class='curline'><a href='../S/591.html#L465'>free_</a>             465 third_party/google-perftools-1.8.3/src/page_heap.cc     CheckList(&amp;free_[s].normal, s, s, Span::ON_NORMAL_FREELIST);</span>
+<span class='curline'><a href='../S/591.html#L466'>free_</a>             466 third_party/google-perftools-1.8.3/src/page_heap.cc     CheckList(&amp;free_[s].returned, s, s, Span::ON_RETURNED_FREELIST);</span>
+<span class='curline'><a href='../S/592.html#L233'>free_</a>             233 third_party/google-perftools-1.8.3/src/page_heap.h   SpanList free_[kMaxPages];</span>
+</pre>
+</body>
+</html>

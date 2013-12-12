@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>star</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/357.html#L650'>star</a>              650 src/membrane.c   LmnSAtom star, oldstar;</span>
+<span class='curline'><a href='../S/357.html#L658'>star</a>              658 src/membrane.c   EACH_ATOM(star, ent, ({</span>
+<span class='curline'><a href='../S/357.html#L659'>star</a>              659 src/membrane.c     oldstar = LMN_SATOM(LMN_SATOM_GET_LINK(star, 0));</span>
+<span class='curline'><a href='../S/357.html#L661'>star</a>              661 src/membrane.c       if (!vec_contains(&amp;remove_list, (LmnWord)star)) {</span>
+<span class='curline'><a href='../S/357.html#L662'>star</a>              662 src/membrane.c         lmn_mem_unify_atom_args(child_mem, star, 1, oldstar, 1);</span>
+<span class='curline'><a href='../S/357.html#L663'>star</a>              663 src/membrane.c         vec_push(&amp;remove_list, (LmnWord)star);</span>
+<span class='curline'><a href='../S/357.html#L668'>star</a>              668 src/membrane.c       vec_push(&amp;change_list, (LmnWord)star);</span>
+<span class='curline'><a href='../S/357.html#L672'>star</a>              672 src/membrane.c         lmn_newlink_in_symbols(star, 0, oldstar, 0);</span>
+<span class='curline'><a href='../S/357.html#L681'>star</a>              681 src/membrane.c                                  LMN_ATOM(star),</span>
+<span class='curline'><a href='../S/357.html#L684'>star</a>              684 src/membrane.c         lmn_newlink_in_symbols(star, 0, outside, 0);</span>
+<span class='curline'><a href='../S/357.html#L711'>star</a>              711 src/membrane.c   LmnSAtom star, outside;</span>
+<span class='curline'><a href='../S/357.html#L718'>star</a>              718 src/membrane.c   EACH_ATOM(star, ent, ({</span>
+<span class='curline'><a href='../S/357.html#L719'>star</a>              719 src/membrane.c     outside = LMN_SATOM(LMN_SATOM_GET_LINK(star, 0));</span>
+<span class='curline'><a href='../S/357.html#L720'>star</a>              720 src/membrane.c     if (!vec_contains(&amp;remove_list, (LmnWord)star)) {</span>
+<span class='curline'><a href='../S/357.html#L721'>star</a>              721 src/membrane.c       lmn_mem_unify_atom_args(mem, star, 1, outside, 1);</span>
+<span class='curline'><a href='../S/357.html#L722'>star</a>              722 src/membrane.c       vec_push(&amp;remove_list, (LmnWord)star);</span>
+<span class='curline'><a href='../S/417.html#L1375'>star</a>             1375 src/verifier/delta_membrane.c   LmnSAtom star, oldstar;</span>
+<span class='curline'><a href='../S/417.html#L1389'>star</a>             1389 src/verifier/delta_membrane.c   DMEM_EACH_FUNC_ATOM(child_d, child_mem, LMN_STAR_PROXY_FUNCTOR, star, ({</span>
+<span class='curline'><a href='../S/417.html#L1391'>star</a>             1391 src/verifier/delta_membrane.c     oldstar = LMN_SATOM(dmem_root_get_link(root_d, star, 0));</span>
+<span class='curline'><a href='../S/417.html#L1394'>star</a>             1394 src/verifier/delta_membrane.c       if (!vec_contains(&amp;remove_list, (LmnWord)star)) {</span>
+<span class='curline'><a href='../S/417.html#L1395'>star</a>             1395 src/verifier/delta_membrane.c         if (child_d) dmem_unify_atom_args(child_d, child_mem, star, 1, oldstar, 1);</span>
+<span class='curline'><a href='../S/417.html#L1396'>star</a>             1396 src/verifier/delta_membrane.c         else dmem_root_unify_atom_args(root_d, child_mem, star, 1, oldstar, 1);</span>
+<span class='curline'><a href='../S/417.html#L1397'>star</a>             1397 src/verifier/delta_membrane.c         vec_push(&amp;remove_list, (LmnWord)star);</span>
+<span class='curline'><a href='../S/417.html#L1402'>star</a>             1402 src/verifier/delta_membrane.c       vec_push(&amp;change_list, (LmnWord)star);</span>
+<span class='curline'><a href='../S/417.html#L1405'>star</a>             1405 src/verifier/delta_membrane.c         lmn_newlink_in_symbols(star, 0, oldstar, 0);</span>
+<span class='curline'><a href='../S/417.html#L1412'>star</a>             1412 src/verifier/delta_membrane.c         if (parent_d) dmem_relink(parent_d, mem, newstar, 0, star, 0);</span>
+<span class='curline'><a href='../S/417.html#L1418'>star</a>             1418 src/verifier/delta_membrane.c                               LMN_ATOM(star),</span>
+<span class='curline'><a href='../S/417.html#L1421'>star</a>             1421 src/verifier/delta_membrane.c         lmn_newlink_in_symbols(star, 0, outside, 0);</span>
+<span class='curline'><a href='../S/417.html#L1455'>star</a>             1455 src/verifier/delta_membrane.c   LmnSAtom star, outside;</span>
+<span class='curline'><a href='../S/417.html#L1463'>star</a>             1463 src/verifier/delta_membrane.c   DMEM_EACH_FUNC_ATOM(d, mem, LMN_STAR_PROXY_FUNCTOR, star, {</span>
+<span class='curline'><a href='../S/417.html#L1464'>star</a>             1464 src/verifier/delta_membrane.c     outside = dmem_root_modified_atom(root_d, LMN_SATOM(LMN_SATOM_GET_LINK(star, 0)));</span>
+<span class='curline'><a href='../S/417.html#L1465'>star</a>             1465 src/verifier/delta_membrane.c     if (!vec_contains(&amp;remove_list, (LmnWord)star)) {</span>
+<span class='curline'><a href='../S/417.html#L1466'>star</a>             1466 src/verifier/delta_membrane.c       if (d) dmem_unify_atom_args(d, mem, star, 1, outside, 1);</span>
+<span class='curline'><a href='../S/417.html#L1467'>star</a>             1467 src/verifier/delta_membrane.c       else dmem_root_unify_atom_args(root_d, mem, star, 1, outside, 1);</span>
+<span class='curline'><a href='../S/417.html#L1468'>star</a>             1468 src/verifier/delta_membrane.c       vec_push(&amp;remove_list, (LmnWord)star);</span>
+</pre>
+</body>
+</html>

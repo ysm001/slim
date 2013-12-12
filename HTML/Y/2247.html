@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>etext_</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/542.html#L582'>etext_</a>            582 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   stext_ = etext_ = nextline_ = ibuf_;</span>
+<span class='curline'><a href='../S/542.html#L671'>etext_</a>            671 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     nextline_ = static_cast&lt;char *&gt;(memchr (stext_, '\n', etext_ - stext_));</span>
+<span class='curline'><a href='../S/542.html#L674'>etext_</a>            674 third_party/google-perftools-1.8.3/src/base/sysinfo.cc       int count = etext_ - stext_;</span>
+<span class='curline'><a href='../S/542.html#L679'>etext_</a>            679 third_party/google-perftools-1.8.3/src/base/sysinfo.cc       etext_ = ibuf_ + count;</span>
+<span class='curline'><a href='../S/542.html#L682'>etext_</a>            682 third_party/google-perftools-1.8.3/src/base/sysinfo.cc       while (etext_ &lt; ebuf_) {</span>
+<span class='curline'><a href='../S/542.html#L683'>etext_</a>            683 third_party/google-perftools-1.8.3/src/base/sysinfo.cc         NO_INTR(nread = read(fd_, etext_, ebuf_ - etext_));</span>
+<span class='curline'><a href='../S/542.html#L685'>etext_</a>            685 third_party/google-perftools-1.8.3/src/base/sysinfo.cc           etext_ += nread;</span>
+<span class='curline'><a href='../S/542.html#L692'>etext_</a>            692 third_party/google-perftools-1.8.3/src/base/sysinfo.cc       if (etext_ != ebuf_ &amp;&amp; nread == 0) {</span>
+<span class='curline'><a href='../S/542.html#L693'>etext_</a>            693 third_party/google-perftools-1.8.3/src/base/sysinfo.cc         memset(etext_, 0, ebuf_ - etext_);</span>
+<span class='curline'><a href='../S/542.html#L695'>etext_</a>            695 third_party/google-perftools-1.8.3/src/base/sysinfo.cc       *etext_ = '\n';   // sentinel; safe because ibuf extends 1 char beyond ebuf</span>
+<span class='curline'><a href='../S/542.html#L696'>etext_</a>            696 third_party/google-perftools-1.8.3/src/base/sysinfo.cc       nextline_ = static_cast&lt;char *&gt;(memchr (stext_, '\n', etext_ + 1 - stext_));</span>
+<span class='curline'><a href='../S/542.html#L699'>etext_</a>            699 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     nextline_ += ((nextline_ &lt; etext_)? 1 : 0);  // skip nul if not end of text</span>
+<span class='curline'><a href='../S/542.html#L796'>etext_</a>            796 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   } while (etext_ &gt; ibuf_);</span>
+<span class='curline'><a href='../S/543.html#L194'>etext_</a>            194 third_party/google-perftools-1.8.3/src/base/sysinfo.h   char *etext_;       // end of text</span>
+</pre>
+</body>
+</html>

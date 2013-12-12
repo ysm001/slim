@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>tc_memalign</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/565.html#L86'>tc_memalign</a>        86 third_party/google-perftools-1.8.3/src/google/tcmalloc.h   PERFTOOLS_DLL_DECL void* tc_memalign(size_t __alignment,</span>
+<span class='curline'><a href='../S/575.html#L79'>tc_memalign</a>        79 third_party/google-perftools-1.8.3/src/libc_override_gcc_and_weak.h   void* memalign(size_t align, size_t s) __THROW  ALIAS(tc_memalign);</span>
+<span class='curline'><a href='../S/576.html#L82'>tc_memalign</a>        82 third_party/google-perftools-1.8.3/src/libc_override_glibc.h   void* __libc_memalign(size_t align, size_t s)   ALIAS(tc_memalign);</span>
+<span class='curline'><a href='../S/576.html#L111'>tc_memalign</a>       111 third_party/google-perftools-1.8.3/src/libc_override_glibc.h   return tc_memalign(align, size);</span>
+<span class='curline'><a href='../S/577.html#L131'>tc_memalign</a>       131 third_party/google-perftools-1.8.3/src/libc_override_osx.h   return tc_memalign(align, size);</span>
+<span class='curline'><a href='../S/578.html#L74'>tc_memalign</a>        74 third_party/google-perftools-1.8.3/src/libc_override_redefine.h   void* memalign(size_t a, size_t s) __THROW     { return tc_memalign(a, s);  }</span>
+<span class='curline'><a href='../S/626.html#L224'>tc_memalign</a>       224 third_party/google-perftools-1.8.3/src/tcmalloc.cc   void* tc_memalign(size_t __alignment, size_t __size) __THROW</span>
+<span class='curline'><a href='../S/674.html#L86'>tc_memalign</a>        86 third_party/google-perftools-1.8.3/src/windows/google/tcmalloc.h   PERFTOOLS_DLL_DECL void* tc_memalign(size_t __alignment,</span>
+</pre>
+</body>
+</html>

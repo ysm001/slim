@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>int64</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/512.html#L54'>int64</a>              54 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h typedef int64 Atomic64;</span>
+<span class='curline'><a href='../S/516.html#L80'>int64</a>              80 third_party/google-perftools-1.8.3/src/base/basictypes.h const  int64 kint64max =  ( ((( int64) kint32max) &lt;&lt; 32) | kuint32max );</span>
+<span class='curline'><a href='../S/516.html#L85'>int64</a>              85 third_party/google-perftools-1.8.3/src/base/basictypes.h const  int64 kint64min =  ( ((( int64) kint32min) &lt;&lt; 32) | 0 );</span>
+<span class='curline'><a href='../S/517.html#L84'>int64</a>              84 third_party/google-perftools-1.8.3/src/base/commandlineflags.h   DECLARE_VARIABLE(int64, name)</span>
+<span class='curline'><a href='../S/517.html#L86'>int64</a>              86 third_party/google-perftools-1.8.3/src/base/commandlineflags.h   DEFINE_VARIABLE(int64, name, value, meaning)</span>
+<span class='curline'><a href='../S/518.html#L75'>int64</a>              75 third_party/google-perftools-1.8.3/src/base/cycleclock.h   static inline int64 Now() {</span>
+<span class='curline'><a href='../S/518.html#L88'>int64</a>              88 third_party/google-perftools-1.8.3/src/base/cycleclock.h     int64 ret;</span>
+<span class='curline'><a href='../S/518.html#L97'>int64</a>              97 third_party/google-perftools-1.8.3/src/base/cycleclock.h     int64 tbl, tbu0, tbu1;</span>
+<span class='curline'><a href='../S/518.html#L101'>int64</a>             101 third_party/google-perftools-1.8.3/src/base/cycleclock.h     tbl &amp;= -static_cast&lt;int64&gt;(tbu0 == tbu1);</span>
+<span class='curline'><a href='../S/518.html#L105'>int64</a>             105 third_party/google-perftools-1.8.3/src/base/cycleclock.h     int64 tick;</span>
+<span class='curline'><a href='../S/518.html#L110'>int64</a>             110 third_party/google-perftools-1.8.3/src/base/cycleclock.h     int64 itc;</span>
+<span class='curline'><a href='../S/518.html#L133'>int64</a>             133 third_party/google-perftools-1.8.3/src/base/cycleclock.h         return static_cast&lt;int64&gt;(pmccntr) * 64;  // Should optimize to &lt;&lt; 6</span>
+<span class='curline'><a href='../S/518.html#L139'>int64</a>             139 third_party/google-perftools-1.8.3/src/base/cycleclock.h     return static_cast&lt;int64&gt;(tv.tv_sec) * 1000000 + tv.tv_usec;</span>
+<span class='curline'><a href='../S/518.html#L145'>int64</a>             145 third_party/google-perftools-1.8.3/src/base/cycleclock.h     return static_cast&lt;int64&gt;(tv.tv_sec) * 1000000 + tv.tv_usec;</span>
+<span class='curline'><a href='../S/533.html#L81'>int64</a>              81 third_party/google-perftools-1.8.3/src/base/spinlock.cc Atomic32 SpinLock::SpinLoop(int64 initial_wait_timestamp,</span>
+<span class='curline'><a href='../S/533.html#L99'>int64</a>              99 third_party/google-perftools-1.8.3/src/base/spinlock.cc   int64 wait_start_time = CycleClock::Now();</span>
+<span class='curline'><a href='../S/533.html#L173'>int64</a>             173 third_party/google-perftools-1.8.3/src/base/spinlock.cc inline int32 SpinLock::CalculateWaitCycles(int64 wait_start_time) {</span>
+<span class='curline'><a href='../S/534.html#L127'>int64</a>             127 third_party/google-perftools-1.8.3/src/base/spinlock.h   Atomic32 SpinLoop(int64 initial_wait_timestamp, Atomic32* wait_cycles);</span>
+<span class='curline'><a href='../S/534.html#L128'>int64</a>             128 third_party/google-perftools-1.8.3/src/base/spinlock.h   inline int32 CalculateWaitCycles(int64 wait_start_time);</span>
+<span class='curline'><a href='../S/541.html#L46'>int64</a>              46 third_party/google-perftools-1.8.3/src/base/synchronization_profiling.h ATTRIBUTE_WEAK extern void SubmitSpinLockProfileData(const void *, int64);</span>
+<span class='curline'><a href='../S/541.html#L48'>int64</a>              48 third_party/google-perftools-1.8.3/src/base/synchronization_profiling.h                                       int64 wait_cycles) {}</span>
+<span class='curline'><a href='../S/542.html#L222'>int64</a>             222 third_party/google-perftools-1.8.3/src/base/sysinfo.cc static int64 EstimateCyclesPerSecond(const int estimate_time_ms) {</span>
+<span class='curline'><a href='../S/542.html#L228'>int64</a>             228 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   const int64 start_ticks = CycleClock::Now();</span>
+<span class='curline'><a href='../S/542.html#L230'>int64</a>             230 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   const int64 guess = int64(multiplier * (CycleClock::Now() - start_ticks));</span>
+<span class='curline'><a href='../S/542.html#L425'>int64</a>             425 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     cpuinfo_cycles_per_second = (int64)data * (int64)(1000 * 1000); // was mhz</span>
+<span class='curline'><a href='../S/542.html#L520'>int64</a>             520 third_party/google-perftools-1.8.3/src/base/sysinfo.cc                               uint64 *offset, int64 *inode, char **filename,</span>
+<span class='curline'><a href='../S/542.html#L651'>int64</a>             651 third_party/google-perftools-1.8.3/src/base/sysinfo.cc                             uint64 *offset, int64 *inode, char **filename) {</span>
+<span class='curline'><a href='../S/542.html#L660'>int64</a>             660 third_party/google-perftools-1.8.3/src/base/sysinfo.cc                                uint64 *offset, int64 *inode, char **filename,</span>
+<span class='curline'><a href='../S/542.html#L702'>int64</a>             702 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     int64 tmpinode;</span>
+<span class='curline'><a href='../S/542.html#L910'>int64</a>             910 third_party/google-perftools-1.8.3/src/base/sysinfo.cc                                  uint64 offset, int64 inode,</span>
+<span class='curline'><a href='../S/542.html#L940'>int64</a>             940 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   int64 inode;</span>
+<span class='curline'><a href='../S/542.html#L966'>int64</a>             966 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   int64 inode;</span>
+<span class='curline'><a href='../S/543.html#L157'>int64</a>             157 third_party/google-perftools-1.8.3/src/base/sysinfo.h                         uint64 offset, int64 inode, const char *filename,</span>
+<span class='curline'><a href='../S/543.html#L179'>int64</a>             179 third_party/google-perftools-1.8.3/src/base/sysinfo.h             uint64 *offset, int64 *inode, char **filename);</span>
+<span class='curline'><a href='../S/543.html#L182'>int64</a>             182 third_party/google-perftools-1.8.3/src/base/sysinfo.h                uint64 *offset, int64 *inode, char **filename,</span>
+<span class='curline'><a href='../S/555.html#L861'>int64</a>             861 third_party/google-perftools-1.8.3/src/debugallocation.cc       int64 l = 0;</span>
+<span class='curline'><a href='../S/568.html#L202'>int64</a>             202 third_party/google-perftools-1.8.3/src/heap-checker.cc static const int64 kHeapCheckMaxPointerOffset = 1024;</span>
+<span class='curline'><a href='../S/568.html#L900'>int64</a>             900 third_party/google-perftools-1.8.3/src/heap-checker.cc   int64 inode;</span>
+<span class='curline'><a href='../S/568.html#L972'>int64</a>             972 third_party/google-perftools-1.8.3/src/heap-checker.cc static int64 live_objects_total;</span>
+<span class='curline'><a href='../S/568.html#L973'>int64</a>             973 third_party/google-perftools-1.8.3/src/heap-checker.cc static int64 live_bytes_total;</span>
+<span class='curline'><a href='../S/568.html#L1381'>int64</a>            1381 third_party/google-perftools-1.8.3/src/heap-checker.cc   int64 live_object_count = 0;</span>
+<span class='curline'><a href='../S/568.html#L1382'>int64</a>            1382 third_party/google-perftools-1.8.3/src/heap-checker.cc   int64 live_byte_count = 0;</span>
+<span class='curline'><a href='../S/568.html#L1789'>int64</a>            1789 third_party/google-perftools-1.8.3/src/heap-checker.cc              int64(stats.allocs - stats.frees),</span>
+<span class='curline'><a href='../S/568.html#L1790'>int64</a>            1790 third_party/google-perftools-1.8.3/src/heap-checker.cc              int64(stats.alloc_size - stats.free_size));</span>
+<span class='curline'><a href='../S/570.html#L64'>int64</a>              64 third_party/google-perftools-1.8.3/src/heap-profile-table.h     int64 alloc_size;  // Total size of all allocated objects so far</span>
+<span class='curline'><a href='../S/570.html#L65'>int64</a>              65 third_party/google-perftools-1.8.3/src/heap-profile-table.h     int64 free_size;   // Total size of all freed objects so far</span>
+<span class='curline'><a href='../S/571.html#L168'>int64</a>             168 third_party/google-perftools-1.8.3/src/heap-profiler.cc static int64 last_dump_alloc = 0;     // alloc_size when did we last dump</span>
+<span class='curline'><a href='../S/571.html#L169'>int64</a>             169 third_party/google-perftools-1.8.3/src/heap-profiler.cc static int64 last_dump_free = 0;      // free_size when did we last dump</span>
+<span class='curline'><a href='../S/571.html#L170'>int64</a>             170 third_party/google-perftools-1.8.3/src/heap-profiler.cc static int64 high_water_mark = 0;     // In-use-bytes at last high-water dump</span>
+<span class='curline'><a href='../S/571.html#L290'>int64</a>             290 third_party/google-perftools-1.8.3/src/heap-profiler.cc     const int64 inuse_bytes = total.alloc_size - total.free_size;</span>
+<span class='curline'><a href='../S/587.html#L107'>int64</a>             107 third_party/google-perftools-1.8.3/src/memfs_malloc.cc   int64 big_page_size_;</span>
+<span class='curline'><a href='../S/587.html#L249'>int64</a>             249 third_party/google-perftools-1.8.3/src/memfs_malloc.cc   int64 page_size = sfs.f_bsize;</span>
+<span class='curline'><a href='../S/588.html#L589'>int64</a>             589 third_party/google-perftools-1.8.3/src/memory_region_map.cc               static_cast&lt;int64&gt;(offset));</span>
+<span class='curline'><a href='../S/592.html#L155'>int64</a>             155 third_party/google-perftools-1.8.3/src/page_heap.h     int64 normal_length[kMaxPages];</span>
+<span class='curline'><a href='../S/592.html#L156'>int64</a>             156 third_party/google-perftools-1.8.3/src/page_heap.h     int64 returned_length[kMaxPages];</span>
+<span class='curline'><a href='../S/592.html#L162'>int64</a>             162 third_party/google-perftools-1.8.3/src/page_heap.h     int64 spans;           // Number of such spans</span>
+<span class='curline'><a href='../S/592.html#L163'>int64</a>             163 third_party/google-perftools-1.8.3/src/page_heap.h     int64 normal_pages;    // Combined page length of normal large spans</span>
+<span class='curline'><a href='../S/592.html#L164'>int64</a>             164 third_party/google-perftools-1.8.3/src/page_heap.h     int64 returned_pages;  // Combined page length of unmapped spans</span>
+<span class='curline'><a href='../S/596.html#L132'>int64</a>             132 third_party/google-perftools-1.8.3/src/profile-handler.cc   int64 interrupts_ GUARDED_BY(signal_lock_);</span>
+<span class='curline'><a href='../S/597.html#L139'>int64</a>             139 third_party/google-perftools-1.8.3/src/profile-handler.h   int64 interrupts;  /* Number of interrupts received */</span>
+<span class='curline'><a href='../S/598.html#L153'>int64</a>             153 third_party/google-perftools-1.8.3/src/profiledata.cc   int64 inode;</span>
+<span class='curline'><a href='../S/626.html#L187'>int64</a>             187 third_party/google-perftools-1.8.3/src/tcmalloc.cc const int64 kDefaultLargeAllocReportThreshold = static_cast&lt;int64&gt;(1) &lt;&lt; 62;</span>
+<span class='curline'><a href='../S/626.html#L189'>int64</a>             189 third_party/google-perftools-1.8.3/src/tcmalloc.cc const int64 kDefaultLargeAllocReportThreshold = static_cast&lt;int64&gt;(1) &lt;&lt; 30;</span>
+<span class='curline'><a href='../S/626.html#L790'>int64</a>             790 third_party/google-perftools-1.8.3/src/tcmalloc.cc     int64 prev_class_size = 0;</span>
+<span class='curline'><a href='../S/626.html#L1014'>int64</a>            1014 third_party/google-perftools-1.8.3/src/tcmalloc.cc   const int64 threshold = large_alloc_threshold;</span>
+<span class='curline'><a href='../S/634.html#L116'>int64</a>             116 third_party/google-perftools-1.8.3/src/tests/frag_unittest.cc     int64 sumsec = static_cast&lt;int64&gt;(tv_end.tv_sec) - tv_start.tv_sec;</span>
+<span class='curline'><a href='../S/634.html#L117'>int64</a>             117 third_party/google-perftools-1.8.3/src/tests/frag_unittest.cc     int64 sumusec = static_cast&lt;int64&gt;(tv_end.tv_usec) - tv_start.tv_usec;</span>
+<span class='curline'><a href='../S/634.html#L120'>int64</a>             120 third_party/google-perftools-1.8.3/src/tests/frag_unittest.cc     int64 sumsec = (tv_end - tv_start) / 1000;</span>
+<span class='curline'><a href='../S/634.html#L122'>int64</a>             122 third_party/google-perftools-1.8.3/src/tests/frag_unittest.cc     int64 sumusec = ((tv_end - tv_start) % 1000) * 1000;</span>
+<span class='curline'><a href='../S/637.html#L501'>int64</a>             501 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc               100 * static_cast&lt;int64&gt;(sizeof(int)),</span>
+<span class='curline'><a href='../S/657.html#L422'>int64</a>             422 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc const int64 FLAGS_mock_tcmalloc_sample_parameter = 1&lt;&lt;19;</span>
+<span class='curline'><a href='../S/664.html#L602'>int64</a>             602 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   const int64 old_sample_parameter = FLAGS_tcmalloc_sample_parameter;</span>
+</pre>
+</body>
+</html>

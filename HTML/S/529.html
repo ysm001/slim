@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>third_party/google-perftools-1.8.3/src/base/logging.h</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/738.html'>third_party</a>/<a href='../files/739.html'>google-perftools-1.8.3</a>/<a href='../files/740.html'>src</a>/<a href='../files/741.html'>base</a>/logging.h</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L197'>[^]</a><a href='#L231'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/153.html' title='Multiple included from 57 places.'>INCLUDED FROM</a></h2>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L197' title='Defined at 197.'>LogPrintf</a></li>
+<li><a href='#L227' title='Defined at 227.'>RAW_LOG</a></li>
+<li><a href='#L228' title='Defined at 228.'>RAW_VLOG</a></li>
+<li><a href='#L229' title='Defined at 229.'>LOG</a></li>
+<li><a href='#L230' title='Defined at 230.'>VLOG</a></li>
+<li><a href='#L231' title='Defined at 231.'>LOG_IF</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>// Copyright (c) 2005, Google Inc.</em>
+<a id='L2' name='L2' /><em class='comment'>// All rights reserved.</em>
+<a id='L3' name='L3' /><em class='comment'>// </em>
+<a id='L4' name='L4' /><em class='comment'>// Redistribution and use in source and binary forms, with or without</em>
+<a id='L5' name='L5' /><em class='comment'>// modification, are permitted provided that the following conditions are</em>
+<a id='L6' name='L6' /><em class='comment'>// met:</em>
+<a id='L7' name='L7' /><em class='comment'>// </em>
+<a id='L8' name='L8' /><em class='comment'>//     * Redistributions of source code must retain the above copyright</em>
+<a id='L9' name='L9' /><em class='comment'>// notice, this list of conditions and the following disclaimer.</em>
+<a id='L10' name='L10' /><em class='comment'>//     * Redistributions in binary form must reproduce the above</em>
+<a id='L11' name='L11' /><em class='comment'>// copyright notice, this list of conditions and the following disclaimer</em>
+<a id='L12' name='L12' /><em class='comment'>// in the documentation and/or other materials provided with the</em>
+<a id='L13' name='L13' /><em class='comment'>// distribution.</em>
+<a id='L14' name='L14' /><em class='comment'>//     * Neither the name of Google Inc. nor the names of its</em>
+<a id='L15' name='L15' /><em class='comment'>// contributors may be used to endorse or promote products derived from</em>
+<a id='L16' name='L16' /><em class='comment'>// this software without specific prior written permission.</em>
+<a id='L17' name='L17' /><em class='comment'>// </em>
+<a id='L18' name='L18' /><em class='comment'>// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L19' name='L19' /><em class='comment'>// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L20' name='L20' /><em class='comment'>// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L21' name='L21' /><em class='comment'>// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L22' name='L22' /><em class='comment'>// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L23' name='L23' /><em class='comment'>// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L24' name='L24' /><em class='comment'>// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L25' name='L25' /><em class='comment'>// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L26' name='L26' /><em class='comment'>// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L27' name='L27' /><em class='comment'>// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L28' name='L28' /><em class='comment'>// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L29' name='L29' />
+<a id='L30' name='L30' /><em class='comment'>// ---</em>
+<a id='L31' name='L31' /><em class='comment'>// This file contains #include information about logging-related stuff.</em>
+<a id='L32' name='L32' /><em class='comment'>// Pretty much everybody needs to #include this file so that they can</em>
+<a id='L33' name='L33' /><em class='comment'>// log various happenings.</em>
+<a id='L34' name='L34' /><em class='comment'>//</em>
+<a id='L35' name='L35' /><em class='sharp'>#ifndef</em> <a href='../S/529.html#L36' title='Defined at 36 in third_party/google-perftools-1.8.3/src/base/logging.h.'>_LOGGING_H_</a>
+<a id='L36' name='L36' /><em class='sharp'>#define</em> <a href='../S/529.html#L35' title='Refered from 35 in third_party/google-perftools-1.8.3/src/base/logging.h.'>_LOGGING_H_</a>
+<a id='L37' name='L37' />
+<a id='L38' name='L38' /><em class='sharp'>#include</em> &lt;<a href='../I/6.html'>config.h</a>&gt;
+<a id='L39' name='L39' /><em class='sharp'>#include</em> &lt;stdarg.h&gt;
+<a id='L40' name='L40' /><em class='sharp'>#include</em> &lt;stdlib.h&gt;
+<a id='L41' name='L41' /><em class='sharp'>#include</em> &lt;stdio.h&gt;
+<a id='L42' name='L42' /><em class='sharp'>#ifdef</em> <a href='../D/955.html' title='Multiple defined in 4 places.'>HAVE_UNISTD_H</a>
+<a id='L43' name='L43' /><em class='sharp'>#include</em> &lt;unistd.h&gt;    <em class='comment'>// for write()</em>
+<a id='L44' name='L44' /><em class='sharp'>#endif</em>
+<a id='L45' name='L45' /><em class='sharp'>#include</em> &lt;<a href='372.html'>string.h</a>&gt;    <em class='comment'>// for strlen(), strcmp()</em>
+<a id='L46' name='L46' /><em class='sharp'>#include</em> &lt;assert.h&gt;
+<a id='L47' name='L47' /><em class='sharp'>#include</em> &lt;errno.h&gt;     <em class='comment'>// for errno</em>
+<a id='L48' name='L48' /><em class='sharp'>#include</em> "<a href='517.html'>base/commandlineflags.h</a>"
+<a id='L49' name='L49' />
+<a id='L50' name='L50' /><em class='comment'>// On some systems (like freebsd), we can't call write() at all in a</em>
+<a id='L51' name='L51' /><em class='comment'>// global constructor, perhaps because errno hasn't been set up.</em>
+<a id='L52' name='L52' /><em class='comment'>// (In windows, we can't call it because it might call malloc.)</em>
+<a id='L53' name='L53' /><em class='comment'>// Calling the write syscall is safer (it doesn't set errno), so we</em>
+<a id='L54' name='L54' /><em class='comment'>// prefer that.  Note we don't care about errno for logging: we just</em>
+<a id='L55' name='L55' /><em class='comment'>// do logging on a best-effort basis.</em>
+<a id='L56' name='L56' /><em class='sharp'>#if</em> <strong class='reserved'>defined</strong>(<a href='../Y/982.html' title='Multiple used in 81 places.'>_MSC_VER</a>)
+<a id='L57' name='L57' /><em class='sharp'>#define</em> <a href='../R/2692.html' title='Multiple refered from 6 places.'>WRITE_TO_STDERR</a>(<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>, <a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a>) <a href='../S/685.html#L73' title='Defined at 73 in third_party/google-perftools-1.8.3/src/windows/port.cc.'>WriteToStderr</a>(<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>, <a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a>);  <em class='comment'>// in port.cc</em>
+<a id='L58' name='L58' /><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(<a href='../D/947.html' title='Multiple defined in 2 places.'>HAVE_SYS_SYSCALL_H</a>)
+<a id='L59' name='L59' /><em class='sharp'>#include</em> &lt;sys/syscall.h&gt;
+<a id='L60' name='L60' /><em class='sharp'>#define</em> <a href='../R/2692.html' title='Multiple refered from 6 places.'>WRITE_TO_STDERR</a>(<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>, <a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a>) <a href='../Y/5255.html' title='Multiple used in 10 places.'>syscall</a>(SYS_write, <a href='../S/686.html#L347' title='Defined at 347 in third_party/google-perftools-1.8.3/src/windows/port.h.'>STDERR_FILENO</a>, <a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>, <a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a>)
+<a id='L61' name='L61' /><em class='sharp'>#else</em>
+<a id='L62' name='L62' /><em class='sharp'>#define</em> <a href='../R/2692.html' title='Multiple refered from 6 places.'>WRITE_TO_STDERR</a>(<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>, <a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a>) <a href='../S/686.html#L367' title='Defined at 367 in third_party/google-perftools-1.8.3/src/windows/port.h.'>write</a>(<a href='../S/686.html#L347' title='Defined at 347 in third_party/google-perftools-1.8.3/src/windows/port.h.'>STDERR_FILENO</a>, <a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>, <a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a>)
+<a id='L63' name='L63' /><em class='sharp'>#endif</em>
+<a id='L64' name='L64' />
+<a id='L65' name='L65' /><em class='comment'>// MSVC and mingw define their own, safe version of vnsprintf (the</em>
+<a id='L66' name='L66' /><em class='comment'>// windows one in broken) in port.cc.  Everyone else can use the</em>
+<a id='L67' name='L67' /><em class='comment'>// version here.  We had to give it a unique name for windows.</em>
+<a id='L68' name='L68' /><em class='sharp'>#ifndef</em> <a href='../Y/997.html' title='Multiple used in 42 places.'>_WIN32</a>
+<a id='L69' name='L69' /><em class='sharp'># define</em> <a href='../R/4375.html' title='Multiple refered from 5 places.'>perftools_vsnprintf</a> <a href='../Y/5650.html' title='Multiple used in 3 places.'>vsnprintf</a>
+<a id='L70' name='L70' /><em class='sharp'>#endif</em>
+<a id='L71' name='L71' />
+<a id='L72' name='L72' />
+<a id='L73' name='L73' /><em class='comment'>// We log all messages at this log-level and below.</em>
+<a id='L74' name='L74' /><em class='comment'>// INFO == -1, WARNING == -2, ERROR == -3, FATAL == -4</em>
+<a id='L75' name='L75' /><a href='../S/517.html#L77' title='Defined at 77 in third_party/google-perftools-1.8.3/src/base/commandlineflags.h.'>DECLARE_int32</a>(<a href='../S/729.html#L71' title='Defined at 71 in third_party/zdelta-2.1/zutil.c.'>verbose</a>);
+<a id='L76' name='L76' />
+<a id='L77' name='L77' /><em class='comment'>// CHECK dies with a fatal error if condition is not true.  It is *not*</em>
+<a id='L78' name='L78' /><em class='comment'>// controlled by NDEBUG, so the check will be executed regardless of</em>
+<a id='L79' name='L79' /><em class='comment'>// compilation mode.  Therefore, it is safe to do things like:</em>
+<a id='L80' name='L80' /><em class='comment'>//    CHECK(fp-&gt;Write(x) == 4)</em>
+<a id='L81' name='L81' /><em class='comment'>// Note we use write instead of printf/puts to avoid the risk we'll</em>
+<a id='L82' name='L82' /><em class='comment'>// call malloc().</em>
+<a id='L83' name='L83' /><em class='sharp'>#define</em> <a href='../R/321.html' title='Multiple refered from 150 places.'>CHECK</a>(<a href='../Y/1846.html' title='Multiple used in 14 places.'>condition</a>)                                                \
+<a id='L84' name='L84' />  <strong class='reserved'>do</strong> <em class='brace'>{</em>                                                                  \
+<a id='L85' name='L85' />    <strong class='reserved'>if</strong> (!(<a href='../Y/1846.html' title='Multiple used in 14 places.'>condition</a>)) <em class='brace'>{</em>                                                 \
+<a id='L86' name='L86' />      <a href='../D/2995.html' title='Multiple defined in 3 places.'>WRITE_TO_STDERR</a>("Check failed: " #<a href='../Y/1846.html' title='Multiple used in 14 places.'>condition</a> "\n",                 \
+<a id='L87' name='L87' />                      <strong class='reserved'>sizeof</strong>("Check failed: " #<a href='../Y/1846.html' title='Multiple used in 14 places.'>condition</a> "\n")-1);      \
+<a id='L88' name='L88' />      <a href='../Y/1379.html' title='Multiple used in 29 places.'>abort</a>();                                                          \
+<a id='L89' name='L89' />    <em class='brace'>}</em>                                                                   \
+<a id='L90' name='L90' />  <em class='brace'>}</em> <strong class='reserved'>while</strong> (0)
+<a id='L91' name='L91' />
+<a id='L92' name='L92' /><em class='comment'>// This takes a message to print.  The name is historical.</em>
+<a id='L93' name='L93' /><em class='sharp'>#define</em> <a href='../R/2029.html' title='Multiple refered from 117 places.'>RAW_CHECK</a>(<a href='../Y/1846.html' title='Multiple used in 14 places.'>condition</a>, <a href='../Y/3523.html' title='Multiple used in 13 places.'>message</a>)                                          \
+<a id='L94' name='L94' />  <strong class='reserved'>do</strong> <em class='brace'>{</em>                                                                         \
+<a id='L95' name='L95' />    <strong class='reserved'>if</strong> (!(<a href='../Y/1846.html' title='Multiple used in 14 places.'>condition</a>)) <em class='brace'>{</em>                                                        \
+<a id='L96' name='L96' />      <a href='../D/2995.html' title='Multiple defined in 3 places.'>WRITE_TO_STDERR</a>("Check failed: " #<a href='../Y/1846.html' title='Multiple used in 14 places.'>condition</a> ": " <a href='../Y/3523.html' title='Multiple used in 13 places.'>message</a> "\n",           \
+<a id='L97' name='L97' />                      <strong class='reserved'>sizeof</strong>("Check failed: " #<a href='../Y/1846.html' title='Multiple used in 14 places.'>condition</a> ": " <a href='../Y/3523.html' title='Multiple used in 13 places.'>message</a> "\n")-1);\
+<a id='L98' name='L98' />      <a href='../Y/1379.html' title='Multiple used in 29 places.'>abort</a>();                                                                 \
+<a id='L99' name='L99' />    <em class='brace'>}</em>                                                                          \
+<a id='L100' name='L100' />  <em class='brace'>}</em> <strong class='reserved'>while</strong> (0)
+<a id='L101' name='L101' />
+<a id='L102' name='L102' /><em class='comment'>// This is like RAW_CHECK, but only in debug-mode</em>
+<a id='L103' name='L103' /><em class='sharp'>#ifdef</em> <a href='../Y/540.html' title='Multiple used in 13 places.'>NDEBUG</a>
+<a id='L104' name='L104' /><strong class='reserved'>enum</strong> <em class='brace'>{</em> <a href='../R/429.html' title='Multiple refered from 3 places.'>DEBUG_MODE</a> = 0 <em class='brace'>}</em>;
+<a id='L105' name='L105' /><em class='sharp'>#define</em> <a href='../R/2030.html' title='Multiple refered from 70 places.'>RAW_DCHECK</a>(<a href='../Y/1846.html' title='Multiple used in 14 places.'>condition</a>, <a href='../Y/3523.html' title='Multiple used in 13 places.'>message</a>)
+<a id='L106' name='L106' /><em class='sharp'>#else</em>
+<a id='L107' name='L107' /><strong class='reserved'>enum</strong> <em class='brace'>{</em> <a href='../R/429.html' title='Multiple refered from 3 places.'>DEBUG_MODE</a> = 1 <em class='brace'>}</em>;
+<a id='L108' name='L108' /><em class='sharp'>#define</em> <a href='../R/2030.html' title='Multiple refered from 70 places.'>RAW_DCHECK</a>(<a href='../Y/1846.html' title='Multiple used in 14 places.'>condition</a>, <a href='../Y/3523.html' title='Multiple used in 13 places.'>message</a>)  <a href='../S/529.html#L93' title='Defined at 93 in third_party/google-perftools-1.8.3/src/base/logging.h.'>RAW_CHECK</a>(<a href='../Y/1846.html' title='Multiple used in 14 places.'>condition</a>, <a href='../Y/3523.html' title='Multiple used in 13 places.'>message</a>)
+<a id='L109' name='L109' /><em class='sharp'>#endif</em>
+<a id='L110' name='L110' />
+<a id='L111' name='L111' /><em class='comment'>// This prints errno as well.  Note we use write instead of printf/puts to</em>
+<a id='L112' name='L112' /><em class='comment'>// avoid the risk we'll call malloc().</em>
+<a id='L113' name='L113' /><em class='sharp'>#define</em> <a href='../S/529.html#L171' title='Refered from 171 in third_party/google-perftools-1.8.3/src/base/logging.h.'>PCHECK</a>(<a href='../Y/1846.html' title='Multiple used in 14 places.'>condition</a>)                                               \
+<a id='L114' name='L114' />  <strong class='reserved'>do</strong> <em class='brace'>{</em>                                                                  \
+<a id='L115' name='L115' />    <strong class='reserved'>if</strong> (!(<a href='../Y/1846.html' title='Multiple used in 14 places.'>condition</a>)) <em class='brace'>{</em>                                                 \
+<a id='L116' name='L116' />      <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> <a href='../Y/2230.html' title='Multiple used in 2 places.'>err_no</a> = <a href='../Y/2232.html' title='Multiple used in 77 places.'>errno</a>;                                         \
+<a id='L117' name='L117' />      <a href='../D/2995.html' title='Multiple defined in 3 places.'>WRITE_TO_STDERR</a>("Check failed: " #<a href='../Y/1846.html' title='Multiple used in 14 places.'>condition</a> ": ",                 \
+<a id='L118' name='L118' />                      <strong class='reserved'>sizeof</strong>("Check failed: " #<a href='../Y/1846.html' title='Multiple used in 14 places.'>condition</a> ": ")-1);      \
+<a id='L119' name='L119' />      <a href='../D/2995.html' title='Multiple defined in 3 places.'>WRITE_TO_STDERR</a>(<a href='../Y/5132.html' title='Multiple used in 13 places.'>strerror</a>(<a href='../Y/2230.html' title='Multiple used in 2 places.'>err_no</a>), <a href='../Y/5139.html' title='Multiple used in 84 places.'>strlen</a>(<a href='../Y/5132.html' title='Multiple used in 13 places.'>strerror</a>(<a href='../Y/2230.html' title='Multiple used in 2 places.'>err_no</a>)));      \
+<a id='L120' name='L120' />      <a href='../D/2995.html' title='Multiple defined in 3 places.'>WRITE_TO_STDERR</a>("\n", <strong class='reserved'>sizeof</strong>("\n")-1);                            \
+<a id='L121' name='L121' />      <a href='../Y/1379.html' title='Multiple used in 29 places.'>abort</a>();                                                          \
+<a id='L122' name='L122' />    <em class='brace'>}</em>                                                                   \
+<a id='L123' name='L123' />  <em class='brace'>}</em> <strong class='reserved'>while</strong> (0)
+<a id='L124' name='L124' />
+<a id='L125' name='L125' /><em class='comment'>// Helper macro for binary operators; prints the two values on error</em>
+<a id='L126' name='L126' /><em class='comment'>// Don't use this macro directly in your code, use CHECK_EQ et al below</em>
+<a id='L127' name='L127' />
+<a id='L128' name='L128' /><em class='comment'>// WARNING: These don't compile correctly if one of the arguments is a pointer</em>
+<a id='L129' name='L129' /><em class='comment'>// and the other is NULL. To work around this, simply static_cast NULL to the</em>
+<a id='L130' name='L130' /><em class='comment'>// type of the desired pointer.</em>
+<a id='L131' name='L131' />
+<a id='L132' name='L132' /><em class='comment'>// TODO(jandrews): Also print the values in case of failure.  Requires some</em>
+<a id='L133' name='L133' /><em class='comment'>// sort of type-sensitive ToString() function.</em>
+<a id='L134' name='L134' /><em class='sharp'>#define</em> <a href='../R/334.html' title='Multiple refered from 6 places.'>CHECK_OP</a>(<a href='../Y/3975.html' title='Multiple used in 55 places.'>op</a>, <a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)                                        \
+<a id='L135' name='L135' />  <strong class='reserved'>do</strong> <em class='brace'>{</em>                                                                  \
+<a id='L136' name='L136' />    <strong class='reserved'>if</strong> (!((<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>) <a href='../Y/3975.html' title='Multiple used in 55 places.'>op</a> (<a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>))) <em class='brace'>{</em>                                          \
+<a id='L137' name='L137' />      <a href='../Y/2438.html' title='Multiple used in 547 places.'>fprintf</a>(<a href='../Y/5101.html' title='Multiple used in 275 places.'>stderr</a>, "Check failed: %s %s %s\n", #<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, #<a href='../Y/3975.html' title='Multiple used in 55 places.'>op</a>, #<a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>);   \
+<a id='L138' name='L138' />      <a href='../Y/1379.html' title='Multiple used in 29 places.'>abort</a>();                                                          \
+<a id='L139' name='L139' />    <em class='brace'>}</em>                                                                   \
+<a id='L140' name='L140' />  <em class='brace'>}</em> <strong class='reserved'>while</strong> (0)
+<a id='L141' name='L141' />
+<a id='L142' name='L142' /><em class='sharp'>#define</em> <a href='../R/328.html' title='Multiple refered from 92 places.'>CHECK_EQ</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>) <a href='../S/529.html#L134' title='Defined at 134 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_OP</a>(==, <a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L143' name='L143' /><em class='sharp'>#define</em> <a href='../R/333.html' title='Multiple refered from 8 places.'>CHECK_NE</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>) <a href='../S/529.html#L134' title='Defined at 134 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_OP</a>(!=, <a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L144' name='L144' /><em class='sharp'>#define</em> <a href='../R/331.html' title='Multiple refered from 18 places.'>CHECK_LE</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>) <a href='../S/529.html#L134' title='Defined at 134 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_OP</a>(&lt;=, <a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L145' name='L145' /><em class='sharp'>#define</em> <a href='../R/332.html' title='Multiple refered from 21 places.'>CHECK_LT</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>) <a href='../S/529.html#L134' title='Defined at 134 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_OP</a>(&lt; , <a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L146' name='L146' /><em class='sharp'>#define</em> <a href='../R/329.html' title='Multiple refered from 22 places.'>CHECK_GE</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>) <a href='../S/529.html#L134' title='Defined at 134 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_OP</a>(&gt;=, <a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L147' name='L147' /><em class='sharp'>#define</em> <a href='../R/330.html' title='Multiple refered from 11 places.'>CHECK_GT</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>) <a href='../S/529.html#L134' title='Defined at 134 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_OP</a>(&gt; , <a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L148' name='L148' />
+<a id='L149' name='L149' /><em class='comment'>// Synonyms for CHECK_* that are used in some unittests.</em>
+<a id='L150' name='L150' /><em class='sharp'>#define</em> <a href='../R/600.html' title='Multiple refered from 108 places.'>EXPECT_EQ</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>) <a href='../S/529.html#L142' title='Defined at 142 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_EQ</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L151' name='L151' /><em class='sharp'>#define</em> <a href='../R/606.html' title='Multiple refered from 3 places.'>EXPECT_NE</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>) <a href='../S/529.html#L143' title='Defined at 143 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_NE</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L152' name='L152' /><em class='sharp'>#define</em> <a href='../R/604.html' title='Multiple refered from 3 places.'>EXPECT_LE</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>) <a href='../S/529.html#L144' title='Defined at 144 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_LE</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L153' name='L153' /><em class='sharp'>#define</em> <a href='../R/605.html' title='Multiple refered from 4 places.'>EXPECT_LT</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>) <a href='../S/529.html#L145' title='Defined at 145 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_LT</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L154' name='L154' /><em class='sharp'>#define</em> <a href='../R/602.html' title='Multiple refered from 3 places.'>EXPECT_GE</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>) <a href='../S/529.html#L146' title='Defined at 146 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_GE</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L155' name='L155' /><em class='sharp'>#define</em> <a href='../R/603.html' title='Multiple refered from 4 places.'>EXPECT_GT</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>) <a href='../S/529.html#L147' title='Defined at 147 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_GT</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L156' name='L156' /><em class='sharp'>#define</em> <a href='../R/79.html' title='Multiple refered from 74 places.'>ASSERT_EQ</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>) <a href='../S/529.html#L150' title='Defined at 150 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_EQ</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L157' name='L157' /><em class='sharp'>#define</em> <a href='../S/644.html#L342' title='Refered from 342 in third_party/google-perftools-1.8.3/src/tests/malloc_hook_test.cc.'>ASSERT_NE</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>) <a href='../S/529.html#L151' title='Defined at 151 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_NE</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L158' name='L158' /><em class='sharp'>#define</em> <a href='../R/82.html' title='Multiple refered from 2 places.'>ASSERT_LE</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>) <a href='../S/529.html#L152' title='Defined at 152 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_LE</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L159' name='L159' /><em class='sharp'>#define</em> ASSERT_LT(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>) <a href='../S/529.html#L153' title='Defined at 153 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_LT</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L160' name='L160' /><em class='sharp'>#define</em> <a href='../R/80.html' title='Multiple refered from 5 places.'>ASSERT_GE</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>) <a href='../S/529.html#L154' title='Defined at 154 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_GE</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L161' name='L161' /><em class='sharp'>#define</em> <a href='../S/643.html#L52' title='Refered from 52 in third_party/google-perftools-1.8.3/src/tests/malloc_extension_test.cc.'>ASSERT_GT</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>) <a href='../S/529.html#L155' title='Defined at 155 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_GT</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L162' name='L162' /><em class='comment'>// As are these variants.</em>
+<a id='L163' name='L163' /><em class='sharp'>#define</em> <a href='../R/608.html' title='Multiple refered from 22 places.'>EXPECT_TRUE</a>(<a href='../Y/1845.html' title='Multiple used in 21 places.'>cond</a>)     <a href='../S/529.html#L83' title='Defined at 83 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK</a>(<a href='../Y/1845.html' title='Multiple used in 21 places.'>cond</a>)
+<a id='L164' name='L164' /><em class='sharp'>#define</em> <a href='../R/601.html' title='Multiple refered from 9 places.'>EXPECT_FALSE</a>(<a href='../Y/1845.html' title='Multiple used in 21 places.'>cond</a>)    <a href='../S/529.html#L83' title='Defined at 83 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK</a>(!(<a href='../Y/1845.html' title='Multiple used in 21 places.'>cond</a>))
+<a id='L165' name='L165' /><em class='sharp'>#define</em> <a href='../R/607.html' title='Multiple refered from 3 places.'>EXPECT_STREQ</a>(<a href='../Y/1366.html' title='Multiple used in 517 places.'>a</a>, <a href='../Y/1569.html' title='Multiple used in 469 places.'>b</a>)    <a href='../S/529.html#L83' title='Defined at 83 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK</a>(<a href='../Y/5124.html' title='Multiple used in 47 places.'>strcmp</a>(<a href='../Y/1366.html' title='Multiple used in 517 places.'>a</a>, <a href='../Y/1569.html' title='Multiple used in 469 places.'>b</a>) == 0)
+<a id='L166' name='L166' /><em class='sharp'>#define</em> <a href='../R/84.html' title='Multiple refered from 13 places.'>ASSERT_TRUE</a>(<a href='../Y/1845.html' title='Multiple used in 21 places.'>cond</a>)     <a href='../S/529.html#L163' title='Defined at 163 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_TRUE</a>(<a href='../Y/1845.html' title='Multiple used in 21 places.'>cond</a>)
+<a id='L167' name='L167' /><em class='sharp'>#define</em> ASSERT_FALSE(<a href='../Y/1845.html' title='Multiple used in 21 places.'>cond</a>)    <a href='../S/529.html#L164' title='Defined at 164 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_FALSE</a>(<a href='../Y/1845.html' title='Multiple used in 21 places.'>cond</a>)
+<a id='L168' name='L168' /><em class='sharp'>#define</em> ASSERT_STREQ(<a href='../Y/1366.html' title='Multiple used in 517 places.'>a</a>, <a href='../Y/1569.html' title='Multiple used in 469 places.'>b</a>)    <a href='../S/529.html#L165' title='Defined at 165 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_STREQ</a>(<a href='../Y/1366.html' title='Multiple used in 517 places.'>a</a>, <a href='../Y/1569.html' title='Multiple used in 469 places.'>b</a>)
+<a id='L169' name='L169' />
+<a id='L170' name='L170' /><em class='comment'>// Used for (libc) functions that return -1 and set errno</em>
+<a id='L171' name='L171' /><em class='sharp'>#define</em> CHECK_ERR(invocation)  <a href='../S/529.html#L113' title='Defined at 113 in third_party/google-perftools-1.8.3/src/base/logging.h.'>PCHECK</a>((invocation) != -1)
+<a id='L172' name='L172' />
+<a id='L173' name='L173' /><em class='comment'>// A few more checks that only happen in debug mode</em>
+<a id='L174' name='L174' /><em class='sharp'>#ifdef</em> <a href='../Y/540.html' title='Multiple used in 13 places.'>NDEBUG</a>
+<a id='L175' name='L175' /><em class='sharp'>#define</em> <a href='../R/428.html' title='Multiple refered from 3 places.'>DCHECK_EQ</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L176' name='L176' /><em class='sharp'>#define</em> DCHECK_NE(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L177' name='L177' /><em class='sharp'>#define</em> DCHECK_LE(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L178' name='L178' /><em class='sharp'>#define</em> DCHECK_LT(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L179' name='L179' /><em class='sharp'>#define</em> DCHECK_GE(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L180' name='L180' /><em class='sharp'>#define</em> DCHECK_GT(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L181' name='L181' /><em class='sharp'>#else</em>
+<a id='L182' name='L182' /><em class='sharp'>#define</em> <a href='../R/428.html' title='Multiple refered from 3 places.'>DCHECK_EQ</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)  <a href='../S/529.html#L142' title='Defined at 142 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_EQ</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L183' name='L183' /><em class='sharp'>#define</em> DCHECK_NE(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)  <a href='../S/529.html#L143' title='Defined at 143 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_NE</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L184' name='L184' /><em class='sharp'>#define</em> DCHECK_LE(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)  <a href='../S/529.html#L144' title='Defined at 144 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_LE</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L185' name='L185' /><em class='sharp'>#define</em> DCHECK_LT(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)  <a href='../S/529.html#L145' title='Defined at 145 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_LT</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L186' name='L186' /><em class='sharp'>#define</em> DCHECK_GE(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)  <a href='../S/529.html#L146' title='Defined at 146 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_GE</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L187' name='L187' /><em class='sharp'>#define</em> DCHECK_GT(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)  <a href='../S/529.html#L147' title='Defined at 147 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_GT</a>(<a href='../Y/5596.html' title='Multiple used in 33 places.'>val1</a>, <a href='../Y/5597.html' title='Multiple used in 33 places.'>val2</a>)
+<a id='L188' name='L188' /><em class='sharp'>#endif</em>
+<a id='L189' name='L189' />
+<a id='L190' name='L190' />
+<a id='L191' name='L191' /><em class='sharp'>#ifdef</em> <a href='../D/681.html' title='Multiple defined in 3 places.'>ERROR</a>
+<a id='L192' name='L192' /><em class='sharp'>#undef</em> <a href='../R/585.html' title='Multiple refered from 28 places.'>ERROR</a>      <em class='comment'>// may conflict with ERROR macro on windows</em>
+<a id='L193' name='L193' /><em class='sharp'>#endif</em>
+<a id='L194' name='L194' /><strong class='reserved'>enum</strong> LogSeverity <em class='brace'>{</em><a href='../R/877.html' title='Multiple refered from 43 places.'>INFO</a> = -1, <a href='../R/2657.html' title='Multiple refered from 21 places.'>WARNING</a> = -2, <a href='../R/585.html' title='Multiple refered from 28 places.'>ERROR</a> = -3, <a href='../R/639.html' title='Multiple refered from 40 places.'>FATAL</a> = -4<em class='brace'>}</em>;
+<a id='L195' name='L195' />
+<a id='L196' name='L196' /><em class='comment'>// NOTE: we add a newline to the end of the output if it's not there already</em>
+<a id='L197' name='L197' /><strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../S/529.html#L221' title='Refered from 221 in third_party/google-perftools-1.8.3/src/base/logging.h.'>LogPrintf</a>(<strong class='reserved'>int</strong> <a href='../Y/4815.html' title='Multiple used in 6 places.'>severity</a>, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../Y/4126.html' title='Multiple used in 11 places.'>pat</a>, <a href='../Y/5593.html' title='Multiple used in 27 places.'>va_list</a> <a href='../Y/1470.html' title='Multiple used in 194 places.'>ap</a>) <em class='brace'>{</em>
+<a id='L198' name='L198' />  <em class='comment'>// We write directly to the stderr file descriptor and avoid FILE</em>
+<a id='L199' name='L199' />  <em class='comment'>// buffering because that may invoke malloc()</em>
+<a id='L200' name='L200' />  <strong class='reserved'>char</strong> <a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>[600];
+<a id='L201' name='L201' />  <a href='../D/4794.html' title='Multiple defined in 3 places.'>perftools_vsnprintf</a>(<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>, <strong class='reserved'>sizeof</strong>(<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>)-1, <a href='../Y/4126.html' title='Multiple used in 11 places.'>pat</a>, <a href='../Y/1470.html' title='Multiple used in 194 places.'>ap</a>);
+<a id='L202' name='L202' />  <strong class='reserved'>if</strong> (<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>[0] != '\0' &amp;&amp; <a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>[<a href='../Y/5139.html' title='Multiple used in 84 places.'>strlen</a>(<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>)-1] != '\n') <em class='brace'>{</em>
+<a id='L203' name='L203' />    <a href='../Y/1520.html' title='Multiple used in 35 places.'>assert</a>(<a href='../Y/5139.html' title='Multiple used in 84 places.'>strlen</a>(<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>)+1 &lt; <strong class='reserved'>sizeof</strong>(<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>));
+<a id='L204' name='L204' />    <a href='../Y/5122.html' title='Multiple used in 14 places.'>strcat</a>(<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>, "\n");
+<a id='L205' name='L205' />  <em class='brace'>}</em>
+<a id='L206' name='L206' />  <a href='../D/2995.html' title='Multiple defined in 3 places.'>WRITE_TO_STDERR</a>(<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>, <a href='../Y/5139.html' title='Multiple used in 84 places.'>strlen</a>(<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>));
+<a id='L207' name='L207' />  <strong class='reserved'>if</strong> ((<a href='../Y/4815.html' title='Multiple used in 6 places.'>severity</a>) == <a href='../S/529.html#L194' title='Defined at 194 in third_party/google-perftools-1.8.3/src/base/logging.h.'>FATAL</a>)
+<a id='L208' name='L208' />    <a href='../Y/1379.html' title='Multiple used in 29 places.'>abort</a>(); <em class='comment'>// LOG(FATAL) indicates a big problem, so don't run atexit() calls</em>
+<a id='L209' name='L209' /><em class='brace'>}</em>
+<a id='L210' name='L210' />
+<a id='L211' name='L211' /><em class='comment'>// Note that since the order of global constructors is unspecified,</em>
+<a id='L212' name='L212' /><em class='comment'>// global code that calls RAW_LOG may execute before FLAGS_verbose is set.</em>
+<a id='L213' name='L213' /><em class='comment'>// Such code will run with verbosity == 0 no matter what.</em>
+<a id='L214' name='L214' /><em class='sharp'>#define</em> <a href='../R/2638.html' title='Multiple refered from 6 places.'>VLOG_IS_ON</a>(<a href='../Y/4815.html' title='Multiple used in 6 places.'>severity</a>) (<a href='../Y/254.html' title='Multiple used in 8 places.'>FLAGS_verbose</a> &gt;= <a href='../Y/4815.html' title='Multiple used in 6 places.'>severity</a>)
+<a id='L215' name='L215' />
+<a id='L216' name='L216' /><em class='comment'>// In a better world, we'd use __VA_ARGS__, but VC++ 7 doesn't support it.</em>
+<a id='L217' name='L217' /><em class='sharp'>#define</em> <a href='../R/1408.html' title='Multiple refered from 5 places.'>LOG_PRINTF</a>(<a href='../Y/4815.html' title='Multiple used in 6 places.'>severity</a>, <a href='../Y/4126.html' title='Multiple used in 11 places.'>pat</a>) <strong class='reserved'>do</strong> <em class='brace'>{</em>          \
+<a id='L218' name='L218' />  <strong class='reserved'>if</strong> (<a href='../S/529.html#L214' title='Defined at 214 in third_party/google-perftools-1.8.3/src/base/logging.h.'>VLOG_IS_ON</a>(<a href='../Y/4815.html' title='Multiple used in 6 places.'>severity</a>)) <em class='brace'>{</em>                   \
+<a id='L219' name='L219' />    <a href='../Y/5593.html' title='Multiple used in 27 places.'>va_list</a> <a href='../Y/1470.html' title='Multiple used in 194 places.'>ap</a>;                                 \
+<a id='L220' name='L220' />    <a href='../Y/5594.html' title='Multiple used in 17 places.'>va_start</a>(<a href='../Y/1470.html' title='Multiple used in 194 places.'>ap</a>, <a href='../Y/4126.html' title='Multiple used in 11 places.'>pat</a>);                          \
+<a id='L221' name='L221' />    <a href='../S/529.html#L197' title='Defined at 197 in third_party/google-perftools-1.8.3/src/base/logging.h.'>LogPrintf</a>(<a href='../Y/4815.html' title='Multiple used in 6 places.'>severity</a>, <a href='../Y/4126.html' title='Multiple used in 11 places.'>pat</a>, <a href='../Y/1470.html' title='Multiple used in 194 places.'>ap</a>);               \
+<a id='L222' name='L222' />    <a href='../Y/5592.html' title='Multiple used in 16 places.'>va_end</a>(<a href='../Y/1470.html' title='Multiple used in 194 places.'>ap</a>);                                 \
+<a id='L223' name='L223' />  <em class='brace'>}</em>                                             \
+<a id='L224' name='L224' /><em class='brace'>}</em> <strong class='reserved'>while</strong> (0)
+<a id='L225' name='L225' />
+<a id='L226' name='L226' /><em class='comment'>// RAW_LOG is the main function; some synonyms are used in unittests.</em>
+<a id='L227' name='L227' /><strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../R/2031.html' title='Multiple refered from 96 places.'>RAW_LOG</a>(<strong class='reserved'>int</strong> <a href='../Y/3354.html' title='Multiple used in 7 places.'>lvl</a>, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../Y/4126.html' title='Multiple used in 11 places.'>pat</a>, ...)  <em class='brace'>{</em> <a href='../S/529.html#L217' title='Defined at 217 in third_party/google-perftools-1.8.3/src/base/logging.h.'>LOG_PRINTF</a>(<a href='../Y/3354.html' title='Multiple used in 7 places.'>lvl</a>, <a href='../Y/4126.html' title='Multiple used in 11 places.'>pat</a>); <em class='brace'>}</em>
+<a id='L228' name='L228' /><strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../R/2032.html' title='Multiple refered from 107 places.'>RAW_VLOG</a>(<strong class='reserved'>int</strong> <a href='../Y/3354.html' title='Multiple used in 7 places.'>lvl</a>, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../Y/4126.html' title='Multiple used in 11 places.'>pat</a>, ...) <em class='brace'>{</em> <a href='../S/529.html#L217' title='Defined at 217 in third_party/google-perftools-1.8.3/src/base/logging.h.'>LOG_PRINTF</a>(<a href='../Y/3354.html' title='Multiple used in 7 places.'>lvl</a>, <a href='../Y/4126.html' title='Multiple used in 11 places.'>pat</a>); <em class='brace'>}</em>
+<a id='L229' name='L229' /><strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../R/1404.html' title='Multiple refered from 31 places.'>LOG</a>(<strong class='reserved'>int</strong> <a href='../Y/3354.html' title='Multiple used in 7 places.'>lvl</a>, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../Y/4126.html' title='Multiple used in 11 places.'>pat</a>, ...)      <em class='brace'>{</em> <a href='../S/529.html#L217' title='Defined at 217 in third_party/google-perftools-1.8.3/src/base/logging.h.'>LOG_PRINTF</a>(<a href='../Y/3354.html' title='Multiple used in 7 places.'>lvl</a>, <a href='../Y/4126.html' title='Multiple used in 11 places.'>pat</a>); <em class='brace'>}</em>
+<a id='L230' name='L230' /><strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../R/2637.html' title='Multiple refered from 26 places.'>VLOG</a>(<strong class='reserved'>int</strong> <a href='../Y/3354.html' title='Multiple used in 7 places.'>lvl</a>, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../Y/4126.html' title='Multiple used in 11 places.'>pat</a>, ...)     <em class='brace'>{</em> <a href='../S/529.html#L217' title='Defined at 217 in third_party/google-perftools-1.8.3/src/base/logging.h.'>LOG_PRINTF</a>(<a href='../Y/3354.html' title='Multiple used in 7 places.'>lvl</a>, <a href='../Y/4126.html' title='Multiple used in 11 places.'>pat</a>); <em class='brace'>}</em>
+<a id='L231' name='L231' /><strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../S/637.html#L162' title='Refered from 162 in third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc.'>LOG_IF</a>(<strong class='reserved'>int</strong> <a href='../Y/3354.html' title='Multiple used in 7 places.'>lvl</a>, <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../Y/1845.html' title='Multiple used in 21 places.'>cond</a>, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../Y/4126.html' title='Multiple used in 11 places.'>pat</a>, ...) <em class='brace'>{</em>
+<a id='L232' name='L232' />  <strong class='reserved'>if</strong> (<a href='../Y/1845.html' title='Multiple used in 21 places.'>cond</a>)  <a href='../S/529.html#L217' title='Defined at 217 in third_party/google-perftools-1.8.3/src/base/logging.h.'>LOG_PRINTF</a>(<a href='../Y/3354.html' title='Multiple used in 7 places.'>lvl</a>, <a href='../Y/4126.html' title='Multiple used in 11 places.'>pat</a>);
+<a id='L233' name='L233' /><em class='brace'>}</em>
+<a id='L234' name='L234' />
+<a id='L235' name='L235' /><em class='comment'>// This isn't technically logging, but it's also IO and also is an</em>
+<a id='L236' name='L236' /><em class='comment'>// attempt to be "raw" -- that is, to not use any higher-level libc</em>
+<a id='L237' name='L237' /><em class='comment'>// routines that might allocate memory or (ideally) try to allocate</em>
+<a id='L238' name='L238' /><em class='comment'>// locks.  We use an opaque file handle (not necessarily an int)</em>
+<a id='L239' name='L239' /><em class='comment'>// to allow even more low-level stuff in the future.</em>
+<a id='L240' name='L240' /><em class='comment'>// Like other "raw" routines, these functions are best effort, and</em>
+<a id='L241' name='L241' /><em class='comment'>// thus don't return error codes (except RawOpenForWriting()).</em>
+<a id='L242' name='L242' /><em class='sharp'>#if</em> <strong class='reserved'>defined</strong>(<a href='../Y/997.html' title='Multiple used in 42 places.'>_WIN32</a>) || <strong class='reserved'>defined</strong>(<a href='../S/310.html#L11' title='Defined at 11 in src/arch.h.'>__CYGWIN__</a>) || <strong class='reserved'>defined</strong>(<a href='../Y/1035.html' title='Multiple used in 24 places.'>__CYGWIN32__</a>)
+<a id='L243' name='L243' /><em class='sharp'>#ifndef</em> <a href='../D/1912.html' title='Multiple defined in 2 places.'>NOMINMAX</a>
+<a id='L244' name='L244' /><em class='sharp'>#define</em> <a href='../S/529.html#L243' title='Refered from 243 in third_party/google-perftools-1.8.3/src/base/logging.h.'>NOMINMAX</a>     <em class='comment'>// @#!$&amp; windows</em>
+<a id='L245' name='L245' /><em class='sharp'>#endif</em>
+<a id='L246' name='L246' /><em class='sharp'>#include</em> &lt;windows.h&gt;
+<a id='L247' name='L247' /><strong class='reserved'>typedef</strong> <a href='../Y/331.html' title='Multiple used in 28 places.'>HANDLE</a> <a href='../R/2122.html' title='Multiple refered from 18 places.'>RawFD</a>;
+<a id='L248' name='L248' /><strong class='reserved'>const</strong> <a href='../D/2368.html' title='Multiple defined in 2 places.'>RawFD</a> <a href='../Y/3018.html' title='Multiple used in 5 places.'>kIllegalRawFD</a> = <a href='../Y/372.html' title='Multiple used in 4 places.'>INVALID_HANDLE_VALUE</a>;
+<a id='L249' name='L249' /><em class='sharp'>#else</em>
+<a id='L250' name='L250' /><strong class='reserved'>typedef</strong> <strong class='reserved'>int</strong> <a href='../R/2122.html' title='Multiple refered from 18 places.'>RawFD</a>;
+<a id='L251' name='L251' /><strong class='reserved'>const</strong> <a href='../D/2368.html' title='Multiple defined in 2 places.'>RawFD</a> <a href='../Y/3018.html' title='Multiple used in 5 places.'>kIllegalRawFD</a> = -1;   <em class='comment'>// what open returns if it fails</em>
+<a id='L252' name='L252' /><em class='sharp'>#endif</em>  <em class='comment'>// defined(_WIN32) || defined(__CYGWIN__) || defined(__CYGWIN32__)</em>
+<a id='L253' name='L253' />
+<a id='L254' name='L254' /><a href='../D/2368.html' title='Multiple defined in 2 places.'>RawFD</a> <a href='../D/2370.html' title='Multiple defined in 2 places.'>RawOpenForWriting</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../S/652.html#L126' title='Defined at 126 in third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc.'>filename</a>);   <em class='comment'>// uses default permissions</em>
+<a id='L255' name='L255' /><strong class='reserved'>void</strong> <a href='../D/2374.html' title='Multiple defined in 2 places.'>RawWrite</a>(<a href='../D/2368.html' title='Multiple defined in 2 places.'>RawFD</a> <a href='../Y/2340.html' title='Multiple used in 181 places.'>fd</a>, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/3205.html' title='Multiple used in 280 places.'>len</a>);
+<a id='L256' name='L256' /><strong class='reserved'>void</strong> <a href='../D/2367.html' title='Multiple defined in 2 places.'>RawClose</a>(<a href='../D/2368.html' title='Multiple defined in 2 places.'>RawFD</a> <a href='../Y/2340.html' title='Multiple used in 181 places.'>fd</a>);
+<a id='L257' name='L257' />
+<a id='L258' name='L258' /><em class='sharp'>#endif</em> <em class='comment'>// _LOGGING_H_</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;]<a href='#L197'>[^]</a><a href='#L231'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

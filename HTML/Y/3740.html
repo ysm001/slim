@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>new_mem</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/357.html#L810'>new_mem</a>           810 src/membrane.c   LmnMembrane *new_mem;</span>
+<span class='curline'><a href='../S/357.html#L814'>new_mem</a>           814 src/membrane.c   new_mem = lmn_mem_make();</span>
+<span class='curline'><a href='../S/357.html#L817'>new_mem</a>           817 src/membrane.c     copymap = lmn_mem_copy_cells_ex(new_mem, src, TRUE);</span>
+<span class='curline'><a href='../S/357.html#L819'>new_mem</a>           819 src/membrane.c     copymap = lmn_mem_copy_cells(new_mem, src);</span>
+<span class='curline'><a href='../S/357.html#L823'>new_mem</a>           823 src/membrane.c     vec_push(&amp;new_mem-&gt;rulesets,</span>
+<span class='curline'><a href='../S/357.html#L828'>new_mem</a>           828 src/membrane.c   return new_mem;</span>
+<span class='curline'><a href='../S/357.html#L869'>new_mem</a>           869 src/membrane.c     LmnMembrane *new_mem = lmn_mem_make();</span>
+<span class='curline'><a href='../S/357.html#L870'>new_mem</a>           870 src/membrane.c     lmn_mem_copy_cells_sub(new_mem, m, atoms, hl_nd);</span>
+<span class='curline'><a href='../S/357.html#L871'>new_mem</a>           871 src/membrane.c     lmn_mem_add_child_mem(destmem, new_mem);</span>
+<span class='curline'><a href='../S/357.html#L873'>new_mem</a>           873 src/membrane.c     proc_tbl_put_mem(atoms, m, (LmnWord)new_mem);</span>
+<span class='curline'><a href='../S/357.html#L875'>new_mem</a>           875 src/membrane.c     new_mem-&gt;name = m-&gt;name;</span>
+<span class='curline'><a href='../S/357.html#L878'>new_mem</a>           878 src/membrane.c       vec_push(&amp;new_mem-&gt;rulesets,</span>
+<span class='curline'><a href='../S/417.html#L639'>new_mem</a>           639 src/verifier/delta_membrane.c       LmnMembrane *new_mem = dmem_root_new_mem(root_d);</span>
+<span class='curline'><a href='../S/417.html#L642'>new_mem</a>           642 src/verifier/delta_membrane.c       dmem_copy_cells(root_d, NULL, new_mem, dmem_root_get_mem_delta(root_d, m), m, atoms);</span>
+<span class='curline'><a href='../S/417.html#L645'>new_mem</a>           645 src/verifier/delta_membrane.c       dmem_copy_cells(root_d, NULL, new_mem, NULL, m, atoms);</span>
+<span class='curline'><a href='../S/417.html#L647'>new_mem</a>           647 src/verifier/delta_membrane.c     if (d) dmem_add_child_mem(d, destmem, new_mem);</span>
+<span class='curline'><a href='../S/417.html#L648'>new_mem</a>           648 src/verifier/delta_membrane.c     else dmem_root_add_child_mem(root_d, destmem, new_mem);</span>
+<span class='curline'><a href='../S/417.html#L650'>new_mem</a>           650 src/verifier/delta_membrane.c     proc_tbl_put_mem(atoms, m, (LmnWord)new_mem);</span>
+<span class='curline'><a href='../S/417.html#L652'>new_mem</a>           652 src/verifier/delta_membrane.c     new_mem-&gt;name = m-&gt;name;</span>
+<span class='curline'><a href='../S/417.html#L655'>new_mem</a>           655 src/verifier/delta_membrane.c       if (d) dmem_add_ruleset(d, new_mem, (LmnRuleSet)vec_get(&amp;m-&gt;rulesets, i));</span>
+<span class='curline'><a href='../S/417.html#L656'>new_mem</a>           656 src/verifier/delta_membrane.c       else lmn_mem_add_ruleset(new_mem, (LmnRuleSet)vec_get(&amp;m-&gt;rulesets, i));</span>
+<span class='curline'><a href='../S/436.html#L1802'>new_mem</a>          1802 src/verifier/mem_encode.c       LmnMembrane *new_mem;</span>
+<span class='curline'><a href='../S/436.html#L1803'>new_mem</a>          1803 src/verifier/mem_encode.c       new_mem = lmn_mem_make();</span>
+<span class='curline'><a href='../S/436.html#L1804'>new_mem</a>          1804 src/verifier/mem_encode.c       lmn_mem_set_name(new_mem, mem_name);</span>
+<span class='curline'><a href='../S/436.html#L1805'>new_mem</a>          1805 src/verifier/mem_encode.c       lmn_mem_set_active(new_mem, TRUE);</span>
+<span class='curline'><a href='../S/436.html#L1806'>new_mem</a>          1806 src/verifier/mem_encode.c       lmn_mem_add_child_mem(mem, new_mem);</span>
+<span class='curline'><a href='../S/436.html#L1808'>new_mem</a>          1808 src/verifier/mem_encode.c       log[(*nvisit)].v    = (LmnWord)new_mem;</span>
+<span class='curline'><a href='../S/436.html#L1814'>new_mem</a>          1814 src/verifier/mem_encode.c         in  = lmn_mem_newatom(new_mem, LMN_IN_PROXY_FUNCTOR);</span>
+<span class='curline'><a href='../S/436.html#L1818'>new_mem</a>          1818 src/verifier/mem_encode.c         pos = binstr_decode_cell(bs, pos, log, nvisit, new_mem, in, 1);</span>
+<span class='curline'><a href='../S/436.html#L1820'>new_mem</a>          1820 src/verifier/mem_encode.c         pos = binstr_decode_cell(bs, pos, log, nvisit, new_mem, from_atom, from_arg);</span>
+</pre>
+</body>
+</html>

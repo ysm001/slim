@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>header</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/386.html#L313'>header</a>            313 src/translate.c                                   const char *header,</span>
+<span class='curline'><a href='../S/386.html#L366'>header</a>            366 src/translate.c     print_indent(indent); fprintf(OUT, "  extern BOOL %s_%d();\n", header, next_index);</span>
+<span class='curline'><a href='../S/386.html#L368'>header</a>            368 src/translate.c         , header, next_index, i);</span>
+<span class='curline'><a href='../S/386.html#L391'>header</a>            391 src/translate.c const BYTE *translate_instructions(const BYTE *p, Vector *jump_points, const char *header, const char *successcode, const char *failcode, int indent)</span>
+<span class='curline'><a href='../S/386.html#L399'>header</a>            399 src/translate.c     next = translate_instruction_generated(p, jump_points, header, successcode, failcode, indent, &amp;finishflag);</span>
+<span class='curline'><a href='../S/386.html#L408'>header</a>            408 src/translate.c       next = translate_instruction(p, jump_points, header, successcode, failcode, indent, &amp;finishflag);</span>
+<span class='curline'><a href='../S/386.html#L424'>header</a>            424 src/translate.c static void translate_rule(LmnRule rule, const char *header)</span>
+<span class='curline'><a href='../S/386.html#L433'>header</a>            433 src/translate.c     fprintf(OUT, "BOOL %s_%d(LmnReactCxt* rc, LmnMembrane* thisisrootmembutnotused, LmnRule rule)\n", header, i); /* TODO m=wt[0]なのでmは多分いらない */</span>
+<span class='curline'><a href='../S/386.html#L436'>header</a>            436 src/translate.c     translate_instructions(p, jump_points, header, "return TRUE", "return FALSE", 1);</span>
+<span class='curline'><a href='../S/386.html#L444'>header</a>            444 src/translate.c static void translate_ruleset(LmnRuleSet ruleset, const char *header)</span>
+<span class='curline'><a href='../S/386.html#L450'>header</a>            450 src/translate.c   buf_len     = strlen(header) + 50; /* 適当. これだけあれば足りるはず */</span>
+<span class='curline'><a href='../S/386.html#L460'>header</a>            460 src/translate.c     snprintf(buf, buf_len, "%s_%d", header, i); /* ルールのシグネチャ */</span>
+<span class='curline'><a href='../S/386.html#L464'>header</a>            464 src/translate.c   fprintf(OUT, "struct trans_rule %s_rules[%d] = {", header, lmn_ruleset_rule_num(ruleset));</span>
+<span class='curline'><a href='../S/386.html#L468'>header</a>            468 src/translate.c     fprintf(OUT, "{%d, %s_%d_0}", rule_names[i], header, i); /* 各ルールの名前と先頭関数を配列に */</span>
+<span class='curline'><a href='../S/387.html#L107'>header</a>            107 src/translate.h                                             const char *header, /* その場所が属する */</span>
+<span class='curline'><a href='../S/387.html#L116'>header</a>            116 src/translate.h                                             const char *header,</span>
+<span class='curline'><a href='../S/387.html#L126'>header</a>            126 src/translate.h                                    const char *header,</span>
+<span class='curline'><a href='../S/388.html#L12'>header</a>             12 src/translate_generated.c                                             const char *header,</span>
+<span class='curline'><a href='../S/388.html#L44'>header</a>             44 src/translate_generated.c       instr = translate_instructions(instr, jump_points, header, buf_always, buf_always, indent+1);</span>
+<span class='curline'><a href='../S/388.html#L72'>header</a>             72 src/translate_generated.c       instr = translate_instructions(instr, jump_points, header, buf_always, buf_always, indent+1);</span>
+<span class='curline'><a href='../S/388.html#L101'>header</a>            101 src/translate_generated.c       instr = translate_instructions(instr, jump_points, header, buf_always, buf_always, indent+1);</span>
+<span class='curline'><a href='../S/388.html#L142'>header</a>            142 src/translate_generated.c               instr = translate_instructions(instr, jump_points, header, successcode, buf_fail, indent+1);</span>
+<span class='curline'><a href='../S/388.html#L187'>header</a>            187 src/translate_generated.c           instr = translate_instructions(instr, jump_points, header, successcode, buf_fail, indent+1);</span>
+<span class='curline'><a href='../S/388.html#L354'>header</a>            354 src/translate_generated.c       const BYTE *next = translate_instructions(instr, jump_points, header, buf_success, buf_fail, indent+1);</span>
+<span class='curline'><a href='../S/388.html#L706'>header</a>            706 src/translate_generated.c       instr = translate_instructions(instr, jump_points, header, buf_success, buf_fail, indent+1);</span>
+<span class='curline'><a href='../S/388.html#L808'>header</a>            808 src/translate_generated.c       instr = translate_instructions(instr, jump_points, header, buf_always, buf_always, indent+1);</span>
+<span class='curline'><a href='../S/530.html#L73'>header</a>             73 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     } header;</span>
+<span class='curline'><a href='../S/530.html#L268'>header</a>            268 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     while (arena-&gt;roundup &lt; sizeof (arena-&gt;freelist.header)) {</span>
+<span class='curline'><a href='../S/530.html#L274'>header</a>            274 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     arena-&gt;freelist.header.size = 0;</span>
+<span class='curline'><a href='../S/530.html#L275'>header</a>            275 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     arena-&gt;freelist.header.magic =</span>
+<span class='curline'><a href='../S/530.html#L276'>header</a>            276 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc         Magic(kMagicUnallocated, &amp;arena-&gt;freelist.header);</span>
+<span class='curline'><a href='../S/530.html#L277'>header</a>            277 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     arena-&gt;freelist.header.arena = arena;</span>
+<span class='curline'><a href='../S/530.html#L323'>header</a>            323 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       size_t size = region-&gt;header.size;</span>
+<span class='curline'><a href='../S/530.html#L325'>header</a>            325 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       RAW_CHECK(region-&gt;header.magic ==</span>
+<span class='curline'><a href='../S/530.html#L326'>header</a>            326 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc                 Magic(kMagicUnallocated, &amp;region-&gt;header),</span>
+<span class='curline'><a href='../S/530.html#L328'>header</a>            328 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       RAW_CHECK(region-&gt;header.arena == arena,</span>
+<span class='curline'><a href='../S/530.html#L365'>header</a>            365 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     RAW_CHECK(next-&gt;header.magic == Magic(kMagicUnallocated, &amp;next-&gt;header),</span>
+<span class='curline'><a href='../S/530.html#L367'>header</a>            367 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     RAW_CHECK(next-&gt;header.arena == arena,</span>
+<span class='curline'><a href='../S/530.html#L371'>header</a>            371 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       RAW_CHECK(reinterpret_cast&lt;char *&gt;(prev) + prev-&gt;header.size &lt;</span>
+<span class='curline'><a href='../S/530.html#L381'>header</a>            381 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   if (n != 0 &amp;&amp; reinterpret_cast&lt;char *&gt;(a) + a-&gt;header.size ==</span>
+<span class='curline'><a href='../S/530.html#L383'>header</a>            383 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     LowLevelAlloc::Arena *arena = a-&gt;header.arena;</span>
+<span class='curline'><a href='../S/530.html#L384'>header</a>            384 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     a-&gt;header.size += n-&gt;header.size;</span>
+<span class='curline'><a href='../S/530.html#L385'>header</a>            385 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     n-&gt;header.magic = 0;</span>
+<span class='curline'><a href='../S/530.html#L386'>header</a>            386 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     n-&gt;header.arena = 0;</span>
+<span class='curline'><a href='../S/530.html#L390'>header</a>            390 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     a-&gt;levels = LLA_SkiplistLevels(a-&gt;header.size, arena-&gt;min_size, true);</span>
+<span class='curline'><a href='../S/530.html#L399'>header</a>            399 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc                         reinterpret_cast&lt;char *&gt;(v) - sizeof (f-&gt;header));</span>
+<span class='curline'><a href='../S/530.html#L400'>header</a>            400 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   RAW_CHECK(f-&gt;header.magic == Magic(kMagicAllocated, &amp;f-&gt;header),</span>
+<span class='curline'><a href='../S/530.html#L402'>header</a>            402 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   RAW_CHECK(f-&gt;header.arena == arena,</span>
+<span class='curline'><a href='../S/530.html#L404'>header</a>            404 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   f-&gt;levels = LLA_SkiplistLevels(f-&gt;header.size, arena-&gt;min_size, true);</span>
+<span class='curline'><a href='../S/530.html#L407'>header</a>            407 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   f-&gt;header.magic = Magic(kMagicUnallocated, &amp;f-&gt;header);</span>
+<span class='curline'><a href='../S/530.html#L417'>header</a>            417 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc                         reinterpret_cast&lt;char *&gt;(v) - sizeof (f-&gt;header));</span>
+<span class='curline'><a href='../S/530.html#L418'>header</a>            418 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     RAW_CHECK(f-&gt;header.magic == Magic(kMagicAllocated, &amp;f-&gt;header),</span>
+<span class='curline'><a href='../S/530.html#L420'>header</a>            420 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     LowLevelAlloc::Arena *arena = f-&gt;header.arena;</span>
+<span class='curline'><a href='../S/530.html#L441'>header</a>            441 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     size_t req_rnd = RoundUp(request + sizeof (s-&gt;header), arena-&gt;roundup);</span>
+<span class='curline'><a href='../S/530.html#L447'>header</a>            447 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc         while ((s = Next(i, before, arena)) != 0 &amp;&amp; s-&gt;header.size &lt; req_rnd) {</span>
+<span class='curline'><a href='../S/530.html#L471'>header</a>            471 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       s-&gt;header.size = new_pages_size;</span>
+<span class='curline'><a href='../S/530.html#L473'>header</a>            473 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       s-&gt;header.magic = Magic(kMagicAllocated, &amp;s-&gt;header);</span>
+<span class='curline'><a href='../S/530.html#L474'>header</a>            474 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       s-&gt;header.arena = arena;</span>
+<span class='curline'><a href='../S/530.html#L480'>header</a>            480 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     if (req_rnd + arena-&gt;min_size &lt;= s-&gt;header.size) {  // big enough to split</span>
+<span class='curline'><a href='../S/530.html#L483'>header</a>            483 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       n-&gt;header.size = s-&gt;header.size - req_rnd;</span>
+<span class='curline'><a href='../S/530.html#L484'>header</a>            484 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       n-&gt;header.magic = Magic(kMagicAllocated, &amp;n-&gt;header);</span>
+<span class='curline'><a href='../S/530.html#L485'>header</a>            485 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       n-&gt;header.arena = arena;</span>
+<span class='curline'><a href='../S/530.html#L486'>header</a>            486 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       s-&gt;header.size = req_rnd;</span>
+<span class='curline'><a href='../S/530.html#L489'>header</a>            489 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     s-&gt;header.magic = Magic(kMagicAllocated, &amp;s-&gt;header);</span>
+<span class='curline'><a href='../S/530.html#L490'>header</a>            490 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     RAW_CHECK(s-&gt;header.arena == arena, "");</span>
+<span class='curline'><a href='../S/699.html#L555'>header</a>            555 third_party/zdelta-2.1/deflate.c     uInt header = (ZD_DEFLATED + ((s-&gt;w_bits-8)&lt;&lt;4)) &lt;&lt; 8;</span>
+<span class='curline'><a href='../S/699.html#L559'>header</a>            559 third_party/zdelta-2.1/deflate.c     header |= (level_flags &lt;&lt; 6);</span>
+<span class='curline'><a href='../S/699.html#L560'>header</a>            560 third_party/zdelta-2.1/deflate.c     header += 31 - (header % 31);</span>
+<span class='curline'><a href='../S/699.html#L563'>header</a>            563 third_party/zdelta-2.1/deflate.c     putShortMSB(s, header);</span>
+<span class='curline'><a href='../S/719.html#L199'>header</a>            199 third_party/zdelta-2.1/trees.c                               int header));</span>
+<span class='curline'><a href='../S/719.html#L419'>header</a>            419 third_party/zdelta-2.1/trees.c   FILE *header = fopen("trees.h", "w");</span>
+<span class='curline'><a href='../S/719.html#L422'>header</a>            422 third_party/zdelta-2.1/trees.c   Assert (header != NULL, "Can't open trees.h");</span>
+<span class='curline'><a href='../S/719.html#L423'>header</a>            423 third_party/zdelta-2.1/trees.c   fprintf(header,</span>
+<span class='curline'><a href='../S/719.html#L426'>header</a>            426 third_party/zdelta-2.1/trees.c   fprintf(header, "local const ct_data static_ltree[L_CODES] = {\n");</span>
+<span class='curline'><a href='../S/719.html#L428'>header</a>            428 third_party/zdelta-2.1/trees.c     fprintf(header, "{{%3u},{%3u}}%s", static_ltree[i].Code,</span>
+<span class='curline'><a href='../S/719.html#L432'>header</a>            432 third_party/zdelta-2.1/trees.c   fprintf(header, "local const ct_data static_dtree[D_CODES+1] = {\n");</span>
+<span class='curline'><a href='../S/719.html#L434'>header</a>            434 third_party/zdelta-2.1/trees.c     fprintf(header, "{{%2u},{%2u}}%s", static_dtree[i].Code,</span>
+<span class='curline'><a href='../S/719.html#L439'>header</a>            439 third_party/zdelta-2.1/trees.c   fprintf(header,"#if REFNUM &gt; 1\n");</span>
+<span class='curline'><a href='../S/719.html#L440'>header</a>            440 third_party/zdelta-2.1/trees.c   fprintf(header, "local const ct_data static_ztree[ZD_CODES] = {\n");</span>
+<span class='curline'><a href='../S/719.html#L442'>header</a>            442 third_party/zdelta-2.1/trees.c     fprintf(header, "{{%2u},{%2u}}%s", static_ztree[i].Code,</span>
+<span class='curline'><a href='../S/719.html#L445'>header</a>            445 third_party/zdelta-2.1/trees.c   fprintf(header,"#else\n");</span>
+<span class='curline'><a href='../S/719.html#L446'>header</a>            446 third_party/zdelta-2.1/trees.c   fprintf(header,"local const ct_data static_ztree[ZD_CODES] = {\n");</span>
+<span class='curline'><a href='../S/719.html#L447'>header</a>            447 third_party/zdelta-2.1/trees.c   fprintf(header,"{{ 0},{ 1}}, {{ 1},{ 1}}\n};\n");</span>
+<span class='curline'><a href='../S/719.html#L448'>header</a>            448 third_party/zdelta-2.1/trees.c   fprintf(header,"#endif\n\n");  </span>
+<span class='curline'><a href='../S/719.html#L450'>header</a>            450 third_party/zdelta-2.1/trees.c   fprintf(header, "const uch zd_dist_code[DIST_CODE_LEN] = {\n");</span>
+<span class='curline'><a href='../S/719.html#L452'>header</a>            452 third_party/zdelta-2.1/trees.c     fprintf(header, "%2u%s", zd_dist_code[i],</span>
+<span class='curline'><a href='../S/719.html#L456'>header</a>            456 third_party/zdelta-2.1/trees.c   fprintf(header, "const uch zd_length_code[LENGTH_CODE_LEN]= {\n");</span>
+<span class='curline'><a href='../S/719.html#L458'>header</a>            458 third_party/zdelta-2.1/trees.c     fprintf(header, "%2u%s", zd_length_code[i],</span>
+<span class='curline'><a href='../S/719.html#L462'>header</a>            462 third_party/zdelta-2.1/trees.c   fprintf(header, "local const int base_length[LENGTH_CODES] = {\n");</span>
+<span class='curline'><a href='../S/719.html#L464'>header</a>            464 third_party/zdelta-2.1/trees.c     fprintf(header, "%1u%s", base_length[i],</span>
+<span class='curline'><a href='../S/719.html#L468'>header</a>            468 third_party/zdelta-2.1/trees.c   fprintf(header, "local const int base_dist[DIST_CODES] = {\n");</span>
+<span class='curline'><a href='../S/719.html#L470'>header</a>            470 third_party/zdelta-2.1/trees.c     fprintf(header, "%5u%s", base_dist[i],</span>
+<span class='curline'><a href='../S/719.html#L474'>header</a>            474 third_party/zdelta-2.1/trees.c   fclose(header);</span>
+<span class='curline'><a href='../S/719.html#L1409'>header</a>           1409 third_party/zdelta-2.1/trees.c local void copy_block(s, buf, len, header)</span>
+<span class='curline'><a href='../S/719.html#L1413'>header</a>           1413 third_party/zdelta-2.1/trees.c     int      header;  /* true if block header must be written */</span>
+<span class='curline'><a href='../S/719.html#L1418'>header</a>           1418 third_party/zdelta-2.1/trees.c   if (header) {</span>
+</pre>
+</body>
+</html>

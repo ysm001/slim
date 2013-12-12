@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>cost</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/366.html#L69'>cost</a>               69 src/rule.h       LmnCost          cost;</span>
+<span class='curline'><a href='../S/366.html#L112'>cost</a>              112 src/rule.h       return rule-&gt;cost;</span>
+<span class='curline'><a href='../S/366.html#L116'>cost</a>              116 src/rule.h      rule-&gt;cost = rule_cost;</span>
+<span class='curline'><a href='../S/384.html#L812'>cost</a>              812 src/task.c             LmnInstrVar      cost;</span>
+<span class='curline'><a href='../S/384.html#L813'>cost</a>              813 src/task.c             READ_VAL(LmnInstrVar,      instr, cost);</span>
+<span class='curline'><a href='../S/384.html#L814'>cost</a>              814 src/task.c             lmn_rule_set_cost(rule, cost);</span>
+<span class='curline'><a href='../S/434.html#L589'>cost</a>              589 src/verifier/mc_worker.c   LmnCost cost;</span>
+<span class='curline'><a href='../S/434.html#L592'>cost</a>              592 src/verifier/mc_worker.c     cost = lmn_env.opt_mode == OPT_MINIMIZE ? ULONG_MAX : 0;</span>
+<span class='curline'><a href='../S/434.html#L594'>cost</a>              594 src/verifier/mc_worker.c     cost = state_cost(opt);</span>
+<span class='curline'><a href='../S/434.html#L596'>cost</a>              596 src/verifier/mc_worker.c   return cost;</span>
+<span class='curline'><a href='../S/454.html#L107'>cost</a>              107 src/verifier/state.c     new_s-&gt;cost = lmn_env.opt_mode == OPT_MINIMIZE ? ULONG_MAX : 0;</span>
+<span class='curline'><a href='../S/454.html#L647'>cost</a>              647 src/verifier/state.c   t-&gt;cost = 0;</span>
+<span class='curline'><a href='../S/454.html#L673'>cost</a>              673 src/verifier/state.c                          LmnCost cost)</span>
+<span class='curline'><a href='../S/454.html#L685'>cost</a>              685 src/verifier/state.c     if (((lmn_env.opt_mode == OPT_MINIMIZE) &amp;&amp; t-&gt;cost &gt; cost) ||</span>
+<span class='curline'><a href='../S/454.html#L686'>cost</a>              686 src/verifier/state.c         ((lmn_env.opt_mode == OPT_MAXIMIZE) &amp;&amp; t-&gt;cost &lt; cost)) {</span>
+<span class='curline'><a href='../S/454.html#L687'>cost</a>              687 src/verifier/state.c       t-&gt;cost = cost;</span>
+<span class='curline'><a href='../S/454.html#L708'>cost</a>              708 src/verifier/state.c   LmnCost cost = lmn_env.opt_mode != OPT_NONE ? state_cost(s) : 0UL;</span>
+<span class='curline'><a href='../S/454.html#L750'>cost</a>              750 src/verifier/state.c             , print_id, cost</span>
+<span class='curline'><a href='../S/455.html#L87'>cost</a>               87 src/verifier/state.h   LmnCost            cost;            /*  8(4)byte: cost */</span>
+<span class='curline'><a href='../S/455.html#L231'>cost</a>              231 src/verifier/state.h static inline void           state_set_cost(State *s, LmnCost cost, State * pre);</span>
+<span class='curline'><a href='../S/455.html#L236'>cost</a>              236 src/verifier/state.h # define state_cost(S)        ((S)-&gt;cost)</span>
+<span class='curline'><a href='../S/455.html#L255'>cost</a>              255 src/verifier/state.h   LmnCost cost;      /*  8byte: 同一ルールでもコストが異なるモデルを想定し、ルール名と独立に保存 */</span>
+<span class='curline'><a href='../S/455.html#L263'>cost</a>              263 src/verifier/state.h                                   LmnCost cost);</span>
+<span class='curline'><a href='../S/455.html#L273'>cost</a>              273 src/verifier/state.h static inline void             transition_set_cost(Transition t, LmnCost cost);</span>
+<span class='curline'><a href='../S/455.html#L528'>cost</a>              528 src/verifier/state.h static inline void state_set_cost(State *s, LmnCost cost, State * pre) {</span>
+<span class='curline'><a href='../S/455.html#L530'>cost</a>              530 src/verifier/state.h   s-&gt;cost = cost;</span>
+<span class='curline'><a href='../S/455.html#L545'>cost</a>              545 src/verifier/state.h   LmnCost cost;</span>
+<span class='curline'><a href='../S/455.html#L546'>cost</a>              546 src/verifier/state.h   cost = transition_cost(t) + state_cost(pre);</span>
+<span class='curline'><a href='../S/455.html#L548'>cost</a>              548 src/verifier/state.h   if ((f &amp;&amp; state_cost(s) &gt; cost) || (!f &amp;&amp; state_cost(s) &lt; cost)) {</span>
+<span class='curline'><a href='../S/455.html#L549'>cost</a>              549 src/verifier/state.h     state_set_cost(s, cost, pre);</span>
+<span class='curline'><a href='../S/455.html#L587'>cost</a>              587 src/verifier/state.h   return t-&gt;cost;</span>
+<span class='curline'><a href='../S/455.html#L590'>cost</a>              590 src/verifier/state.h static inline void transition_set_cost(Transition t, LmnCost cost) {</span>
+<span class='curline'><a href='../S/455.html#L591'>cost</a>              591 src/verifier/state.h   t-&gt;cost = cost;</span>
+</pre>
+</body>
+</html>

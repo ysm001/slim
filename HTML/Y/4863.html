@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>signum</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/525.html#L2436'>signum</a>           2436 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     LSS_INLINE int LSS_NAME(sigaction)(int signum,</span>
+<span class='curline'><a href='../S/525.html#L2448'>signum</a>           2448 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         return LSS_NAME(rt_sigaction)(signum, &amp;a, oldact,</span>
+<span class='curline'><a href='../S/525.html#L2451'>signum</a>           2451 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         return LSS_NAME(rt_sigaction)(signum, act, oldact,</span>
+<span class='curline'><a href='../S/525.html#L2568'>signum</a>           2568 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h                                      int signum) {</span>
+<span class='curline'><a href='../S/525.html#L2569'>signum</a>           2569 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     if (signum &lt; 1 || signum &gt; (int)(8*sizeof(set-&gt;sig))) {</span>
+<span class='curline'><a href='../S/525.html#L2573'>signum</a>           2573 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       set-&gt;sig[(signum - 1)/(8*sizeof(set-&gt;sig[0]))]</span>
+<span class='curline'><a href='../S/525.html#L2574'>signum</a>           2574 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h           |= 1UL &lt;&lt; ((signum - 1) % (8*sizeof(set-&gt;sig[0])));</span>
+<span class='curline'><a href='../S/525.html#L2580'>signum</a>           2580 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h                                         int signum) {</span>
+<span class='curline'><a href='../S/525.html#L2581'>signum</a>           2581 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     if (signum &lt; 1 || signum &gt; (int)(8*sizeof(set-&gt;sig))) {</span>
+<span class='curline'><a href='../S/525.html#L2585'>signum</a>           2585 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       set-&gt;sig[(signum - 1)/(8*sizeof(set-&gt;sig[0]))]</span>
+<span class='curline'><a href='../S/525.html#L2586'>signum</a>           2586 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h           &amp;= ~(1UL &lt;&lt; ((signum - 1) % (8*sizeof(set-&gt;sig[0]))));</span>
+<span class='curline'><a href='../S/525.html#L2592'>signum</a>           2592 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h                                           int signum) {</span>
+<span class='curline'><a href='../S/525.html#L2593'>signum</a>           2593 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     if (signum &lt; 1 || signum &gt; (int)(8*sizeof(set-&gt;sig))) {</span>
+<span class='curline'><a href='../S/525.html#L2597'>signum</a>           2597 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       return !!(set-&gt;sig[(signum - 1)/(8*sizeof(set-&gt;sig[0]))] &amp;</span>
+<span class='curline'><a href='../S/525.html#L2598'>signum</a>           2598 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h                 (1UL &lt;&lt; ((signum - 1) % (8*sizeof(set-&gt;sig[0])))));</span>
+<span class='curline'><a href='../S/525.html#L2636'>signum</a>           2636 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     LSS_INLINE int LSS_NAME(sigaction)(int signum,</span>
+<span class='curline'><a href='../S/525.html#L2662'>signum</a>           2662 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       rc = LSS_NAME(rt_sigaction)(signum, act ? &amp;a : act, oldact,</span>
+<span class='curline'><a href='../S/525.html#L2680'>signum</a>           2680 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         rc = LSS_NAME(_sigaction)(signum, ptr_a, ptr_oa);</span>
+<span class='curline'><a href='../S/526.html#L196'>signum</a>            196 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc static void SignalHandler(int signum, siginfo_t *si, void *data) {</span>
+<span class='curline'><a href='../S/526.html#L198'>signum</a>            198 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc     if (signum == SIGABRT) {</span>
+<span class='curline'><a href='../S/526.html#L218'>signum</a>            218 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc   sys__exit(signum == SIGABRT ? 1 : 2);</span>
+</pre>
+</body>
+</html>

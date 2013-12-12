@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>third_party/google-perftools-1.8.3/src/base/spinlock.cc</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/738.html'>third_party</a>/<a href='../files/739.html'>google-perftools-1.8.3</a>/<a href='../files/740.html'>src</a>/<a href='../files/741.html'>base</a>/spinlock.cc</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L81'>[^]</a><a href='#L173'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L81' title='Defined at 81.'>SpinLoop</a></li>
+<li><a href='#L94' title='Defined at 94.'>SlowLock</a></li>
+<li><a href='#L151' title='Defined at 151.'>SlowUnlock</a></li>
+<li><a href='#L173' title='Defined at 173.'>CalculateWaitCycles</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>/* Copyright (c) 2006, Google Inc.</em>
+<a id='L2' name='L2' /><em class='comment'> * All rights reserved.</em>
+<a id='L3' name='L3' /><em class='comment'> * </em>
+<a id='L4' name='L4' /><em class='comment'> * Redistribution and use in source and binary forms, with or without</em>
+<a id='L5' name='L5' /><em class='comment'> * modification, are permitted provided that the following conditions are</em>
+<a id='L6' name='L6' /><em class='comment'> * met:</em>
+<a id='L7' name='L7' /><em class='comment'> * </em>
+<a id='L8' name='L8' /><em class='comment'> *     * Redistributions of source code must retain the above copyright</em>
+<a id='L9' name='L9' /><em class='comment'> * notice, this list of conditions and the following disclaimer.</em>
+<a id='L10' name='L10' /><em class='comment'> *     * Redistributions in binary form must reproduce the above</em>
+<a id='L11' name='L11' /><em class='comment'> * copyright notice, this list of conditions and the following disclaimer</em>
+<a id='L12' name='L12' /><em class='comment'> * in the documentation and/or other materials provided with the</em>
+<a id='L13' name='L13' /><em class='comment'> * distribution.</em>
+<a id='L14' name='L14' /><em class='comment'> *     * Neither the name of Google Inc. nor the names of its</em>
+<a id='L15' name='L15' /><em class='comment'> * contributors may be used to endorse or promote products derived from</em>
+<a id='L16' name='L16' /><em class='comment'> * this software without specific prior written permission.</em>
+<a id='L17' name='L17' /><em class='comment'> * </em>
+<a id='L18' name='L18' /><em class='comment'> * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L19' name='L19' /><em class='comment'> * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L20' name='L20' /><em class='comment'> * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L21' name='L21' /><em class='comment'> * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L22' name='L22' /><em class='comment'> * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L23' name='L23' /><em class='comment'> * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L24' name='L24' /><em class='comment'> * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L25' name='L25' /><em class='comment'> * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L26' name='L26' /><em class='comment'> * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L27' name='L27' /><em class='comment'> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L28' name='L28' /><em class='comment'> * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L29' name='L29' /><em class='comment'> *</em>
+<a id='L30' name='L30' /><em class='comment'> * ---</em>
+<a id='L31' name='L31' /><em class='comment'> * Author: Sanjay Ghemawat</em>
+<a id='L32' name='L32' /><em class='comment'> */</em>
+<a id='L33' name='L33' />
+<a id='L34' name='L34' /><em class='sharp'>#include</em> &lt;<a href='../I/6.html'>config.h</a>&gt;
+<a id='L35' name='L35' /><em class='sharp'>#include</em> "<a href='534.html'>base/spinlock.h</a>"
+<a id='L36' name='L36' /><em class='sharp'>#include</em> "<a href='541.html'>base/synchronization_profiling.h</a>"
+<a id='L37' name='L37' /><em class='sharp'>#include</em> "<a href='536.html'>base/spinlock_internal.h</a>"
+<a id='L38' name='L38' /><em class='sharp'>#include</em> "<a href='518.html'>base/cycleclock.h</a>"
+<a id='L39' name='L39' /><em class='sharp'>#include</em> "<a href='543.html'>base/sysinfo.h</a>"   <em class='comment'>/* for NumCPUs() */</em>
+<a id='L40' name='L40' />
+<a id='L41' name='L41' /><em class='comment'>// NOTE on the Lock-state values:</em>
+<a id='L42' name='L42' /><em class='comment'>//</em>
+<a id='L43' name='L43' /><em class='comment'>//   kSpinLockFree represents the unlocked state</em>
+<a id='L44' name='L44' /><em class='comment'>//   kSpinLockHeld represents the locked state with no waiters</em>
+<a id='L45' name='L45' /><em class='comment'>//</em>
+<a id='L46' name='L46' /><em class='comment'>// Values greater than kSpinLockHeld represent the locked state with waiters,</em>
+<a id='L47' name='L47' /><em class='comment'>// where the value is the time the current lock holder had to</em>
+<a id='L48' name='L48' /><em class='comment'>// wait before obtaining the lock.  The kSpinLockSleeper state is a special</em>
+<a id='L49' name='L49' /><em class='comment'>// "locked with waiters" state that indicates that a sleeper needs to</em>
+<a id='L50' name='L50' /><em class='comment'>// be woken, but the thread that just released the lock didn't wait.</em>
+<a id='L51' name='L51' />
+<a id='L52' name='L52' /><strong class='reserved'>static</strong> <strong class='reserved'>int</strong> <a href='../Y/1400.html' title='Multiple used in 3 places.'>adaptive_spin_count</a> = 0;
+<a id='L53' name='L53' />
+<a id='L54' name='L54' /><strong class='reserved'>const</strong> <a href='../D/3379.html' title='Multiple defined in 6 places.'>base</a>::<a href='../D/1643.html' title='Multiple defined in 2 places.'>LinkerInitialized</a> <a href='../Y/802.html' title='Multiple used in 48 places.'>SpinLock</a>::<a href='../D/1389.html' title='Multiple defined in 3 places.'>LINKER_INITIALIZED</a> =
+<a id='L55' name='L55' />    <a href='../D/3379.html' title='Multiple defined in 6 places.'>base</a>::<a href='../D/1389.html' title='Multiple defined in 3 places.'>LINKER_INITIALIZED</a>;
+<a id='L56' name='L56' />
+<a id='L57' name='L57' /><strong class='reserved'>namespace</strong> <em class='brace'>{</em>
+<a id='L58' name='L58' /><strong class='reserved'>struct</strong> <a href='../R/2330.html' title='Multiple refered from 2 places.'>SpinLock_InitHelper</a> <em class='brace'>{</em>
+<a id='L59' name='L59' />  <a href='../S/533.html#L58' title='Defined at 58 in third_party/google-perftools-1.8.3/src/base/spinlock.cc.'>SpinLock_InitHelper</a>() <em class='brace'>{</em>
+<a id='L60' name='L60' />    <em class='comment'>// On multi-cpu machines, spin for longer before yielding</em>
+<a id='L61' name='L61' />    <em class='comment'>// the processor or sleeping.  Reduces idle time significantly.</em>
+<a id='L62' name='L62' />    <strong class='reserved'>if</strong> (<a href='../S/542.html#L469' title='Defined at 469 in third_party/google-perftools-1.8.3/src/base/sysinfo.cc.'>NumCPUs</a>() &gt; 1) <em class='brace'>{</em>
+<a id='L63' name='L63' />      <a href='../Y/1400.html' title='Multiple used in 3 places.'>adaptive_spin_count</a> = 1000;
+<a id='L64' name='L64' />    <em class='brace'>}</em>
+<a id='L65' name='L65' />  <em class='brace'>}</em>
+<a id='L66' name='L66' /><em class='brace'>}</em>;
+<a id='L67' name='L67' />
+<a id='L68' name='L68' /><em class='comment'>// Hook into global constructor execution:</em>
+<a id='L69' name='L69' /><em class='comment'>// We do not do adaptive spinning before that,</em>
+<a id='L70' name='L70' /><em class='comment'>// but nothing lock-intensive should be going on at that time.</em>
+<a id='L71' name='L71' /><strong class='reserved'>static</strong> <a href='../S/533.html#L58' title='Defined at 58 in third_party/google-perftools-1.8.3/src/base/spinlock.cc.'>SpinLock_InitHelper</a> init_helper;
+<a id='L72' name='L72' />
+<a id='L73' name='L73' /><em class='brace'>}</em>  <em class='comment'>// unnamed namespace</em>
+<a id='L74' name='L74' />
+<a id='L75' name='L75' /><em class='comment'>// Monitor the lock to see if its value changes within some time period</em>
+<a id='L76' name='L76' /><em class='comment'>// (adaptive_spin_count loop iterations).  A timestamp indicating</em>
+<a id='L77' name='L77' /><em class='comment'>// when the thread initially started waiting for the lock is passed in via</em>
+<a id='L78' name='L78' /><em class='comment'>// the initial_wait_timestamp value.  The total wait time in cycles for the</em>
+<a id='L79' name='L79' /><em class='comment'>// lock is returned in the wait_cycles parameter.  The last value read</em>
+<a id='L80' name='L80' /><em class='comment'>// from the lock is returned from the method.</em>
+<a id='L81' name='L81' /><a href='../D/224.html' title='Multiple defined in 8 places.'>Atomic32</a> <a href='../Y/802.html' title='Multiple used in 48 places.'>SpinLock</a>::<a href='../R/2331.html' title='Multiple refered from 3 places.'>SpinLoop</a>(<a href='../S/516.html#L60' title='Defined at 60 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>int64</a> <a href='../Y/2822.html' title='Multiple used in 3 places.'>initial_wait_timestamp</a>,
+<a id='L82' name='L82' />                            <a href='../D/224.html' title='Multiple defined in 8 places.'>Atomic32</a>* <a href='../Y/5661.html' title='Multiple used in 18 places.'>wait_cycles</a>) <em class='brace'>{</em>
+<a id='L83' name='L83' />  <strong class='reserved'>int</strong> <a href='../Y/1702.html' title='Multiple used in 562 places.'>c</a> = <a href='../Y/1400.html' title='Multiple used in 3 places.'>adaptive_spin_count</a>;
+<a id='L84' name='L84' />  <strong class='reserved'>while</strong> (<a href='../D/3379.html' title='Multiple defined in 6 places.'>base</a>::<a href='../Y/5159.html' title='Multiple used in 114 places.'>subtle</a>::<a href='../Y/564.html' title='Multiple used in 40 places.'>NoBarrier_Load</a>(&amp;<a href='../Y/3325.html' title='Multiple used in 13 places.'>lockword_</a>) != <a href='../S/534.html#L119' title='Defined at 119 in third_party/google-perftools-1.8.3/src/base/spinlock.h.'>kSpinLockFree</a> &amp;&amp; --<a href='../Y/1702.html' title='Multiple used in 562 places.'>c</a> &gt; 0) <em class='brace'>{</em>
+<a id='L85' name='L85' />  <em class='brace'>}</em>
+<a id='L86' name='L86' />  <a href='../D/224.html' title='Multiple defined in 8 places.'>Atomic32</a> <a href='../Y/4949.html' title='Multiple used in 3 places.'>spin_loop_wait_cycles</a> = <a href='../S/533.html#L173' title='Defined at 173 in third_party/google-perftools-1.8.3/src/base/spinlock.cc.'>CalculateWaitCycles</a>(<a href='../Y/2822.html' title='Multiple used in 3 places.'>initial_wait_timestamp</a>);
+<a id='L87' name='L87' />  <a href='../D/224.html' title='Multiple defined in 8 places.'>Atomic32</a> <a href='../Y/3319.html' title='Multiple used in 12 places.'>lock_value</a> =
+<a id='L88' name='L88' />      <a href='../D/3379.html' title='Multiple defined in 6 places.'>base</a>::<a href='../Y/5159.html' title='Multiple used in 114 places.'>subtle</a>::<a href='../D/135.html' title='Multiple defined in 3 places.'>Acquire_CompareAndSwap</a>(&amp;<a href='../Y/3325.html' title='Multiple used in 13 places.'>lockword_</a>, <a href='../S/534.html#L119' title='Defined at 119 in third_party/google-perftools-1.8.3/src/base/spinlock.h.'>kSpinLockFree</a>,
+<a id='L89' name='L89' />                                           <a href='../Y/4949.html' title='Multiple used in 3 places.'>spin_loop_wait_cycles</a>);
+<a id='L90' name='L90' />  *<a href='../Y/5661.html' title='Multiple used in 18 places.'>wait_cycles</a> = <a href='../Y/4949.html' title='Multiple used in 3 places.'>spin_loop_wait_cycles</a>;
+<a id='L91' name='L91' />  <strong class='reserved'>return</strong> <a href='../Y/3319.html' title='Multiple used in 12 places.'>lock_value</a>;
+<a id='L92' name='L92' /><em class='brace'>}</em>
+<a id='L93' name='L93' />
+<a id='L94' name='L94' /><strong class='reserved'>void</strong> <a href='../Y/802.html' title='Multiple used in 48 places.'>SpinLock</a>::<a href='../R/2319.html' title='Multiple refered from 2 places.'>SlowLock</a>() <em class='brace'>{</em>
+<a id='L95' name='L95' />  <em class='comment'>// The lock was not obtained initially, so this thread needs to wait for</em>
+<a id='L96' name='L96' />  <em class='comment'>// it.  Record the current timestamp in the local variable wait_start_time</em>
+<a id='L97' name='L97' />  <em class='comment'>// so the total wait time can be stored in the lockword once this thread</em>
+<a id='L98' name='L98' />  <em class='comment'>// obtains the lock.</em>
+<a id='L99' name='L99' />  <a href='../S/516.html#L60' title='Defined at 60 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>int64</a> <a href='../Y/5662.html' title='Multiple used in 6 places.'>wait_start_time</a> = <a href='../S/518.html#L73' title='Defined at 73 in third_party/google-perftools-1.8.3/src/base/cycleclock.h.'>CycleClock</a>::<a href='../Y/568.html' title='Multiple used in 5 places.'>Now</a>();
+<a id='L100' name='L100' />  <a href='../D/224.html' title='Multiple defined in 8 places.'>Atomic32</a> <a href='../Y/5661.html' title='Multiple used in 18 places.'>wait_cycles</a>;
+<a id='L101' name='L101' />  <a href='../D/224.html' title='Multiple defined in 8 places.'>Atomic32</a> <a href='../Y/3319.html' title='Multiple used in 12 places.'>lock_value</a> = <a href='../S/533.html#L81' title='Defined at 81 in third_party/google-perftools-1.8.3/src/base/spinlock.cc.'>SpinLoop</a>(<a href='../Y/5662.html' title='Multiple used in 6 places.'>wait_start_time</a>, &amp;<a href='../Y/5661.html' title='Multiple used in 18 places.'>wait_cycles</a>);
+<a id='L102' name='L102' />
+<a id='L103' name='L103' />  <strong class='reserved'>int</strong> <a href='../Y/3320.html' title='Multiple used in 2 places.'>lock_wait_call_count</a> = 0;
+<a id='L104' name='L104' />  <strong class='reserved'>while</strong> (<a href='../Y/3319.html' title='Multiple used in 12 places.'>lock_value</a> != <a href='../S/534.html#L119' title='Defined at 119 in third_party/google-perftools-1.8.3/src/base/spinlock.h.'>kSpinLockFree</a>) <em class='brace'>{</em>
+<a id='L105' name='L105' />    <em class='comment'>// If the lock is currently held, but not marked as having a sleeper, mark</em>
+<a id='L106' name='L106' />    <em class='comment'>// it as having a sleeper.</em>
+<a id='L107' name='L107' />    <strong class='reserved'>if</strong> (<a href='../Y/3319.html' title='Multiple used in 12 places.'>lock_value</a> == <a href='../S/534.html#L120' title='Defined at 120 in third_party/google-perftools-1.8.3/src/base/spinlock.h.'>kSpinLockHeld</a>) <em class='brace'>{</em>
+<a id='L108' name='L108' />      <em class='comment'>// Here, just "mark" that the thread is going to sleep.  Don't store the</em>
+<a id='L109' name='L109' />      <em class='comment'>// lock wait time in the lock as that will cause the current lock</em>
+<a id='L110' name='L110' />      <em class='comment'>// owner to think it experienced contention.</em>
+<a id='L111' name='L111' />      <a href='../Y/3319.html' title='Multiple used in 12 places.'>lock_value</a> = <a href='../D/3379.html' title='Multiple defined in 6 places.'>base</a>::<a href='../Y/5159.html' title='Multiple used in 114 places.'>subtle</a>::<a href='../D/135.html' title='Multiple defined in 3 places.'>Acquire_CompareAndSwap</a>(&amp;<a href='../Y/3325.html' title='Multiple used in 13 places.'>lockword_</a>,
+<a id='L112' name='L112' />                                                        <a href='../S/534.html#L120' title='Defined at 120 in third_party/google-perftools-1.8.3/src/base/spinlock.h.'>kSpinLockHeld</a>,
+<a id='L113' name='L113' />                                                        <a href='../S/534.html#L121' title='Defined at 121 in third_party/google-perftools-1.8.3/src/base/spinlock.h.'>kSpinLockSleeper</a>);
+<a id='L114' name='L114' />      <strong class='reserved'>if</strong> (<a href='../Y/3319.html' title='Multiple used in 12 places.'>lock_value</a> == <a href='../S/534.html#L120' title='Defined at 120 in third_party/google-perftools-1.8.3/src/base/spinlock.h.'>kSpinLockHeld</a>) <em class='brace'>{</em>
+<a id='L115' name='L115' />        <em class='comment'>// Successfully transitioned to kSpinLockSleeper.  Pass</em>
+<a id='L116' name='L116' />        <em class='comment'>// kSpinLockSleeper to the SpinLockWait routine to properly indicate</em>
+<a id='L117' name='L117' />        <em class='comment'>// the last lock_value observed.</em>
+<a id='L118' name='L118' />        <a href='../Y/3319.html' title='Multiple used in 12 places.'>lock_value</a> = <a href='../S/534.html#L121' title='Defined at 121 in third_party/google-perftools-1.8.3/src/base/spinlock.h.'>kSpinLockSleeper</a>;
+<a id='L119' name='L119' />      <em class='brace'>}</em> <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (<a href='../Y/3319.html' title='Multiple used in 12 places.'>lock_value</a> == <a href='../S/534.html#L119' title='Defined at 119 in third_party/google-perftools-1.8.3/src/base/spinlock.h.'>kSpinLockFree</a>) <em class='brace'>{</em>
+<a id='L120' name='L120' />        <em class='comment'>// Lock is free again, so try and aquire it before sleeping.  The</em>
+<a id='L121' name='L121' />        <em class='comment'>// new lock state will be the number of cycles this thread waited if</em>
+<a id='L122' name='L122' />        <em class='comment'>// this thread obtains the lock.</em>
+<a id='L123' name='L123' />        <a href='../Y/3319.html' title='Multiple used in 12 places.'>lock_value</a> = <a href='../D/3379.html' title='Multiple defined in 6 places.'>base</a>::<a href='../Y/5159.html' title='Multiple used in 114 places.'>subtle</a>::<a href='../D/135.html' title='Multiple defined in 3 places.'>Acquire_CompareAndSwap</a>(&amp;<a href='../Y/3325.html' title='Multiple used in 13 places.'>lockword_</a>,
+<a id='L124' name='L124' />                                                          <a href='../S/534.html#L119' title='Defined at 119 in third_party/google-perftools-1.8.3/src/base/spinlock.h.'>kSpinLockFree</a>,
+<a id='L125' name='L125' />                                                          <a href='../Y/5661.html' title='Multiple used in 18 places.'>wait_cycles</a>);
+<a id='L126' name='L126' />        <strong class='reserved'>continue</strong>;  <em class='comment'>// skip the delay at the end of the loop</em>
+<a id='L127' name='L127' />      <em class='brace'>}</em>
+<a id='L128' name='L128' />    <em class='brace'>}</em>
+<a id='L129' name='L129' />
+<a id='L130' name='L130' />    <em class='comment'>// Wait for an OS specific delay.</em>
+<a id='L131' name='L131' />    <a href='../D/3379.html' title='Multiple defined in 6 places.'>base</a>::<a href='../D/4067.html' title='Multiple defined in 3 places.'>internal</a>::<a href='../Y/803.html' title='Multiple used in 6 places.'>SpinLockDelay</a>(&amp;<a href='../Y/3325.html' title='Multiple used in 13 places.'>lockword_</a>, <a href='../Y/3319.html' title='Multiple used in 12 places.'>lock_value</a>,
+<a id='L132' name='L132' />                                  ++<a href='../Y/3320.html' title='Multiple used in 2 places.'>lock_wait_call_count</a>);
+<a id='L133' name='L133' />    <em class='comment'>// Spin again after returning from the wait routine to give this thread</em>
+<a id='L134' name='L134' />    <em class='comment'>// some chance of obtaining the lock.</em>
+<a id='L135' name='L135' />    <a href='../Y/3319.html' title='Multiple used in 12 places.'>lock_value</a> = <a href='../S/533.html#L81' title='Defined at 81 in third_party/google-perftools-1.8.3/src/base/spinlock.cc.'>SpinLoop</a>(<a href='../Y/5662.html' title='Multiple used in 6 places.'>wait_start_time</a>, &amp;<a href='../Y/5661.html' title='Multiple used in 18 places.'>wait_cycles</a>);
+<a id='L136' name='L136' />  <em class='brace'>}</em>
+<a id='L137' name='L137' /><em class='brace'>}</em>
+<a id='L138' name='L138' />
+<a id='L139' name='L139' /><em class='comment'>// The wait time for contentionz lock profiling must fit into 32 bits.</em>
+<a id='L140' name='L140' /><em class='comment'>// However, the lower 32-bits of the cycle counter wrap around too quickly</em>
+<a id='L141' name='L141' /><em class='comment'>// with high frequency processors, so a right-shift by 7 is performed to</em>
+<a id='L142' name='L142' /><em class='comment'>// quickly divide the cycles by 128.  Using these 32 bits, reduces the</em>
+<a id='L143' name='L143' /><em class='comment'>// granularity of time measurement to 128 cycles, and loses track</em>
+<a id='L144' name='L144' /><em class='comment'>// of wait time for waits greater than 109 seconds on a 5 GHz machine</em>
+<a id='L145' name='L145' /><em class='comment'>// [(2^32 cycles/5 Ghz)*128 = 109.95 seconds]. Waits this long should be</em>
+<a id='L146' name='L146' /><em class='comment'>// very rare and the reduced granularity should not be an issue given</em>
+<a id='L147' name='L147' /><em class='comment'>// processors in the Google fleet operate at a minimum of one billion</em>
+<a id='L148' name='L148' /><em class='comment'>// cycles/sec.</em>
+<a id='L149' name='L149' /><strong class='reserved'>enum</strong> <em class='brace'>{</em> <a href='../R/1895.html' title='Multiple refered from 2 places.'>PROFILE_TIMESTAMP_SHIFT</a> = 7 <em class='brace'>}</em>;
+<a id='L150' name='L150' />
+<a id='L151' name='L151' /><strong class='reserved'>void</strong> <a href='../Y/802.html' title='Multiple used in 48 places.'>SpinLock</a>::<a href='../R/2320.html' title='Multiple refered from 2 places.'>SlowUnlock</a>(<a href='../S/516.html#L71' title='Defined at 71 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>uint64</a> <a href='../Y/5661.html' title='Multiple used in 18 places.'>wait_cycles</a>) <em class='brace'>{</em>
+<a id='L152' name='L152' />  <a href='../D/3379.html' title='Multiple defined in 6 places.'>base</a>::<a href='../D/4067.html' title='Multiple defined in 3 places.'>internal</a>::<a href='../Y/804.html' title='Multiple used in 5 places.'>SpinLockWake</a>(&amp;<a href='../Y/3325.html' title='Multiple used in 13 places.'>lockword_</a>, <strong class='reserved'>false</strong>);  <em class='comment'>// wake waiter if necessary</em>
+<a id='L153' name='L153' />
+<a id='L154' name='L154' />  <em class='comment'>// Collect contentionz profile info, expanding the wait_cycles back out to</em>
+<a id='L155' name='L155' />  <em class='comment'>// the full value.  If wait_cycles is &lt;= kSpinLockSleeper, then no wait</em>
+<a id='L156' name='L156' />  <em class='comment'>// was actually performed, so don't record the wait time.  Note, that the</em>
+<a id='L157' name='L157' />  <em class='comment'>// CalculateWaitCycles method adds in kSpinLockSleeper cycles</em>
+<a id='L158' name='L158' />  <em class='comment'>// unconditionally to guarantee the wait time is not kSpinLockFree or</em>
+<a id='L159' name='L159' />  <em class='comment'>// kSpinLockHeld.  The adding in of these small number of cycles may</em>
+<a id='L160' name='L160' />  <em class='comment'>// overestimate the contention by a slight amount 50% of the time.  However,</em>
+<a id='L161' name='L161' />  <em class='comment'>// if this code tried to correct for that addition by subtracting out the</em>
+<a id='L162' name='L162' />  <em class='comment'>// kSpinLockSleeper amount that would underestimate the contention slightly</em>
+<a id='L163' name='L163' />  <em class='comment'>// 50% of the time.  Both ways get the wrong answer, so the code</em>
+<a id='L164' name='L164' />  <em class='comment'>// overestimates to be more conservative. Overestimating also makes the code</em>
+<a id='L165' name='L165' />  <em class='comment'>// a little simpler.</em>
+<a id='L166' name='L166' />  <em class='comment'>//</em>
+<a id='L167' name='L167' />  <strong class='reserved'>if</strong> (<a href='../Y/5661.html' title='Multiple used in 18 places.'>wait_cycles</a> &gt; <a href='../S/534.html#L121' title='Defined at 121 in third_party/google-perftools-1.8.3/src/base/spinlock.h.'>kSpinLockSleeper</a>) <em class='brace'>{</em>
+<a id='L168' name='L168' />    <a href='../D/3379.html' title='Multiple defined in 6 places.'>base</a>::<a href='../Y/820.html' title='Multiple used in 3 places.'>SubmitSpinLockProfileData</a>(<strong class='reserved'>this</strong>,
+<a id='L169' name='L169' />                                    <a href='../Y/5661.html' title='Multiple used in 18 places.'>wait_cycles</a> &lt;&lt; <a href='../S/533.html#L149' title='Defined at 149 in third_party/google-perftools-1.8.3/src/base/spinlock.cc.'>PROFILE_TIMESTAMP_SHIFT</a>);
+<a id='L170' name='L170' />  <em class='brace'>}</em>
+<a id='L171' name='L171' /><em class='brace'>}</em>
+<a id='L172' name='L172' />
+<a id='L173' name='L173' /><strong class='reserved'>inline</strong> <a href='../S/516.html#L59' title='Defined at 59 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>int32</a> <a href='../Y/802.html' title='Multiple used in 48 places.'>SpinLock</a>::<a href='../R/357.html' title='Multiple refered from 2 places.'>CalculateWaitCycles</a>(<a href='../S/516.html#L60' title='Defined at 60 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>int64</a> <a href='../Y/5662.html' title='Multiple used in 6 places.'>wait_start_time</a>) <em class='brace'>{</em>
+<a id='L174' name='L174' />  <a href='../S/516.html#L59' title='Defined at 59 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>int32</a> <a href='../Y/5661.html' title='Multiple used in 18 places.'>wait_cycles</a> = ((<a href='../S/518.html#L73' title='Defined at 73 in third_party/google-perftools-1.8.3/src/base/cycleclock.h.'>CycleClock</a>::<a href='../Y/568.html' title='Multiple used in 5 places.'>Now</a>() - <a href='../Y/5662.html' title='Multiple used in 6 places.'>wait_start_time</a>) &gt;&gt;
+<a id='L175' name='L175' />                       <a href='../S/533.html#L149' title='Defined at 149 in third_party/google-perftools-1.8.3/src/base/spinlock.cc.'>PROFILE_TIMESTAMP_SHIFT</a>);
+<a id='L176' name='L176' />  <em class='comment'>// The number of cycles waiting for the lock is used as both the</em>
+<a id='L177' name='L177' />  <em class='comment'>// wait_cycles and lock value, so it can't be kSpinLockFree or</em>
+<a id='L178' name='L178' />  <em class='comment'>// kSpinLockHeld.  Make sure the value returned is at least</em>
+<a id='L179' name='L179' />  <em class='comment'>// kSpinLockSleeper.</em>
+<a id='L180' name='L180' />  <a href='../Y/5661.html' title='Multiple used in 18 places.'>wait_cycles</a> |= <a href='../S/534.html#L121' title='Defined at 121 in third_party/google-perftools-1.8.3/src/base/spinlock.h.'>kSpinLockSleeper</a>;
+<a id='L181' name='L181' />  <strong class='reserved'>return</strong> <a href='../Y/5661.html' title='Multiple used in 18 places.'>wait_cycles</a>;
+<a id='L182' name='L182' /><em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;]<a href='#L81'>[^]</a><a href='#L173'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

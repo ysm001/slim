@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>lmn_functor_table</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/330.html#L81'>lmn_functor_table</a>   81 src/functor.c  struct LmnFunctorTable lmn_functor_table;</span>
+<span class='curline'><a href='../S/330.html#L126'>lmn_functor_table</a>  126 src/functor.c    fprintf(stdout, "next_id==%u\n", lmn_functor_table.next_id);</span>
+<span class='curline'><a href='../S/330.html#L127'>lmn_functor_table</a>  127 src/functor.c    n = lmn_functor_table.size;</span>
+<span class='curline'><a href='../S/330.html#L148'>lmn_functor_table</a>  148 src/functor.c    lmn_functor_table.size = predefined_size;</span>
+<span class='curline'><a href='../S/330.html#L149'>lmn_functor_table</a>  149 src/functor.c    lmn_functor_table.entry = LMN_NALLOC(LmnFunctorEntry, lmn_functor_table.size);</span>
+<span class='curline'><a href='../S/330.html#L150'>lmn_functor_table</a>  150 src/functor.c    lmn_functor_table.next_id = predefined_size;</span>
+<span class='curline'><a href='../S/330.html#L174'>lmn_functor_table</a>  174 src/functor.c    LMN_FREE(lmn_functor_table.entry);</span>
+<span class='curline'><a href='../S/330.html#L201'>lmn_functor_table</a>  201 src/functor.c    lmn_functor_table.entry[id] = *entry;</span>
+<span class='curline'><a href='../S/330.html#L224'>lmn_functor_table</a>  224 src/functor.c      while (lmn_functor_table.next_id &gt;= lmn_functor_table.size) {</span>
+<span class='curline'><a href='../S/330.html#L225'>lmn_functor_table</a>  225 src/functor.c        lmn_functor_table.size *= 2;</span>
+<span class='curline'><a href='../S/330.html#L226'>lmn_functor_table</a>  226 src/functor.c        lmn_functor_table.entry = LMN_REALLOC(LmnFunctorEntry,</span>
+<span class='curline'><a href='../S/330.html#L227'>lmn_functor_table</a>  227 src/functor.c                                              lmn_functor_table.entry,</span>
+<span class='curline'><a href='../S/330.html#L228'>lmn_functor_table</a>  228 src/functor.c                                              lmn_functor_table.size);</span>
+<span class='curline'><a href='../S/330.html#L232'>lmn_functor_table</a>  232 src/functor.c      id = lmn_functor_table.next_id++;</span>
+<span class='curline'><a href='../S/330.html#L234'>lmn_functor_table</a>  234 src/functor.c      lmn_functor_table.entry[id] = entry;</span>
+<span class='curline'><a href='../S/331.html#L57'>lmn_functor_table</a>   57 src/functor.h  extern struct LmnFunctorTable lmn_functor_table;</span>
+<span class='curline'><a href='../S/331.html#L62'>lmn_functor_table</a>   62 src/functor.h  #define LMN_FUNCTOR_NAME_ID(F)     (lmn_functor_table.entry[(F)].name)</span>
+<span class='curline'><a href='../S/331.html#L63'>lmn_functor_table</a>   63 src/functor.h  #define LMN_FUNCTOR_ARITY(F)    (lmn_functor_table.entry[(F)].arity)</span>
+<span class='curline'><a href='../S/331.html#L64'>lmn_functor_table</a>   64 src/functor.h  #define LMN_FUNCTOR_MODULE_ID(F)     (lmn_functor_table.entry[(F)].module)</span>
+<span class='curline'><a href='../S/386.html#L522'>lmn_functor_table</a>  522 src/translate.c   fprintf(OUT, "  %d, /*count of functor*/\n", lmn_functor_table.next_id);</span>
+<span class='curline'><a href='../S/386.html#L561'>lmn_functor_table</a>  561 src/translate.c   int count = lmn_functor_table.next_id;</span>
+<span class='curline'><a href='../S/386.html#L568'>lmn_functor_table</a>  568 src/translate.c             lmn_functor_table.entry[i].special,</span>
+<span class='curline'><a href='../S/386.html#L569'>lmn_functor_table</a>  569 src/translate.c             lmn_functor_table.entry[i].module,</span>
+<span class='curline'><a href='../S/386.html#L570'>lmn_functor_table</a>  570 src/translate.c             lmn_functor_table.entry[i].name,</span>
+<span class='curline'><a href='../S/386.html#L571'>lmn_functor_table</a>  571 src/translate.c             lmn_functor_table.entry[i].arity);</span>
+</pre>
+</body>
+</html>

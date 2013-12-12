@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>destmem</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/357.html#L56'>destmem</a>            56 src/membrane.c static void lmn_mem_copy_cells_sub(LmnMembrane *destmem,</span>
+<span class='curline'><a href='../S/357.html#L499'>destmem</a>           499 src/membrane.c void lmn_mem_move_cells(LmnMembrane *destmem, LmnMembrane *srcmem)</span>
+<span class='curline'><a href='../S/357.html#L505'>destmem</a>           505 src/membrane.c   dst_data_atom_n = lmn_mem_data_atom_num(destmem);</span>
+<span class='curline'><a href='../S/357.html#L520'>destmem</a>           520 src/membrane.c         mem_push_symbol_atom(destmem, a);</span>
+<span class='curline'><a href='../S/357.html#L524'>destmem</a>           524 src/membrane.c             lmn_mem_push_atom(destmem,</span>
+<span class='curline'><a href='../S/357.html#L537'>destmem</a>           537 src/membrane.c     lmn_mem_add_child_mem(destmem, m);</span>
+<span class='curline'><a href='../S/357.html#L540'>destmem</a>           540 src/membrane.c   if (src_data_atom_n &gt; lmn_mem_data_atom_num(destmem) - dst_data_atom_n) {</span>
+<span class='curline'><a href='../S/357.html#L541'>destmem</a>           541 src/membrane.c     lmn_mem_data_atom_set(destmem, dst_data_atom_n + src_data_atom_n);</span>
+<span class='curline'><a href='../S/357.html#L851'>destmem</a>           851 src/membrane.c ProcessTbl lmn_mem_copy_cells(LmnMembrane *destmem, LmnMembrane *srcmem)</span>
+<span class='curline'><a href='../S/357.html#L853'>destmem</a>           853 src/membrane.c   return lmn_mem_copy_cells_ex(destmem, srcmem, FALSE);</span>
+<span class='curline'><a href='../S/357.html#L858'>destmem</a>           858 src/membrane.c static void lmn_mem_copy_cells_sub(LmnMembrane *destmem,</span>
+<span class='curline'><a href='../S/357.html#L871'>destmem</a>           871 src/membrane.c     lmn_mem_add_child_mem(destmem, new_mem);</span>
+<span class='curline'><a href='../S/357.html#L899'>destmem</a>           899 src/membrane.c       newatom = lmn_mem_newatom(destmem, f);</span>
+<span class='curline'><a href='../S/357.html#L909'>destmem</a>           909 src/membrane.c         LMN_PROXY_SET_MEM(newatom, destmem);</span>
+<span class='curline'><a href='../S/357.html#L966'>destmem</a>           966 src/membrane.c             lmn_mem_newlink(destmem, (LmnAtom)newatom,</span>
+<span class='curline'><a href='../S/357.html#L973'>destmem</a>           973 src/membrane.c           lmn_mem_push_atom(destmem, newargatom, attr);</span>
+<span class='curline'><a href='../S/357.html#L981'>destmem</a>           981 src/membrane.c   lmn_mem_natoms_copy(destmem, srcmem);</span>
+<span class='curline'><a href='../S/357.html#L985'>destmem</a>           985 src/membrane.c   destmem-&gt;is_activated = TRUE;</span>
+<span class='curline'><a href='../S/358.html#L261'>destmem</a>           261 src/membrane.h void lmn_mem_move_cells(LmnMembrane *destmem, LmnMembrane *srcmem);</span>
+<span class='curline'><a href='../S/417.html#L100'>destmem</a>           100 src/verifier/delta_membrane.c                             LmnMembrane *destmem,</span>
+<span class='curline'><a href='../S/417.html#L564'>destmem</a>           564 src/verifier/delta_membrane.c                           LmnMembrane *destmem,</span>
+<span class='curline'><a href='../S/417.html#L567'>destmem</a>           567 src/verifier/delta_membrane.c   if (dmem_root_is_new_mem(d, destmem) &amp;&amp;</span>
+<span class='curline'><a href='../S/417.html#L570'>destmem</a>           570 src/verifier/delta_membrane.c     lmn_mem_move_cells(destmem, srcmem);</span>
+<span class='curline'><a href='../S/417.html#L572'>destmem</a>           572 src/verifier/delta_membrane.c     ProcessTbl atoms = dmem_root_copy_cells(d, destmem, srcmem);</span>
+<span class='curline'><a href='../S/417.html#L579'>destmem</a>           579 src/verifier/delta_membrane.c       modify_free_link(d, destmem);</span>
+<span class='curline'><a href='../S/417.html#L590'>destmem</a>           590 src/verifier/delta_membrane.c                                 LmnMembrane *destmem,</span>
+<span class='curline'><a href='../S/417.html#L593'>destmem</a>           593 src/verifier/delta_membrane.c   if (dmem_root_is_new_mem(d, destmem) &amp;&amp; dmem_root_is_new_mem(d, srcmem)) {</span>
+<span class='curline'><a href='../S/417.html#L594'>destmem</a>           594 src/verifier/delta_membrane.c     return lmn_mem_copy_cells(destmem, srcmem);</span>
+<span class='curline'><a href='../S/417.html#L598'>destmem</a>           598 src/verifier/delta_membrane.c     if (dmem_root_is_new_mem(d, destmem)) {</span>
+<span class='curline'><a href='../S/417.html#L600'>destmem</a>           600 src/verifier/delta_membrane.c       dmem_copy_cells(d, NULL, destmem, dmem_root_get_mem_delta(d, srcmem), srcmem, atoms);</span>
+<span class='curline'><a href='../S/417.html#L604'>destmem</a>           604 src/verifier/delta_membrane.c                       dmem_root_get_mem_delta(d, destmem),</span>
+<span class='curline'><a href='../S/417.html#L605'>destmem</a>           605 src/verifier/delta_membrane.c                       destmem,</span>
+<span class='curline'><a href='../S/417.html#L611'>destmem</a>           611 src/verifier/delta_membrane.c                       dmem_root_get_mem_delta(d, destmem),</span>
+<span class='curline'><a href='../S/417.html#L612'>destmem</a>           612 src/verifier/delta_membrane.c                       destmem,</span>
+<span class='curline'><a href='../S/417.html#L623'>destmem</a>           623 src/verifier/delta_membrane.c                             LmnMembrane *destmem,</span>
+<span class='curline'><a href='../S/417.html#L647'>destmem</a>           647 src/verifier/delta_membrane.c     if (d) dmem_add_child_mem(d, destmem, new_mem);</span>
+<span class='curline'><a href='../S/417.html#L648'>destmem</a>           648 src/verifier/delta_membrane.c     else dmem_root_add_child_mem(root_d, destmem, new_mem);</span>
+<span class='curline'><a href='../S/417.html#L672'>destmem</a>           672 src/verifier/delta_membrane.c       if (d) dmem_put_symbol_atom(d, destmem, newatom);</span>
+<span class='curline'><a href='../S/417.html#L673'>destmem</a>           673 src/verifier/delta_membrane.c       else mem_push_symbol_atom(destmem, newatom);</span>
+<span class='curline'><a href='../S/417.html#L680'>destmem</a>           680 src/verifier/delta_membrane.c         LMN_PROXY_SET_MEM(newatom, destmem);</span>
+<span class='curline'><a href='../S/417.html#L708'>destmem</a>           708 src/verifier/delta_membrane.c           if (d) dmem_put_atom(d, destmem, a, attr);</span>
+<span class='curline'><a href='../S/417.html#L709'>destmem</a>           709 src/verifier/delta_membrane.c           else lmn_mem_push_atom(destmem, a, attr);</span>
+<span class='curline'><a href='../S/418.html#L154'>destmem</a>           154 src/verifier/delta_membrane.h                           LmnMembrane *destmem,</span>
+<span class='curline'><a href='../S/418.html#L157'>destmem</a>           157 src/verifier/delta_membrane.h                                 LmnMembrane *destmem,</span>
+</pre>
+</body>
+</html>

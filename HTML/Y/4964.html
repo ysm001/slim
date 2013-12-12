@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>src_t</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/419.html#L837'>src_t</a>             837 src/verifier/dpor.c     Transition src_t;</span>
+<span class='curline'><a href='../S/419.html#L849'>src_t</a>             849 src/verifier/dpor.c       src_t = transition_make(src_succ, lmn_intern("ample set"));</span>
+<span class='curline'><a href='../S/419.html#L851'>src_t</a>             851 src/verifier/dpor.c       src_t = NULL;</span>
+<span class='curline'><a href='../S/419.html#L864'>src_t</a>             864 src/verifier/dpor.c         transition_set_state(src_t, succ);</span>
+<span class='curline'><a href='../S/419.html#L876'>src_t</a>             876 src/verifier/dpor.c       st_data_t ins = has_trans_obj(s) ? (st_data_t)src_t : (st_data_t)succ;</span>
+<span class='curline'><a href='../S/419.html#L881'>src_t</a>             881 src/verifier/dpor.c         transition_free(src_t);</span>
+<span class='curline'><a href='../S/419.html#L889'>src_t</a>             889 src/verifier/dpor.c       Transition src_t;</span>
+<span class='curline'><a href='../S/419.html#L904'>src_t</a>             904 src/verifier/dpor.c         src_t = transition_make(src_succ, ANONYMOUS);</span>
+<span class='curline'><a href='../S/419.html#L906'>src_t</a>             906 src/verifier/dpor.c       src_t = NULL;</span>
+<span class='curline'><a href='../S/419.html#L919'>src_t</a>             919 src/verifier/dpor.c           transition_set_state(src_t, succ);</span>
+<span class='curline'><a href='../S/419.html#L927'>src_t</a>             927 src/verifier/dpor.c         st_data_t ins = has_trans_obj(s) ? (st_data_t)src_t : (st_data_t)succ;</span>
+<span class='curline'><a href='../S/419.html#L932'>src_t</a>             932 src/verifier/dpor.c           transition_free(src_t);</span>
+<span class='curline'><a href='../S/419.html#L946'>src_t</a>             946 src/verifier/dpor.c       Transition src_t;</span>
+<span class='curline'><a href='../S/419.html#L956'>src_t</a>             956 src/verifier/dpor.c       src_t = transition_make(src_succ, lmn_intern("reduced"));</span>
+<span class='curline'><a href='../S/419.html#L964'>src_t</a>             964 src/verifier/dpor.c       vec_push(reduced_stack, (vec_data_t)src_t);</span>
+<span class='curline'><a href='../S/421.html#L449'>src_t</a>             449 src/verifier/dpor_naive.c     Transition src_t;</span>
+<span class='curline'><a href='../S/421.html#L456'>src_t</a>             456 src/verifier/dpor_naive.c       src_t = (Transition)vec_get(RC_EXPANDED(rc), i);</span>
+<span class='curline'><a href='../S/421.html#L457'>src_t</a>             457 src/verifier/dpor_naive.c       src_succ = transition_next_state(src_t);</span>
+<span class='curline'><a href='../S/421.html#L460'>src_t</a>             460 src/verifier/dpor_naive.c       src_t = transition_make(src_succ, (lmn_interned_str)vec_get(RC_EXPANDED_RULES(rc), i));</span>
+<span class='curline'><a href='../S/421.html#L468'>src_t</a>             468 src/verifier/dpor_naive.c       transition_set_state(src_t, succ);</span>
+<span class='curline'><a href='../S/421.html#L473'>src_t</a>             473 src/verifier/dpor_naive.c       st_add_direct(succ_tbl, (st_data_t)succ, (st_data_t)src_t);</span>
+<span class='curline'><a href='../S/421.html#L474'>src_t</a>             474 src/verifier/dpor_naive.c       vec_set(RC_EXPANDED(rc), succ_i, (vec_data_t)src_t);</span>
+<span class='curline'><a href='../S/421.html#L481'>src_t</a>             481 src/verifier/dpor_naive.c                           transition_rule(src_t, 0),</span>
+<span class='curline'><a href='../S/421.html#L482'>src_t</a>             482 src/verifier/dpor_naive.c                           transition_cost(src_t));</span>
+<span class='curline'><a href='../S/421.html#L483'>src_t</a>             483 src/verifier/dpor_naive.c       transition_free(src_t);</span>
+<span class='curline'><a href='../S/428.html#L301'>src_t</a>             301 src/verifier/mc.c     Transition src_t;</span>
+<span class='curline'><a href='../S/428.html#L309'>src_t</a>             309 src/verifier/mc.c       src_t    = NULL;</span>
+<span class='curline'><a href='../S/428.html#L312'>src_t</a>             312 src/verifier/mc.c       src_t    = (Transition)vec_get(RC_EXPANDED(rc), i);</span>
+<span class='curline'><a href='../S/428.html#L313'>src_t</a>             313 src/verifier/mc.c       src_succ = transition_next_state(src_t);</span>
+<span class='curline'><a href='../S/428.html#L351'>src_t</a>             351 src/verifier/mc.c         transition_set_state(src_t, succ);</span>
+<span class='curline'><a href='../S/428.html#L361'>src_t</a>             361 src/verifier/mc.c         ins = (st_data_t)src_t;</span>
+<span class='curline'><a href='../S/428.html#L374'>src_t</a>             374 src/verifier/mc.c                           transition_rule(src_t, 0),</span>
+<span class='curline'><a href='../S/428.html#L375'>src_t</a>             375 src/verifier/mc.c                           transition_cost(src_t));</span>
+<span class='curline'><a href='../S/428.html#L376'>src_t</a>             376 src/verifier/mc.c       transition_free(src_t);</span>
+</pre>
+</body>
+</html>

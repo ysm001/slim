@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>e2</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/358.html#L167'>e2</a>                167 src/membrane.h static inline void atomlist_append(AtomListEntry *e1, AtomListEntry *e2)</span>
+<span class='curline'><a href='../S/358.html#L169'>e2</a>                169 src/membrane.h   if (atomlist_head(e2) != lmn_atomlist_end(e2)) {/* true if e2 is not empty */</span>
+<span class='curline'><a href='../S/358.html#L170'>e2</a>                170 src/membrane.h     LMN_SATOM_SET_NEXT(e1-&gt;tail, e2-&gt;head);</span>
+<span class='curline'><a href='../S/358.html#L171'>e2</a>                171 src/membrane.h     LMN_SATOM_SET_PREV(e2-&gt;head, e1-&gt;tail);</span>
+<span class='curline'><a href='../S/358.html#L172'>e2</a>                172 src/membrane.h     LMN_SATOM_SET_NEXT(e2-&gt;tail, e1);</span>
+<span class='curline'><a href='../S/358.html#L173'>e2</a>                173 src/membrane.h     e1-&gt;tail = e2-&gt;tail;</span>
+<span class='curline'><a href='../S/358.html#L174'>e2</a>                174 src/membrane.h     atomlist_modify_num(e1, atomlist_get_entries_num(e2));</span>
+<span class='curline'><a href='../S/358.html#L176'>e2</a>                176 src/membrane.h   atomlist_set_empty(e2);</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>ReaderMutexLock</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/532.html#L298'>ReaderMutexLock</a>   298 third_party/google-perftools-1.8.3/src/base/simple_mutex.h class ReaderMutexLock {</span>
+<span class='curline'><a href='../S/532.html#L300'>ReaderMutexLock</a>   300 third_party/google-perftools-1.8.3/src/base/simple_mutex.h   explicit ReaderMutexLock(Mutex *mu) : mu_(mu) { mu_-&gt;ReaderLock(); }</span>
+<span class='curline'><a href='../S/532.html#L301'>ReaderMutexLock</a>   301 third_party/google-perftools-1.8.3/src/base/simple_mutex.h   ~ReaderMutexLock() { mu_-&gt;ReaderUnlock(); }</span>
+<span class='curline'><a href='../S/532.html#L305'>ReaderMutexLock</a>   305 third_party/google-perftools-1.8.3/src/base/simple_mutex.h   ReaderMutexLock(const ReaderMutexLock&amp;);</span>
+<span class='curline'><a href='../S/532.html#L306'>ReaderMutexLock</a>   306 third_party/google-perftools-1.8.3/src/base/simple_mutex.h   void operator=(const ReaderMutexLock&amp;);</span>
+</pre>
+</body>
+</html>

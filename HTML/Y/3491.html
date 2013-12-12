@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>mem2</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/357.html#L1574'>mem2</a>             1574 src/membrane.c                            LmnMembrane *mem2, SimplyLog log2,</span>
+<span class='curline'><a href='../S/357.html#L1579'>mem2</a>             1579 src/membrane.c BOOL lmn_mem_equals(LmnMembrane *mem1, LmnMembrane *mem2)</span>
+<span class='curline'><a href='../S/357.html#L1590'>mem2</a>             1590 src/membrane.c   t = mem_equals_rec(mem1, NULL,  mem2, NULL, CHECKED_MEM_DEPTH);</span>
+<span class='curline'><a href='../S/357.html#L1598'>mem2</a>             1598 src/membrane.c   t = mem_equals_rec(mem1, &amp;log1, mem2, &amp;log2, CHECKED_MEM_DEPTH);</span>
+<span class='curline'><a href='../S/357.html#L1614'>mem2</a>             1614 src/membrane.c static BOOL mem_equals_atomlists(LmnMembrane *mem1, LmnMembrane *mem2);</span>
+<span class='curline'><a href='../S/357.html#L1616'>mem2</a>             1616 src/membrane.c                                    LmnMembrane *mem2, SimplyLog log2,</span>
+<span class='curline'><a href='../S/357.html#L1623'>mem2</a>             1623 src/membrane.c                            LmnMembrane *mem2, SimplyLog log2,</span>
+<span class='curline'><a href='../S/357.html#L1629'>mem2</a>             1629 src/membrane.c     if (!simplylog_contains_mem(log2, mem2)) {</span>
+<span class='curline'><a href='../S/357.html#L1633'>mem2</a>             1633 src/membrane.c       return lmn_mem_id(mem2) == tracelog_get_memMatched(log1, mem1);</span>
+<span class='curline'><a href='../S/357.html#L1636'>mem2</a>             1636 src/membrane.c   else if (simplylog_contains_mem(log2, mem2)) {</span>
+<span class='curline'><a href='../S/357.html#L1640'>mem2</a>             1640 src/membrane.c   tracelog_put_mem(log1, mem1, lmn_mem_id(mem2));</span>
+<span class='curline'><a href='../S/357.html#L1641'>mem2</a>             1641 src/membrane.c   simplylog_put_mem(log2, mem2);</span>
+<span class='curline'><a href='../S/357.html#L1667'>mem2</a>             1667 src/membrane.c   if (/* 1.1 */ LMN_MEM_NAME_ID(mem1) != LMN_MEM_NAME_ID(mem2)                ||</span>
+<span class='curline'><a href='../S/357.html#L1668'>mem2</a>             1668 src/membrane.c       /* 1.2 */ lmn_mem_symb_atom_num(mem1) != lmn_mem_symb_atom_num(mem2)    ||</span>
+<span class='curline'><a href='../S/357.html#L1669'>mem2</a>             1669 src/membrane.c       /* 1.3 */ lmn_mem_data_atom_num(mem1) != lmn_mem_data_atom_num(mem2)    ||</span>
+<span class='curline'><a href='../S/357.html#L1670'>mem2</a>             1670 src/membrane.c       /* 1.4 */ !mem_equals_atomlists(mem1, mem2)                             ||</span>
+<span class='curline'><a href='../S/357.html#L1671'>mem2</a>             1671 src/membrane.c       /* 1.5 */ lmn_mem_child_mem_num(mem1) != lmn_mem_child_mem_num(mem2)    ||</span>
+<span class='curline'><a href='../S/357.html#L1674'>mem2</a>             1674 src/membrane.c                                      lmn_mem_get_rulesets(mem2))              ||</span>
+<span class='curline'><a href='../S/357.html#L1675'>mem2</a>             1675 src/membrane.c       /* 3.X */ !mem_equals_isomorphism(mem1, log1, mem2, log2, current_depth))</span>
+<span class='curline'><a href='../S/357.html#L1686'>mem2</a>             1686 src/membrane.c static BOOL mem_equals_atomlists(LmnMembrane *mem1, LmnMembrane *mem2)</span>
+<span class='curline'><a href='../S/357.html#L1692'>mem2</a>             1692 src/membrane.c     AtomListEntry *ent2 = lmn_mem_get_atomlist(mem2, f);</span>
+<span class='curline'><a href='../S/357.html#L1721'>mem2</a>             1721 src/membrane.c static inline BOOL mem_equals_molecules(LmnMembrane *mem1, LmnMembrane *mem2, int current_depth);</span>
+<span class='curline'><a href='../S/357.html#L1722'>mem2</a>             1722 src/membrane.c static inline BOOL mem_equals_children(LmnMembrane *mem1, LmnMembrane *mem2, int current_depth);</span>
+<span class='curline'><a href='../S/357.html#L1729'>mem2</a>             1729 src/membrane.c                             LmnMembrane *mem2, SimplyLog log2,</span>
+<span class='curline'><a href='../S/357.html#L1735'>mem2</a>             1735 src/membrane.c                                    LmnMembrane *mem2, SimplyLog log2,</span>
+<span class='curline'><a href='../S/357.html#L1743'>mem2</a>             1743 src/membrane.c   ret = /* Step 3.1 */ mem_equals_molecules(mem1, mem2, current_depth) &amp;&amp;</span>
+<span class='curline'><a href='../S/357.html#L1744'>mem2</a>             1744 src/membrane.c         /* Step 3.2 */ mem_equals_children(mem1, mem2, current_depth);</span>
+<span class='curline'><a href='../S/357.html#L1749'>mem2</a>             1749 src/membrane.c   ret = /* Step 3.X */ mem_isomor_mols(mem1, log1, mem2, log2, &amp;iter);</span>
+<span class='curline'><a href='../S/357.html#L1888'>mem2</a>             1888 src/membrane.c                                         LmnMembrane *mem2, SimplyLog log2,</span>
+<span class='curline'><a href='../S/357.html#L1891'>mem2</a>             1891 src/membrane.c                                        LmnMembrane *mem2, SimplyLog log2,</span>
+<span class='curline'><a href='../S/357.html#L1898'>mem2</a>             1898 src/membrane.c                             LmnMembrane *mem2, SimplyLog log2,</span>
+<span class='curline'><a href='../S/357.html#L1912'>mem2</a>             1912 src/membrane.c                                 mem2, log2, iter, root1);</span>
+<span class='curline'><a href='../S/357.html#L1923'>mem2</a>             1923 src/membrane.c                                  mem2, log2,</span>
+<span class='curline'><a href='../S/357.html#L1942'>mem2</a>             1942 src/membrane.c                                    LmnAtom cur2, LmnMembrane *mem2, SimplyLog log2);</span>
+<span class='curline'><a href='../S/357.html#L1945'>mem2</a>             1945 src/membrane.c                                         LmnMembrane *mem2, SimplyLog log2,</span>
+<span class='curline'><a href='../S/357.html#L1954'>mem2</a>             1954 src/membrane.c   ent2 = lmn_mem_get_atomlist(mem2, f);</span>
+<span class='curline'><a href='../S/357.html#L1966'>mem2</a>             1966 src/membrane.c                              (LmnAtom)root2, mem2, log2))</span>
+<span class='curline'><a href='../S/357.html#L1972'>mem2</a>             1972 src/membrane.c         return mem_isomor_mols(mem1, log1, mem2, log2, iter);</span>
+<span class='curline'><a href='../S/357.html#L1976'>mem2</a>             1976 src/membrane.c         if (mem_isomor_mols(mem1, log1, mem2, log2, iter)) {</span>
+<span class='curline'><a href='../S/357.html#L2000'>mem2</a>             2000 src/membrane.c                                        LmnMembrane *mem2, SimplyLog log2,</span>
+<span class='curline'><a href='../S/357.html#L2004'>mem2</a>             2004 src/membrane.c   for (root2 = lmn_mem_child_head(mem2); root2; root2 = lmn_mem_next(root2)) {</span>
+<span class='curline'><a href='../S/357.html#L2010'>mem2</a>             2010 src/membrane.c           !mem_isomor_mols(mem1, log1, mem2, log2, iter)) {</span>
+<span class='curline'><a href='../S/357.html#L2029'>mem2</a>             2029 src/membrane.c                                             LmnAtom cur2, LmnMembrane *mem2, SimplyLog log2);</span>
+<span class='curline'><a href='../S/357.html#L2032'>mem2</a>             2032 src/membrane.c                                            LmnAtom cur2, LmnMembrane *mem2, SimplyLog log2);</span>
+<span class='curline'><a href='../S/357.html#L2039'>mem2</a>             2039 src/membrane.c                                    LmnAtom cur2, LmnMembrane *mem2, SimplyLog log2)</span>
+<span class='curline'><a href='../S/357.html#L2044'>mem2</a>             2044 src/membrane.c                                   cur2, mem2, log2)) {</span>
+<span class='curline'><a href='../S/357.html#L2053'>mem2</a>             2053 src/membrane.c                                     cur2, mem2, log2);</span>
+<span class='curline'><a href='../S/357.html#L2059'>mem2</a>             2059 src/membrane.c                                             LmnAtom cur2, LmnMembrane *mem2, SimplyLog log2)</span>
+<span class='curline'><a href='../S/357.html#L2170'>mem2</a>             2170 src/membrane.c                                            LmnAtom cur2, LmnMembrane *mem2, SimplyLog log2)</span>
+<span class='curline'><a href='../S/357.html#L2229'>mem2</a>             2229 src/membrane.c                                  atom2, mem2, log2)) {</span>
+<span class='curline'><a href='../S/357.html#L2264'>mem2</a>             2264 src/membrane.c static inline BOOL mem_equals_children(LmnMembrane *mem1, LmnMembrane *mem2, int current_depth)</span>
+<span class='curline'><a href='../S/357.html#L2269'>mem2</a>             2269 src/membrane.c   if (child_n != lmn_mem_count_children(mem2)) {</span>
+<span class='curline'><a href='../S/357.html#L2290'>mem2</a>             2290 src/membrane.c       for (m = mem2-&gt;child_head; m; m = m-&gt;next) vec_push(v_mems_children2, (LmnWord)m);</span>
+<span class='curline'><a href='../S/357.html#L2413'>mem2</a>             2413 src/membrane.c static inline BOOL mem_equals_molecules(LmnMembrane *mem1, LmnMembrane *mem2, int current_depth)</span>
+<span class='curline'><a href='../S/357.html#L2416'>mem2</a>             2416 src/membrane.c   LMN_ASSERT(atom_n == lmn_mem_atom_num(mem2));</span>
+<span class='curline'><a href='../S/357.html#L2418'>mem2</a>             2418 src/membrane.c   if (atom_n != lmn_mem_atom_num(mem2)) {</span>
+<span class='curline'><a href='../S/357.html#L2443'>mem2</a>             2443 src/membrane.c       atomvec_mem2 = mem_mk_matching_vec(mem2);</span>
+<span class='curline'><a href='../S/357.html#L2600'>mem2</a>             2600 src/membrane.c     LmnMembrane *mem1, *mem2;</span>
+<span class='curline'><a href='../S/357.html#L2607'>mem2</a>             2607 src/membrane.c     mem2 = LMN_PROXY_GET_MEM(a2);</span>
+<span class='curline'><a href='../S/357.html#L2609'>mem2</a>             2609 src/membrane.c     if (!mem_equals_rec(mem1, NULL, mem2, NULL, CHECKED_MEM_DEPTH)) {</span>
+<span class='curline'><a href='../S/358.html#L259'>mem2</a>              259 src/membrane.h BOOL lmn_mem_equals(LmnMembrane *mem1, LmnMembrane *mem2);</span>
+<span class='curline'><a href='../S/384.html#L1225'>mem2</a>             1225 src/task.c           LmnInstrVar mem1, mem2, memt, memn; /* dst, parent, type, name */</span>
+<span class='curline'><a href='../S/384.html#L1229'>mem2</a>             1229 src/task.c           READ_VAL(LmnInstrVar, instr, mem2);</span>
+<span class='curline'><a href='../S/384.html#L1234'>mem2</a>             1234 src/task.c           mp = ((LmnMembrane*)wt(rc, mem2))-&gt;child_head;</span>
+<span class='curline'><a href='../S/384.html#L2292'>mem2</a>             2292 src/task.c           LmnInstrVar mem1, mem2;</span>
+<span class='curline'><a href='../S/384.html#L2295'>mem2</a>             2295 src/task.c           READ_VAL(LmnInstrVar, instr, mem2);</span>
+<span class='curline'><a href='../S/384.html#L2296'>mem2</a>             2296 src/task.c           if (wt(rc, mem1) != wt(rc, mem2)) return FALSE;</span>
+<span class='curline'><a href='../S/384.html#L2301'>mem2</a>             2301 src/task.c           LmnInstrVar mem1, mem2;</span>
+<span class='curline'><a href='../S/384.html#L2303'>mem2</a>             2303 src/task.c           READ_VAL(LmnInstrVar, instr, mem2);</span>
+<span class='curline'><a href='../S/384.html#L2305'>mem2</a>             2305 src/task.c           if(wt(rc, mem1) == wt(rc, mem2)) return FALSE;</span>
+</pre>
+</body>
+</html>

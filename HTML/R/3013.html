@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>begin</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/351.html#L1033'>begin</a>            1033 src/load.c       char *begin, *end, *basename, *p;</span>
+<span class='curline'><a href='../S/351.html#L1036'>begin</a>            1036 src/load.c       begin = strrchr(filepath, DIR_SEPARATOR_CHAR); /* パス内最後の/を探す */</span>
+<span class='curline'><a href='../S/351.html#L1038'>begin</a>            1038 src/load.c       if (!begin) { /* もし/があればその次がファイル名の先頭 */</span>
+<span class='curline'><a href='../S/351.html#L1039'>begin</a>            1039 src/load.c         begin += 1;</span>
+<span class='curline'><a href='../S/351.html#L1041'>begin</a>            1041 src/load.c         begin = (char *)filepath; /* もし/がなければ全体の先頭がファイル名の先頭 */</span>
+<span class='curline'><a href='../S/351.html#L1044'>begin</a>            1044 src/load.c       end = strchr(begin, '.'); /* ファイル名最初の.を探す ないと困る */</span>
+<span class='curline'><a href='../S/351.html#L1045'>begin</a>            1045 src/load.c       basename = lmn_malloc(end - begin + 1);</span>
+<span class='curline'><a href='../S/351.html#L1046'>begin</a>            1046 src/load.c       for (i = 0, p = begin; i &lt; end - begin; i++, p++){</span>
+<span class='curline'><a href='../S/351.html#L1054'>begin</a>            1054 src/load.c       basename[end - begin] = '\0';</span>
+<span class='curline'><a href='../S/377.html#L286'>begin</a>             286 src/string.c                         long begin, LmnLinkAttr t1,</span>
+<span class='curline'><a href='../S/377.html#L294'>begin</a>             294 src/string.c     if (begin &lt;= end) {</span>
+<span class='curline'><a href='../S/377.html#L296'>begin</a>             296 src/string.c       if (begin &lt; 0) begin = 0;</span>
+<span class='curline'><a href='../S/377.html#L298'>begin</a>             298 src/string.c       s = LMN_NALLOC(char, end - begin + 1);</span>
+<span class='curline'><a href='../S/377.html#L299'>begin</a>             299 src/string.c       snprintf(s, end - begin + 1, "%s", src+begin);</span>
+<span class='curline'><a href='../S/377.html#L310'>begin</a>             310 src/string.c     lmn_mem_delete_atom(mem, begin, t1);</span>
+<span class='curline'><a href='../S/377.html#L317'>begin</a>             317 src/string.c                               long begin, LmnLinkAttr t1,</span>
+<span class='curline'><a href='../S/377.html#L325'>begin</a>             325 src/string.c     if (begin &lt; 0) { begin = 0;}</span>
+<span class='curline'><a href='../S/377.html#L326'>begin</a>             326 src/string.c     if (begin &gt; len) begin = len;</span>
+<span class='curline'><a href='../S/377.html#L327'>begin</a>             327 src/string.c     s = LMN_NALLOC(char, len - begin + 1);</span>
+<span class='curline'><a href='../S/377.html#L328'>begin</a>             328 src/string.c     snprintf(s, len - begin + 1, "%s", src+begin);</span>
+<span class='curline'><a href='../S/377.html#L336'>begin</a>             336 src/string.c     lmn_mem_delete_atom(mem, begin, t1);</span>
+<span class='curline'><a href='../S/521.html#L319'>begin</a>             319 third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc   for (SymbolIterator it = begin(); it != end(); ++it) {</span>
+<span class='curline'><a href='../S/521.html#L333'>begin</a>             333 third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc   for (SymbolIterator it = begin(); it != end(); ++it) {</span>
+<span class='curline'><a href='../S/522.html#L102'>begin</a>             102 third_party/google-perftools-1.8.3/src/base/elf_mem_image.h   SymbolIterator begin() const;</span>
+<span class='curline'><a href='../S/548.html#L83'>begin</a>              83 third_party/google-perftools-1.8.3/src/base/vdso_support.h   SymbolIterator begin() const { return image_.begin(); }</span>
+<span class='curline'><a href='../S/568.html#L662'>begin</a>             662 third_party/google-perftools-1.8.3/src/heap-checker.cc     for (LibraryLiveObjectsStacks::iterator lib = library_live_objects-&gt;begin();</span>
+<span class='curline'><a href='../S/568.html#L664'>begin</a>             664 third_party/google-perftools-1.8.3/src/heap-checker.cc       for (LiveObjectsStack::iterator span = lib-&gt;second.begin();</span>
+<span class='curline'><a href='../S/568.html#L1094'>begin</a>            1094 third_party/google-perftools-1.8.3/src/heap-checker.cc     for (IgnoredObjectsMap::const_iterator object = ignored_objects-&gt;begin();</span>
+<span class='curline'><a href='../S/568.html#L1132'>begin</a>            1132 third_party/google-perftools-1.8.3/src/heap-checker.cc     for (LibraryLiveObjectsStacks::iterator l = library_live_objects-&gt;begin();</span>
+<span class='curline'><a href='../S/568.html#L1173'>begin</a>            1173 third_party/google-perftools-1.8.3/src/heap-checker.cc           for (LiveObjectsStack::const_iterator i = l-&gt;second.begin();</span>
+<span class='curline'><a href='../S/568.html#L1211'>begin</a>            1211 third_party/google-perftools-1.8.3/src/heap-checker.cc         for (LiveObjectsStack::const_iterator i = l-&gt;second.begin();</span>
+<span class='curline'><a href='../S/569.html#L536'>begin</a>             536 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   for (map&lt;Bucket*,Entry&gt;::const_iterator iter = state.buckets_.begin();</span>
+<span class='curline'><a href='../S/588.html#L340'>begin</a>             340 third_party/google-perftools-1.8.3/src/memory_region_map.cc   return regions_-&gt;begin();</span>
+<span class='curline'><a href='../S/588.html#L638'>begin</a>             638 third_party/google-perftools-1.8.3/src/memory_region_map.cc   for (RegionSet::const_iterator r = regions_-&gt;begin();</span>
+<span class='curline'><a href='../S/596.html#L361'>begin</a>             361 third_party/google-perftools-1.8.3/src/profile-handler.cc   for (CallbackIterator it = callbacks_.begin(); it != callbacks_.end();</span>
+<span class='curline'><a href='../S/596.html#L389'>begin</a>             389 third_party/google-perftools-1.8.3/src/profile-handler.cc     CallbackIterator it = callbacks_.begin();</span>
+<span class='curline'><a href='../S/596.html#L498'>begin</a>             498 third_party/google-perftools-1.8.3/src/profile-handler.cc     for (CallbackIterator it = instance-&gt;callbacks_.begin();</span>
+<span class='curline'><a href='../S/622.html#L228'>begin</a>             228 third_party/google-perftools-1.8.3/src/symbolize.cc       for (SymbolMap::const_iterator iter = symbolization_table_.begin();</span>
+<span class='curline'><a href='../S/622.html#L262'>begin</a>             262 third_party/google-perftools-1.8.3/src/symbolize.cc       SymbolMap::iterator fill = symbolization_table_.begin();</span>
+<span class='curline'><a href='../S/629.html#L93'>begin</a>              93 third_party/google-perftools-1.8.3/src/tests/addressmap_unittest.cc     random_shuffle(ptrs_and_sizes.begin(), ptrs_and_sizes.end());</span>
+<span class='curline'><a href='../S/632.html#L54'>begin</a>              54 third_party/google-perftools-1.8.3/src/tests/debugallocation_test.cc   for (it = g_testlist.begin(); it != g_testlist.end(); ++it) {</span>
+<span class='curline'><a href='../S/637.html#L891'>begin</a>             891 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     s2-&gt;insert(*s1.begin());</span>
+<span class='curline'><a href='../S/637.html#L892'>begin</a>             892 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     user += *s2-&gt;begin();</span>
+<span class='curline'><a href='../S/637.html#L1010'>begin</a>            1010 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   for (list&lt;ObjMakerFunc&gt;::const_iterator i = obj_makers.begin();</span>
+<span class='curline'><a href='../S/641.html#L122'>begin</a>             122 third_party/google-perftools-1.8.3/src/tests/low_level_alloc_unittest.cc       it = allocated.begin();</span>
+<span class='curline'><a href='../S/641.html#L134'>begin</a>             134 third_party/google-perftools-1.8.3/src/tests/low_level_alloc_unittest.cc   while ((it = allocated.begin()) != allocated.end()) {</span>
+<span class='curline'><a href='../S/644.html#L76'>begin</a>              76 third_party/google-perftools-1.8.3/src/tests/malloc_hook_test.cc   for (it = g_testlist.begin(); it != g_testlist.end(); ++it) {</span>
+<span class='curline'><a href='../S/657.html#L74'>begin</a>              74 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   for (it = g_testlist.begin(); it != g_testlist.end(); ++it) {</span>
+<span class='curline'><a href='../S/664.html#L1038'>begin</a>            1038 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     std::stable_sort(v.begin(), v.end());</span>
+<span class='curline'><a href='../S/684.html#L747'>begin</a>             747 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc     for (std::vector&lt;ModuleEntryCopy&gt;::iterator it = modules.begin();</span>
+</pre>
+</body>
+</html>

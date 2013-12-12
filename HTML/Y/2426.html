@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>format</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/386.html#L274'>format</a>            274 src/translate.c char *automalloc_sprintf(const char *format, ...)</span>
+<span class='curline'><a href='../S/386.html#L281'>format</a>            281 src/translate.c   va_start(ap, format);</span>
+<span class='curline'><a href='../S/386.html#L282'>format</a>            282 src/translate.c   buf_len = vsnprintf(trush, 2, format, ap);</span>
+<span class='curline'><a href='../S/386.html#L287'>format</a>            287 src/translate.c   va_start(ap, format);</span>
+<span class='curline'><a href='../S/386.html#L288'>format</a>            288 src/translate.c   vsnprintf(buf, buf_len+1, format, ap);</span>
+<span class='curline'><a href='../S/387.html#L145'>format</a>            145 src/translate.h char *automalloc_sprintf(const char *format, ...);</span>
+<span class='curline'><a href='../S/572.html#L176'>format</a>            176 third_party/google-perftools-1.8.3/src/internal_logging.cc void TCMalloc_Printer::printf(const char* format, ...) {</span>
+<span class='curline'><a href='../S/572.html#L179'>format</a>            179 third_party/google-perftools-1.8.3/src/internal_logging.cc     va_start(ap, format);</span>
+<span class='curline'><a href='../S/572.html#L180'>format</a>            180 third_party/google-perftools-1.8.3/src/internal_logging.cc     const int r = perftools_vsnprintf(buf_, left_, format, ap);</span>
+<span class='curline'><a href='../S/573.html#L136'>format</a>            136 third_party/google-perftools-1.8.3/src/internal_logging.h   void printf(const char* format, ...)</span>
+<span class='curline'><a href='../S/601.html#L50'>format</a>             50 third_party/google-perftools-1.8.3/src/raw_printer.cc void RawPrinter::Printf(const char* format, ...) {</span>
+<span class='curline'><a href='../S/601.html#L53'>format</a>             53 third_party/google-perftools-1.8.3/src/raw_printer.cc     va_start(ap, format);</span>
+<span class='curline'><a href='../S/601.html#L57'>format</a>             57 third_party/google-perftools-1.8.3/src/raw_printer.cc     const int r = perftools_vsnprintf(ptr_, avail+1, format, ap);</span>
+<span class='curline'><a href='../S/602.html#L67'>format</a>             67 third_party/google-perftools-1.8.3/src/raw_printer.h   void Printf(const char* format, ...)</span>
+<span class='curline'><a href='../S/657.html#L86'>format</a>             86 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc static std::string StringPrintf(const char* format, ...) {</span>
+<span class='curline'><a href='../S/657.html#L89'>format</a>             89 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   va_start(ap, format);</span>
+<span class='curline'><a href='../S/657.html#L90'>format</a>             90 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   perftools_vsnprintf(buf, sizeof(buf), format, ap);</span>
+<span class='curline'><a href='../S/668.html#L3672'>format</a>           3672 third_party/google-perftools-1.8.3/src/third_party/valgrind.h static int VALGRIND_PRINTF(const char *format, ...)</span>
+<span class='curline'><a href='../S/668.html#L3673'>format</a>           3673 third_party/google-perftools-1.8.3/src/third_party/valgrind.h    __attribute__((format(__printf__, 1, 2), __unused__));</span>
+<span class='curline'><a href='../S/668.html#L3675'>format</a>           3675 third_party/google-perftools-1.8.3/src/third_party/valgrind.h VALGRIND_PRINTF(const char *format, ...)</span>
+<span class='curline'><a href='../S/668.html#L3679'>format</a>           3679 third_party/google-perftools-1.8.3/src/third_party/valgrind.h    va_start(vargs, format);</span>
+<span class='curline'><a href='../S/668.html#L3681'>format</a>           3681 third_party/google-perftools-1.8.3/src/third_party/valgrind.h                               (unsigned long)format, (unsigned long)vargs, </span>
+<span class='curline'><a href='../S/668.html#L3687'>format</a>           3687 third_party/google-perftools-1.8.3/src/third_party/valgrind.h static int VALGRIND_PRINTF_BACKTRACE(const char *format, ...)</span>
+<span class='curline'><a href='../S/668.html#L3688'>format</a>           3688 third_party/google-perftools-1.8.3/src/third_party/valgrind.h    __attribute__((format(__printf__, 1, 2), __unused__));</span>
+<span class='curline'><a href='../S/668.html#L3690'>format</a>           3690 third_party/google-perftools-1.8.3/src/third_party/valgrind.h VALGRIND_PRINTF_BACKTRACE(const char *format, ...)</span>
+<span class='curline'><a href='../S/668.html#L3694'>format</a>           3694 third_party/google-perftools-1.8.3/src/third_party/valgrind.h    va_start(vargs, format);</span>
+<span class='curline'><a href='../S/668.html#L3696'>format</a>           3696 third_party/google-perftools-1.8.3/src/third_party/valgrind.h                               (unsigned long)format, (unsigned long)vargs, </span>
+<span class='curline'><a href='../S/686.html#L303'>format</a>            303 third_party/google-perftools-1.8.3/src/windows/port.h inline int perftools_vsnprintf(char *str, size_t size, const char *format,</span>
+<span class='curline'><a href='../S/686.html#L305'>format</a>            305 third_party/google-perftools-1.8.3/src/windows/port.h   return vsnprintf_s(str, size, _TRUNCATE, format, ap);</span>
+<span class='curline'><a href='../S/686.html#L308'>format</a>            308 third_party/google-perftools-1.8.3/src/windows/port.h inline int perftools_vsnprintf(char *str, size_t size, const char *format,</span>
+<span class='curline'><a href='../S/686.html#L313'>format</a>            313 third_party/google-perftools-1.8.3/src/windows/port.h   return _vsnprintf(str, size-1, format, ap);</span>
+<span class='curline'><a href='../S/686.html#L318'>format</a>            318 third_party/google-perftools-1.8.3/src/windows/port.h inline int snprintf(char *str, size_t size, const char *format, ...) {</span>
+<span class='curline'><a href='../S/686.html#L321'>format</a>            321 third_party/google-perftools-1.8.3/src/windows/port.h   va_start(ap, format);</span>
+<span class='curline'><a href='../S/686.html#L322'>format</a>            322 third_party/google-perftools-1.8.3/src/windows/port.h   r = perftools_vsnprintf(str, size, format, ap);</span>
+</pre>
+</body>
+</html>

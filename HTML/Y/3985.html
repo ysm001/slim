@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>opened_so_files</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/351.html#L775'>opened_so_files</a>   775 src/load.c     static Vector *opened_so_files;</span>
+<span class='curline'><a href='../S/351.html#L778'>opened_so_files</a>   778 src/load.c       opened_so_files = vec_make(2);</span>
+<span class='curline'><a href='../S/351.html#L784'>opened_so_files</a>   784 src/load.c       for (i = 0; i&lt;vec_num(opened_so_files); i++) {</span>
+<span class='curline'><a href='../S/351.html#L785'>opened_so_files</a>   785 src/load.c         dlclose((void*)vec_get(opened_so_files, i));</span>
+<span class='curline'><a href='../S/351.html#L787'>opened_so_files</a>   787 src/load.c       vec_free(opened_so_files);</span>
+<span class='curline'><a href='../S/351.html#L813'>opened_so_files</a>   813 src/load.c           vec_push(opened_so_files, (vec_data_t)sohandle);</span>
+</pre>
+</body>
+</html>

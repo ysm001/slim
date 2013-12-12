@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>num_modules</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/684.html#L680'>num_modules</a>       680 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc   DWORD num_modules = 0;</span>
+<span class='curline'><a href='../S/684.html#L683'>num_modules</a>       683 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc                             &amp;num_modules)) {</span>
+<span class='curline'><a href='../S/684.html#L684'>num_modules</a>       684 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc     num_modules = 0;</span>
+<span class='curline'><a href='../S/684.html#L688'>num_modules</a>       688 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc   num_modules /= sizeof(*hModules);</span>
+<span class='curline'><a href='../S/684.html#L689'>num_modules</a>       689 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc   if (num_modules &gt;= kMaxModules) {</span>
+<span class='curline'><a href='../S/684.html#L693'>num_modules</a>       693 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc     num_modules = kMaxModules;</span>
+<span class='curline'><a href='../S/684.html#L711'>num_modules</a>       711 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc     for (int i = 0; i &lt; num_modules; ) {</span>
+<span class='curline'><a href='../S/684.html#L714'>num_modules</a>       714 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc         hModules[i] = hModules[--num_modules];  // replace element i with tail</span>
+<span class='curline'><a href='../S/684.html#L739'>num_modules</a>       739 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc   for (int i = 0; i &lt; num_modules; i++) {</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>newval</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/512.html#L73'>newval</a>             73 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h                                            LONG newval, LONG oldval) {</span>
+<span class='curline'><a href='../S/512.html#L74'>newval</a>             74 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   return ::InterlockedCompareExchange(const_cast&lt;LONG*&gt;(ptr), newval, oldval);</span>
+<span class='curline'><a href='../S/512.html#L76'>newval</a>             76 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h inline LONG FastInterlockedExchange(volatile LONG* ptr, LONG newval) {</span>
+<span class='curline'><a href='../S/512.html#L77'>newval</a>             77 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   return ::InterlockedExchange(const_cast&lt;LONG*&gt;(ptr), newval);</span>
+<span class='curline'><a href='../S/512.html#L88'>newval</a>             88 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h LONG _InterlockedCompareExchange(volatile LONG* ptr, LONG newval, LONG oldval);</span>
+<span class='curline'><a href='../S/512.html#L91'>newval</a>             91 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h                                            LONG newval, LONG oldval) {</span>
+<span class='curline'><a href='../S/512.html#L92'>newval</a>             92 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   return _InterlockedCompareExchange(ptr, newval, oldval);</span>
+<span class='curline'><a href='../S/512.html#L95'>newval</a>             95 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h LONG _InterlockedExchange(volatile LONG* ptr, LONG newval);</span>
+<span class='curline'><a href='../S/512.html#L97'>newval</a>             97 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h inline LONG FastInterlockedExchange(volatile LONG* ptr, LONG newval) {</span>
+<span class='curline'><a href='../S/512.html#L98'>newval</a>             98 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   return _InterlockedExchange(ptr, newval);</span>
+<span class='curline'><a href='../S/512.html#L109'>newval</a>            109 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h                                            LONG newval, LONG oldval) {</span>
+<span class='curline'><a href='../S/512.html#L110'>newval</a>            110 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   return ::InterlockedCompareExchange(ptr, newval, oldval);</span>
+<span class='curline'><a href='../S/512.html#L112'>newval</a>            112 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h inline LONG FastInterlockedExchange(volatile LONG* ptr, LONG newval) {</span>
+<span class='curline'><a href='../S/512.html#L113'>newval</a>            113 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   return ::InterlockedExchange(ptr, newval);</span>
+<span class='curline'><a href='../S/512.html#L228'>newval</a>            228 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h                                                    PVOID newval, PVOID oldval) {</span>
+<span class='curline'><a href='../S/512.html#L230'>newval</a>            230 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h                                              newval, oldval);</span>
+<span class='curline'><a href='../S/512.html#L232'>newval</a>            232 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h inline PVOID FastInterlockedExchangePointer(volatile PVOID* ptr, PVOID newval) {</span>
+<span class='curline'><a href='../S/512.html#L233'>newval</a>            233 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   return ::InterlockedExchangePointer(const_cast&lt;PVOID*&gt;(ptr), newval);</span>
+<span class='curline'><a href='../S/512.html#L243'>newval</a>            243 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h                                          PVOID newval, PVOID oldval);</span>
+<span class='curline'><a href='../S/512.html#L246'>newval</a>            246 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h                                                    PVOID newval, PVOID oldval) {</span>
+<span class='curline'><a href='../S/512.html#L248'>newval</a>            248 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h                                             newval, oldval);</span>
+<span class='curline'><a href='../S/512.html#L251'>newval</a>            251 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h PVOID _InterlockedExchangePointer(volatile PVOID* ptr, PVOID newval);</span>
+<span class='curline'><a href='../S/512.html#L253'>newval</a>            253 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h inline PVOID FastInterlockedExchangePointer(volatile PVOID* ptr, PVOID newval) {</span>
+<span class='curline'><a href='../S/512.html#L254'>newval</a>            254 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   return _InterlockedExchangePointer(const_cast&lt;PVOID*&gt;(ptr), newval);</span>
+<span class='curline'><a href='../S/512.html#L266'>newval</a>            266 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h                                                    PVOID newval, PVOID oldval) {</span>
+<span class='curline'><a href='../S/512.html#L267'>newval</a>            267 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   return ::InterlockedCompareExchangePointer(ptr, newval, oldval);</span>
+<span class='curline'><a href='../S/512.html#L269'>newval</a>            269 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h inline PVOID FastInterlockedExchangePointer(volatile PVOID* ptr, PVOID newval) {</span>
+<span class='curline'><a href='../S/512.html#L270'>newval</a>            270 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   return ::InterlockedExchangePointer(ptr, newval);</span>
+</pre>
+</body>
+</html>

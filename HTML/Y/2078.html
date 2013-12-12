@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>do_main_heap_check</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/568.html#L258'>do_main_heap_check</a>  258 third_party/google-perftools-1.8.3/src/heap-checker.cc static bool do_main_heap_check = false;</span>
+<span class='curline'><a href='../S/568.html#L2056'>do_main_heap_check</a> 2056 third_party/google-perftools-1.8.3/src/heap-checker.cc     do_main_heap_check = true;</span>
+<span class='curline'><a href='../S/568.html#L2104'>do_main_heap_check</a> 2104 third_party/google-perftools-1.8.3/src/heap-checker.cc     if (!do_main_heap_check) return false;</span>
+<span class='curline'><a href='../S/568.html#L2106'>do_main_heap_check</a> 2106 third_party/google-perftools-1.8.3/src/heap-checker.cc     do_main_heap_check = false;  // will do it now; no need to do it more</span>
+<span class='curline'><a href='../S/568.html#L2141'>do_main_heap_check</a> 2141 third_party/google-perftools-1.8.3/src/heap-checker.cc   if (do_main_heap_check) {</span>
+<span class='curline'><a href='../S/568.html#L2144'>do_main_heap_check</a> 2144 third_party/google-perftools-1.8.3/src/heap-checker.cc     do_main_heap_check = false;</span>
+<span class='curline'><a href='../S/568.html#L2271'>do_main_heap_check</a> 2271 third_party/google-perftools-1.8.3/src/heap-checker.cc   RAW_CHECK(!do_main_heap_check, "should have done it");</span>
+</pre>
+</body>
+</html>

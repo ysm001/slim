@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>bytes_until_sample_</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/603.html#L92'>bytes_until_sample_</a>   92 third_party/google-perftools-1.8.3/src/sampler.cc   bytes_until_sample_ = PickNextSamplingPoint();</span>
+<span class='curline'><a href='../S/604.html#L129'>bytes_until_sample_</a>  129 third_party/google-perftools-1.8.3/src/sampler.h   size_t        bytes_until_sample_;    // Bytes until we sample next</span>
+<span class='curline'><a href='../S/604.html#L141'>bytes_until_sample_</a>  141 third_party/google-perftools-1.8.3/src/sampler.h   if (bytes_until_sample_ &lt; k) {</span>
+<span class='curline'><a href='../S/604.html#L142'>bytes_until_sample_</a>  142 third_party/google-perftools-1.8.3/src/sampler.h     bytes_until_sample_ = PickNextSamplingPoint();</span>
+<span class='curline'><a href='../S/604.html#L145'>bytes_until_sample_</a>  145 third_party/google-perftools-1.8.3/src/sampler.h     bytes_until_sample_ -= k;</span>
+<span class='curline'><a href='../S/657.html#L441'>bytes_until_sample_</a>  441 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   size_t bytes_until_sample_;</span>
+<span class='curline'><a href='../S/657.html#L463'>bytes_until_sample_</a>  463 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   bytes_until_sample_ = 0;</span>
+<span class='curline'><a href='../S/657.html#L489'>bytes_until_sample_</a>  489 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   bytes_until_sample_ += rnd_ % sample_period;</span>
+<span class='curline'><a href='../S/657.html#L501'>bytes_until_sample_</a>  501 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   while (bytes_until_sample_ &lt; k) {</span>
+<span class='curline'><a href='../S/657.html#L505'>bytes_until_sample_</a>  505 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc     bytes_until_sample_ += (sample_period &gt;&gt; 1);</span>
+<span class='curline'><a href='../S/657.html#L508'>bytes_until_sample_</a>  508 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   bytes_until_sample_ -= k;</span>
+<span class='curline'><a href='../S/657.html#L512'>bytes_until_sample_</a>  512 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   if (bytes_until_sample_ &lt; k) {</span>
+<span class='curline'><a href='../S/657.html#L516'>bytes_until_sample_</a>  516 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc     bytes_until_sample_ -= k;</span>
+</pre>
+</body>
+</html>

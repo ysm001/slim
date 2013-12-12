@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>old_value</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/507.html#L57'>old_value</a>          57 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h typedef Atomic32 (*LinuxKernelCmpxchgFunc)(Atomic32 old_value,</span>
+<span class='curline'><a href='../S/507.html#L69'>old_value</a>          69 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h                                          Atomic32 old_value,</span>
+<span class='curline'><a href='../S/507.html#L73'>old_value</a>          73 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h     if (!pLinuxKernelCmpxchg(old_value, new_value,</span>
+<span class='curline'><a href='../S/507.html#L75'>old_value</a>          75 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h       return old_value;</span>
+<span class='curline'><a href='../S/507.html#L78'>old_value</a>          78 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h   } while (prev_value == old_value);</span>
+<span class='curline'><a href='../S/507.html#L84'>old_value</a>          84 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h   Atomic32 old_value;</span>
+<span class='curline'><a href='../S/507.html#L86'>old_value</a>          86 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h     old_value = *ptr;</span>
+<span class='curline'><a href='../S/507.html#L87'>old_value</a>          87 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h   } while (pLinuxKernelCmpxchg(old_value, new_value,</span>
+<span class='curline'><a href='../S/507.html#L89'>old_value</a>          89 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h   return old_value;</span>
+<span class='curline'><a href='../S/507.html#L96'>old_value</a>          96 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h     Atomic32 old_value = *ptr;</span>
+<span class='curline'><a href='../S/507.html#L97'>old_value</a>          97 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h     Atomic32 new_value = old_value + increment;</span>
+<span class='curline'><a href='../S/507.html#L98'>old_value</a>          98 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h     if (pLinuxKernelCmpxchg(old_value, new_value,</span>
+<span class='curline'><a href='../S/507.html#L113'>old_value</a>         113 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h                                        Atomic32 old_value,</span>
+<span class='curline'><a href='../S/507.html#L115'>old_value</a>         115 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h   return NoBarrier_CompareAndSwap(ptr, old_value, new_value);</span>
+<span class='curline'><a href='../S/507.html#L119'>old_value</a>         119 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h                                        Atomic32 old_value,</span>
+<span class='curline'><a href='../S/507.html#L121'>old_value</a>         121 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h   return NoBarrier_CompareAndSwap(ptr, old_value, new_value);</span>
+<span class='curline'><a href='../S/507.html#L167'>old_value</a>         167 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h                                          Atomic64 old_value,</span>
+<span class='curline'><a href='../S/507.html#L220'>old_value</a>         220 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h                                        Atomic64 old_value,</span>
+<span class='curline'><a href='../S/507.html#L222'>old_value</a>         222 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h   return NoBarrier_CompareAndSwap(ptr, old_value, new_value);</span>
+<span class='curline'><a href='../S/507.html#L226'>old_value</a>         226 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h                                        Atomic64 old_value,</span>
+<span class='curline'><a href='../S/507.html#L228'>old_value</a>         228 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-gcc.h   return NoBarrier_CompareAndSwap(ptr, old_value, new_value);</span>
+<span class='curline'><a href='../S/508.html#L57'>old_value</a>          57 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h typedef Atomic32 (*LinuxKernelCmpxchgFunc)(Atomic32 old_value,</span>
+<span class='curline'><a href='../S/508.html#L69'>old_value</a>          69 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h                                          Atomic32 old_value,</span>
+<span class='curline'><a href='../S/508.html#L73'>old_value</a>          73 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h     if (!pLinuxKernelCmpxchg(old_value, new_value,</span>
+<span class='curline'><a href='../S/508.html#L75'>old_value</a>          75 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h       return old_value;</span>
+<span class='curline'><a href='../S/508.html#L78'>old_value</a>          78 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h   } while (prev_value == old_value);</span>
+<span class='curline'><a href='../S/508.html#L84'>old_value</a>          84 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h   Atomic32 old_value;</span>
+<span class='curline'><a href='../S/508.html#L86'>old_value</a>          86 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h     old_value = *ptr;</span>
+<span class='curline'><a href='../S/508.html#L87'>old_value</a>          87 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h   } while (pLinuxKernelCmpxchg(old_value, new_value,</span>
+<span class='curline'><a href='../S/508.html#L89'>old_value</a>          89 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h   return old_value;</span>
+<span class='curline'><a href='../S/508.html#L96'>old_value</a>          96 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h     Atomic32 old_value = *ptr;</span>
+<span class='curline'><a href='../S/508.html#L97'>old_value</a>          97 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h     Atomic32 new_value = old_value + increment;</span>
+<span class='curline'><a href='../S/508.html#L98'>old_value</a>          98 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h     if (pLinuxKernelCmpxchg(old_value, new_value,</span>
+<span class='curline'><a href='../S/508.html#L113'>old_value</a>         113 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h                                        Atomic32 old_value,</span>
+<span class='curline'><a href='../S/508.html#L115'>old_value</a>         115 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h   return NoBarrier_CompareAndSwap(ptr, old_value, new_value);</span>
+<span class='curline'><a href='../S/508.html#L119'>old_value</a>         119 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h                                        Atomic32 old_value,</span>
+<span class='curline'><a href='../S/508.html#L121'>old_value</a>         121 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h   return NoBarrier_CompareAndSwap(ptr, old_value, new_value);</span>
+<span class='curline'><a href='../S/508.html#L167'>old_value</a>         167 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h                                          Atomic64 old_value,</span>
+<span class='curline'><a href='../S/508.html#L219'>old_value</a>         219 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h                                        Atomic64 old_value,</span>
+<span class='curline'><a href='../S/508.html#L226'>old_value</a>         226 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-generic.h                                        Atomic64 old_value,</span>
+<span class='curline'><a href='../S/509.html#L62'>old_value</a>          62 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h                                          Atomic32 old_value,</span>
+<span class='curline'><a href='../S/509.html#L72'>old_value</a>          72 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h         : "r" (ptr), "Ir" (old_value), "r" (new_value)</span>
+<span class='curline'><a href='../S/509.html#L131'>old_value</a>         131 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h                                        Atomic32 old_value,</span>
+<span class='curline'><a href='../S/509.html#L133'>old_value</a>         133 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h   Atomic32 value = NoBarrier_CompareAndSwap(ptr, old_value, new_value);</span>
+<span class='curline'><a href='../S/509.html#L139'>old_value</a>         139 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h                                        Atomic32 old_value,</span>
+<span class='curline'><a href='../S/509.html#L142'>old_value</a>         142 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h   return NoBarrier_CompareAndSwap(ptr, old_value, new_value);</span>
+<span class='curline'><a href='../S/509.html#L179'>old_value</a>         179 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h                                          Atomic64 old_value,</span>
+<span class='curline'><a href='../S/509.html#L190'>old_value</a>         190 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h         : "r" (ptr), "Ir" (old_value), "r" (new_value)</span>
+<span class='curline'><a href='../S/509.html#L283'>old_value</a>         283 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h                                          Atomic64 old_value,</span>
+<span class='curline'><a href='../S/509.html#L340'>old_value</a>         340 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h                                        Atomic64 old_value,</span>
+<span class='curline'><a href='../S/509.html#L342'>old_value</a>         342 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h   Atomic64 value = NoBarrier_CompareAndSwap(ptr, old_value, new_value);</span>
+<span class='curline'><a href='../S/509.html#L348'>old_value</a>         348 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h                                        Atomic64 old_value,</span>
+<span class='curline'><a href='../S/509.html#L351'>old_value</a>         351 third_party/google-perftools-1.8.3/src/base/atomicops-internals-arm-v6plus.h   return NoBarrier_CompareAndSwap(ptr, old_value, new_value);</span>
+<span class='curline'><a href='../S/510.html#L93'>old_value</a>          93 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h static inline bool OSAtomicCompareAndSwap32(Atomic32 old_value,</span>
+<span class='curline'><a href='../S/510.html#L105'>old_value</a>         105 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h                 : "r" (value), "r" (old_value), "r" (new_value)</span>
+<span class='curline'><a href='../S/510.html#L107'>old_value</a>         107 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   return prev == old_value;</span>
+<span class='curline'><a href='../S/510.html#L110'>old_value</a>         110 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h static inline Atomic32 OSAtomicCompareAndSwap32Acquire(Atomic32 old_value,</span>
+<span class='curline'><a href='../S/510.html#L114'>old_value</a>         114 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   t = OSAtomicCompareAndSwap32(old_value, new_value, value);</span>
+<span class='curline'><a href='../S/510.html#L124'>old_value</a>         124 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h static inline Atomic32 OSAtomicCompareAndSwap32Release(Atomic32 old_value,</span>
+<span class='curline'><a href='../S/510.html#L128'>old_value</a>         128 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   return OSAtomicCompareAndSwap32(old_value, new_value, value);</span>
+<span class='curline'><a href='../S/510.html#L143'>old_value</a>         143 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h                                          Atomic32 old_value,</span>
+<span class='curline'><a href='../S/510.html#L147'>old_value</a>         147 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h     if (OSAtomicCompareAndSwap32(old_value, new_value,</span>
+<span class='curline'><a href='../S/510.html#L149'>old_value</a>         149 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h       return old_value;</span>
+<span class='curline'><a href='../S/510.html#L152'>old_value</a>         152 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   } while (prev_value == old_value);</span>
+<span class='curline'><a href='../S/510.html#L158'>old_value</a>         158 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   Atomic32 old_value;</span>
+<span class='curline'><a href='../S/510.html#L160'>old_value</a>         160 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h     old_value = *ptr;</span>
+<span class='curline'><a href='../S/510.html#L161'>old_value</a>         161 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   } while (!OSAtomicCompareAndSwap32(old_value, new_value,</span>
+<span class='curline'><a href='../S/510.html#L163'>old_value</a>         163 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   return old_value;</span>
+<span class='curline'><a href='../S/510.html#L177'>old_value</a>         177 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h                                        Atomic32 old_value,</span>
+<span class='curline'><a href='../S/510.html#L181'>old_value</a>         181 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h     if (OSAtomicCompareAndSwap32Acquire(old_value, new_value,</span>
+<span class='curline'><a href='../S/510.html#L183'>old_value</a>         183 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h       return old_value;</span>
+<span class='curline'><a href='../S/510.html#L186'>old_value</a>         186 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   } while (prev_value == old_value);</span>
+<span class='curline'><a href='../S/510.html#L191'>old_value</a>         191 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h                                        Atomic32 old_value,</span>
+<span class='curline'><a href='../S/510.html#L195'>old_value</a>         195 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h     if (OSAtomicCompareAndSwap32Release(old_value, new_value,</span>
+<span class='curline'><a href='../S/510.html#L197'>old_value</a>         197 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h       return old_value;</span>
+<span class='curline'><a href='../S/510.html#L200'>old_value</a>         200 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   } while (prev_value == old_value);</span>
+<span class='curline'><a href='../S/510.html#L234'>old_value</a>         234 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h static inline bool OSAtomicCompareAndSwap64(Atomic64 old_value,</span>
+<span class='curline'><a href='../S/510.html#L246'>old_value</a>         246 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h                 : "r" (value), "r" (old_value), "r" (new_value)</span>
+<span class='curline'><a href='../S/510.html#L248'>old_value</a>         248 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   return prev == old_value;</span>
+<span class='curline'><a href='../S/510.html#L251'>old_value</a>         251 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h static inline Atomic64 OSAtomicCompareAndSwap64Acquire(Atomic64 old_value,</span>
+<span class='curline'><a href='../S/510.html#L255'>old_value</a>         255 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   t = OSAtomicCompareAndSwap64(old_value, new_value, value);</span>
+<span class='curline'><a href='../S/510.html#L265'>old_value</a>         265 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h static inline Atomic64 OSAtomicCompareAndSwap64Release(Atomic64 old_value,</span>
+<span class='curline'><a href='../S/510.html#L269'>old_value</a>         269 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   return OSAtomicCompareAndSwap64(old_value, new_value, value);</span>
+<span class='curline'><a href='../S/510.html#L274'>old_value</a>         274 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h                                          Atomic64 old_value,</span>
+<span class='curline'><a href='../S/510.html#L278'>old_value</a>         278 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h     if (OSAtomicCompareAndSwap64(old_value, new_value,</span>
+<span class='curline'><a href='../S/510.html#L280'>old_value</a>         280 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h       return old_value;</span>
+<span class='curline'><a href='../S/510.html#L283'>old_value</a>         283 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   } while (prev_value == old_value);</span>
+<span class='curline'><a href='../S/510.html#L289'>old_value</a>         289 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   Atomic64 old_value;</span>
+<span class='curline'><a href='../S/510.html#L291'>old_value</a>         291 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h     old_value = *ptr;</span>
+<span class='curline'><a href='../S/510.html#L292'>old_value</a>         292 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   } while (!OSAtomicCompareAndSwap64(old_value, new_value,</span>
+<span class='curline'><a href='../S/510.html#L294'>old_value</a>         294 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   return old_value;</span>
+<span class='curline'><a href='../S/510.html#L308'>old_value</a>         308 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h                                        Atomic64 old_value,</span>
+<span class='curline'><a href='../S/510.html#L312'>old_value</a>         312 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h     if (OSAtomicCompareAndSwap64Acquire(old_value, new_value,</span>
+<span class='curline'><a href='../S/510.html#L314'>old_value</a>         314 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h       return old_value;</span>
+<span class='curline'><a href='../S/510.html#L317'>old_value</a>         317 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   } while (prev_value == old_value);</span>
+<span class='curline'><a href='../S/510.html#L322'>old_value</a>         322 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h                                        Atomic64 old_value,</span>
+<span class='curline'><a href='../S/510.html#L326'>old_value</a>         326 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h     if (OSAtomicCompareAndSwap64Release(old_value, new_value,</span>
+<span class='curline'><a href='../S/510.html#L328'>old_value</a>         328 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h       return old_value;</span>
+<span class='curline'><a href='../S/510.html#L331'>old_value</a>         331 third_party/google-perftools-1.8.3/src/base/atomicops-internals-linuxppc.h   } while (prev_value == old_value);</span>
+<span class='curline'><a href='../S/511.html#L112'>old_value</a>         112 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h                                          Atomic32 old_value,</span>
+<span class='curline'><a href='../S/511.html#L116'>old_value</a>         116 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h     if (OSAtomicCompareAndSwap32(old_value, new_value,</span>
+<span class='curline'><a href='../S/511.html#L118'>old_value</a>         118 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h       return old_value;</span>
+<span class='curline'><a href='../S/511.html#L121'>old_value</a>         121 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   } while (prev_value == old_value);</span>
+<span class='curline'><a href='../S/511.html#L127'>old_value</a>         127 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   Atomic32 old_value;</span>
+<span class='curline'><a href='../S/511.html#L129'>old_value</a>         129 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h     old_value = *ptr;</span>
+<span class='curline'><a href='../S/511.html#L130'>old_value</a>         130 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   } while (!OSAtomicCompareAndSwap32(old_value, new_value,</span>
+<span class='curline'><a href='../S/511.html#L132'>old_value</a>         132 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   return old_value;</span>
+<span class='curline'><a href='../S/511.html#L146'>old_value</a>         146 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h                                        Atomic32 old_value,</span>
+<span class='curline'><a href='../S/511.html#L150'>old_value</a>         150 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h     if (OSAtomicCompareAndSwap32Barrier(old_value, new_value,</span>
+<span class='curline'><a href='../S/511.html#L152'>old_value</a>         152 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h       return old_value;</span>
+<span class='curline'><a href='../S/511.html#L155'>old_value</a>         155 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   } while (prev_value == old_value);</span>
+<span class='curline'><a href='../S/511.html#L160'>old_value</a>         160 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h                                        Atomic32 old_value,</span>
+<span class='curline'><a href='../S/511.html#L162'>old_value</a>         162 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   return Acquire_CompareAndSwap(ptr, old_value, new_value);</span>
+<span class='curline'><a href='../S/511.html#L197'>old_value</a>         197 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h                                          Atomic64 old_value,</span>
+<span class='curline'><a href='../S/511.html#L201'>old_value</a>         201 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h     if (OSAtomicCompareAndSwap64(old_value, new_value,</span>
+<span class='curline'><a href='../S/511.html#L203'>old_value</a>         203 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h       return old_value;</span>
+<span class='curline'><a href='../S/511.html#L206'>old_value</a>         206 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   } while (prev_value == old_value);</span>
+<span class='curline'><a href='../S/511.html#L212'>old_value</a>         212 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   Atomic64 old_value;</span>
+<span class='curline'><a href='../S/511.html#L214'>old_value</a>         214 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h     old_value = *ptr;</span>
+<span class='curline'><a href='../S/511.html#L215'>old_value</a>         215 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   } while (!OSAtomicCompareAndSwap64(old_value, new_value,</span>
+<span class='curline'><a href='../S/511.html#L217'>old_value</a>         217 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   return old_value;</span>
+<span class='curline'><a href='../S/511.html#L231'>old_value</a>         231 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h                                        Atomic64 old_value,</span>
+<span class='curline'><a href='../S/511.html#L235'>old_value</a>         235 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h     if (OSAtomicCompareAndSwap64Barrier(old_value, new_value,</span>
+<span class='curline'><a href='../S/511.html#L237'>old_value</a>         237 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h       return old_value;</span>
+<span class='curline'><a href='../S/511.html#L240'>old_value</a>         240 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   } while (prev_value == old_value);</span>
+<span class='curline'><a href='../S/511.html#L245'>old_value</a>         245 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h                                        Atomic64 old_value,</span>
+<span class='curline'><a href='../S/511.html#L249'>old_value</a>         249 third_party/google-perftools-1.8.3/src/base/atomicops-internals-macosx.h   return Acquire_CompareAndSwap(ptr, old_value, new_value);</span>
+<span class='curline'><a href='../S/512.html#L123'>old_value</a>         123 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h                                          Atomic32 old_value,</span>
+<span class='curline'><a href='../S/512.html#L128'>old_value</a>         128 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h       static_cast&lt;LONG&gt;(old_value));</span>
+<span class='curline'><a href='../S/512.html#L175'>old_value</a>         175 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h                                        Atomic32 old_value,</span>
+<span class='curline'><a href='../S/512.html#L177'>old_value</a>         177 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   return NoBarrier_CompareAndSwap(ptr, old_value, new_value);</span>
+<span class='curline'><a href='../S/512.html#L181'>old_value</a>         181 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h                                        Atomic32 old_value,</span>
+<span class='curline'><a href='../S/512.html#L183'>old_value</a>         183 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   return NoBarrier_CompareAndSwap(ptr, old_value, new_value);</span>
+<span class='curline'><a href='../S/512.html#L281'>old_value</a>         281 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h                                          Atomic64 old_value,</span>
+<span class='curline'><a href='../S/512.html#L285'>old_value</a>         285 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h     reinterpret_cast&lt;PVOID&gt;(new_value), reinterpret_cast&lt;PVOID&gt;(old_value));</span>
+<span class='curline'><a href='../S/512.html#L357'>old_value</a>         357 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h                                          Atomic64 old_value,</span>
+<span class='curline'><a href='../S/512.html#L366'>old_value</a>         366 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h                          "0" (old_value),        // else:</span>
+<span class='curline'><a href='../S/512.html#L487'>old_value</a>         487 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h                                        Atomic64 old_value,</span>
+<span class='curline'><a href='../S/512.html#L489'>old_value</a>         489 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   return NoBarrier_CompareAndSwap(ptr, old_value, new_value);</span>
+<span class='curline'><a href='../S/512.html#L493'>old_value</a>         493 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h                                        Atomic64 old_value,</span>
+<span class='curline'><a href='../S/512.html#L495'>old_value</a>         495 third_party/google-perftools-1.8.3/src/base/atomicops-internals-windows.h   return NoBarrier_CompareAndSwap(ptr, old_value, new_value);</span>
+<span class='curline'><a href='../S/514.html#L73'>old_value</a>          73 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h                                          Atomic32 old_value,</span>
+<span class='curline'><a href='../S/514.html#L78'>old_value</a>          78 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h                        : "q" (new_value), "m" (*ptr), "0" (old_value)</span>
+<span class='curline'><a href='../S/514.html#L116'>old_value</a>         116 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h                                        Atomic32 old_value,</span>
+<span class='curline'><a href='../S/514.html#L118'>old_value</a>         118 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h   Atomic32 x = NoBarrier_CompareAndSwap(ptr, old_value, new_value);</span>
+<span class='curline'><a href='../S/514.html#L126'>old_value</a>         126 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h                                        Atomic32 old_value,</span>
+<span class='curline'><a href='../S/514.html#L128'>old_value</a>         128 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h   return NoBarrier_CompareAndSwap(ptr, old_value, new_value);</span>
+<span class='curline'><a href='../S/514.html#L197'>old_value</a>         197 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h                                          Atomic64 old_value,</span>
+<span class='curline'><a href='../S/514.html#L202'>old_value</a>         202 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h                        : "q" (new_value), "m" (*ptr), "0" (old_value)</span>
+<span class='curline'><a href='../S/514.html#L303'>old_value</a>         303 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h                                             Atomic64 old_value,</span>
+<span class='curline'><a href='../S/514.html#L313'>old_value</a>         313 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h                          "0" (old_value),        // else:</span>
+<span class='curline'><a href='../S/514.html#L408'>old_value</a>         408 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h                                        Atomic64 old_value,</span>
+<span class='curline'><a href='../S/514.html#L410'>old_value</a>         410 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h   Atomic64 x = NoBarrier_CompareAndSwap(ptr, old_value, new_value);</span>
+<span class='curline'><a href='../S/514.html#L418'>old_value</a>         418 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h                                        Atomic64 old_value,</span>
+<span class='curline'><a href='../S/514.html#L420'>old_value</a>         420 third_party/google-perftools-1.8.3/src/base/atomicops-internals-x86.h   return NoBarrier_CompareAndSwap(ptr, old_value, new_value);</span>
+<span class='curline'><a href='../S/515.html#L137'>old_value</a>         137 third_party/google-perftools-1.8.3/src/base/atomicops.h                                            AtomicWord old_value,</span>
+<span class='curline'><a href='../S/515.html#L141'>old_value</a>         141 third_party/google-perftools-1.8.3/src/base/atomicops.h       old_value, new_value);</span>
+<span class='curline'><a href='../S/515.html#L179'>old_value</a>         179 third_party/google-perftools-1.8.3/src/base/atomicops.h                                          AtomicWord old_value,</span>
+<span class='curline'><a href='../S/515.html#L183'>old_value</a>         183 third_party/google-perftools-1.8.3/src/base/atomicops.h       old_value, new_value);</span>
+<span class='curline'><a href='../S/515.html#L187'>old_value</a>         187 third_party/google-perftools-1.8.3/src/base/atomicops.h                                          AtomicWord old_value,</span>
+<span class='curline'><a href='../S/515.html#L191'>old_value</a>         191 third_party/google-perftools-1.8.3/src/base/atomicops.h       old_value, new_value);</span>
+<span class='curline'><a href='../S/515.html#L250'>old_value</a>         250 third_party/google-perftools-1.8.3/src/base/atomicops.h                                   Atomic32 old_value,</span>
+<span class='curline'><a href='../S/515.html#L257'>old_value</a>         257 third_party/google-perftools-1.8.3/src/base/atomicops.h                                 Atomic32 old_value,</span>
+<span class='curline'><a href='../S/515.html#L260'>old_value</a>         260 third_party/google-perftools-1.8.3/src/base/atomicops.h                                 Atomic32 old_value,</span>
+<span class='curline'><a href='../S/515.html#L271'>old_value</a>         271 third_party/google-perftools-1.8.3/src/base/atomicops.h                                   Atomic64 old_value,</span>
+<span class='curline'><a href='../S/515.html#L278'>old_value</a>         278 third_party/google-perftools-1.8.3/src/base/atomicops.h                                 Atomic64 old_value,</span>
+<span class='curline'><a href='../S/515.html#L281'>old_value</a>         281 third_party/google-perftools-1.8.3/src/base/atomicops.h                                 Atomic64 old_value,</span>
+<span class='curline'><a href='../S/515.html#L305'>old_value</a>         305 third_party/google-perftools-1.8.3/src/base/atomicops.h                                          AtomicWord old_value,</span>
+<span class='curline'><a href='../S/515.html#L307'>old_value</a>         307 third_party/google-perftools-1.8.3/src/base/atomicops.h   return base::subtle::Acquire_CompareAndSwap(ptr, old_value, new_value);</span>
+<span class='curline'><a href='../S/515.html#L311'>old_value</a>         311 third_party/google-perftools-1.8.3/src/base/atomicops.h                                          AtomicWord old_value,</span>
+<span class='curline'><a href='../S/515.html#L313'>old_value</a>         313 third_party/google-perftools-1.8.3/src/base/atomicops.h   return base::subtle::Release_CompareAndSwap(ptr, old_value, new_value);</span>
+<span class='curline'><a href='../S/515.html#L336'>old_value</a>         336 third_party/google-perftools-1.8.3/src/base/atomicops.h                                        Atomic32 old_value,</span>
+<span class='curline'><a href='../S/515.html#L338'>old_value</a>         338 third_party/google-perftools-1.8.3/src/base/atomicops.h   return base::subtle::Acquire_CompareAndSwap(ptr, old_value, new_value);</span>
+<span class='curline'><a href='../S/515.html#L341'>old_value</a>         341 third_party/google-perftools-1.8.3/src/base/atomicops.h                                        Atomic32 old_value,</span>
+<span class='curline'><a href='../S/515.html#L343'>old_value</a>         343 third_party/google-perftools-1.8.3/src/base/atomicops.h   return base::subtle::Release_CompareAndSwap(ptr, old_value, new_value);</span>
+<span class='curline'><a href='../S/515.html#L364'>old_value</a>         364 third_party/google-perftools-1.8.3/src/base/atomicops.h     base::subtle::Atomic64 old_value, base::subtle::Atomic64 new_value) {</span>
+<span class='curline'><a href='../S/515.html#L365'>old_value</a>         365 third_party/google-perftools-1.8.3/src/base/atomicops.h   return base::subtle::Acquire_CompareAndSwap(ptr, old_value, new_value);</span>
+<span class='curline'><a href='../S/515.html#L369'>old_value</a>         369 third_party/google-perftools-1.8.3/src/base/atomicops.h     base::subtle::Atomic64 old_value, base::subtle::Atomic64 new_value) {</span>
+<span class='curline'><a href='../S/515.html#L370'>old_value</a>         370 third_party/google-perftools-1.8.3/src/base/atomicops.h   return base::subtle::Release_CompareAndSwap(ptr, old_value, new_value);</span>
+</pre>
+</body>
+</html>

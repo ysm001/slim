@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>posi</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/384.html#L1488'>posi</a>             1488 src/task.c           LmnInstrVar atomi, posi, linki, memi;</span>
+<span class='curline'><a href='../S/384.html#L1490'>posi</a>             1490 src/task.c           READ_VAL(LmnInstrVar, instr, posi);</span>
+<span class='curline'><a href='../S/384.html#L1504'>posi</a>             1504 src/task.c             LMN_SATOM_SET_LINK(LMN_SATOM(wt(rc, atomi)), posi, LINKED_ATOM(linki));</span>
+<span class='curline'><a href='../S/384.html#L1505'>posi</a>             1505 src/task.c             LMN_SATOM_SET_ATTR(LMN_SATOM(wt(rc, atomi)), posi, LINKED_ATTR(linki));</span>
+<span class='curline'><a href='../S/384.html#L1508'>posi</a>             1508 src/task.c             LMN_SATOM_SET_LINK(LMN_SATOM(wt(rc, atomi)), posi, LINKED_ATOM(linki));</span>
+<span class='curline'><a href='../S/384.html#L1509'>posi</a>             1509 src/task.c             LMN_SATOM_SET_ATTR(LMN_SATOM(wt(rc, atomi)), posi, LINKED_ATTR(linki));</span>
+<span class='curline'><a href='../S/384.html#L1511'>posi</a>             1511 src/task.c             LMN_SATOM_SET_ATTR(LINKED_ATOM(linki), LINKED_ATTR(linki), posi);</span>
+<span class='curline'><a href='../S/384.html#L1518'>posi</a>             1518 src/task.c           LmnInstrVar linki, atomi, posi;</span>
+<span class='curline'><a href='../S/384.html#L1521'>posi</a>             1521 src/task.c           READ_VAL(LmnInstrVar, instr, posi);</span>
+<span class='curline'><a href='../S/384.html#L1526'>posi</a>             1526 src/task.c                     LMN_SATOM_GET_LINK(wt(rc, atomi), posi),</span>
+<span class='curline'><a href='../S/384.html#L1527'>posi</a>             1527 src/task.c                     LMN_SATOM_GET_ATTR(wt(rc, atomi), posi),</span>
+<span class='curline'><a href='../S/384.html#L1724'>posi</a>             1724 src/task.c           LmnInstrVar atom1, atom2, posi;</span>
+<span class='curline'><a href='../S/384.html#L1727'>posi</a>             1727 src/task.c           READ_VAL(LmnInstrVar, instr, posi);</span>
+<span class='curline'><a href='../S/384.html#L1730'>posi</a>             1730 src/task.c                     LMN_SATOM(LMN_SATOM_GET_LINK(wt(rc, atom2), posi)),</span>
+<span class='curline'><a href='../S/384.html#L1731'>posi</a>             1731 src/task.c                     LMN_SATOM_GET_ATTR(wt(rc, atom2), posi),</span>
+<span class='curline'><a href='../S/384.html#L2356'>posi</a>             2356 src/task.c           LmnInstrVar dsti, listi, posi;</span>
+<span class='curline'><a href='../S/384.html#L2359'>posi</a>             2359 src/task.c           READ_VAL(LmnInstrVar, instr, posi);</span>
+<span class='curline'><a href='../S/384.html#L2363'>posi</a>             2363 src/task.c               if (posi == 0) {</span>
+<span class='curline'><a href='../S/384.html#L2365'>posi</a>             2365 src/task.c                           vec_get((Vector *)wt(rc, listi), (unsigned int)posi),</span>
+<span class='curline'><a href='../S/384.html#L2368'>posi</a>             2368 src/task.c               } else if (posi == 1) {</span>
+<span class='curline'><a href='../S/384.html#L2370'>posi</a>             2370 src/task.c                           vec_get((Vector *)wt(rc, listi), (unsigned int)posi),</span>
+<span class='curline'><a href='../S/384.html#L2379'>posi</a>             2379 src/task.c               LinkObj lo = (LinkObj)vec_get((Vector *)wt(rc, listi), (unsigned int)posi);</span>
+<span class='curline'><a href='../S/384.html#L3539'>posi</a>             3539 src/task.c           LmnInstrVar linki, atomi, posi;</span>
+<span class='curline'><a href='../S/384.html#L3542'>posi</a>             3542 src/task.c           READ_VAL(LmnInstrVar, instr, posi);</span>
+<span class='curline'><a href='../S/384.html#L3544'>posi</a>             3544 src/task.c           wt_set(rc, linki, dmem_root_get_link(RC_ND_MEM_DELTA_ROOT(rc), LMN_SATOM(wt(rc, atomi)), posi));</span>
+<span class='curline'><a href='../S/384.html#L3545'>posi</a>             3545 src/task.c           at_set(rc, linki, LMN_SATOM_GET_ATTR(wt(rc, atomi), posi));</span>
+<span class='curline'><a href='../S/384.html#L3829'>posi</a>             3829 src/task.c           LmnInstrVar dsti, listi, posi;</span>
+<span class='curline'><a href='../S/384.html#L3832'>posi</a>             3832 src/task.c           READ_VAL(LmnInstrVar, instr, posi);</span>
+<span class='curline'><a href='../S/384.html#L3837'>posi</a>             3837 src/task.c               if (posi == 0) {</span>
+<span class='curline'><a href='../S/384.html#L3839'>posi</a>             3839 src/task.c                           vec_get((Vector *)wt(rc, listi), (unsigned int)posi),</span>
+<span class='curline'><a href='../S/384.html#L3842'>posi</a>             3842 src/task.c               } else if (posi == 1) {</span>
+<span class='curline'><a href='../S/384.html#L3844'>posi</a>             3844 src/task.c                           vec_get((Vector *)wt(rc, listi), (unsigned int)posi),</span>
+<span class='curline'><a href='../S/384.html#L3853'>posi</a>             3853 src/task.c               LinkObj lo = (LinkObj)vec_get((Vector *)wt(rc, listi), (unsigned int)posi);</span>
+</pre>
+</body>
+</html>

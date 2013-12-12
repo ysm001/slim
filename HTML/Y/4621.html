@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>ruid</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/525.html#L2432'>ruid</a>             2432 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     LSS_INLINE int LSS_NAME(setresuid32)(uid_t ruid, uid_t euid, uid_t suid) {</span>
+<span class='curline'><a href='../S/525.html#L2433'>ruid</a>             2433 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       return LSS_NAME(setresuid)(ruid, euid, suid);</span>
+<span class='curline'><a href='../S/525.html#L2542'>ruid</a>             2542 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     LSS_INLINE int LSS_NAME(setresuid32)(uid_t ruid, uid_t euid, uid_t suid) {</span>
+<span class='curline'><a href='../S/525.html#L2544'>ruid</a>             2544 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       if ((rc = LSS_NAME(_setresuid32)(ruid, euid, suid)) &lt; 0 &amp;&amp;</span>
+<span class='curline'><a href='../S/525.html#L2546'>ruid</a>             2546 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h         if ((unsigned int)ruid &amp; ~0xFFFFu ||</span>
+<span class='curline'><a href='../S/525.html#L2551'>ruid</a>             2551 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h           rc = LSS_NAME(setresuid)(ruid, euid, suid);</span>
+</pre>
+</body>
+</html>

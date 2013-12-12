@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>third_party/google-perftools-1.8.3/src/base/elf_mem_image.h</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/738.html'>third_party</a>/<a href='../files/739.html'>google-perftools-1.8.3</a>/<a href='../files/740.html'>src</a>/<a href='../files/741.html'>base</a>/elf_mem_image.h</h2>
+<em class='comment'>/* [&lt;][&gt;][^][v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/146.html' title='Multiple included from 2 places.'>INCLUDED FROM</a></h2>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>// Copyright (c) 2008, Google Inc.</em>
+<a id='L2' name='L2' /><em class='comment'>// All rights reserved.</em>
+<a id='L3' name='L3' /><em class='comment'>//</em>
+<a id='L4' name='L4' /><em class='comment'>// Redistribution and use in source and binary forms, with or without</em>
+<a id='L5' name='L5' /><em class='comment'>// modification, are permitted provided that the following conditions are</em>
+<a id='L6' name='L6' /><em class='comment'>// met:</em>
+<a id='L7' name='L7' /><em class='comment'>//</em>
+<a id='L8' name='L8' /><em class='comment'>//     * Redistributions of source code must retain the above copyright</em>
+<a id='L9' name='L9' /><em class='comment'>// notice, this list of conditions and the following disclaimer.</em>
+<a id='L10' name='L10' /><em class='comment'>//     * Redistributions in binary form must reproduce the above</em>
+<a id='L11' name='L11' /><em class='comment'>// copyright notice, this list of conditions and the following disclaimer</em>
+<a id='L12' name='L12' /><em class='comment'>// in the documentation and/or other materials provided with the</em>
+<a id='L13' name='L13' /><em class='comment'>// distribution.</em>
+<a id='L14' name='L14' /><em class='comment'>//     * Neither the name of Google Inc. nor the names of its</em>
+<a id='L15' name='L15' /><em class='comment'>// contributors may be used to endorse or promote products derived from</em>
+<a id='L16' name='L16' /><em class='comment'>// this software without specific prior written permission.</em>
+<a id='L17' name='L17' /><em class='comment'>//</em>
+<a id='L18' name='L18' /><em class='comment'>// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L19' name='L19' /><em class='comment'>// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L20' name='L20' /><em class='comment'>// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L21' name='L21' /><em class='comment'>// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L22' name='L22' /><em class='comment'>// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L23' name='L23' /><em class='comment'>// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L24' name='L24' /><em class='comment'>// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L25' name='L25' /><em class='comment'>// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L26' name='L26' /><em class='comment'>// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L27' name='L27' /><em class='comment'>// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L28' name='L28' /><em class='comment'>// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L29' name='L29' />
+<a id='L30' name='L30' /><em class='comment'>// ---</em>
+<a id='L31' name='L31' /><em class='comment'>// Author: Paul Pluzhnikov</em>
+<a id='L32' name='L32' /><em class='comment'>//</em>
+<a id='L33' name='L33' /><em class='comment'>// Allow dynamic symbol lookup for in-memory Elf images.</em>
+<a id='L34' name='L34' />
+<a id='L35' name='L35' /><em class='sharp'>#ifndef</em> <a href='../S/522.html#L36' title='Defined at 36 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.h.'>BASE_ELF_MEM_IMAGE_H_</a>
+<a id='L36' name='L36' /><em class='sharp'>#define</em> <a href='../S/522.html#L35' title='Refered from 35 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.h.'>BASE_ELF_MEM_IMAGE_H_</a>
+<a id='L37' name='L37' />
+<a id='L38' name='L38' /><em class='sharp'>#include</em> &lt;<a href='../I/6.html'>config.h</a>&gt;
+<a id='L39' name='L39' /><em class='sharp'>#ifdef</em> <a href='../S/672.html#L71' title='Defined at 71 in third_party/google-perftools-1.8.3/src/windows/config.h.'>HAVE_FEATURES_H</a>
+<a id='L40' name='L40' /><em class='sharp'>#include</em> &lt;features.h&gt;   <em class='comment'>// for __GLIBC__</em>
+<a id='L41' name='L41' /><em class='sharp'>#endif</em>
+<a id='L42' name='L42' />
+<a id='L43' name='L43' /><em class='comment'>// Maybe one day we can rewrite this file not to require the elf</em>
+<a id='L44' name='L44' /><em class='comment'>// symbol extensions in glibc, but for right now we need them.</em>
+<a id='L45' name='L45' /><em class='sharp'>#if</em> <strong class='reserved'>defined</strong>(<a href='../Y/1037.html' title='Multiple used in 3 places.'>__ELF__</a>) &amp;&amp; <strong class='reserved'>defined</strong>(<a href='../Y/1043.html' title='Multiple used in 10 places.'>__GLIBC__</a>) &amp;&amp; !<strong class='reserved'>defined</strong>(__native_client__)
+<a id='L46' name='L46' />
+<a id='L47' name='L47' /><em class='sharp'>#define</em> <a href='../R/791.html' title='Multiple refered from 2 places.'>HAVE_ELF_MEM_IMAGE</a> 1
+<a id='L48' name='L48' />
+<a id='L49' name='L49' /><em class='sharp'>#include</em> &lt;stdlib.h&gt;
+<a id='L50' name='L50' /><em class='sharp'>#include</em> &lt;link.h&gt;  <em class='comment'>// for ElfW</em>
+<a id='L51' name='L51' />
+<a id='L52' name='L52' /><a href='../Y/3671.html' title='Multiple used in 66 places.'>namespace</a> <a href='../D/3379.html' title='Multiple defined in 6 places.'>base</a> <em class='brace'>{</em>
+<a id='L53' name='L53' />
+<a id='L54' name='L54' /><em class='comment'>// An in-memory ELF image (may not exist on disk).</em>
+<a id='L55' name='L55' /><a href='../Y/1792.html' title='Multiple used in 90 places.'>class</a> <a href='../S/521.html#L113' title='Defined at 113 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>ElfMemImage</a> <em class='brace'>{</em>
+<a id='L56' name='L56' /> <a href='../Y/4390.html' title='Multiple used in 61 places.'>public</a>:
+<a id='L57' name='L57' />  <em class='comment'>// Sentinel: there could never be an elf image at this address.</em>
+<a id='L58' name='L58' />  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>void</strong> *<strong class='reserved'>const</strong> <a href='../Y/3020.html' title='Multiple used in 8 places.'>kInvalidBase</a>;
+<a id='L59' name='L59' />
+<a id='L60' name='L60' />  <em class='comment'>// Information about a single vdso symbol.</em>
+<a id='L61' name='L61' />  <em class='comment'>// All pointers are into .dynsym, .dynstr, or .text of the VDSO.</em>
+<a id='L62' name='L62' />  <em class='comment'>// Do not free() them or modify through them.</em>
+<a id='L63' name='L63' />  <strong class='reserved'>struct</strong> <a href='../R/2357.html' title='Multiple refered from 17 places.'>SymbolInfo</a> <em class='brace'>{</em>
+<a id='L64' name='L64' />    <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>      *<a href='../Y/3665.html' title='Multiple used in 438 places.'>name</a>;      <em class='comment'>// E.g. "__vdso_getcpu"</em>
+<a id='L65' name='L65' />    <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>      *<a href='../Y/5628.html' title='Multiple used in 27 places.'>version</a>;   <em class='comment'>// E.g. "LINUX_2.6", could be ""</em>
+<a id='L66' name='L66' />                                <em class='comment'>// for unversioned symbol.</em>
+<a id='L67' name='L67' />    <strong class='reserved'>const</strong> <strong class='reserved'>void</strong>      *<a href='../Y/1411.html' title='Multiple used in 58 places.'>address</a>;   <em class='comment'>// Relocated symbol address.</em>
+<a id='L68' name='L68' />    <strong class='reserved'>const</strong> <a href='../D/711.html' title='Multiple defined in 5 places.'>ElfW</a>(<a href='../Y/822.html' title='Multiple used in 14 places.'>Sym</a>) *<a href='../Y/5191.html' title='Multiple used in 18 places.'>symbol</a>;    <em class='comment'>// Symbol in the dynamic symbol table.</em>
+<a id='L69' name='L69' />  <em class='brace'>}</em>;
+<a id='L70' name='L70' />
+<a id='L71' name='L71' />  <em class='comment'>// Supports iteration over all dynamic symbols.</em>
+<a id='L72' name='L72' />  <a href='../Y/1792.html' title='Multiple used in 90 places.'>class</a> <a href='../S/548.html#L77' title='Defined at 77 in third_party/google-perftools-1.8.3/src/base/vdso_support.h.'>SymbolIterator</a> <em class='brace'>{</em>
+<a id='L73' name='L73' />   <a href='../Y/4390.html' title='Multiple used in 61 places.'>public</a>:
+<a id='L74' name='L74' />    <a href='../Y/2470.html' title='Multiple used in 15 places.'>friend</a> <a href='../Y/1792.html' title='Multiple used in 90 places.'>class</a> <a href='../S/521.html#L113' title='Defined at 113 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>ElfMemImage</a>;
+<a id='L75' name='L75' />    <strong class='reserved'>const</strong> <a href='../D/2624.html' title='Multiple defined in 2 places.'>SymbolInfo</a> *<a href='../Y/3992.html' title='Multiple used in 30 places.'>operator</a>-&gt;() <strong class='reserved'>const</strong>;
+<a id='L76' name='L76' />    <strong class='reserved'>const</strong> <a href='../D/2624.html' title='Multiple defined in 2 places.'>SymbolInfo</a> &amp;<a href='../Y/3992.html' title='Multiple used in 30 places.'>operator</a>*() <strong class='reserved'>const</strong>;
+<a id='L77' name='L77' />    <a href='../S/548.html#L77' title='Defined at 77 in third_party/google-perftools-1.8.3/src/base/vdso_support.h.'>SymbolIterator</a>&amp; <a href='../Y/3992.html' title='Multiple used in 30 places.'>operator</a>++();
+<a id='L78' name='L78' />    <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../Y/3992.html' title='Multiple used in 30 places.'>operator</a>!=(<strong class='reserved'>const</strong> <a href='../S/548.html#L77' title='Defined at 77 in third_party/google-perftools-1.8.3/src/base/vdso_support.h.'>SymbolIterator</a> &amp;<a href='../Y/4561.html' title='Multiple used in 14 places.'>rhs</a>) <strong class='reserved'>const</strong>;
+<a id='L79' name='L79' />    <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../Y/3992.html' title='Multiple used in 30 places.'>operator</a>==(<strong class='reserved'>const</strong> <a href='../S/548.html#L77' title='Defined at 77 in third_party/google-perftools-1.8.3/src/base/vdso_support.h.'>SymbolIterator</a> &amp;<a href='../Y/4561.html' title='Multiple used in 14 places.'>rhs</a>) <strong class='reserved'>const</strong>;
+<a id='L80' name='L80' />   <a href='../Y/4261.html' title='Multiple used in 50 places.'>private</a>:
+<a id='L81' name='L81' />    <a href='../S/548.html#L77' title='Defined at 77 in third_party/google-perftools-1.8.3/src/base/vdso_support.h.'>SymbolIterator</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong> *<strong class='reserved'>const</strong> <a href='../Y/2780.html' title='Multiple used in 15 places.'>image</a>, <strong class='reserved'>int</strong> <a href='../Y/2798.html' title='Multiple used in 87 places.'>index</a>);
+<a id='L82' name='L82' />    <strong class='reserved'>void</strong> <a href='../S/521.html#L392' title='Defined at 392 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>Update</a>(<strong class='reserved'>int</strong> incr);
+<a id='L83' name='L83' />    <a href='../D/2624.html' title='Multiple defined in 2 places.'>SymbolInfo</a> <a href='../Y/2803.html' title='Multiple used in 7 places.'>info_</a>;
+<a id='L84' name='L84' />    <strong class='reserved'>int</strong> <a href='../Y/2799.html' title='Multiple used in 8 places.'>index_</a>;
+<a id='L85' name='L85' />    <strong class='reserved'>const</strong> <strong class='reserved'>void</strong> *<strong class='reserved'>const</strong> <a href='../S/521.html#L358' title='Defined at 358 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>image_</a>;
+<a id='L86' name='L86' />  <em class='brace'>}</em>;
+<a id='L87' name='L87' />
+<a id='L88' name='L88' />
+<a id='L89' name='L89' />  <a href='../Y/2272.html' title='Multiple used in 15 places.'>explicit</a> <a href='../S/521.html#L113' title='Defined at 113 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>ElfMemImage</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong> *<a href='../D/3379.html' title='Multiple defined in 6 places.'>base</a>);
+<a id='L90' name='L90' />  <strong class='reserved'>void</strong>                 <a href='../D/1261.html' title='Multiple defined in 10 places.'>Init</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong> *<a href='../D/3379.html' title='Multiple defined in 6 places.'>base</a>);
+<a id='L91' name='L91' />  <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a>                 <a href='../Y/399.html' title='Multiple used in 5 places.'>IsPresent</a>() <strong class='reserved'>const</strong> <em class='brace'>{</em> <strong class='reserved'>return</strong> <a href='../Y/2159.html' title='Multiple used in 10 places.'>ehdr_</a> != <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>; <em class='brace'>}</em>
+<a id='L92' name='L92' />  <strong class='reserved'>const</strong> <a href='../D/711.html' title='Multiple defined in 5 places.'>ElfW</a>(<a href='../Y/642.html' title='Multiple used in 5 places.'>Phdr</a>)*    <a href='../Y/312.html' title='Multiple used in 3 places.'>GetPhdr</a>(<strong class='reserved'>int</strong> <a href='../Y/2798.html' title='Multiple used in 87 places.'>index</a>) <strong class='reserved'>const</strong>;
+<a id='L93' name='L93' />  <strong class='reserved'>const</strong> <a href='../D/711.html' title='Multiple defined in 5 places.'>ElfW</a>(<a href='../Y/822.html' title='Multiple used in 14 places.'>Sym</a>)*     <a href='../Y/303.html' title='Multiple used in 3 places.'>GetDynsym</a>(<strong class='reserved'>int</strong> <a href='../Y/2798.html' title='Multiple used in 87 places.'>index</a>) <strong class='reserved'>const</strong>;
+<a id='L94' name='L94' />  <strong class='reserved'>const</strong> <a href='../D/711.html' title='Multiple defined in 5 places.'>ElfW</a>(<a href='../Y/915.html' title='Multiple used in 6 places.'>Versym</a>)*  <a href='../Y/328.html' title='Multiple used in 3 places.'>GetVersym</a>(<strong class='reserved'>int</strong> <a href='../Y/2798.html' title='Multiple used in 87 places.'>index</a>) <strong class='reserved'>const</strong>;
+<a id='L95' name='L95' />  <strong class='reserved'>const</strong> <a href='../D/711.html' title='Multiple defined in 5 places.'>ElfW</a>(<a href='../Y/907.html' title='Multiple used in 9 places.'>Verdef</a>)*  <a href='../Y/325.html' title='Multiple used in 3 places.'>GetVerdef</a>(<strong class='reserved'>int</strong> <a href='../Y/2798.html' title='Multiple used in 87 places.'>index</a>) <strong class='reserved'>const</strong>;
+<a id='L96' name='L96' />  <strong class='reserved'>const</strong> <a href='../D/711.html' title='Multiple defined in 5 places.'>ElfW</a>(<a href='../Y/906.html' title='Multiple used in 4 places.'>Verdaux</a>)* <a href='../Y/326.html' title='Multiple used in 3 places.'>GetVerdefAux</a>(<strong class='reserved'>const</strong> <a href='../D/711.html' title='Multiple defined in 5 places.'>ElfW</a>(<a href='../Y/907.html' title='Multiple used in 9 places.'>Verdef</a>) *<a href='../Y/5625.html' title='Multiple used in 3 places.'>verdef</a>) <strong class='reserved'>const</strong>;
+<a id='L97' name='L97' />  <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>*          <a href='../S/521.html#L144' title='Defined at 144 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>GetDynstr</a>(<a href='../D/711.html' title='Multiple defined in 5 places.'>ElfW</a>(<a href='../Y/934.html' title='Multiple used in 7 places.'>Word</a>) <a href='../Y/3919.html' title='Multiple used in 128 places.'>offset</a>) <strong class='reserved'>const</strong>;
+<a id='L98' name='L98' />  <strong class='reserved'>const</strong> <strong class='reserved'>void</strong>*          <a href='../S/521.html#L149' title='Defined at 149 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>GetSymAddr</a>(<strong class='reserved'>const</strong> <a href='../D/711.html' title='Multiple defined in 5 places.'>ElfW</a>(<a href='../Y/822.html' title='Multiple used in 14 places.'>Sym</a>) *<a href='../Y/5186.html' title='Multiple used in 6 places.'>sym</a>) <strong class='reserved'>const</strong>;
+<a id='L99' name='L99' />  <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>*          <a href='../S/521.html#L176' title='Defined at 176 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>GetVerstr</a>(<a href='../D/711.html' title='Multiple defined in 5 places.'>ElfW</a>(<a href='../Y/934.html' title='Multiple used in 7 places.'>Word</a>) <a href='../Y/3919.html' title='Multiple used in 128 places.'>offset</a>) <strong class='reserved'>const</strong>;
+<a id='L100' name='L100' />  <strong class='reserved'>int</strong>                  <a href='../S/521.html#L118' title='Defined at 118 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>GetNumSymbols</a>() <strong class='reserved'>const</strong>;
+<a id='L101' name='L101' />
+<a id='L102' name='L102' />  <a href='../S/548.html#L77' title='Defined at 77 in third_party/google-perftools-1.8.3/src/base/vdso_support.h.'>SymbolIterator</a> <a href='../S/521.html#L382' title='Defined at 382 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>begin</a>() <strong class='reserved'>const</strong>;
+<a id='L103' name='L103' />  <a href='../S/548.html#L77' title='Defined at 77 in third_party/google-perftools-1.8.3/src/base/vdso_support.h.'>SymbolIterator</a> <a href='../S/521.html#L388' title='Defined at 388 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>end</a>() <strong class='reserved'>const</strong>;
+<a id='L104' name='L104' />
+<a id='L105' name='L105' />  <em class='comment'>// Look up versioned dynamic symbol in the image.</em>
+<a id='L106' name='L106' />  <em class='comment'>// Returns false if image is not present, or doesn't contain given</em>
+<a id='L107' name='L107' />  <em class='comment'>// symbol/version/type combination.</em>
+<a id='L108' name='L108' />  <em class='comment'>// If info_out != NULL, additional details are filled in.</em>
+<a id='L109' name='L109' />  <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../D/1706.html' title='Multiple defined in 2 places.'>LookupSymbol</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/3665.html' title='Multiple used in 438 places.'>name</a>, <strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/5628.html' title='Multiple used in 27 places.'>version</a>,
+<a id='L110' name='L110' />                    <strong class='reserved'>int</strong> <a href='../Y/5200.html' title='Multiple used in 2 places.'>symbol_type</a>, <a href='../D/2624.html' title='Multiple defined in 2 places.'>SymbolInfo</a> *<a href='../Y/2804.html' title='Multiple used in 10 places.'>info_out</a>) <strong class='reserved'>const</strong>;
+<a id='L111' name='L111' />
+<a id='L112' name='L112' />  <em class='comment'>// Find info about symbol (if any) which overlaps given address.</em>
+<a id='L113' name='L113' />  <em class='comment'>// Returns true if symbol was found; false if image isn't present</em>
+<a id='L114' name='L114' />  <em class='comment'>// or doesn't have a symbol overlapping given address.</em>
+<a id='L115' name='L115' />  <em class='comment'>// If info_out != NULL, additional details are filled in.</em>
+<a id='L116' name='L116' />  <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../D/1707.html' title='Multiple defined in 2 places.'>LookupSymbolByAddress</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong> *<a href='../Y/1411.html' title='Multiple used in 58 places.'>address</a>, <a href='../D/2624.html' title='Multiple defined in 2 places.'>SymbolInfo</a> *<a href='../Y/2804.html' title='Multiple used in 10 places.'>info_out</a>) <strong class='reserved'>const</strong>;
+<a id='L117' name='L117' />
+<a id='L118' name='L118' /> <a href='../Y/4261.html' title='Multiple used in 50 places.'>private</a>:
+<a id='L119' name='L119' />  <strong class='reserved'>const</strong> <a href='../D/711.html' title='Multiple defined in 5 places.'>ElfW</a>(<a href='../Y/170.html' title='Multiple used in 3 places.'>Ehdr</a>) *<a href='../Y/2159.html' title='Multiple used in 10 places.'>ehdr_</a>;
+<a id='L120' name='L120' />  <strong class='reserved'>const</strong> <a href='../D/711.html' title='Multiple defined in 5 places.'>ElfW</a>(<a href='../Y/822.html' title='Multiple used in 14 places.'>Sym</a>) *<a href='../Y/2141.html' title='Multiple used in 6 places.'>dynsym_</a>;
+<a id='L121' name='L121' />  <strong class='reserved'>const</strong> <a href='../D/711.html' title='Multiple defined in 5 places.'>ElfW</a>(<a href='../Y/915.html' title='Multiple used in 6 places.'>Versym</a>) *<a href='../Y/5635.html' title='Multiple used in 6 places.'>versym_</a>;
+<a id='L122' name='L122' />  <strong class='reserved'>const</strong> <a href='../D/711.html' title='Multiple defined in 5 places.'>ElfW</a>(<a href='../Y/907.html' title='Multiple used in 9 places.'>Verdef</a>) *<a href='../Y/5626.html' title='Multiple used in 6 places.'>verdef_</a>;
+<a id='L123' name='L123' />  <strong class='reserved'>const</strong> <a href='../D/711.html' title='Multiple defined in 5 places.'>ElfW</a>(<a href='../Y/934.html' title='Multiple used in 7 places.'>Word</a>) *<a href='../Y/2629.html' title='Multiple used in 16 places.'>hash_</a>;
+<a id='L124' name='L124' />  <strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2140.html' title='Multiple used in 7 places.'>dynstr_</a>;
+<a id='L125' name='L125' />  <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/5145.html' title='Multiple used in 7 places.'>strsize_</a>;
+<a id='L126' name='L126' />  <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/5627.html' title='Multiple used in 6 places.'>verdefnum_</a>;
+<a id='L127' name='L127' />  <a href='../D/711.html' title='Multiple defined in 5 places.'>ElfW</a>(Addr) <a href='../Y/3254.html' title='Multiple used in 9 places.'>link_base_</a>;     <em class='comment'>// Link-time base (p_vaddr of first PT_LOAD).</em>
+<a id='L128' name='L128' /><em class='brace'>}</em>;
+<a id='L129' name='L129' />
+<a id='L130' name='L130' /><em class='brace'>}</em>  <em class='comment'>// namespace base</em>
+<a id='L131' name='L131' />
+<a id='L132' name='L132' /><em class='sharp'>#endif</em>  <em class='comment'>// __ELF__ and __GLIBC__ and !__native_client__</em>
+<a id='L133' name='L133' />
+<a id='L134' name='L134' /><em class='sharp'>#endif</em>  <em class='comment'>// BASE_ELF_MEM_IMAGE_H_</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^][v]<a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

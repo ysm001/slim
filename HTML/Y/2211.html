@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>entries</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/555.html#L577'>entries</a>           577 third_party/google-perftools-1.8.3/src/debugallocation.cc     MallocBlockQueueEntry entries[4];</span>
+<span class='curline'><a href='../S/555.html#L594'>entries</a>           594 third_party/google-perftools-1.8.3/src/debugallocation.cc       RAW_CHECK(num_entries &lt; arraysize(entries), "entries array overflow");</span>
+<span class='curline'><a href='../S/555.html#L595'>entries</a>           595 third_party/google-perftools-1.8.3/src/debugallocation.cc       entries[num_entries] = free_queue_-&gt;Pop();</span>
+<span class='curline'><a href='../S/555.html#L597'>entries</a>           597 third_party/google-perftools-1.8.3/src/debugallocation.cc           entries[num_entries].size + sizeof(MallocBlockQueueEntry);</span>
+<span class='curline'><a href='../S/555.html#L599'>entries</a>           599 third_party/google-perftools-1.8.3/src/debugallocation.cc       if (num_entries == arraysize(entries)) {</span>
+<span class='curline'><a href='../S/555.html#L605'>entries</a>           605 third_party/google-perftools-1.8.3/src/debugallocation.cc           CheckForDanglingWrites(entries[i]);</span>
+<span class='curline'><a href='../S/555.html#L606'>entries</a>           606 third_party/google-perftools-1.8.3/src/debugallocation.cc           BASE_FREE(entries[i].block);</span>
+<span class='curline'><a href='../S/555.html#L615'>entries</a>           615 third_party/google-perftools-1.8.3/src/debugallocation.cc       CheckForDanglingWrites(entries[i]);</span>
+<span class='curline'><a href='../S/555.html#L616'>entries</a>           616 third_party/google-perftools-1.8.3/src/debugallocation.cc       BASE_FREE(entries[i].block);</span>
+<span class='curline'><a href='../S/569.html#L534'>entries</a>           534 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   Entry* entries = new Entry[n];</span>
+<span class='curline'><a href='../S/569.html#L539'>entries</a>           539 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     entries[dst++] = iter-&gt;second;</span>
+<span class='curline'><a href='../S/569.html#L541'>entries</a>           541 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   sort(entries, entries + n);</span>
+<span class='curline'><a href='../S/569.html#L553'>entries</a>           553 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     const Entry&amp; e = entries[i];</span>
+<span class='curline'><a href='../S/569.html#L563'>entries</a>           563 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     const Entry&amp; e = entries[i];</span>
+<span class='curline'><a href='../S/569.html#L579'>entries</a>           579 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   delete[] entries;</span>
+<span class='curline'><a href='../S/580.html#L256'>entries</a>           256 third_party/google-perftools-1.8.3/src/malloc_extension.cc                  const char* label, void** entries) {</span>
+<span class='curline'><a href='../S/580.html#L260'>entries</a>           260 third_party/google-perftools-1.8.3/src/malloc_extension.cc   for (void** entry = entries; Count(entry) != 0; entry += 3 + Depth(entry)) {</span>
+<span class='curline'><a href='../S/580.html#L288'>entries</a>           288 third_party/google-perftools-1.8.3/src/malloc_extension.cc   void** entries = ReadStackTraces(&amp;sample_period);</span>
+<span class='curline'><a href='../S/580.html#L289'>entries</a>           289 third_party/google-perftools-1.8.3/src/malloc_extension.cc   if (entries == NULL) {</span>
+<span class='curline'><a href='../S/580.html#L301'>entries</a>           301 third_party/google-perftools-1.8.3/src/malloc_extension.cc   PrintHeader(writer, label, entries);</span>
+<span class='curline'><a href='../S/580.html#L302'>entries</a>           302 third_party/google-perftools-1.8.3/src/malloc_extension.cc   for (void** entry = entries; Count(entry) != 0; entry += 3 + Depth(entry)) {</span>
+<span class='curline'><a href='../S/580.html#L305'>entries</a>           305 third_party/google-perftools-1.8.3/src/malloc_extension.cc   delete[] entries;</span>
+<span class='curline'><a href='../S/580.html#L311'>entries</a>           311 third_party/google-perftools-1.8.3/src/malloc_extension.cc   void** entries = ReadHeapGrowthStackTraces();</span>
+<span class='curline'><a href='../S/580.html#L312'>entries</a>           312 third_party/google-perftools-1.8.3/src/malloc_extension.cc   if (entries == NULL) {</span>
+<span class='curline'><a href='../S/580.html#L325'>entries</a>           325 third_party/google-perftools-1.8.3/src/malloc_extension.cc   PrintHeader(writer, "growth", entries);</span>
+<span class='curline'><a href='../S/580.html#L326'>entries</a>           326 third_party/google-perftools-1.8.3/src/malloc_extension.cc   for (void** entry = entries; Count(entry) != 0; entry += 3 + Depth(entry)) {</span>
+<span class='curline'><a href='../S/580.html#L329'>entries</a>           329 third_party/google-perftools-1.8.3/src/malloc_extension.cc   delete[] entries;</span>
+<span class='curline'><a href='../S/660.html#L16'>entries</a>            16 third_party/google-perftools-1.8.3/src/tests/stack_trace_table_test.cc   void** entries = table-&gt;ReadStackTracesAndClear();</span>
+<span class='curline'><a href='../S/660.html#L18'>entries</a>            18 third_party/google-perftools-1.8.3/src/tests/stack_trace_table_test.cc     CHECK_EQ(reinterpret_cast&lt;uintptr_t&gt;(entries[i]), expected[i]);</span>
+<span class='curline'><a href='../S/660.html#L20'>entries</a>            20 third_party/google-perftools-1.8.3/src/tests/stack_trace_table_test.cc   delete[] entries;</span>
+</pre>
+</body>
+</html>

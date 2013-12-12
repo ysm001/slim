@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>status</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/525.html#L2477'>status</a>           2477 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     LSS_INLINE pid_t LSS_NAME(waitpid)(pid_t pid, int *status, int options){</span>
+<span class='curline'><a href='../S/525.html#L2478'>status</a>           2478 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h       return LSS_NAME(wait4)(pid, status, options, 0);</span>
+<span class='curline'><a href='../S/526.html#L607'>status</a>            607 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc       int status, rc;</span>
+<span class='curline'><a href='../S/526.html#L608'>status</a>            608 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc       while ((rc = sys0_waitpid(clone_pid, &amp;status, __WALL)) &lt; 0 &amp;&amp;</span>
+<span class='curline'><a href='../S/526.html#L615'>status</a>            615 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc       } else if (WIFEXITED(status)) {</span>
+<span class='curline'><a href='../S/526.html#L616'>status</a>            616 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc         switch (WEXITSTATUS(status)) {</span>
+<span class='curline'><a href='../S/526.html#L628'>status</a>            628 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc       } else if (!WIFEXITED(status)) {</span>
+<span class='curline'><a href='../S/699.html#L275'>status</a>            275 third_party/zdelta-2.1/deflate.c   s-&gt;status = s-&gt;noheader ? BUSY_STATE : INIT_STATE;</span>
+<span class='curline'><a href='../S/699.html#L542'>status</a>            542 third_party/zdelta-2.1/deflate.c       (s-&gt;status == FINISH_STATE &amp;&amp; flush != ZD_FINISH) ||</span>
+<span class='curline'><a href='../S/699.html#L553'>status</a>            553 third_party/zdelta-2.1/deflate.c   if (s-&gt;status == INIT_STATE) {</span>
+<span class='curline'><a href='../S/699.html#L562'>status</a>            562 third_party/zdelta-2.1/deflate.c     s-&gt;status = BUSY_STATE;</span>
+<span class='curline'><a href='../S/699.html#L590'>status</a>            590 third_party/zdelta-2.1/deflate.c   if (s-&gt;status == FINISH_STATE &amp;&amp; strm-&gt;avail_in != 0) {</span>
+<span class='curline'><a href='../S/699.html#L597'>status</a>            597 third_party/zdelta-2.1/deflate.c       (flush != ZD_NO_FLUSH &amp;&amp; s-&gt;status != FINISH_STATE)) {</span>
+<span class='curline'><a href='../S/699.html#L604'>status</a>            604 third_party/zdelta-2.1/deflate.c       s-&gt;status = FINISH_STATE;</span>
+<span class='curline'><a href='../S/699.html#L663'>status</a>            663 third_party/zdelta-2.1/deflate.c   int status;</span>
+<span class='curline'><a href='../S/699.html#L667'>status</a>            667 third_party/zdelta-2.1/deflate.c   status = strm-&gt;state-&gt;status;</span>
+<span class='curline'><a href='../S/699.html#L668'>status</a>            668 third_party/zdelta-2.1/deflate.c   if (status != INIT_STATE &amp;&amp; status != BUSY_STATE &amp;&amp;</span>
+<span class='curline'><a href='../S/699.html#L669'>status</a>            669 third_party/zdelta-2.1/deflate.c       status != FINISH_STATE) {</span>
+<span class='curline'><a href='../S/699.html#L687'>status</a>            687 third_party/zdelta-2.1/deflate.c   return status == BUSY_STATE ? ZD_DATA_ERROR : ZD_OK;</span>
+<span class='curline'><a href='../S/700.html#L119'>status</a>            119 third_party/zdelta-2.1/deflate.h   int   status;        /* as the name implies */</span>
+</pre>
+</body>
+</html>

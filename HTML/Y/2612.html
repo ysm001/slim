@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>hThread</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/665.html#L122'>hThread</a>           122 third_party/google-perftools-1.8.3/src/tests/testutil.cc     HANDLE* hThread = new HANDLE[count];</span>
+<span class='curline'><a href='../S/665.html#L124'>hThread</a>           124 third_party/google-perftools-1.8.3/src/tests/testutil.cc       hThread[i] = CreateThread(NULL, 0, RunFunctionInThread, &amp;fn, 0, &amp;dummy);</span>
+<span class='curline'><a href='../S/665.html#L125'>hThread</a>           125 third_party/google-perftools-1.8.3/src/tests/testutil.cc       if (hThread[i] == NULL)  ExitProcess(i);</span>
+<span class='curline'><a href='../S/665.html#L127'>hThread</a>           127 third_party/google-perftools-1.8.3/src/tests/testutil.cc     WaitForMultipleObjects(count, hThread, TRUE, INFINITE);</span>
+<span class='curline'><a href='../S/665.html#L129'>hThread</a>           129 third_party/google-perftools-1.8.3/src/tests/testutil.cc       CloseHandle(hThread[i]);</span>
+<span class='curline'><a href='../S/665.html#L131'>hThread</a>           131 third_party/google-perftools-1.8.3/src/tests/testutil.cc     delete[] hThread;</span>
+<span class='curline'><a href='../S/665.html#L140'>hThread</a>           140 third_party/google-perftools-1.8.3/src/tests/testutil.cc     HANDLE* hThread = new HANDLE[count];</span>
+<span class='curline'><a href='../S/665.html#L145'>hThread</a>           145 third_party/google-perftools-1.8.3/src/tests/testutil.cc       hThread[i] = CreateThread(NULL, stacksize, RunFunctionInThreadWithId,</span>
+<span class='curline'><a href='../S/665.html#L147'>hThread</a>           147 third_party/google-perftools-1.8.3/src/tests/testutil.cc       if (hThread[i] == NULL)  ExitProcess(i);</span>
+<span class='curline'><a href='../S/665.html#L149'>hThread</a>           149 third_party/google-perftools-1.8.3/src/tests/testutil.cc     WaitForMultipleObjects(count, hThread, TRUE, INFINITE);</span>
+<span class='curline'><a href='../S/665.html#L151'>hThread</a>           151 third_party/google-perftools-1.8.3/src/tests/testutil.cc       CloseHandle(hThread[i]);</span>
+<span class='curline'><a href='../S/665.html#L154'>hThread</a>           154 third_party/google-perftools-1.8.3/src/tests/testutil.cc     delete[] hThread;</span>
+</pre>
+</body>
+</html>

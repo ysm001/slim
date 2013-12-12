@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>proc</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/526.html#L252'>proc</a>              252 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc   int                proc = -1, marker = -1, num_threads = 0;</span>
+<span class='curline'><a href='../S/526.html#L271'>proc</a>              271 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc     if (proc &gt;= 0)</span>
+<span class='curline'><a href='../S/526.html#L272'>proc</a>              272 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc       NO_INTR(sys_close(proc));</span>
+<span class='curline'><a href='../S/526.html#L273'>proc</a>              273 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc     sig_proc = proc = -1;</span>
+<span class='curline'><a href='../S/526.html#L326'>proc</a>              326 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc     if ((sig_proc = proc = c_open(*proc_path, O_RDONLY|O_DIRECTORY, 0)) &lt; 0) {</span>
+<span class='curline'><a href='../S/526.html#L331'>proc</a>              331 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc     if (sys_fstat(proc, &amp;proc_sb) &lt; 0)</span>
+<span class='curline'><a href='../S/526.html#L356'>proc</a>              356 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc         ssize_t nbytes = sys_getdents(proc, (struct kernel_dirent *)buf,</span>
+<span class='curline'><a href='../S/526.html#L368'>proc</a>              368 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc             sys_lseek(proc, 0, SEEK_SET);</span>
+<span class='curline'><a href='../S/526.html#L417'>proc</a>              417 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc                   NO_INTR(sys_close(proc));</span>
+<span class='curline'><a href='../S/526.html#L465'>proc</a>              465 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc       NO_INTR(sys_close(proc));</span>
+<span class='curline'><a href='../S/526.html#L466'>proc</a>              466 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc       sig_proc = proc = -1;</span>
+</pre>
+</body>
+</html>

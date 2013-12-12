@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>third_party/google-perftools-1.8.3/src/tests/packed-cache_test.cc</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/738.html'>third_party</a>/<a href='../files/739.html'>google-perftools-1.8.3</a>/<a href='../files/740.html'>src</a>/<a href='../files/743.html'>tests</a>/packed-cache_test.cc</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L40'>[^]</a><a href='#L57'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L40' title='Defined at 40.'>PackedCacheTest_basic</a></li>
+<li><a href='#L57' title='Defined at 57.'>main</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>// Copyright (c) 2007, Google Inc.</em>
+<a id='L2' name='L2' /><em class='comment'>// All rights reserved.</em>
+<a id='L3' name='L3' /><em class='comment'>//</em>
+<a id='L4' name='L4' /><em class='comment'>// Redistribution and use in source and binary forms, with or without</em>
+<a id='L5' name='L5' /><em class='comment'>// modification, are permitted provided that the following conditions are</em>
+<a id='L6' name='L6' /><em class='comment'>// met:</em>
+<a id='L7' name='L7' /><em class='comment'>//</em>
+<a id='L8' name='L8' /><em class='comment'>//     * Redistributions of source code must retain the above copyright</em>
+<a id='L9' name='L9' /><em class='comment'>// notice, this list of conditions and the following disclaimer.</em>
+<a id='L10' name='L10' /><em class='comment'>//     * Redistributions in binary form must reproduce the above</em>
+<a id='L11' name='L11' /><em class='comment'>// copyright notice, this list of conditions and the following disclaimer</em>
+<a id='L12' name='L12' /><em class='comment'>// in the documentation and/or other materials provided with the</em>
+<a id='L13' name='L13' /><em class='comment'>// distribution.</em>
+<a id='L14' name='L14' /><em class='comment'>//     * Neither the name of Google Inc. nor the names of its</em>
+<a id='L15' name='L15' /><em class='comment'>// contributors may be used to endorse or promote products derived from</em>
+<a id='L16' name='L16' /><em class='comment'>// this software without specific prior written permission.</em>
+<a id='L17' name='L17' /><em class='comment'>//</em>
+<a id='L18' name='L18' /><em class='comment'>// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L19' name='L19' /><em class='comment'>// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L20' name='L20' /><em class='comment'>// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L21' name='L21' /><em class='comment'>// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L22' name='L22' /><em class='comment'>// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L23' name='L23' /><em class='comment'>// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L24' name='L24' /><em class='comment'>// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L25' name='L25' /><em class='comment'>// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L26' name='L26' /><em class='comment'>// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L27' name='L27' /><em class='comment'>// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L28' name='L28' /><em class='comment'>// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L29' name='L29' />
+<a id='L30' name='L30' /><em class='comment'>// ---</em>
+<a id='L31' name='L31' /><em class='comment'>// Author: Geoff Pike</em>
+<a id='L32' name='L32' />
+<a id='L33' name='L33' /><em class='sharp'>#include</em> &lt;stdio.h&gt;
+<a id='L34' name='L34' /><em class='sharp'>#include</em> "<a href='529.html'>base/logging.h</a>"
+<a id='L35' name='L35' /><em class='sharp'>#include</em> "<a href='590.html'>packed-cache-inl.h</a>"
+<a id='L36' name='L36' />
+<a id='L37' name='L37' /><strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> <a href='../Y/3012.html' title='Multiple used in 12 places.'>kHashbits</a> = <a href='../Y/631.html' title='Multiple used in 6 places.'>PackedCache</a>&lt;64, <a href='../S/516.html#L71' title='Defined at 71 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>uint64</a>&gt;::<a href='../Y/3012.html' title='Multiple used in 12 places.'>kHashbits</a>;
+<a id='L38' name='L38' />
+<a id='L39' name='L39' /><em class='comment'>// A basic sanity test.</em>
+<a id='L40' name='L40' /><strong class='reserved'>void</strong> <a href='../S/648.html#L58' title='Refered from 58 in third_party/google-perftools-1.8.3/src/tests/packed-cache_test.cc.'>PackedCacheTest_basic</a>() <em class='brace'>{</em>
+<a id='L41' name='L41' />  <a href='../Y/631.html' title='Multiple used in 6 places.'>PackedCache</a>&lt;32, <a href='../S/516.html#L70' title='Defined at 70 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>uint32</a>&gt; <a href='../Y/1716.html' title='Multiple used in 16 places.'>cache</a>(0);
+<a id='L42' name='L42' />  <a href='../S/529.html#L142' title='Defined at 142 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_EQ</a>(<a href='../Y/1716.html' title='Multiple used in 16 places.'>cache</a>.<a href='../Y/311.html' title='Multiple used in 8 places.'>GetOrDefault</a>(0, 1), 0);
+<a id='L43' name='L43' />  <a href='../Y/1716.html' title='Multiple used in 16 places.'>cache</a>.<a href='../Y/656.html' title='Multiple used in 5 places.'>Put</a>(0, 17);
+<a id='L44' name='L44' />  <a href='../S/529.html#L83' title='Defined at 83 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK</a>(<a href='../Y/1716.html' title='Multiple used in 16 places.'>cache</a>.<a href='../Y/355.html' title='Multiple used in 4 places.'>Has</a>(0));
+<a id='L45' name='L45' />  <a href='../S/529.html#L142' title='Defined at 142 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_EQ</a>(<a href='../Y/1716.html' title='Multiple used in 16 places.'>cache</a>.<a href='../Y/311.html' title='Multiple used in 8 places.'>GetOrDefault</a>(0, 1), 17);
+<a id='L46' name='L46' />  <a href='../Y/1716.html' title='Multiple used in 16 places.'>cache</a>.<a href='../Y/656.html' title='Multiple used in 5 places.'>Put</a>(19, 99);
+<a id='L47' name='L47' />  <a href='../S/529.html#L83' title='Defined at 83 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK</a>(<a href='../Y/1716.html' title='Multiple used in 16 places.'>cache</a>.<a href='../Y/355.html' title='Multiple used in 4 places.'>Has</a>(0) &amp;&amp; <a href='../Y/1716.html' title='Multiple used in 16 places.'>cache</a>.<a href='../Y/355.html' title='Multiple used in 4 places.'>Has</a>(19));
+<a id='L48' name='L48' />  <a href='../S/529.html#L142' title='Defined at 142 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_EQ</a>(<a href='../Y/1716.html' title='Multiple used in 16 places.'>cache</a>.<a href='../Y/311.html' title='Multiple used in 8 places.'>GetOrDefault</a>(0, 1), 17);
+<a id='L49' name='L49' />  <a href='../S/529.html#L142' title='Defined at 142 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_EQ</a>(<a href='../Y/1716.html' title='Multiple used in 16 places.'>cache</a>.<a href='../Y/311.html' title='Multiple used in 8 places.'>GetOrDefault</a>(19, 1), 99);
+<a id='L50' name='L50' />  <em class='comment'>// Knock &lt;0, 17&gt; out by using a conflicting key.</em>
+<a id='L51' name='L51' />  <a href='../Y/1716.html' title='Multiple used in 16 places.'>cache</a>.<a href='../Y/656.html' title='Multiple used in 5 places.'>Put</a>(1 &lt;&lt; <a href='../Y/3012.html' title='Multiple used in 12 places.'>kHashbits</a>, 22);
+<a id='L52' name='L52' />  <a href='../S/529.html#L83' title='Defined at 83 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK</a>(!<a href='../Y/1716.html' title='Multiple used in 16 places.'>cache</a>.<a href='../Y/355.html' title='Multiple used in 4 places.'>Has</a>(0));
+<a id='L53' name='L53' />  <a href='../S/529.html#L142' title='Defined at 142 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_EQ</a>(<a href='../Y/1716.html' title='Multiple used in 16 places.'>cache</a>.<a href='../Y/311.html' title='Multiple used in 8 places.'>GetOrDefault</a>(0, 1), 1);
+<a id='L54' name='L54' />  <a href='../S/529.html#L142' title='Defined at 142 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_EQ</a>(<a href='../Y/1716.html' title='Multiple used in 16 places.'>cache</a>.<a href='../Y/311.html' title='Multiple used in 8 places.'>GetOrDefault</a>(1 &lt;&lt; <a href='../Y/3012.html' title='Multiple used in 12 places.'>kHashbits</a>, 1), 22);
+<a id='L55' name='L55' /><em class='brace'>}</em>
+<a id='L56' name='L56' />
+<a id='L57' name='L57' /><strong class='reserved'>int</strong> <a href='../S/557.html#L242' title='Refered from 242 in third_party/google-perftools-1.8.3/src/google/heap-checker.h.'>main</a>(<strong class='reserved'>int</strong> <a href='../Y/1497.html' title='Multiple used in 121 places.'>argc</a>, <strong class='reserved'>char</strong> **<a href='../Y/1503.html' title='Multiple used in 153 places.'>argv</a>) <em class='brace'>{</em>
+<a id='L58' name='L58' />  <a href='../S/648.html#L40' title='Defined at 40 in third_party/google-perftools-1.8.3/src/tests/packed-cache_test.cc.'>PackedCacheTest_basic</a>();
+<a id='L59' name='L59' />
+<a id='L60' name='L60' />  <a href='../S/572.html#L176' title='Defined at 176 in third_party/google-perftools-1.8.3/src/internal_logging.cc.'>printf</a>("PASS\n");
+<a id='L61' name='L61' />  <strong class='reserved'>return</strong> 0;
+<a id='L62' name='L62' /><em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;]<a href='#L40'>[^]</a><a href='#L57'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

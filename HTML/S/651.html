@@ -1,0 +1,564 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/738.html'>third_party</a>/<a href='../files/739.html'>google-perftools-1.8.3</a>/<a href='../files/740.html'>src</a>/<a href='../files/743.html'>tests</a>/profile-handler_unittest.cc</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L43'>[^]</a><a href='#L504'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L43' title='Defined at 43.'>SetJoinable</a></li>
+<li><a href='#L44' title='Defined at 44.'>Start</a></li>
+<li><a href='#L52' title='Defined at 52.'>Join</a></li>
+<li><a href='#L58' title='Defined at 58.'>DoRun</a></li>
+<li><a href='#L85' title='Defined at 85.'>Delay</a></li>
+<li><a href='#L93' title='Defined at 93.'>IsTimerEnabled</a></li>
+<li><a href='#L114' title='Defined at 114.'>Run</a></li>
+<li><a href='#L122' title='Defined at 122.'>threads_have_separate_timers</a></li>
+<li><a href='#L158' title='Defined at 158.'>stop_work</a></li>
+<li><a href='#L162' title='Defined at 162.'>set_stop_work</a></li>
+<li><a href='#L174' title='Defined at 174.'>Run</a></li>
+<li><a href='#L184' title='Defined at 184.'>Run</a></li>
+<li><a href='#L191' title='Defined at 191.'>TickCounter</a></li>
+<li><a href='#L202' title='Defined at 202.'>SetUpTestCase</a></li>
+<li><a href='#L219' title='Defined at 219.'>SetUp</a></li>
+<li><a href='#L236' title='Defined at 236.'>TearDown</a></li>
+<li><a href='#L244' title='Defined at 244.'>RegisterThread</a></li>
+<li><a href='#L254' title='Defined at 254.'>StartWorker</a></li>
+<li><a href='#L264' title='Defined at 264.'>StopWorker</a></li>
+<li><a href='#L271' title='Defined at 271.'>IsSignalEnabled</a></li>
+<li><a href='#L279' title='Defined at 279.'>GetCallbackCount</a></li>
+<li><a href='#L286' title='Defined at 286.'>GetInterruptCount</a></li>
+<li><a href='#L294' title='Defined at 294.'>VerifyRegistration</a></li>
+<li><a href='#L319' title='Defined at 319.'>VerifyUnregistration</a></li>
+<li><a href='#L340' title='Defined at 340.'>VerifyDisabled</a></li>
+<li><a href='#L362' title='Defined at 362.'>RegisterCallback</a></li>
+<li><a href='#L371' title='Defined at 371.'>UnregisterCallback</a></li>
+<li><a href='#L395' title='Defined at 395.'>RUN_ALL_TESTS</a></li>
+<li><a href='#L408' title='Defined at 408.'>TEST_F</a></li>
+<li><a href='#L417' title='Defined at 417.'>TEST_F</a></li>
+<li><a href='#L449' title='Defined at 449.'>TEST_F</a></li>
+<li><a href='#L473' title='Defined at 473.'>TEST_F</a></li>
+<li><a href='#L504' title='Defined at 504.'>main</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>// Copyright 2009 Google Inc. All Rights Reserved.</em>
+<a id='L2' name='L2' /><em class='comment'>// Author: Nabeel Mian (nabeelmian@google.com)</em>
+<a id='L3' name='L3' /><em class='comment'>//         Chris Demetriou (cgd@google.com)</em>
+<a id='L4' name='L4' /><em class='comment'>//</em>
+<a id='L5' name='L5' /><em class='comment'>// This file contains the unit tests for profile-handler.h interface.</em>
+<a id='L6' name='L6' /><em class='comment'>//</em>
+<a id='L7' name='L7' /><em class='comment'>// It is linked into three separate unit tests:</em>
+<a id='L8' name='L8' /><em class='comment'>//     profile-handler_unittest tests basic functionality</em>
+<a id='L9' name='L9' /><em class='comment'>//     profile-handler_disable_test tests that the profiler</em>
+<a id='L10' name='L10' /><em class='comment'>//         is disabled with --install_signal_handlers=false</em>
+<a id='L11' name='L11' /><em class='comment'>//     profile-handler_conflict_test tests that the profiler</em>
+<a id='L12' name='L12' /><em class='comment'>//         is disabled when a SIGPROF handler is registered before InitGoogle.</em>
+<a id='L13' name='L13' />
+<a id='L14' name='L14' /><em class='sharp'>#include</em> "<a href='../I/6.html'>config.h</a>"
+<a id='L15' name='L15' /><em class='sharp'>#include</em> "<a href='597.html'>profile-handler.h</a>"
+<a id='L16' name='L16' />
+<a id='L17' name='L17' /><em class='sharp'>#include</em> &lt;assert.h&gt;
+<a id='L18' name='L18' /><em class='sharp'>#include</em> &lt;pthread.h&gt;
+<a id='L19' name='L19' /><em class='sharp'>#include</em> &lt;sys/time.h&gt;
+<a id='L20' name='L20' /><em class='sharp'>#include</em> &lt;time.h&gt;
+<a id='L21' name='L21' /><em class='sharp'>#include</em> "<a href='529.html'>base/logging.h</a>"
+<a id='L22' name='L22' /><em class='sharp'>#include</em> "<a href='532.html'>base/simple_mutex.h</a>"
+<a id='L23' name='L23' />
+<a id='L24' name='L24' /><em class='comment'>// Some helpful macros for the test class</em>
+<a id='L25' name='L25' /><em class='sharp'>#define</em> TEST_F(<a href='../Y/1814.html' title='Multiple used in 4 places.'>cls</a>, <a href='../Y/2409.html' title='Multiple used in 54 places.'>fn</a>)    <strong class='reserved'>void</strong> <a href='../Y/1814.html' title='Multiple used in 4 places.'>cls</a> :: <a href='../Y/2409.html' title='Multiple used in 54 places.'>fn</a>()
+<a id='L26' name='L26' />
+<a id='L27' name='L27' /><em class='comment'>// Do we expect the profiler to be enabled?</em>
+<a id='L28' name='L28' /><a href='../S/517.html#L73' title='Defined at 73 in third_party/google-perftools-1.8.3/src/base/commandlineflags.h.'>DEFINE_bool</a>(test_profiler_enabled, <strong class='reserved'>true</strong>,
+<a id='L29' name='L29' />            "expect profiler to be enabled during tests");
+<a id='L30' name='L30' />
+<a id='L31' name='L31' /><em class='comment'>// Should we look at the kernel signal handler settings during the test?</em>
+<a id='L32' name='L32' /><em class='comment'>// Not if we're in conflict_test, because we can't distinguish its nop</em>
+<a id='L33' name='L33' /><em class='comment'>// handler from the real one.</em>
+<a id='L34' name='L34' /><a href='../S/517.html#L73' title='Defined at 73 in third_party/google-perftools-1.8.3/src/base/commandlineflags.h.'>DEFINE_bool</a>(test_profiler_signal_handler, <strong class='reserved'>true</strong>,
+<a id='L35' name='L35' />            "check profiler signal handler during tests");
+<a id='L36' name='L36' />
+<a id='L37' name='L37' /><strong class='reserved'>namespace</strong> <em class='brace'>{</em>
+<a id='L38' name='L38' />
+<a id='L39' name='L39' /><em class='comment'>// TODO(csilvers): error-checking on the pthreads routines</em>
+<a id='L40' name='L40' /><strong class='reserved'>class</strong> <a href='../R/2542.html' title='Multiple refered from 4 places.'>Thread</a> <em class='brace'>{</em>
+<a id='L41' name='L41' /> <strong class='reserved'>public</strong>:
+<a id='L42' name='L42' />  Thread() : <a href='../Y/2955.html' title='Multiple used in 5 places.'>joinable_</a>(<strong class='reserved'>false</strong>) <em class='brace'>{</em> <em class='brace'>}</em>
+<a id='L43' name='L43' />  <strong class='reserved'>void</strong> <a href='../R/2295.html' title='Multiple refered from 3 places.'>SetJoinable</a>(<strong class='reserved'>bool</strong> <a href='../Y/5599.html' title='Multiple used in 481 places.'>value</a>) <em class='brace'>{</em> <a href='../Y/2955.html' title='Multiple used in 5 places.'>joinable_</a> = <a href='../Y/5599.html' title='Multiple used in 481 places.'>value</a>; <em class='brace'>}</em>
+<a id='L44' name='L44' />  <strong class='reserved'>void</strong> <a href='../R/2340.html' title='Multiple refered from 19 places.'>Start</a>() <em class='brace'>{</em>
+<a id='L45' name='L45' />    <a href='../Y/4340.html' title='Multiple used in 4 places.'>pthread_attr_t</a> <a href='../Y/1554.html' title='Multiple used in 342 places.'>attr</a>;
+<a id='L46' name='L46' />    <a href='../Y/4337.html' title='Multiple used in 4 places.'>pthread_attr_init</a>(&amp;<a href='../Y/1554.html' title='Multiple used in 342 places.'>attr</a>);
+<a id='L47' name='L47' />    pthread_attr_setdetachstate(&amp;<a href='../Y/1554.html' title='Multiple used in 342 places.'>attr</a>, <a href='../Y/2955.html' title='Multiple used in 5 places.'>joinable_</a> ? <a href='../S/672.html#L267' title='Defined at 267 in third_party/google-perftools-1.8.3/src/windows/config.h.'>PTHREAD_CREATE_JOINABLE</a>
+<a id='L48' name='L48' />                                                 : PTHREAD_CREATE_DETACHED);
+<a id='L49' name='L49' />    <a href='../Y/4349.html' title='Multiple used in 7 places.'>pthread_create</a>(&amp;<a href='../Y/5356.html' title='Multiple used in 3 places.'>thread_</a>, &amp;<a href='../Y/1554.html' title='Multiple used in 342 places.'>attr</a>, &amp;<a href='../S/651.html#L58' title='Defined at 58 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>DoRun</a>, <strong class='reserved'>this</strong>);
+<a id='L50' name='L50' />    <a href='../Y/4336.html' title='Multiple used in 2 places.'>pthread_attr_destroy</a>(&amp;<a href='../Y/1554.html' title='Multiple used in 342 places.'>attr</a>);
+<a id='L51' name='L51' />  <em class='brace'>}</em>
+<a id='L52' name='L52' />  <strong class='reserved'>void</strong> <a href='../R/1166.html' title='Multiple refered from 3 places.'>Join</a>()  <em class='brace'>{</em>
+<a id='L53' name='L53' />    <a href='../Y/1520.html' title='Multiple used in 35 places.'>assert</a>(<a href='../Y/2955.html' title='Multiple used in 5 places.'>joinable_</a>);
+<a id='L54' name='L54' />    <a href='../Y/4351.html' title='Multiple used in 6 places.'>pthread_join</a>(<a href='../Y/5356.html' title='Multiple used in 3 places.'>thread_</a>, <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>);
+<a id='L55' name='L55' />  <em class='brace'>}</em>
+<a id='L56' name='L56' />  <strong class='reserved'>virtual</strong> <strong class='reserved'>void</strong> <a href='../D/2431.html' title='Multiple defined in 7 places.'>Run</a>() = 0;
+<a id='L57' name='L57' /> <strong class='reserved'>private</strong>:
+<a id='L58' name='L58' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong>* <a href='../S/651.html#L49' title='Refered from 49 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>DoRun</a>(<strong class='reserved'>void</strong>* <a href='../Y/1814.html' title='Multiple used in 4 places.'>cls</a>) <em class='brace'>{</em>
+<a id='L59' name='L59' />    <a href='../D/2237.html' title='Multiple defined in 2 places.'>ProfileHandlerRegisterThread</a>();
+<a id='L60' name='L60' />    <strong class='reserved'>reinterpret_cast</strong>&lt;<a href='../S/651.html#L40' title='Defined at 40 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>Thread</a>*&gt;(<a href='../Y/1814.html' title='Multiple used in 4 places.'>cls</a>)-&gt;<a href='../D/2431.html' title='Multiple defined in 7 places.'>Run</a>();
+<a id='L61' name='L61' />    <strong class='reserved'>return</strong> <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>;
+<a id='L62' name='L62' />  <em class='brace'>}</em>
+<a id='L63' name='L63' />  <a href='../S/686.html#L120' title='Defined at 120 in third_party/google-perftools-1.8.3/src/windows/port.h.'>pthread_t</a> <a href='../Y/5356.html' title='Multiple used in 3 places.'>thread_</a>;
+<a id='L64' name='L64' />  <strong class='reserved'>bool</strong> <a href='../Y/2955.html' title='Multiple used in 5 places.'>joinable_</a>;
+<a id='L65' name='L65' /><em class='brace'>}</em>;
+<a id='L66' name='L66' />
+<a id='L67' name='L67' /><em class='comment'>// Sleep interval in nano secs. ITIMER_PROF goes off only afer the specified CPU</em>
+<a id='L68' name='L68' /><em class='comment'>// time is consumed. Under heavy load this process may no get scheduled in a</em>
+<a id='L69' name='L69' /><em class='comment'>// timely fashion. Therefore, give enough time (20x of ProfileHandle timer</em>
+<a id='L70' name='L70' /><em class='comment'>// interval 10ms (100Hz)) for this process to accumulate enought CPU time to get</em>
+<a id='L71' name='L71' /><em class='comment'>// a profile tick.</em>
+<a id='L72' name='L72' /><strong class='reserved'>int</strong> <a href='../Y/3107.html' title='Multiple used in 5 places.'>kSleepInterval</a> = 200000000;
+<a id='L73' name='L73' />
+<a id='L74' name='L74' /><em class='comment'>// Sleep interval in nano secs. To ensure that if the timer has expired it is</em>
+<a id='L75' name='L75' /><em class='comment'>// reset.</em>
+<a id='L76' name='L76' /><strong class='reserved'>int</strong> <a href='../Y/3117.html' title='Multiple used in 5 places.'>kTimerResetInterval</a> = 5000000;
+<a id='L77' name='L77' />
+<a id='L78' name='L78' /><em class='comment'>// Whether each thread has separate timers.</em>
+<a id='L79' name='L79' /><strong class='reserved'>static</strong> <strong class='reserved'>bool</strong> <a href='../Y/5386.html' title='Multiple used in 6 places.'>timer_separate_</a> = <strong class='reserved'>false</strong>;
+<a id='L80' name='L80' /><strong class='reserved'>static</strong> <strong class='reserved'>int</strong> <a href='../Y/5387.html' title='Multiple used in 13 places.'>timer_type_</a> = <a href='../Y/374.html' title='Multiple used in 7 places.'>ITIMER_PROF</a>;
+<a id='L81' name='L81' /><strong class='reserved'>static</strong> <strong class='reserved'>int</strong> <a href='../Y/4861.html' title='Multiple used in 3 places.'>signal_number_</a> = <a href='../Y/725.html' title='Multiple used in 6 places.'>SIGPROF</a>;
+<a id='L82' name='L82' />
+<a id='L83' name='L83' /><em class='comment'>// Delays processing by the specified number of nano seconds. 'delay_ns'</em>
+<a id='L84' name='L84' /><em class='comment'>// must be less than the number of nano seconds in a second (1000000000).</em>
+<a id='L85' name='L85' /><strong class='reserved'>void</strong> <a href='../R/514.html' title='Multiple refered from 8 places.'>Delay</a>(<strong class='reserved'>int</strong> <a href='../Y/2004.html' title='Multiple used in 3 places.'>delay_ns</a>) <em class='brace'>{</em>
+<a id='L86' name='L86' />  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> <a href='../Y/3083.html' title='Multiple used in 2 places.'>kNumNSecInSecond</a> = 1000000000;
+<a id='L87' name='L87' />  <a href='../S/529.html#L153' title='Defined at 153 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_LT</a>(<a href='../Y/2004.html' title='Multiple used in 3 places.'>delay_ns</a>, <a href='../Y/3083.html' title='Multiple used in 2 places.'>kNumNSecInSecond</a>);
+<a id='L88' name='L88' />  <strong class='reserved'>struct</strong> <a href='../S/686.html#L417' title='Defined at 417 in third_party/google-perftools-1.8.3/src/windows/port.h.'>timespec</a> <a href='../Y/2003.html' title='Multiple used in 2 places.'>delay</a> = <em class='brace'>{</em> 0, <a href='../Y/2004.html' title='Multiple used in 3 places.'>delay_ns</a> <em class='brace'>}</em>;
+<a id='L89' name='L89' />  <a href='../S/686.html#L422' title='Defined at 422 in third_party/google-perftools-1.8.3/src/windows/port.h.'>nanosleep</a>(&amp;<a href='../Y/2003.html' title='Multiple used in 2 places.'>delay</a>, 0);
+<a id='L90' name='L90' /><em class='brace'>}</em>
+<a id='L91' name='L91' />
+<a id='L92' name='L92' /><em class='comment'>// Checks whether the profile timer is enabled for the current thread.</em>
+<a id='L93' name='L93' /><strong class='reserved'>bool</strong> <a href='../R/1152.html' title='Multiple refered from 8 places.'>IsTimerEnabled</a>() <em class='brace'>{</em>
+<a id='L94' name='L94' />  <a href='../Y/2946.html' title='Multiple used in 7 places.'>itimerval</a> <a href='../Y/1936.html' title='Multiple used in 11 places.'>current_timer</a>;
+<a id='L95' name='L95' />  <a href='../S/529.html#L150' title='Defined at 150 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_EQ</a>(0, <a href='../Y/2544.html' title='Multiple used in 4 places.'>getitimer</a>(<a href='../Y/5387.html' title='Multiple used in 13 places.'>timer_type_</a>, &amp;<a href='../Y/1936.html' title='Multiple used in 11 places.'>current_timer</a>));
+<a id='L96' name='L96' />  <strong class='reserved'>if</strong> ((<a href='../Y/1936.html' title='Multiple used in 11 places.'>current_timer</a>.<a href='../Y/2936.html' title='Multiple used in 11 places.'>it_value</a>.<a href='../Y/5482.html' title='Multiple used in 20 places.'>tv_sec</a> == 0) &amp;&amp;
+<a id='L97' name='L97' />      (<a href='../Y/1936.html' title='Multiple used in 11 places.'>current_timer</a>.<a href='../Y/2936.html' title='Multiple used in 11 places.'>it_value</a>.<a href='../Y/5484.html' title='Multiple used in 11 places.'>tv_usec</a> != 0)) <em class='brace'>{</em>
+<a id='L98' name='L98' />    <em class='comment'>// May be the timer has expired. Sleep for a bit and check again.</em>
+<a id='L99' name='L99' />    <a href='../S/651.html#L85' title='Defined at 85 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>Delay</a>(<a href='../Y/3117.html' title='Multiple used in 5 places.'>kTimerResetInterval</a>);
+<a id='L100' name='L100' />    <a href='../S/529.html#L150' title='Defined at 150 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_EQ</a>(0, <a href='../Y/2544.html' title='Multiple used in 4 places.'>getitimer</a>(<a href='../Y/5387.html' title='Multiple used in 13 places.'>timer_type_</a>, &amp;<a href='../Y/1936.html' title='Multiple used in 11 places.'>current_timer</a>));
+<a id='L101' name='L101' />  <em class='brace'>}</em>
+<a id='L102' name='L102' />  <strong class='reserved'>return</strong> (<a href='../Y/1936.html' title='Multiple used in 11 places.'>current_timer</a>.<a href='../Y/2936.html' title='Multiple used in 11 places.'>it_value</a>.<a href='../Y/5482.html' title='Multiple used in 20 places.'>tv_sec</a> != 0 ||
+<a id='L103' name='L103' />          <a href='../Y/1936.html' title='Multiple used in 11 places.'>current_timer</a>.<a href='../Y/2936.html' title='Multiple used in 11 places.'>it_value</a>.<a href='../Y/5484.html' title='Multiple used in 11 places.'>tv_usec</a> != 0);
+<a id='L104' name='L104' /><em class='brace'>}</em>
+<a id='L105' name='L105' />
+<a id='L106' name='L106' /><strong class='reserved'>class</strong> <a href='../S/651.html#L131' title='Refered from 131 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>VirtualTimerGetterThread</a> : <strong class='reserved'>public</strong> <a href='../S/651.html#L40' title='Defined at 40 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>Thread</a> <em class='brace'>{</em>
+<a id='L107' name='L107' /> <strong class='reserved'>public</strong>:
+<a id='L108' name='L108' />  VirtualTimerGetterThread() <em class='brace'>{</em>
+<a id='L109' name='L109' />    <a href='../Y/3518.html' title='Multiple used in 105 places.'>memset</a>(&amp;<a href='../Y/5639.html' title='Multiple used in 5 places.'>virtual_timer_</a>, 0, <strong class='reserved'>sizeof</strong> <a href='../Y/5639.html' title='Multiple used in 5 places.'>virtual_timer_</a>);
+<a id='L110' name='L110' />  <em class='brace'>}</em>
+<a id='L111' name='L111' />  <strong class='reserved'>struct</strong> <a href='../Y/2946.html' title='Multiple used in 7 places.'>itimerval</a> <a href='../Y/5639.html' title='Multiple used in 5 places.'>virtual_timer_</a>;
+<a id='L112' name='L112' />
+<a id='L113' name='L113' /> <strong class='reserved'>private</strong>:
+<a id='L114' name='L114' />  <strong class='reserved'>void</strong> <a href='../R/2183.html' title='Multiple refered from 14 places.'>Run</a>() <em class='brace'>{</em>
+<a id='L115' name='L115' />    <a href='../S/529.html#L142' title='Defined at 142 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_EQ</a>(0, <a href='../Y/2544.html' title='Multiple used in 4 places.'>getitimer</a>(<a href='../Y/376.html' title='Multiple used in 3 places.'>ITIMER_VIRTUAL</a>, &amp;<a href='../Y/5639.html' title='Multiple used in 5 places.'>virtual_timer_</a>));
+<a id='L116' name='L116' />  <em class='brace'>}</em>
+<a id='L117' name='L117' /><em class='brace'>}</em>;
+<a id='L118' name='L118' />
+<a id='L119' name='L119' /><em class='comment'>// This function checks whether the timers are shared between thread. This</em>
+<a id='L120' name='L120' /><em class='comment'>// function spawns a thread, so use it carefully when testing thread-dependent</em>
+<a id='L121' name='L121' /><em class='comment'>// behaviour.</em>
+<a id='L122' name='L122' /><strong class='reserved'>static</strong> <strong class='reserved'>bool</strong> <a href='../S/651.html#L206' title='Refered from 206 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>threads_have_separate_timers</a>() <em class='brace'>{</em>
+<a id='L123' name='L123' />  <strong class='reserved'>struct</strong> <a href='../Y/2946.html' title='Multiple used in 7 places.'>itimerval</a> <a href='../Y/3766.html' title='Multiple used in 6 places.'>new_timer_val</a>;
+<a id='L124' name='L124' />
+<a id='L125' name='L125' />  <em class='comment'>// Enable the virtual timer in the current thread.</em>
+<a id='L126' name='L126' />  <a href='../Y/3518.html' title='Multiple used in 105 places.'>memset</a>(&amp;<a href='../Y/3766.html' title='Multiple used in 6 places.'>new_timer_val</a>, 0, <strong class='reserved'>sizeof</strong> <a href='../Y/3766.html' title='Multiple used in 6 places.'>new_timer_val</a>);
+<a id='L127' name='L127' />  <a href='../Y/3766.html' title='Multiple used in 6 places.'>new_timer_val</a>.<a href='../Y/2936.html' title='Multiple used in 11 places.'>it_value</a>.<a href='../Y/5482.html' title='Multiple used in 20 places.'>tv_sec</a> = 1000000;  <em class='comment'>// seconds</em>
+<a id='L128' name='L128' />  <a href='../S/529.html#L142' title='Defined at 142 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_EQ</a>(0, <a href='../Y/4801.html' title='Multiple used in 5 places.'>setitimer</a>(<a href='../Y/376.html' title='Multiple used in 3 places.'>ITIMER_VIRTUAL</a>, &amp;<a href='../Y/3766.html' title='Multiple used in 6 places.'>new_timer_val</a>, <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>));
+<a id='L129' name='L129' />
+<a id='L130' name='L130' />  <em class='comment'>// Spawn a thread, get the virtual timer's value there.</em>
+<a id='L131' name='L131' />  <a href='../S/651.html#L106' title='Defined at 106 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>VirtualTimerGetterThread</a> <a href='../Y/5355.html' title='Multiple used in 11 places.'>thread</a>;
+<a id='L132' name='L132' />  <a href='../Y/5355.html' title='Multiple used in 11 places.'>thread</a>.<a href='../S/651.html#L43' title='Defined at 43 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>SetJoinable</a>(<strong class='reserved'>true</strong>);
+<a id='L133' name='L133' />  <a href='../Y/5355.html' title='Multiple used in 11 places.'>thread</a>.<a href='../D/2607.html' title='Multiple defined in 3 places.'>Start</a>();
+<a id='L134' name='L134' />  <a href='../Y/5355.html' title='Multiple used in 11 places.'>thread</a>.<a href='../S/651.html#L52' title='Defined at 52 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>Join</a>();
+<a id='L135' name='L135' />
+<a id='L136' name='L136' />  <em class='comment'>// Disable timer here.</em>
+<a id='L137' name='L137' />  <a href='../Y/3518.html' title='Multiple used in 105 places.'>memset</a>(&amp;<a href='../Y/3766.html' title='Multiple used in 6 places.'>new_timer_val</a>, 0, <strong class='reserved'>sizeof</strong> <a href='../Y/3766.html' title='Multiple used in 6 places.'>new_timer_val</a>);
+<a id='L138' name='L138' />  <a href='../S/529.html#L142' title='Defined at 142 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_EQ</a>(0, <a href='../Y/4801.html' title='Multiple used in 5 places.'>setitimer</a>(<a href='../Y/376.html' title='Multiple used in 3 places.'>ITIMER_VIRTUAL</a>, &amp;<a href='../Y/3766.html' title='Multiple used in 6 places.'>new_timer_val</a>, <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>));
+<a id='L139' name='L139' />
+<a id='L140' name='L140' />  <strong class='reserved'>bool</strong> <a href='../Y/5303.html' title='Multiple used in 2 places.'>target_timer_enabled</a> = (<a href='../Y/5355.html' title='Multiple used in 11 places.'>thread</a>.<a href='../Y/5639.html' title='Multiple used in 5 places.'>virtual_timer_</a>.<a href='../Y/2936.html' title='Multiple used in 11 places.'>it_value</a>.<a href='../Y/5482.html' title='Multiple used in 20 places.'>tv_sec</a> != 0 ||
+<a id='L141' name='L141' />                               <a href='../Y/5355.html' title='Multiple used in 11 places.'>thread</a>.<a href='../Y/5639.html' title='Multiple used in 5 places.'>virtual_timer_</a>.<a href='../Y/2936.html' title='Multiple used in 11 places.'>it_value</a>.<a href='../Y/5484.html' title='Multiple used in 11 places.'>tv_usec</a> != 0);
+<a id='L142' name='L142' />  <strong class='reserved'>if</strong> (!<a href='../Y/5303.html' title='Multiple used in 2 places.'>target_timer_enabled</a>) <em class='brace'>{</em>
+<a id='L143' name='L143' />    <a href='../D/1591.html' title='Multiple defined in 3 places.'>LOG</a>(<a href='../S/529.html#L194' title='Defined at 194 in third_party/google-perftools-1.8.3/src/base/logging.h.'>INFO</a>, "threads have separate timers");
+<a id='L144' name='L144' />    <strong class='reserved'>return</strong> <strong class='reserved'>true</strong>;
+<a id='L145' name='L145' />  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L146' name='L146' />    <a href='../D/1591.html' title='Multiple defined in 3 places.'>LOG</a>(<a href='../S/529.html#L194' title='Defined at 194 in third_party/google-perftools-1.8.3/src/base/logging.h.'>INFO</a>, "threads have shared timers");
+<a id='L147' name='L147' />    <strong class='reserved'>return</strong> <strong class='reserved'>false</strong>;
+<a id='L148' name='L148' />  <em class='brace'>}</em>
+<a id='L149' name='L149' /><em class='brace'>}</em>
+<a id='L150' name='L150' />
+<a id='L151' name='L151' /><em class='comment'>// Dummy worker thread to accumulate cpu time.</em>
+<a id='L152' name='L152' /><strong class='reserved'>class</strong> <a href='../R/299.html' title='Multiple refered from 2 places.'>BusyThread</a> : <strong class='reserved'>public</strong> <a href='../S/651.html#L40' title='Defined at 40 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>Thread</a> <em class='brace'>{</em>
+<a id='L153' name='L153' /> <strong class='reserved'>public</strong>:
+<a id='L154' name='L154' />  BusyThread() : <a href='../Y/5108.html' title='Multiple used in 4 places.'>stop_work_</a>(<strong class='reserved'>false</strong>) <em class='brace'>{</em>
+<a id='L155' name='L155' />  <em class='brace'>}</em>
+<a id='L156' name='L156' />
+<a id='L157' name='L157' />  <em class='comment'>// Setter/Getters</em>
+<a id='L158' name='L158' />  <strong class='reserved'>bool</strong> <a href='../R/4921.html' title='Multiple refered from 3 places.'>stop_work</a>() <em class='brace'>{</em>
+<a id='L159' name='L159' />    <a href='../S/532.html#L321' title='Defined at 321 in third_party/google-perftools-1.8.3/src/base/simple_mutex.h.'>MutexLock</a> <a href='../Y/3313.html' title='Multiple used in 107 places.'>lock</a>(&amp;<a href='../Y/3618.html' title='Multiple used in 12 places.'>mu_</a>);
+<a id='L160' name='L160' />    <strong class='reserved'>return</strong> <a href='../Y/5108.html' title='Multiple used in 4 places.'>stop_work_</a>;
+<a id='L161' name='L161' />  <em class='brace'>}</em>
+<a id='L162' name='L162' />  <strong class='reserved'>void</strong> <a href='../S/651.html#L265' title='Refered from 265 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>set_stop_work</a>(<strong class='reserved'>bool</strong> <a href='../S/651.html#L158' title='Defined at 158 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>stop_work</a>) <em class='brace'>{</em>
+<a id='L163' name='L163' />    <a href='../S/532.html#L321' title='Defined at 321 in third_party/google-perftools-1.8.3/src/base/simple_mutex.h.'>MutexLock</a> <a href='../Y/3313.html' title='Multiple used in 107 places.'>lock</a>(&amp;<a href='../Y/3618.html' title='Multiple used in 12 places.'>mu_</a>);
+<a id='L164' name='L164' />    <a href='../Y/5108.html' title='Multiple used in 4 places.'>stop_work_</a> = <a href='../S/651.html#L158' title='Defined at 158 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>stop_work</a>;
+<a id='L165' name='L165' />  <em class='brace'>}</em>
+<a id='L166' name='L166' />
+<a id='L167' name='L167' /> <strong class='reserved'>private</strong>:
+<a id='L168' name='L168' />  <em class='comment'>// Protects stop_work_ below.</em>
+<a id='L169' name='L169' />  <a href='../Y/534.html' title='Multiple used in 49 places.'>Mutex</a> <a href='../Y/3618.html' title='Multiple used in 12 places.'>mu_</a>;
+<a id='L170' name='L170' />  <em class='comment'>// Whether to stop work?</em>
+<a id='L171' name='L171' />  <strong class='reserved'>bool</strong> <a href='../Y/5108.html' title='Multiple used in 4 places.'>stop_work_</a>;
+<a id='L172' name='L172' />
+<a id='L173' name='L173' />  <em class='comment'>// Do work until asked to stop.</em>
+<a id='L174' name='L174' />  <strong class='reserved'>void</strong> <a href='../R/2183.html' title='Multiple refered from 14 places.'>Run</a>() <em class='brace'>{</em>
+<a id='L175' name='L175' />    <strong class='reserved'>while</strong> (!<a href='../S/651.html#L158' title='Defined at 158 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>stop_work</a>()) <em class='brace'>{</em>
+<a id='L176' name='L176' />    <em class='brace'>}</em>
+<a id='L177' name='L177' />    <em class='comment'>// If timers are separate, check that timer is enabled for this thread.</em>
+<a id='L178' name='L178' />    <a href='../S/529.html#L163' title='Defined at 163 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_TRUE</a>(!<a href='../Y/5386.html' title='Multiple used in 6 places.'>timer_separate_</a> || <a href='../S/651.html#L93' title='Defined at 93 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>IsTimerEnabled</a>());
+<a id='L179' name='L179' />  <em class='brace'>}</em>
+<a id='L180' name='L180' /><em class='brace'>}</em>;
+<a id='L181' name='L181' />
+<a id='L182' name='L182' /><strong class='reserved'>class</strong> <a href='../S/651.html#L245' title='Refered from 245 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>NullThread</a> : <strong class='reserved'>public</strong> <a href='../S/651.html#L40' title='Defined at 40 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>Thread</a> <em class='brace'>{</em>
+<a id='L183' name='L183' /> <strong class='reserved'>private</strong>:
+<a id='L184' name='L184' />  <strong class='reserved'>void</strong> <a href='../R/2183.html' title='Multiple refered from 14 places.'>Run</a>() <em class='brace'>{</em>
+<a id='L185' name='L185' />    <em class='comment'>// If timers are separate, check that timer is enabled for this thread.</em>
+<a id='L186' name='L186' />    <a href='../S/529.html#L163' title='Defined at 163 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_TRUE</a>(!<a href='../Y/5386.html' title='Multiple used in 6 places.'>timer_separate_</a> || <a href='../S/651.html#L93' title='Defined at 93 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>IsTimerEnabled</a>());
+<a id='L187' name='L187' />  <em class='brace'>}</em>
+<a id='L188' name='L188' /><em class='brace'>}</em>;
+<a id='L189' name='L189' />
+<a id='L190' name='L190' /><em class='comment'>// Signal handler which tracks the profile timer ticks.</em>
+<a id='L191' name='L191' /><strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/651.html#L364' title='Refered from 364 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>TickCounter</a>(<strong class='reserved'>int</strong> <a href='../Y/4841.html' title='Multiple used in 32 places.'>sig</a>, <a href='../Y/4856.html' title='Multiple used in 8 places.'>siginfo_t</a>* <a href='../Y/4843.html' title='Multiple used in 2 places.'>sig_info</a>, <strong class='reserved'>void</strong> *vuc,
+<a id='L192' name='L192' />                        <strong class='reserved'>void</strong>* <a href='../Y/5377.html' title='Multiple used in 8 places.'>tick_counter</a>) <em class='brace'>{</em>
+<a id='L193' name='L193' />  <strong class='reserved'>int</strong>* <a href='../Y/1877.html' title='Multiple used in 17 places.'>counter</a> = <strong class='reserved'>static_cast</strong>&lt;<strong class='reserved'>int</strong>*&gt;(<a href='../Y/5377.html' title='Multiple used in 8 places.'>tick_counter</a>);
+<a id='L194' name='L194' />  ++(*<a href='../Y/1877.html' title='Multiple used in 17 places.'>counter</a>);
+<a id='L195' name='L195' /><em class='brace'>}</em>
+<a id='L196' name='L196' />
+<a id='L197' name='L197' /><em class='comment'>// This class tests the profile-handler.h interface.</em>
+<a id='L198' name='L198' /><strong class='reserved'>class</strong> <a href='../R/2005.html' title='Multiple refered from 6 places.'>ProfileHandlerTest</a> <em class='brace'>{</em>
+<a id='L199' name='L199' /> <strong class='reserved'>protected</strong>:
+<a id='L200' name='L200' />
+<a id='L201' name='L201' />  <em class='comment'>// Determines whether threads have separate timers.</em>
+<a id='L202' name='L202' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../S/651.html#L396' title='Refered from 396 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>SetUpTestCase</a>() <em class='brace'>{</em>
+<a id='L203' name='L203' />    <a href='../Y/5387.html' title='Multiple used in 13 places.'>timer_type_</a> = (<a href='../Y/2538.html' title='Multiple used in 24 places.'>getenv</a>("CPUPROFILE_REALTIME") ? <a href='../Y/375.html' title='Multiple used in 3 places.'>ITIMER_REAL</a> : <a href='../Y/374.html' title='Multiple used in 7 places.'>ITIMER_PROF</a>);
+<a id='L204' name='L204' />    <a href='../Y/4861.html' title='Multiple used in 3 places.'>signal_number_</a> = (<a href='../Y/2538.html' title='Multiple used in 24 places.'>getenv</a>("CPUPROFILE_REALTIME") ? <a href='../Y/720.html' title='Multiple used in 4 places.'>SIGALRM</a> : <a href='../Y/725.html' title='Multiple used in 6 places.'>SIGPROF</a>);
+<a id='L205' name='L205' />
+<a id='L206' name='L206' />    <a href='../Y/5386.html' title='Multiple used in 6 places.'>timer_separate_</a> = <a href='../S/651.html#L122' title='Defined at 122 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>threads_have_separate_timers</a>();
+<a id='L207' name='L207' />    <a href='../S/651.html#L85' title='Defined at 85 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>Delay</a>(<a href='../Y/3117.html' title='Multiple used in 5 places.'>kTimerResetInterval</a>);
+<a id='L208' name='L208' />  <em class='brace'>}</em>
+<a id='L209' name='L209' />
+<a id='L210' name='L210' />  <em class='comment'>// Sets up the profile timers and SIGPROF/SIGALRM handler in a known state.</em>
+<a id='L211' name='L211' />  <em class='comment'>// It does the following:</em>
+<a id='L212' name='L212' />  <em class='comment'>// 1. Unregisters all the callbacks, stops the timer (if shared) and</em>
+<a id='L213' name='L213' />  <em class='comment'>//    clears out timer_sharing state in the ProfileHandler. This clears</em>
+<a id='L214' name='L214' />  <em class='comment'>//    out any state left behind by the previous test or during module</em>
+<a id='L215' name='L215' />  <em class='comment'>//    initialization when the test program was started.</em>
+<a id='L216' name='L216' />  <em class='comment'>// 2. Spawns two threads which will be registered with the ProfileHandler.</em>
+<a id='L217' name='L217' />  <em class='comment'>//    At this time ProfileHandler knows if the timers are shared.</em>
+<a id='L218' name='L218' />  <em class='comment'>// 3. Starts a busy worker thread to accumulate CPU usage.</em>
+<a id='L219' name='L219' />  <strong class='reserved'>virtual</strong> <strong class='reserved'>void</strong> <a href='../S/651.html#L390' title='Refered from 390 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>SetUp</a>() <em class='brace'>{</em>
+<a id='L220' name='L220' />    <em class='comment'>// Reset the state of ProfileHandler between each test. This unregisters</em>
+<a id='L221' name='L221' />    <em class='comment'>// all callbacks, stops timer (if shared) and clears timer sharing state.</em>
+<a id='L222' name='L222' />    <a href='../D/2238.html' title='Multiple defined in 2 places.'>ProfileHandlerReset</a>();
+<a id='L223' name='L223' />    <a href='../S/529.html#L150' title='Defined at 150 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_EQ</a>(0, <a href='../S/651.html#L279' title='Defined at 279 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>GetCallbackCount</a>());
+<a id='L224' name='L224' />    <a href='../S/651.html#L340' title='Defined at 340 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>VerifyDisabled</a>();
+<a id='L225' name='L225' />    <em class='comment'>// ProfileHandler requires at least two threads to be registerd to determine</em>
+<a id='L226' name='L226' />    <em class='comment'>// whether timers are shared.</em>
+<a id='L227' name='L227' />    <a href='../D/2397.html' title='Multiple defined in 2 places.'>RegisterThread</a>();
+<a id='L228' name='L228' />    <a href='../D/2397.html' title='Multiple defined in 2 places.'>RegisterThread</a>();
+<a id='L229' name='L229' />    <em class='comment'>// Now that two threads are started, verify that the signal handler is</em>
+<a id='L230' name='L230' />    <em class='comment'>// disabled and the timers are correctly enabled/disabled.</em>
+<a id='L231' name='L231' />    <a href='../S/651.html#L340' title='Defined at 340 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>VerifyDisabled</a>();
+<a id='L232' name='L232' />    <em class='comment'>// Start worker to accumulate cpu usage.</em>
+<a id='L233' name='L233' />    <a href='../S/651.html#L254' title='Defined at 254 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>StartWorker</a>();
+<a id='L234' name='L234' />  <em class='brace'>}</em>
+<a id='L235' name='L235' />
+<a id='L236' name='L236' />  <strong class='reserved'>virtual</strong> <strong class='reserved'>void</strong> <a href='../S/651.html#L392' title='Refered from 392 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>TearDown</a>() <em class='brace'>{</em>
+<a id='L237' name='L237' />    <a href='../D/2238.html' title='Multiple defined in 2 places.'>ProfileHandlerReset</a>();
+<a id='L238' name='L238' />    <em class='comment'>// Stops the worker thread.</em>
+<a id='L239' name='L239' />    <a href='../S/651.html#L264' title='Defined at 264 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>StopWorker</a>();
+<a id='L240' name='L240' />  <em class='brace'>}</em>
+<a id='L241' name='L241' />
+<a id='L242' name='L242' />  <em class='comment'>// Starts a no-op thread that gets registered with the ProfileHandler. Waits</em>
+<a id='L243' name='L243' />  <em class='comment'>// for the thread to stop.</em>
+<a id='L244' name='L244' />  <strong class='reserved'>void</strong> <a href='../R/2149.html' title='Multiple refered from 5 places.'>RegisterThread</a>() <em class='brace'>{</em>
+<a id='L245' name='L245' />    <a href='../S/651.html#L182' title='Defined at 182 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>NullThread</a> <a href='../Y/5268.html' title='Multiple used in 639 places.'>t</a>;
+<a id='L246' name='L246' />    <a href='../Y/5268.html' title='Multiple used in 639 places.'>t</a>.<a href='../S/651.html#L43' title='Defined at 43 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>SetJoinable</a>(<strong class='reserved'>true</strong>);
+<a id='L247' name='L247' />    <a href='../Y/5268.html' title='Multiple used in 639 places.'>t</a>.<a href='../D/2607.html' title='Multiple defined in 3 places.'>Start</a>();
+<a id='L248' name='L248' />    <a href='../Y/5268.html' title='Multiple used in 639 places.'>t</a>.<a href='../S/651.html#L52' title='Defined at 52 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>Join</a>();
+<a id='L249' name='L249' />  <em class='brace'>}</em>
+<a id='L250' name='L250' />
+<a id='L251' name='L251' />  <em class='comment'>// Starts a busy worker thread to accumulate cpu time. There should be only</em>
+<a id='L252' name='L252' />  <em class='comment'>// one busy worker running. This is required for the case where there are</em>
+<a id='L253' name='L253' />  <em class='comment'>// separate timers for each thread.</em>
+<a id='L254' name='L254' />  <strong class='reserved'>void</strong> <a href='../R/2342.html' title='Multiple refered from 2 places.'>StartWorker</a>() <em class='brace'>{</em>
+<a id='L255' name='L255' />    <a href='../Y/1687.html' title='Multiple used in 7 places.'>busy_worker_</a> = <strong class='reserved'>new</strong> <a href='../S/651.html#L152' title='Defined at 152 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>BusyThread</a>();
+<a id='L256' name='L256' />    <a href='../Y/1687.html' title='Multiple used in 7 places.'>busy_worker_</a>-&gt;<a href='../S/651.html#L43' title='Defined at 43 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>SetJoinable</a>(<strong class='reserved'>true</strong>);
+<a id='L257' name='L257' />    <a href='../Y/1687.html' title='Multiple used in 7 places.'>busy_worker_</a>-&gt;<a href='../D/2607.html' title='Multiple defined in 3 places.'>Start</a>();
+<a id='L258' name='L258' />    <em class='comment'>// Wait for worker to start up and register with the ProfileHandler.</em>
+<a id='L259' name='L259' />    <em class='comment'>// TODO(nabeelmian) This may not work under very heavy load.</em>
+<a id='L260' name='L260' />    <a href='../S/651.html#L85' title='Defined at 85 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>Delay</a>(<a href='../Y/3107.html' title='Multiple used in 5 places.'>kSleepInterval</a>);
+<a id='L261' name='L261' />  <em class='brace'>}</em>
+<a id='L262' name='L262' />
+<a id='L263' name='L263' />  <em class='comment'>// Stops the worker thread.</em>
+<a id='L264' name='L264' />  <strong class='reserved'>void</strong> <a href='../R/2351.html' title='Multiple refered from 2 places.'>StopWorker</a>() <em class='brace'>{</em>
+<a id='L265' name='L265' />    <a href='../Y/1687.html' title='Multiple used in 7 places.'>busy_worker_</a>-&gt;<a href='../S/651.html#L162' title='Defined at 162 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>set_stop_work</a>(<strong class='reserved'>true</strong>);
+<a id='L266' name='L266' />    <a href='../Y/1687.html' title='Multiple used in 7 places.'>busy_worker_</a>-&gt;<a href='../S/651.html#L52' title='Defined at 52 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>Join</a>();
+<a id='L267' name='L267' />    <strong class='reserved'>delete</strong> <a href='../Y/1687.html' title='Multiple used in 7 places.'>busy_worker_</a>;
+<a id='L268' name='L268' />  <em class='brace'>}</em>
+<a id='L269' name='L269' />
+<a id='L270' name='L270' />  <em class='comment'>// Checks whether SIGPROF/SIGALRM signal handler is enabled.</em>
+<a id='L271' name='L271' />  <strong class='reserved'>bool</strong> <a href='../R/1150.html' title='Multiple refered from 4 places.'>IsSignalEnabled</a>() <em class='brace'>{</em>
+<a id='L272' name='L272' />    <strong class='reserved'>struct</strong> <a href='../Y/4849.html' title='Multiple used in 12 places.'>sigaction</a> <a href='../Y/4703.html' title='Multiple used in 27 places.'>sa</a>;
+<a id='L273' name='L273' />    <a href='../S/529.html#L142' title='Defined at 142 in third_party/google-perftools-1.8.3/src/base/logging.h.'>CHECK_EQ</a>(<a href='../Y/4849.html' title='Multiple used in 12 places.'>sigaction</a>(<a href='../Y/4861.html' title='Multiple used in 3 places.'>signal_number_</a>, <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>, &amp;<a href='../Y/4703.html' title='Multiple used in 27 places.'>sa</a>), 0);
+<a id='L274' name='L274' />    <strong class='reserved'>return</strong> ((<a href='../Y/4703.html' title='Multiple used in 27 places.'>sa</a>.<a href='../Y/4707.html' title='Multiple used in 3 places.'>sa_handler</a> == <a href='../Y/731.html' title='Multiple used in 3 places.'>SIG_IGN</a>) || (<a href='../Y/4703.html' title='Multiple used in 27 places.'>sa</a>.<a href='../Y/4707.html' title='Multiple used in 3 places.'>sa_handler</a> == <a href='../Y/730.html' title='Multiple used in 2 places.'>SIG_DFL</a>)) ?
+<a id='L275' name='L275' />        <strong class='reserved'>false</strong> : <strong class='reserved'>true</strong>;
+<a id='L276' name='L276' />  <em class='brace'>}</em>
+<a id='L277' name='L277' />
+<a id='L278' name='L278' />  <em class='comment'>// Gets the number of callbacks registered with the ProfileHandler.</em>
+<a id='L279' name='L279' />  <a href='../S/516.html#L70' title='Defined at 70 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>uint32</a> <a href='../R/732.html' title='Multiple refered from 13 places.'>GetCallbackCount</a>() <em class='brace'>{</em>
+<a id='L280' name='L280' />    <a href='../S/597.html#L136' title='Defined at 136 in third_party/google-perftools-1.8.3/src/profile-handler.h.'>ProfileHandlerState</a> <a href='../Y/5063.html' title='Multiple used in 178 places.'>state</a>;
+<a id='L281' name='L281' />    <a href='../D/2235.html' title='Multiple defined in 2 places.'>ProfileHandlerGetState</a>(&amp;<a href='../Y/5063.html' title='Multiple used in 178 places.'>state</a>);
+<a id='L282' name='L282' />    <strong class='reserved'>return</strong> <a href='../Y/5063.html' title='Multiple used in 178 places.'>state</a>.<a href='../Y/1735.html' title='Multiple used in 3 places.'>callback_count</a>;
+<a id='L283' name='L283' />  <em class='brace'>}</em>
+<a id='L284' name='L284' />
+<a id='L285' name='L285' />  <em class='comment'>// Gets the current ProfileHandler interrupt count.</em>
+<a id='L286' name='L286' />  <a href='../S/516.html#L71' title='Defined at 71 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>uint64</a> <a href='../R/742.html' title='Multiple refered from 4 places.'>GetInterruptCount</a>() <em class='brace'>{</em>
+<a id='L287' name='L287' />    <a href='../S/597.html#L136' title='Defined at 136 in third_party/google-perftools-1.8.3/src/profile-handler.h.'>ProfileHandlerState</a> <a href='../Y/5063.html' title='Multiple used in 178 places.'>state</a>;
+<a id='L288' name='L288' />    <a href='../D/2235.html' title='Multiple defined in 2 places.'>ProfileHandlerGetState</a>(&amp;<a href='../Y/5063.html' title='Multiple used in 178 places.'>state</a>);
+<a id='L289' name='L289' />    <strong class='reserved'>return</strong> <a href='../Y/5063.html' title='Multiple used in 178 places.'>state</a>.<a href='../Y/2869.html' title='Multiple used in 3 places.'>interrupts</a>;
+<a id='L290' name='L290' />  <em class='brace'>}</em>
+<a id='L291' name='L291' />
+<a id='L292' name='L292' />  <em class='comment'>// Verifies that a callback is correctly registered and receiving</em>
+<a id='L293' name='L293' />  <em class='comment'>// profile ticks.</em>
+<a id='L294' name='L294' />  <strong class='reserved'>void</strong> <a href='../R/2653.html' title='Multiple refered from 7 places.'>VerifyRegistration</a>(<strong class='reserved'>const</strong> <strong class='reserved'>int</strong>&amp; <a href='../Y/5377.html' title='Multiple used in 8 places.'>tick_counter</a>) <em class='brace'>{</em>
+<a id='L295' name='L295' />    <em class='comment'>// Check the callback count.</em>
+<a id='L296' name='L296' />    <a href='../S/529.html#L155' title='Defined at 155 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_GT</a>(<a href='../S/651.html#L279' title='Defined at 279 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>GetCallbackCount</a>(), 0);
+<a id='L297' name='L297' />    <em class='comment'>// Check that the profile timer is enabled.</em>
+<a id='L298' name='L298' />    <a href='../S/529.html#L150' title='Defined at 150 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_EQ</a>(<a href='../Y/249.html' title='Multiple used in 5 places.'>FLAGS_test_profiler_enabled</a>, <a href='../S/651.html#L93' title='Defined at 93 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>IsTimerEnabled</a>());
+<a id='L299' name='L299' />    <em class='comment'>// Check that the signal handler is enabled.</em>
+<a id='L300' name='L300' />    <strong class='reserved'>if</strong> (<a href='../Y/250.html' title='Multiple used in 4 places.'>FLAGS_test_profiler_signal_handler</a>) <em class='brace'>{</em>
+<a id='L301' name='L301' />      <a href='../S/529.html#L150' title='Defined at 150 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_EQ</a>(<a href='../Y/249.html' title='Multiple used in 5 places.'>FLAGS_test_profiler_enabled</a>, <a href='../S/651.html#L271' title='Defined at 271 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>IsSignalEnabled</a>());
+<a id='L302' name='L302' />    <em class='brace'>}</em>
+<a id='L303' name='L303' />    <a href='../S/516.html#L71' title='Defined at 71 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>uint64</a> <a href='../Y/2872.html' title='Multiple used in 5 places.'>interrupts_before</a> = <a href='../S/651.html#L286' title='Defined at 286 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>GetInterruptCount</a>();
+<a id='L304' name='L304' />    <em class='comment'>// Sleep for a bit and check that tick counter is making progress.</em>
+<a id='L305' name='L305' />    <strong class='reserved'>int</strong> <a href='../Y/3954.html' title='Multiple used in 5 places.'>old_tick_count</a> = <a href='../Y/5377.html' title='Multiple used in 8 places.'>tick_counter</a>;
+<a id='L306' name='L306' />    <a href='../S/651.html#L85' title='Defined at 85 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>Delay</a>(<a href='../Y/3107.html' title='Multiple used in 5 places.'>kSleepInterval</a>);
+<a id='L307' name='L307' />    <strong class='reserved'>int</strong> <a href='../Y/3765.html' title='Multiple used in 5 places.'>new_tick_count</a> = <a href='../Y/5377.html' title='Multiple used in 8 places.'>tick_counter</a>;
+<a id='L308' name='L308' />    <a href='../S/516.html#L71' title='Defined at 71 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>uint64</a> <a href='../Y/2871.html' title='Multiple used in 5 places.'>interrupts_after</a> = <a href='../S/651.html#L286' title='Defined at 286 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>GetInterruptCount</a>();
+<a id='L309' name='L309' />    <strong class='reserved'>if</strong> (<a href='../Y/249.html' title='Multiple used in 5 places.'>FLAGS_test_profiler_enabled</a>) <em class='brace'>{</em>
+<a id='L310' name='L310' />      <a href='../S/529.html#L155' title='Defined at 155 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_GT</a>(<a href='../Y/3765.html' title='Multiple used in 5 places.'>new_tick_count</a>, <a href='../Y/3954.html' title='Multiple used in 5 places.'>old_tick_count</a>);
+<a id='L311' name='L311' />      <a href='../S/529.html#L155' title='Defined at 155 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_GT</a>(<a href='../Y/2871.html' title='Multiple used in 5 places.'>interrupts_after</a>, <a href='../Y/2872.html' title='Multiple used in 5 places.'>interrupts_before</a>);
+<a id='L312' name='L312' />    <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L313' name='L313' />      <a href='../S/529.html#L150' title='Defined at 150 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_EQ</a>(<a href='../Y/3765.html' title='Multiple used in 5 places.'>new_tick_count</a>, <a href='../Y/3954.html' title='Multiple used in 5 places.'>old_tick_count</a>);
+<a id='L314' name='L314' />      <a href='../S/529.html#L150' title='Defined at 150 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_EQ</a>(<a href='../Y/2871.html' title='Multiple used in 5 places.'>interrupts_after</a>, <a href='../Y/2872.html' title='Multiple used in 5 places.'>interrupts_before</a>);
+<a id='L315' name='L315' />    <em class='brace'>}</em>
+<a id='L316' name='L316' />  <em class='brace'>}</em>
+<a id='L317' name='L317' />
+<a id='L318' name='L318' />  <em class='comment'>// Verifies that a callback is not receiving profile ticks.</em>
+<a id='L319' name='L319' />  <strong class='reserved'>void</strong> <a href='../R/2654.html' title='Multiple refered from 5 places.'>VerifyUnregistration</a>(<strong class='reserved'>const</strong> <strong class='reserved'>int</strong>&amp; <a href='../Y/5377.html' title='Multiple used in 8 places.'>tick_counter</a>) <em class='brace'>{</em>
+<a id='L320' name='L320' />    <em class='comment'>// Sleep for a bit and check that tick counter is not making progress.</em>
+<a id='L321' name='L321' />    <strong class='reserved'>int</strong> <a href='../Y/3954.html' title='Multiple used in 5 places.'>old_tick_count</a> = <a href='../Y/5377.html' title='Multiple used in 8 places.'>tick_counter</a>;
+<a id='L322' name='L322' />    <a href='../S/651.html#L85' title='Defined at 85 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>Delay</a>(<a href='../Y/3107.html' title='Multiple used in 5 places.'>kSleepInterval</a>);
+<a id='L323' name='L323' />    <strong class='reserved'>int</strong> <a href='../Y/3765.html' title='Multiple used in 5 places.'>new_tick_count</a> = <a href='../Y/5377.html' title='Multiple used in 8 places.'>tick_counter</a>;
+<a id='L324' name='L324' />    <a href='../S/529.html#L150' title='Defined at 150 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_EQ</a>(<a href='../Y/3954.html' title='Multiple used in 5 places.'>old_tick_count</a>, <a href='../Y/3765.html' title='Multiple used in 5 places.'>new_tick_count</a>);
+<a id='L325' name='L325' />    <em class='comment'>// If no callbacks, signal handler and shared timer should be disabled.</em>
+<a id='L326' name='L326' />    <strong class='reserved'>if</strong> (<a href='../S/651.html#L279' title='Defined at 279 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>GetCallbackCount</a>() == 0) <em class='brace'>{</em>
+<a id='L327' name='L327' />      <strong class='reserved'>if</strong> (<a href='../Y/250.html' title='Multiple used in 4 places.'>FLAGS_test_profiler_signal_handler</a>) <em class='brace'>{</em>
+<a id='L328' name='L328' />        <a href='../S/529.html#L164' title='Defined at 164 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_FALSE</a>(<a href='../S/651.html#L271' title='Defined at 271 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>IsSignalEnabled</a>());
+<a id='L329' name='L329' />      <em class='brace'>}</em>
+<a id='L330' name='L330' />      <strong class='reserved'>if</strong> (<a href='../Y/5386.html' title='Multiple used in 6 places.'>timer_separate_</a>) <em class='brace'>{</em>
+<a id='L331' name='L331' />        <a href='../S/529.html#L163' title='Defined at 163 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_TRUE</a>(<a href='../S/651.html#L93' title='Defined at 93 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>IsTimerEnabled</a>());
+<a id='L332' name='L332' />      <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L333' name='L333' />        <a href='../S/529.html#L164' title='Defined at 164 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_FALSE</a>(<a href='../S/651.html#L93' title='Defined at 93 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>IsTimerEnabled</a>());
+<a id='L334' name='L334' />      <em class='brace'>}</em>
+<a id='L335' name='L335' />    <em class='brace'>}</em>
+<a id='L336' name='L336' />  <em class='brace'>}</em>
+<a id='L337' name='L337' />
+<a id='L338' name='L338' />  <em class='comment'>// Verifies that the SIGPROF/SIGALRM interrupt handler is disabled and the</em>
+<a id='L339' name='L339' />  <em class='comment'>// timer, if shared, is disabled. Expects the worker to be running.</em>
+<a id='L340' name='L340' />  <strong class='reserved'>void</strong> <a href='../R/2647.html' title='Multiple refered from 6 places.'>VerifyDisabled</a>() <em class='brace'>{</em>
+<a id='L341' name='L341' />    <em class='comment'>// Check that the signal handler is disabled.</em>
+<a id='L342' name='L342' />    <strong class='reserved'>if</strong> (<a href='../Y/250.html' title='Multiple used in 4 places.'>FLAGS_test_profiler_signal_handler</a>) <em class='brace'>{</em>
+<a id='L343' name='L343' />      <a href='../S/529.html#L164' title='Defined at 164 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_FALSE</a>(<a href='../S/651.html#L271' title='Defined at 271 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>IsSignalEnabled</a>());
+<a id='L344' name='L344' />    <em class='brace'>}</em>
+<a id='L345' name='L345' />    <em class='comment'>// Check that the callback count is 0.</em>
+<a id='L346' name='L346' />    <a href='../S/529.html#L150' title='Defined at 150 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_EQ</a>(0, <a href='../S/651.html#L279' title='Defined at 279 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>GetCallbackCount</a>());
+<a id='L347' name='L347' />    <em class='comment'>// Check that the timer is disabled if shared, enabled otherwise.</em>
+<a id='L348' name='L348' />    <strong class='reserved'>if</strong> (<a href='../Y/5386.html' title='Multiple used in 6 places.'>timer_separate_</a>) <em class='brace'>{</em>
+<a id='L349' name='L349' />      <a href='../S/529.html#L163' title='Defined at 163 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_TRUE</a>(<a href='../S/651.html#L93' title='Defined at 93 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>IsTimerEnabled</a>());
+<a id='L350' name='L350' />    <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L351' name='L351' />      <a href='../S/529.html#L164' title='Defined at 164 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_FALSE</a>(<a href='../S/651.html#L93' title='Defined at 93 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>IsTimerEnabled</a>());
+<a id='L352' name='L352' />    <em class='brace'>}</em>
+<a id='L353' name='L353' />    <em class='comment'>// Verify that the ProfileHandler is not accumulating profile ticks.</em>
+<a id='L354' name='L354' />    <a href='../S/516.html#L71' title='Defined at 71 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>uint64</a> <a href='../Y/2872.html' title='Multiple used in 5 places.'>interrupts_before</a> = <a href='../S/651.html#L286' title='Defined at 286 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>GetInterruptCount</a>();
+<a id='L355' name='L355' />    <a href='../S/651.html#L85' title='Defined at 85 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>Delay</a>(<a href='../Y/3107.html' title='Multiple used in 5 places.'>kSleepInterval</a>);
+<a id='L356' name='L356' />    <a href='../S/516.html#L71' title='Defined at 71 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>uint64</a> <a href='../Y/2871.html' title='Multiple used in 5 places.'>interrupts_after</a> = <a href='../S/651.html#L286' title='Defined at 286 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>GetInterruptCount</a>();
+<a id='L357' name='L357' />    <a href='../S/529.html#L150' title='Defined at 150 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_EQ</a>(<a href='../Y/2872.html' title='Multiple used in 5 places.'>interrupts_before</a>, <a href='../Y/2871.html' title='Multiple used in 5 places.'>interrupts_after</a>);
+<a id='L358' name='L358' />  <em class='brace'>}</em>
+<a id='L359' name='L359' />
+<a id='L360' name='L360' />  <em class='comment'>// Registers a callback and waits for kTimerResetInterval for timers to get</em>
+<a id='L361' name='L361' />  <em class='comment'>// reset.</em>
+<a id='L362' name='L362' />  <a href='../S/596.html#L59' title='Defined at 59 in third_party/google-perftools-1.8.3/src/profile-handler.cc.'>ProfileHandlerToken</a>* <a href='../R/2146.html' title='Multiple refered from 8 places.'>RegisterCallback</a>(<strong class='reserved'>void</strong>* <a href='../Y/1734.html' title='Multiple used in 13 places.'>callback_arg</a>) <em class='brace'>{</em>
+<a id='L363' name='L363' />    <a href='../S/596.html#L59' title='Defined at 59 in third_party/google-perftools-1.8.3/src/profile-handler.cc.'>ProfileHandlerToken</a>* <a href='../Y/5425.html' title='Multiple used in 16 places.'>token</a> = <a href='../D/2236.html' title='Multiple defined in 2 places.'>ProfileHandlerRegisterCallback</a>(
+<a id='L364' name='L364' />        <a href='../S/651.html#L191' title='Defined at 191 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>TickCounter</a>, <a href='../Y/1734.html' title='Multiple used in 13 places.'>callback_arg</a>);
+<a id='L365' name='L365' />    <a href='../S/651.html#L85' title='Defined at 85 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>Delay</a>(<a href='../Y/3117.html' title='Multiple used in 5 places.'>kTimerResetInterval</a>);
+<a id='L366' name='L366' />    <strong class='reserved'>return</strong> <a href='../Y/5425.html' title='Multiple used in 16 places.'>token</a>;
+<a id='L367' name='L367' />  <em class='brace'>}</em>
+<a id='L368' name='L368' />
+<a id='L369' name='L369' />  <em class='comment'>// Unregisters a callback and waits for kTimerResetInterval for timers to get</em>
+<a id='L370' name='L370' />  <em class='comment'>// reset.</em>
+<a id='L371' name='L371' />  <strong class='reserved'>void</strong> <a href='../R/2596.html' title='Multiple refered from 5 places.'>UnregisterCallback</a>(<a href='../S/596.html#L59' title='Defined at 59 in third_party/google-perftools-1.8.3/src/profile-handler.cc.'>ProfileHandlerToken</a>* <a href='../Y/5425.html' title='Multiple used in 16 places.'>token</a>) <em class='brace'>{</em>
+<a id='L372' name='L372' />    <a href='../D/2242.html' title='Multiple defined in 2 places.'>ProfileHandlerUnregisterCallback</a>(<a href='../Y/5425.html' title='Multiple used in 16 places.'>token</a>);
+<a id='L373' name='L373' />    <a href='../S/651.html#L85' title='Defined at 85 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>Delay</a>(<a href='../Y/3117.html' title='Multiple used in 5 places.'>kTimerResetInterval</a>);
+<a id='L374' name='L374' />  <em class='brace'>}</em>
+<a id='L375' name='L375' />
+<a id='L376' name='L376' />  <em class='comment'>// Busy worker thread to accumulate cpu usage.</em>
+<a id='L377' name='L377' />  <a href='../S/651.html#L152' title='Defined at 152 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>BusyThread</a>* <a href='../Y/1687.html' title='Multiple used in 7 places.'>busy_worker_</a>;
+<a id='L378' name='L378' />
+<a id='L379' name='L379' /> <strong class='reserved'>private</strong>:
+<a id='L380' name='L380' />  <em class='comment'>// The tests to run</em>
+<a id='L381' name='L381' />  <strong class='reserved'>void</strong> <a href='../Y/685.html' title='Multiple used in 3 places.'>RegisterUnregisterCallback</a>();
+<a id='L382' name='L382' />  <strong class='reserved'>void</strong> <a href='../Y/532.html' title='Multiple used in 3 places.'>MultipleCallbacks</a>();
+<a id='L383' name='L383' />  <strong class='reserved'>void</strong> <a href='../D/2420.html' title='Multiple defined in 2 places.'>Reset</a>();
+<a id='L384' name='L384' />  <strong class='reserved'>void</strong> <a href='../Y/684.html' title='Multiple used in 3 places.'>RegisterCallbackBeforeThread</a>();
+<a id='L385' name='L385' />
+<a id='L386' name='L386' /> <strong class='reserved'>public</strong>:
+<a id='L387' name='L387' /><em class='sharp'>#define</em> <a href='../R/2109.html' title='Multiple refered from 12 places.'>RUN</a>(<a href='../Y/5335.html' title='Multiple used in 6 places.'>test</a>)  <strong class='reserved'>do</strong> <em class='brace'>{</em>                         \
+<a id='L388' name='L388' />    <a href='../S/572.html#L176' title='Defined at 176 in third_party/google-perftools-1.8.3/src/internal_logging.cc.'>printf</a>("Running %s\n", #<a href='../Y/5335.html' title='Multiple used in 6 places.'>test</a>);              \
+<a id='L389' name='L389' />    <a href='../S/651.html#L198' title='Defined at 198 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>ProfileHandlerTest</a> <a href='../Y/4157.html' title='Multiple used in 4 places.'>pht</a>;                     \
+<a id='L390' name='L390' />    <a href='../Y/4157.html' title='Multiple used in 4 places.'>pht</a>.<a href='../S/651.html#L219' title='Defined at 219 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>SetUp</a>();                                \
+<a id='L391' name='L391' />    <a href='../Y/4157.html' title='Multiple used in 4 places.'>pht</a>.<a href='../Y/5335.html' title='Multiple used in 6 places.'>test</a>();                                 \
+<a id='L392' name='L392' />    <a href='../Y/4157.html' title='Multiple used in 4 places.'>pht</a>.<a href='../S/651.html#L236' title='Defined at 236 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>TearDown</a>();                             \
+<a id='L393' name='L393' /><em class='brace'>}</em> <strong class='reserved'>while</strong> (0)
+<a id='L394' name='L394' />
+<a id='L395' name='L395' />  <strong class='reserved'>static</strong> <strong class='reserved'>int</strong> <a href='../R/2112.html' title='Multiple refered from 5 places.'>RUN_ALL_TESTS</a>() <em class='brace'>{</em>
+<a id='L396' name='L396' />    <a href='../S/651.html#L202' title='Defined at 202 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>SetUpTestCase</a>();
+<a id='L397' name='L397' />    <a href='../D/2355.html' title='Multiple defined in 2 places.'>RUN</a>(<a href='../Y/685.html' title='Multiple used in 3 places.'>RegisterUnregisterCallback</a>);
+<a id='L398' name='L398' />    <a href='../D/2355.html' title='Multiple defined in 2 places.'>RUN</a>(<a href='../Y/532.html' title='Multiple used in 3 places.'>MultipleCallbacks</a>);
+<a id='L399' name='L399' />    <a href='../D/2355.html' title='Multiple defined in 2 places.'>RUN</a>(<a href='../D/2420.html' title='Multiple defined in 2 places.'>Reset</a>);
+<a id='L400' name='L400' />    <a href='../D/2355.html' title='Multiple defined in 2 places.'>RUN</a>(<a href='../Y/684.html' title='Multiple used in 3 places.'>RegisterCallbackBeforeThread</a>);
+<a id='L401' name='L401' />    <a href='../S/572.html#L176' title='Defined at 176 in third_party/google-perftools-1.8.3/src/internal_logging.cc.'>printf</a>("Done\n");
+<a id='L402' name='L402' />    <strong class='reserved'>return</strong> 0;
+<a id='L403' name='L403' />  <em class='brace'>}</em>
+<a id='L404' name='L404' /><em class='brace'>}</em>;
+<a id='L405' name='L405' />
+<a id='L406' name='L406' /><em class='comment'>// Verifies ProfileHandlerRegisterCallback and</em>
+<a id='L407' name='L407' /><em class='comment'>// ProfileHandlerUnregisterCallback.</em>
+<a id='L408' name='L408' />TEST_F(<a href='../S/651.html#L198' title='Defined at 198 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>ProfileHandlerTest</a>, <a href='../Y/685.html' title='Multiple used in 3 places.'>RegisterUnregisterCallback</a>) <em class='brace'>{</em>
+<a id='L409' name='L409' />  <strong class='reserved'>int</strong> <a href='../Y/5376.html' title='Multiple used in 7 places.'>tick_count</a> = 0;
+<a id='L410' name='L410' />  <a href='../S/596.html#L59' title='Defined at 59 in third_party/google-perftools-1.8.3/src/profile-handler.cc.'>ProfileHandlerToken</a>* <a href='../Y/5425.html' title='Multiple used in 16 places.'>token</a> = <a href='../D/2393.html' title='Multiple defined in 2 places.'>RegisterCallback</a>(&amp;<a href='../Y/5376.html' title='Multiple used in 7 places.'>tick_count</a>);
+<a id='L411' name='L411' />  <a href='../S/651.html#L294' title='Defined at 294 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>VerifyRegistration</a>(<a href='../Y/5376.html' title='Multiple used in 7 places.'>tick_count</a>);
+<a id='L412' name='L412' />  <a href='../D/2874.html' title='Multiple defined in 2 places.'>UnregisterCallback</a>(<a href='../Y/5425.html' title='Multiple used in 16 places.'>token</a>);
+<a id='L413' name='L413' />  <a href='../S/651.html#L319' title='Defined at 319 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>VerifyUnregistration</a>(<a href='../Y/5376.html' title='Multiple used in 7 places.'>tick_count</a>);
+<a id='L414' name='L414' /><em class='brace'>}</em>
+<a id='L415' name='L415' />
+<a id='L416' name='L416' /><em class='comment'>// Verifies that multiple callbacks can be registered.</em>
+<a id='L417' name='L417' />TEST_F(<a href='../S/651.html#L198' title='Defined at 198 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>ProfileHandlerTest</a>, <a href='../Y/532.html' title='Multiple used in 3 places.'>MultipleCallbacks</a>) <em class='brace'>{</em>
+<a id='L418' name='L418' />  <em class='comment'>// Register first callback.</em>
+<a id='L419' name='L419' />  <strong class='reserved'>int</strong> <a href='../Y/2384.html' title='Multiple used in 8 places.'>first_tick_count</a>;
+<a id='L420' name='L420' />  <a href='../S/596.html#L59' title='Defined at 59 in third_party/google-perftools-1.8.3/src/profile-handler.cc.'>ProfileHandlerToken</a>* <a href='../Y/5426.html' title='Multiple used in 2 places.'>token1</a> = <a href='../D/2393.html' title='Multiple defined in 2 places.'>RegisterCallback</a>(&amp;<a href='../Y/2384.html' title='Multiple used in 8 places.'>first_tick_count</a>);
+<a id='L421' name='L421' />  <em class='comment'>// Check that callback was registered correctly.</em>
+<a id='L422' name='L422' />  <a href='../S/651.html#L294' title='Defined at 294 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>VerifyRegistration</a>(<a href='../Y/2384.html' title='Multiple used in 8 places.'>first_tick_count</a>);
+<a id='L423' name='L423' />  <a href='../S/529.html#L150' title='Defined at 150 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_EQ</a>(1, <a href='../S/651.html#L279' title='Defined at 279 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>GetCallbackCount</a>());
+<a id='L424' name='L424' />
+<a id='L425' name='L425' />  <em class='comment'>// Register second callback.</em>
+<a id='L426' name='L426' />  <strong class='reserved'>int</strong> <a href='../Y/4758.html' title='Multiple used in 9 places.'>second_tick_count</a>;
+<a id='L427' name='L427' />  <a href='../S/596.html#L59' title='Defined at 59 in third_party/google-perftools-1.8.3/src/profile-handler.cc.'>ProfileHandlerToken</a>* <a href='../Y/5427.html' title='Multiple used in 2 places.'>token2</a> = <a href='../D/2393.html' title='Multiple defined in 2 places.'>RegisterCallback</a>(&amp;<a href='../Y/4758.html' title='Multiple used in 9 places.'>second_tick_count</a>);
+<a id='L428' name='L428' />  <em class='comment'>// Check that callback was registered correctly.</em>
+<a id='L429' name='L429' />  <a href='../S/651.html#L294' title='Defined at 294 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>VerifyRegistration</a>(<a href='../Y/4758.html' title='Multiple used in 9 places.'>second_tick_count</a>);
+<a id='L430' name='L430' />  <a href='../S/529.html#L150' title='Defined at 150 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_EQ</a>(2, <a href='../S/651.html#L279' title='Defined at 279 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>GetCallbackCount</a>());
+<a id='L431' name='L431' />
+<a id='L432' name='L432' />  <em class='comment'>// Unregister first callback.</em>
+<a id='L433' name='L433' />  <a href='../D/2874.html' title='Multiple defined in 2 places.'>UnregisterCallback</a>(<a href='../Y/5426.html' title='Multiple used in 2 places.'>token1</a>);
+<a id='L434' name='L434' />  <a href='../S/651.html#L319' title='Defined at 319 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>VerifyUnregistration</a>(<a href='../Y/2384.html' title='Multiple used in 8 places.'>first_tick_count</a>);
+<a id='L435' name='L435' />  <a href='../S/529.html#L150' title='Defined at 150 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_EQ</a>(1, <a href='../S/651.html#L279' title='Defined at 279 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>GetCallbackCount</a>());
+<a id='L436' name='L436' />  <em class='comment'>// Verify that second callback is still registered.</em>
+<a id='L437' name='L437' />  <a href='../S/651.html#L294' title='Defined at 294 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>VerifyRegistration</a>(<a href='../Y/4758.html' title='Multiple used in 9 places.'>second_tick_count</a>);
+<a id='L438' name='L438' />
+<a id='L439' name='L439' />  <em class='comment'>// Unregister second callback.</em>
+<a id='L440' name='L440' />  <a href='../D/2874.html' title='Multiple defined in 2 places.'>UnregisterCallback</a>(<a href='../Y/5427.html' title='Multiple used in 2 places.'>token2</a>);
+<a id='L441' name='L441' />  <a href='../S/651.html#L319' title='Defined at 319 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>VerifyUnregistration</a>(<a href='../Y/4758.html' title='Multiple used in 9 places.'>second_tick_count</a>);
+<a id='L442' name='L442' />  <a href='../S/529.html#L150' title='Defined at 150 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_EQ</a>(0, <a href='../S/651.html#L279' title='Defined at 279 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>GetCallbackCount</a>());
+<a id='L443' name='L443' />
+<a id='L444' name='L444' />  <em class='comment'>// Verify that the signal handler and timers are correctly disabled.</em>
+<a id='L445' name='L445' />  <a href='../S/651.html#L340' title='Defined at 340 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>VerifyDisabled</a>();
+<a id='L446' name='L446' /><em class='brace'>}</em>
+<a id='L447' name='L447' />
+<a id='L448' name='L448' /><em class='comment'>// Verifies ProfileHandlerReset</em>
+<a id='L449' name='L449' />TEST_F(<a href='../S/651.html#L198' title='Defined at 198 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>ProfileHandlerTest</a>, <a href='../D/2420.html' title='Multiple defined in 2 places.'>Reset</a>) <em class='brace'>{</em>
+<a id='L450' name='L450' />  <em class='comment'>// Verify that the profile timer interrupt is disabled.</em>
+<a id='L451' name='L451' />  <a href='../S/651.html#L340' title='Defined at 340 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>VerifyDisabled</a>();
+<a id='L452' name='L452' />  <strong class='reserved'>int</strong> <a href='../Y/2384.html' title='Multiple used in 8 places.'>first_tick_count</a>;
+<a id='L453' name='L453' />  <a href='../D/2393.html' title='Multiple defined in 2 places.'>RegisterCallback</a>(&amp;<a href='../Y/2384.html' title='Multiple used in 8 places.'>first_tick_count</a>);
+<a id='L454' name='L454' />  <a href='../S/651.html#L294' title='Defined at 294 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>VerifyRegistration</a>(<a href='../Y/2384.html' title='Multiple used in 8 places.'>first_tick_count</a>);
+<a id='L455' name='L455' />  <a href='../S/529.html#L150' title='Defined at 150 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_EQ</a>(1, <a href='../S/651.html#L279' title='Defined at 279 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>GetCallbackCount</a>());
+<a id='L456' name='L456' />
+<a id='L457' name='L457' />  <em class='comment'>// Register second callback.</em>
+<a id='L458' name='L458' />  <strong class='reserved'>int</strong> <a href='../Y/4758.html' title='Multiple used in 9 places.'>second_tick_count</a>;
+<a id='L459' name='L459' />  <a href='../D/2393.html' title='Multiple defined in 2 places.'>RegisterCallback</a>(&amp;<a href='../Y/4758.html' title='Multiple used in 9 places.'>second_tick_count</a>);
+<a id='L460' name='L460' />  <a href='../S/651.html#L294' title='Defined at 294 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>VerifyRegistration</a>(<a href='../Y/4758.html' title='Multiple used in 9 places.'>second_tick_count</a>);
+<a id='L461' name='L461' />  <a href='../S/529.html#L150' title='Defined at 150 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_EQ</a>(2, <a href='../S/651.html#L279' title='Defined at 279 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>GetCallbackCount</a>());
+<a id='L462' name='L462' />
+<a id='L463' name='L463' />  <em class='comment'>// Reset the profile handler and verify that callback were correctly</em>
+<a id='L464' name='L464' />  <em class='comment'>// unregistered and timer/signal are disabled.</em>
+<a id='L465' name='L465' />  <a href='../D/2238.html' title='Multiple defined in 2 places.'>ProfileHandlerReset</a>();
+<a id='L466' name='L466' />  <a href='../S/651.html#L319' title='Defined at 319 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>VerifyUnregistration</a>(<a href='../Y/2384.html' title='Multiple used in 8 places.'>first_tick_count</a>);
+<a id='L467' name='L467' />  <a href='../S/651.html#L319' title='Defined at 319 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>VerifyUnregistration</a>(<a href='../Y/4758.html' title='Multiple used in 9 places.'>second_tick_count</a>);
+<a id='L468' name='L468' />  <a href='../S/651.html#L340' title='Defined at 340 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>VerifyDisabled</a>();
+<a id='L469' name='L469' /><em class='brace'>}</em>
+<a id='L470' name='L470' />
+<a id='L471' name='L471' /><em class='comment'>// Verifies that ProfileHandler correctly handles a case where a callback was</em>
+<a id='L472' name='L472' /><em class='comment'>// registered before the second thread started.</em>
+<a id='L473' name='L473' />TEST_F(<a href='../S/651.html#L198' title='Defined at 198 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>ProfileHandlerTest</a>, <a href='../Y/684.html' title='Multiple used in 3 places.'>RegisterCallbackBeforeThread</a>) <em class='brace'>{</em>
+<a id='L474' name='L474' />  <em class='comment'>// Stop the worker.</em>
+<a id='L475' name='L475' />  <a href='../S/651.html#L264' title='Defined at 264 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>StopWorker</a>();
+<a id='L476' name='L476' />  <em class='comment'>// Unregister all existing callbacks, stop the timer (if shared), disable</em>
+<a id='L477' name='L477' />  <em class='comment'>// the signal handler and reset the timer sharing state in the Profile</em>
+<a id='L478' name='L478' />  <em class='comment'>// Handler.</em>
+<a id='L479' name='L479' />  <a href='../D/2238.html' title='Multiple defined in 2 places.'>ProfileHandlerReset</a>();
+<a id='L480' name='L480' />  <a href='../S/529.html#L150' title='Defined at 150 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_EQ</a>(0, <a href='../S/651.html#L279' title='Defined at 279 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>GetCallbackCount</a>());
+<a id='L481' name='L481' />  <a href='../S/651.html#L340' title='Defined at 340 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>VerifyDisabled</a>();
+<a id='L482' name='L482' />
+<a id='L483' name='L483' />  <em class='comment'>// Start the worker. At this time ProfileHandler doesn't know if timers are</em>
+<a id='L484' name='L484' />  <em class='comment'>// shared as only one thread has registered so far.</em>
+<a id='L485' name='L485' />  <a href='../S/651.html#L254' title='Defined at 254 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>StartWorker</a>();
+<a id='L486' name='L486' />  <em class='comment'>// Register a callback and check that profile ticks are being delivered.</em>
+<a id='L487' name='L487' />  <strong class='reserved'>int</strong> <a href='../Y/5376.html' title='Multiple used in 7 places.'>tick_count</a>;
+<a id='L488' name='L488' />  <a href='../D/2393.html' title='Multiple defined in 2 places.'>RegisterCallback</a>(&amp;<a href='../Y/5376.html' title='Multiple used in 7 places.'>tick_count</a>);
+<a id='L489' name='L489' />  <a href='../S/529.html#L150' title='Defined at 150 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_EQ</a>(1, <a href='../S/651.html#L279' title='Defined at 279 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>GetCallbackCount</a>());
+<a id='L490' name='L490' />  <a href='../S/651.html#L294' title='Defined at 294 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>VerifyRegistration</a>(<a href='../Y/5376.html' title='Multiple used in 7 places.'>tick_count</a>);
+<a id='L491' name='L491' />
+<a id='L492' name='L492' />  <em class='comment'>// Register a second thread and verify that timer and signal handler are</em>
+<a id='L493' name='L493' />  <em class='comment'>// correctly enabled.</em>
+<a id='L494' name='L494' />  <a href='../D/2397.html' title='Multiple defined in 2 places.'>RegisterThread</a>();
+<a id='L495' name='L495' />  <a href='../S/529.html#L150' title='Defined at 150 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_EQ</a>(1, <a href='../S/651.html#L279' title='Defined at 279 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>GetCallbackCount</a>());
+<a id='L496' name='L496' />  <a href='../S/529.html#L150' title='Defined at 150 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_EQ</a>(<a href='../Y/249.html' title='Multiple used in 5 places.'>FLAGS_test_profiler_enabled</a>, <a href='../S/651.html#L93' title='Defined at 93 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>IsTimerEnabled</a>());
+<a id='L497' name='L497' />  <strong class='reserved'>if</strong> (<a href='../Y/250.html' title='Multiple used in 4 places.'>FLAGS_test_profiler_signal_handler</a>) <em class='brace'>{</em>
+<a id='L498' name='L498' />    <a href='../S/529.html#L150' title='Defined at 150 in third_party/google-perftools-1.8.3/src/base/logging.h.'>EXPECT_EQ</a>(<a href='../Y/249.html' title='Multiple used in 5 places.'>FLAGS_test_profiler_enabled</a>, <a href='../S/651.html#L271' title='Defined at 271 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>IsSignalEnabled</a>());
+<a id='L499' name='L499' />  <em class='brace'>}</em>
+<a id='L500' name='L500' /><em class='brace'>}</em>
+<a id='L501' name='L501' />
+<a id='L502' name='L502' /><em class='brace'>}</em>  <em class='comment'>// namespace</em>
+<a id='L503' name='L503' />
+<a id='L504' name='L504' /><strong class='reserved'>int</strong> <a href='../S/557.html#L242' title='Refered from 242 in third_party/google-perftools-1.8.3/src/google/heap-checker.h.'>main</a>(<strong class='reserved'>int</strong> <a href='../Y/1497.html' title='Multiple used in 121 places.'>argc</a>, <strong class='reserved'>char</strong>** <a href='../Y/1503.html' title='Multiple used in 153 places.'>argv</a>) <em class='brace'>{</em>
+<a id='L505' name='L505' />  <strong class='reserved'>return</strong> <a href='../S/651.html#L198' title='Defined at 198 in third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc.'>ProfileHandlerTest</a>::<a href='../D/2358.html' title='Multiple defined in 5 places.'>RUN_ALL_TESTS</a>();
+<a id='L506' name='L506' /><em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;]<a href='#L43'>[^]</a><a href='#L504'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

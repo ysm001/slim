@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>RegionSet</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/588.html#L141'>RegionSet</a>         141 third_party/google-perftools-1.8.3/src/memory_region_map.cc MemoryRegionMap::RegionSet* MemoryRegionMap::regions_ = NULL;</span>
+<span class='curline'><a href='../S/588.html#L167'>RegionSet</a>         167 third_party/google-perftools-1.8.3/src/memory_region_map.cc   char rep[sizeof(RegionSet)];</span>
+<span class='curline'><a href='../S/588.html#L169'>RegionSet</a>         169 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RegionSet* region_set() { return reinterpret_cast&lt;RegionSet*&gt;(rep); }</span>
+<span class='curline'><a href='../S/588.html#L233'>RegionSet</a>         233 third_party/google-perftools-1.8.3/src/memory_region_map.cc   if (regions_) regions_-&gt;~RegionSet();</span>
+<span class='curline'><a href='../S/588.html#L301'>RegionSet</a>         301 third_party/google-perftools-1.8.3/src/memory_region_map.cc     RegionSet::iterator region = regions_-&gt;lower_bound(sample);</span>
+<span class='curline'><a href='../S/588.html#L354'>RegionSet</a>         354 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RegionSet::const_iterator i = regions_-&gt;lower_bound(region);</span>
+<span class='curline'><a href='../S/588.html#L428'>RegionSet</a>         428 third_party/google-perftools-1.8.3/src/memory_region_map.cc       new(regions_) RegionSet();</span>
+<span class='curline'><a href='../S/588.html#L519'>RegionSet</a>         519 third_party/google-perftools-1.8.3/src/memory_region_map.cc   for (RegionSet::iterator region = regions_-&gt;lower_bound(sample);</span>
+<span class='curline'><a href='../S/588.html#L530'>RegionSet</a>         530 third_party/google-perftools-1.8.3/src/memory_region_map.cc       RegionSet::iterator d = region;</span>
+<span class='curline'><a href='../S/588.html#L561'>RegionSet</a>         561 third_party/google-perftools-1.8.3/src/memory_region_map.cc       RegionSet::iterator d = region;</span>
+<span class='curline'><a href='../S/588.html#L638'>RegionSet</a>         638 third_party/google-perftools-1.8.3/src/memory_region_map.cc   for (RegionSet::const_iterator r = regions_-&gt;begin();</span>
+<span class='curline'><a href='../S/589.html#L243'>RegionSet</a>         243 third_party/google-perftools-1.8.3/src/memory_region_map.h   typedef RegionSet::const_iterator RegionIterator;</span>
+<span class='curline'><a href='../S/589.html#L277'>RegionSet</a>         277 third_party/google-perftools-1.8.3/src/memory_region_map.h   static RegionSet* regions_;</span>
+</pre>
+</body>
+</html>

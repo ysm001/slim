@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>src/utility/vector.h</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/733.html'>src</a>/<a href='../files/736.html'>utility</a>/vector.h</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L81'>[^]</a><a href='#L173'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/86.html' title='Multiple included from 30 places.'>INCLUDED FROM</a></h2>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L81' title='Defined at 81.'>vec_init</a></li>
+<li><a href='#L89' title='Defined at 89.'>vec_make</a></li>
+<li><a href='#L96' title='Defined at 96.'>vec_extend</a></li>
+<li><a href='#L102' title='Defined at 102.'>vec_push</a></li>
+<li><a href='#L111' title='Defined at 111.'>vec_reduce</a></li>
+<li><a href='#L117' title='Defined at 117.'>vec_pop</a></li>
+<li><a href='#L132' title='Defined at 132.'>vec_peek</a></li>
+<li><a href='#L137' title='Defined at 137.'>vec_set</a></li>
+<li><a href='#L143' title='Defined at 143.'>vec_get</a></li>
+<li><a href='#L148' title='Defined at 148.'>vec_last</a></li>
+<li><a href='#L154' title='Defined at 154.'>vec_clear</a></li>
+<li><a href='#L159' title='Defined at 159.'>vec_destroy</a></li>
+<li><a href='#L164' title='Defined at 164.'>vec_free</a></li>
+<li><a href='#L169' title='Defined at 169.'>vec_space_inner</a></li>
+<li><a href='#L173' title='Defined at 173.'>vec_space</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>/*</em>
+<a id='L2' name='L2' /><em class='comment'> * vector.h</em>
+<a id='L3' name='L3' /><em class='comment'> *</em>
+<a id='L4' name='L4' /><em class='comment'> *   Copyright (c) 2008, Ueda Laboratory LMNtal Group &lt;lmntal@ueda.info.waseda.ac.jp&gt;</em>
+<a id='L5' name='L5' /><em class='comment'> *   All rights reserved.</em>
+<a id='L6' name='L6' /><em class='comment'> *</em>
+<a id='L7' name='L7' /><em class='comment'> *   Redistribution and use in source and binary forms, with or without</em>
+<a id='L8' name='L8' /><em class='comment'> *   modification, are permitted provided that the following conditions are</em>
+<a id='L9' name='L9' /><em class='comment'> *   met:</em>
+<a id='L10' name='L10' /><em class='comment'> *</em>
+<a id='L11' name='L11' /><em class='comment'> *    1. Redistributions of source code must retain the above copyright</em>
+<a id='L12' name='L12' /><em class='comment'> *       notice, this list of conditions and the following disclaimer.</em>
+<a id='L13' name='L13' /><em class='comment'> *</em>
+<a id='L14' name='L14' /><em class='comment'> *    2. Redistributions in binary form must reproduce the above copyright</em>
+<a id='L15' name='L15' /><em class='comment'> *       notice, this list of conditions and the following disclaimer in</em>
+<a id='L16' name='L16' /><em class='comment'> *       the documentation and/or other materials provided with the</em>
+<a id='L17' name='L17' /><em class='comment'> *       distribution.</em>
+<a id='L18' name='L18' /><em class='comment'> *</em>
+<a id='L19' name='L19' /><em class='comment'> *    3. Neither the name of the Ueda Laboratory LMNtal Group nor the</em>
+<a id='L20' name='L20' /><em class='comment'> *       names of its contributors may be used to endorse or promote</em>
+<a id='L21' name='L21' /><em class='comment'> *       products derived from this software without specific prior</em>
+<a id='L22' name='L22' /><em class='comment'> *       written permission.</em>
+<a id='L23' name='L23' /><em class='comment'> *</em>
+<a id='L24' name='L24' /><em class='comment'> *   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L25' name='L25' /><em class='comment'> *   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L26' name='L26' /><em class='comment'> *   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L27' name='L27' /><em class='comment'> *   A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L28' name='L28' /><em class='comment'> *   OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L29' name='L29' /><em class='comment'> *   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L30' name='L30' /><em class='comment'> *   LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L31' name='L31' /><em class='comment'> *   DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L32' name='L32' /><em class='comment'> *   THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L33' name='L33' /><em class='comment'> *   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L34' name='L34' /><em class='comment'> *   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L35' name='L35' /><em class='comment'> *</em>
+<a id='L36' name='L36' /><em class='comment'> * $Id: vector.h,v 1.9 2008/09/19 05:18:17 taisuke Exp $</em>
+<a id='L37' name='L37' /><em class='comment'> */</em>
+<a id='L38' name='L38' />
+<a id='L39' name='L39' /><em class='sharp'>#ifndef</em> <a href='../S/409.html#L40' title='Defined at 40 in src/utility/vector.h.'>LMN_VECTOR_H</a>
+<a id='L40' name='L40' /><em class='sharp'>#define</em> <a href='../S/409.html#L39' title='Refered from 39 in src/utility/vector.h.'>LMN_VECTOR_H</a>
+<a id='L41' name='L41' />
+<a id='L42' name='L42' /><em class='sharp'>#include</em> "<a href='347.html'>lmntal.h</a>"
+<a id='L43' name='L43' />
+<a id='L44' name='L44' /><strong class='reserved'>struct</strong> <a href='../R/2644.html' title='Multiple refered from 458 places.'>Vector</a> <em class='brace'>{</em>
+<a id='L45' name='L45' />  <a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a>* <a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>;
+<a id='L46' name='L46' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/3856.html' title='Multiple used in 168 places.'>num</a>, <a href='../Y/1745.html' title='Multiple used in 127 places.'>cap</a>;
+<a id='L47' name='L47' /><em class='brace'>}</em>;
+<a id='L48' name='L48' />
+<a id='L49' name='L49' />
+<a id='L50' name='L50' /><strong class='reserved'>typedef</strong> <strong class='reserved'>struct</strong> <a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../S/409.html#L50' title='Defined at 50 in src/utility/vector.h.'>PVector</a>;
+<a id='L51' name='L51' /><strong class='reserved'>typedef</strong> <a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a> <a href='../R/5080.html' title='Multiple refered from 139 places.'>vec_data_t</a>;
+<a id='L52' name='L52' />
+<a id='L53' name='L53' /><em class='sharp'>#define</em> <a href='../R/5075.html' title='Multiple refered from 7 places.'>vec_cap</a>(<a href='../D/2879.html' title='Multiple defined in 2 places.'>V</a>)      ((<a href='../D/2879.html' title='Multiple defined in 2 places.'>V</a>)-&gt;<a href='../Y/1745.html' title='Multiple used in 127 places.'>cap</a>)
+<a id='L54' name='L54' /><em class='sharp'>#define</em> <a href='../R/5090.html' title='Multiple refered from 236 places.'>vec_num</a>(<a href='../D/2879.html' title='Multiple defined in 2 places.'>V</a>)      ((<a href='../D/2879.html' title='Multiple defined in 2 places.'>V</a>)-&gt;<a href='../Y/3856.html' title='Multiple used in 168 places.'>num</a>)
+<a id='L55' name='L55' /><em class='sharp'>#define</em> <a href='../R/5087.html' title='Multiple refered from 21 places.'>vec_is_empty</a>(<a href='../D/2879.html' title='Multiple defined in 2 places.'>V</a>) ((<a href='../D/2879.html' title='Multiple defined in 2 places.'>V</a>)-&gt;<a href='../Y/3856.html' title='Multiple used in 168 places.'>num</a> == 0)
+<a id='L56' name='L56' />
+<a id='L57' name='L57' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../S/409.html#L81' title='Defined at 81 in src/utility/vector.h.'>vec_init</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>, <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/2812.html' title='Multiple used in 32 places.'>init_size</a>);
+<a id='L58' name='L58' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../S/409.html#L89' title='Defined at 89 in src/utility/vector.h.'>vec_make</a>(<strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/2812.html' title='Multiple used in 32 places.'>init_size</a>);
+<a id='L59' name='L59' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong>    <a href='../S/409.html#L102' title='Defined at 102 in src/utility/vector.h.'>vec_push</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>, <a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a> <a href='../Y/3146.html' title='Multiple used in 18 places.'>keyp</a>);
+<a id='L60' name='L60' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a> <a href='../S/409.html#L117' title='Defined at 117 in src/utility/vector.h.'>vec_pop</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>);
+<a id='L61' name='L61' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a> <a href='../S/409.html#L132' title='Defined at 132 in src/utility/vector.h.'>vec_peek</a>(<strong class='reserved'>const</strong> <a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>);
+<a id='L62' name='L62' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong>    <a href='../S/409.html#L137' title='Defined at 137 in src/utility/vector.h.'>vec_set</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>, <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/2798.html' title='Multiple used in 87 places.'>index</a>, <a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a> <a href='../Y/3146.html' title='Multiple used in 18 places.'>keyp</a>);
+<a id='L63' name='L63' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a> <a href='../S/409.html#L143' title='Defined at 143 in src/utility/vector.h.'>vec_get</a>(<strong class='reserved'>const</strong> <a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>, <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/2798.html' title='Multiple used in 87 places.'>index</a>);
+<a id='L64' name='L64' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a> <a href='../S/409.html#L148' title='Defined at 148 in src/utility/vector.h.'>vec_last</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>);
+<a id='L65' name='L65' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong>    <a href='../S/409.html#L154' title='Defined at 154 in src/utility/vector.h.'>vec_clear</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>);
+<a id='L66' name='L66' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong>    <a href='../S/409.html#L159' title='Defined at 159 in src/utility/vector.h.'>vec_destroy</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>);
+<a id='L67' name='L67' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong>    <a href='../S/409.html#L164' title='Defined at 164 in src/utility/vector.h.'>vec_free</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>);
+<a id='L68' name='L68' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../S/409.html#L173' title='Defined at 173 in src/utility/vector.h.'>vec_space</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>);
+<a id='L69' name='L69' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../S/409.html#L169' title='Defined at 169 in src/utility/vector.h.'>vec_space_inner</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>);
+<a id='L70' name='L70' />
+<a id='L71' name='L71' /><a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a> <a href='../S/408.html#L42' title='Defined at 42 in src/utility/vector.c.'>vec_pop_n</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>, <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>);
+<a id='L72' name='L72' /><a href='../S/347.html#L62' title='Defined at 62 in src/lmntal.h.'>BOOL</a>    <a href='../S/408.html#L61' title='Defined at 61 in src/utility/vector.c.'>vec_contains</a>(<strong class='reserved'>const</strong> <a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>, <a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a> <a href='../Y/3146.html' title='Multiple used in 18 places.'>keyp</a>);
+<a id='L73' name='L73' /><a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../S/408.html#L110' title='Defined at 110 in src/utility/vector.c.'>vec_copy</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>);
+<a id='L74' name='L74' /><strong class='reserved'>void</strong>    <a href='../S/408.html#L94' title='Defined at 94 in src/utility/vector.c.'>vec_reverse</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>);
+<a id='L75' name='L75' /><strong class='reserved'>void</strong>    <a href='../S/408.html#L72' title='Defined at 72 in src/utility/vector.c.'>vec_resize</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>, <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>, <a href='../S/409.html#L51' title='Defined at 51 in src/utility/vector.h.'>vec_data_t</a> <a href='../Y/5595.html' title='Multiple used in 35 places.'>val</a>);
+<a id='L76' name='L76' /><strong class='reserved'>void</strong>    <a href='../S/408.html#L87' title='Defined at 87 in src/utility/vector.c.'>vec_sort</a>(<strong class='reserved'>const</strong> <a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>,
+<a id='L77' name='L77' />                 <strong class='reserved'>int</strong> (*<a href='../Y/1839.html' title='Multiple used in 8 places.'>compare</a>)(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>*, <strong class='reserved'>const</strong> <strong class='reserved'>void</strong>*));
+<a id='L78' name='L78' />
+<a id='L79' name='L79' />
+<a id='L80' name='L80' /><em class='comment'>/* init */</em>
+<a id='L81' name='L81' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../R/5085.html' title='Multiple refered from 58 places.'>vec_init</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>, <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/2812.html' title='Multiple used in 32 places.'>init_size</a>) <em class='brace'>{</em>
+<a id='L82' name='L82' />  <a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a> = <a href='../S/347.html#L216' title='Defined at 216 in src/lmntal.h.'>LMN_NALLOC</a>(<a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a>, <a href='../Y/2812.html' title='Multiple used in 32 places.'>init_size</a>);
+<a id='L83' name='L83' />  <a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/3856.html' title='Multiple used in 168 places.'>num</a> = 0;
+<a id='L84' name='L84' />  <a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/1745.html' title='Multiple used in 127 places.'>cap</a> = <a href='../Y/2812.html' title='Multiple used in 32 places.'>init_size</a>;
+<a id='L85' name='L85' />  <strong class='reserved'>return</strong> <a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>;
+<a id='L86' name='L86' /><em class='brace'>}</em>
+<a id='L87' name='L87' />
+<a id='L88' name='L88' /><em class='comment'>/* make */</em>
+<a id='L89' name='L89' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../R/5089.html' title='Multiple refered from 80 places.'>vec_make</a>(<strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/2812.html' title='Multiple used in 32 places.'>init_size</a>) <em class='brace'>{</em>
+<a id='L90' name='L90' />  <a href='../D/1415.html' title='Multiple defined in 2 places.'>LMN_ASSERT</a>(<a href='../Y/2812.html' title='Multiple used in 32 places.'>init_size</a> &gt; 0);
+<a id='L91' name='L91' />  <a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a>* <a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a> = <a href='../S/347.html#L218' title='Defined at 218 in src/lmntal.h.'>LMN_MALLOC</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a>);
+<a id='L92' name='L92' />  <strong class='reserved'>return</strong> <a href='../S/409.html#L81' title='Defined at 81 in src/utility/vector.h.'>vec_init</a>(<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>, <a href='../Y/2812.html' title='Multiple used in 32 places.'>init_size</a>);
+<a id='L93' name='L93' /><em class='brace'>}</em>
+<a id='L94' name='L94' />
+<a id='L95' name='L95' /><em class='comment'>/* extend (static) */</em>
+<a id='L96' name='L96' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../R/5082.html' title='Multiple refered from 2 places.'>vec_extend</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>) <em class='brace'>{</em>
+<a id='L97' name='L97' />  <a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/1745.html' title='Multiple used in 127 places.'>cap</a> *= 2;
+<a id='L98' name='L98' />  <a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a> = <a href='../S/347.html#L219' title='Defined at 219 in src/lmntal.h.'>LMN_REALLOC</a>(<a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a>, <a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>, <a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/1745.html' title='Multiple used in 127 places.'>cap</a>);
+<a id='L99' name='L99' /><em class='brace'>}</em>
+<a id='L100' name='L100' />
+<a id='L101' name='L101' /><em class='comment'>/* push */</em>
+<a id='L102' name='L102' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../R/5094.html' title='Multiple refered from 187 places.'>vec_push</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>, <a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a> <a href='../Y/3146.html' title='Multiple used in 18 places.'>keyp</a>) <em class='brace'>{</em>
+<a id='L103' name='L103' />  <strong class='reserved'>if</strong>(<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/3856.html' title='Multiple used in 168 places.'>num</a> == <a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/1745.html' title='Multiple used in 127 places.'>cap</a>) <em class='brace'>{</em>
+<a id='L104' name='L104' />    <a href='../S/409.html#L96' title='Defined at 96 in src/utility/vector.h.'>vec_extend</a>(<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>);
+<a id='L105' name='L105' />  <em class='brace'>}</em>
+<a id='L106' name='L106' />  (<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>)[<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/3856.html' title='Multiple used in 168 places.'>num</a>] = <a href='../Y/3146.html' title='Multiple used in 18 places.'>keyp</a>;
+<a id='L107' name='L107' />  <a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/3856.html' title='Multiple used in 168 places.'>num</a>++;
+<a id='L108' name='L108' /><em class='brace'>}</em>
+<a id='L109' name='L109' />
+<a id='L110' name='L110' /><em class='comment'>/* reduce (static) */</em>
+<a id='L111' name='L111' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../R/5095.html' title='Multiple refered from 2 places.'>vec_reduce</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>) <em class='brace'>{</em>
+<a id='L112' name='L112' />  <a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/1745.html' title='Multiple used in 127 places.'>cap</a> /= 2;
+<a id='L113' name='L113' />  <a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a> = <a href='../S/347.html#L219' title='Defined at 219 in src/lmntal.h.'>LMN_REALLOC</a>(<a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a>, <a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>, <a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/1745.html' title='Multiple used in 127 places.'>cap</a>);
+<a id='L114' name='L114' /><em class='brace'>}</em>
+<a id='L115' name='L115' />
+<a id='L116' name='L116' /><em class='comment'>/* pop */</em>
+<a id='L117' name='L117' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a> <a href='../R/5092.html' title='Multiple refered from 34 places.'>vec_pop</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>) <em class='brace'>{</em>
+<a id='L118' name='L118' />  <a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a> <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a>;
+<a id='L119' name='L119' />  <a href='../D/1415.html' title='Multiple defined in 2 places.'>LMN_ASSERT</a>(<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/3856.html' title='Multiple used in 168 places.'>num</a> &gt; 0);
+<a id='L120' name='L120' />  <em class='comment'>/* Stackとして利用する場合, reallocが頻繁に発生してしまう.</em>
+<a id='L121' name='L121' /><em class='comment'>   * Stackなのでサイズの増減は頻繁に発生するものだが, 頻繁なreallocはパフォーマンスに影響する.</em>
+<a id='L122' name='L122' /><em class='comment'>   * &gt;&gt;とりあえず&lt;&lt; サイズの下限値を設ける. LmnStackなる構造を別に作るべきかも. (gocho) */</em>
+<a id='L123' name='L123' />  <strong class='reserved'>if</strong> (<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/3856.html' title='Multiple used in 168 places.'>num</a> &lt;= <a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/1745.html' title='Multiple used in 127 places.'>cap</a>/2 &amp;&amp; <a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/1745.html' title='Multiple used in 127 places.'>cap</a> &gt; 1024) <em class='brace'>{</em>
+<a id='L124' name='L124' />    <a href='../S/409.html#L111' title='Defined at 111 in src/utility/vector.h.'>vec_reduce</a>(<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>);
+<a id='L125' name='L125' />  <em class='brace'>}</em>
+<a id='L126' name='L126' />  <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a> = <a href='../S/409.html#L143' title='Defined at 143 in src/utility/vector.h.'>vec_get</a>(<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>, (<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/3856.html' title='Multiple used in 168 places.'>num</a>-1));
+<a id='L127' name='L127' />  <a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/3856.html' title='Multiple used in 168 places.'>num</a>--;
+<a id='L128' name='L128' />  <strong class='reserved'>return</strong> <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a>;
+<a id='L129' name='L129' /><em class='brace'>}</em>
+<a id='L130' name='L130' />
+<a id='L131' name='L131' /><em class='comment'>/* peek */</em>
+<a id='L132' name='L132' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a> <a href='../R/5091.html' title='Multiple refered from 9 places.'>vec_peek</a>(<strong class='reserved'>const</strong> <a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>) <em class='brace'>{</em>
+<a id='L133' name='L133' />  <strong class='reserved'>return</strong> <a href='../S/409.html#L143' title='Defined at 143 in src/utility/vector.h.'>vec_get</a>(<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>, <a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/3856.html' title='Multiple used in 168 places.'>num</a> - 1);
+<a id='L134' name='L134' /><em class='brace'>}</em>
+<a id='L135' name='L135' />
+<a id='L136' name='L136' /><em class='comment'>/* set */</em>
+<a id='L137' name='L137' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../R/5098.html' title='Multiple refered from 18 places.'>vec_set</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>, <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/2798.html' title='Multiple used in 87 places.'>index</a>, <a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a> <a href='../Y/3146.html' title='Multiple used in 18 places.'>keyp</a>) <em class='brace'>{</em>
+<a id='L138' name='L138' />  <a href='../D/1415.html' title='Multiple defined in 2 places.'>LMN_ASSERT</a>(<a href='../Y/2798.html' title='Multiple used in 87 places.'>index</a> &lt; <a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/1745.html' title='Multiple used in 127 places.'>cap</a>);
+<a id='L139' name='L139' />  (<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>)[<a href='../Y/2798.html' title='Multiple used in 87 places.'>index</a>] = <a href='../Y/3146.html' title='Multiple used in 18 places.'>keyp</a>;
+<a id='L140' name='L140' /><em class='brace'>}</em>
+<a id='L141' name='L141' />
+<a id='L142' name='L142' /><em class='comment'>/* get */</em>
+<a id='L143' name='L143' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a> <a href='../R/5084.html' title='Multiple refered from 262 places.'>vec_get</a>(<strong class='reserved'>const</strong> <a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>, <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/2798.html' title='Multiple used in 87 places.'>index</a>) <em class='brace'>{</em>
+<a id='L144' name='L144' />  <a href='../D/1415.html' title='Multiple defined in 2 places.'>LMN_ASSERT</a>(<a href='../Y/2798.html' title='Multiple used in 87 places.'>index</a> &lt; <a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/3856.html' title='Multiple used in 168 places.'>num</a>);
+<a id='L145' name='L145' />  <strong class='reserved'>return</strong>(<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>[<a href='../Y/2798.html' title='Multiple used in 87 places.'>index</a>]);
+<a id='L146' name='L146' /><em class='brace'>}</em>
+<a id='L147' name='L147' />
+<a id='L148' name='L148' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a> <a href='../R/5088.html' title='Multiple refered from 4 places.'>vec_last</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>)
+<a id='L149' name='L149' /><em class='brace'>{</em>
+<a id='L150' name='L150' />  <strong class='reserved'>return</strong> <a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>[<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/3856.html' title='Multiple used in 168 places.'>num</a>-1];
+<a id='L151' name='L151' /><em class='brace'>}</em>
+<a id='L152' name='L152' />
+<a id='L153' name='L153' /><em class='comment'>/* pop all elements from vec */</em>
+<a id='L154' name='L154' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../R/5076.html' title='Multiple refered from 37 places.'>vec_clear</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>) <em class='brace'>{</em>
+<a id='L155' name='L155' />  <a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/3856.html' title='Multiple used in 168 places.'>num</a> = 0;
+<a id='L156' name='L156' /><em class='brace'>}</em>
+<a id='L157' name='L157' />
+<a id='L158' name='L158' /><em class='comment'>/* destroy */</em>
+<a id='L159' name='L159' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../R/5081.html' title='Multiple refered from 57 places.'>vec_destroy</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>) <em class='brace'>{</em>
+<a id='L160' name='L160' />  <a href='../S/347.html#L220' title='Defined at 220 in src/lmntal.h.'>LMN_FREE</a>(<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>);
+<a id='L161' name='L161' /><em class='brace'>}</em>
+<a id='L162' name='L162' />
+<a id='L163' name='L163' /><em class='comment'>/* free */</em>
+<a id='L164' name='L164' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../R/5083.html' title='Multiple refered from 77 places.'>vec_free</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>) <em class='brace'>{</em>
+<a id='L165' name='L165' />  <a href='../S/347.html#L220' title='Defined at 220 in src/lmntal.h.'>LMN_FREE</a>(<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>-&gt;<a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>);
+<a id='L166' name='L166' />  <a href='../S/347.html#L220' title='Defined at 220 in src/lmntal.h.'>LMN_FREE</a>(<a href='../Y/5618.html' title='Multiple used in 127 places.'>vec</a>);
+<a id='L167' name='L167' /><em class='brace'>}</em>
+<a id='L168' name='L168' />
+<a id='L169' name='L169' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../R/5101.html' title='Multiple refered from 4 places.'>vec_space_inner</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>) <em class='brace'>{</em>
+<a id='L170' name='L170' />  <strong class='reserved'>return</strong> <a href='../S/409.html#L53' title='Defined at 53 in src/utility/vector.h.'>vec_cap</a>(<a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>) * <strong class='reserved'>sizeof</strong>(<a href='../S/409.html#L51' title='Defined at 51 in src/utility/vector.h.'>vec_data_t</a>);
+<a id='L171' name='L171' /><em class='brace'>}</em>
+<a id='L172' name='L172' />
+<a id='L173' name='L173' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../R/5100.html' title='Multiple refered from 3 places.'>vec_space</a>(<a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>) <em class='brace'>{</em>
+<a id='L174' name='L174' />  <strong class='reserved'>return</strong> <strong class='reserved'>sizeof</strong>(<strong class='reserved'>struct</strong> <a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a>) + <a href='../S/409.html#L169' title='Defined at 169 in src/utility/vector.h.'>vec_space_inner</a>(<a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>);
+<a id='L175' name='L175' /><em class='brace'>}</em>
+<a id='L176' name='L176' />
+<a id='L177' name='L177' /><em class='sharp'>#endif</em> <em class='comment'>/* LMN_VECTOR_H */</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;]<a href='#L81'>[^]</a><a href='#L173'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

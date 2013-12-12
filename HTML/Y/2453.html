@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>free_deltas</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/419.html#L372'>free_deltas</a>       372 src/verifier/dpor.c   d-&gt;free_deltas = vec_make(32);</span>
+<span class='curline'><a href='../S/419.html#L385'>free_deltas</a>       385 src/verifier/dpor.c   for (i = 0; i &lt; vec_num(d-&gt;free_deltas); i++) {</span>
+<span class='curline'><a href='../S/419.html#L386'>free_deltas</a>       386 src/verifier/dpor.c     MemDeltaRoot *delt = (MemDeltaRoot *)vec_get(d-&gt;free_deltas, i);</span>
+<span class='curline'><a href='../S/419.html#L389'>free_deltas</a>       389 src/verifier/dpor.c   vec_free(d-&gt;free_deltas);</span>
+<span class='curline'><a href='../S/419.html#L402'>free_deltas</a>       402 src/verifier/dpor.c   while (!vec_is_empty(d-&gt;free_deltas)) {</span>
+<span class='curline'><a href='../S/419.html#L403'>free_deltas</a>       403 src/verifier/dpor.c     MemDeltaRoot *delt = (MemDeltaRoot *)vec_pop(d-&gt;free_deltas);</span>
+<span class='curline'><a href='../S/419.html#L409'>free_deltas</a>       409 src/verifier/dpor.c   vec_clear(d-&gt;free_deltas);</span>
+<span class='curline'><a href='../S/419.html#L764'>free_deltas</a>       764 src/verifier/dpor.c     vec_push(mc-&gt;free_deltas, (vec_data_t)d);</span>
+<span class='curline'><a href='../S/420.html#L68'>free_deltas</a>        68 src/verifier/dpor.h   Vector *free_deltas;    /* ゴミ置き場 */</span>
+</pre>
+</body>
+</html>

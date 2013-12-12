@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>src/ext/initial_ruleset.c</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/733.html'>src</a>/<a href='../files/734.html'>ext</a>/initial_ruleset.c</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L54'>[^]</a><a href='#L112'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L54' title='Defined at 54.'>register_initial_rulesets</a></li>
+<li><a href='#L92' title='Defined at 92.'>register_initial_module</a></li>
+<li><a href='#L112' title='Defined at 112.'>init_initial_ruleset</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>/*</em>
+<a id='L2' name='L2' /><em class='comment'> * initial_ruleset.c</em>
+<a id='L3' name='L3' /><em class='comment'> *</em>
+<a id='L4' name='L4' /><em class='comment'> *   Copyright (c) 2008, Ueda Laboratory LMNtal Group</em>
+<a id='L5' name='L5' /><em class='comment'> *                                         &lt;lmntal@ueda.info.waseda.ac.jp&gt;</em>
+<a id='L6' name='L6' /><em class='comment'> *   All rights reserved.</em>
+<a id='L7' name='L7' /><em class='comment'> *</em>
+<a id='L8' name='L8' /><em class='comment'> *   Redistribution and use in source and binary forms, with or without</em>
+<a id='L9' name='L9' /><em class='comment'> *   modification, are permitted provided that the following conditions are</em>
+<a id='L10' name='L10' /><em class='comment'> *   met:</em>
+<a id='L11' name='L11' /><em class='comment'> *</em>
+<a id='L12' name='L12' /><em class='comment'> *    1. Redistributions of source code must retain the above copyright</em>
+<a id='L13' name='L13' /><em class='comment'> *       notice, this list of conditions and the following disclaimer.</em>
+<a id='L14' name='L14' /><em class='comment'> *</em>
+<a id='L15' name='L15' /><em class='comment'> *    2. Redistributions in binary form must reproduce the above copyright</em>
+<a id='L16' name='L16' /><em class='comment'> *       notice, this list of conditions and the following disclaimer in</em>
+<a id='L17' name='L17' /><em class='comment'> *       the documentation and/or other materials provided with the</em>
+<a id='L18' name='L18' /><em class='comment'> *       distribution.</em>
+<a id='L19' name='L19' /><em class='comment'> *</em>
+<a id='L20' name='L20' /><em class='comment'> *    3. Neither the name of the Ueda Laboratory LMNtal Group nor the</em>
+<a id='L21' name='L21' /><em class='comment'> *       names of its contributors may be used to endorse or promote</em>
+<a id='L22' name='L22' /><em class='comment'> *       products derived from this software without specific prior</em>
+<a id='L23' name='L23' /><em class='comment'> *       written permission.</em>
+<a id='L24' name='L24' /><em class='comment'> *</em>
+<a id='L25' name='L25' /><em class='comment'> *   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L26' name='L26' /><em class='comment'> *   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L27' name='L27' /><em class='comment'> *   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L28' name='L28' /><em class='comment'> *   A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L29' name='L29' /><em class='comment'> *   OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L30' name='L30' /><em class='comment'> *   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L31' name='L31' /><em class='comment'> *   LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L32' name='L32' /><em class='comment'> *   DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L33' name='L33' /><em class='comment'> *   THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L34' name='L34' /><em class='comment'> *   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L35' name='L35' /><em class='comment'> *   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L36' name='L36' /><em class='comment'> *</em>
+<a id='L37' name='L37' /><em class='comment'> * $Id$</em>
+<a id='L38' name='L38' /><em class='comment'> */</em>
+<a id='L39' name='L39' />
+<a id='L40' name='L40' /><em class='sharp'>#include</em> &lt;stdio.h&gt;
+<a id='L41' name='L41' /><em class='sharp'>#include</em> "<a href='366.html'>rule.h</a>"
+<a id='L42' name='L42' /><em class='sharp'>#include</em> "<a href='358.html'>membrane.h</a>"
+<a id='L43' name='L43' /><em class='sharp'>#include</em> "<a href='364.html'>react_context.h</a>"
+<a id='L44' name='L44' /><em class='sharp'>#include</em> "<a href='370.html'>slim_header/memstack.h</a>"
+<a id='L45' name='L45' /><em class='sharp'>#include</em> "<a href='407.html'>util.h</a>"
+<a id='L46' name='L46' />
+<a id='L47' name='L47' /><strong class='reserved'>void</strong> <a href='../S/324.html#L112' title='Defined at 112 in src/ext/initial_ruleset.c.'>init_initial_ruleset</a>(<strong class='reserved'>void</strong>);
+<a id='L48' name='L48' />
+<a id='L49' name='L49' /><em class='sharp'>#define</em> <a href='../R/879.html' title='Multiple refered from 2 places.'>INITIAL_RULESET_MEM_NAME</a> "initial_ruleset"
+<a id='L50' name='L50' /><em class='sharp'>#define</em> <a href='../R/880.html' title='Multiple refered from 2 places.'>INITIAL_SYSTEM_RULESET_MEM_NAME</a> "initial_system_ruleset"
+<a id='L51' name='L51' />
+<a id='L52' name='L52' /><strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2818.html' title='Multiple used in 3 places.'>initial_modules</a>[] = <em class='brace'>{</em>"nd_conf"<em class='brace'>}</em>;
+<a id='L53' name='L53' />
+<a id='L54' name='L54' /><a href='../S/347.html#L62' title='Defined at 62 in src/lmntal.h.'>BOOL</a> <a href='../S/324.html#L114' title='Refered from 114 in src/ext/initial_ruleset.c.'>register_initial_rulesets</a>(<a href='../D/1675.html' title='Multiple defined in 2 places.'>LmnReactCxt</a> *<a href='../Y/4442.html' title='Multiple used in 1338 places.'>rc</a>, <a href='../D/1669.html' title='Multiple defined in 2 places.'>LmnMembrane</a> *<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>, <a href='../D/1677.html' title='Multiple defined in 2 places.'>LmnRule</a> <a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>)
+<a id='L55' name='L55' /><em class='brace'>{</em>
+<a id='L56' name='L56' />  <a href='../D/1669.html' title='Multiple defined in 2 places.'>LmnMembrane</a> *<a href='../Y/3356.html' title='Multiple used in 420 places.'>m</a>, *<a href='../Y/3790.html' title='Multiple used in 218 places.'>next</a>;
+<a id='L57' name='L57' />  <a href='../S/347.html#L62' title='Defined at 62 in src/lmntal.h.'>BOOL</a> <a href='../Y/3924.html' title='Multiple used in 40 places.'>ok</a> = <a href='../S/347.html#L66' title='Defined at 66 in src/lmntal.h.'>FALSE</a>;
+<a id='L58' name='L58' />
+<a id='L59' name='L59' />  <strong class='reserved'>for</strong> (<a href='../Y/3356.html' title='Multiple used in 420 places.'>m</a> = <a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>-&gt;<a href='../Y/1780.html' title='Multiple used in 29 places.'>child_head</a>; <a href='../Y/3356.html' title='Multiple used in 420 places.'>m</a>; <a href='../Y/3356.html' title='Multiple used in 420 places.'>m</a> = <a href='../Y/3790.html' title='Multiple used in 218 places.'>next</a>) <em class='brace'>{</em>
+<a id='L60' name='L60' />    <a href='../Y/3790.html' title='Multiple used in 218 places.'>next</a> = <a href='../Y/3356.html' title='Multiple used in 420 places.'>m</a>-&gt;<a href='../Y/3790.html' title='Multiple used in 218 places.'>next</a>;
+<a id='L61' name='L61' />    <strong class='reserved'>if</strong> ((<a href='../S/358.html#L211' title='Defined at 211 in src/membrane.h.'>LMN_MEM_NAME_ID</a>(<a href='../Y/3356.html' title='Multiple used in 420 places.'>m</a>) == <a href='../S/378.html#L98' title='Defined at 98 in src/symbol.c.'>lmn_intern</a>(<a href='../S/324.html#L49' title='Defined at 49 in src/ext/initial_ruleset.c.'>INITIAL_RULESET_MEM_NAME</a>) ||
+<a id='L62' name='L62' />         <a href='../S/358.html#L211' title='Defined at 211 in src/membrane.h.'>LMN_MEM_NAME_ID</a>(<a href='../Y/3356.html' title='Multiple used in 420 places.'>m</a>) == <a href='../S/378.html#L98' title='Defined at 98 in src/symbol.c.'>lmn_intern</a>(<a href='../S/324.html#L50' title='Defined at 50 in src/ext/initial_ruleset.c.'>INITIAL_SYSTEM_RULESET_MEM_NAME</a>)) &amp;&amp;
+<a id='L63' name='L63' />        <a href='../S/358.html#L420' title='Defined at 420 in src/membrane.h.'>lmn_mem_nfreelinks</a>(<a href='../Y/3356.html' title='Multiple used in 420 places.'>m</a>, 0) &amp;&amp;
+<a id='L64' name='L64' />        <a href='../S/358.html#L225' title='Defined at 225 in src/membrane.h.'>lmn_mem_atom_num</a>(<a href='../Y/3356.html' title='Multiple used in 420 places.'>m</a>) == 0 &amp;&amp;
+<a id='L65' name='L65' />        <a href='../S/358.html#L371' title='Defined at 371 in src/membrane.h.'>lmn_mem_child_mem_num</a>(<a href='../Y/3356.html' title='Multiple used in 420 places.'>m</a>) == 0) <em class='brace'>{</em>
+<a id='L66' name='L66' />      <strong class='reserved'>int</strong> <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>, <a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a>;
+<a id='L67' name='L67' />
+<a id='L68' name='L68' />      <strong class='reserved'>for</strong> (<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> = 0; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> &lt; <a href='../S/358.html#L219' title='Defined at 219 in src/membrane.h.'>lmn_mem_ruleset_num</a>(<a href='../Y/3356.html' title='Multiple used in 420 places.'>m</a>); <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>++) <em class='brace'>{</em>
+<a id='L69' name='L69' />        <a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../Y/4585.html' title='Multiple used in 137 places.'>rs</a> = <a href='../S/358.html#L220' title='Defined at 220 in src/membrane.h.'>lmn_mem_get_ruleset</a>(<a href='../Y/3356.html' title='Multiple used in 420 places.'>m</a>, <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>);
+<a id='L70' name='L70' />
+<a id='L71' name='L71' />        <strong class='reserved'>for</strong> (<a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a> = 0; <a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a> &lt; <a href='../S/366.html#L185' title='Defined at 185 in src/rule.h.'>lmn_ruleset_rule_num</a>(<a href='../Y/4585.html' title='Multiple used in 137 places.'>rs</a>); <a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a>++) <em class='brace'>{</em>
+<a id='L72' name='L72' />          <strong class='reserved'>if</strong> (<a href='../S/358.html#L211' title='Defined at 211 in src/membrane.h.'>LMN_MEM_NAME_ID</a>(<a href='../Y/3356.html' title='Multiple used in 420 places.'>m</a>) == <a href='../S/378.html#L98' title='Defined at 98 in src/symbol.c.'>lmn_intern</a>(<a href='../S/324.html#L49' title='Defined at 49 in src/ext/initial_ruleset.c.'>INITIAL_RULESET_MEM_NAME</a>)) <em class='brace'>{</em>
+<a id='L73' name='L73' />            <a href='../S/365.html#L517' title='Defined at 517 in src/rule.c.'>lmn_add_initial_rule</a>(<a href='../S/365.html#L88' title='Defined at 88 in src/rule.c.'>lmn_rule_copy</a>(<a href='../S/366.html#L190' title='Defined at 190 in src/rule.h.'>lmn_ruleset_get_rule</a>(<a href='../Y/4585.html' title='Multiple used in 137 places.'>rs</a>, <a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a>)));
+<a id='L74' name='L74' />          <em class='brace'>}</em> <strong class='reserved'>else</strong> <strong class='reserved'>if</strong> (<a href='../S/358.html#L211' title='Defined at 211 in src/membrane.h.'>LMN_MEM_NAME_ID</a>(<a href='../Y/3356.html' title='Multiple used in 420 places.'>m</a>) == <a href='../S/378.html#L98' title='Defined at 98 in src/symbol.c.'>lmn_intern</a>(<a href='../S/324.html#L50' title='Defined at 50 in src/ext/initial_ruleset.c.'>INITIAL_SYSTEM_RULESET_MEM_NAME</a>)) <em class='brace'>{</em>
+<a id='L75' name='L75' />            <a href='../S/365.html#L522' title='Defined at 522 in src/rule.c.'>lmn_add_initial_system_rule</a>(<a href='../S/365.html#L88' title='Defined at 88 in src/rule.c.'>lmn_rule_copy</a>(<a href='../S/366.html#L190' title='Defined at 190 in src/rule.h.'>lmn_ruleset_get_rule</a>(<a href='../Y/4585.html' title='Multiple used in 137 places.'>rs</a>, <a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a>)));
+<a id='L76' name='L76' />          <em class='brace'>}</em>
+<a id='L77' name='L77' />        <em class='brace'>}</em>
+<a id='L78' name='L78' />      <em class='brace'>}</em>
+<a id='L79' name='L79' />
+<a id='L80' name='L80' />      <strong class='reserved'>if</strong> (<a href='../S/364.html#L80' title='Defined at 80 in src/react_context.h.'>RC_GET_MODE</a>(<a href='../Y/4442.html' title='Multiple used in 1338 places.'>rc</a>, <a href='../S/364.html#L70' title='Defined at 70 in src/react_context.h.'>REACT_MEM_ORIENTED</a>)) <em class='brace'>{</em>
+<a id='L81' name='L81' />        <a href='../S/361.html#L84' title='Defined at 84 in src/memstack.c.'>lmn_memstack_delete</a>(<a href='../S/364.html#L235' title='Defined at 235 in src/react_context.h.'>RC_MEMSTACK</a>(<a href='../Y/4442.html' title='Multiple used in 1338 places.'>rc</a>), <a href='../Y/3356.html' title='Multiple used in 420 places.'>m</a>);
+<a id='L82' name='L82' />      <em class='brace'>}</em>
+<a id='L83' name='L83' />      <a href='../S/358.html#L337' title='Defined at 337 in src/membrane.h.'>lmn_mem_delete_mem</a>(<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>, <a href='../Y/3356.html' title='Multiple used in 420 places.'>m</a>);
+<a id='L84' name='L84' />
+<a id='L85' name='L85' />      <a href='../Y/3924.html' title='Multiple used in 40 places.'>ok</a> = <a href='../S/347.html#L69' title='Defined at 69 in src/lmntal.h.'>TRUE</a>;
+<a id='L86' name='L86' />    <em class='brace'>}</em>
+<a id='L87' name='L87' />  <em class='brace'>}</em>
+<a id='L88' name='L88' />
+<a id='L89' name='L89' />  <strong class='reserved'>return</strong> <a href='../Y/3924.html' title='Multiple used in 40 places.'>ok</a>;
+<a id='L90' name='L90' /><em class='brace'>}</em>
+<a id='L91' name='L91' />
+<a id='L92' name='L92' /><a href='../S/347.html#L62' title='Defined at 62 in src/lmntal.h.'>BOOL</a> <a href='../S/324.html#L115' title='Refered from 115 in src/ext/initial_ruleset.c.'>register_initial_module</a>(<a href='../D/1675.html' title='Multiple defined in 2 places.'>LmnReactCxt</a> *<a href='../Y/4442.html' title='Multiple used in 1338 places.'>rc</a>, <a href='../D/1669.html' title='Multiple defined in 2 places.'>LmnMembrane</a> *<a href='../Y/3488.html' title='Multiple used in 941 places.'>mem</a>, <a href='../D/1677.html' title='Multiple defined in 2 places.'>LmnRule</a> <a href='../Y/4622.html' title='Multiple used in 220 places.'>rule</a>)
+<a id='L93' name='L93' /><em class='brace'>{</em>
+<a id='L94' name='L94' />  <strong class='reserved'>static</strong> <strong class='reserved'>int</strong> <a href='../Y/2083.html' title='Multiple used in 26 places.'>done</a> = 0;
+<a id='L95' name='L95' />  <strong class='reserved'>int</strong> <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>, <a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a>;
+<a id='L96' name='L96' />
+<a id='L97' name='L97' />  <strong class='reserved'>if</strong> (<a href='../Y/2083.html' title='Multiple used in 26 places.'>done</a> == 1) <strong class='reserved'>return</strong> <a href='../S/347.html#L66' title='Defined at 66 in src/lmntal.h.'>FALSE</a>;
+<a id='L98' name='L98' />  <a href='../Y/2083.html' title='Multiple used in 26 places.'>done</a> = 1;
+<a id='L99' name='L99' />
+<a id='L100' name='L100' />  <strong class='reserved'>for</strong> (<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> = 0; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> &lt; <a href='../S/407.html#L140' title='Defined at 140 in src/utility/util.h.'>ARY_SIZEOF</a>(<a href='../Y/2818.html' title='Multiple used in 3 places.'>initial_modules</a>); <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>++) <em class='brace'>{</em>
+<a id='L101' name='L101' />    <a href='../D/1679.html' title='Multiple defined in 2 places.'>LmnRuleSet</a> <a href='../Y/4585.html' title='Multiple used in 137 places.'>rs</a> = <a href='../S/365.html#L550' title='Defined at 550 in src/rule.c.'>lmn_get_module_ruleset</a>(<a href='../S/378.html#L98' title='Defined at 98 in src/symbol.c.'>lmn_intern</a>(<a href='../Y/2818.html' title='Multiple used in 3 places.'>initial_modules</a>[<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>]));
+<a id='L102' name='L102' />    <strong class='reserved'>if</strong> (<a href='../Y/4585.html' title='Multiple used in 137 places.'>rs</a>) <em class='brace'>{</em>
+<a id='L103' name='L103' />      <strong class='reserved'>for</strong> (<a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a> = 0; <a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a> &lt; <a href='../S/366.html#L185' title='Defined at 185 in src/rule.h.'>lmn_ruleset_rule_num</a>(<a href='../Y/4585.html' title='Multiple used in 137 places.'>rs</a>); <a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a>++) <em class='brace'>{</em>
+<a id='L104' name='L104' />        <a href='../S/365.html#L522' title='Defined at 522 in src/rule.c.'>lmn_add_initial_system_rule</a>(<a href='../S/365.html#L88' title='Defined at 88 in src/rule.c.'>lmn_rule_copy</a>(<a href='../S/366.html#L190' title='Defined at 190 in src/rule.h.'>lmn_ruleset_get_rule</a>(<a href='../Y/4585.html' title='Multiple used in 137 places.'>rs</a>, <a href='../Y/2947.html' title='Multiple used in 260 places.'>j</a>)));
+<a id='L105' name='L105' />      <em class='brace'>}</em>
+<a id='L106' name='L106' />    <em class='brace'>}</em>
+<a id='L107' name='L107' />  <em class='brace'>}</em>
+<a id='L108' name='L108' />  <strong class='reserved'>return</strong> <a href='../S/347.html#L69' title='Defined at 69 in src/lmntal.h.'>TRUE</a>;
+<a id='L109' name='L109' /><em class='brace'>}</em>
+<a id='L110' name='L110' />
+<a id='L111' name='L111' />
+<a id='L112' name='L112' /><strong class='reserved'>void</strong> <a href='../R/3616.html' title='Multiple refered from 3 places.'>init_initial_ruleset</a>(<strong class='reserved'>void</strong>)
+<a id='L113' name='L113' /><em class='brace'>{</em>
+<a id='L114' name='L114' />  <a href='../S/365.html#L517' title='Defined at 517 in src/rule.c.'>lmn_add_initial_rule</a>(<a href='../S/365.html#L82' title='Defined at 82 in src/rule.c.'>lmn_rule_make_translated</a>(<a href='../S/324.html#L54' title='Defined at 54 in src/ext/initial_ruleset.c.'>register_initial_rulesets</a>, <a href='../S/378.html#L98' title='Defined at 98 in src/symbol.c.'>lmn_intern</a>("register_initial_ruleset")));
+<a id='L115' name='L115' />  <a href='../S/365.html#L517' title='Defined at 517 in src/rule.c.'>lmn_add_initial_rule</a>(<a href='../S/365.html#L82' title='Defined at 82 in src/rule.c.'>lmn_rule_make_translated</a>(<a href='../S/324.html#L92' title='Defined at 92 in src/ext/initial_ruleset.c.'>register_initial_module</a>, <a href='../S/378.html#L98' title='Defined at 98 in src/symbol.c.'>lmn_intern</a>("register_initial_module")));
+<a id='L116' name='L116' /><em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;]<a href='#L54'>[^]</a><a href='#L112'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

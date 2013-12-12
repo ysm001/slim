@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>next_src</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/357.html#L1055'>next_src</a>         1055 src/membrane.c       LmnAtom     next_src  = LMN_SATOM_GET_LINK(src_atom, i);</span>
+<span class='curline'><a href='../S/357.html#L1060'>next_src</a>         1060 src/membrane.c         lmn_mem_push_atom(mem, next_src, next_attr);</span>
+<span class='curline'><a href='../S/357.html#L1064'>next_src</a>         1064 src/membrane.c         if (!proc_tbl_get_by_atom(atommap, LMN_SATOM(next_src), &amp;t)) { /* next_srcは未訪問 */</span>
+<span class='curline'><a href='../S/357.html#L1065'>next_src</a>         1065 src/membrane.c           next_copied = LMN_ATOM(lmn_copy_satom_with_data(LMN_SATOM(next_src)));</span>
+<span class='curline'><a href='../S/357.html#L1067'>next_src</a>         1067 src/membrane.c           proc_tbl_put_atom(atommap, LMN_SATOM(next_src), next_copied);</span>
+<span class='curline'><a href='../S/357.html#L1068'>next_src</a>         1068 src/membrane.c           vec_push(stack, next_src);</span>
+<span class='curline'><a href='../S/357.html#L1428'>next_src</a>         1428 src/membrane.c           LmnAtom next_src = LMN_SATOM_GET_LINK(src_atom, i);</span>
+<span class='curline'><a href='../S/357.html#L1433'>next_src</a>         1433 src/membrane.c               int t = hashtbl_get_default(guard, (HashKeyType)next_src, -1);</span>
+<span class='curline'><a href='../S/357.html#L1439'>next_src</a>         1439 src/membrane.c             vec_push(stack, next_src);</span>
+<span class='curline'><a href='../S/357.html#L1440'>next_src</a>         1440 src/membrane.c           } else if (lmn_data_atom_is_ground(next_src, next_attr)) {</span>
+<span class='curline'><a href='../S/417.html#L954'>next_src</a>          954 src/verifier/delta_membrane.c       LmnAtom next_src = LMN_SATOM_GET_LINK(src_atom, i);</span>
+<span class='curline'><a href='../S/417.html#L960'>next_src</a>          960 src/verifier/delta_membrane.c           dmem_put_atom(d, mem, next_src, next_attr);</span>
+<span class='curline'><a href='../S/417.html#L962'>next_src</a>          962 src/verifier/delta_membrane.c           lmn_mem_push_atom(mem, next_src, next_attr);</span>
+<span class='curline'><a href='../S/417.html#L966'>next_src</a>          966 src/verifier/delta_membrane.c         if (proc_tbl_get_by_atom(atommap, LMN_SATOM(next_src), &amp;t)) {</span>
+<span class='curline'><a href='../S/417.html#L970'>next_src</a>          970 src/verifier/delta_membrane.c           next_copied = LMN_ATOM(dmem_root_copy_satom_with_data(root_d, LMN_SATOM(next_src)));</span>
+<span class='curline'><a href='../S/417.html#L976'>next_src</a>          976 src/verifier/delta_membrane.c           proc_tbl_put_atom(atommap, LMN_SATOM(next_src), next_copied);</span>
+<span class='curline'><a href='../S/417.html#L977'>next_src</a>          977 src/verifier/delta_membrane.c           vec_push(&amp;stack, next_src);</span>
+</pre>
+</body>
+</html>

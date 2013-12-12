@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>Bytef</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/696.html#L32'>Bytef</a>              32 third_party/zdelta-2.1/_zdc.c   Bytef        *tar_buf;                 /* target memory buffer     */</span>
+<span class='curline'><a href='../S/696.html#L34'>Bytef</a>              34 third_party/zdelta-2.1/_zdc.c   Bytef        *ref_buf[REFNUM];         /* reference target buffers */</span>
+<span class='curline'><a href='../S/696.html#L39'>Bytef</a>              39 third_party/zdelta-2.1/_zdc.c   Bytef         *delta = NULL;</span>
+<span class='curline'><a href='../S/696.html#L54'>Bytef</a>              54 third_party/zdelta-2.1/_zdc.c     ref_buf[i] = (Bytef*) malloc(BUF_SIZE*sizeof(Byte));</span>
+<span class='curline'><a href='../S/696.html#L63'>Bytef</a>              63 third_party/zdelta-2.1/_zdc.c   tar_buf = (Bytef*) malloc(BUF_SIZE*sizeof(Byte));</span>
+<span class='curline'><a href='../S/696.html#L71'>Bytef</a>              71 third_party/zdelta-2.1/_zdc.c   delta = (Bytef*) malloc(BUF_SIZE*sizeof(Byte));</span>
+<span class='curline'><a href='../S/696.html#L109'>Bytef</a>             109 third_party/zdelta-2.1/_zdc.c   Bytef *tar_buf;</span>
+<span class='curline'><a href='../S/696.html#L110'>Bytef</a>             110 third_party/zdelta-2.1/_zdc.c   Bytef *ref_buf;</span>
+<span class='curline'><a href='../S/696.html#L111'>Bytef</a>             111 third_party/zdelta-2.1/_zdc.c   Bytef *delta = NULL;</span>
+<span class='curline'><a href='../S/696.html#L128'>Bytef</a>             128 third_party/zdelta-2.1/_zdc.c   ref_buf = (Bytef*) malloc(BUF_SIZE*sizeof(Byte));</span>
+<span class='curline'><a href='../S/696.html#L136'>Bytef</a>             136 third_party/zdelta-2.1/_zdc.c   tar_buf = (Bytef*) malloc(BUF_SIZE*sizeof(Byte));</span>
+<span class='curline'><a href='../S/696.html#L144'>Bytef</a>             144 third_party/zdelta-2.1/_zdc.c   delta = (Bytef*) malloc(BUF_SIZE*sizeof(Byte));</span>
+<span class='curline'><a href='../S/697.html#L32'>Bytef</a>              32 third_party/zdelta-2.1/_zdu.c   Bytef        *tar_buf;                 /* target memory buffer     */</span>
+<span class='curline'><a href='../S/697.html#L34'>Bytef</a>              34 third_party/zdelta-2.1/_zdu.c   Bytef        *ref_buf[REFNUM];         /* reference target buffers */</span>
+<span class='curline'><a href='../S/697.html#L39'>Bytef</a>              39 third_party/zdelta-2.1/_zdu.c   Bytef         *delta = NULL;</span>
+<span class='curline'><a href='../S/697.html#L54'>Bytef</a>              54 third_party/zdelta-2.1/_zdu.c     ref_buf[i] = (Bytef*) malloc(BUF_SIZE*sizeof(Byte));</span>
+<span class='curline'><a href='../S/697.html#L63'>Bytef</a>              63 third_party/zdelta-2.1/_zdu.c   delta = (Bytef*) malloc(BUF_SIZE*sizeof(Byte));</span>
+<span class='curline'><a href='../S/697.html#L71'>Bytef</a>              71 third_party/zdelta-2.1/_zdu.c   tar_buf = (Bytef*) malloc(BUF_SIZE*sizeof(Byte));</span>
+<span class='curline'><a href='../S/697.html#L109'>Bytef</a>             109 third_party/zdelta-2.1/_zdu.c   Bytef *tar_buf;</span>
+<span class='curline'><a href='../S/697.html#L110'>Bytef</a>             110 third_party/zdelta-2.1/_zdu.c   Bytef *ref_buf;</span>
+<span class='curline'><a href='../S/697.html#L111'>Bytef</a>             111 third_party/zdelta-2.1/_zdu.c   Bytef *delta = NULL;</span>
+<span class='curline'><a href='../S/697.html#L128'>Bytef</a>             128 third_party/zdelta-2.1/_zdu.c   ref_buf = (Bytef*) malloc(BUF_SIZE*sizeof(Byte));</span>
+<span class='curline'><a href='../S/697.html#L136'>Bytef</a>             136 third_party/zdelta-2.1/_zdu.c   delta = (Bytef*) malloc(BUF_SIZE*sizeof(Byte));</span>
+<span class='curline'><a href='../S/697.html#L144'>Bytef</a>             144 third_party/zdelta-2.1/_zdu.c   tar_buf = (Bytef*) malloc(BUF_SIZE*sizeof(Byte));</span>
+<span class='curline'><a href='../S/698.html#L30'>Bytef</a>              30 third_party/zdelta-2.1/adler32.c     const Bytef *buf;</span>
+<span class='curline'><a href='../S/699.html#L126'>Bytef</a>             126 third_party/zdelta-2.1/deflate.c local int read_buf        OF((zd_streamp strm, Bytef *buf, unsigned size));</span>
+<span class='curline'><a href='../S/699.html#L128'>Bytef</a>             128 third_party/zdelta-2.1/deflate.c local int read_ref_buf OF((zd_streamp strm, Bytef *buf, unsigned size, int rw));</span>
+<span class='curline'><a href='../S/699.html#L241'>Bytef</a>             241 third_party/zdelta-2.1/deflate.c     zmemzero((Bytef *)s-&gt;head, (unsigned)(s-&gt;hash_size-1)*sizeof(*s-&gt;head));</span>
+<span class='curline'><a href='../S/699.html#L245'>Bytef</a>             245 third_party/zdelta-2.1/deflate.c     zmemzero((Bytef *)s-&gt;ref_head[rw], \</span>
+<span class='curline'><a href='../S/699.html#L436'>Bytef</a>             436 third_party/zdelta-2.1/deflate.c   s-&gt;ref_window[0]=(Bytef *) ZALLOC(strm, s-&gt;w_size*2*(refnum+1),sizeof(Byte));</span>
+<span class='curline'><a href='../S/699.html#L437'>Bytef</a>             437 third_party/zdelta-2.1/deflate.c   s-&gt;window       =(Bytef *) (s-&gt;ref_window[0]+(2*refnum*s-&gt;w_size)); </span>
+<span class='curline'><a href='../S/699.html#L467'>Bytef</a>             467 third_party/zdelta-2.1/deflate.c     s-&gt;ref_window[i] = (Bytef *) (s-&gt;ref_window[0] +(s-&gt;w_size)*2*i);</span>
+<span class='curline'><a href='../S/699.html#L699'>Bytef</a>             699 third_party/zdelta-2.1/deflate.c      Bytef *buf;</span>
+<span class='curline'><a href='../S/699.html#L727'>Bytef</a>             727 third_party/zdelta-2.1/deflate.c      Bytef *buf;</span>
+<span class='curline'><a href='../S/699.html#L906'>Bytef</a>             906 third_party/zdelta-2.1/deflate.c   zmemcpy((Bytef*) s-&gt;ref_window[rw], </span>
+<span class='curline'><a href='../S/699.html#L907'>Bytef</a>             907 third_party/zdelta-2.1/deflate.c 	  (Bytef*) (s-&gt;ref_window[rw]+wsize), </span>
+<span class='curline'><a href='../S/699.html#L908'>Bytef</a>             908 third_party/zdelta-2.1/deflate.c 	  (unsigned)wsize*sizeof(Bytef));</span>
+<span class='curline'><a href='../S/699.html#L1045'>Bytef</a>            1045 third_party/zdelta-2.1/deflate.c   register Bytef *scan = s-&gt;window + s-&gt;strstart; /* current string */</span>
+<span class='curline'><a href='../S/699.html#L1046'>Bytef</a>            1046 third_party/zdelta-2.1/deflate.c   register Bytef *match;                          /* matched string */</span>
+<span class='curline'><a href='../S/699.html#L1079'>Bytef</a>            1079 third_party/zdelta-2.1/deflate.c   register Bytef *strend   = s-&gt;window + s-&gt;strstart + MAX_MATCH;</span>
+<span class='curline'><a href='../S/699.html#L1209'>Bytef</a>            1209 third_party/zdelta-2.1/deflate.c   register Bytef *scan = s-&gt;window + s-&gt;strstart;/* current string */</span>
+<span class='curline'><a href='../S/699.html#L1210'>Bytef</a>            1210 third_party/zdelta-2.1/deflate.c   register Bytef *match;                         /* matched string */</span>
+<span class='curline'><a href='../S/699.html#L1227'>Bytef</a>            1227 third_party/zdelta-2.1/deflate.c   register Bytef *strend = s-&gt;window + s-&gt;strstart + MAX_MATCH;</span>
+<span class='curline'><a href='../S/700.html#L120'>Bytef</a>             120 third_party/zdelta-2.1/deflate.h   Bytef *pending_buf;  /* output still pending */</span>
+<span class='curline'><a href='../S/700.html#L122'>Bytef</a>             122 third_party/zdelta-2.1/deflate.h   Bytef *pending_out;  /* next pending byte to output to the stream */</span>
+<span class='curline'><a href='../S/700.html#L137'>Bytef</a>             137 third_party/zdelta-2.1/deflate.h   Bytef *window;</span>
+<span class='curline'><a href='../S/700.html#L147'>Bytef</a>             147 third_party/zdelta-2.1/deflate.h   Bytef *ref_window[REFNUM];	/* zdelta: reference file buffer */</span>
+<span class='curline'><a href='../S/701.html#L126'>Bytef</a>             126 third_party/zdelta-2.1/infblock.c     z-&gt;adler = s-&gt;check = (*s-&gt;checkfn)(0L, (const Bytef *)ZD_NULL, 0);</span>
+<span class='curline'><a href='../S/701.html#L155'>Bytef</a>             155 third_party/zdelta-2.1/infblock.c   if ((s-&gt;window = (Bytef *)ZALLOC(z, 1, w)) == ZD_NULL)</span>
+<span class='curline'><a href='../S/701.html#L179'>Bytef</a>             179 third_party/zdelta-2.1/infblock.c   Bytef *p;             /* input data pointer */</span>
+<span class='curline'><a href='../S/701.html#L181'>Bytef</a>             181 third_party/zdelta-2.1/infblock.c   Bytef *q;             /* output window write pointer */</span>
+<span class='curline'><a href='../S/703.html#L124'>Bytef</a>             124 third_party/zdelta-2.1/infcodes.c   Bytef *p;             /* input data pointer */</span>
+<span class='curline'><a href='../S/703.html#L126'>Bytef</a>             126 third_party/zdelta-2.1/infcodes.c   Bytef *q;             /* output window write pointer */</span>
+<span class='curline'><a href='../S/703.html#L128'>Bytef</a>             128 third_party/zdelta-2.1/infcodes.c   Bytef *f;             /* pointer to copy strings from */</span>
+<span class='curline'><a href='../S/705.html#L56'>Bytef</a>              56 third_party/zdelta-2.1/inffast.c   Bytef *p;             /* input data pointer */</span>
+<span class='curline'><a href='../S/705.html#L58'>Bytef</a>              58 third_party/zdelta-2.1/inffast.c   Bytef *q;             /* output window write pointer */</span>
+<span class='curline'><a href='../S/705.html#L65'>Bytef</a>              65 third_party/zdelta-2.1/inffast.c   Bytef *r;             /* copy source pointer */</span>
+<span class='curline'><a href='../S/708.html#L282'>Bytef</a>             282 third_party/zdelta-2.1/inflate.c   Bytef *p;     /* pointer to bytes */</span>
+<span class='curline'><a href='../S/711.html#L41'>Bytef</a>              41 third_party/zdelta-2.1/infutil.c   Bytef *p;</span>
+<span class='curline'><a href='../S/711.html#L42'>Bytef</a>              42 third_party/zdelta-2.1/infutil.c   Bytef *q;</span>
+<span class='curline'><a href='../S/712.html#L67'>Bytef</a>              67 third_party/zdelta-2.1/infutil.h   Bytef *window;        /* sliding window */</span>
+<span class='curline'><a href='../S/712.html#L68'>Bytef</a>              68 third_party/zdelta-2.1/infutil.h   Bytef *end;           /* one byte after sliding window */</span>
+<span class='curline'><a href='../S/712.html#L69'>Bytef</a>              69 third_party/zdelta-2.1/infutil.h   Bytef *read;          /* window read pointer */</span>
+<span class='curline'><a href='../S/712.html#L70'>Bytef</a>              70 third_party/zdelta-2.1/infutil.h   Bytef *write;         /* window write pointer */</span>
+<span class='curline'><a href='../S/721.html#L12'>Bytef</a>              12 third_party/zdelta-2.1/zd_mem.c     if((m-&gt;buffer= (Bytef *) malloc(n * sizeof(Byte))) == NULL){</span>
+<span class='curline'><a href='../S/721.html#L28'>Bytef</a>              28 third_party/zdelta-2.1/zd_mem.c   Bytef *p;</span>
+<span class='curline'><a href='../S/721.html#L32'>Bytef</a>              32 third_party/zdelta-2.1/zd_mem.c     p= (Bytef *) realloc(m-&gt;buffer, (m-&gt;size+n));</span>
+<span class='curline'><a href='../S/722.html#L18'>Bytef</a>              18 third_party/zdelta-2.1/zd_mem.h   Bytef *buffer;</span>
+<span class='curline'><a href='../S/722.html#L19'>Bytef</a>              19 third_party/zdelta-2.1/zd_mem.h   Bytef *pos;</span>
+<span class='curline'><a href='../S/723.html#L33'>Bytef</a>              33 third_party/zdelta-2.1/zdc.c   Bytef        *ref[REFNUM];</span>
+<span class='curline'><a href='../S/723.html#L38'>Bytef</a>              38 third_party/zdelta-2.1/zdc.c   Bytef         *delta = NULL;</span>
+<span class='curline'><a href='../S/723.html#L59'>Bytef</a>              59 third_party/zdelta-2.1/zdc.c   if(zd_compressN1((const Bytef**) ref, ref_s, ref_n, </span>
+<span class='curline'><a href='../S/723.html#L60'>Bytef</a>              60 third_party/zdelta-2.1/zdc.c 		   (const Bytef*) tar_buf.buffer, tar_buf.pos - tar_buf.buffer,</span>
+<span class='curline'><a href='../S/723.html#L92'>Bytef</a>              92 third_party/zdelta-2.1/zdc.c   Bytef *delta = NULL;</span>
+<span class='curline'><a href='../S/723.html#L113'>Bytef</a>             113 third_party/zdelta-2.1/zdc.c   if(zd_compress1((const Bytef*) ref_buf.buffer, ref_buf.pos - ref_buf.buffer,</span>
+<span class='curline'><a href='../S/723.html#L114'>Bytef</a>             114 third_party/zdelta-2.1/zdc.c 		  (const Bytef*) tar_buf.buffer, tar_buf.pos - tar_buf.buffer,</span>
+<span class='curline'><a href='../S/725.html#L29'>Bytef</a>              29 third_party/zdelta-2.1/zdelta.c int ZEXPORT zd_compress(const Bytef *ref,  uLong rsize,</span>
+<span class='curline'><a href='../S/725.html#L30'>Bytef</a>              30 third_party/zdelta-2.1/zdelta.c 			const Bytef *tar,  uLong tsize,</span>
+<span class='curline'><a href='../S/725.html#L31'>Bytef</a>              31 third_party/zdelta-2.1/zdelta.c 			Bytef *delta, uLongf *dsize)</span>
+<span class='curline'><a href='../S/725.html#L37'>Bytef</a>              37 third_party/zdelta-2.1/zdelta.c   strm.base[0]  = (Bytef*) ref;</span>
+<span class='curline'><a href='../S/725.html#L42'>Bytef</a>              42 third_party/zdelta-2.1/zdelta.c   strm.next_in  = (Bytef*) tar;</span>
+<span class='curline'><a href='../S/725.html#L76'>Bytef</a>              76 third_party/zdelta-2.1/zdelta.c int ZEXPORT zd_compress1(const Bytef *ref, uLong rsize,</span>
+<span class='curline'><a href='../S/725.html#L77'>Bytef</a>              77 third_party/zdelta-2.1/zdelta.c 			 const Bytef *tar, uLong tsize,</span>
+<span class='curline'><a href='../S/725.html#L78'>Bytef</a>              78 third_party/zdelta-2.1/zdelta.c 			 Bytef **delta, uLongf *dsize)</span>
+<span class='curline'><a href='../S/725.html#L90'>Bytef</a>              90 third_party/zdelta-2.1/zdelta.c   strm.base[0]  = (Bytef*) ref;</span>
+<span class='curline'><a href='../S/725.html#L95'>Bytef</a>              95 third_party/zdelta-2.1/zdelta.c   strm.next_in  = (Bytef*) tar;</span>
+<span class='curline'><a href='../S/725.html#L151'>Bytef</a>             151 third_party/zdelta-2.1/zdelta.c int ZEXPORT zd_compressN(const Bytef *ref[], uLong rsize[], int rnum, </span>
+<span class='curline'><a href='../S/725.html#L152'>Bytef</a>             152 third_party/zdelta-2.1/zdelta.c 			 const Bytef *tar, uLong tsize,</span>
+<span class='curline'><a href='../S/725.html#L153'>Bytef</a>             153 third_party/zdelta-2.1/zdelta.c 			 Bytef *delta, uLongf *dsize)</span>
+<span class='curline'><a href='../S/725.html#L164'>Bytef</a>             164 third_party/zdelta-2.1/zdelta.c     strm.base[i]  = (Bytef*) ref[i];</span>
+<span class='curline'><a href='../S/725.html#L169'>Bytef</a>             169 third_party/zdelta-2.1/zdelta.c   strm.next_in  = (Bytef*) tar;</span>
+<span class='curline'><a href='../S/725.html#L206'>Bytef</a>             206 third_party/zdelta-2.1/zdelta.c int ZEXPORT zd_compressN1(const Bytef *ref[], uLong rsize[], int rnum, </span>
+<span class='curline'><a href='../S/725.html#L207'>Bytef</a>             207 third_party/zdelta-2.1/zdelta.c 			  const Bytef *tar, uLong tsize,</span>
+<span class='curline'><a href='../S/725.html#L208'>Bytef</a>             208 third_party/zdelta-2.1/zdelta.c 			  Bytef **delta, uLongf *dsize)</span>
+<span class='curline'><a href='../S/725.html#L223'>Bytef</a>             223 third_party/zdelta-2.1/zdelta.c     strm.base[i]  = (Bytef*) ref[i];</span>
+<span class='curline'><a href='../S/725.html#L228'>Bytef</a>             228 third_party/zdelta-2.1/zdelta.c   strm.next_in  = (Bytef*) tar;</span>
+<span class='curline'><a href='../S/725.html#L287'>Bytef</a>             287 third_party/zdelta-2.1/zdelta.c int ZEXPORT zd_uncompress(const Bytef *ref, uLong rsize,</span>
+<span class='curline'><a href='../S/725.html#L288'>Bytef</a>             288 third_party/zdelta-2.1/zdelta.c 			  Bytef *tar, uLongf* tsize,</span>
+<span class='curline'><a href='../S/725.html#L289'>Bytef</a>             289 third_party/zdelta-2.1/zdelta.c 			  const Bytef *delta, uLong dsize)</span>
+<span class='curline'><a href='../S/725.html#L296'>Bytef</a>             296 third_party/zdelta-2.1/zdelta.c   strm.base[0]       = (Bytef*) ref;</span>
+<span class='curline'><a href='../S/725.html#L300'>Bytef</a>             300 third_party/zdelta-2.1/zdelta.c   strm.next_out  = (Bytef*) tar;</span>
+<span class='curline'><a href='../S/725.html#L304'>Bytef</a>             304 third_party/zdelta-2.1/zdelta.c   strm.next_in  = (Bytef*) delta;</span>
+<span class='curline'><a href='../S/725.html#L333'>Bytef</a>             333 third_party/zdelta-2.1/zdelta.c int ZEXPORT zd_uncompress1(const Bytef *ref, uLong rsize,</span>
+<span class='curline'><a href='../S/725.html#L334'>Bytef</a>             334 third_party/zdelta-2.1/zdelta.c 			   Bytef **tar,  uLongf *tsize,</span>
+<span class='curline'><a href='../S/725.html#L335'>Bytef</a>             335 third_party/zdelta-2.1/zdelta.c 			   const Bytef *delta, uLong dsize)</span>
+<span class='curline'><a href='../S/725.html#L346'>Bytef</a>             346 third_party/zdelta-2.1/zdelta.c   strm.base[0]       = (Bytef*) ref;</span>
+<span class='curline'><a href='../S/725.html#L357'>Bytef</a>             357 third_party/zdelta-2.1/zdelta.c   strm.next_in  = (Bytef*) delta;</span>
+<span class='curline'><a href='../S/725.html#L411'>Bytef</a>             411 third_party/zdelta-2.1/zdelta.c int ZEXPORT zd_uncompressN(Bytef *ref[], uLong rsize[], int rnum,</span>
+<span class='curline'><a href='../S/725.html#L412'>Bytef</a>             412 third_party/zdelta-2.1/zdelta.c 			   const Bytef *tar, uLongf *tsize,</span>
+<span class='curline'><a href='../S/725.html#L413'>Bytef</a>             413 third_party/zdelta-2.1/zdelta.c 			   const Bytef *delta, uLong dsize)</span>
+<span class='curline'><a href='../S/725.html#L424'>Bytef</a>             424 third_party/zdelta-2.1/zdelta.c     strm.base[i]  = (Bytef*) ref[i];</span>
+<span class='curline'><a href='../S/725.html#L429'>Bytef</a>             429 third_party/zdelta-2.1/zdelta.c   strm.next_out  = (Bytef*) tar;</span>
+<span class='curline'><a href='../S/725.html#L433'>Bytef</a>             433 third_party/zdelta-2.1/zdelta.c   strm.next_in  = (Bytef*) delta;</span>
+<span class='curline'><a href='../S/725.html#L464'>Bytef</a>             464 third_party/zdelta-2.1/zdelta.c int ZEXPORT zd_uncompressN1(const Bytef *ref[], uLong rsize[], int rnum,</span>
+<span class='curline'><a href='../S/725.html#L465'>Bytef</a>             465 third_party/zdelta-2.1/zdelta.c 			    Bytef **tar,  uLongf *tsize,</span>
+<span class='curline'><a href='../S/725.html#L466'>Bytef</a>             466 third_party/zdelta-2.1/zdelta.c 			    const Bytef *delta, uLong dsize)</span>
+<span class='curline'><a href='../S/725.html#L481'>Bytef</a>             481 third_party/zdelta-2.1/zdelta.c     strm.base[i]  = (Bytef*) ref[i];</span>
+<span class='curline'><a href='../S/725.html#L493'>Bytef</a>             493 third_party/zdelta-2.1/zdelta.c   strm.next_in  = (Bytef*) delta;</span>
+<span class='curline'><a href='../S/726.html#L100'>Bytef</a>             100 third_party/zdelta-2.1/zdlib.h   Bytef    *next_in;  /* next input byte */</span>
+<span class='curline'><a href='../S/726.html#L104'>Bytef</a>             104 third_party/zdelta-2.1/zdlib.h   Bytef    *next_out; /* next output byte should be put there */</span>
+<span class='curline'><a href='../S/726.html#L108'>Bytef</a>             108 third_party/zdelta-2.1/zdlib.h   Bytef    *base[REFNUM];      /* pointer to the base window    */</span>
+<span class='curline'><a href='../S/726.html#L454'>Bytef</a>             454 third_party/zdelta-2.1/zdlib.h ZEXTERN int ZEXPORT zd_compress OF ((const Bytef *ref, uLong rsize,</span>
+<span class='curline'><a href='../S/726.html#L455'>Bytef</a>             455 third_party/zdelta-2.1/zdlib.h 				     const Bytef *tar, uLong tsize,</span>
+<span class='curline'><a href='../S/726.html#L456'>Bytef</a>             456 third_party/zdelta-2.1/zdlib.h 				     Bytef *delta, uLongf* dsize));</span>
+<span class='curline'><a href='../S/726.html#L482'>Bytef</a>             482 third_party/zdelta-2.1/zdlib.h ZEXTERN int ZEXPORT zd_compress1 OF ((const Bytef *ref, uLong rsize,</span>
+<span class='curline'><a href='../S/726.html#L483'>Bytef</a>             483 third_party/zdelta-2.1/zdlib.h 				      const Bytef *tar, uLong tsize,</span>
+<span class='curline'><a href='../S/726.html#L484'>Bytef</a>             484 third_party/zdelta-2.1/zdlib.h 				      Bytef **delta, uLongf *dsize));</span>
+<span class='curline'><a href='../S/726.html#L511'>Bytef</a>             511 third_party/zdelta-2.1/zdlib.h ZEXTERN int ZEXPORT zd_compressN OF ((const Bytef *ref[],uLong rsize[],int rw,</span>
+<span class='curline'><a href='../S/726.html#L512'>Bytef</a>             512 third_party/zdelta-2.1/zdlib.h 				      const Bytef *tar, uLong tsize,</span>
+<span class='curline'><a href='../S/726.html#L513'>Bytef</a>             513 third_party/zdelta-2.1/zdlib.h 				      Bytef *delta, uLongf *dsize));</span>
+<span class='curline'><a href='../S/726.html#L539'>Bytef</a>             539 third_party/zdelta-2.1/zdlib.h ZEXTERN int ZEXPORT zd_uncompress OF ((const Bytef *ref, uLong rsize,</span>
+<span class='curline'><a href='../S/726.html#L540'>Bytef</a>             540 third_party/zdelta-2.1/zdlib.h 				       Bytef *tar, uLongf *tsize,</span>
+<span class='curline'><a href='../S/726.html#L541'>Bytef</a>             541 third_party/zdelta-2.1/zdlib.h 				       const Bytef *delta, uLong dsize));</span>
+<span class='curline'><a href='../S/726.html#L567'>Bytef</a>             567 third_party/zdelta-2.1/zdlib.h ZEXTERN int ZEXPORT zd_uncompress1 OF ((const Bytef *ref, uLong rsize,</span>
+<span class='curline'><a href='../S/726.html#L568'>Bytef</a>             568 third_party/zdelta-2.1/zdlib.h 					Bytef **tar, uLongf *tsize,</span>
+<span class='curline'><a href='../S/726.html#L569'>Bytef</a>             569 third_party/zdelta-2.1/zdlib.h 					const Bytef *delta, uLong dsize));</span>
+<span class='curline'><a href='../S/726.html#L596'>Bytef</a>             596 third_party/zdelta-2.1/zdlib.h zd_uncompressN OF((Bytef *ref[],uLong rsize[],int rw,</span>
+<span class='curline'><a href='../S/726.html#L597'>Bytef</a>             597 third_party/zdelta-2.1/zdlib.h 		   const Bytef *tar, uLong *tsize,</span>
+<span class='curline'><a href='../S/726.html#L598'>Bytef</a>             598 third_party/zdelta-2.1/zdlib.h 		   const Bytef *delta, uLongf dsize));</span>
+<span class='curline'><a href='../S/726.html#L626'>Bytef</a>             626 third_party/zdelta-2.1/zdlib.h ZEXTERN int ZEXPORT zd_compressN1 OF ((const Bytef *ref[],uLong rsize[],int rw,</span>
+<span class='curline'><a href='../S/726.html#L627'>Bytef</a>             627 third_party/zdelta-2.1/zdlib.h 				       const Bytef *tar, uLong tsize,</span>
+<span class='curline'><a href='../S/726.html#L628'>Bytef</a>             628 third_party/zdelta-2.1/zdlib.h 				       Bytef **delta, uLongf *dsize));</span>
+<span class='curline'><a href='../S/726.html#L658'>Bytef</a>             658 third_party/zdelta-2.1/zdlib.h   zd_uncompressN1 OF ((const Bytef **ref, uLong* rsize,int rw,</span>
+<span class='curline'><a href='../S/726.html#L659'>Bytef</a>             659 third_party/zdelta-2.1/zdlib.h 		       Bytef **tar, uLongf *tsize,</span>
+<span class='curline'><a href='../S/726.html#L660'>Bytef</a>             660 third_party/zdelta-2.1/zdlib.h 		       const Bytef *delta, uLong dsize));</span>
+<span class='curline'><a href='../S/726.html#L683'>Bytef</a>             683 third_party/zdelta-2.1/zdlib.h ZEXTERN uLong ZEXPORT zd_adler32 OF((uLong adler, const Bytef *buf, uInt len));</span>
+<span class='curline'><a href='../S/727.html#L33'>Bytef</a>              33 third_party/zdelta-2.1/zdu.c   Bytef *ref[4];</span>
+<span class='curline'><a href='../S/727.html#L38'>Bytef</a>              38 third_party/zdelta-2.1/zdu.c   Bytef *tar_buf = NULL;</span>
+<span class='curline'><a href='../S/727.html#L61'>Bytef</a>              61 third_party/zdelta-2.1/zdu.c   if(zd_uncompressN1((const Bytef**)ref, ref_s, ref_n,</span>
+<span class='curline'><a href='../S/727.html#L63'>Bytef</a>              63 third_party/zdelta-2.1/zdu.c 		    (const Bytef*) delta.buffer, delta.pos - delta.buffer) == ZD_OK){</span>
+<span class='curline'><a href='../S/727.html#L96'>Bytef</a>              96 third_party/zdelta-2.1/zdu.c   Bytef *tar_buf = NULL;</span>
+<span class='curline'><a href='../S/727.html#L117'>Bytef</a>             117 third_party/zdelta-2.1/zdu.c   if(zd_uncompress1((const Bytef*)ref_buf.buffer, ref_buf.pos - ref_buf.buffer,</span>
+<span class='curline'><a href='../S/727.html#L119'>Bytef</a>             119 third_party/zdelta-2.1/zdu.c 		    (const Bytef*) delta.buffer, </span>
+<span class='curline'><a href='../S/729.html#L101'>Bytef</a>             101 third_party/zdelta-2.1/zutil.c     Bytef* dest;</span>
+<span class='curline'><a href='../S/729.html#L102'>Bytef</a>             102 third_party/zdelta-2.1/zutil.c     const Bytef* source;</span>
+<span class='curline'><a href='../S/729.html#L112'>Bytef</a>             112 third_party/zdelta-2.1/zutil.c     const Bytef* s1;</span>
+<span class='curline'><a href='../S/729.html#L113'>Bytef</a>             113 third_party/zdelta-2.1/zutil.c     const Bytef* s2;</span>
+<span class='curline'><a href='../S/729.html#L125'>Bytef</a>             125 third_party/zdelta-2.1/zutil.c     Bytef* dest;</span>
+<span class='curline'><a href='../S/730.html#L208'>Bytef</a>             208 third_party/zdelta-2.1/zutil.h    extern void zmemcpy  OF((Bytef* dest, const Bytef* source, uInt len));</span>
+<span class='curline'><a href='../S/730.html#L209'>Bytef</a>             209 third_party/zdelta-2.1/zutil.h    extern int  zmemcmp  OF((const Bytef* s1, const Bytef* s2, uInt len));</span>
+<span class='curline'><a href='../S/730.html#L210'>Bytef</a>             210 third_party/zdelta-2.1/zutil.h    extern void zmemzero OF((Bytef* dest, uInt len));</span>
+<span class='curline'><a href='../S/730.html#L239'>Bytef</a>             239 third_party/zdelta-2.1/zutil.h typedef uLong (ZEXPORT *check_func) OF((uLong check, const Bytef *buf,</span>
+</pre>
+</body>
+</html>

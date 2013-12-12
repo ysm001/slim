@@ -1,0 +1,391 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>third_party/google-perftools-1.8.3/src/profiler.cc</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/738.html'>third_party</a>/<a href='../files/739.html'>google-perftools-1.8.3</a>/<a href='../files/740.html'>src</a>/profiler.cc</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L156'>[^]</a><a href='#L342'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L156' title='Defined at 156.'>Start</a></li>
+<li><a href='#L189' title='Defined at 189.'>Stop</a></li>
+<li><a href='#L205' title='Defined at 205.'>FlushTable</a></li>
+<li><a href='#L223' title='Defined at 223.'>Enabled</a></li>
+<li><a href='#L228' title='Defined at 228.'>GetCurrentState</a></li>
+<li><a href='#L243' title='Defined at 243.'>EnableHandler</a></li>
+<li><a href='#L249' title='Defined at 249.'>DisableHandler</a></li>
+<li><a href='#L261' title='Defined at 261.'>prof_handler</a></li>
+<li><a href='#L289' title='Defined at 289.'>ProfilerRegisterThread</a></li>
+<li><a href='#L293' title='Defined at 293.'>ProfilerFlush</a></li>
+<li><a href='#L297' title='Defined at 297.'>ProfilingIsEnabledForAllThreads</a></li>
+<li><a href='#L301' title='Defined at 301.'>ProfilerStart</a></li>
+<li><a href='#L305' title='Defined at 305.'>ProfilerStartWithOptions</a></li>
+<li><a href='#L310' title='Defined at 310.'>ProfilerStop</a></li>
+<li><a href='#L314' title='Defined at 314.'>ProfilerGetCurrentState</a></li>
+<li><a href='#L325' title='Defined at 325.'>ProfilerRegisterThread</a></li>
+<li><a href='#L326' title='Defined at 326.'>ProfilerFlush</a></li>
+<li><a href='#L327' title='Defined at 327.'>ProfilingIsEnabledForAllThreads</a></li>
+<li><a href='#L328' title='Defined at 328.'>ProfilerStart</a></li>
+<li><a href='#L329' title='Defined at 329.'>ProfilerStartWithOptions</a></li>
+<li><a href='#L333' title='Defined at 333.'>ProfilerStop</a></li>
+<li><a href='#L334' title='Defined at 334.'>ProfilerGetCurrentState</a></li>
+<li><a href='#L341' title='Defined at 341.'>ProfilerEnable</a></li>
+<li><a href='#L342' title='Defined at 342.'>ProfilerDisable</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>// Copyright (c) 2005, Google Inc.</em>
+<a id='L2' name='L2' /><em class='comment'>// All rights reserved.</em>
+<a id='L3' name='L3' /><em class='comment'>//</em>
+<a id='L4' name='L4' /><em class='comment'>// Redistribution and use in source and binary forms, with or without</em>
+<a id='L5' name='L5' /><em class='comment'>// modification, are permitted provided that the following conditions are</em>
+<a id='L6' name='L6' /><em class='comment'>// met:</em>
+<a id='L7' name='L7' /><em class='comment'>//</em>
+<a id='L8' name='L8' /><em class='comment'>//     * Redistributions of source code must retain the above copyright</em>
+<a id='L9' name='L9' /><em class='comment'>// notice, this list of conditions and the following disclaimer.</em>
+<a id='L10' name='L10' /><em class='comment'>//     * Redistributions in binary form must reproduce the above</em>
+<a id='L11' name='L11' /><em class='comment'>// copyright notice, this list of conditions and the following disclaimer</em>
+<a id='L12' name='L12' /><em class='comment'>// in the documentation and/or other materials provided with the</em>
+<a id='L13' name='L13' /><em class='comment'>// distribution.</em>
+<a id='L14' name='L14' /><em class='comment'>//     * Neither the name of Google Inc. nor the names of its</em>
+<a id='L15' name='L15' /><em class='comment'>// contributors may be used to endorse or promote products derived from</em>
+<a id='L16' name='L16' /><em class='comment'>// this software without specific prior written permission.</em>
+<a id='L17' name='L17' /><em class='comment'>//</em>
+<a id='L18' name='L18' /><em class='comment'>// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L19' name='L19' /><em class='comment'>// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L20' name='L20' /><em class='comment'>// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L21' name='L21' /><em class='comment'>// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L22' name='L22' /><em class='comment'>// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L23' name='L23' /><em class='comment'>// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L24' name='L24' /><em class='comment'>// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L25' name='L25' /><em class='comment'>// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L26' name='L26' /><em class='comment'>// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L27' name='L27' /><em class='comment'>// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L28' name='L28' /><em class='comment'>// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L29' name='L29' />
+<a id='L30' name='L30' /><em class='comment'>// ---</em>
+<a id='L31' name='L31' /><em class='comment'>// Author: Sanjay Ghemawat</em>
+<a id='L32' name='L32' /><em class='comment'>//         Chris Demetriou (refactoring)</em>
+<a id='L33' name='L33' /><em class='comment'>//</em>
+<a id='L34' name='L34' /><em class='comment'>// Profile current program by sampling stack-trace every so often</em>
+<a id='L35' name='L35' />
+<a id='L36' name='L36' /><em class='sharp'>#include</em> "<a href='../I/6.html'>config.h</a>"
+<a id='L37' name='L37' /><em class='sharp'>#include</em> "<a href='556.html'>getpc.h</a>"      <em class='comment'>// should be first to get the _GNU_SOURCE dfn</em>
+<a id='L38' name='L38' /><em class='sharp'>#include</em> &lt;signal.h&gt;
+<a id='L39' name='L39' /><em class='sharp'>#include</em> &lt;assert.h&gt;
+<a id='L40' name='L40' /><em class='sharp'>#include</em> &lt;stdio.h&gt;
+<a id='L41' name='L41' /><em class='sharp'>#include</em> &lt;errno.h&gt;
+<a id='L42' name='L42' /><em class='sharp'>#include</em> &lt;<a href='372.html'>string.h</a>&gt;
+<a id='L43' name='L43' /><em class='sharp'>#ifdef</em> <a href='../D/955.html' title='Multiple defined in 4 places.'>HAVE_UNISTD_H</a>
+<a id='L44' name='L44' /><em class='sharp'>#include</em> &lt;unistd.h&gt;  <em class='comment'>// for getpid()</em>
+<a id='L45' name='L45' /><em class='sharp'>#endif</em>
+<a id='L46' name='L46' /><em class='sharp'>#if</em> <strong class='reserved'>defined</strong>(<a href='../S/672.html#L170' title='Defined at 170 in third_party/google-perftools-1.8.3/src/windows/config.h.'>HAVE_SYS_UCONTEXT_H</a>)
+<a id='L47' name='L47' /><em class='sharp'>#include</em> &lt;sys/ucontext.h&gt;
+<a id='L48' name='L48' /><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(<a href='../S/672.html#L179' title='Defined at 179 in third_party/google-perftools-1.8.3/src/windows/config.h.'>HAVE_UCONTEXT_H</a>)
+<a id='L49' name='L49' /><em class='sharp'>#include</em> &lt;ucontext.h&gt;
+<a id='L50' name='L50' /><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(<a href='../S/672.html#L32' title='Defined at 32 in third_party/google-perftools-1.8.3/src/windows/config.h.'>HAVE_CYGWIN_SIGNAL_H</a>)
+<a id='L51' name='L51' /><em class='sharp'>#include</em> &lt;cygwin/signal.h&gt;
+<a id='L52' name='L52' /><strong class='reserved'>typedef</strong> <a href='../Y/5511.html' title='Multiple used in 7 places.'>ucontext</a> <a href='../R/5046.html' title='Multiple refered from 6 places.'>ucontext_t</a>;
+<a id='L53' name='L53' /><em class='sharp'>#else</em>
+<a id='L54' name='L54' /><strong class='reserved'>typedef</strong> <strong class='reserved'>int</strong> <a href='../R/5046.html' title='Multiple refered from 6 places.'>ucontext_t</a>;   <em class='comment'>// just to quiet the compiler, mostly</em>
+<a id='L55' name='L55' /><em class='sharp'>#endif</em>
+<a id='L56' name='L56' /><em class='sharp'>#include</em> &lt;sys/time.h&gt;
+<a id='L57' name='L57' /><em class='sharp'>#include</em> &lt;string&gt;
+<a id='L58' name='L58' /><em class='sharp'>#include</em> &lt;<a href='563.html'>google/profiler.h</a>&gt;
+<a id='L59' name='L59' /><em class='sharp'>#include</em> &lt;<a href='564.html'>google/stacktrace.h</a>&gt;
+<a id='L60' name='L60' /><em class='sharp'>#include</em> "<a href='517.html'>base/commandlineflags.h</a>"
+<a id='L61' name='L61' /><em class='sharp'>#include</em> "<a href='529.html'>base/logging.h</a>"
+<a id='L62' name='L62' /><em class='sharp'>#include</em> "<a href='524.html'>base/googleinit.h</a>"
+<a id='L63' name='L63' /><em class='sharp'>#include</em> "<a href='534.html'>base/spinlock.h</a>"
+<a id='L64' name='L64' /><em class='sharp'>#include</em> "<a href='543.html'>base/sysinfo.h</a>"             <em class='comment'>/* for GetUniquePathFromEnv, etc */</em>
+<a id='L65' name='L65' /><em class='sharp'>#include</em> "<a href='599.html'>profiledata.h</a>"
+<a id='L66' name='L66' /><em class='sharp'>#include</em> "<a href='597.html'>profile-handler.h</a>"
+<a id='L67' name='L67' /><em class='sharp'>#ifdef</em> <a href='../S/672.html#L29' title='Defined at 29 in third_party/google-perftools-1.8.3/src/windows/config.h.'>HAVE_CONFLICT_SIGNAL_H</a>
+<a id='L68' name='L68' /><em class='sharp'>#include</em> "conflict-signal.h"          <em class='comment'>/* used on msvc machines */</em>
+<a id='L69' name='L69' /><em class='sharp'>#endif</em>
+<a id='L70' name='L70' />
+<a id='L71' name='L71' /><strong class='reserved'>using</strong> <a href='../Y/5100.html' title='Multiple used in 181 places.'>std</a>::<a href='../Y/5133.html' title='Multiple used in 61 places.'>string</a>;
+<a id='L72' name='L72' />
+<a id='L73' name='L73' /><em class='comment'>// Collects up all profile data.  This is a singleton, which is</em>
+<a id='L74' name='L74' /><em class='comment'>// initialized by a constructor at startup.</em>
+<a id='L75' name='L75' /><strong class='reserved'>class</strong> <a href='../R/419.html' title='Multiple refered from 21 places.'>CpuProfiler</a> <em class='brace'>{</em>
+<a id='L76' name='L76' /> <strong class='reserved'>public</strong>:
+<a id='L77' name='L77' />  <a href='../D/491.html' title='Multiple defined in 3 places.'>CpuProfiler</a>();
+<a id='L78' name='L78' />  ~<a href='../D/491.html' title='Multiple defined in 3 places.'>CpuProfiler</a>();
+<a id='L79' name='L79' />
+<a id='L80' name='L80' />  <em class='comment'>// Start profiler to write profile info into fname</em>
+<a id='L81' name='L81' />  <strong class='reserved'>bool</strong> <a href='../D/2607.html' title='Multiple defined in 3 places.'>Start</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../Y/2412.html' title='Multiple used in 38 places.'>fname</a>, <strong class='reserved'>const</strong> <a href='../S/563.html#L88' title='Defined at 88 in third_party/google-perftools-1.8.3/src/google/profiler.h.'>ProfilerOptions</a>* <a href='../Y/4012.html' title='Multiple used in 48 places.'>options</a>);
+<a id='L82' name='L82' />
+<a id='L83' name='L83' />  <em class='comment'>// Stop profiling and write the data to disk.</em>
+<a id='L84' name='L84' />  <strong class='reserved'>void</strong> <a href='../D/2616.html' title='Multiple defined in 2 places.'>Stop</a>();
+<a id='L85' name='L85' />
+<a id='L86' name='L86' />  <em class='comment'>// Write the data to disk (and continue profiling).</em>
+<a id='L87' name='L87' />  <strong class='reserved'>void</strong> <a href='../D/789.html' title='Multiple defined in 2 places.'>FlushTable</a>();
+<a id='L88' name='L88' />
+<a id='L89' name='L89' />  <strong class='reserved'>bool</strong> <a href='../S/600.html#L223' title='Defined at 223 in third_party/google-perftools-1.8.3/src/profiler.cc.'>Enabled</a>();
+<a id='L90' name='L90' />
+<a id='L91' name='L91' />  <strong class='reserved'>void</strong> <a href='../D/838.html' title='Multiple defined in 2 places.'>GetCurrentState</a>(<a href='../S/563.html#L156' title='Defined at 156 in third_party/google-perftools-1.8.3/src/google/profiler.h.'>ProfilerState</a>* <a href='../Y/5063.html' title='Multiple used in 178 places.'>state</a>);
+<a id='L92' name='L92' />
+<a id='L93' name='L93' />  <strong class='reserved'>static</strong> <a href='../D/491.html' title='Multiple defined in 3 places.'>CpuProfiler</a> <a href='../Y/2852.html' title='Multiple used in 15 places.'>instance_</a>;
+<a id='L94' name='L94' />
+<a id='L95' name='L95' /> <strong class='reserved'>private</strong>:
+<a id='L96' name='L96' />  <em class='comment'>// This lock implements the locking requirements described in the ProfileData</em>
+<a id='L97' name='L97' />  <em class='comment'>// documentation, specifically:</em>
+<a id='L98' name='L98' />  <em class='comment'>//</em>
+<a id='L99' name='L99' />  <em class='comment'>// lock_ is held all over all collector_ method calls except for the 'Add'</em>
+<a id='L100' name='L100' />  <em class='comment'>// call made from the signal handler, to protect against concurrent use of</em>
+<a id='L101' name='L101' />  <em class='comment'>// collector_'s control routines. Code other than signal handler must</em>
+<a id='L102' name='L102' />  <em class='comment'>// unregister the signal handler before calling any collector_ method.</em>
+<a id='L103' name='L103' />  <em class='comment'>// 'Add' method in the collector is protected by a guarantee from</em>
+<a id='L104' name='L104' />  <em class='comment'>// ProfileHandle that only one instance of prof_handler can run at a time.</em>
+<a id='L105' name='L105' />  <a href='../Y/802.html' title='Multiple used in 48 places.'>SpinLock</a>      <a href='../Y/3314.html' title='Multiple used in 57 places.'>lock_</a>;
+<a id='L106' name='L106' />  <a href='../S/598.html#L131' title='Defined at 131 in third_party/google-perftools-1.8.3/src/profiledata.cc.'>ProfileData</a>   <a href='../Y/1829.html' title='Multiple used in 45 places.'>collector_</a>;
+<a id='L107' name='L107' />
+<a id='L108' name='L108' />  <em class='comment'>// Filter function and its argument, if any.  (NULL means include all</em>
+<a id='L109' name='L109' />  <em class='comment'>// samples).  Set at start, read-only while running.  Written while holding</em>
+<a id='L110' name='L110' />  <em class='comment'>// lock_, read and executed in the context of SIGPROF interrupt.</em>
+<a id='L111' name='L111' />  <strong class='reserved'>int</strong>           (*<a href='../Y/2368.html' title='Multiple used in 5 places.'>filter_</a>)(<strong class='reserved'>void</strong>*);
+<a id='L112' name='L112' />  <strong class='reserved'>void</strong>*         <a href='../Y/2369.html' title='Multiple used in 3 places.'>filter_arg_</a>;
+<a id='L113' name='L113' />
+<a id='L114' name='L114' />  <em class='comment'>// Opaque token returned by the profile handler. To be used when calling</em>
+<a id='L115' name='L115' />  <em class='comment'>// ProfileHandlerUnregisterCallback.</em>
+<a id='L116' name='L116' />  <a href='../S/596.html#L59' title='Defined at 59 in third_party/google-perftools-1.8.3/src/profile-handler.cc.'>ProfileHandlerToken</a>* <a href='../Y/4281.html' title='Multiple used in 8 places.'>prof_handler_token_</a>;
+<a id='L117' name='L117' />
+<a id='L118' name='L118' />  <em class='comment'>// Sets up a callback to receive SIGPROF interrupt.</em>
+<a id='L119' name='L119' />  <strong class='reserved'>void</strong> <a href='../D/712.html' title='Multiple defined in 2 places.'>EnableHandler</a>();
+<a id='L120' name='L120' />
+<a id='L121' name='L121' />  <em class='comment'>// Disables receiving SIGPROF interrupt.</em>
+<a id='L122' name='L122' />  <strong class='reserved'>void</strong> <a href='../D/629.html' title='Multiple defined in 2 places.'>DisableHandler</a>();
+<a id='L123' name='L123' />
+<a id='L124' name='L124' />  <em class='comment'>// Signal handler that records the interrupted pc in the profile data.</em>
+<a id='L125' name='L125' />  <strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../D/4864.html' title='Multiple defined in 2 places.'>prof_handler</a>(<strong class='reserved'>int</strong> <a href='../Y/4841.html' title='Multiple used in 32 places.'>sig</a>, <a href='../Y/4856.html' title='Multiple used in 8 places.'>siginfo_t</a>*, <strong class='reserved'>void</strong>* <a href='../Y/4862.html' title='Multiple used in 12 places.'>signal_ucontext</a>,
+<a id='L126' name='L126' />                           <strong class='reserved'>void</strong>* <a href='../Y/1896.html' title='Multiple used in 3 places.'>cpu_profiler</a>);
+<a id='L127' name='L127' /><em class='brace'>}</em>;
+<a id='L128' name='L128' />
+<a id='L129' name='L129' /><em class='comment'>// Profile data structure singleton: Constructor will check to see if</em>
+<a id='L130' name='L130' /><em class='comment'>// profiling should be enabled.  Destructor will write profile data</em>
+<a id='L131' name='L131' /><em class='comment'>// out to disk.</em>
+<a id='L132' name='L132' /><a href='../D/491.html' title='Multiple defined in 3 places.'>CpuProfiler</a> <a href='../D/491.html' title='Multiple defined in 3 places.'>CpuProfiler</a>::<a href='../Y/2852.html' title='Multiple used in 15 places.'>instance_</a>;
+<a id='L133' name='L133' />
+<a id='L134' name='L134' /><em class='comment'>// Initialize profiling: activated if getenv("CPUPROFILE") exists.</em>
+<a id='L135' name='L135' /><a href='../D/491.html' title='Multiple defined in 3 places.'>CpuProfiler</a>::<a href='../R/419.html' title='Multiple refered from 21 places.'>CpuProfiler</a>()
+<a id='L136' name='L136' />    : <a href='../Y/4281.html' title='Multiple used in 8 places.'>prof_handler_token_</a>(<a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>) <em class='brace'>{</em>
+<a id='L137' name='L137' />  <em class='comment'>// TODO(cgd) Move this code *out* of the CpuProfile constructor into a</em>
+<a id='L138' name='L138' />  <em class='comment'>// separate object responsible for initialization. With ProfileHandler there</em>
+<a id='L139' name='L139' />  <em class='comment'>// is no need to limit the number of profilers.</em>
+<a id='L140' name='L140' />  <strong class='reserved'>char</strong> <a href='../Y/2412.html' title='Multiple used in 38 places.'>fname</a>[<a href='../D/2066.html' title='Multiple defined in 3 places.'>PATH_MAX</a>];
+<a id='L141' name='L141' />  <strong class='reserved'>if</strong> (!<a href='../S/542.html#L182' title='Defined at 182 in third_party/google-perftools-1.8.3/src/base/sysinfo.cc.'>GetUniquePathFromEnv</a>("CPUPROFILE", <a href='../Y/2412.html' title='Multiple used in 38 places.'>fname</a>)) <em class='brace'>{</em>
+<a id='L142' name='L142' />    <strong class='reserved'>return</strong>;
+<a id='L143' name='L143' />  <em class='brace'>}</em>
+<a id='L144' name='L144' />  <em class='comment'>// We don't enable profiling if setuid -- it's a security risk</em>
+<a id='L145' name='L145' /><em class='sharp'>#ifdef</em> <a href='../D/907.html' title='Multiple defined in 2 places.'>HAVE_GETEUID</a>
+<a id='L146' name='L146' />  <strong class='reserved'>if</strong> (<a href='../Y/2559.html' title='Multiple used in 3 places.'>getuid</a>() != <a href='../Y/2539.html' title='Multiple used in 5 places.'>geteuid</a>())
+<a id='L147' name='L147' />    <strong class='reserved'>return</strong>;
+<a id='L148' name='L148' /><em class='sharp'>#endif</em>
+<a id='L149' name='L149' />
+<a id='L150' name='L150' />  <strong class='reserved'>if</strong> (!<a href='../D/2607.html' title='Multiple defined in 3 places.'>Start</a>(<a href='../Y/2412.html' title='Multiple used in 38 places.'>fname</a>, <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>)) <em class='brace'>{</em>
+<a id='L151' name='L151' />    <a href='../S/529.html#L227' title='Defined at 227 in third_party/google-perftools-1.8.3/src/base/logging.h.'>RAW_LOG</a>(<a href='../S/529.html#L194' title='Defined at 194 in third_party/google-perftools-1.8.3/src/base/logging.h.'>FATAL</a>, "Can't turn on cpu profiling for '%s': %s\n",
+<a id='L152' name='L152' />            <a href='../Y/2412.html' title='Multiple used in 38 places.'>fname</a>, <a href='../Y/5132.html' title='Multiple used in 13 places.'>strerror</a>(<a href='../Y/2232.html' title='Multiple used in 77 places.'>errno</a>));
+<a id='L153' name='L153' />  <em class='brace'>}</em>
+<a id='L154' name='L154' /><em class='brace'>}</em>
+<a id='L155' name='L155' />
+<a id='L156' name='L156' /><strong class='reserved'>bool</strong> <a href='../D/491.html' title='Multiple defined in 3 places.'>CpuProfiler</a>::<a href='../R/2340.html' title='Multiple refered from 19 places.'>Start</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../Y/2412.html' title='Multiple used in 38 places.'>fname</a>, <strong class='reserved'>const</strong> <a href='../S/563.html#L88' title='Defined at 88 in third_party/google-perftools-1.8.3/src/google/profiler.h.'>ProfilerOptions</a>* <a href='../Y/4012.html' title='Multiple used in 48 places.'>options</a>) <em class='brace'>{</em>
+<a id='L157' name='L157' />  <a href='../S/534.html#L148' title='Defined at 148 in third_party/google-perftools-1.8.3/src/base/spinlock.h.'>SpinLockHolder</a> <a href='../Y/1790.html' title='Multiple used in 108 places.'>cl</a>(&amp;<a href='../Y/3314.html' title='Multiple used in 57 places.'>lock_</a>);
+<a id='L158' name='L158' />
+<a id='L159' name='L159' />  <strong class='reserved'>if</strong> (<a href='../Y/1829.html' title='Multiple used in 45 places.'>collector_</a>.<a href='../Y/2187.html' title='Multiple used in 21 places.'>enabled</a>()) <em class='brace'>{</em>
+<a id='L160' name='L160' />    <strong class='reserved'>return</strong> <strong class='reserved'>false</strong>;
+<a id='L161' name='L161' />  <em class='brace'>}</em>
+<a id='L162' name='L162' />
+<a id='L163' name='L163' />  <a href='../S/597.html#L136' title='Defined at 136 in third_party/google-perftools-1.8.3/src/profile-handler.h.'>ProfileHandlerState</a> <a href='../Y/4280.html' title='Multiple used in 3 places.'>prof_handler_state</a>;
+<a id='L164' name='L164' />  <a href='../D/2235.html' title='Multiple defined in 2 places.'>ProfileHandlerGetState</a>(&amp;<a href='../Y/4280.html' title='Multiple used in 3 places.'>prof_handler_state</a>);
+<a id='L165' name='L165' />
+<a id='L166' name='L166' />  <a href='../S/598.html#L131' title='Defined at 131 in third_party/google-perftools-1.8.3/src/profiledata.cc.'>ProfileData</a>::<a href='../S/598.html#L59' title='Defined at 59 in third_party/google-perftools-1.8.3/src/profiledata.cc.'>Options</a> <a href='../Y/1830.html' title='Multiple used in 3 places.'>collector_options</a>;
+<a id='L167' name='L167' />  <a href='../Y/1830.html' title='Multiple used in 3 places.'>collector_options</a>.<a href='../Y/4783.html' title='Multiple used in 11 places.'>set_frequency</a>(<a href='../Y/4280.html' title='Multiple used in 3 places.'>prof_handler_state</a>.<a href='../Y/2468.html' title='Multiple used in 30 places.'>frequency</a>);
+<a id='L168' name='L168' />  <strong class='reserved'>if</strong> (!<a href='../Y/1829.html' title='Multiple used in 45 places.'>collector_</a>.<a href='../D/2607.html' title='Multiple defined in 3 places.'>Start</a>(<a href='../Y/2412.html' title='Multiple used in 38 places.'>fname</a>, <a href='../Y/1830.html' title='Multiple used in 3 places.'>collector_options</a>)) <em class='brace'>{</em>
+<a id='L169' name='L169' />    <strong class='reserved'>return</strong> <strong class='reserved'>false</strong>;
+<a id='L170' name='L170' />  <em class='brace'>}</em>
+<a id='L171' name='L171' />
+<a id='L172' name='L172' />  <a href='../Y/2368.html' title='Multiple used in 5 places.'>filter_</a> = <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>;
+<a id='L173' name='L173' />  <strong class='reserved'>if</strong> (<a href='../Y/4012.html' title='Multiple used in 48 places.'>options</a> != <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a> &amp;&amp; <a href='../Y/4012.html' title='Multiple used in 48 places.'>options</a>-&gt;<a href='../Y/2370.html' title='Multiple used in 3 places.'>filter_in_thread</a> != <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>) <em class='brace'>{</em>
+<a id='L174' name='L174' />    <a href='../Y/2368.html' title='Multiple used in 5 places.'>filter_</a> = <a href='../Y/4012.html' title='Multiple used in 48 places.'>options</a>-&gt;<a href='../Y/2370.html' title='Multiple used in 3 places.'>filter_in_thread</a>;
+<a id='L175' name='L175' />    <a href='../Y/2369.html' title='Multiple used in 3 places.'>filter_arg_</a> = <a href='../Y/4012.html' title='Multiple used in 48 places.'>options</a>-&gt;<a href='../Y/2371.html' title='Multiple used in 2 places.'>filter_in_thread_arg</a>;
+<a id='L176' name='L176' />  <em class='brace'>}</em>
+<a id='L177' name='L177' />
+<a id='L178' name='L178' />  <em class='comment'>// Setup handler for SIGPROF interrupts</em>
+<a id='L179' name='L179' />  <a href='../D/712.html' title='Multiple defined in 2 places.'>EnableHandler</a>();
+<a id='L180' name='L180' />
+<a id='L181' name='L181' />  <strong class='reserved'>return</strong> <strong class='reserved'>true</strong>;
+<a id='L182' name='L182' /><em class='brace'>}</em>
+<a id='L183' name='L183' />
+<a id='L184' name='L184' /><a href='../R/419.html' title='Multiple refered from 21 places.'>CpuProfiler</a>::~<a href='../D/491.html' title='Multiple defined in 3 places.'>CpuProfiler</a>() <em class='brace'>{</em>
+<a id='L185' name='L185' />  <a href='../D/2616.html' title='Multiple defined in 2 places.'>Stop</a>();
+<a id='L186' name='L186' /><em class='brace'>}</em>
+<a id='L187' name='L187' />
+<a id='L188' name='L188' /><em class='comment'>// Stop profiling and write out any collected profile data</em>
+<a id='L189' name='L189' /><strong class='reserved'>void</strong> <a href='../D/491.html' title='Multiple defined in 3 places.'>CpuProfiler</a>::<a href='../R/2349.html' title='Multiple refered from 15 places.'>Stop</a>() <em class='brace'>{</em>
+<a id='L190' name='L190' />  <a href='../S/534.html#L148' title='Defined at 148 in third_party/google-perftools-1.8.3/src/base/spinlock.h.'>SpinLockHolder</a> <a href='../Y/1790.html' title='Multiple used in 108 places.'>cl</a>(&amp;<a href='../Y/3314.html' title='Multiple used in 57 places.'>lock_</a>);
+<a id='L191' name='L191' />
+<a id='L192' name='L192' />  <strong class='reserved'>if</strong> (!<a href='../Y/1829.html' title='Multiple used in 45 places.'>collector_</a>.<a href='../Y/2187.html' title='Multiple used in 21 places.'>enabled</a>()) <em class='brace'>{</em>
+<a id='L193' name='L193' />    <strong class='reserved'>return</strong>;
+<a id='L194' name='L194' />  <em class='brace'>}</em>
+<a id='L195' name='L195' />
+<a id='L196' name='L196' />  <em class='comment'>// Unregister prof_handler to stop receiving SIGPROF interrupts before</em>
+<a id='L197' name='L197' />  <em class='comment'>// stopping the collector.</em>
+<a id='L198' name='L198' />  <a href='../D/629.html' title='Multiple defined in 2 places.'>DisableHandler</a>();
+<a id='L199' name='L199' />
+<a id='L200' name='L200' />  <em class='comment'>// DisableHandler waits for the currently running callback to complete and</em>
+<a id='L201' name='L201' />  <em class='comment'>// guarantees no future invocations. It is safe to stop the collector.</em>
+<a id='L202' name='L202' />  <a href='../Y/1829.html' title='Multiple used in 45 places.'>collector_</a>.<a href='../D/2616.html' title='Multiple defined in 2 places.'>Stop</a>();
+<a id='L203' name='L203' /><em class='brace'>}</em>
+<a id='L204' name='L204' />
+<a id='L205' name='L205' /><strong class='reserved'>void</strong> <a href='../D/491.html' title='Multiple defined in 3 places.'>CpuProfiler</a>::<a href='../R/688.html' title='Multiple refered from 6 places.'>FlushTable</a>() <em class='brace'>{</em>
+<a id='L206' name='L206' />  <a href='../S/534.html#L148' title='Defined at 148 in third_party/google-perftools-1.8.3/src/base/spinlock.h.'>SpinLockHolder</a> <a href='../Y/1790.html' title='Multiple used in 108 places.'>cl</a>(&amp;<a href='../Y/3314.html' title='Multiple used in 57 places.'>lock_</a>);
+<a id='L207' name='L207' />
+<a id='L208' name='L208' />  <strong class='reserved'>if</strong> (!<a href='../Y/1829.html' title='Multiple used in 45 places.'>collector_</a>.<a href='../Y/2187.html' title='Multiple used in 21 places.'>enabled</a>()) <em class='brace'>{</em>
+<a id='L209' name='L209' />    <strong class='reserved'>return</strong>;
+<a id='L210' name='L210' />  <em class='brace'>}</em>
+<a id='L211' name='L211' />
+<a id='L212' name='L212' />  <em class='comment'>// Unregister prof_handler to stop receiving SIGPROF interrupts before</em>
+<a id='L213' name='L213' />  <em class='comment'>// flushing the profile data.</em>
+<a id='L214' name='L214' />  <a href='../D/629.html' title='Multiple defined in 2 places.'>DisableHandler</a>();
+<a id='L215' name='L215' />
+<a id='L216' name='L216' />  <em class='comment'>// DisableHandler waits for the currently running callback to complete and</em>
+<a id='L217' name='L217' />  <em class='comment'>// guarantees no future invocations. It is safe to flush the profile data.</em>
+<a id='L218' name='L218' />  <a href='../Y/1829.html' title='Multiple used in 45 places.'>collector_</a>.<a href='../D/789.html' title='Multiple defined in 2 places.'>FlushTable</a>();
+<a id='L219' name='L219' />
+<a id='L220' name='L220' />  <a href='../D/712.html' title='Multiple defined in 2 places.'>EnableHandler</a>();
+<a id='L221' name='L221' /><em class='brace'>}</em>
+<a id='L222' name='L222' />
+<a id='L223' name='L223' /><strong class='reserved'>bool</strong> <a href='../D/491.html' title='Multiple defined in 3 places.'>CpuProfiler</a>::<a href='../R/616.html' title='Multiple refered from 2 places.'>Enabled</a>() <em class='brace'>{</em>
+<a id='L224' name='L224' />  <a href='../S/534.html#L148' title='Defined at 148 in third_party/google-perftools-1.8.3/src/base/spinlock.h.'>SpinLockHolder</a> <a href='../Y/1790.html' title='Multiple used in 108 places.'>cl</a>(&amp;<a href='../Y/3314.html' title='Multiple used in 57 places.'>lock_</a>);
+<a id='L225' name='L225' />  <strong class='reserved'>return</strong> <a href='../Y/1829.html' title='Multiple used in 45 places.'>collector_</a>.<a href='../Y/2187.html' title='Multiple used in 21 places.'>enabled</a>();
+<a id='L226' name='L226' /><em class='brace'>}</em>
+<a id='L227' name='L227' />
+<a id='L228' name='L228' /><strong class='reserved'>void</strong> <a href='../D/491.html' title='Multiple defined in 3 places.'>CpuProfiler</a>::<a href='../R/734.html' title='Multiple refered from 9 places.'>GetCurrentState</a>(<a href='../S/563.html#L156' title='Defined at 156 in third_party/google-perftools-1.8.3/src/google/profiler.h.'>ProfilerState</a>* <a href='../Y/5063.html' title='Multiple used in 178 places.'>state</a>) <em class='brace'>{</em>
+<a id='L229' name='L229' />  <a href='../S/598.html#L131' title='Defined at 131 in third_party/google-perftools-1.8.3/src/profiledata.cc.'>ProfileData</a>::<a href='../D/2610.html' title='Multiple defined in 3 places.'>State</a> <a href='../Y/1831.html' title='Multiple used in 6 places.'>collector_state</a>;
+<a id='L230' name='L230' />  <em class='brace'>{</em>
+<a id='L231' name='L231' />    <a href='../S/534.html#L148' title='Defined at 148 in third_party/google-perftools-1.8.3/src/base/spinlock.h.'>SpinLockHolder</a> <a href='../Y/1790.html' title='Multiple used in 108 places.'>cl</a>(&amp;<a href='../Y/3314.html' title='Multiple used in 57 places.'>lock_</a>);
+<a id='L232' name='L232' />    <a href='../Y/1829.html' title='Multiple used in 45 places.'>collector_</a>.<a href='../D/838.html' title='Multiple defined in 2 places.'>GetCurrentState</a>(&amp;<a href='../Y/1831.html' title='Multiple used in 6 places.'>collector_state</a>);
+<a id='L233' name='L233' />  <em class='brace'>}</em>
+<a id='L234' name='L234' />
+<a id='L235' name='L235' />  <a href='../Y/5063.html' title='Multiple used in 178 places.'>state</a>-&gt;<a href='../Y/2187.html' title='Multiple used in 21 places.'>enabled</a> = <a href='../Y/1831.html' title='Multiple used in 6 places.'>collector_state</a>.<a href='../Y/2187.html' title='Multiple used in 21 places.'>enabled</a>;
+<a id='L236' name='L236' />  <a href='../Y/5063.html' title='Multiple used in 178 places.'>state</a>-&gt;<a href='../Y/5055.html' title='Multiple used in 7 places.'>start_time</a> = <strong class='reserved'>static_cast</strong>&lt;<a href='../Y/5381.html' title='Multiple used in 5 places.'>time_t</a>&gt;(<a href='../Y/1831.html' title='Multiple used in 6 places.'>collector_state</a>.<a href='../Y/5055.html' title='Multiple used in 7 places.'>start_time</a>);
+<a id='L237' name='L237' />  <a href='../Y/5063.html' title='Multiple used in 178 places.'>state</a>-&gt;<a href='../Y/4726.html' title='Multiple used in 8 places.'>samples_gathered</a> = <a href='../Y/1831.html' title='Multiple used in 6 places.'>collector_state</a>.<a href='../Y/4726.html' title='Multiple used in 8 places.'>samples_gathered</a>;
+<a id='L238' name='L238' />  <strong class='reserved'>int</strong> <a href='../Y/1678.html' title='Multiple used in 27 places.'>buf_size</a> = <strong class='reserved'>sizeof</strong>(<a href='../Y/5063.html' title='Multiple used in 178 places.'>state</a>-&gt;<a href='../Y/4286.html' title='Multiple used in 11 places.'>profile_name</a>);
+<a id='L239' name='L239' />  <a href='../Y/5143.html' title='Multiple used in 4 places.'>strncpy</a>(<a href='../Y/5063.html' title='Multiple used in 178 places.'>state</a>-&gt;<a href='../Y/4286.html' title='Multiple used in 11 places.'>profile_name</a>, <a href='../Y/1831.html' title='Multiple used in 6 places.'>collector_state</a>.<a href='../Y/4286.html' title='Multiple used in 11 places.'>profile_name</a>, <a href='../Y/1678.html' title='Multiple used in 27 places.'>buf_size</a>);
+<a id='L240' name='L240' />  <a href='../Y/5063.html' title='Multiple used in 178 places.'>state</a>-&gt;<a href='../Y/4286.html' title='Multiple used in 11 places.'>profile_name</a>[<a href='../Y/1678.html' title='Multiple used in 27 places.'>buf_size</a>-1] = '\0';
+<a id='L241' name='L241' /><em class='brace'>}</em>
+<a id='L242' name='L242' />
+<a id='L243' name='L243' /><strong class='reserved'>void</strong> <a href='../D/491.html' title='Multiple defined in 3 places.'>CpuProfiler</a>::<a href='../R/615.html' title='Multiple refered from 7 places.'>EnableHandler</a>() <em class='brace'>{</em>
+<a id='L244' name='L244' />  <a href='../S/529.html#L93' title='Defined at 93 in third_party/google-perftools-1.8.3/src/base/logging.h.'>RAW_CHECK</a>(<a href='../Y/4281.html' title='Multiple used in 8 places.'>prof_handler_token_</a> == <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>, "SIGPROF handler already registered");
+<a id='L245' name='L245' />  <a href='../Y/4281.html' title='Multiple used in 8 places.'>prof_handler_token_</a> = <a href='../D/2236.html' title='Multiple defined in 2 places.'>ProfileHandlerRegisterCallback</a>(<a href='../D/4864.html' title='Multiple defined in 2 places.'>prof_handler</a>, <strong class='reserved'>this</strong>);
+<a id='L246' name='L246' />  <a href='../S/529.html#L93' title='Defined at 93 in third_party/google-perftools-1.8.3/src/base/logging.h.'>RAW_CHECK</a>(<a href='../Y/4281.html' title='Multiple used in 8 places.'>prof_handler_token_</a> != <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>, "Failed to set up SIGPROF handler");
+<a id='L247' name='L247' /><em class='brace'>}</em>
+<a id='L248' name='L248' />
+<a id='L249' name='L249' /><strong class='reserved'>void</strong> <a href='../D/491.html' title='Multiple defined in 3 places.'>CpuProfiler</a>::<a href='../R/536.html' title='Multiple refered from 9 places.'>DisableHandler</a>() <em class='brace'>{</em>
+<a id='L250' name='L250' />  <a href='../S/529.html#L93' title='Defined at 93 in third_party/google-perftools-1.8.3/src/base/logging.h.'>RAW_CHECK</a>(<a href='../Y/4281.html' title='Multiple used in 8 places.'>prof_handler_token_</a> != <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>, "SIGPROF handler is not registered");
+<a id='L251' name='L251' />  <a href='../D/2242.html' title='Multiple defined in 2 places.'>ProfileHandlerUnregisterCallback</a>(<a href='../Y/4281.html' title='Multiple used in 8 places.'>prof_handler_token_</a>);
+<a id='L252' name='L252' />  <a href='../Y/4281.html' title='Multiple used in 8 places.'>prof_handler_token_</a> = <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>;
+<a id='L253' name='L253' /><em class='brace'>}</em>
+<a id='L254' name='L254' />
+<a id='L255' name='L255' /><em class='comment'>// Signal handler that records the pc in the profile-data structure. We do no</em>
+<a id='L256' name='L256' /><em class='comment'>// synchronization here.  profile-handler.cc guarantees that at most one</em>
+<a id='L257' name='L257' /><em class='comment'>// instance of prof_handler() will run at a time. All other routines that</em>
+<a id='L258' name='L258' /><em class='comment'>// access the data touched by prof_handler() disable this signal handler before</em>
+<a id='L259' name='L259' /><em class='comment'>// accessing the data and therefore cannot execute concurrently with</em>
+<a id='L260' name='L260' /><em class='comment'>// prof_handler().</em>
+<a id='L261' name='L261' /><strong class='reserved'>void</strong> <a href='../D/491.html' title='Multiple defined in 3 places.'>CpuProfiler</a>::<a href='../R/4444.html' title='Multiple refered from 3 places.'>prof_handler</a>(<strong class='reserved'>int</strong> <a href='../Y/4841.html' title='Multiple used in 32 places.'>sig</a>, <a href='../Y/4856.html' title='Multiple used in 8 places.'>siginfo_t</a>*, <strong class='reserved'>void</strong>* <a href='../Y/4862.html' title='Multiple used in 12 places.'>signal_ucontext</a>,
+<a id='L262' name='L262' />                               <strong class='reserved'>void</strong>* <a href='../Y/1896.html' title='Multiple used in 3 places.'>cpu_profiler</a>) <em class='brace'>{</em>
+<a id='L263' name='L263' />  <a href='../D/491.html' title='Multiple defined in 3 places.'>CpuProfiler</a>* <a href='../S/580.html#L206' title='Defined at 206 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>instance</a> = <strong class='reserved'>static_cast</strong>&lt;<a href='../D/491.html' title='Multiple defined in 3 places.'>CpuProfiler</a>*&gt;(<a href='../Y/1896.html' title='Multiple used in 3 places.'>cpu_profiler</a>);
+<a id='L264' name='L264' />
+<a id='L265' name='L265' />  <strong class='reserved'>if</strong> (<a href='../S/580.html#L206' title='Defined at 206 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>instance</a>-&gt;<a href='../Y/2368.html' title='Multiple used in 5 places.'>filter_</a> == <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a> ||
+<a id='L266' name='L266' />      (*<a href='../S/580.html#L206' title='Defined at 206 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>instance</a>-&gt;<a href='../Y/2368.html' title='Multiple used in 5 places.'>filter_</a>)(<a href='../S/580.html#L206' title='Defined at 206 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>instance</a>-&gt;<a href='../Y/2369.html' title='Multiple used in 3 places.'>filter_arg_</a>)) <em class='brace'>{</em>
+<a id='L267' name='L267' />    <strong class='reserved'>void</strong>* <a href='../Y/5021.html' title='Multiple used in 116 places.'>stack</a>[<a href='../S/598.html#L131' title='Defined at 131 in third_party/google-perftools-1.8.3/src/profiledata.cc.'>ProfileData</a>::<a href='../Y/3068.html' title='Multiple used in 25 places.'>kMaxStackDepth</a>];
+<a id='L268' name='L268' />
+<a id='L269' name='L269' />    <em class='comment'>// The top-most active routine doesn't show up as a normal</em>
+<a id='L270' name='L270' />    <em class='comment'>// frame, but as the "pc" value in the signal handler context.</em>
+<a id='L271' name='L271' />    <a href='../Y/5021.html' title='Multiple used in 116 places.'>stack</a>[0] = <a href='../D/858.html' title='Multiple defined in 3 places.'>GetPC</a>(*<strong class='reserved'>reinterpret_cast</strong>&lt;<a href='../D/5489.html' title='Multiple defined in 5 places.'>ucontext_t</a>*&gt;(<a href='../Y/4862.html' title='Multiple used in 12 places.'>signal_ucontext</a>));
+<a id='L272' name='L272' />
+<a id='L273' name='L273' />    <em class='comment'>// We skip the top two stack trace entries (this function and one</em>
+<a id='L274' name='L274' />    <em class='comment'>// signal handler frame) since they are artifacts of profiling and</em>
+<a id='L275' name='L275' />    <em class='comment'>// should not be measured.  Other profiling related frames may be</em>
+<a id='L276' name='L276' />    <em class='comment'>// removed by "pprof" at analysis time.  Instead of skipping the top</em>
+<a id='L277' name='L277' />    <em class='comment'>// frames, we could skip nothing, but that would increase the</em>
+<a id='L278' name='L278' />    <em class='comment'>// profile size unnecessarily.</em>
+<a id='L279' name='L279' />    <strong class='reserved'>int</strong> <a href='../Y/2023.html' title='Multiple used in 103 places.'>depth</a> = <a href='../Y/316.html' title='Multiple used in 3 places.'>GetStackTraceWithContext</a>(<a href='../Y/5021.html' title='Multiple used in 116 places.'>stack</a> + 1, <a href='../Y/1515.html' title='Multiple used in 24 places.'>arraysize</a>(<a href='../Y/5021.html' title='Multiple used in 116 places.'>stack</a>) - 1,
+<a id='L280' name='L280' />                                         2, <a href='../Y/4862.html' title='Multiple used in 12 places.'>signal_ucontext</a>);
+<a id='L281' name='L281' />    <a href='../Y/2023.html' title='Multiple used in 103 places.'>depth</a>++;  <em class='comment'>// To account for pc value in stack[0];</em>
+<a id='L282' name='L282' />
+<a id='L283' name='L283' />    <a href='../S/580.html#L206' title='Defined at 206 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>instance</a>-&gt;<a href='../Y/1829.html' title='Multiple used in 45 places.'>collector_</a>.<a href='../D/138.html' title='Multiple defined in 4 places.'>Add</a>(<a href='../Y/2023.html' title='Multiple used in 103 places.'>depth</a>, <a href='../Y/5021.html' title='Multiple used in 116 places.'>stack</a>);
+<a id='L284' name='L284' />  <em class='brace'>}</em>
+<a id='L285' name='L285' /><em class='brace'>}</em>
+<a id='L286' name='L286' />
+<a id='L287' name='L287' /><em class='sharp'>#if</em> !(<strong class='reserved'>defined</strong>(<a href='../S/310.html#L11' title='Defined at 11 in src/arch.h.'>__CYGWIN__</a>) || <strong class='reserved'>defined</strong>(<a href='../Y/1035.html' title='Multiple used in 24 places.'>__CYGWIN32__</a>))
+<a id='L288' name='L288' />
+<a id='L289' name='L289' /><strong class='reserved'>extern</strong> "C" <a href='../D/2076.html' title='Multiple defined in 25 places.'>PERFTOOLS_DLL_DECL</a> <strong class='reserved'>void</strong> <a href='../R/2015.html' title='Multiple refered from 2 places.'>ProfilerRegisterThread</a>() <em class='brace'>{</em>
+<a id='L290' name='L290' />  <a href='../D/2237.html' title='Multiple defined in 2 places.'>ProfileHandlerRegisterThread</a>();
+<a id='L291' name='L291' /><em class='brace'>}</em>
+<a id='L292' name='L292' />
+<a id='L293' name='L293' /><strong class='reserved'>extern</strong> "C" <a href='../D/2076.html' title='Multiple defined in 25 places.'>PERFTOOLS_DLL_DECL</a> <strong class='reserved'>void</strong> <a href='../R/2010.html' title='Multiple refered from 2 places.'>ProfilerFlush</a>() <em class='brace'>{</em>
+<a id='L294' name='L294' />  <a href='../D/491.html' title='Multiple defined in 3 places.'>CpuProfiler</a>::<a href='../Y/2852.html' title='Multiple used in 15 places.'>instance_</a>.<a href='../D/789.html' title='Multiple defined in 2 places.'>FlushTable</a>();
+<a id='L295' name='L295' /><em class='brace'>}</em>
+<a id='L296' name='L296' />
+<a id='L297' name='L297' /><strong class='reserved'>extern</strong> "C" <a href='../D/2076.html' title='Multiple defined in 25 places.'>PERFTOOLS_DLL_DECL</a> <strong class='reserved'>int</strong> <a href='../R/2020.html' title='Multiple refered from 3 places.'>ProfilingIsEnabledForAllThreads</a>() <em class='brace'>{</em>
+<a id='L298' name='L298' />  <strong class='reserved'>return</strong> <a href='../D/491.html' title='Multiple defined in 3 places.'>CpuProfiler</a>::<a href='../Y/2852.html' title='Multiple used in 15 places.'>instance_</a>.<a href='../S/600.html#L223' title='Defined at 223 in third_party/google-perftools-1.8.3/src/profiler.cc.'>Enabled</a>();
+<a id='L299' name='L299' /><em class='brace'>}</em>
+<a id='L300' name='L300' />
+<a id='L301' name='L301' /><strong class='reserved'>extern</strong> "C" <a href='../D/2076.html' title='Multiple defined in 25 places.'>PERFTOOLS_DLL_DECL</a> <strong class='reserved'>int</strong> <a href='../R/2016.html' title='Multiple refered from 2 places.'>ProfilerStart</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../Y/2412.html' title='Multiple used in 38 places.'>fname</a>) <em class='brace'>{</em>
+<a id='L302' name='L302' />  <strong class='reserved'>return</strong> <a href='../D/491.html' title='Multiple defined in 3 places.'>CpuProfiler</a>::<a href='../Y/2852.html' title='Multiple used in 15 places.'>instance_</a>.<a href='../D/2607.html' title='Multiple defined in 3 places.'>Start</a>(<a href='../Y/2412.html' title='Multiple used in 38 places.'>fname</a>, <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>);
+<a id='L303' name='L303' /><em class='brace'>}</em>
+<a id='L304' name='L304' />
+<a id='L305' name='L305' /><strong class='reserved'>extern</strong> "C" <a href='../D/2076.html' title='Multiple defined in 25 places.'>PERFTOOLS_DLL_DECL</a> <strong class='reserved'>int</strong> <a href='../S/563.html#L128' title='Refered from 128 in third_party/google-perftools-1.8.3/src/google/profiler.h.'>ProfilerStartWithOptions</a>(
+<a id='L306' name='L306' />    <strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2412.html' title='Multiple used in 38 places.'>fname</a>, <strong class='reserved'>const</strong> <a href='../S/563.html#L88' title='Defined at 88 in third_party/google-perftools-1.8.3/src/google/profiler.h.'>ProfilerOptions</a> *<a href='../Y/4012.html' title='Multiple used in 48 places.'>options</a>) <em class='brace'>{</em>
+<a id='L307' name='L307' />  <strong class='reserved'>return</strong> <a href='../D/491.html' title='Multiple defined in 3 places.'>CpuProfiler</a>::<a href='../Y/2852.html' title='Multiple used in 15 places.'>instance_</a>.<a href='../D/2607.html' title='Multiple defined in 3 places.'>Start</a>(<a href='../Y/2412.html' title='Multiple used in 38 places.'>fname</a>, <a href='../Y/4012.html' title='Multiple used in 48 places.'>options</a>);
+<a id='L308' name='L308' /><em class='brace'>}</em>
+<a id='L309' name='L309' />
+<a id='L310' name='L310' /><strong class='reserved'>extern</strong> "C" <a href='../D/2076.html' title='Multiple defined in 25 places.'>PERFTOOLS_DLL_DECL</a> <strong class='reserved'>void</strong> <a href='../R/2019.html' title='Multiple refered from 2 places.'>ProfilerStop</a>() <em class='brace'>{</em>
+<a id='L311' name='L311' />  <a href='../D/491.html' title='Multiple defined in 3 places.'>CpuProfiler</a>::<a href='../Y/2852.html' title='Multiple used in 15 places.'>instance_</a>.<a href='../D/2616.html' title='Multiple defined in 2 places.'>Stop</a>();
+<a id='L312' name='L312' /><em class='brace'>}</em>
+<a id='L313' name='L313' />
+<a id='L314' name='L314' /><strong class='reserved'>extern</strong> "C" <a href='../D/2076.html' title='Multiple defined in 25 places.'>PERFTOOLS_DLL_DECL</a> <strong class='reserved'>void</strong> <a href='../S/563.html#L162' title='Refered from 162 in third_party/google-perftools-1.8.3/src/google/profiler.h.'>ProfilerGetCurrentState</a>(
+<a id='L315' name='L315' />    <a href='../S/563.html#L156' title='Defined at 156 in third_party/google-perftools-1.8.3/src/google/profiler.h.'>ProfilerState</a>* <a href='../Y/5063.html' title='Multiple used in 178 places.'>state</a>) <em class='brace'>{</em>
+<a id='L316' name='L316' />  <a href='../D/491.html' title='Multiple defined in 3 places.'>CpuProfiler</a>::<a href='../Y/2852.html' title='Multiple used in 15 places.'>instance_</a>.<a href='../D/838.html' title='Multiple defined in 2 places.'>GetCurrentState</a>(<a href='../Y/5063.html' title='Multiple used in 178 places.'>state</a>);
+<a id='L317' name='L317' /><em class='brace'>}</em>
+<a id='L318' name='L318' />
+<a id='L319' name='L319' /><em class='sharp'>#else</em>  <em class='comment'>// OS_CYGWIN</em>
+<a id='L320' name='L320' />
+<a id='L321' name='L321' /><em class='comment'>// ITIMER_PROF doesn't work under cygwin.  ITIMER_REAL is available, but doesn't</em>
+<a id='L322' name='L322' /><em class='comment'>// work as well for profiling, and also interferes with alarm().  Because of</em>
+<a id='L323' name='L323' /><em class='comment'>// these issues, unless a specific need is identified, profiler support is</em>
+<a id='L324' name='L324' /><em class='comment'>// disabled under Cygwin.</em>
+<a id='L325' name='L325' /><strong class='reserved'>extern</strong> "C" <strong class='reserved'>void</strong> <a href='../R/2015.html' title='Multiple refered from 2 places.'>ProfilerRegisterThread</a>() <em class='brace'>{</em> <em class='brace'>}</em>
+<a id='L326' name='L326' /><strong class='reserved'>extern</strong> "C" <strong class='reserved'>void</strong> <a href='../R/2010.html' title='Multiple refered from 2 places.'>ProfilerFlush</a>() <em class='brace'>{</em> <em class='brace'>}</em>
+<a id='L327' name='L327' /><strong class='reserved'>extern</strong> "C" <strong class='reserved'>int</strong> <a href='../R/2020.html' title='Multiple refered from 3 places.'>ProfilingIsEnabledForAllThreads</a>() <em class='brace'>{</em> <strong class='reserved'>return</strong> 0; <em class='brace'>}</em>
+<a id='L328' name='L328' /><strong class='reserved'>extern</strong> "C" <strong class='reserved'>int</strong> <a href='../R/2016.html' title='Multiple refered from 2 places.'>ProfilerStart</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../Y/2412.html' title='Multiple used in 38 places.'>fname</a>) <em class='brace'>{</em> <strong class='reserved'>return</strong> 0; <em class='brace'>}</em>
+<a id='L329' name='L329' /><strong class='reserved'>extern</strong> "C" <strong class='reserved'>int</strong> <a href='../S/563.html#L128' title='Refered from 128 in third_party/google-perftools-1.8.3/src/google/profiler.h.'>ProfilerStartWithOptions</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong> *<a href='../Y/2412.html' title='Multiple used in 38 places.'>fname</a>,
+<a id='L330' name='L330' />                                        <strong class='reserved'>const</strong> <a href='../S/563.html#L88' title='Defined at 88 in third_party/google-perftools-1.8.3/src/google/profiler.h.'>ProfilerOptions</a> *<a href='../Y/4012.html' title='Multiple used in 48 places.'>options</a>) <em class='brace'>{</em>
+<a id='L331' name='L331' />  <strong class='reserved'>return</strong> 0;
+<a id='L332' name='L332' /><em class='brace'>}</em>
+<a id='L333' name='L333' /><strong class='reserved'>extern</strong> "C" <strong class='reserved'>void</strong> <a href='../R/2019.html' title='Multiple refered from 2 places.'>ProfilerStop</a>() <em class='brace'>{</em> <em class='brace'>}</em>
+<a id='L334' name='L334' /><strong class='reserved'>extern</strong> "C" <strong class='reserved'>void</strong> <a href='../S/563.html#L162' title='Refered from 162 in third_party/google-perftools-1.8.3/src/google/profiler.h.'>ProfilerGetCurrentState</a>(<a href='../S/563.html#L156' title='Defined at 156 in third_party/google-perftools-1.8.3/src/google/profiler.h.'>ProfilerState</a>* <a href='../Y/5063.html' title='Multiple used in 178 places.'>state</a>) <em class='brace'>{</em>
+<a id='L335' name='L335' />  <a href='../Y/3518.html' title='Multiple used in 105 places.'>memset</a>(<a href='../Y/5063.html' title='Multiple used in 178 places.'>state</a>, 0, <strong class='reserved'>sizeof</strong>(*<a href='../Y/5063.html' title='Multiple used in 178 places.'>state</a>));
+<a id='L336' name='L336' /><em class='brace'>}</em>
+<a id='L337' name='L337' />
+<a id='L338' name='L338' /><em class='sharp'>#endif</em>  <em class='comment'>// OS_CYGWIN</em>
+<a id='L339' name='L339' />
+<a id='L340' name='L340' /><em class='comment'>// DEPRECATED routines</em>
+<a id='L341' name='L341' /><strong class='reserved'>extern</strong> "C" <a href='../D/2076.html' title='Multiple defined in 25 places.'>PERFTOOLS_DLL_DECL</a> <strong class='reserved'>void</strong> <a href='../S/563.html#L145' title='Refered from 145 in third_party/google-perftools-1.8.3/src/google/profiler.h.'>ProfilerEnable</a>() <em class='brace'>{</em> <em class='brace'>}</em>
+<a id='L342' name='L342' /><strong class='reserved'>extern</strong> "C" <a href='../D/2076.html' title='Multiple defined in 25 places.'>PERFTOOLS_DLL_DECL</a> <strong class='reserved'>void</strong> <a href='../S/563.html#L146' title='Refered from 146 in third_party/google-perftools-1.8.3/src/google/profiler.h.'>ProfilerDisable</a>() <em class='brace'>{</em> <em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;]<a href='#L156'>[^]</a><a href='#L342'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

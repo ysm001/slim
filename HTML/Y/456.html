@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>M</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/358.html#L213'>M</a>                 213 src/membrane.h #define lmn_mem_parent(M)            ((M)-&gt;parent)</span>
+<span class='curline'><a href='../S/358.html#L214'>M</a>                 214 src/membrane.h #define lmn_mem_is_active(M)         ((M)-&gt;is_activated)</span>
+<span class='curline'><a href='../S/358.html#L215'>M</a>                 215 src/membrane.h #define lmn_mem_max_functor(M)       ((M)-&gt;max_functor)</span>
+<span class='curline'><a href='../S/358.html#L216'>M</a>                 216 src/membrane.h #define lmn_mem_set_name(M, N)       ((M)-&gt;name = (N))</span>
+<span class='curline'><a href='../S/358.html#L217'>M</a>                 217 src/membrane.h #define lmn_mem_set_active(M, F)     ((M)-&gt;is_activated = (F))</span>
+<span class='curline'><a href='../S/358.html#L218'>M</a>                 218 src/membrane.h #define lmn_mem_get_rulesets(M)      (&amp;((M)-&gt;rulesets))</span>
+<span class='curline'><a href='../S/358.html#L219'>M</a>                 219 src/membrane.h #define lmn_mem_ruleset_num(M)       (vec_num(lmn_mem_get_rulesets(M)))</span>
+<span class='curline'><a href='../S/358.html#L220'>M</a>                 220 src/membrane.h #define lmn_mem_get_ruleset(M, I)    ((LmnRuleSet)vec_get(lmn_mem_get_rulesets(M), (I)))</span>
+<span class='curline'><a href='../S/358.html#L221'>M</a>                 221 src/membrane.h #define lmn_mem_symb_atom_num(M)     ((M)-&gt;atom_symb_num)</span>
+<span class='curline'><a href='../S/358.html#L222'>M</a>                 222 src/membrane.h #define lmn_mem_symb_atom_set(M, N)  ((M)-&gt;atom_symb_num = (N))</span>
+<span class='curline'><a href='../S/358.html#L223'>M</a>                 223 src/membrane.h #define lmn_mem_data_atom_num(M)     ((M)-&gt;atom_data_num)</span>
+<span class='curline'><a href='../S/358.html#L224'>M</a>                 224 src/membrane.h #define lmn_mem_data_atom_set(M, N)  ((M)-&gt;atom_data_num = (N))</span>
+<span class='curline'><a href='../S/358.html#L225'>M</a>                 225 src/membrane.h #define lmn_mem_atom_num(M)          (lmn_mem_symb_atom_num(M) + lmn_mem_data_atom_num(M))</span>
+<span class='curline'><a href='../S/358.html#L226'>M</a>                 226 src/membrane.h #define lmn_mem_natoms(M, N)         (lmn_mem_atom_num(M) == (N))</span>
+<span class='curline'><a href='../S/358.html#L227'>M</a>                 227 src/membrane.h #define lmn_mem_natoms_copy(M, N)    (lmn_mem_symb_atom_set(M, lmn_mem_symb_atom_num(N)), \</span>
+<span class='curline'><a href='../S/358.html#L228'>M</a>                 228 src/membrane.h                                       lmn_mem_data_atom_set(M, lmn_mem_data_atom_num(N)))</span>
+<span class='curline'><a href='../S/358.html#L229'>M</a>                 229 src/membrane.h #define lmn_mem_symb_atom_add(M, N)  ((M)-&gt;atom_symb_num += (N))</span>
+<span class='curline'><a href='../S/358.html#L230'>M</a>                 230 src/membrane.h #define lmn_mem_symb_atom_sub(M, N)  ((M)-&gt;atom_symb_num -= (N))</span>
+<span class='curline'><a href='../S/358.html#L231'>M</a>                 231 src/membrane.h #define lmn_mem_symb_atom_inc(M)     (lmn_mem_symb_atom_add(M, 1))</span>
+<span class='curline'><a href='../S/358.html#L232'>M</a>                 232 src/membrane.h #define lmn_mem_symb_atom_dec(M)     (lmn_mem_symb_atom_sub(M, 1))</span>
+<span class='curline'><a href='../S/358.html#L234'>M</a>                 234 src/membrane.h #define lmn_mem_data_atom_add(M, N)  ((M)-&gt;atom_data_num += (N))</span>
+<span class='curline'><a href='../S/358.html#L235'>M</a>                 235 src/membrane.h #define lmn_mem_data_atom_sub(M, N)  ((M)-&gt;atom_data_num -= (N))</span>
+<span class='curline'><a href='../S/358.html#L236'>M</a>                 236 src/membrane.h #define lmn_mem_data_atom_inc(M)     (lmn_mem_data_atom_add(M, 1))</span>
+<span class='curline'><a href='../S/358.html#L237'>M</a>                 237 src/membrane.h #define lmn_mem_data_atom_dec(M)     (lmn_mem_data_atom_sub(M, 1))</span>
+<span class='curline'><a href='../S/358.html#L239'>M</a>                 239 src/membrane.h #define lmn_mem_child_head(M)        ((M)-&gt;child_head)</span>
+<span class='curline'><a href='../S/358.html#L240'>M</a>                 240 src/membrane.h #define lmn_mem_next(M)              ((M)-&gt;next)</span>
+<span class='curline'><a href='../S/358.html#L241'>M</a>                 241 src/membrane.h #define lmn_mem_prev(M)              ((M)-&gt;prev)</span>
+<span class='curline'><a href='../S/358.html#L243'>M</a>                 243 src/membrane.h # define lmn_mem_id(M)               ((M)-&gt;id)</span>
+<span class='curline'><a href='../S/358.html#L244'>M</a>                 244 src/membrane.h # define lmn_mem_set_id(M, n)        ((M)-&gt;id = (n))</span>
+<span class='curline'><a href='../S/358.html#L246'>M</a>                 246 src/membrane.h # define lmn_mem_id(M)               ((LmnWord)(M))</span>
+<span class='curline'><a href='../S/358.html#L247'>M</a>                 247 src/membrane.h # define lmn_mem_set_id(M, n)</span>
+<span class='curline'><a href='../S/364.html#L77'>M</a>                  77 src/react_context.h #define RC_SET_MODE(RC, M)             ((RC)-&gt;mode = (M))</span>
+<span class='curline'><a href='../S/364.html#L78'>M</a>                  78 src/react_context.h #define RC_ADD_MODE(RC, M)             ((RC)-&gt;mode |= (M))</span>
+<span class='curline'><a href='../S/364.html#L79'>M</a>                  79 src/react_context.h #define RC_UNPUT_MODE(RC, M)           ((RC)-&gt;mode &amp;= ~(M))</span>
+<span class='curline'><a href='../S/364.html#L80'>M</a>                  80 src/react_context.h #define RC_GET_MODE(RC, M)             ((RC)-&gt;mode &amp; (M))</span>
+<span class='curline'><a href='../S/432.html#L101'>M</a>                 101 src/verifier/mc_generator.c # define ADD_OPEN_PROFILE(M)                                                   \</span>
+<span class='curline'><a href='../S/432.html#L103'>M</a>                 103 src/verifier/mc_generator.c     profile_add_space(PROFILE_SPACE__OPEN_LIST, M);                            \</span>
+<span class='curline'><a href='../S/432.html#L108'>M</a>                 108 src/verifier/mc_generator.c # define ADD_OPEN_PROFILE(M)</span>
+<span class='curline'><a href='../S/664.html#L356'>M</a>                 356 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc       const int32 M = 2147483647L;   // 2^31-1</span>
+<span class='curline'><a href='../S/664.html#L362'>M</a>                 362 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc       if (lo &gt; M) {</span>
+<span class='curline'><a href='../S/664.html#L363'>M</a>                 363 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc         lo &amp;= M;</span>
+<span class='curline'><a href='../S/664.html#L367'>M</a>                 367 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc       if (lo &gt; M) {</span>
+<span class='curline'><a href='../S/664.html#L368'>M</a>                 368 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc         lo &amp;= M;</span>
+</pre>
+</body>
+</html>

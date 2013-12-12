@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>ap</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/309.html#L68'>ap</a>                 68 src/alloc.c      LmnSAtom ap;</span>
+<span class='curline'><a href='../S/309.html#L77'>ap</a>                 77 src/alloc.c      ap = LMN_SATOM(memory_pool_malloc(atom_memory_pools[arity][cid]));</span>
+<span class='curline'><a href='../S/309.html#L78'>ap</a>                 78 src/alloc.c      LMN_SATOM_SET_FUNCTOR(ap, f);</span>
+<span class='curline'><a href='../S/309.html#L79'>ap</a>                 79 src/alloc.c      LMN_SATOM_SET_ID(ap, 0);</span>
+<span class='curline'><a href='../S/309.html#L81'>ap</a>                 81 src/alloc.c      return ap;</span>
+<span class='curline'><a href='../S/309.html#L84'>ap</a>                 84 src/alloc.c    void lmn_delete_atom(LmnSAtom ap)</span>
+<span class='curline'><a href='../S/309.html#L88'>ap</a>                 88 src/alloc.c      env_return_id(LMN_SATOM_ID(ap));</span>
+<span class='curline'><a href='../S/309.html#L90'>ap</a>                 90 src/alloc.c      arity = LMN_FUNCTOR_ARITY(LMN_SATOM_GET_FUNCTOR(ap));</span>
+<span class='curline'><a href='../S/309.html#L92'>ap</a>                 92 src/alloc.c      memory_pool_free(atom_memory_pools[arity][cid], ap);</span>
+<span class='curline'><a href='../S/311.html#L190'>ap</a>                190 src/atom.h     void lmn_delete_atom(LmnSAtom ap);</span>
+<span class='curline'><a href='../S/325.html#L82'>ap</a>                 82 src/ext/integer.c                     l-&gt;ap, t2, LMN_ATTR_GET_VALUE(l-&gt;pos));</span>
+<span class='curline'><a href='../S/344.html#L666'>ap</a>                666 src/interpret_generated.c       warry_set(rc, targ0, lo-&gt;ap, lo-&gt;pos, TT_ATOM);</span>
+<span class='curline'><a href='../S/357.html#L335'>ap</a>                335 src/membrane.c   LmnSAtom ap = lmn_new_atom(LMN_UNIFY_FUNCTOR);</span>
+<span class='curline'><a href='../S/357.html#L337'>ap</a>                337 src/membrane.c   LMN_SATOM_SET_LINK(ap, 0, d0);</span>
+<span class='curline'><a href='../S/357.html#L338'>ap</a>                338 src/membrane.c   LMN_SATOM_SET_LINK(ap, 1, d1);</span>
+<span class='curline'><a href='../S/357.html#L339'>ap</a>                339 src/membrane.c   LMN_SATOM_SET_ATTR(ap, 0, attr0);</span>
+<span class='curline'><a href='../S/357.html#L340'>ap</a>                340 src/membrane.c   LMN_SATOM_SET_ATTR(ap, 1, attr1);</span>
+<span class='curline'><a href='../S/357.html#L341'>ap</a>                341 src/membrane.c   mem_push_symbol_atom(mem, ap);</span>
+<span class='curline'><a href='../S/357.html#L989'>ap</a>                989 src/membrane.c LinkObj LinkObj_make(LmnAtom ap, LmnLinkAttr pos)</span>
+<span class='curline'><a href='../S/357.html#L992'>ap</a>                992 src/membrane.c   ret-&gt;ap = ap;</span>
+<span class='curline'><a href='../S/357.html#L1024'>ap</a>               1024 src/membrane.c       cpatom = lmn_copy_data_atom(l-&gt;ap, l-&gt;pos);</span>
+<span class='curline'><a href='../S/357.html#L1029'>ap</a>               1029 src/membrane.c       if (!proc_tbl_get_by_atom(atommap, LMN_SATOM(l-&gt;ap), &amp;t)) {</span>
+<span class='curline'><a href='../S/357.html#L1030'>ap</a>               1030 src/membrane.c         cpatom = LMN_ATOM(lmn_copy_satom_with_data(LMN_SATOM(l-&gt;ap)));</span>
+<span class='curline'><a href='../S/357.html#L1033'>ap</a>               1033 src/membrane.c         proc_tbl_put_atom(atommap, LMN_SATOM(l-&gt;ap), (LmnWord)cpatom);</span>
+<span class='curline'><a href='../S/357.html#L1037'>ap</a>               1037 src/membrane.c         vec_push(stack, l-&gt;ap);</span>
+<span class='curline'><a href='../S/357.html#L1099'>ap</a>               1099 src/membrane.c   start1 = LinkObj_make(((LinkObj)vec_get(srcvec,0))-&gt;ap,</span>
+<span class='curline'><a href='../S/357.html#L1101'>ap</a>               1101 src/membrane.c   start2 = LinkObj_make(((LinkObj)vec_get(dstvec,0))-&gt;ap,</span>
+<span class='curline'><a href='../S/357.html#L1110'>ap</a>               1110 src/membrane.c     if (!lmn_data_atom_eq(start1-&gt;ap, start1-&gt;pos, start2-&gt;ap, start2-&gt;pos)) {</span>
+<span class='curline'><a href='../S/357.html#L1128'>ap</a>               1128 src/membrane.c       if (l1-&gt;ap == LMN_SATOM_GET_LINK(lobj-&gt;ap, lobj-&gt;pos)</span>
+<span class='curline'><a href='../S/357.html#L1129'>ap</a>               1129 src/membrane.c           &amp;&amp; l1-&gt;pos == LMN_SATOM_GET_ATTR(lobj-&gt;ap, lobj-&gt;pos)) {</span>
+<span class='curline'><a href='../S/357.html#L1136'>ap</a>               1136 src/membrane.c       if (l2-&gt;ap == LMN_SATOM_GET_LINK(lobj-&gt;ap, lobj-&gt;pos)</span>
+<span class='curline'><a href='../S/357.html#L1137'>ap</a>               1137 src/membrane.c           &amp;&amp; l2-&gt;pos == LMN_SATOM_GET_ATTR(lobj-&gt;ap, lobj-&gt;pos)) {</span>
+<span class='curline'><a href='../S/357.html#L1158'>ap</a>               1158 src/membrane.c     if (LMN_SATOM_GET_FUNCTOR(l1-&gt;ap) != LMN_SATOM_GET_FUNCTOR(l2-&gt;ap)) {</span>
+<span class='curline'><a href='../S/357.html#L1165'>ap</a>               1165 src/membrane.c     if (!hashtbl_contains(&amp;map, l1-&gt;ap)) {</span>
+<span class='curline'><a href='../S/357.html#L1167'>ap</a>               1167 src/membrane.c       hashtbl_put(&amp;map, l1-&gt;ap, l2-&gt;ap);</span>
+<span class='curline'><a href='../S/357.html#L1169'>ap</a>               1169 src/membrane.c     else if (hashtbl_get(&amp;map, l1-&gt;ap) != l2-&gt;ap) {</span>
+<span class='curline'><a href='../S/357.html#L1180'>ap</a>               1180 src/membrane.c     for (i = 0; i &lt; LMN_SATOM_GET_ARITY(l1-&gt;ap); i++) {</span>
+<span class='curline'><a href='../S/357.html#L1183'>ap</a>               1183 src/membrane.c       if (!LMN_ATTR_IS_DATA(LMN_SATOM_GET_ATTR(l1-&gt;ap, i)) &amp;&amp;</span>
+<span class='curline'><a href='../S/357.html#L1184'>ap</a>               1184 src/membrane.c           !LMN_ATTR_IS_DATA(LMN_SATOM_GET_ATTR(l1-&gt;ap, i))) {</span>
+<span class='curline'><a href='../S/357.html#L1185'>ap</a>               1185 src/membrane.c         n1 = LinkObj_make(LMN_SATOM_GET_LINK(l1-&gt;ap, i),</span>
+<span class='curline'><a href='../S/357.html#L1186'>ap</a>               1186 src/membrane.c                           LMN_ATTR_GET_VALUE(LMN_SATOM_GET_ATTR(l1-&gt;ap, i)));</span>
+<span class='curline'><a href='../S/357.html#L1187'>ap</a>               1187 src/membrane.c         n2 = LinkObj_make(LMN_SATOM_GET_LINK(l2-&gt;ap, i),</span>
+<span class='curline'><a href='../S/357.html#L1188'>ap</a>               1188 src/membrane.c                           LMN_ATTR_GET_VALUE(LMN_SATOM_GET_ATTR(l2-&gt;ap, i)));</span>
+<span class='curline'><a href='../S/357.html#L1193'>ap</a>               1193 src/membrane.c         if (!lmn_data_atom_eq(LMN_SATOM_GET_LINK(l1-&gt;ap, i),</span>
+<span class='curline'><a href='../S/357.html#L1194'>ap</a>               1194 src/membrane.c                               LMN_SATOM_GET_ATTR(l1-&gt;ap, i),</span>
+<span class='curline'><a href='../S/357.html#L1195'>ap</a>               1195 src/membrane.c                               LMN_SATOM_GET_LINK(l2-&gt;ap, i),</span>
+<span class='curline'><a href='../S/357.html#L1196'>ap</a>               1196 src/membrane.c                               LMN_SATOM_GET_ATTR(l2-&gt;ap, i))) {</span>
+<span class='curline'><a href='../S/357.html#L1270'>ap</a>               1270 src/membrane.c     vec_push(unsearched_link_stack, (LmnWord)LinkObj_make(l-&gt;ap, l-&gt;pos));</span>
+<span class='curline'><a href='../S/357.html#L1279'>ap</a>               1279 src/membrane.c     l_ap = l-&gt;ap;</span>
+<span class='curline'><a href='../S/357.html#L1297'>ap</a>               1297 src/membrane.c         if (IS_BUDDY(l_ap, l_pos, a-&gt;ap, a-&gt;pos)) {</span>
+<span class='curline'><a href='../S/357.html#L1308'>ap</a>               1308 src/membrane.c           if (IS_BUDDY(l_ap, l_pos, a-&gt;ap, a-&gt;pos)) {</span>
+<span class='curline'><a href='../S/357.html#L1385'>ap</a>               1385 src/membrane.c       if (lmn_data_atom_is_ground(l-&gt;ap, l-&gt;pos)) {</span>
+<span class='curline'><a href='../S/357.html#L1397'>ap</a>               1397 src/membrane.c     if (l-&gt;ap == LMN_SATOM_GET_LINK(l-&gt;ap, l-&gt;pos)) {</span>
+<span class='curline'><a href='../S/357.html#L1402'>ap</a>               1402 src/membrane.c     hashset_add(root, (HashKeyType)LMN_SATOM_GET_LINK(l-&gt;ap, l-&gt;pos));</span>
+<span class='curline'><a href='../S/357.html#L1404'>ap</a>               1404 src/membrane.c       vec_push(stack, l-&gt;ap);</span>
+<span class='curline'><a href='../S/357.html#L1414'>ap</a>               1414 src/membrane.c           hashtbl_put(guard, l-&gt;ap, (HashValueType)l-&gt;pos);</span>
+<span class='curline'><a href='../S/357.html#L1496'>ap</a>               1496 src/membrane.c       lmn_mem_remove_data_atom(mem, l-&gt;ap, l-&gt;pos);</span>
+<span class='curline'><a href='../S/357.html#L1498'>ap</a>               1498 src/membrane.c       mem_remove_symbol_atom(mem, LMN_SATOM(l-&gt;ap));</span>
+<span class='curline'><a href='../S/357.html#L1527'>ap</a>               1527 src/membrane.c     if (LMN_ATTR_IS_DATA(l-&gt;pos)) lmn_free_atom(l-&gt;ap, l-&gt;pos);</span>
+<span class='curline'><a href='../S/357.html#L1548'>ap</a>               1548 src/membrane.c       lmn_mem_remove_data_atom(mem, l-&gt;ap, l-&gt;pos);</span>
+<span class='curline'><a href='../S/357.html#L1549'>ap</a>               1549 src/membrane.c       lmn_free_atom(l-&gt;ap, l-&gt;pos);</span>
+<span class='curline'><a href='../S/358.html#L638'>ap</a>                638 src/membrane.h   LmnAtom ap;</span>
+<span class='curline'><a href='../S/358.html#L642'>ap</a>                642 src/membrane.h LinkObj LinkObj_make(LmnAtom ap, LmnLinkAttr pos);</span>
+<span class='curline'><a href='../S/373.html#L136'>ap</a>                136 src/so.h           LmnSAtom ap;                                                            \</span>
+<span class='curline'><a href='../S/373.html#L138'>ap</a>                138 src/so.h           ap = LMN_SATOM(LMN_SATOM_GET_LINK(wt(rc, atom2), pos2));                \</span>
+<span class='curline'><a href='../S/373.html#L145'>ap</a>                145 src/so.h             LMN_SATOM_SET_LINK(ap, attr, wt(rc, atom1));                          \</span>
+<span class='curline'><a href='../S/373.html#L146'>ap</a>                146 src/so.h             LMN_SATOM_SET_ATTR(ap, attr, at(rc, atom1));                          \</span>
+<span class='curline'><a href='../S/373.html#L149'>ap</a>                149 src/so.h             LMN_SATOM_SET_LINK(LMN_SATOM(wt(rc, atom1)), pos1, ap);               \</span>
+<span class='curline'><a href='../S/373.html#L153'>ap</a>                153 src/so.h             LMN_SATOM_SET_LINK(ap, attr, wt(rc, atom1));                          \</span>
+<span class='curline'><a href='../S/373.html#L154'>ap</a>                154 src/so.h             LMN_SATOM_SET_ATTR(ap, attr, pos1);                                   \</span>
+<span class='curline'><a href='../S/373.html#L155'>ap</a>                155 src/so.h             LMN_SATOM_SET_LINK(LMN_SATOM(wt(rc, atom1)), pos1, ap);               \</span>
+<span class='curline'><a href='../S/373.html#L162'>ap</a>                162 src/so.h                                 ap,                                               \</span>
+<span class='curline'><a href='../S/373.html#L170'>ap</a>                170 src/so.h                                 ap,                                               \</span>
+<span class='curline'><a href='../S/384.html#L1288'>ap</a>               1288 src/task.c           LmnAtom ap;</span>
+<span class='curline'><a href='../S/384.html#L1295'>ap</a>               1295 src/task.c             READ_DATA_ATOM(ap, attr);</span>
+<span class='curline'><a href='../S/384.html#L1300'>ap</a>               1300 src/task.c             ap = LMN_ATOM(lmn_new_atom(f));</span>
+<span class='curline'><a href='../S/384.html#L1302'>ap</a>               1302 src/task.c           lmn_mem_push_atom((LmnMembrane *)wt(rc, memi), ap, attr);</span>
+<span class='curline'><a href='../S/384.html#L1303'>ap</a>               1303 src/task.c           warry_set(rc, atomi, ap, attr, TT_ATOM);</span>
+<span class='curline'><a href='../S/384.html#L1433'>ap</a>               1433 src/task.c           LmnSAtom ap;</span>
+<span class='curline'><a href='../S/384.html#L1442'>ap</a>               1442 src/task.c           ap = LMN_SATOM(LMN_SATOM_GET_LINK(wt(rc, atom2), pos2));</span>
+<span class='curline'><a href='../S/384.html#L1453'>ap</a>               1453 src/task.c             LMN_SATOM_SET_LINK(ap, attr, wt(rc, atom1));</span>
+<span class='curline'><a href='../S/384.html#L1454'>ap</a>               1454 src/task.c             LMN_SATOM_SET_ATTR(ap, attr, at(rc, atom1));</span>
+<span class='curline'><a href='../S/384.html#L1458'>ap</a>               1458 src/task.c             LMN_SATOM_SET_LINK(LMN_SATOM(wt(rc, atom1)), pos1, ap);</span>
+<span class='curline'><a href='../S/384.html#L1463'>ap</a>               1463 src/task.c             LMN_SATOM_SET_LINK(ap, attr, wt(rc, atom1));</span>
+<span class='curline'><a href='../S/384.html#L1464'>ap</a>               1464 src/task.c             LMN_SATOM_SET_ATTR(ap, attr, pos1);</span>
+<span class='curline'><a href='../S/384.html#L1465'>ap</a>               1465 src/task.c             LMN_SATOM_SET_LINK(LMN_SATOM(wt(rc, atom1)), pos1, ap);</span>
+<span class='curline'><a href='../S/384.html#L1472'>ap</a>               1472 src/task.c                                 ap,</span>
+<span class='curline'><a href='../S/384.html#L1480'>ap</a>               1480 src/task.c                                 ap,</span>
+<span class='curline'><a href='../S/384.html#L2380'>ap</a>               2380 src/task.c               warry_set(rc, dsti, lo-&gt;ap, lo-&gt;pos, TT_ATOM);</span>
+<span class='curline'><a href='../S/384.html#L3422'>ap</a>               3422 src/task.c           LmnAtom ap;</span>
+<span class='curline'><a href='../S/384.html#L3429'>ap</a>               3429 src/task.c             READ_DATA_ATOM(ap, attr);</span>
+<span class='curline'><a href='../S/384.html#L3434'>ap</a>               3434 src/task.c             ap = LMN_ATOM(dmem_root_new_atom(RC_ND_MEM_DELTA_ROOT(rc), f));</span>
+<span class='curline'><a href='../S/384.html#L3438'>ap</a>               3438 src/task.c                               (LmnMembrane *)wt(rc, memi), ap, attr);</span>
+<span class='curline'><a href='../S/384.html#L3439'>ap</a>               3439 src/task.c           warry_set(rc, atomi, ap, attr, TT_OTHER); /* BODY命令のアトムなのでコピー対象にしない-&gt;TT_OTHER */</span>
+<span class='curline'><a href='../S/384.html#L3854'>ap</a>               3854 src/task.c               wt_set(rc, dsti, lo-&gt;ap);</span>
+<span class='curline'><a href='../S/386.html#L277'>ap</a>                277 src/translate.c   va_list ap;</span>
+<span class='curline'><a href='../S/386.html#L281'>ap</a>                281 src/translate.c   va_start(ap, format);</span>
+<span class='curline'><a href='../S/386.html#L282'>ap</a>                282 src/translate.c   buf_len = vsnprintf(trush, 2, format, ap);</span>
+<span class='curline'><a href='../S/386.html#L283'>ap</a>                283 src/translate.c   va_end(ap);</span>
+<span class='curline'><a href='../S/386.html#L287'>ap</a>                287 src/translate.c   va_start(ap, format);</span>
+<span class='curline'><a href='../S/386.html#L288'>ap</a>                288 src/translate.c   vsnprintf(buf, buf_len+1, format, ap);</span>
+<span class='curline'><a href='../S/386.html#L289'>ap</a>                289 src/translate.c   va_end(ap);</span>
+<span class='curline'><a href='../S/417.html#L502'>ap</a>                502 src/verifier/delta_membrane.c   LmnAtom ap; /* 現在atom2と接続していて、将来的にatom1に接続するアトム */</span>
+<span class='curline'><a href='../S/417.html#L510'>ap</a>                510 src/verifier/delta_membrane.c     ap = dmem_root_get_link(root_d, LMN_SATOM(atom2), pos2);</span>
+<span class='curline'><a href='../S/417.html#L518'>ap</a>                518 src/verifier/delta_membrane.c     else if (LMN_IS_PROXY_FUNCTOR(LMN_SATOM_GET_FUNCTOR(ap)) &amp;&amp;</span>
+<span class='curline'><a href='../S/417.html#L519'>ap</a>                519 src/verifier/delta_membrane.c              LMN_PROXY_GET_MEM(ap) != m) {</span>
+<span class='curline'><a href='../S/417.html#L521'>ap</a>                521 src/verifier/delta_membrane.c       LmnMembrane *m2 = LMN_PROXY_GET_MEM(ap);</span>
+<span class='curline'><a href='../S/417.html#L525'>ap</a>                525 src/verifier/delta_membrane.c         lmn_newlink_in_symbols(LMN_SATOM(atom1), pos1, LMN_SATOM(ap), LMN_ATTR_GET_VALUE(attr));</span>
+<span class='curline'><a href='../S/417.html#L528'>ap</a>                528 src/verifier/delta_membrane.c         LMN_SATOM_SET_LINK(atom1, pos1, dmem_root_modified_atom(root_d, LMN_SATOM(ap)));</span>
+<span class='curline'><a href='../S/417.html#L533'>ap</a>                533 src/verifier/delta_membrane.c                          dmem_root_modified_atom(root_d, LMN_SATOM(ap)),</span>
+<span class='curline'><a href='../S/417.html#L539'>ap</a>                539 src/verifier/delta_membrane.c       lmn_newlink_in_symbols(LMN_SATOM(atom1), pos1, LMN_SATOM(ap), LMN_ATTR_GET_VALUE(attr));</span>
+<span class='curline'><a href='../S/417.html#L857'>ap</a>                857 src/verifier/delta_membrane.c         lmn_mem_remove_data_atom(mem, l-&gt;ap, l-&gt;pos);</span>
+<span class='curline'><a href='../S/417.html#L912'>ap</a>                912 src/verifier/delta_membrane.c       cpatom = lmn_copy_data_atom(l-&gt;ap, l-&gt;pos);</span>
+<span class='curline'><a href='../S/417.html#L919'>ap</a>                919 src/verifier/delta_membrane.c     else if (!proc_tbl_get_by_atom(atommap, LMN_SATOM(l-&gt;ap), &amp;t)) {</span>
+<span class='curline'><a href='../S/417.html#L921'>ap</a>                921 src/verifier/delta_membrane.c       if (LMN_SATOM_GET_FUNCTOR(LMN_SATOM(l-&gt;ap)) == LMN_UNIFY_FUNCTOR) {</span>
+<span class='curline'><a href='../S/417.html#L923'>ap</a>                923 src/verifier/delta_membrane.c         cpatom = LMN_ATOM(dmem_root_copy_eqatom_with_data(LMN_SATOM(l-&gt;ap)));</span>
+<span class='curline'><a href='../S/417.html#L926'>ap</a>                926 src/verifier/delta_membrane.c         cpatom = LMN_ATOM(dmem_root_copy_satom_with_data(root_d, LMN_SATOM(l-&gt;ap)));</span>
+<span class='curline'><a href='../S/417.html#L934'>ap</a>                934 src/verifier/delta_membrane.c       proc_tbl_put_atom(atommap, LMN_SATOM(l-&gt;ap), (LmnWord)cpatom);</span>
+<span class='curline'><a href='../S/417.html#L937'>ap</a>                937 src/verifier/delta_membrane.c       vec_push(&amp;stack, l-&gt;ap);</span>
+<span class='curline'><a href='../S/417.html#L2014'>ap</a>               2014 src/verifier/delta_membrane.c   LmnSAtom ap = dmem_root_new_atom(d-&gt;root_d, LMN_UNIFY_FUNCTOR);</span>
+<span class='curline'><a href='../S/417.html#L2015'>ap</a>               2015 src/verifier/delta_membrane.c   LMN_SATOM_SET_LINK(ap, 0, d0);</span>
+<span class='curline'><a href='../S/417.html#L2016'>ap</a>               2016 src/verifier/delta_membrane.c   LMN_SATOM_SET_LINK(ap, 1, d1);</span>
+<span class='curline'><a href='../S/417.html#L2017'>ap</a>               2017 src/verifier/delta_membrane.c   LMN_SATOM_SET_ATTR(ap, 0, attr0);</span>
+<span class='curline'><a href='../S/417.html#L2018'>ap</a>               2018 src/verifier/delta_membrane.c   LMN_SATOM_SET_ATTR(ap, 1, attr1);</span>
+<span class='curline'><a href='../S/417.html#L2019'>ap</a>               2019 src/verifier/delta_membrane.c   dmem_put_symbol_atom(d, m, ap);</span>
+<span class='curline'><a href='../S/417.html#L2068'>ap</a>               2068 src/verifier/delta_membrane.c     LmnSAtom ap = LMN_SATOM(ap0);</span>
+<span class='curline'><a href='../S/417.html#L2070'>ap</a>               2070 src/verifier/delta_membrane.c     if (LMN_IS_PROXY_FUNCTOR(LMN_SATOM_GET_FUNCTOR(ap)) &amp;&amp;</span>
+<span class='curline'><a href='../S/417.html#L2071'>ap</a>               2071 src/verifier/delta_membrane.c         LMN_PROXY_GET_MEM(ap) != m) {</span>
+<span class='curline'><a href='../S/417.html#L2073'>ap</a>               2073 src/verifier/delta_membrane.c         LMN_SATOM_SET_LINK(ap, LMN_ATTR_GET_VALUE(attr), atom1);</span>
+<span class='curline'><a href='../S/417.html#L2074'>ap</a>               2074 src/verifier/delta_membrane.c         LMN_SATOM_SET_ATTR(ap, LMN_ATTR_GET_VALUE(attr), LMN_ATTR_MAKE_LINK(pos1));</span>
+<span class='curline'><a href='../S/417.html#L2076'>ap</a>               2076 src/verifier/delta_membrane.c         LmnMembrane *m2 = LMN_PROXY_GET_MEM(ap);</span>
+<span class='curline'><a href='../S/417.html#L2078'>ap</a>               2078 src/verifier/delta_membrane.c         ap = dmem_modify_atom(d2, m2, LMN_SATOM(ap));</span>
+<span class='curline'><a href='../S/417.html#L2080'>ap</a>               2080 src/verifier/delta_membrane.c         LMN_SATOM_SET_LINK(ap, LMN_ATTR_GET_VALUE(attr), atom1);</span>
+<span class='curline'><a href='../S/417.html#L2081'>ap</a>               2081 src/verifier/delta_membrane.c         LMN_SATOM_SET_ATTR(ap, LMN_ATTR_GET_VALUE(attr), LMN_ATTR_MAKE_LINK(pos1));</span>
+<span class='curline'><a href='../S/417.html#L2084'>ap</a>               2084 src/verifier/delta_membrane.c       ap = dmem_modify_atom(d, m, ap);</span>
+<span class='curline'><a href='../S/417.html#L2085'>ap</a>               2085 src/verifier/delta_membrane.c       LMN_SATOM_SET_LINK(ap, LMN_ATTR_GET_VALUE(attr), atom1);</span>
+<span class='curline'><a href='../S/417.html#L2086'>ap</a>               2086 src/verifier/delta_membrane.c       LMN_SATOM_SET_ATTR(ap, LMN_ATTR_GET_VALUE(attr), LMN_ATTR_MAKE_LINK(pos1));</span>
+<span class='curline'><a href='../S/417.html#L2089'>ap</a>               2089 src/verifier/delta_membrane.c     LMN_SATOM_SET_LINK(atom1, pos1, LMN_ATOM(ap));</span>
+<span class='curline'><a href='../S/523.html#L374'>ap</a>                374 third_party/google-perftools-1.8.3/src/base/elfcore.h                         va_list ap</span>
+<span class='curline'><a href='../S/525.html#L2971'>ap</a>               2971 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     va_list ap;</span>
+<span class='curline'><a href='../S/525.html#L2973'>ap</a>               2973 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     va_start(ap, flags);</span>
+<span class='curline'><a href='../S/525.html#L2974'>ap</a>               2974 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     new_address = va_arg(ap, void *);</span>
+<span class='curline'><a href='../S/525.html#L2977'>ap</a>               2977 third_party/google-perftools-1.8.3/src/base/linux_syscall_support.h     va_end(ap);</span>
+<span class='curline'><a href='../S/526.html#L242'>ap</a>                242 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc   va_list     ap;</span>
+<span class='curline'><a href='../S/526.html#L489'>ap</a>                489 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc                                       pids, args-&gt;ap);</span>
+<span class='curline'><a href='../S/526.html#L540'>ap</a>                540 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc   va_start(args.ap, callback);</span>
+<span class='curline'><a href='../S/526.html#L643'>ap</a>                643 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc   va_end(args.ap);</span>
+<span class='curline'><a href='../S/529.html#L197'>ap</a>                197 third_party/google-perftools-1.8.3/src/base/logging.h inline void LogPrintf(int severity, const char* pat, va_list ap) {</span>
+<span class='curline'><a href='../S/529.html#L201'>ap</a>                201 third_party/google-perftools-1.8.3/src/base/logging.h   perftools_vsnprintf(buf, sizeof(buf)-1, pat, ap);</span>
+<span class='curline'><a href='../S/529.html#L219'>ap</a>                219 third_party/google-perftools-1.8.3/src/base/logging.h     va_list ap;                                 \</span>
+<span class='curline'><a href='../S/529.html#L220'>ap</a>                220 third_party/google-perftools-1.8.3/src/base/logging.h     va_start(ap, pat);                          \</span>
+<span class='curline'><a href='../S/529.html#L221'>ap</a>                221 third_party/google-perftools-1.8.3/src/base/logging.h     LogPrintf(severity, pat, ap);               \</span>
+<span class='curline'><a href='../S/529.html#L222'>ap</a>                222 third_party/google-perftools-1.8.3/src/base/logging.h     va_end(ap);                                 \</span>
+<span class='curline'><a href='../S/545.html#L54'>ap</a>                 54 third_party/google-perftools-1.8.3/src/base/thread_lister.c   va_list ap;</span>
+<span class='curline'><a href='../S/545.html#L62'>ap</a>                 62 third_party/google-perftools-1.8.3/src/base/thread_lister.c   va_start(ap, callback);</span>
+<span class='curline'><a href='../S/545.html#L64'>ap</a>                 64 third_party/google-perftools-1.8.3/src/base/thread_lister.c   rc = callback(parameter, 1, &amp;pid, ap);</span>
+<span class='curline'><a href='../S/545.html#L65'>ap</a>                 65 third_party/google-perftools-1.8.3/src/base/thread_lister.c   va_end(ap);</span>
+<span class='curline'><a href='../S/546.html#L47'>ap</a>                 47 third_party/google-perftools-1.8.3/src/base/thread_lister.h                                              va_list ap);</span>
+<span class='curline'><a href='../S/555.html#L853'>ap</a>                853 third_party/google-perftools-1.8.3/src/debugallocation.cc   va_list ap;</span>
+<span class='curline'><a href='../S/555.html#L854'>ap</a>                854 third_party/google-perftools-1.8.3/src/debugallocation.cc   va_start(ap, fmt);</span>
+<span class='curline'><a href='../S/555.html#L864'>ap</a>                864 third_party/google-perftools-1.8.3/src/debugallocation.cc         s = va_arg(ap, char *);</span>
+<span class='curline'><a href='../S/555.html#L866'>ap</a>                866 third_party/google-perftools-1.8.3/src/debugallocation.cc         l = va_arg(ap, long);</span>
+<span class='curline'><a href='../S/555.html#L870'>ap</a>                870 third_party/google-perftools-1.8.3/src/debugallocation.cc         l = va_arg(ap, unsigned long);</span>
+<span class='curline'><a href='../S/555.html#L874'>ap</a>                874 third_party/google-perftools-1.8.3/src/debugallocation.cc         l = va_arg(ap, size_t);</span>
+<span class='curline'><a href='../S/555.html#L878'>ap</a>                878 third_party/google-perftools-1.8.3/src/debugallocation.cc         l = va_arg(ap, unsigned int);</span>
+<span class='curline'><a href='../S/555.html#L881'>ap</a>                881 third_party/google-perftools-1.8.3/src/debugallocation.cc         l = va_arg(ap, int);</span>
+<span class='curline'><a href='../S/555.html#L884'>ap</a>                884 third_party/google-perftools-1.8.3/src/debugallocation.cc         l = va_arg(ap, intptr_t);</span>
+<span class='curline'><a href='../S/555.html#L921'>ap</a>                921 third_party/google-perftools-1.8.3/src/debugallocation.cc   va_end(ap);</span>
+<span class='curline'><a href='../S/557.html#L272'>ap</a>                272 third_party/google-perftools-1.8.3/src/google/heap-checker.h                                      va_list ap);</span>
+<span class='curline'><a href='../S/568.html#L1234'>ap</a>               1234 third_party/google-perftools-1.8.3/src/heap-checker.cc                        pid_t* thread_pids, va_list ap) {</span>
+<span class='curline'><a href='../S/572.html#L178'>ap</a>                178 third_party/google-perftools-1.8.3/src/internal_logging.cc     va_list ap;</span>
+<span class='curline'><a href='../S/572.html#L179'>ap</a>                179 third_party/google-perftools-1.8.3/src/internal_logging.cc     va_start(ap, format);</span>
+<span class='curline'><a href='../S/572.html#L180'>ap</a>                180 third_party/google-perftools-1.8.3/src/internal_logging.cc     const int r = perftools_vsnprintf(buf_, left_, format, ap);</span>
+<span class='curline'><a href='../S/572.html#L181'>ap</a>                181 third_party/google-perftools-1.8.3/src/internal_logging.cc     va_end(ap);</span>
+<span class='curline'><a href='../S/584.html#L194'>ap</a>                194 third_party/google-perftools-1.8.3/src/malloc_hook_mmap_linux.h   va_list ap;</span>
+<span class='curline'><a href='../S/584.html#L195'>ap</a>                195 third_party/google-perftools-1.8.3/src/malloc_hook_mmap_linux.h   va_start(ap, flags);</span>
+<span class='curline'><a href='../S/584.html#L196'>ap</a>                196 third_party/google-perftools-1.8.3/src/malloc_hook_mmap_linux.h   void *new_address = va_arg(ap, void *);</span>
+<span class='curline'><a href='../S/584.html#L197'>ap</a>                197 third_party/google-perftools-1.8.3/src/malloc_hook_mmap_linux.h   va_end(ap);</span>
+<span class='curline'><a href='../S/601.html#L52'>ap</a>                 52 third_party/google-perftools-1.8.3/src/raw_printer.cc     va_list ap;</span>
+<span class='curline'><a href='../S/601.html#L53'>ap</a>                 53 third_party/google-perftools-1.8.3/src/raw_printer.cc     va_start(ap, format);</span>
+<span class='curline'><a href='../S/601.html#L57'>ap</a>                 57 third_party/google-perftools-1.8.3/src/raw_printer.cc     const int r = perftools_vsnprintf(ptr_, avail+1, format, ap);</span>
+<span class='curline'><a href='../S/601.html#L58'>ap</a>                 58 third_party/google-perftools-1.8.3/src/raw_printer.cc     va_end(ap);</span>
+<span class='curline'><a href='../S/657.html#L88'>ap</a>                 88 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   va_list ap;</span>
+<span class='curline'><a href='../S/657.html#L89'>ap</a>                 89 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   va_start(ap, format);</span>
+<span class='curline'><a href='../S/657.html#L90'>ap</a>                 90 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   perftools_vsnprintf(buf, sizeof(buf), format, ap);</span>
+<span class='curline'><a href='../S/657.html#L91'>ap</a>                 91 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   va_end(ap);</span>
+<span class='curline'><a href='../S/686.html#L304'>ap</a>                304 third_party/google-perftools-1.8.3/src/windows/port.h                                va_list ap) {</span>
+<span class='curline'><a href='../S/686.html#L305'>ap</a>                305 third_party/google-perftools-1.8.3/src/windows/port.h   return vsnprintf_s(str, size, _TRUNCATE, format, ap);</span>
+<span class='curline'><a href='../S/686.html#L309'>ap</a>                309 third_party/google-perftools-1.8.3/src/windows/port.h                                va_list ap) {</span>
+<span class='curline'><a href='../S/686.html#L313'>ap</a>                313 third_party/google-perftools-1.8.3/src/windows/port.h   return _vsnprintf(str, size-1, format, ap);</span>
+<span class='curline'><a href='../S/686.html#L319'>ap</a>                319 third_party/google-perftools-1.8.3/src/windows/port.h   va_list ap;</span>
+<span class='curline'><a href='../S/686.html#L321'>ap</a>                321 third_party/google-perftools-1.8.3/src/windows/port.h   va_start(ap, format);</span>
+<span class='curline'><a href='../S/686.html#L322'>ap</a>                322 third_party/google-perftools-1.8.3/src/windows/port.h   r = perftools_vsnprintf(str, size, format, ap);</span>
+<span class='curline'><a href='../S/686.html#L323'>ap</a>                323 third_party/google-perftools-1.8.3/src/windows/port.h   va_end(ap);</span>
+</pre>
+</body>
+</html>

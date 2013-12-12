@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>nvisit</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/436.html#L1592'>nvisit</a>           1592 src/verifier/mem_encode.c                               int *nvisit,</span>
+<span class='curline'><a href='../S/436.html#L1599'>nvisit</a>           1599 src/verifier/mem_encode.c                              int *nvisit,</span>
+<span class='curline'><a href='../S/436.html#L1606'>nvisit</a>           1606 src/verifier/mem_encode.c                               int *nvisit,</span>
+<span class='curline'><a href='../S/436.html#L1622'>nvisit</a>           1622 src/verifier/mem_encode.c   int nvisit;</span>
+<span class='curline'><a href='../S/436.html#L1633'>nvisit</a>           1633 src/verifier/mem_encode.c   nvisit = VISITLOG_INIT_N;        /* カウンタ(== 1): 順序付けを記録しながらデコードする.</span>
+<span class='curline'><a href='../S/436.html#L1635'>nvisit</a>           1635 src/verifier/mem_encode.c   binstr_decode_cell(bs, 0, log, &amp;nvisit, groot, NULL, 0);</span>
+<span class='curline'><a href='../S/436.html#L1677'>nvisit</a>           1677 src/verifier/mem_encode.c                               int         *nvisit,</span>
+<span class='curline'><a href='../S/436.html#L1724'>nvisit</a>           1724 src/verifier/mem_encode.c         pos = binstr_decode_mol(bs, pos, log, nvisit, mem, from_atom, from_arg);</span>
+<span class='curline'><a href='../S/436.html#L1726'>nvisit</a>           1726 src/verifier/mem_encode.c         pos = binstr_decode_mol(bs, pos, log, nvisit, mem, NULL, from_arg);</span>
+<span class='curline'><a href='../S/436.html#L1778'>nvisit</a>           1778 src/verifier/mem_encode.c                              int         *nvisit,</span>
+<span class='curline'><a href='../S/436.html#L1795'>nvisit</a>           1795 src/verifier/mem_encode.c     return binstr_decode_atom(bs, pos, log, nvisit, mem, from_atom, from_arg);</span>
+<span class='curline'><a href='../S/436.html#L1808'>nvisit</a>           1808 src/verifier/mem_encode.c       log[(*nvisit)].v    = (LmnWord)new_mem;</span>
+<span class='curline'><a href='../S/436.html#L1809'>nvisit</a>           1809 src/verifier/mem_encode.c       log[(*nvisit)].type = BS_LOG_TYPE_MEM;</span>
+<span class='curline'><a href='../S/436.html#L1810'>nvisit</a>           1810 src/verifier/mem_encode.c       (*nvisit)++;</span>
+<span class='curline'><a href='../S/436.html#L1818'>nvisit</a>           1818 src/verifier/mem_encode.c         pos = binstr_decode_cell(bs, pos, log, nvisit, new_mem, in, 1);</span>
+<span class='curline'><a href='../S/436.html#L1820'>nvisit</a>           1820 src/verifier/mem_encode.c         pos = binstr_decode_cell(bs, pos, log, nvisit, new_mem, from_atom, from_arg);</span>
+<span class='curline'><a href='../S/436.html#L1867'>nvisit</a>           1867 src/verifier/mem_encode.c       pos = binstr_decode_mol(bs, pos, log, nvisit, lmn_mem_parent(mem), out, 1);</span>
+<span class='curline'><a href='../S/436.html#L1881'>nvisit</a>           1881 src/verifier/mem_encode.c         pos = binstr_decode_mol(bs, pos, log, nvisit, parent, out, 1);</span>
+<span class='curline'><a href='../S/436.html#L1883'>nvisit</a>           1883 src/verifier/mem_encode.c         pos = binstr_decode_mol(bs, pos, log, nvisit, parent, NULL, 1);</span>
+<span class='curline'><a href='../S/436.html#L1890'>nvisit</a>           1890 src/verifier/mem_encode.c       log[(*nvisit)].v    = (LmnWord)hl_atom;</span>
+<span class='curline'><a href='../S/436.html#L1891'>nvisit</a>           1891 src/verifier/mem_encode.c       log[(*nvisit)].type = BS_LOG_TYPE_HLINK;</span>
+<span class='curline'><a href='../S/436.html#L1892'>nvisit</a>           1892 src/verifier/mem_encode.c       (*nvisit)++;</span>
+<span class='curline'><a href='../S/436.html#L1924'>nvisit</a>           1924 src/verifier/mem_encode.c             pos = binstr_decode_mol(bs, pos, log, nvisit, ref_mem, NULL, from_arg);</span>
+<span class='curline'><a href='../S/436.html#L1934'>nvisit</a>           1934 src/verifier/mem_encode.c             pos = binstr_decode_mol(bs, pos, log, nvisit, ref_mem, in, 1);</span>
+<span class='curline'><a href='../S/436.html#L2009'>nvisit</a>           2009 src/verifier/mem_encode.c                               int         *nvisit,</span>
+<span class='curline'><a href='../S/436.html#L2023'>nvisit</a>           2023 src/verifier/mem_encode.c   log[(*nvisit)].v    = (LmnWord)atom;    /* アドレスを記録(*nvisitは初期値1) */</span>
+<span class='curline'><a href='../S/436.html#L2024'>nvisit</a>           2024 src/verifier/mem_encode.c   log[(*nvisit)].type = BS_LOG_TYPE_ATOM;</span>
+<span class='curline'><a href='../S/436.html#L2025'>nvisit</a>           2025 src/verifier/mem_encode.c   (*nvisit)++;</span>
+<span class='curline'><a href='../S/436.html#L2044'>nvisit</a>           2044 src/verifier/mem_encode.c         pos = binstr_decode_mol(bs, pos, log, nvisit, mem, NULL, i);</span>
+<span class='curline'><a href='../S/436.html#L2046'>nvisit</a>           2046 src/verifier/mem_encode.c         pos = binstr_decode_mol(bs, pos, log, nvisit, mem, atom, i);</span>
+</pre>
+</body>
+</html>

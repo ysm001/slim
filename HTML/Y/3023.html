@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>kKeybits</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/590.html#L133'>kKeybits</a>          133 third_party/google-perftools-1.8.3/src/packed-cache-inl.h template &lt;int kKeybits, typename T&gt;</span>
+<span class='curline'><a href='../S/590.html#L145'>kKeybits</a>          145 third_party/google-perftools-1.8.3/src/packed-cache-inl.h   static const bool kUseWholeKeys = kKeybits + kValuebits &lt;= 8 * sizeof(T);</span>
+<span class='curline'><a href='../S/590.html#L148'>kKeybits</a>          148 third_party/google-perftools-1.8.3/src/packed-cache-inl.h     COMPILE_ASSERT(kKeybits &lt;= sizeof(K) * 8, key_size);</span>
+<span class='curline'><a href='../S/590.html#L150'>kKeybits</a>          150 third_party/google-perftools-1.8.3/src/packed-cache-inl.h     COMPILE_ASSERT(kHashbits &lt;= kKeybits, hash_function);</span>
+<span class='curline'><a href='../S/590.html#L151'>kKeybits</a>          151 third_party/google-perftools-1.8.3/src/packed-cache-inl.h     COMPILE_ASSERT(kKeybits - kHashbits + kValuebits &lt;= kTbits,</span>
+<span class='curline'><a href='../S/590.html#L220'>kKeybits</a>          220 third_party/google-perftools-1.8.3/src/packed-cache-inl.h   static const int kUpperbits = kUseWholeKeys ? kKeybits : kKeybits - kHashbits;</span>
+<span class='curline'><a href='../S/590.html#L223'>kKeybits</a>          223 third_party/google-perftools-1.8.3/src/packed-cache-inl.h   static const K kKeyMask = N_ONES_(K, kKeybits);</span>
+</pre>
+</body>
+</html>

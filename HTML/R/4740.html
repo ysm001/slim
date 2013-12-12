@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>st_data_t</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/312.html#L44'>st_data_t</a>          44 src/ccallback.c int free_v(st_data_t key, st_data_t v, st_data_t _t);</span>
+<span class='curline'><a href='../S/312.html#L59'>st_data_t</a>          59 src/ccallback.c int free_v(st_data_t key, st_data_t v, st_data_t _t)</span>
+<span class='curline'><a href='../S/312.html#L72'>st_data_t</a>          72 src/ccallback.c   st_insert(ccallback_tbl, (st_data_t)lmn_intern(name), (st_data_t)c);</span>
+<span class='curline'><a href='../S/312.html#L78'>st_data_t</a>          78 src/ccallback.c   st_data_t t;</span>
+<span class='curline'><a href='../S/317.html#L547'>st_data_t</a>         547 src/dumper.c   static int dump_history_f(st_data_t _key, st_data_t _value, st_data_t _arg)</span>
+<span class='curline'><a href='../S/317.html#L583'>st_data_t</a>         583 src/dumper.c         st_foreach(his_tbl, dump_history_f, (st_data_t)port);</span>
+<span class='curline'><a href='../S/330.html#L181'>st_data_t</a>         181 src/functor.c    if (st_lookup(functor_id_tbl, (st_data_t)functor_id, (st_data_t *)&amp;entry))</span>
+<span class='curline'><a href='../S/330.html#L199'>st_data_t</a>         199 src/functor.c    st_insert(functor_id_tbl, (st_data_t)entry, (st_data_t)id);</span>
+<span class='curline'><a href='../S/330.html#L210'>st_data_t</a>         210 src/functor.c    st_data_t id;</span>
+<span class='curline'><a href='../S/330.html#L219'>st_data_t</a>         219 src/functor.c    if (st_lookup(functor_id_tbl, (st_data_t)&amp;entry, &amp;id)) return id;</span>
+<span class='curline'><a href='../S/330.html#L239'>st_data_t</a>         239 src/functor.c      st_insert(functor_id_tbl, (st_data_t)new_entry, (st_data_t)id);</span>
+<span class='curline'><a href='../S/336.html#L1011'>st_data_t</a>        1011 src/il_lexer.c   st_data_t id_local = atoi(yytext+1);</span>
+<span class='curline'><a href='../S/336.html#L1012'>st_data_t</a>        1012 src/il_lexer.c   st_data_t id_global;</span>
+<span class='curline'><a href='../S/351.html#L370'>st_data_t</a>         370 src/load.c         st_insert(c-&gt;loc_to_label_ref, (st_data_t)c-&gt;loc, (st_data_t)inst_arg_get_label(arg));</span>
+<span class='curline'><a href='../S/351.html#L488'>st_data_t</a>         488 src/load.c         st_insert(c-&gt;label_to_loc, (st_data_t)inst_block_get_label(ib), (st_data_t)c-&gt;loc);</span>
+<span class='curline'><a href='../S/351.html#L498'>st_data_t</a>         498 src/load.c     static int fill_label_ref(st_data_t loc, st_data_t label, void *c_)</span>
+<span class='curline'><a href='../S/351.html#L501'>st_data_t</a>         501 src/load.c       st_data_t target_loc;</span>
+<span class='curline'><a href='../S/351.html#L531'>st_data_t</a>         531 src/load.c       st_foreach(c-&gt;loc_to_label_ref, fill_label_ref, (st_data_t)c);</span>
+<span class='curline'><a href='../S/351.html#L871'>st_data_t</a>         871 src/load.c     int load_loading_tbl_entry(st_data_t basename, st_data_t filetype, void *path)</span>
+<span class='curline'><a href='../S/351.html#L887'>st_data_t</a>         887 src/load.c     int free_loading_tbl_entry(st_data_t basename, st_data_t filetype, void *path)</span>
+<span class='curline'><a href='../S/351.html#L925'>st_data_t</a>         925 src/load.c               st_data_t old_filetype;</span>
+<span class='curline'><a href='../S/351.html#L928'>st_data_t</a>         928 src/load.c               if (st_lookup(loading_files_type, (st_data_t)basename, &amp;old_filetype)) {</span>
+<span class='curline'><a href='../S/351.html#L930'>st_data_t</a>         930 src/load.c                   st_insert(loading_files_type, (st_data_t)basename, filetype);</span>
+<span class='curline'><a href='../S/351.html#L934'>st_data_t</a>         934 src/load.c                 st_insert(loading_files_type, (st_data_t)basename, filetype);</span>
+<span class='curline'><a href='../S/351.html#L942'>st_data_t</a>         942 src/load.c         st_foreach(loading_files_type, load_loading_tbl_entry, (st_data_t)path);</span>
+<span class='curline'><a href='../S/351.html#L944'>st_data_t</a>         944 src/load.c         st_foreach(loading_files_type, free_loading_tbl_entry, (st_data_t)path);</span>
+<span class='curline'><a href='../S/365.html#L546'>st_data_t</a>         546 src/rule.c       st_insert(module_table, (st_data_t)module_name, (st_data_t)ruleset);</span>
+<span class='curline'><a href='../S/365.html#L554'>st_data_t</a>         554 src/rule.c       if (st_lookup(module_table, (st_data_t)module_name, (void *)&amp;ruleset)) return ruleset;</span>
+<span class='curline'><a href='../S/367.html#L84'>st_data_t</a>          84 src/runtime_status.c static int rule_profiler_free_f(st_data_t _key, st_data_t _v, st_data_t _arg)</span>
+<span class='curline'><a href='../S/367.html#L306'>st_data_t</a>         306 src/runtime_status.c     st_foreach(lmn_prof.prules, rule_profiler_free_f, (st_data_t)0);</span>
+<span class='curline'><a href='../S/367.html#L420'>st_data_t</a>         420 src/runtime_status.c   if (!st_contains(p-&gt;hashes, (st_data_t)state_hash(s))) {</span>
+<span class='curline'><a href='../S/367.html#L421'>st_data_t</a>         421 src/runtime_status.c     st_insert(p-&gt;hashes, (st_data_t)state_hash(s), 0);</span>
+<span class='curline'><a href='../S/368.html#L306'>st_data_t</a>         306 src/runtime_status.h   st_data_t t = 0;</span>
+<span class='curline'><a href='../S/368.html#L307'>st_data_t</a>         307 src/runtime_status.h   if (st_lookup(lmn_prof.prules, (st_data_t)r, &amp;t)) {</span>
+<span class='curline'><a href='../S/368.html#L312'>st_data_t</a>         312 src/runtime_status.h     st_add_direct(lmn_prof.prules, (st_data_t)r, (st_data_t)p);</span>
+<span class='curline'><a href='../S/378.html#L53'>st_data_t</a>          53 src/symbol.c   int free_sym_tbl_entry(st_data_t name, st_data_t _v, int _i);</span>
+<span class='curline'><a href='../S/378.html#L71'>st_data_t</a>          71 src/symbol.c   int free_sym_tbl_entry(st_data_t name, st_data_t _v, int _i)</span>
+<span class='curline'><a href='../S/378.html#L100'>st_data_t</a>         100 src/symbol.c     st_data_t new_id;</span>
+<span class='curline'><a href='../S/378.html#L104'>st_data_t</a>         104 src/symbol.c     if (st_lookup(sym_tbl, (st_data_t)name, &amp;new_id)) return new_id;</span>
+<span class='curline'><a href='../S/378.html#L110'>st_data_t</a>         110 src/symbol.c     st_add_direct(sym_tbl, (st_data_t)name2, (st_data_t)new_id);</span>
+<span class='curline'><a href='../S/378.html#L111'>st_data_t</a>         111 src/symbol.c     st_add_direct(sym_rev_tbl, (st_data_t)new_id, (st_data_t)name2);</span>
+<span class='curline'><a href='../S/378.html#L121'>st_data_t</a>         121 src/symbol.c     else if (st_lookup(sym_rev_tbl, (st_data_t)id, (st_data_t *)&amp;name)) return name;</span>
+<span class='curline'><a href='../S/384.html#L1959'>st_data_t</a>        1959 src/task.c           if (st_is_member(lmn_rule_get_history_tbl(rule), (st_data_t)id)) return FALSE;</span>
+<span class='curline'><a href='../S/384.html#L1962'>st_data_t</a>        1962 src/task.c           st_insert(lmn_rule_get_history_tbl(rule), (st_data_t)id, 0);</span>
+<span class='curline'><a href='../S/386.html#L644'>st_data_t</a>         644 src/translate.c static int print_trans_module_f(st_data_t key, st_data_t value, st_data_t counter_p)</span>
+<span class='curline'><a href='../S/386.html#L674'>st_data_t</a>         674 src/translate.c   st_foreach(module_table, print_trans_module_f, (st_data_t)&amp;counter);</span>
+<span class='curline'><a href='../S/404.html#L14'>st_data_t</a>          14 src/utility/st.c   st_data_t key;</span>
+<span class='curline'><a href='../S/404.html#L15'>st_data_t</a>          15 src/utility/st.c   st_data_t record;</span>
+<span class='curline'><a href='../S/404.html#L238'>st_data_t</a>         238 src/utility/st.c int st_lookup(st_table_t table, register st_data_t key, st_data_t *value)</span>
+<span class='curline'><a href='../S/404.html#L258'>st_data_t</a>         258 src/utility/st.c int st_lookup_with_col(st_table_t table, register st_data_t key, st_data_t *value, long *n_col)</span>
+<span class='curline'><a href='../S/404.html#L276'>st_data_t</a>         276 src/utility/st.c int st_contains(st_table_t table, st_data_t key)</span>
+<span class='curline'><a href='../S/404.html#L278'>st_data_t</a>         278 src/utility/st.c   st_data_t t;</span>
+<span class='curline'><a href='../S/404.html#L294'>st_data_t</a>         294 src/utility/st.c static inline int st_insert_inner(register st_table_t table, register st_data_t key, st_data_t value)</span>
+<span class='curline'><a href='../S/404.html#L314'>st_data_t</a>         314 src/utility/st.c int st_insert(register st_table_t table, register st_data_t key, st_data_t value)</span>
+<span class='curline'><a href='../S/404.html#L323'>st_data_t</a>         323 src/utility/st.c static inline int st_insert_safe_inner(register st_table_t table, register st_data_t key, st_data_t value)</span>
+<span class='curline'><a href='../S/404.html#L341'>st_data_t</a>         341 src/utility/st.c int st_insert_safe(register st_table_t table, register st_data_t key, st_data_t value)</span>
+<span class='curline'><a href='../S/404.html#L353'>st_data_t</a>         353 src/utility/st.c static inline void st_add_direct_inner(st_table_t table, st_data_t key, st_data_t value)</span>
+<span class='curline'><a href='../S/404.html#L362'>st_data_t</a>         362 src/utility/st.c void st_add_direct(st_table_t table, st_data_t key, st_data_t value)</span>
+<span class='curline'><a href='../S/404.html#L434'>st_data_t</a>         434 src/utility/st.c int st_delete(register st_table_t table, register st_data_t key, st_data_t *value)</span>
+<span class='curline'><a href='../S/404.html#L470'>st_data_t</a>         470 src/utility/st.c int st_delete_safe(register st_table_t table, register st_data_t *key, st_data_t *value, st_data_t never)</span>
+<span class='curline'><a href='../S/404.html#L498'>st_data_t</a>         498 src/utility/st.c static int delete_never(st_data_t key __attribute__((unused)), st_data_t value, st_data_t never) {</span>
+<span class='curline'><a href='../S/404.html#L504'>st_data_t</a>         504 src/utility/st.c void st_cleanup_safe(st_table_t table, st_data_t never) {</span>
+<span class='curline'><a href='../S/404.html#L511'>st_data_t</a>         511 src/utility/st.c static int clear_f(st_data_t some, st_data_t some2, st_data_t some3)</span>
+<span class='curline'><a href='../S/404.html#L531'>st_data_t</a>         531 src/utility/st.c int st_foreach(st_table_t table, int(*func)( ANYARGS), st_data_t arg) {</span>
+<span class='curline'><a href='../S/404.html#L577'>st_data_t</a>         577 src/utility/st.c int st_foreach_hash(st_table_t table, st_data_t hash, int(*func)( ANYARGS), st_data_t arg) {</span>
+<span class='curline'><a href='../S/404.html#L580'>st_data_t</a>         580 src/utility/st.c   st_data_t hash_val = hash % table-&gt;num_bins;</span>
+<span class='curline'><a href='../S/404.html#L623'>st_data_t</a>         623 src/utility/st.c static int insert_f(st_data_t key, st_data_t value, st_data_t tbl1)</span>
+<span class='curline'><a href='../S/404.html#L631'>st_data_t</a>         631 src/utility/st.c   st_foreach((st_table_t)tbl2, insert_f, (st_data_t)tbl1);</span>
+<span class='curline'><a href='../S/404.html#L662'>st_data_t</a>         662 src/utility/st.c static int st_key_push_vec_f(st_data_t _key, st_data_t _v, st_data_t _arg)</span>
+<span class='curline'><a href='../S/404.html#L669'>st_data_t</a>         669 src/utility/st.c static int st_value_push_vec_f(st_data_t _key, st_data_t _v, st_data_t _arg)</span>
+<span class='curline'><a href='../S/404.html#L679'>st_data_t</a>         679 src/utility/st.c   st_foreach(st, st_key_push_vec_f, (st_data_t)vec);</span>
+<span class='curline'><a href='../S/404.html#L684'>st_data_t</a>         684 src/utility/st.c   st_foreach(st, st_value_push_vec_f, (st_data_t)vec);</span>
+<span class='curline'><a href='../S/405.html#L43'>st_data_t</a>          43 src/utility/st.h #define st_is_member(table,key) st_lookup(table,key,(st_data_t *)0)</span>
+<span class='curline'><a href='../S/405.html#L78'>st_data_t</a>          78 src/utility/st.h int st_delete(register st_table_t tbl, register st_data_t key, st_data_t *value);</span>
+<span class='curline'><a href='../S/405.html#L79'>st_data_t</a>          79 src/utility/st.h int st_delete_safe(register st_table_t tbl, st_data_t *key, st_data_t *value, st_data_t never);</span>
+<span class='curline'><a href='../S/405.html#L80'>st_data_t</a>          80 src/utility/st.h int st_insert(st_table_t tbl, st_data_t key, st_data_t value);</span>
+<span class='curline'><a href='../S/405.html#L81'>st_data_t</a>          81 src/utility/st.h int st_insert_safe(st_table_t tbl, st_data_t key, st_data_t value);</span>
+<span class='curline'><a href='../S/405.html#L82'>st_data_t</a>          82 src/utility/st.h int st_lookup(st_table_t tbl, st_data_t key, st_data_t *value);</span>
+<span class='curline'><a href='../S/405.html#L83'>st_data_t</a>          83 src/utility/st.h int st_lookup_with_col(st_table_t tbl, st_data_t key, st_data_t *value, long *n_col);</span>
+<span class='curline'><a href='../S/405.html#L84'>st_data_t</a>          84 src/utility/st.h int st_contains(st_table_t tbl, st_data_t key);</span>
+<span class='curline'><a href='../S/405.html#L85'>st_data_t</a>          85 src/utility/st.h int st_foreach(st_table_t tbl, int(*func)( ANYARGS), st_data_t arg);</span>
+<span class='curline'><a href='../S/405.html#L86'>st_data_t</a>          86 src/utility/st.h void st_add_direct(st_table_t tbl, st_data_t key, st_data_t value);</span>
+<span class='curline'><a href='../S/405.html#L89'>st_data_t</a>          89 src/utility/st.h void st_cleanup_safe(st_table_t tbl, st_data_t never);</span>
+<span class='curline'><a href='../S/405.html#L100'>st_data_t</a>         100 src/utility/st.h int st_foreach_hash(st_table_t table, st_data_t hash, int(*func)( ANYARGS), st_data_t arg);</span>
+<span class='curline'><a href='../S/411.html#L127'>st_data_t</a>         127 src/utility/visitlog.h   st_insert(p-&gt;tbl, (st_data_t)key, value);</span>
+<span class='curline'><a href='../S/411.html#L152'>st_data_t</a>         152 src/utility/visitlog.h   return st_insert_safe(p-&gt;tbl, (st_data_t)key, value);</span>
+<span class='curline'><a href='../S/411.html#L182'>st_data_t</a>         182 src/utility/visitlog.h   st_delete(p-&gt;tbl, (st_data_t)key, NULL);</span>
+<span class='curline'><a href='../S/411.html#L207'>st_data_t</a>         207 src/utility/visitlog.h   return st_lookup(p-&gt;tbl, key, (st_data_t *)value);</span>
+<span class='curline'><a href='../S/411.html#L328'>st_data_t</a>         328 src/utility/visitlog.h   st_insert(p-&gt;tbl, (st_data_t)key, value);</span>
+<span class='curline'><a href='../S/411.html#L346'>st_data_t</a>         346 src/utility/visitlog.h   st_delete(p-&gt;tbl, (st_data_t)key, NULL);</span>
+<span class='curline'><a href='../S/411.html#L367'>st_data_t</a>         367 src/utility/visitlog.h   return st_lookup(p-&gt;tbl, key, (st_data_t *)value);</span>
+<span class='curline'><a href='../S/411.html#L426'>st_data_t</a>         426 src/utility/visitlog.h   st_data_t t;</span>
+<span class='curline'><a href='../S/411.html#L427'>st_data_t</a>         427 src/utility/visitlog.h   if (st_lookup(p-&gt;tbl, (st_data_t)key, &amp;t)) {</span>
+<span class='curline'><a href='../S/411.html#L428'>st_data_t</a>         428 src/utility/visitlog.h     st_insert(p-&gt;tbl, (st_data_t)key, ((LmnWord)t) | flag);</span>
+<span class='curline'><a href='../S/411.html#L430'>st_data_t</a>         430 src/utility/visitlog.h     st_insert(p-&gt;tbl, (st_data_t)key, flag);</span>
+<span class='curline'><a href='../S/411.html#L447'>st_data_t</a>         447 src/utility/visitlog.h   st_data_t t;</span>
+<span class='curline'><a href='../S/411.html#L448'>st_data_t</a>         448 src/utility/visitlog.h   if (st_lookup(p-&gt;tbl, (st_data_t)key, &amp;t)) {</span>
+<span class='curline'><a href='../S/411.html#L449'>st_data_t</a>         449 src/utility/visitlog.h     st_insert(p-&gt;tbl, (st_data_t)key, ((LmnWord)t) | flag);</span>
+<span class='curline'><a href='../S/411.html#L451'>st_data_t</a>         451 src/utility/visitlog.h     st_insert(p-&gt;tbl, (st_data_t)key, flag);</span>
+<span class='curline'><a href='../S/413.html#L48'>st_data_t</a>          48 src/verifier/automata.c static int free_key_str_f(st_data_t key_, st_data_t v_, st_data_t x_);</span>
+<span class='curline'><a href='../S/413.html#L49'>st_data_t</a>          49 src/verifier/automata.c static int free_val_str_f(st_data_t key_, st_data_t v_, st_data_t x_);</span>
+<span class='curline'><a href='../S/413.html#L113'>st_data_t</a>         113 src/verifier/automata.c   st_foreach(a-&gt;state_name_to_id, free_key_str_f, (st_data_t)0);</span>
+<span class='curline'><a href='../S/413.html#L117'>st_data_t</a>         117 src/verifier/automata.c   st_foreach(a-&gt;id_to_state_name, free_val_str_f, (st_data_t)0);</span>
+<span class='curline'><a href='../S/413.html#L121'>st_data_t</a>         121 src/verifier/automata.c   st_foreach(a-&gt;prop_to_id, free_key_str_f, (st_data_t)0);</span>
+<span class='curline'><a href='../S/413.html#L139'>st_data_t</a>         139 src/verifier/automata.c static int free_key_str_f(st_data_t key_, st_data_t v_, st_data_t x_)</span>
+<span class='curline'><a href='../S/413.html#L145'>st_data_t</a>         145 src/verifier/automata.c static int free_val_str_f(st_data_t key_, st_data_t v_, st_data_t x_)</span>
+<span class='curline'><a href='../S/413.html#L153'>st_data_t</a>         153 src/verifier/automata.c   st_data_t id;</span>
+<span class='curline'><a href='../S/413.html#L155'>st_data_t</a>         155 src/verifier/automata.c   if (st_lookup(a-&gt;state_name_to_id, (st_data_t)state_name, &amp;id)) {</span>
+<span class='curline'><a href='../S/413.html#L167'>st_data_t</a>         167 src/verifier/automata.c     st_add_direct(a-&gt;state_name_to_id, (st_data_t)str0, (st_data_t)new_id);</span>
+<span class='curline'><a href='../S/413.html#L168'>st_data_t</a>         168 src/verifier/automata.c     st_add_direct(a-&gt;id_to_state_name, (st_data_t)new_id, (st_data_t)str1);</span>
+<span class='curline'><a href='../S/413.html#L177'>st_data_t</a>         177 src/verifier/automata.c   if (st_lookup(a-&gt;id_to_state_name, (st_data_t)(int)id, (st_data_t*)&amp;name)) {</span>
+<span class='curline'><a href='../S/413.html#L221'>st_data_t</a>         221 src/verifier/automata.c   st_data_t id;</span>
+<span class='curline'><a href='../S/413.html#L223'>st_data_t</a>         223 src/verifier/automata.c   if (st_lookup(a-&gt;prop_to_id, (st_data_t)prop_name, &amp;id)) {</span>
+<span class='curline'><a href='../S/413.html#L232'>st_data_t</a>         232 src/verifier/automata.c     st_add_direct(a-&gt;prop_to_id, (st_data_t)str, (st_data_t)new_id);</span>
+<span class='curline'><a href='../S/419.html#L119'>st_data_t</a>         119 src/verifier/dpor.c static int contextC1_free_f(st_data_t _k, st_data_t _v, st_data_t _arg)</span>
+<span class='curline'><a href='../S/419.html#L525'>st_data_t</a>         525 src/verifier/dpor.c     st_data_t t;</span>
+<span class='curline'><a href='../S/419.html#L528'>st_data_t</a>         528 src/verifier/dpor.c     if (st_lookup(d-&gt;delta_tbl, (st_data_t)delta_r, &amp;t)) {</span>
+<span class='curline'><a href='../S/419.html#L540'>st_data_t</a>         540 src/verifier/dpor.c       if (st_lookup(d-&gt;delta_tbl, (st_data_t)delta_l, &amp;t)) {</span>
+<span class='curline'><a href='../S/419.html#L577'>st_data_t</a>         577 src/verifier/dpor.c   st_data_t t;</span>
+<span class='curline'><a href='../S/419.html#L583'>st_data_t</a>         583 src/verifier/dpor.c     if (st_lookup(mc-&gt;delta_tbl, (st_data_t)d, &amp;t)) {</span>
+<span class='curline'><a href='../S/419.html#L631'>st_data_t</a>         631 src/verifier/dpor.c       st_data_t t;</span>
+<span class='curline'><a href='../S/419.html#L637'>st_data_t</a>         637 src/verifier/dpor.c       if (st_lookup(mc-&gt;delta_tbl, (st_data_t)succ_d, &amp;t)) {</span>
+<span class='curline'><a href='../S/419.html#L763'>st_data_t</a>         763 src/verifier/dpor.c     st_add_direct(mc-&gt;delta_tbl, (st_data_t)d, (st_data_t)c);</span>
+<span class='curline'><a href='../S/419.html#L838'>st_data_t</a>         838 src/verifier/dpor.c     st_data_t tmp;</span>
+<span class='curline'><a href='../S/419.html#L875'>st_data_t</a>         875 src/verifier/dpor.c     if (!st_lookup(succ_tbl, (st_data_t)succ, (st_data_t *)&amp;tmp)) {</span>
+<span class='curline'><a href='../S/419.html#L876'>st_data_t</a>         876 src/verifier/dpor.c       st_data_t ins = has_trans_obj(s) ? (st_data_t)src_t : (st_data_t)succ;</span>
+<span class='curline'><a href='../S/419.html#L877'>st_data_t</a>         877 src/verifier/dpor.c       st_add_direct(succ_tbl, (st_data_t)succ, ins);</span>
+<span class='curline'><a href='../S/419.html#L890'>st_data_t</a>         890 src/verifier/dpor.c       st_data_t tmp;</span>
+<span class='curline'><a href='../S/419.html#L926'>st_data_t</a>         926 src/verifier/dpor.c       if (!st_lookup(succ_tbl, (st_data_t)succ, (st_data_t *)&amp;tmp)) {</span>
+<span class='curline'><a href='../S/419.html#L927'>st_data_t</a>         927 src/verifier/dpor.c         st_data_t ins = has_trans_obj(s) ? (st_data_t)src_t : (st_data_t)succ;</span>
+<span class='curline'><a href='../S/419.html#L928'>st_data_t</a>         928 src/verifier/dpor.c         st_add_direct(succ_tbl, (st_data_t)succ, ins);</span>
+<span class='curline'><a href='../S/419.html#L1009'>st_data_t</a>        1009 src/verifier/dpor.c       st_data_t t;</span>
+<span class='curline'><a href='../S/419.html#L1010'>st_data_t</a>        1010 src/verifier/dpor.c       if (st_lookup(d-&gt;delta_tbl, (st_data_t)vec_get(RC_MEM_DELTAS(rc), 0), &amp;t)) {</span>
+<span class='curline'><a href='../S/421.html#L120'>st_data_t</a>         120 src/verifier/dpor_naive.c static int  independency_vec_free(st_data_t _k, st_data_t vec, st_data_t _a);</span>
+<span class='curline'><a href='../S/421.html#L131'>st_data_t</a>         131 src/verifier/dpor_naive.c static int build_ample_satisfying_lemma(st_data_t key,</span>
+<span class='curline'><a href='../S/421.html#L132'>st_data_t</a>         132 src/verifier/dpor_naive.c                                         st_data_t val,</span>
+<span class='curline'><a href='../S/421.html#L133'>st_data_t</a>         133 src/verifier/dpor_naive.c                                         st_data_t current_state);</span>
+<span class='curline'><a href='../S/421.html#L145'>st_data_t</a>         145 src/verifier/dpor_naive.c int dump__strans_independency(st_data_t key, st_data_t vec, st_data_t _a);</span>
+<span class='curline'><a href='../S/421.html#L147'>st_data_t</a>         147 src/verifier/dpor_naive.c int dump__tmp_graph(st_data_t _k, st_data_t _v, st_data_t _a);</span>
+<span class='curline'><a href='../S/421.html#L210'>st_data_t</a>         210 src/verifier/dpor_naive.c static int independency_vec_free(st_data_t _k, st_data_t vec, st_data_t _a)</span>
+<span class='curline'><a href='../S/421.html#L251'>st_data_t</a>         251 src/verifier/dpor_naive.c   st_foreach(mc_por.strans_independency, independency_vec_free, (st_data_t)0);</span>
+<span class='curline'><a href='../S/421.html#L272'>st_data_t</a>         272 src/verifier/dpor_naive.c   st_add_direct(mc_por.states, (st_data_t)s, (st_data_t)s);</span>
+<span class='curline'><a href='../S/421.html#L285'>st_data_t</a>         285 src/verifier/dpor_naive.c   st_foreach(mc_por.strans_independency, build_ample_satisfying_lemma, (st_data_t)s);</span>
+<span class='curline'><a href='../S/421.html#L343'>st_data_t</a>         343 src/verifier/dpor_naive.c     st_foreach(mc_por.strans_independency, dump__strans_independency, (st_data_t)0);</span>
+<span class='curline'><a href='../S/421.html#L376'>st_data_t</a>         376 src/verifier/dpor_naive.c   st_data_t t;</span>
+<span class='curline'><a href='../S/421.html#L389'>st_data_t</a>         389 src/verifier/dpor_naive.c   if (st_lookup(mc_por.states, (st_data_t)succ, (st_data_t *)&amp;t)) {</span>
+<span class='curline'><a href='../S/421.html#L393'>st_data_t</a>         393 src/verifier/dpor_naive.c     st_add_direct(mc_por.states, (st_data_t)succ, (st_data_t)succ);</span>
+<span class='curline'><a href='../S/421.html#L450'>st_data_t</a>         450 src/verifier/dpor_naive.c     st_data_t tmp;</span>
+<span class='curline'><a href='../S/421.html#L472'>st_data_t</a>         472 src/verifier/dpor_naive.c     if (!st_lookup(succ_tbl, (st_data_t)succ, (st_data_t *)&amp;tmp)) {</span>
+<span class='curline'><a href='../S/421.html#L473'>st_data_t</a>         473 src/verifier/dpor_naive.c       st_add_direct(succ_tbl, (st_data_t)succ, (st_data_t)src_t);</span>
+<span class='curline'><a href='../S/421.html#L532'>st_data_t</a>         532 src/verifier/dpor_naive.c       st_data_t t = 0;</span>
+<span class='curline'><a href='../S/421.html#L533'>st_data_t</a>         533 src/verifier/dpor_naive.c       if (!st_lookup(mc_por.strans_independency, (st_data_t)assign_id, (st_data_t *)&amp;t)) {</span>
+<span class='curline'><a href='../S/421.html#L535'>st_data_t</a>         535 src/verifier/dpor_naive.c         st_add_direct(mc_por.strans_independency, (st_data_t)assign_id, (st_data_t)v);</span>
+<span class='curline'><a href='../S/421.html#L617'>st_data_t</a>         617 src/verifier/dpor_naive.c     st_foreach(mc_por.states, dump__tmp_graph, (st_data_t)FALSE);</span>
+<span class='curline'><a href='../S/421.html#L677'>st_data_t</a>         677 src/verifier/dpor_naive.c     st_foreach(mc_por.states, dump__tmp_graph, (st_data_t)FALSE);</span>
+<span class='curline'><a href='../S/421.html#L692'>st_data_t</a>         692 src/verifier/dpor_naive.c       st_data_t t;</span>
+<span class='curline'><a href='../S/421.html#L697'>st_data_t</a>         697 src/verifier/dpor_naive.c       if (!st_lookup(mc_por.strans_independency, (st_data_t)id, (st_data_t *)&amp;t)) {</span>
+<span class='curline'><a href='../S/421.html#L699'>st_data_t</a>         699 src/verifier/dpor_naive.c         st_add_direct(mc_por.strans_independency, (st_data_t)id, (st_data_t)v);</span>
+<span class='curline'><a href='../S/421.html#L743'>st_data_t</a>         743 src/verifier/dpor_naive.c          st_foreach(mc_por.strans_independency, dump__strans_independency, (st_data_t)0);</span>
+<span class='curline'><a href='../S/421.html#L745'>st_data_t</a>         745 src/verifier/dpor_naive.c          st_foreach(mc_por.states, dump__tmp_graph, (st_data_t)FALSE);</span>
+<span class='curline'><a href='../S/421.html#L877'>st_data_t</a>         877 src/verifier/dpor_naive.c     st_data_t vec_independency;</span>
+<span class='curline'><a href='../S/421.html#L881'>st_data_t</a>         881 src/verifier/dpor_naive.c     if(st_lookup(mc_por.strans_independency, (st_data_t)id, (st_data_t *)&amp;vec_independency)) {</span>
+<span class='curline'><a href='../S/421.html#L904'>st_data_t</a>         904 src/verifier/dpor_naive.c   st_data_t v1, v2;</span>
+<span class='curline'><a href='../S/421.html#L907'>st_data_t</a>         907 src/verifier/dpor_naive.c   if (!st_lookup(mc_por.strans_independency, (st_data_t)i1, (st_data_t *)&amp;v1)) {</span>
+<span class='curline'><a href='../S/421.html#L908'>st_data_t</a>         908 src/verifier/dpor_naive.c     LMN_ASSERT(!st_lookup(mc_por.strans_independency, (st_data_t)i2, (st_data_t *)&amp;v2));</span>
+<span class='curline'><a href='../S/421.html#L926'>st_data_t</a>         926 src/verifier/dpor_naive.c       if (st_lookup(mc_por.strans_independency, (st_data_t)i2, (st_data_t *)&amp;v2)) {</span>
+<span class='curline'><a href='../S/421.html#L985'>st_data_t</a>         985 src/verifier/dpor_naive.c static int build_ample_satisfying_lemma(st_data_t key,</span>
+<span class='curline'><a href='../S/421.html#L986'>st_data_t</a>         986 src/verifier/dpor_naive.c                                         st_data_t val,</span>
+<span class='curline'><a href='../S/421.html#L987'>st_data_t</a>         987 src/verifier/dpor_naive.c                                         st_data_t current_state)</span>
+<span class='curline'><a href='../S/421.html#L1130'>st_data_t</a>        1130 src/verifier/dpor_naive.c int dump__strans_independency(st_data_t key, st_data_t vec, st_data_t _a)</span>
+<span class='curline'><a href='../S/421.html#L1161'>st_data_t</a>        1161 src/verifier/dpor_naive.c int dump__tmp_graph(st_data_t _k, st_data_t _v, st_data_t _a)</span>
+<span class='curline'><a href='../S/428.html#L302'>st_data_t</a>         302 src/verifier/mc.c     st_data_t tmp;</span>
+<span class='curline'><a href='../S/428.html#L357'>st_data_t</a>         357 src/verifier/mc.c     if (!st_lookup(RC_SUCC_TBL(rc), (st_data_t)succ, (st_data_t *)&amp;tmp)) {</span>
+<span class='curline'><a href='../S/428.html#L359'>st_data_t</a>         359 src/verifier/mc.c       st_data_t ins;</span>
+<span class='curline'><a href='../S/428.html#L361'>st_data_t</a>         361 src/verifier/mc.c         ins = (st_data_t)src_t;</span>
+<span class='curline'><a href='../S/428.html#L363'>st_data_t</a>         363 src/verifier/mc.c         ins = (st_data_t)succ;</span>
+<span class='curline'><a href='../S/428.html#L366'>st_data_t</a>         366 src/verifier/mc.c       st_add_direct(RC_SUCC_TBL(rc), (st_data_t)succ, ins);</span>
+<span class='curline'><a href='../S/428.html#L720'>st_data_t</a>         720 src/verifier/mc.c     st_data_t t;                                                         \</span>
+<span class='curline'><a href='../S/428.html#L723'>st_data_t</a>         723 src/verifier/mc.c     if (st_lookup(G, (st_data_t)(S_KEY), &amp;t)) {                          \</span>
+<span class='curline'><a href='../S/428.html#L731'>st_data_t</a>         731 src/verifier/mc.c       st_insert(G, (st_data_t)(S_KEY), (st_data_t)succs);                \</span>
+<span class='curline'><a href='../S/428.html#L761'>st_data_t</a>         761 src/verifier/mc.c static int mc_dump_invalids_f(st_data_t _key, st_data_t _v, st_data_t _arg)</span>
+<span class='curline'><a href='../S/428.html#L789'>st_data_t</a>         789 src/verifier/mc.c int mc_free_succ_vec_f(st_data_t _key, st_data_t _v, st_data_t _arg)</span>
+<span class='curline'><a href='../S/428.html#L923'>st_data_t</a>         923 src/verifier/mc.c         st_foreach(invalids_graph, mc_dump_invalids_f, (st_data_t)represent);</span>
+<span class='curline'><a href='../S/428.html#L924'>st_data_t</a>         924 src/verifier/mc.c         st_foreach(invalids_graph, mc_free_succ_vec_f, (st_data_t)0);</span>
+<span class='curline'><a href='../S/430.html#L86'>st_data_t</a>          86 src/verifier/mc_explorer.c     if (st_contains(traversed, (st_data_t)s)) {</span>
+<span class='curline'><a href='../S/430.html#L93'>st_data_t</a>          93 src/verifier/mc_explorer.c       st_add_direct(traversed, (st_data_t)s, (st_data_t)s);</span>
+<span class='curline'><a href='../S/436.html#L1043'>st_data_t</a>        1043 src/verifier/mem_encode.c static inline int bsptr_push_history_f(st_data_t _key, st_data_t _value, st_data_t _arg)</span>
+<span class='curline'><a href='../S/436.html#L1065'>st_data_t</a>        1065 src/verifier/mem_encode.c     st_foreach(his_tbl, bsptr_push_history_f, (st_data_t)bsp);</span>
+<span class='curline'><a href='../S/436.html#L1765'>st_data_t</a>        1765 src/verifier/mem_encode.c           st_add_direct(lmn_rule_get_history_tbl(r), (st_data_t)id, 0);</span>
+<span class='curline'><a href='../S/438.html#L480'>st_data_t</a>         480 src/verifier/mhash.c static inline int mhash_multiply_rhistories_f(st_data_t _key,</span>
+<span class='curline'><a href='../S/438.html#L481'>st_data_t</a>         481 src/verifier/mhash.c                                               st_data_t _value,</span>
+<span class='curline'><a href='../S/438.html#L482'>st_data_t</a>         482 src/verifier/mhash.c                                               st_data_t _arg);</span>
+<span class='curline'><a href='../S/438.html#L504'>st_data_t</a>         504 src/verifier/mhash.c         st_foreach(his_tbl, mhash_multiply_rhistories_f, (st_data_t)&amp;hash);</span>
+<span class='curline'><a href='../S/438.html#L513'>st_data_t</a>         513 src/verifier/mhash.c static inline int mhash_multiply_rhistories_f(st_data_t _key,</span>
+<span class='curline'><a href='../S/438.html#L514'>st_data_t</a>         514 src/verifier/mhash.c                                               st_data_t _value,</span>
+<span class='curline'><a href='../S/438.html#L515'>st_data_t</a>         515 src/verifier/mhash.c                                               st_data_t _arg)</span>
+</pre>
+</body>
+</html>

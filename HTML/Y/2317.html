@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>f_safe</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/434.html#L83'>f_safe</a>             83 src/verifier/mc_worker.c   w-&gt;f_safe    = 0x00U;</span>
+<span class='curline'><a href='../S/435.html#L153'>f_safe</a>            153 src/verifier/mc_worker.h   BYTE            f_safe;        /* Workerに割り当てられたスレッドのみWritableなフラグ */</span>
+<span class='curline'><a href='../S/435.html#L237'>f_safe</a>            237 src/verifier/mc_worker.h #define worker_unset_active(W)        ((W)-&gt;f_safe &amp;= (~WORKER_ACTIVE_MASK))</span>
+<span class='curline'><a href='../S/435.html#L239'>f_safe</a>            239 src/verifier/mc_worker.h #define worker_set_active(W)          ((W)-&gt;f_safe |= WORKER_ACTIVE_MASK)</span>
+<span class='curline'><a href='../S/435.html#L240'>f_safe</a>            240 src/verifier/mc_worker.h #define worker_is_active(W)           ((W)-&gt;f_safe &amp;  WORKER_ACTIVE_MASK)</span>
+</pre>
+</body>
+</html>

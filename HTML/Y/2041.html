@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>destr_fn_info</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/685.html#L129'>destr_fn_info</a>     129 third_party/google-perftools-1.8.3/src/windows/port.cc static DestrFnClosure destr_fn_info;   // initted to all NULL/0.</span>
+<span class='curline'><a href='../S/685.html#L132'>destr_fn_info</a>     132 third_party/google-perftools-1.8.3/src/windows/port.cc   if (destr_fn_info.destr_fn) {</span>
+<span class='curline'><a href='../S/685.html#L133'>destr_fn_info</a>     133 third_party/google-perftools-1.8.3/src/windows/port.cc     void *ptr = TlsGetValue(destr_fn_info.key_for_destr_fn_arg);</span>
+<span class='curline'><a href='../S/685.html#L137'>destr_fn_info</a>     137 third_party/google-perftools-1.8.3/src/windows/port.cc     TlsSetValue(destr_fn_info.key_for_destr_fn_arg, NULL);</span>
+<span class='curline'><a href='../S/685.html#L139'>destr_fn_info</a>     139 third_party/google-perftools-1.8.3/src/windows/port.cc       (*destr_fn_info.destr_fn)(ptr);</span>
+<span class='curline'><a href='../S/685.html#L186'>destr_fn_info</a>     186 third_party/google-perftools-1.8.3/src/windows/port.cc     assert(destr_fn_info.destr_fn == NULL);</span>
+<span class='curline'><a href='../S/685.html#L187'>destr_fn_info</a>     187 third_party/google-perftools-1.8.3/src/windows/port.cc     destr_fn_info.destr_fn = destr_fn;</span>
+<span class='curline'><a href='../S/685.html#L188'>destr_fn_info</a>     188 third_party/google-perftools-1.8.3/src/windows/port.cc     destr_fn_info.key_for_destr_fn_arg = key;</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>levels</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/530.html#L77'>levels</a>             77 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     int levels;           // levels in skiplist used</span>
+<span class='curline'><a href='../S/530.html#L142'>levels</a>            142 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   for (int level = head-&gt;levels - 1; level &gt;= 0; level--) {</span>
+<span class='curline'><a href='../S/530.html#L147'>levels</a>            147 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   return (head-&gt;levels == 0) ?  0 : prev[0]-&gt;next[0];</span>
+<span class='curline'><a href='../S/530.html#L156'>levels</a>            156 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   for (; head-&gt;levels &lt; e-&gt;levels; head-&gt;levels++) { // extend prev pointers</span>
+<span class='curline'><a href='../S/530.html#L157'>levels</a>            157 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     prev[head-&gt;levels] = head;                       // to all *e's levels</span>
+<span class='curline'><a href='../S/530.html#L159'>levels</a>            159 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   for (int i = 0; i != e-&gt;levels; i++) { // add element to list</span>
+<span class='curline'><a href='../S/530.html#L172'>levels</a>            172 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   for (int i = 0; i != e-&gt;levels &amp;&amp; prev[i]-&gt;next[i] == e; i++) {</span>
+<span class='curline'><a href='../S/530.html#L175'>levels</a>            175 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   while (head-&gt;levels &gt; 0 &amp;&amp; head-&gt;next[head-&gt;levels - 1] == 0) {</span>
+<span class='curline'><a href='../S/530.html#L176'>levels</a>            176 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     head-&gt;levels--;   // reduce head-&gt;levels if level unused</span>
+<span class='curline'><a href='../S/530.html#L278'>levels</a>            278 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     arena-&gt;freelist.levels = 0;</span>
+<span class='curline'><a href='../S/530.html#L362'>levels</a>            362 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   RAW_CHECK(i &lt; prev-&gt;levels, "too few levels in Next()");</span>
+<span class='curline'><a href='../S/530.html#L390'>levels</a>            390 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     a-&gt;levels = LLA_SkiplistLevels(a-&gt;header.size, arena-&gt;min_size, true);</span>
+<span class='curline'><a href='../S/530.html#L404'>levels</a>            404 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   f-&gt;levels = LLA_SkiplistLevels(f-&gt;header.size, arena-&gt;min_size, true);</span>
+<span class='curline'><a href='../S/530.html#L445'>levels</a>            445 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       if (i &lt; arena-&gt;freelist.levels) {   // potential blocks exist</span>
+<span class='curline'><a href='../S/530.html#L475'>levels</a>            475 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       AddToFreelist(&amp;s-&gt;levels, arena);  // insert new region into free list</span>
+<span class='curline'><a href='../S/530.html#L487'>levels</a>            487 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       AddToFreelist(&amp;n-&gt;levels, arena);</span>
+<span class='curline'><a href='../S/530.html#L493'>levels</a>            493 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     result = &amp;s-&gt;levels;</span>
+</pre>
+</body>
+</html>

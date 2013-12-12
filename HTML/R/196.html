@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>AutomataState</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/413.html#L50'>AutomataState</a>      50 src/verifier/automata.c static void atmstate_free(AutomataState s);</span>
+<span class='curline'><a href='../S/413.html#L52'>AutomataState</a>      52 src/verifier/automata.c static void automata_analysis_dfs1(Automata a, BYTE *on_stack_list, AutomataState s);</span>
+<span class='curline'><a href='../S/413.html#L53'>AutomataState</a>      53 src/verifier/automata.c static void automata_analysis_dfs2(Automata a, AutomataState s);</span>
+<span class='curline'><a href='../S/413.html#L126'>AutomataState</a>     126 src/verifier/automata.c     atmstate_free((AutomataState)vec_get(&amp;a-&gt;states, i));</span>
+<span class='curline'><a href='../S/413.html#L195'>AutomataState</a>     195 src/verifier/automata.c void automata_add_state(Automata a, AutomataState s)</span>
+<span class='curline'><a href='../S/413.html#L203'>AutomataState</a>     203 src/verifier/automata.c AutomataState automata_get_state(Automata a, BYTE state_id)</span>
+<span class='curline'><a href='../S/413.html#L206'>AutomataState</a>     206 src/verifier/automata.c   return (AutomataState)vec_get(&amp;a-&gt;states, state_id);</span>
+<span class='curline'><a href='../S/413.html#L242'>AutomataState</a>     242 src/verifier/automata.c AutomataState atmstate_make(unsigned int id,</span>
+<span class='curline'><a href='../S/413.html#L246'>AutomataState</a>     246 src/verifier/automata.c   AutomataState s = LMN_MALLOC(struct AutomataState);</span>
+<span class='curline'><a href='../S/413.html#L256'>AutomataState</a>     256 src/verifier/automata.c static void atmstate_free(AutomataState s)</span>
+<span class='curline'><a href='../S/413.html#L267'>AutomataState</a>     267 src/verifier/automata.c void atmstate_add_transition(AutomataState s, AutomataTransition t)</span>
+<span class='curline'><a href='../S/413.html#L272'>AutomataState</a>     272 src/verifier/automata.c atmstate_id_t atmstate_id(AutomataState s)</span>
+<span class='curline'><a href='../S/413.html#L277'>AutomataState</a>     277 src/verifier/automata.c unsigned int atmstate_transition_num(AutomataState s)</span>
+<span class='curline'><a href='../S/413.html#L282'>AutomataState</a>     282 src/verifier/automata.c AutomataTransition atmstate_get_transition(AutomataState s, unsigned int index)</span>
+<span class='curline'><a href='../S/413.html#L287'>AutomataState</a>     287 src/verifier/automata.c BOOL atmstate_is_accept(AutomataState s)</span>
+<span class='curline'><a href='../S/413.html#L292'>AutomataState</a>     292 src/verifier/automata.c BOOL atmstate_is_end(AutomataState s)</span>
+<span class='curline'><a href='../S/413.html#L297'>AutomataState</a>     297 src/verifier/automata.c inline void atmstate_set_scc(AutomataState s, AutomataSCC *scc)</span>
+<span class='curline'><a href='../S/413.html#L302'>AutomataState</a>     302 src/verifier/automata.c inline BYTE atmstate_scc_type(AutomataState s)</span>
+<span class='curline'><a href='../S/413.html#L307'>AutomataState</a>     307 src/verifier/automata.c inline AutomataSCC *atmstate_scc(AutomataState s)</span>
+<span class='curline'><a href='../S/413.html#L318'>AutomataState</a>     318 src/verifier/automata.c   AutomataState init_s;</span>
+<span class='curline'><a href='../S/413.html#L398'>AutomataState</a>     398 src/verifier/automata.c   AutomataState init;</span>
+<span class='curline'><a href='../S/413.html#L405'>AutomataState</a>     405 src/verifier/automata.c     AutomataState s = automata_get_state(a, i);</span>
+<span class='curline'><a href='../S/413.html#L417'>AutomataState</a>     417 src/verifier/automata.c     AutomataState s;</span>
+<span class='curline'><a href='../S/413.html#L435'>AutomataState</a>     435 src/verifier/automata.c static void automata_analysis_dfs1(Automata a, BYTE *on_stack_list, AutomataState s)</span>
+<span class='curline'><a href='../S/413.html#L441'>AutomataState</a>     441 src/verifier/automata.c     AutomataState succ = automata_get_state(a, (unsigned int)atm_transition_next(atmstate_get_transition(s, i)));</span>
+<span class='curline'><a href='../S/413.html#L467'>AutomataState</a>     467 src/verifier/automata.c static void automata_analysis_dfs2(Automata a, AutomataState s)</span>
+<span class='curline'><a href='../S/413.html#L472'>AutomataState</a>     472 src/verifier/automata.c     AutomataState succ = automata_get_state(a, (unsigned int)atm_transition_next(atmstate_get_transition(s, i)));</span>
+<span class='curline'><a href='../S/414.html#L48'>AutomataState</a>      48 src/verifier/automata.h typedef struct AutomataState       *AutomataState;</span>
+<span class='curline'><a href='../S/414.html#L72'>AutomataState</a>      72 src/verifier/automata.h AutomataState      automata_get_state(Automata a, BYTE state_id);</span>
+<span class='curline'><a href='../S/414.html#L76'>AutomataState</a>      76 src/verifier/automata.h AutomataState      atmstate_make(unsigned int id,</span>
+<span class='curline'><a href='../S/414.html#L81'>AutomataState</a>      81 src/verifier/automata.h void               atmstate_add_transition(AutomataState s, AutomataTransition t);</span>
+<span class='curline'><a href='../S/414.html#L82'>AutomataState</a>      82 src/verifier/automata.h void               automata_add_state(Automata a, AutomataState s);</span>
+<span class='curline'><a href='../S/414.html#L83'>AutomataState</a>      83 src/verifier/automata.h atmstate_id_t      atmstate_id(AutomataState s);</span>
+<span class='curline'><a href='../S/414.html#L84'>AutomataState</a>      84 src/verifier/automata.h unsigned int       atmstate_transition_num(AutomataState s);</span>
+<span class='curline'><a href='../S/414.html#L85'>AutomataState</a>      85 src/verifier/automata.h AutomataTransition atmstate_get_transition(AutomataState s, unsigned int index);</span>
+<span class='curline'><a href='../S/414.html#L86'>AutomataState</a>      86 src/verifier/automata.h BOOL               atmstate_is_accept(AutomataState s);</span>
+<span class='curline'><a href='../S/414.html#L87'>AutomataState</a>      87 src/verifier/automata.h BOOL               atmstate_is_end(AutomataState s);</span>
+<span class='curline'><a href='../S/414.html#L88'>AutomataState</a>      88 src/verifier/automata.h inline void        atmstate_set_scc(AutomataState s, AutomataSCC *scc);</span>
+<span class='curline'><a href='../S/414.html#L89'>AutomataState</a>      89 src/verifier/automata.h inline BYTE        atmstate_scc_type(AutomataState s);</span>
+<span class='curline'><a href='../S/414.html#L90'>AutomataState</a>      90 src/verifier/automata.h inline AutomataSCC *atmstate_scc(AutomataState s);</span>
+<span class='curline'><a href='../S/419.html#L1117'>AutomataState</a>    1117 src/verifier/dpor.c       AutomataState p_s;</span>
+<span class='curline'><a href='../S/421.html#L356'>AutomataState</a>     356 src/verifier/dpor_naive.c     AutomataState p_s = MC_GET_PROPERTY(s, a);</span>
+<span class='curline'><a href='../S/428.html#L200'>AutomataState</a>     200 src/verifier/mc.c                AutomataState    p_s,</span>
+<span class='curline'><a href='../S/428.html#L496'>AutomataState</a>     496 src/verifier/mc.c                                      AutomataState p_s,</span>
+<span class='curline'><a href='../S/429.html#L77'>AutomataState</a>      77 src/verifier/mc.h                AutomataState    property_automata_state,</span>
+<span class='curline'><a href='../S/429.html#L85'>AutomataState</a>      85 src/verifier/mc.h                                      AutomataState prop_atm_s,</span>
+<span class='curline'><a href='../S/432.html#L385'>AutomataState</a>     385 src/verifier/mc_generator.c     AutomataState p_s;</span>
+<span class='curline'><a href='../S/432.html#L453'>AutomataState</a>     453 src/verifier/mc_generator.c     AutomataState p_s;</span>
+<span class='curline'><a href='../S/432.html#L690'>AutomataState</a>     690 src/verifier/mc_generator.c     AutomataState p_s;</span>
+<span class='curline'><a href='../S/443.html#L170'>AutomataState</a>     170 src/verifier/nc_parser.c   struct AutomataState *state;</span>
+<span class='curline'><a href='../S/443.html#L1468'>AutomataState</a>    1468 src/verifier/nc_parser.c     AutomataState s;</span>
+<span class='curline'><a href='../S/443.html#L1470'>AutomataState</a>    1470 src/verifier/nc_parser.c     s = (AutomataState)vec_get(states, 0);</span>
+<span class='curline'><a href='../S/443.html#L1473'>AutomataState</a>    1473 src/verifier/nc_parser.c       automata_add_state(automata, (AutomataState)vec_get(states, i));</span>
+<span class='curline'><a href='../S/443.html#L1494'>AutomataState</a>    1494 src/verifier/nc_parser.c     AutomataState s;</span>
+<span class='curline'><a href='../S/443.html#L1513'>AutomataState</a>    1513 src/verifier/nc_parser.c     AutomataState s;</span>
+<span class='curline'><a href='../S/444.html#L107'>AutomataState</a>     107 src/verifier/nc_parser.h   struct AutomataState *state;</span>
+<span class='curline'><a href='../S/445.html#L57'>AutomataState</a>      57 src/verifier/nc_parser.y   struct AutomataState *state;</span>
+<span class='curline'><a href='../S/445.html#L93'>AutomataState</a>      93 src/verifier/nc_parser.y     AutomataState s;</span>
+<span class='curline'><a href='../S/445.html#L95'>AutomataState</a>      95 src/verifier/nc_parser.y     s = (AutomataState)vec_get(states, 0);</span>
+<span class='curline'><a href='../S/445.html#L98'>AutomataState</a>      98 src/verifier/nc_parser.y       automata_add_state(automata, (AutomataState)vec_get(states, i));</span>
+<span class='curline'><a href='../S/445.html#L113'>AutomataState</a>     113 src/verifier/nc_parser.y     AutomataState s;</span>
+<span class='curline'><a href='../S/445.html#L128'>AutomataState</a>     128 src/verifier/nc_parser.y     AutomataState s;</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>Arena</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/530.html#L71'>Arena</a>              71 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       LowLevelAlloc::Arena *arena; // pointer to parent arena</span>
+<span class='curline'><a href='../S/530.html#L183'>Arena</a>             183 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc struct LowLevelAlloc::Arena {</span>
+<span class='curline'><a href='../S/530.html#L184'>Arena</a>             184 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   Arena() : mu(SpinLock::LINKER_INITIALIZED) {} // does nothing; for static init</span>
+<span class='curline'><a href='../S/530.html#L185'>Arena</a>             185 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   explicit Arena(int) : pagesize(0) {}  // set pagesize to zero explicitly</span>
+<span class='curline'><a href='../S/530.html#L202'>Arena</a>             202 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc static struct LowLevelAlloc::Arena default_arena;</span>
+<span class='curline'><a href='../S/530.html#L207'>Arena</a>             207 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc static struct LowLevelAlloc::Arena unhooked_arena;</span>
+<span class='curline'><a href='../S/530.html#L208'>Arena</a>             208 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc static struct LowLevelAlloc::Arena unhooked_async_sig_safe_arena;</span>
+<span class='curline'><a href='../S/530.html#L217'>Arena</a>             217 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     explicit ArenaLock(LowLevelAlloc::Arena *arena)</span>
+<span class='curline'><a href='../S/530.html#L251'>Arena</a>             251 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     LowLevelAlloc::Arena *arena_;</span>
+<span class='curline'><a href='../S/530.html#L263'>Arena</a>             263 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc static void ArenaInit(LowLevelAlloc::Arena *arena) {</span>
+<span class='curline'><a href='../S/530.html#L295'>Arena</a>             295 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc LowLevelAlloc::Arena *LowLevelAlloc::NewArena(int32 flags,</span>
+<span class='curline'><a href='../S/530.html#L296'>Arena</a>             296 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc                                               Arena *meta_data_arena) {</span>
+<span class='curline'><a href='../S/530.html#L306'>Arena</a>             306 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc   Arena *result =</span>
+<span class='curline'><a href='../S/530.html#L307'>Arena</a>             307 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     new (AllocWithArena(sizeof (*result), meta_data_arena)) Arena(0);</span>
+<span class='curline'><a href='../S/530.html#L314'>Arena</a>             314 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc bool LowLevelAlloc::DeleteArena(Arena *arena) {</span>
+<span class='curline'><a href='../S/530.html#L361'>Arena</a>             361 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc static AllocList *Next(int i, AllocList *prev, LowLevelAlloc::Arena *arena) {</span>
+<span class='curline'><a href='../S/530.html#L383'>Arena</a>             383 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     LowLevelAlloc::Arena *arena = a-&gt;header.arena;</span>
+<span class='curline'><a href='../S/530.html#L397'>Arena</a>             397 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc static void AddToFreelist(void *v, LowLevelAlloc::Arena *arena) {</span>
+<span class='curline'><a href='../S/530.html#L420'>Arena</a>             420 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     LowLevelAlloc::Arena *arena = f-&gt;header.arena;</span>
+<span class='curline'><a href='../S/530.html#L434'>Arena</a>             434 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc static void *DoAllocWithArena(size_t request, LowLevelAlloc::Arena *arena) {</span>
+<span class='curline'><a href='../S/530.html#L509'>Arena</a>             509 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc void *LowLevelAlloc::AllocWithArena(size_t request, Arena *arena) {</span>
+<span class='curline'><a href='../S/530.html#L520'>Arena</a>             520 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc LowLevelAlloc::Arena *LowLevelAlloc::DefaultArena() {</span>
+<span class='curline'><a href='../S/531.html#L45'>Arena</a>              45 third_party/google-perftools-1.8.3/src/base/low_level_alloc.h   struct Arena;       // an arena from which memory may be allocated</span>
+<span class='curline'><a href='../S/531.html#L55'>Arena</a>              55 third_party/google-perftools-1.8.3/src/base/low_level_alloc.h   static void *AllocWithArena(size_t request, Arena *arena)</span>
+<span class='curline'><a href='../S/531.html#L90'>Arena</a>              90 third_party/google-perftools-1.8.3/src/base/low_level_alloc.h   static Arena *NewArena(int32 flags, Arena *meta_data_arena);</span>
+<span class='curline'><a href='../S/531.html#L97'>Arena</a>              97 third_party/google-perftools-1.8.3/src/base/low_level_alloc.h   static bool DeleteArena(Arena *arena);</span>
+<span class='curline'><a href='../S/531.html#L100'>Arena</a>             100 third_party/google-perftools-1.8.3/src/base/low_level_alloc.h   static Arena *DefaultArena();</span>
+<span class='curline'><a href='../S/568.html#L332'>Arena</a>             332 third_party/google-perftools-1.8.3/src/heap-checker.cc   static LowLevelAlloc::Arena* arena_;</span>
+<span class='curline'><a href='../S/568.html#L336'>Arena</a>             336 third_party/google-perftools-1.8.3/src/heap-checker.cc LowLevelAlloc::Arena* HeapLeakChecker::Allocator::arena_ = NULL;</span>
+<span class='curline'><a href='../S/571.html#L138'>Arena</a>             138 third_party/google-perftools-1.8.3/src/heap-profiler.cc static LowLevelAlloc::Arena *heap_profiler_memory;</span>
+<span class='curline'><a href='../S/588.html#L142'>Arena</a>             142 third_party/google-perftools-1.8.3/src/memory_region_map.cc LowLevelAlloc::Arena* MemoryRegionMap::arena_ = NULL;</span>
+<span class='curline'><a href='../S/589.html#L269'>Arena</a>             269 third_party/google-perftools-1.8.3/src/memory_region_map.h   static LowLevelAlloc::Arena* arena_;</span>
+<span class='curline'><a href='../S/641.html#L87'>Arena</a>              87 third_party/google-perftools-1.8.3/src/tests/low_level_alloc_unittest.cc   LowLevelAlloc::Arena *arena = 0;</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>TCMallocImplementation</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/555.html#L1002'>TCMallocImplementation</a> 1002 third_party/google-perftools-1.8.3/src/debugallocation.cc class DebugMallocImplementation : public TCMallocImplementation {</span>
+<span class='curline'><a href='../S/555.html#L1005'>TCMallocImplementation</a> 1005 third_party/google-perftools-1.8.3/src/debugallocation.cc     bool result = TCMallocImplementation::GetNumericProperty(name, value);</span>
+<span class='curline'><a href='../S/555.html#L1056'>TCMallocImplementation</a> 1056 third_party/google-perftools-1.8.3/src/debugallocation.cc       return TCMallocImplementation::GetOwnership(mb);</span>
+<span class='curline'><a href='../S/555.html#L1064'>TCMallocImplementation</a> 1064 third_party/google-perftools-1.8.3/src/debugallocation.cc     TCMallocImplementation::GetFreeListSizes(v);</span>
+<span class='curline'><a href='../S/626.html#L900'>TCMallocImplementation</a>  900 third_party/google-perftools-1.8.3/src/tcmalloc.cc       MallocExtension::Register(new TCMallocImplementation);</span>
+<span class='curline'><a href='../S/626.html#L1438'>TCMallocImplementation</a> 1438 third_party/google-perftools-1.8.3/src/tcmalloc.cc size_t TCMallocImplementation::GetAllocatedSize(void* ptr) {</span>
+<span class='curline'><a href='../S/626.html#L1439'>TCMallocImplementation</a> 1439 third_party/google-perftools-1.8.3/src/tcmalloc.cc   ASSERT(TCMallocImplementation::GetOwnership(ptr)</span>
+<span class='curline'><a href='../S/626.html#L1440'>TCMallocImplementation</a> 1440 third_party/google-perftools-1.8.3/src/tcmalloc.cc          != TCMallocImplementation::kNotOwned);</span>
+<span class='curline'><a href='../S/626.html#L1444'>TCMallocImplementation</a> 1444 third_party/google-perftools-1.8.3/src/tcmalloc.cc void TCMallocImplementation::MarkThreadBusy() {</span>
+</pre>
+</body>
+</html>

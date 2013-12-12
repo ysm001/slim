@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>hash</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/404.html#L13'>hash</a>               13 src/utility/st.c   unsigned long hash;</span>
+<span class='curline'><a href='../S/404.html#L44'>hash</a>               44 src/utility/st.c #define do_hash(key,table) (unsigned long)(*(table)-&gt;type-&gt;hash)((key))</span>
+<span class='curline'><a href='../S/404.html#L201'>hash</a>              201 src/utility/st.c ((ptr) != 0 &amp;&amp; (ptr-&gt;hash != (hash_val) || !EQUAL((table), (key), (ptr)-&gt;key)))</span>
+<span class='curline'><a href='../S/404.html#L227'>hash</a>              227 src/utility/st.c       if ((ptr) != 0 &amp;&amp; (ptr-&gt;hash == (hash_val))) (collision)++;       \</span>
+<span class='curline'><a href='../S/404.html#L230'>hash</a>              230 src/utility/st.c           if ((ptr) != 0 &amp;&amp; (ptr-&gt;hash == (hash_val))) (collision)++;   \</span>
+<span class='curline'><a href='../S/404.html#L285'>hash</a>              285 src/utility/st.c     entry-&gt;hash = hash_val;                                                \</span>
+<span class='curline'><a href='../S/404.html#L383'>hash</a>              383 src/utility/st.c       hash_val = ptr-&gt;hash % new_num_bins;</span>
+<span class='curline'><a href='../S/404.html#L577'>hash</a>              577 src/utility/st.c int st_foreach_hash(st_table_t table, st_data_t hash, int(*func)( ANYARGS), st_data_t arg) {</span>
+<span class='curline'><a href='../S/404.html#L580'>hash</a>              580 src/utility/st.c   st_data_t hash_val = hash % table-&gt;num_bins;</span>
+<span class='curline'><a href='../S/404.html#L584'>hash</a>              584 src/utility/st.c     if (ptr-&gt;hash != hash) {</span>
+<span class='curline'><a href='../S/404.html#L651'>hash</a>              651 src/utility/st.c               (unsigned long)entry-&gt;hash);</span>
+<span class='curline'><a href='../S/405.html#L22'>hash</a>               22 src/utility/st.h   long (*hash)();    /* ハッシュ関数 */</span>
+<span class='curline'><a href='../S/405.html#L100'>hash</a>              100 src/utility/st.h int st_foreach_hash(st_table_t table, st_data_t hash, int(*func)( ANYARGS), st_data_t arg);</span>
+<span class='curline'><a href='../S/438.html#L331'>hash</a>              331 src/verifier/mhash.c     mhash_t hash;</span>
+<span class='curline'><a href='../S/438.html#L336'>hash</a>              336 src/verifier/mhash.c     hash = mhash_symbol((LmnSAtom)atom);</span>
+<span class='curline'><a href='../S/438.html#L342'>hash</a>              342 src/verifier/mhash.c       hash = MHASH_C * hash +</span>
+<span class='curline'><a href='../S/438.html#L350'>hash</a>              350 src/verifier/mhash.c     return hash;</span>
+<span class='curline'><a href='../S/438.html#L368'>hash</a>              368 src/verifier/mhash.c   mhash_t hash, child_h;</span>
+<span class='curline'><a href='../S/438.html#L372'>hash</a>              372 src/verifier/mhash.c   hash    = 0;</span>
+<span class='curline'><a href='../S/438.html#L396'>hash</a>              396 src/verifier/mhash.c     hash     += tmp;</span>
+<span class='curline'><a href='../S/438.html#L400'>hash</a>              400 src/verifier/mhash.c   return hash + child_h;</span>
+<span class='curline'><a href='../S/438.html#L418'>hash</a>              418 src/verifier/mhash.c   mhash_t hash = 0;</span>
+<span class='curline'><a href='../S/438.html#L422'>hash</a>              422 src/verifier/mhash.c     hash = MHASH_B * hash + mhash_membrane(LMN_PROXY_GET_MEM(in_proxy), calc_mem, ctx);</span>
+<span class='curline'><a href='../S/438.html#L432'>hash</a>              432 src/verifier/mhash.c     hash *= mhash_data(atom, attr);</span>
+<span class='curline'><a href='../S/438.html#L434'>hash</a>              434 src/verifier/mhash.c     hash *= mhash_symbol((LmnSAtom)atom) * (LMN_ATTR_GET_VALUE(attr) + 1);</span>
+<span class='curline'><a href='../S/438.html#L437'>hash</a>              437 src/verifier/mhash.c   return hash;</span>
+<span class='curline'><a href='../S/438.html#L490'>hash</a>              490 src/verifier/mhash.c   mhash_t hash;</span>
+<span class='curline'><a href='../S/438.html#L493'>hash</a>              493 src/verifier/mhash.c   hash = 1;</span>
+<span class='curline'><a href='../S/438.html#L496'>hash</a>              496 src/verifier/mhash.c     hash *= lmn_ruleset_get_id(rs);</span>
+<span class='curline'><a href='../S/438.html#L504'>hash</a>              504 src/verifier/mhash.c         st_foreach(his_tbl, mhash_multiply_rhistories_f, (st_data_t)&amp;hash);</span>
+<span class='curline'><a href='../S/438.html#L509'>hash</a>              509 src/verifier/mhash.c   return hash;</span>
+<span class='curline'><a href='../S/454.html#L97'>hash</a>               97 src/verifier/state.c   new_s-&gt;hash             = 0;</span>
+<span class='curline'><a href='../S/454.html#L126'>hash</a>              126 src/verifier/state.c     s-&gt;hash = binstr_hash(state_binstr(s));</span>
+<span class='curline'><a href='../S/454.html#L129'>hash</a>              129 src/verifier/state.c     s-&gt;hash = mhash(mem);</span>
+<span class='curline'><a href='../S/454.html#L174'>hash</a>              174 src/verifier/state.c   dst-&gt;hash = src-&gt;hash;</span>
+<span class='curline'><a href='../S/454.html#L400'>hash</a>              400 src/verifier/state.c     s1-&gt;hash       == s2-&gt;hash       &amp;&amp;</span>
+<span class='curline'><a href='../S/454.html#L528'>hash</a>              528 src/verifier/state.c     s-&gt;hash = binstr_hash(state_binstr(s));</span>
+<span class='curline'><a href='../S/455.html#L79'>hash</a>               79 src/verifier/state.h   unsigned long      hash;            /*  8(4)byte: 通常時: 膜memのハッシュ値, --mem-enc時: 膜の一意なバイト列のハッシュ値  */</span>
+<span class='curline'><a href='../S/455.html#L341'>hash</a>              341 src/verifier/state.h   s-&gt;hash = v;</span>
+<span class='curline'><a href='../S/455.html#L350'>hash</a>              350 src/verifier/state.h     return s-&gt;hash;</span>
+<span class='curline'><a href='../S/455.html#L370'>hash</a>              370 src/verifier/state.h   return s-&gt;hash * (state_property_state(s) + 1);</span>
+<span class='curline'><a href='../S/456.html#L63'>hash</a>               63 src/verifier/statespace.c static inline BOOL statespace_is_memid_hash(StateSpace states, unsigned long hash);</span>
+<span class='curline'><a href='../S/456.html#L64'>hash</a>               64 src/verifier/statespace.c void statespace_add_memid_hash(StateSpace states, unsigned long hash);</span>
+<span class='curline'><a href='../S/456.html#L400'>hash</a>              400 src/verifier/statespace.c   new_s-&gt;hash       = binstr_hash(state_binstr(new_s));</span>
+<span class='curline'><a href='../S/456.html#L418'>hash</a>              418 src/verifier/statespace.c void statespace_add_memid_hash(StateSpace states, unsigned long hash)</span>
+<span class='curline'><a href='../S/456.html#L425'>hash</a>              425 src/verifier/statespace.c   hashset_add(&amp;states-&gt;memid_hashes, hash);</span>
+<span class='curline'><a href='../S/456.html#L433'>hash</a>              433 src/verifier/statespace.c       if (state_hash(ptr) == hash) { /* statespace_mem_encode_f */</span>
+<span class='curline'><a href='../S/456.html#L443'>hash</a>              443 src/verifier/statespace.c inline BOOL statespace_is_memid_hash(StateSpace states, unsigned long hash)</span>
+<span class='curline'><a href='../S/456.html#L445'>hash</a>              445 src/verifier/statespace.c   return hashset_contains(&amp;states-&gt;memid_hashes, hash);</span>
+<span class='curline'><a href='../S/456.html#L780'>hash</a>              780 src/verifier/statespace.c     unsigned long bucket, hash;</span>
+<span class='curline'><a href='../S/456.html#L782'>hash</a>              782 src/verifier/statespace.c     hash   = state_hash(ins);</span>
+<span class='curline'><a href='../S/456.html#L783'>hash</a>              783 src/verifier/statespace.c     bucket = hash % statetable_cap(st);</span>
+<span class='curline'><a href='../S/456.html#L823'>hash</a>              823 src/verifier/statespace.c       if (hash == state_hash(str)) {</span>
+<span class='curline'><a href='../S/569.html#L170'>hash</a>              170 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     if ((b-&gt;hash == h) &amp;&amp;</span>
+<span class='curline'><a href='../S/569.html#L183'>hash</a>              183 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   b-&gt;hash  = h;</span>
+<span class='curline'><a href='../S/570.html#L196'>hash</a>              196 third_party/google-perftools-1.8.3/src/heap-profile-table.h     uintptr_t    hash;   // Hash value of the stack trace</span>
+<span class='curline'><a href='../S/608.html#L46'>hash</a>               46 third_party/google-perftools-1.8.3/src/stack_trace_table.cc   const bool eq = (this-&gt;hash == h &amp;&amp; this-&gt;trace.depth == t.depth);</span>
+<span class='curline'><a href='../S/608.html#L100'>hash</a>              100 third_party/google-perftools-1.8.3/src/stack_trace_table.cc       b-&gt;hash = h;</span>
+<span class='curline'><a href='../S/609.html#L66'>hash</a>               66 third_party/google-perftools-1.8.3/src/stack_trace_table.h     uintptr_t hash;</span>
+</pre>
+</body>
+</html>

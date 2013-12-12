@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>req_rnd</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/530.html#L441'>req_rnd</a>           441 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     size_t req_rnd = RoundUp(request + sizeof (s-&gt;header), arena-&gt;roundup);</span>
+<span class='curline'><a href='../S/530.html#L444'>req_rnd</a>           444 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       int i = LLA_SkiplistLevels(req_rnd, arena-&gt;min_size, false) - 1;</span>
+<span class='curline'><a href='../S/530.html#L447'>req_rnd</a>           447 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc         while ((s = Next(i, before, arena)) != 0 &amp;&amp; s-&gt;header.size &lt; req_rnd) {</span>
+<span class='curline'><a href='../S/530.html#L459'>req_rnd</a>           459 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       size_t new_pages_size = RoundUp(req_rnd, arena-&gt;pagesize * 16);</span>
+<span class='curline'><a href='../S/530.html#L480'>req_rnd</a>           480 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc     if (req_rnd + arena-&gt;min_size &lt;= s-&gt;header.size) {  // big enough to split</span>
+<span class='curline'><a href='../S/530.html#L482'>req_rnd</a>           482 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc                         (req_rnd + reinterpret_cast&lt;char *&gt;(s));</span>
+<span class='curline'><a href='../S/530.html#L483'>req_rnd</a>           483 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       n-&gt;header.size = s-&gt;header.size - req_rnd;</span>
+<span class='curline'><a href='../S/530.html#L486'>req_rnd</a>           486 third_party/google-perftools-1.8.3/src/base/low_level_alloc.cc       s-&gt;header.size = req_rnd;</span>
+</pre>
+</body>
+</html>

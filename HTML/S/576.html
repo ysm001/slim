@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>third_party/google-perftools-1.8.3/src/libc_override_glibc.h</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/738.html'>third_party</a>/<a href='../files/739.html'>google-perftools-1.8.3</a>/<a href='../files/740.html'>src</a>/libc_override_glibc.h</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L99'>[^]</a><a href='#L123'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='574.html#L78' title='Included from 78 in third_party/google-perftools-1.8.3/src/libc_override.h.'>INCLUDED FROM</a></h2>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L99' title='Defined at 99.'>glibc_override_malloc</a></li>
+<li><a href='#L102' title='Defined at 102.'>glibc_override_realloc</a></li>
+<li><a href='#L106' title='Defined at 106.'>glibc_override_free</a></li>
+<li><a href='#L109' title='Defined at 109.'>glibc_override_memalign</a></li>
+<li><a href='#L123' title='Defined at 123.'>glibc_override_malloc_init_hook</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>// Copyright (c) 2011, Google Inc.</em>
+<a id='L2' name='L2' /><em class='comment'>// All rights reserved.</em>
+<a id='L3' name='L3' /><em class='comment'>//</em>
+<a id='L4' name='L4' /><em class='comment'>// Redistribution and use in source and binary forms, with or without</em>
+<a id='L5' name='L5' /><em class='comment'>// modification, are permitted provided that the following conditions are</em>
+<a id='L6' name='L6' /><em class='comment'>// met:</em>
+<a id='L7' name='L7' /><em class='comment'>//</em>
+<a id='L8' name='L8' /><em class='comment'>//     * Redistributions of source code must retain the above copyright</em>
+<a id='L9' name='L9' /><em class='comment'>// notice, this list of conditions and the following disclaimer.</em>
+<a id='L10' name='L10' /><em class='comment'>//     * Redistributions in binary form must reproduce the above</em>
+<a id='L11' name='L11' /><em class='comment'>// copyright notice, this list of conditions and the following disclaimer</em>
+<a id='L12' name='L12' /><em class='comment'>// in the documentation and/or other materials provided with the</em>
+<a id='L13' name='L13' /><em class='comment'>// distribution.</em>
+<a id='L14' name='L14' /><em class='comment'>//     * Neither the name of Google Inc. nor the names of its</em>
+<a id='L15' name='L15' /><em class='comment'>// contributors may be used to endorse or promote products derived from</em>
+<a id='L16' name='L16' /><em class='comment'>// this software without specific prior written permission.</em>
+<a id='L17' name='L17' /><em class='comment'>//</em>
+<a id='L18' name='L18' /><em class='comment'>// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L19' name='L19' /><em class='comment'>// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L20' name='L20' /><em class='comment'>// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L21' name='L21' /><em class='comment'>// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L22' name='L22' /><em class='comment'>// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L23' name='L23' /><em class='comment'>// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L24' name='L24' /><em class='comment'>// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L25' name='L25' /><em class='comment'>// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L26' name='L26' /><em class='comment'>// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L27' name='L27' /><em class='comment'>// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L28' name='L28' /><em class='comment'>// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L29' name='L29' />
+<a id='L30' name='L30' /><em class='comment'>// ---</em>
+<a id='L31' name='L31' /><em class='comment'>// Author: Craig Silverstein &lt;opensource@google.com&gt;</em>
+<a id='L32' name='L32' /><em class='comment'>//</em>
+<a id='L33' name='L33' /><em class='comment'>// Used to override malloc routines on systems that are using glibc.</em>
+<a id='L34' name='L34' />
+<a id='L35' name='L35' /><em class='sharp'>#ifndef</em> <a href='../S/576.html#L36' title='Defined at 36 in third_party/google-perftools-1.8.3/src/libc_override_glibc.h.'>TCMALLOC_LIBC_OVERRIDE_GLIBC_INL_H_</a>
+<a id='L36' name='L36' /><em class='sharp'>#define</em> <a href='../S/576.html#L35' title='Refered from 35 in third_party/google-perftools-1.8.3/src/libc_override_glibc.h.'>TCMALLOC_LIBC_OVERRIDE_GLIBC_INL_H_</a>
+<a id='L37' name='L37' />
+<a id='L38' name='L38' /><em class='sharp'>#include</em> &lt;<a href='../I/6.html'>config.h</a>&gt;
+<a id='L39' name='L39' /><em class='sharp'>#include</em> &lt;features.h&gt;     <em class='comment'>// for __GLIBC__</em>
+<a id='L40' name='L40' /><em class='sharp'>#ifdef</em> <a href='../D/940.html' title='Multiple defined in 2 places.'>HAVE_SYS_CDEFS_H</a>
+<a id='L41' name='L41' /><em class='sharp'>#include</em> &lt;sys/cdefs.h&gt;    <em class='comment'>// for __THROW</em>
+<a id='L42' name='L42' /><em class='sharp'>#endif</em>
+<a id='L43' name='L43' /><em class='sharp'>#include</em> &lt;<a href='../I/188.html'>google/tcmalloc.h</a>&gt;
+<a id='L44' name='L44' />
+<a id='L45' name='L45' /><em class='sharp'>#ifndef</em> <a href='../Y/1043.html' title='Multiple used in 10 places.'>__GLIBC__</a>
+<a id='L46' name='L46' /><em class='sharp'># error</em> libc_override_glibc.h is <strong class='reserved'>for</strong> glibc distributions only.
+<a id='L47' name='L47' /><em class='sharp'>#endif</em>
+<a id='L48' name='L48' />
+<a id='L49' name='L49' /><em class='comment'>// In glibc, the memory-allocation methods are weak symbols, so we can</em>
+<a id='L50' name='L50' /><em class='comment'>// just override them with our own.  If we're using gcc, we can use</em>
+<a id='L51' name='L51' /><em class='comment'>// __attribute__((alias)) to do the overriding easily (exception:</em>
+<a id='L52' name='L52' /><em class='comment'>// Mach-O, which doesn't support aliases).  Otherwise we have to use a</em>
+<a id='L53' name='L53' /><em class='comment'>// function call.</em>
+<a id='L54' name='L54' /><em class='sharp'>#if</em> !<strong class='reserved'>defined</strong>(<a href='../Y/1046.html' title='Multiple used in 44 places.'>__GNUC__</a>) || <strong class='reserved'>defined</strong>(<a href='../Y/1051.html' title='Multiple used in 15 places.'>__MACH__</a>)
+<a id='L55' name='L55' />
+<a id='L56' name='L56' /><em class='comment'>// This also defines ReplaceSystemAlloc().</em>
+<a id='L57' name='L57' /><em class='sharp'># include</em> "<a href='578.html'>libc_override_redefine.h</a>"  <em class='comment'>// defines functions malloc()/etc</em>
+<a id='L58' name='L58' />
+<a id='L59' name='L59' /><em class='sharp'>#else</em>  <em class='comment'>// #if !defined(__GNUC__) || defined(__MACH__)</em>
+<a id='L60' name='L60' />
+<a id='L61' name='L61' /><em class='comment'>// If we get here, we're a gcc system, so do all the overriding we do</em>
+<a id='L62' name='L62' /><em class='comment'>// with gcc.  This does the overriding of all the 'normal' memory</em>
+<a id='L63' name='L63' /><em class='comment'>// allocation.  This also defines ReplaceSystemAlloc().</em>
+<a id='L64' name='L64' /><em class='sharp'># include</em> "<a href='575.html'>libc_override_gcc_and_weak.h</a>"
+<a id='L65' name='L65' />
+<a id='L66' name='L66' /><em class='comment'>// We also have to do some glibc-specific overriding.  Some library</em>
+<a id='L67' name='L67' /><em class='comment'>// routines on RedHat 9 allocate memory using malloc() and free it</em>
+<a id='L68' name='L68' /><em class='comment'>// using __libc_free() (or vice-versa).  Since we provide our own</em>
+<a id='L69' name='L69' /><em class='comment'>// implementations of malloc/free, we need to make sure that the</em>
+<a id='L70' name='L70' /><em class='comment'>// __libc_XXX variants (defined as part of glibc) also point to the</em>
+<a id='L71' name='L71' /><em class='comment'>// same implementations.  Since it only matters for redhat, we</em>
+<a id='L72' name='L72' /><em class='comment'>// do it inside the gcc #ifdef, since redhat uses gcc.</em>
+<a id='L73' name='L73' /><em class='comment'>// TODO(csilvers): only do this if we detect we're an old enough glibc?</em>
+<a id='L74' name='L74' />
+<a id='L75' name='L75' /><em class='sharp'>#define</em> <a href='../R/9.html' title='Multiple refered from 31 places.'>ALIAS</a>(<a href='../Y/5319.html' title='Multiple used in 2 places.'>tc_fn</a>)   <strong class='reserved'>__attribute__</strong> ((<a href='../Y/1425.html' title='Multiple used in 2 places.'>alias</a> (#<a href='../Y/5319.html' title='Multiple used in 2 places.'>tc_fn</a>)))
+<a id='L76' name='L76' /><strong class='reserved'>extern</strong> "C" <em class='brace'>{</em>
+<a id='L77' name='L77' />  <strong class='reserved'>void</strong>* __libc_malloc(<a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>)                <a href='../D/13.html' title='Multiple defined in 4 places.'>ALIAS</a>(<a href='../D/5394.html' title='Multiple defined in 2 places.'>tc_malloc</a>);
+<a id='L78' name='L78' />  <strong class='reserved'>void</strong> __libc_free(<strong class='reserved'>void</strong>* <a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>)                     <a href='../D/13.html' title='Multiple defined in 4 places.'>ALIAS</a>(<a href='../D/5391.html' title='Multiple defined in 2 places.'>tc_free</a>);
+<a id='L79' name='L79' />  <strong class='reserved'>void</strong>* __libc_realloc(<strong class='reserved'>void</strong>* <a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>)    <a href='../D/13.html' title='Multiple defined in 4 places.'>ALIAS</a>(<a href='../D/5405.html' title='Multiple defined in 2 places.'>tc_realloc</a>);
+<a id='L80' name='L80' />  <strong class='reserved'>void</strong>* __libc_calloc(<a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>)      <a href='../D/13.html' title='Multiple defined in 4 places.'>ALIAS</a>(<a href='../D/5385.html' title='Multiple defined in 2 places.'>tc_calloc</a>);
+<a id='L81' name='L81' />  <strong class='reserved'>void</strong> __libc_cfree(<strong class='reserved'>void</strong>* <a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>)                    <a href='../D/13.html' title='Multiple defined in 4 places.'>ALIAS</a>(<a href='../D/5386.html' title='Multiple defined in 2 places.'>tc_cfree</a>);
+<a id='L82' name='L82' />  <strong class='reserved'>void</strong>* __libc_memalign(<a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/1426.html' title='Multiple used in 59 places.'>align</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>)   <a href='../D/13.html' title='Multiple defined in 4 places.'>ALIAS</a>(<a href='../D/5398.html' title='Multiple defined in 2 places.'>tc_memalign</a>);
+<a id='L83' name='L83' />  <strong class='reserved'>void</strong>* __libc_valloc(<a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>)                <a href='../D/13.html' title='Multiple defined in 4 places.'>ALIAS</a>(<a href='../D/5407.html' title='Multiple defined in 2 places.'>tc_valloc</a>);
+<a id='L84' name='L84' />  <strong class='reserved'>void</strong>* __libc_pvalloc(<a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>)               <a href='../D/13.html' title='Multiple defined in 4 places.'>ALIAS</a>(<a href='../D/5404.html' title='Multiple defined in 2 places.'>tc_pvalloc</a>);
+<a id='L85' name='L85' />  <strong class='reserved'>int</strong> __posix_memalign(<strong class='reserved'>void</strong>** <a href='../Y/4406.html' title='Multiple used in 354 places.'>r</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/1366.html' title='Multiple used in 517 places.'>a</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>)  <a href='../D/13.html' title='Multiple defined in 4 places.'>ALIAS</a>(<a href='../D/5403.html' title='Multiple defined in 2 places.'>tc_posix_memalign</a>);
+<a id='L86' name='L86' /><em class='brace'>}</em>   <em class='comment'>// extern "C"</em>
+<a id='L87' name='L87' /><em class='sharp'>#undef</em> <a href='../R/9.html' title='Multiple refered from 31 places.'>ALIAS</a>
+<a id='L88' name='L88' />
+<a id='L89' name='L89' /><em class='sharp'>#endif</em>  <em class='comment'>// #if defined(__GNUC__) &amp;&amp; !defined(__MACH__)</em>
+<a id='L90' name='L90' />
+<a id='L91' name='L91' />
+<a id='L92' name='L92' /><em class='comment'>// We also have to hook libc malloc.  While our work with weak symbols</em>
+<a id='L93' name='L93' /><em class='comment'>// should make sure libc malloc is never called in most situations, it</em>
+<a id='L94' name='L94' /><em class='comment'>// can be worked around by shared libraries with the DEEPBIND</em>
+<a id='L95' name='L95' /><em class='comment'>// environment variable set.  The below hooks libc to call our malloc</em>
+<a id='L96' name='L96' /><em class='comment'>// routines even in that situation.  In other situations, this hook</em>
+<a id='L97' name='L97' /><em class='comment'>// should never be called.</em>
+<a id='L98' name='L98' /><strong class='reserved'>extern</strong> "C" <em class='brace'>{</em>
+<a id='L99' name='L99' /><strong class='reserved'>static</strong> <strong class='reserved'>void</strong>* <a href='../R/3488.html' title='Multiple refered from 2 places.'>glibc_override_malloc</a>(<a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>, <strong class='reserved'>const</strong> <strong class='reserved'>void</strong> *<a href='../Y/1739.html' title='Multiple used in 26 places.'>caller</a>) <em class='brace'>{</em>
+<a id='L100' name='L100' />  <strong class='reserved'>return</strong> <a href='../D/5394.html' title='Multiple defined in 2 places.'>tc_malloc</a>(<a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>);
+<a id='L101' name='L101' /><em class='brace'>}</em>
+<a id='L102' name='L102' /><strong class='reserved'>static</strong> <strong class='reserved'>void</strong>* <a href='../R/3491.html' title='Multiple refered from 2 places.'>glibc_override_realloc</a>(<strong class='reserved'>void</strong> *<a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>,
+<a id='L103' name='L103' />                                    <strong class='reserved'>const</strong> <strong class='reserved'>void</strong> *<a href='../Y/1739.html' title='Multiple used in 26 places.'>caller</a>) <em class='brace'>{</em>
+<a id='L104' name='L104' />  <strong class='reserved'>return</strong> <a href='../D/5405.html' title='Multiple defined in 2 places.'>tc_realloc</a>(<a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>, <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>);
+<a id='L105' name='L105' /><em class='brace'>}</em>
+<a id='L106' name='L106' /><strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../R/3487.html' title='Multiple refered from 2 places.'>glibc_override_free</a>(<strong class='reserved'>void</strong> *<a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>, <strong class='reserved'>const</strong> <strong class='reserved'>void</strong> *<a href='../Y/1739.html' title='Multiple used in 26 places.'>caller</a>) <em class='brace'>{</em>
+<a id='L107' name='L107' />  <a href='../D/5391.html' title='Multiple defined in 2 places.'>tc_free</a>(<a href='../Y/4374.html' title='Multiple used in 1186 places.'>ptr</a>);
+<a id='L108' name='L108' /><em class='brace'>}</em>
+<a id='L109' name='L109' /><strong class='reserved'>static</strong> <strong class='reserved'>void</strong>* <a href='../R/3490.html' title='Multiple refered from 2 places.'>glibc_override_memalign</a>(<a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/1426.html' title='Multiple used in 59 places.'>align</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>,
+<a id='L110' name='L110' />                                     <strong class='reserved'>const</strong> <strong class='reserved'>void</strong> *<a href='../Y/1739.html' title='Multiple used in 26 places.'>caller</a>) <em class='brace'>{</em>
+<a id='L111' name='L111' />  <strong class='reserved'>return</strong> <a href='../D/5398.html' title='Multiple defined in 2 places.'>tc_memalign</a>(<a href='../Y/1426.html' title='Multiple used in 59 places.'>align</a>, <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>);
+<a id='L112' name='L112' /><em class='brace'>}</em>
+<a id='L113' name='L113' />
+<a id='L114' name='L114' /><em class='comment'>// We should be using __malloc_initialize_hook here, like the #if 0</em>
+<a id='L115' name='L115' /><em class='comment'>// code below.  (See http://swoolley.org/man.cgi/3/malloc_hook.)</em>
+<a id='L116' name='L116' /><em class='comment'>// However, this causes weird linker errors with programs that link</em>
+<a id='L117' name='L117' /><em class='comment'>// with -static, so instead we just assign the vars directly at</em>
+<a id='L118' name='L118' /><em class='comment'>// static-constructor time.  That should serve the same effect of</em>
+<a id='L119' name='L119' /><em class='comment'>// making sure the hooks are set before the first malloc call the</em>
+<a id='L120' name='L120' /><em class='comment'>// program makes.</em>
+<a id='L121' name='L121' /><em class='sharp'>#if</em> 0
+<a id='L122' name='L122' /><em class='sharp'>#include</em> &lt;malloc.h&gt;  <em class='comment'>// for __malloc_hook, etc.</em>
+<a id='L123' name='L123' /><strong class='reserved'>void</strong> <a href='../S/576.html#L131' title='Refered from 131 in third_party/google-perftools-1.8.3/src/libc_override_glibc.h.'>glibc_override_malloc_init_hook</a>(<strong class='reserved'>void</strong>) <em class='brace'>{</em>
+<a id='L124' name='L124' />  <a href='../Y/1166.html' title='Multiple used in 2 places.'>__malloc_hook</a> = <a href='../S/576.html#L99' title='Defined at 99 in third_party/google-perftools-1.8.3/src/libc_override_glibc.h.'>glibc_override_malloc</a>;
+<a id='L125' name='L125' />  <a href='../Y/1200.html' title='Multiple used in 2 places.'>__realloc_hook</a> = <a href='../S/576.html#L102' title='Defined at 102 in third_party/google-perftools-1.8.3/src/libc_override_glibc.h.'>glibc_override_realloc</a>;
+<a id='L126' name='L126' />  <a href='../Y/1140.html' title='Multiple used in 2 places.'>__free_hook</a> = <a href='../S/576.html#L106' title='Defined at 106 in third_party/google-perftools-1.8.3/src/libc_override_glibc.h.'>glibc_override_free</a>;
+<a id='L127' name='L127' />  <a href='../Y/1168.html' title='Multiple used in 2 places.'>__memalign_hook</a> = <a href='../S/576.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/libc_override_glibc.h.'>glibc_override_memalign</a>;
+<a id='L128' name='L128' /><em class='brace'>}</em>
+<a id='L129' name='L129' />
+<a id='L130' name='L130' /><strong class='reserved'>void</strong> (* <a href='../D/1713.html' title='Multiple defined in 2 places.'>MALLOC_HOOK_MAYBE_VOLATILE</a> __malloc_initialize_hook)(<strong class='reserved'>void</strong>)
+<a id='L131' name='L131' />    = &amp;<a href='../S/576.html#L123' title='Defined at 123 in third_party/google-perftools-1.8.3/src/libc_override_glibc.h.'>glibc_override_malloc_init_hook</a>;
+<a id='L132' name='L132' /><em class='sharp'>#endif</em>
+<a id='L133' name='L133' />
+<a id='L134' name='L134' /><strong class='reserved'>void</strong>* (* <a href='../D/1713.html' title='Multiple defined in 2 places.'>MALLOC_HOOK_MAYBE_VOLATILE</a> <a href='../Y/1166.html' title='Multiple used in 2 places.'>__malloc_hook</a>)(<a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a>, <strong class='reserved'>const</strong> <strong class='reserved'>void</strong>*)
+<a id='L135' name='L135' />    = &amp;<a href='../S/576.html#L99' title='Defined at 99 in third_party/google-perftools-1.8.3/src/libc_override_glibc.h.'>glibc_override_malloc</a>;
+<a id='L136' name='L136' /><strong class='reserved'>void</strong>* (* <a href='../D/1713.html' title='Multiple defined in 2 places.'>MALLOC_HOOK_MAYBE_VOLATILE</a> <a href='../Y/1200.html' title='Multiple used in 2 places.'>__realloc_hook</a>)(<strong class='reserved'>void</strong>*, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a>, <strong class='reserved'>const</strong> <strong class='reserved'>void</strong>*)
+<a id='L137' name='L137' />    = &amp;<a href='../S/576.html#L102' title='Defined at 102 in third_party/google-perftools-1.8.3/src/libc_override_glibc.h.'>glibc_override_realloc</a>;
+<a id='L138' name='L138' /><strong class='reserved'>void</strong> (* <a href='../D/1713.html' title='Multiple defined in 2 places.'>MALLOC_HOOK_MAYBE_VOLATILE</a> <a href='../Y/1140.html' title='Multiple used in 2 places.'>__free_hook</a>)(<strong class='reserved'>void</strong>*, <strong class='reserved'>const</strong> <strong class='reserved'>void</strong>*)
+<a id='L139' name='L139' />    = &amp;<a href='../S/576.html#L106' title='Defined at 106 in third_party/google-perftools-1.8.3/src/libc_override_glibc.h.'>glibc_override_free</a>;
+<a id='L140' name='L140' /><strong class='reserved'>void</strong>* (* <a href='../D/1713.html' title='Multiple defined in 2 places.'>MALLOC_HOOK_MAYBE_VOLATILE</a> <a href='../Y/1168.html' title='Multiple used in 2 places.'>__memalign_hook</a>)(<a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a>,<a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a>, <strong class='reserved'>const</strong> <strong class='reserved'>void</strong>*)
+<a id='L141' name='L141' />    = &amp;<a href='../S/576.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/libc_override_glibc.h.'>glibc_override_memalign</a>;
+<a id='L142' name='L142' />
+<a id='L143' name='L143' /><em class='brace'>}</em>   <em class='comment'>// extern "C"</em>
+<a id='L144' name='L144' />
+<a id='L145' name='L145' /><em class='comment'>// No need to write ReplaceSystemAlloc(); one of the #includes above</em>
+<a id='L146' name='L146' /><em class='comment'>// did it for us.</em>
+<a id='L147' name='L147' />
+<a id='L148' name='L148' /><em class='sharp'>#endif</em>  <em class='comment'>// TCMALLOC_LIBC_OVERRIDE_GLIBC_INL_H_</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;]<a href='#L99'>[^]</a><a href='#L123'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>SbrkHook</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/561.html#L247'>SbrkHook</a>          247 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static bool AddSbrkHook(SbrkHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L250'>SbrkHook</a>          250 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static bool RemoveSbrkHook(SbrkHook hook) {</span>
+<span class='curline'><a href='../S/561.html#L309'>SbrkHook</a>          309 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static SbrkHook GetSbrkHook();</span>
+<span class='curline'><a href='../S/561.html#L310'>SbrkHook</a>          310 third_party/google-perftools-1.8.3/src/google/malloc_hook.h   inline static SbrkHook SetSbrkHook(SbrkHook hook) {</span>
+<span class='curline'><a href='../S/571.html#L459'>SbrkHook</a>          459 third_party/google-perftools-1.8.3/src/heap-profiler.cc     RAW_CHECK(MallocHook::AddSbrkHook(&amp;SbrkHook), "");</span>
+<span class='curline'><a href='../S/571.html#L514'>SbrkHook</a>          514 third_party/google-perftools-1.8.3/src/heap-profiler.cc     RAW_CHECK(MallocHook::RemoveSbrkHook(&amp;SbrkHook), "");</span>
+<span class='curline'><a href='../S/581.html#L98'>SbrkHook</a>           98 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h extern AtomicPtr&lt;MallocHook::SbrkHook&gt;    sbrk_hook_;</span>
+<span class='curline'><a href='../S/581.html#L150'>SbrkHook</a>          150 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h extern HookList&lt;MallocHook::SbrkHook&gt; sbrk_hooks_;</span>
+<span class='curline'><a href='../S/581.html#L307'>SbrkHook</a>          307 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h inline MallocHook::SbrkHook MallocHook::GetSbrkHook() {</span>
+<span class='curline'><a href='../S/581.html#L317'>SbrkHook</a>          317 third_party/google-perftools-1.8.3/src/malloc_hook-inl.h   MallocHook::SbrkHook hook = MallocHook::GetSbrkHook();</span>
+<span class='curline'><a href='../S/582.html#L195'>SbrkHook</a>          195 third_party/google-perftools-1.8.3/src/malloc_hook.cc AtomicPtr&lt;MallocHook::SbrkHook&gt;   sbrk_hook_ = { 0 };</span>
+<span class='curline'><a href='../S/582.html#L290'>SbrkHook</a>          290 third_party/google-perftools-1.8.3/src/malloc_hook.cc HookList&lt;MallocHook::SbrkHook&gt; sbrk_hooks_ = INIT_HOOK_LIST;</span>
+<span class='curline'><a href='../S/582.html#L589'>SbrkHook</a>          589 third_party/google-perftools-1.8.3/src/malloc_hook.cc   INVOKE_HOOKS(SbrkHook, sbrk_hooks_, (result, increment));</span>
+<span class='curline'><a href='../S/588.html#L201'>SbrkHook</a>          201 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RAW_CHECK(MallocHook::AddSbrkHook(&amp;SbrkHook), "");</span>
+<span class='curline'><a href='../S/588.html#L231'>SbrkHook</a>          231 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RAW_CHECK(MallocHook::RemoveSbrkHook(&amp;SbrkHook), "");</span>
+<span class='curline'><a href='../S/589.html#L322'>SbrkHook</a>          322 third_party/google-perftools-1.8.3/src/memory_region_map.h   static void SbrkHook(const void* result, ptrdiff_t increment);</span>
+<span class='curline'><a href='../S/664.html#L750'>SbrkHook</a>          750 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc MAKE_HOOK_CALLBACK(SbrkHook);</span>
+</pre>
+</body>
+</html>

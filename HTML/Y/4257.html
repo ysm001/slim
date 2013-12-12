@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>printer</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/569.html#L564'>printer</a>           564 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     base::RawPrinter printer(buffer, kBufSize);</span>
+<span class='curline'><a href='../S/569.html#L565'>printer</a>           565 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     printer.Printf("Leak of %d bytes in %d objects allocated from:\n",</span>
+<span class='curline'><a href='../S/569.html#L569'>printer</a>           569 third_party/google-perftools-1.8.3/src/heap-profile-table.cc       printer.Printf("\t@ %"PRIxPTR" %s\n",</span>
+<span class='curline'><a href='../S/626.html#L479'>printer</a>           479 third_party/google-perftools-1.8.3/src/tcmalloc.cc   TCMalloc_Printer printer(buffer, kBufferSize);</span>
+<span class='curline'><a href='../S/626.html#L480'>printer</a>           480 third_party/google-perftools-1.8.3/src/tcmalloc.cc   DumpStats(&amp;printer, level);</span>
+<span class='curline'><a href='../S/626.html#L578'>printer</a>           578 third_party/google-perftools-1.8.3/src/tcmalloc.cc     TCMalloc_Printer printer(buffer, buffer_length);</span>
+<span class='curline'><a href='../S/626.html#L582'>printer</a>           582 third_party/google-perftools-1.8.3/src/tcmalloc.cc       DumpStats(&amp;printer, 1);</span>
+<span class='curline'><a href='../S/626.html#L584'>printer</a>           584 third_party/google-perftools-1.8.3/src/tcmalloc.cc       DumpStats(&amp;printer, 2);</span>
+<span class='curline'><a href='../S/626.html#L983'>printer</a>           983 third_party/google-perftools-1.8.3/src/tcmalloc.cc   TCMalloc_Printer printer(buffer, N);</span>
+<span class='curline'><a href='../S/626.html#L984'>printer</a>           984 third_party/google-perftools-1.8.3/src/tcmalloc.cc   printer.printf("tcmalloc: large alloc %"PRIu64" bytes == %p @ ",</span>
+<span class='curline'><a href='../S/626.html#L988'>printer</a>           988 third_party/google-perftools-1.8.3/src/tcmalloc.cc     printer.printf(" %p", stack.stack[i]);</span>
+<span class='curline'><a href='../S/626.html#L990'>printer</a>           990 third_party/google-perftools-1.8.3/src/tcmalloc.cc   printer.printf("\n");</span>
+<span class='curline'><a href='../S/655.html#L16'>printer</a>            16 third_party/google-perftools-1.8.3/src/tests/raw_printer_test.cc   base::RawPrinter printer(buffer, arraysize(buffer));</span>
+<span class='curline'><a href='../S/655.html#L17'>printer</a>            17 third_party/google-perftools-1.8.3/src/tests/raw_printer_test.cc   CHECK_EQ(0, printer.length());</span>
+<span class='curline'><a href='../S/655.html#L19'>printer</a>            19 third_party/google-perftools-1.8.3/src/tests/raw_printer_test.cc   CHECK_EQ(0, printer.space_left());</span>
+<span class='curline'><a href='../S/655.html#L20'>printer</a>            20 third_party/google-perftools-1.8.3/src/tests/raw_printer_test.cc   printer.Printf("foo");</span>
+<span class='curline'><a href='../S/655.html#L22'>printer</a>            22 third_party/google-perftools-1.8.3/src/tests/raw_printer_test.cc   CHECK_EQ(0, printer.length());</span>
+<span class='curline'><a href='../S/655.html#L23'>printer</a>            23 third_party/google-perftools-1.8.3/src/tests/raw_printer_test.cc   CHECK_EQ(0, printer.space_left());</span>
+<span class='curline'><a href='../S/655.html#L28'>printer</a>            28 third_party/google-perftools-1.8.3/src/tests/raw_printer_test.cc   base::RawPrinter printer(buffer, arraysize(buffer));</span>
+<span class='curline'><a href='../S/655.html#L29'>printer</a>            29 third_party/google-perftools-1.8.3/src/tests/raw_printer_test.cc   printer.Printf("%s %s", "hello", "world");</span>
+<span class='curline'><a href='../S/655.html#L31'>printer</a>            31 third_party/google-perftools-1.8.3/src/tests/raw_printer_test.cc   CHECK_EQ(11, printer.length());</span>
+<span class='curline'><a href='../S/655.html#L32'>printer</a>            32 third_party/google-perftools-1.8.3/src/tests/raw_printer_test.cc   CHECK_LT(0, printer.space_left());</span>
+<span class='curline'><a href='../S/655.html#L37'>printer</a>            37 third_party/google-perftools-1.8.3/src/tests/raw_printer_test.cc   base::RawPrinter printer(buffer, arraysize(buffer));</span>
+<span class='curline'><a href='../S/655.html#L38'>printer</a>            38 third_party/google-perftools-1.8.3/src/tests/raw_printer_test.cc   printer.Printf("%d", 12345678);</span>
+<span class='curline'><a href='../S/655.html#L40'>printer</a>            40 third_party/google-perftools-1.8.3/src/tests/raw_printer_test.cc   CHECK_EQ(2, printer.length());</span>
+<span class='curline'><a href='../S/655.html#L41'>printer</a>            41 third_party/google-perftools-1.8.3/src/tests/raw_printer_test.cc   CHECK_EQ(0, printer.space_left());</span>
+<span class='curline'><a href='../S/655.html#L46'>printer</a>            46 third_party/google-perftools-1.8.3/src/tests/raw_printer_test.cc   base::RawPrinter printer(buffer, arraysize(buffer));</span>
+<span class='curline'><a href='../S/655.html#L47'>printer</a>            47 third_party/google-perftools-1.8.3/src/tests/raw_printer_test.cc   printer.Printf("%s %s", "hello", "world");</span>
+<span class='curline'><a href='../S/655.html#L49'>printer</a>            49 third_party/google-perftools-1.8.3/src/tests/raw_printer_test.cc   CHECK_EQ(11, printer.length());</span>
+<span class='curline'><a href='../S/655.html#L50'>printer</a>            50 third_party/google-perftools-1.8.3/src/tests/raw_printer_test.cc   CHECK_EQ(0, printer.space_left());</span>
+<span class='curline'><a href='../S/685.html#L265'>printer</a>           265 third_party/google-perftools-1.8.3/src/windows/port.cc void DumpSystemAllocatorStats(TCMalloc_Printer* printer) {</span>
+</pre>
+</body>
+</html>

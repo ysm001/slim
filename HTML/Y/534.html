@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>Mutex</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/532.html#L147'>Mutex</a>             147 third_party/google-perftools-1.8.3/src/base/simple_mutex.h class Mutex {</span>
+<span class='curline'><a href='../S/532.html#L154'>Mutex</a>             154 third_party/google-perftools-1.8.3/src/base/simple_mutex.h   inline Mutex();</span>
+<span class='curline'><a href='../S/532.html#L159'>Mutex</a>             159 third_party/google-perftools-1.8.3/src/base/simple_mutex.h   inline Mutex(LinkerInitialized);</span>
+<span class='curline'><a href='../S/532.html#L162'>Mutex</a>             162 third_party/google-perftools-1.8.3/src/base/simple_mutex.h   inline ~Mutex();</span>
+<span class='curline'><a href='../S/532.html#L188'>Mutex</a>             188 third_party/google-perftools-1.8.3/src/base/simple_mutex.h   Mutex(Mutex* /*ignored*/) {}</span>
+<span class='curline'><a href='../S/532.html#L190'>Mutex</a>             190 third_party/google-perftools-1.8.3/src/base/simple_mutex.h   Mutex(const Mutex&amp;);</span>
+<span class='curline'><a href='../S/532.html#L191'>Mutex</a>             191 third_party/google-perftools-1.8.3/src/base/simple_mutex.h   void operator=(const Mutex&amp;);</span>
+<span class='curline'><a href='../S/532.html#L207'>Mutex</a>             207 third_party/google-perftools-1.8.3/src/base/simple_mutex.h Mutex::Mutex() : mutex_(0) { }</span>
+<span class='curline'><a href='../S/532.html#L208'>Mutex</a>             208 third_party/google-perftools-1.8.3/src/base/simple_mutex.h Mutex::Mutex(Mutex::LinkerInitialized) : mutex_(0) { }</span>
+<span class='curline'><a href='../S/532.html#L209'>Mutex</a>             209 third_party/google-perftools-1.8.3/src/base/simple_mutex.h Mutex::~Mutex()            { assert(mutex_ == 0); }</span>
+<span class='curline'><a href='../S/532.html#L210'>Mutex</a>             210 third_party/google-perftools-1.8.3/src/base/simple_mutex.h void Mutex::Lock()         { assert(--mutex_ == -1); }</span>
+<span class='curline'><a href='../S/532.html#L211'>Mutex</a>             211 third_party/google-perftools-1.8.3/src/base/simple_mutex.h void Mutex::Unlock()       { assert(mutex_++ == -1); }</span>
+<span class='curline'><a href='../S/532.html#L212'>Mutex</a>             212 third_party/google-perftools-1.8.3/src/base/simple_mutex.h bool Mutex::TryLock()      { if (mutex_) return false; Lock(); return true; }</span>
+<span class='curline'><a href='../S/532.html#L213'>Mutex</a>             213 third_party/google-perftools-1.8.3/src/base/simple_mutex.h void Mutex::ReaderLock()   { assert(++mutex_ &gt; 0); }</span>
+<span class='curline'><a href='../S/532.html#L214'>Mutex</a>             214 third_party/google-perftools-1.8.3/src/base/simple_mutex.h void Mutex::ReaderUnlock() { assert(mutex_-- &gt; 0); }</span>
+<span class='curline'><a href='../S/532.html#L218'>Mutex</a>             218 third_party/google-perftools-1.8.3/src/base/simple_mutex.h Mutex::Mutex() : destroy_(true) {</span>
+<span class='curline'><a href='../S/532.html#L222'>Mutex</a>             222 third_party/google-perftools-1.8.3/src/base/simple_mutex.h Mutex::Mutex(LinkerInitialized) : destroy_(false) {</span>
+<span class='curline'><a href='../S/532.html#L226'>Mutex</a>             226 third_party/google-perftools-1.8.3/src/base/simple_mutex.h Mutex::~Mutex()            { if (destroy_) DeleteCriticalSection(&amp;mutex_); }</span>
+<span class='curline'><a href='../S/532.html#L227'>Mutex</a>             227 third_party/google-perftools-1.8.3/src/base/simple_mutex.h void Mutex::Lock()         { if (is_safe_) EnterCriticalSection(&amp;mutex_); }</span>
+<span class='curline'><a href='../S/532.html#L228'>Mutex</a>             228 third_party/google-perftools-1.8.3/src/base/simple_mutex.h void Mutex::Unlock()       { if (is_safe_) LeaveCriticalSection(&amp;mutex_); }</span>
+<span class='curline'><a href='../S/532.html#L229'>Mutex</a>             229 third_party/google-perftools-1.8.3/src/base/simple_mutex.h bool Mutex::TryLock()      { return is_safe_ ?</span>
+<span class='curline'><a href='../S/532.html#L231'>Mutex</a>             231 third_party/google-perftools-1.8.3/src/base/simple_mutex.h void Mutex::ReaderLock()   { Lock(); }      // we don't have read-write locks</span>
+<span class='curline'><a href='../S/532.html#L232'>Mutex</a>             232 third_party/google-perftools-1.8.3/src/base/simple_mutex.h void Mutex::ReaderUnlock() { Unlock(); }</span>
+<span class='curline'><a href='../S/532.html#L240'>Mutex</a>             240 third_party/google-perftools-1.8.3/src/base/simple_mutex.h Mutex::Mutex() : destroy_(true) {</span>
+<span class='curline'><a href='../S/532.html#L244'>Mutex</a>             244 third_party/google-perftools-1.8.3/src/base/simple_mutex.h Mutex::Mutex(Mutex::LinkerInitialized) : destroy_(false) {</span>
+<span class='curline'><a href='../S/532.html#L248'>Mutex</a>             248 third_party/google-perftools-1.8.3/src/base/simple_mutex.h Mutex::~Mutex()       { if (destroy_) SAFE_PTHREAD(pthread_rwlock_destroy); }</span>
+<span class='curline'><a href='../S/532.html#L249'>Mutex</a>             249 third_party/google-perftools-1.8.3/src/base/simple_mutex.h void Mutex::Lock()         { SAFE_PTHREAD(pthread_rwlock_wrlock); }</span>
+<span class='curline'><a href='../S/532.html#L250'>Mutex</a>             250 third_party/google-perftools-1.8.3/src/base/simple_mutex.h void Mutex::Unlock()       { SAFE_PTHREAD(pthread_rwlock_unlock); }</span>
+<span class='curline'><a href='../S/532.html#L251'>Mutex</a>             251 third_party/google-perftools-1.8.3/src/base/simple_mutex.h bool Mutex::TryLock()      { return is_safe_ ?</span>
+<span class='curline'><a href='../S/532.html#L253'>Mutex</a>             253 third_party/google-perftools-1.8.3/src/base/simple_mutex.h void Mutex::ReaderLock()   { SAFE_PTHREAD(pthread_rwlock_rdlock); }</span>
+<span class='curline'><a href='../S/532.html#L254'>Mutex</a>             254 third_party/google-perftools-1.8.3/src/base/simple_mutex.h void Mutex::ReaderUnlock() { SAFE_PTHREAD(pthread_rwlock_unlock); }</span>
+<span class='curline'><a href='../S/532.html#L263'>Mutex</a>             263 third_party/google-perftools-1.8.3/src/base/simple_mutex.h Mutex::Mutex() : destroy_(true) {</span>
+<span class='curline'><a href='../S/532.html#L267'>Mutex</a>             267 third_party/google-perftools-1.8.3/src/base/simple_mutex.h Mutex::Mutex(Mutex::LinkerInitialized) : destroy_(false) {</span>
+<span class='curline'><a href='../S/532.html#L271'>Mutex</a>             271 third_party/google-perftools-1.8.3/src/base/simple_mutex.h Mutex::~Mutex()       { if (destroy_) SAFE_PTHREAD(pthread_mutex_destroy); }</span>
+<span class='curline'><a href='../S/532.html#L272'>Mutex</a>             272 third_party/google-perftools-1.8.3/src/base/simple_mutex.h void Mutex::Lock()         { SAFE_PTHREAD(pthread_mutex_lock); }</span>
+<span class='curline'><a href='../S/532.html#L273'>Mutex</a>             273 third_party/google-perftools-1.8.3/src/base/simple_mutex.h void Mutex::Unlock()       { SAFE_PTHREAD(pthread_mutex_unlock); }</span>
+<span class='curline'><a href='../S/532.html#L274'>Mutex</a>             274 third_party/google-perftools-1.8.3/src/base/simple_mutex.h bool Mutex::TryLock()      { return is_safe_ ?</span>
+<span class='curline'><a href='../S/532.html#L276'>Mutex</a>             276 third_party/google-perftools-1.8.3/src/base/simple_mutex.h void Mutex::ReaderLock()   { Lock(); }</span>
+<span class='curline'><a href='../S/532.html#L277'>Mutex</a>             277 third_party/google-perftools-1.8.3/src/base/simple_mutex.h void Mutex::ReaderUnlock() { Unlock(); }</span>
+<span class='curline'><a href='../S/532.html#L288'>Mutex</a>             288 third_party/google-perftools-1.8.3/src/base/simple_mutex.h   explicit MutexLock(Mutex *mu) : mu_(mu) { mu_-&gt;Lock(); }</span>
+<span class='curline'><a href='../S/532.html#L291'>Mutex</a>             291 third_party/google-perftools-1.8.3/src/base/simple_mutex.h   Mutex * const mu_;</span>
+<span class='curline'><a href='../S/532.html#L300'>Mutex</a>             300 third_party/google-perftools-1.8.3/src/base/simple_mutex.h   explicit ReaderMutexLock(Mutex *mu) : mu_(mu) { mu_-&gt;ReaderLock(); }</span>
+<span class='curline'><a href='../S/532.html#L303'>Mutex</a>             303 third_party/google-perftools-1.8.3/src/base/simple_mutex.h   Mutex * const mu_;</span>
+<span class='curline'><a href='../S/532.html#L311'>Mutex</a>             311 third_party/google-perftools-1.8.3/src/base/simple_mutex.h   explicit WriterMutexLock(Mutex *mu) : mu_(mu) { mu_-&gt;WriterLock(); }</span>
+<span class='curline'><a href='../S/532.html#L314'>Mutex</a>             314 third_party/google-perftools-1.8.3/src/base/simple_mutex.h   Mutex * const mu_;</span>
+<span class='curline'><a href='../S/644.html#L250'>Mutex</a>             250 third_party/google-perftools-1.8.3/src/tests/malloc_hook_test.cc static Mutex threadcount_lock;</span>
+<span class='curline'><a href='../S/651.html#L169'>Mutex</a>             169 third_party/google-perftools-1.8.3/src/tests/profile-handler_unittest.cc   Mutex mu_;</span>
+<span class='curline'><a href='../S/653.html#L51'>Mutex</a>              51 third_party/google-perftools-1.8.3/src/tests/profiler_unittest.cc Mutex mutex(Mutex::LINKER_INITIALIZED);</span>
+<span class='curline'><a href='../S/664.html#L338'>Mutex</a>             338 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   Mutex                 lock_;          // For passing in another thread's obj</span>
+</pre>
+</body>
+</html>

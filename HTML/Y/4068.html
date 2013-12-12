@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>owner</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/362.html#L58'>owner</a>              58 src/port.c     #define LMN_PORT_OWNER(obj) (LMN_PORT(obj)-&gt;owner)</span>
+<span class='curline'><a href='../S/362.html#L79'>owner</a>              79 src/port.c       port-&gt;owner = TRUE;</span>
+<span class='curline'><a href='../S/362.html#L89'>owner</a>              89 src/port.c       if (port-&gt;owner) {</span>
+<span class='curline'><a href='../S/362.html#L108'>owner</a>             108 src/port.c     LmnPort lmn_port_copy(LmnPort port, BOOL owner)</span>
+<span class='curline'><a href='../S/362.html#L111'>owner</a>             111 src/port.c       new_port-&gt;owner = owner &amp;&amp; LMN_PORT_OWNER(port);</span>
+<span class='curline'><a href='../S/362.html#L115'>owner</a>             115 src/port.c         if (new_port-&gt;owner) port-&gt;owner = FALSE;</span>
+<span class='curline'><a href='../S/362.html#L119'>owner</a>             119 src/port.c         port-&gt;owner = TRUE;</span>
+<span class='curline'><a href='../S/362.html#L122'>owner</a>             122 src/port.c         if (new_port-&gt;owner) port-&gt;owner = FALSE;</span>
+<span class='curline'><a href='../S/362.html#L157'>owner</a>             157 src/port.c                                BOOL owner)</span>
+<span class='curline'><a href='../S/362.html#L162'>owner</a>             162 src/port.c       port-&gt;owner = owner;</span>
+<span class='curline'><a href='../S/362.html#L176'>owner</a>             176 src/port.c       port-&gt;owner = TRUE;</span>
+<span class='curline'><a href='../S/362.html#L186'>owner</a>             186 src/port.c       port-&gt;owner = TRUE;</span>
+<span class='curline'><a href='../S/371.html#L58'>owner</a>              58 src/slim_header/port.h   BOOL owner;     /* TRUE if this port owns underlying</span>
+<span class='curline'><a href='../S/411.html#L591'>owner</a>             591 src/utility/visitlog.h                                                   LmnMembrane   *owner,</span>
+<span class='curline'><a href='../S/411.html#L596'>owner</a>             596 src/utility/visitlog.h                                 LmnMembrane *owner);</span>
+<span class='curline'><a href='../S/411.html#L622'>owner</a>             622 src/utility/visitlog.h                                                   LmnMembrane   *owner,</span>
+<span class='curline'><a href='../S/411.html#L627'>owner</a>             627 src/utility/visitlog.h       TLOG_NUM(l-&gt;tbl[lmn_mem_id(owner)]) ==</span>
+<span class='curline'><a href='../S/411.html#L628'>owner</a>             628 src/utility/visitlog.h           (lmn_mem_symb_atom_num(owner)</span>
+<span class='curline'><a href='../S/411.html#L629'>owner</a>             629 src/utility/visitlog.h               + lmn_mem_child_mem_num(owner)</span>
+<span class='curline'><a href='../S/411.html#L649'>owner</a>             649 src/utility/visitlog.h                                LmnMembrane *owner) {</span>
+<span class='curline'><a href='../S/411.html#L659'>owner</a>             659 src/utility/visitlog.h   if (owner) {</span>
+<span class='curline'><a href='../S/411.html#L660'>owner</a>             660 src/utility/visitlog.h     TLOG_SET_OWNER(l-&gt;tbl[key], owner);</span>
+<span class='curline'><a href='../S/411.html#L661'>owner</a>             661 src/utility/visitlog.h     LMN_ASSERT(l-&gt;cap &gt; lmn_mem_id(owner));</span>
+<span class='curline'><a href='../S/411.html#L662'>owner</a>             662 src/utility/visitlog.h     TLOG_TRV_INC(l-&gt;tbl[lmn_mem_id(owner)]);</span>
+<span class='curline'><a href='../S/434.html#L63'>owner</a>              63 src/verifier/mc_worker.c   mc-&gt;owner    = w;</span>
+<span class='curline'><a href='../S/434.html#L178'>owner</a>             178 src/verifier/mc_worker.c static void workers_gen(LmnWorkerGroup *owner,</span>
+<span class='curline'><a href='../S/434.html#L465'>owner</a>             465 src/verifier/mc_worker.c static void workers_gen(LmnWorkerGroup *owner,</span>
+<span class='curline'><a href='../S/434.html#L472'>owner</a>             472 src/verifier/mc_worker.c   owner-&gt;workers = LMN_NALLOC(LmnWorker *, worker_num);</span>
+<span class='curline'><a href='../S/434.html#L481'>owner</a>             481 src/verifier/mc_worker.c       states = worker_states(workers_get_worker(owner, 0));</span>
+<span class='curline'><a href='../S/434.html#L485'>owner</a>             485 src/verifier/mc_worker.c     owner-&gt;workers[i] = w;</span>
+<span class='curline'><a href='../S/434.html#L486'>owner</a>             486 src/verifier/mc_worker.c     w-&gt;group = owner;</span>
+<span class='curline'><a href='../S/434.html#L488'>owner</a>             488 src/verifier/mc_worker.c     if (owner-&gt;do_search) {</span>
+<span class='curline'><a href='../S/435.html#L120'>owner</a>             120 src/verifier/mc_worker.h   LmnWorker *owner;</span>
+<span class='curline'><a href='../S/435.html#L133'>owner</a>             133 src/verifier/mc_worker.h     (*(MC)-&gt;init)((MC)-&gt;owner);                                                \</span>
+<span class='curline'><a href='../S/435.html#L139'>owner</a>             139 src/verifier/mc_worker.h     (*(MC)-&gt;finalize)((MC)-&gt;owner);                                            \</span>
+<span class='curline'><a href='../S/454.html#L705'>owner</a>             705 src/verifier/state.c   StateSpace owner;</span>
+<span class='curline'><a href='../S/454.html#L718'>owner</a>             718 src/verifier/state.c   owner = (StateSpace)_owner;</span>
+<span class='curline'><a href='../S/454.html#L723'>owner</a>             723 src/verifier/state.c     if (owner) {</span>
+<span class='curline'><a href='../S/454.html#L724'>owner</a>             724 src/verifier/state.c       print_id = state_format_id(target, owner-&gt;is_formated);</span>
+<span class='curline'><a href='../S/454.html#L747'>owner</a>             747 src/verifier/state.c     BOOL has_property = owner &amp;&amp; statespace_has_property(owner);</span>
+<span class='curline'><a href='../S/454.html#L751'>owner</a>             751 src/verifier/state.c              , has_property ? automata_state_name(statespace_automata(owner),</span>
+<span class='curline'><a href='../S/454.html#L757'>owner</a>             757 src/verifier/state.c              , has_property ? automata_state_name(statespace_automata(owner),</span>
+<span class='curline'><a href='../S/454.html#L797'>owner</a>             797 src/verifier/state.c   StateSpace owner;</span>
+<span class='curline'><a href='../S/454.html#L814'>owner</a>             814 src/verifier/state.c   owner = (StateSpace)_owner;</span>
+<span class='curline'><a href='../S/454.html#L844'>owner</a>             844 src/verifier/state.c   formated = owner ? owner-&gt;is_formated : FALSE;</span>
+<span class='curline'><a href='../S/454.html#L890'>owner</a>             890 src/verifier/state.c   StateSpace owner;</span>
+<span class='curline'><a href='../S/454.html#L892'>owner</a>             892 src/verifier/state.c   owner = (StateSpace)_owner;</span>
+<span class='curline'><a href='../S/454.html#L893'>owner</a>             893 src/verifier/state.c   if (!statespace_has_property(owner) || (is_dummy(s) &amp;&amp; is_encoded(s))) {</span>
+<span class='curline'><a href='../S/454.html#L897'>owner</a>             897 src/verifier/state.c   a     = statespace_automata(owner);</span>
+<span class='curline'><a href='../S/454.html#L904'>owner</a>             904 src/verifier/state.c       fprintf(f, "  %lu [peripheries = 2]\n", state_format_id(s, owner-&gt;is_formated));</span>
+<span class='curline'><a href='../S/454.html#L909'>owner</a>             909 src/verifier/state.c     fprintf(f, "%lu::", state_format_id(s, owner-&gt;is_formated));</span>
+<span class='curline'><a href='../S/684.html#L1014'>owner</a>            1014 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc   HMODULE owner = NULL;</span>
+<span class='curline'><a href='../S/684.html#L1019'>owner</a>            1019 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc       &amp;owner);</span>
+<span class='curline'><a href='../S/684.html#L1020'>owner</a>            1020 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc   if (result &amp;&amp; owner == hLibModule)</span>
+</pre>
+</body>
+</html>

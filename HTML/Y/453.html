@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>LockPtr</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/396.html#L144'>LockPtr</a>           144 src/utility/lmntal_thread.h #define ENTER__CRITICAL_SECTION(CsName,  LockPtr, LockFunc,                    \</span>
+<span class='curline'><a href='../S/396.html#L147'>LockPtr</a>           147 src/utility/lmntal_thread.h   if (LockPtr) { /* if MT */                                                   \</span>
+<span class='curline'><a href='../S/396.html#L152'>LockPtr</a>           152 src/utility/lmntal_thread.h       LockFunc((LockPtr), (FuncArg));                                          \</span>
+<span class='curline'><a href='../S/396.html#L160'>LockPtr</a>           160 src/utility/lmntal_thread.h #define EXIT___CRITICAL_SECTION(CsName, LockPtr, UnLockFunc, FuncArg)          \</span>
+<span class='curline'><a href='../S/396.html#L162'>LockPtr</a>           162 src/utility/lmntal_thread.h   if (LockPtr) {                                                               \</span>
+<span class='curline'><a href='../S/396.html#L163'>LockPtr</a>           163 src/utility/lmntal_thread.h     UnLockFunc((LockPtr), (FuncArg));                                          \</span>
+<span class='curline'><a href='../S/396.html#L168'>LockPtr</a>           168 src/utility/lmntal_thread.h #define START__CRITICAL_SECTION(LockPtr, LockFunc, FuncArg)                    \</span>
+<span class='curline'><a href='../S/396.html#L169'>LockPtr</a>           169 src/utility/lmntal_thread.h   if (LockPtr) {                                                               \</span>
+<span class='curline'><a href='../S/396.html#L170'>LockPtr</a>           170 src/utility/lmntal_thread.h     LockFunc((LockPtr), (FuncArg));                                            \</span>
+<span class='curline'><a href='../S/396.html#L173'>LockPtr</a>           173 src/utility/lmntal_thread.h #define FINISH_CRITICAL_SECTION(LockPtr, UnLockFunc, FuncArg)                  \</span>
+<span class='curline'><a href='../S/396.html#L174'>LockPtr</a>           174 src/utility/lmntal_thread.h   if (LockPtr) {                                                               \</span>
+<span class='curline'><a href='../S/396.html#L175'>LockPtr</a>           175 src/utility/lmntal_thread.h     UnLockFunc((LockPtr), (FuncArg));                                          \</span>
+</pre>
+</body>
+</html>

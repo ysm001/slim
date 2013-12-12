@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>ruleset_table</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/351.html#L636'>ruleset_table</a>     636 src/load.c       ruleset = maindata-&gt;ruleset_table[1];</span>
+<span class='curline'><a href='../S/351.html#L644'>ruleset_table</a>     644 src/load.c       ruleset = maindata-&gt;ruleset_table[2];</span>
+<span class='curline'><a href='../S/351.html#L652'>ruleset_table</a>     652 src/load.c       ruleset = maindata-&gt;ruleset_table[3];</span>
+<span class='curline'><a href='../S/351.html#L665'>ruleset_table</a>     665 src/load.c         tr  = maindata-&gt;ruleset_table[i];</span>
+<span class='curline'><a href='../S/365.html#L134'>ruleset_table</a>     134 src/rule.c     struct LmnRuleSetTable *ruleset_table;</span>
+<span class='curline'><a href='../S/365.html#L193'>ruleset_table</a>     193 src/rule.c       ruleset_table = LMN_MALLOC(struct LmnRuleSetTable);</span>
+<span class='curline'><a href='../S/365.html#L194'>ruleset_table</a>     194 src/rule.c       ruleset_table-&gt;size = 64;</span>
+<span class='curline'><a href='../S/365.html#L195'>ruleset_table</a>     195 src/rule.c       ruleset_table-&gt;entry = LMN_NALLOC(LmnRuleSet, ruleset_table-&gt;size);</span>
+<span class='curline'><a href='../S/365.html#L197'>ruleset_table</a>     197 src/rule.c       memset(ruleset_table-&gt;entry, 0, ruleset_table-&gt;size * sizeof(ruleset_table-&gt;entry[0]));</span>
+<span class='curline'><a href='../S/365.html#L205'>ruleset_table</a>     205 src/rule.c       for (i = 0; i&lt; ruleset_table-&gt;size; i++) {</span>
+<span class='curline'><a href='../S/365.html#L206'>ruleset_table</a>     206 src/rule.c         if (ruleset_table-&gt;entry[i]) {</span>
+<span class='curline'><a href='../S/365.html#L207'>ruleset_table</a>     207 src/rule.c           lmn_ruleset_free(ruleset_table-&gt;entry[i]);</span>
+<span class='curline'><a href='../S/365.html#L210'>ruleset_table</a>     210 src/rule.c       LMN_FREE(ruleset_table-&gt;entry);</span>
+<span class='curline'><a href='../S/365.html#L211'>ruleset_table</a>     211 src/rule.c       LMN_FREE(ruleset_table);</span>
+<span class='curline'><a href='../S/365.html#L218'>ruleset_table</a>     218 src/rule.c       while (ruleset_table-&gt;size &lt; (unsigned int)id) {</span>
+<span class='curline'><a href='../S/365.html#L219'>ruleset_table</a>     219 src/rule.c         int old_size = ruleset_table-&gt;size;</span>
+<span class='curline'><a href='../S/365.html#L220'>ruleset_table</a>     220 src/rule.c         ruleset_table-&gt;size *= 2;</span>
+<span class='curline'><a href='../S/365.html#L221'>ruleset_table</a>     221 src/rule.c         ruleset_table-&gt;entry = LMN_REALLOC(LmnRuleSet, ruleset_table-&gt;entry, ruleset_table-&gt;size);</span>
+<span class='curline'><a href='../S/365.html#L223'>ruleset_table</a>     223 src/rule.c         memset(ruleset_table-&gt;entry + old_size, 0, (ruleset_table-&gt;size - old_size) * sizeof(LmnRuleSet));</span>
+<span class='curline'><a href='../S/365.html#L226'>ruleset_table</a>     226 src/rule.c       ruleset_table-&gt;entry[id] = ruleset;</span>
+<span class='curline'><a href='../S/366.html#L157'>ruleset_table</a>     157 src/rule.h     extern struct LmnRuleSetTable *ruleset_table;</span>
+<span class='curline'><a href='../S/366.html#L209'>ruleset_table</a>     209 src/rule.h       if (ruleset_table-&gt;size &lt;= (unsigned int)id) return NULL;</span>
+<span class='curline'><a href='../S/366.html#L210'>ruleset_table</a>     210 src/rule.h       else return ruleset_table-&gt;entry[id];</span>
+<span class='curline'><a href='../S/387.html#L96'>ruleset_table</a>      96 src/translate.h   struct trans_ruleset *ruleset_table;</span>
+</pre>
+</body>
+</html>

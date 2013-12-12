@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>zd</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/700.html#L409'>zd</a>                409 third_party/zdelta-2.1/deflate.h # define _tr_tally_dist_ref(s, distance, length, zd, flush) \</span>
+<span class='curline'><a href='../S/700.html#L413'>zd</a>                413 third_party/zdelta-2.1/deflate.h     s-&gt;z_buf[s-&gt;last_lit]   = zd; \</span>
+<span class='curline'><a href='../S/700.html#L415'>zd</a>                415 third_party/zdelta-2.1/deflate.h     s-&gt;dyn_ltree[l_code(len)+OFFSET(zd)].Freq++; \</span>
+<span class='curline'><a href='../S/700.html#L417'>zd</a>                417 third_party/zdelta-2.1/deflate.h     s-&gt;dyn_ztree[z_code(zd)].Freq++; \</span>
+<span class='curline'><a href='../S/719.html#L1282'>zd</a>               1282 third_party/zdelta-2.1/trees.c   unsigned zd;        /* zdelta pointer */</span>
+<span class='curline'><a href='../S/719.html#L1285'>zd</a>               1285 third_party/zdelta-2.1/trees.c     zd   = s-&gt;z_buf[lx];</span>
+<span class='curline'><a href='../S/719.html#L1288'>zd</a>               1288 third_party/zdelta-2.1/trees.c     if (zd == LITERAL) {</span>
+<span class='curline'><a href='../S/719.html#L1304'>zd</a>               1304 third_party/zdelta-2.1/trees.c       if(zd == TARGET){                             /* target copy          */</span>
+<span class='curline'><a href='../S/719.html#L1312'>zd</a>               1312 third_party/zdelta-2.1/trees.c 	send_code(s,code+OFFSET(zd),ltree);         /* send the length code */ </span>
+<span class='curline'><a href='../S/719.html#L1317'>zd</a>               1317 third_party/zdelta-2.1/trees.c 	Assert ((zd &amp; 0x1f) &lt; ZD_CODES, "bad zd_code");</span>
+<span class='curline'><a href='../S/719.html#L1318'>zd</a>               1318 third_party/zdelta-2.1/trees.c 	send_code(s, zd &amp; 0x1f, zdtree);                 /* send zdelta code */</span>
+<span class='curline'><a href='../S/719.html#L1319'>zd</a>               1319 third_party/zdelta-2.1/trees.c 	TraceHuf( (stderr, "z:%u\n", zd) );</span>
+</pre>
+</body>
+</html>

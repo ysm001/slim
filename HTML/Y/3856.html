@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>num</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/309.html#L126'>num</a>               126 src/alloc.c    void *lmn_calloc(size_t num, size_t size)</span>
+<span class='curline'><a href='../S/309.html#L130'>num</a>               130 src/alloc.c      new = calloc (num, size);</span>
+<span class='curline'><a href='../S/309.html#L138'>num</a>               138 src/alloc.c      new = lmn_malloc(num * size);</span>
+<span class='curline'><a href='../S/309.html#L140'>num</a>               140 src/alloc.c      for (i = 0; i &lt; num * size; i++) {</span>
+<span class='curline'><a href='../S/309.html#L148'>num</a>               148 src/alloc.c    void *lmn_malloc(size_t num)</span>
+<span class='curline'><a href='../S/309.html#L150'>num</a>               150 src/alloc.c      LMN_ASSERT(num &gt; 0);</span>
+<span class='curline'><a href='../S/309.html#L152'>num</a>               152 src/alloc.c      void *new = malloc(num);</span>
+<span class='curline'><a href='../S/309.html#L158'>num</a>               158 src/alloc.c    void *lmn_realloc(void *p, size_t num)</span>
+<span class='curline'><a href='../S/309.html#L162'>num</a>               162 src/alloc.c      if (!p) return lmn_malloc (num);</span>
+<span class='curline'><a href='../S/309.html#L163'>num</a>               163 src/alloc.c      new = realloc (p, num);</span>
+<span class='curline'><a href='../S/317.html#L710'>num</a>               710 src/dumper.c       for (i = 0; i &lt; pred_atoms[PROXY].num; i++) {</span>
+<span class='curline'><a href='../S/317.html#L718'>num</a>               718 src/dumper.c         for (j = 0; j &lt; pred_atoms[i].num; j++) {</span>
+<span class='curline'><a href='../S/317.html#L900'>num</a>               900 src/dumper.c     for (i = 0;i &lt; v-&gt;num; i++) {</span>
+<span class='curline'><a href='../S/334.html#L588'>num</a>               588 src/hyperlink.c int hyperlink_print_get_place(int num) {</span>
+<span class='curline'><a href='../S/334.html#L592'>num</a>               592 src/hyperlink.c   tmp = num;</span>
+<span class='curline'><a href='../S/344.html#L157'>num</a>               157 src/interpret_generated.c   if (((LmnMembrane *)wt(rc, targ0))-&gt;rulesets.num) return FALSE;</span>
+<span class='curline'><a href='../S/347.html#L211'>num</a>               211 src/lmntal.h   LMN_EXTERN void *lmn_calloc(size_t num, size_t size);</span>
+<span class='curline'><a href='../S/347.html#L212'>num</a>               212 src/lmntal.h   LMN_EXTERN void *lmn_malloc(size_t num);</span>
+<span class='curline'><a href='../S/347.html#L213'>num</a>               213 src/lmntal.h   LMN_EXTERN void *lmn_realloc(void *p, size_t num);</span>
+<span class='curline'><a href='../S/347.html#L405'>num</a>               405 src/lmntal.h      static inline void lmn_barrier_init(lmn_barrier_t *b, unsigned int num) {</span>
+<span class='curline'><a href='../S/347.html#L406'>num</a>               406 src/lmntal.h        b-&gt;thread_num = num;</span>
+<span class='curline'><a href='../S/357.html#L631'>num</a>               631 src/membrane.c   for (i = 0; i &lt; change_list.num; i++) {</span>
+<span class='curline'><a href='../S/357.html#L727'>num</a>               727 src/membrane.c   for (i = 0; i &lt; remove_list.num; i++) {</span>
+<span class='curline'><a href='../S/357.html#L775'>num</a>               775 src/membrane.c   for (i = 0; i &lt; remove_list.num; i++) {</span>
+<span class='curline'><a href='../S/357.html#L822'>num</a>               822 src/membrane.c   for (i = 0; i &lt; src-&gt;rulesets.num; i++) {</span>
+<span class='curline'><a href='../S/357.html#L877'>num</a>               877 src/membrane.c     for (i = 0; i &lt; m-&gt;rulesets.num; i++) {</span>
+<span class='curline'><a href='../S/357.html#L1126'>num</a>              1126 src/membrane.c     for (i = 0; i &lt; srcvec-&gt;num; i++) {</span>
+<span class='curline'><a href='../S/357.html#L1134'>num</a>              1134 src/membrane.c     for (j = 0; j &lt; dstvec-&gt;num; j++) {</span>
+<span class='curline'><a href='../S/365.html#L151'>num</a>               151 src/rule.c       ruleset-&gt;num = 0;</span>
+<span class='curline'><a href='../S/365.html#L166'>num</a>               166 src/rule.c       for (i = 0; i &lt; ruleset-&gt;num; i++) {</span>
+<span class='curline'><a href='../S/365.html#L176'>num</a>               176 src/rule.c       if (ruleset-&gt;num == ruleset-&gt;cap) {</span>
+<span class='curline'><a href='../S/365.html#L180'>num</a>               180 src/rule.c       ruleset-&gt;rules[ruleset-&gt;num++] = rule;</span>
+<span class='curline'><a href='../S/366.html#L143'>num</a>               143 src/rule.h       int num, cap;           /* # of rules, and # of capacity */</span>
+<span class='curline'><a href='../S/366.html#L186'>num</a>               186 src/rule.h       return ruleset-&gt;num;</span>
+<span class='curline'><a href='../S/367.html#L206'>num</a>               206 src/runtime_status.c       total-&gt;spaces[data_i].num.cur    += p-&gt;spaces[data_i].space.cur;</span>
+<span class='curline'><a href='../S/367.html#L207'>num</a>               207 src/runtime_status.c       total-&gt;spaces[data_i].num.peak   += p-&gt;spaces[data_i].num.peak;</span>
+<span class='curline'><a href='../S/367.html#L230'>num</a>               230 src/runtime_status.c   peak_counter_init(&amp;p-&gt;num);</span>
+<span class='curline'><a href='../S/367.html#L782'>num</a>               782 src/runtime_status.c                , total.spaces[i].num.peak);</span>
+<span class='curline'><a href='../S/368.html#L113'>num</a>               113 src/runtime_status.h   PeakCounter    num;                         /* オブジェクト数 */</span>
+<span class='curline'><a href='../S/368.html#L257'>num</a>               257 src/runtime_status.h   profile_peakcounter_add(&amp;p-&gt;num, 1);</span>
+<span class='curline'><a href='../S/368.html#L265'>num</a>               265 src/runtime_status.h     profile_peakcounter_pop(&amp;p-&gt;num, 1);</span>
+<span class='curline'><a href='../S/368.html#L299'>num</a>               299 src/runtime_status.h static inline void profile_count_add(int type, unsigned long num)</span>
+<span class='curline'><a href='../S/368.html#L301'>num</a>               301 src/runtime_status.h   lmn_prof.lv3[env_my_thread_id()].counters[type] += num;</span>
+<span class='curline'><a href='../S/373.html#L182'>num</a>               182 src/so.h           for (i = 0; i&lt; v-&gt;num; i++) {                                          \</span>
+<span class='curline'><a href='../S/384.html#L572'>num</a>               572 src/task.c       for (i = 0; i &lt; links-&gt;num; i++) {</span>
+<span class='curline'><a href='../S/384.html#L575'>num</a>               575 src/task.c         for (j = i + 1; j &lt; links-&gt;num; j++) {</span>
+<span class='curline'><a href='../S/384.html#L706'>num</a>               706 src/task.c           LmnInstrVar num, i, n;</span>
+<span class='curline'><a href='../S/384.html#L721'>num</a>               721 src/task.c           READ_VAL(LmnInstrVar, instr, num);</span>
+<span class='curline'><a href='../S/384.html#L722'>num</a>               722 src/task.c           for (; num--; i++) {</span>
+<span class='curline'><a href='../S/384.html#L729'>num</a>               729 src/task.c           READ_VAL(LmnInstrVar, instr, num);</span>
+<span class='curline'><a href='../S/384.html#L730'>num</a>               730 src/task.c           for (; num--; i++) {</span>
+<span class='curline'><a href='../S/384.html#L737'>num</a>               737 src/task.c           READ_VAL(LmnInstrVar, instr, num);</span>
+<span class='curline'><a href='../S/384.html#L738'>num</a>               738 src/task.c           for (; num--; i++) {</span>
+<span class='curline'><a href='../S/384.html#L763'>num</a>               763 src/task.c           LmnInstrVar num, i, n, t;</span>
+<span class='curline'><a href='../S/384.html#L769'>num</a>               769 src/task.c           READ_VAL(LmnInstrVar, instr, num);</span>
+<span class='curline'><a href='../S/384.html#L770'>num</a>               770 src/task.c           for (; num--; i++) {</span>
+<span class='curline'><a href='../S/384.html#L778'>num</a>               778 src/task.c           READ_VAL(LmnInstrVar, instr, num);</span>
+<span class='curline'><a href='../S/384.html#L779'>num</a>               779 src/task.c           for (; num--; i++) {</span>
+<span class='curline'><a href='../S/384.html#L787'>num</a>               787 src/task.c           READ_VAL(LmnInstrVar, instr, num);</span>
+<span class='curline'><a href='../S/384.html#L788'>num</a>               788 src/task.c           for (; num--; i++) {</span>
+<span class='curline'><a href='../S/384.html#L1273'>num</a>              1273 src/task.c           if(((LmnMembrane *)wt(rc, memi))-&gt;rulesets.num) return FALSE;</span>
+<span class='curline'><a href='../S/384.html#L2826'>num</a>              2826 src/task.c           for (i = 0; i&lt; v-&gt;num; i++) {</span>
+<span class='curline'><a href='../S/386.html#L258'>num</a>               258 src/translate.c   v.num = size;</span>
+<span class='curline'><a href='../S/386.html#L328'>num</a>               328 src/translate.c     LmnInstrVar   num, i, n;</span>
+<span class='curline'><a href='../S/386.html#L342'>num</a>               342 src/translate.c     READ_VAL(LmnInstrVar, instr, num);</span>
+<span class='curline'><a href='../S/386.html#L343'>num</a>               343 src/translate.c     for (; num--; i++) {</span>
+<span class='curline'><a href='../S/386.html#L350'>num</a>               350 src/translate.c     READ_VAL(LmnInstrVar, instr, num);</span>
+<span class='curline'><a href='../S/386.html#L351'>num</a>               351 src/translate.c     for (; num--; i++) {</span>
+<span class='curline'><a href='../S/386.html#L358'>num</a>               358 src/translate.c     READ_VAL(LmnInstrVar, instr, num);</span>
+<span class='curline'><a href='../S/386.html#L359'>num</a>               359 src/translate.c     for (; num--; i++) {</span>
+<span class='curline'><a href='../S/393.html#L92'>num</a>                92 src/utility/internal_hash.c   ht-&gt;num = 0;</span>
+<span class='curline'><a href='../S/393.html#L141'>num</a>               141 src/utility/internal_hash.c     ht-&gt;num++;</span>
+<span class='curline'><a href='../S/393.html#L146'>num</a>               146 src/utility/internal_hash.c   if (ht-&gt;num &gt; ht-&gt;cap * LOAD_FACTOR) {</span>
+<span class='curline'><a href='../S/393.html#L214'>num</a>               214 src/utility/internal_hash.c   set-&gt;num = 0;</span>
+<span class='curline'><a href='../S/393.html#L274'>num</a>               274 src/utility/internal_hash.c     set-&gt;num++;</span>
+<span class='curline'><a href='../S/393.html#L277'>num</a>               277 src/utility/internal_hash.c   if(set-&gt;num &gt; set-&gt;cap * LOAD_FACTOR) {</span>
+<span class='curline'><a href='../S/393.html#L292'>num</a>               292 src/utility/internal_hash.c     set-&gt;num--;</span>
+<span class='curline'><a href='../S/394.html#L54'>num</a>                54 src/utility/internal_hash.h   unsigned int cap, num;</span>
+<span class='curline'><a href='../S/394.html#L74'>num</a>                74 src/utility/internal_hash.h #define hashtbl_num(HT) (HT)-&gt;num</span>
+<span class='curline'><a href='../S/394.html#L84'>num</a>                84 src/utility/internal_hash.h   unsigned int cap, num;</span>
+<span class='curline'><a href='../S/394.html#L102'>num</a>               102 src/utility/internal_hash.h #define hashset_num(HT) (HT)-&gt;num</span>
+<span class='curline'><a href='../S/405.html#L98'>num</a>                98 src/utility/st.h long st_numhash(long num);</span>
+<span class='curline'><a href='../S/408.html#L46'>num</a>                46 src/utility/vector.c   LMN_ASSERT(vec-&gt;num &gt; 0 &amp;&amp; n &gt;= 0 &amp;&amp; n &lt; vec-&gt;num);</span>
+<span class='curline'><a href='../S/408.html#L48'>num</a>                48 src/utility/vector.c   if (vec-&gt;num &lt;= vec-&gt;cap/2) {</span>
+<span class='curline'><a href='../S/408.html#L52'>num</a>                52 src/utility/vector.c   for (i = n; i &lt; vec-&gt;num-1; ++i) {</span>
+<span class='curline'><a href='../S/408.html#L55'>num</a>                55 src/utility/vector.c   vec-&gt;num--;</span>
+<span class='curline'><a href='../S/408.html#L81'>num</a>                81 src/utility/vector.c   for (i=vec-&gt;num; i&lt;size; i++) {</span>
+<span class='curline'><a href='../S/408.html#L84'>num</a>                84 src/utility/vector.c   vec-&gt;num = size;</span>
+<span class='curline'><a href='../S/408.html#L90'>num</a>                90 src/utility/vector.c   qsort(vec-&gt;tbl, vec-&gt;num, sizeof(vec_data_t), compare);</span>
+<span class='curline'><a href='../S/408.html#L115'>num</a>               115 src/utility/vector.c   new_vec = vec_make(vec-&gt;num &gt; 0 ? vec-&gt;num : 1);</span>
+<span class='curline'><a href='../S/408.html#L120'>num</a>               120 src/utility/vector.c   new_vec-&gt;num = vec-&gt;num;</span>
+<span class='curline'><a href='../S/409.html#L46'>num</a>                46 src/utility/vector.h   unsigned int num, cap;</span>
+<span class='curline'><a href='../S/409.html#L54'>num</a>                54 src/utility/vector.h #define vec_num(V)      ((V)-&gt;num)</span>
+<span class='curline'><a href='../S/409.html#L55'>num</a>                55 src/utility/vector.h #define vec_is_empty(V) ((V)-&gt;num == 0)</span>
+<span class='curline'><a href='../S/409.html#L83'>num</a>                83 src/utility/vector.h   vec-&gt;num = 0;</span>
+<span class='curline'><a href='../S/409.html#L103'>num</a>               103 src/utility/vector.h   if(vec-&gt;num == vec-&gt;cap) {</span>
+<span class='curline'><a href='../S/409.html#L106'>num</a>               106 src/utility/vector.h   (vec-&gt;tbl)[vec-&gt;num] = keyp;</span>
+<span class='curline'><a href='../S/409.html#L107'>num</a>               107 src/utility/vector.h   vec-&gt;num++;</span>
+<span class='curline'><a href='../S/409.html#L119'>num</a>               119 src/utility/vector.h   LMN_ASSERT(vec-&gt;num &gt; 0);</span>
+<span class='curline'><a href='../S/409.html#L123'>num</a>               123 src/utility/vector.h   if (vec-&gt;num &lt;= vec-&gt;cap/2 &amp;&amp; vec-&gt;cap &gt; 1024) {</span>
+<span class='curline'><a href='../S/409.html#L126'>num</a>               126 src/utility/vector.h   ret = vec_get(vec, (vec-&gt;num-1));</span>
+<span class='curline'><a href='../S/409.html#L127'>num</a>               127 src/utility/vector.h   vec-&gt;num--;</span>
+<span class='curline'><a href='../S/409.html#L133'>num</a>               133 src/utility/vector.h   return vec_get(vec, vec-&gt;num - 1);</span>
+<span class='curline'><a href='../S/409.html#L144'>num</a>               144 src/utility/vector.h   LMN_ASSERT(index &lt; vec-&gt;num);</span>
+<span class='curline'><a href='../S/409.html#L150'>num</a>               150 src/utility/vector.h   return vec-&gt;tbl[vec-&gt;num-1];</span>
+<span class='curline'><a href='../S/409.html#L155'>num</a>               155 src/utility/vector.h   vec-&gt;num = 0;</span>
+<span class='curline'><a href='../S/410.html#L207'>num</a>               207 src/utility/visitlog.c   l-&gt;num = 0;</span>
+<span class='curline'><a href='../S/411.html#L541'>num</a>               541 src/utility/visitlog.h   int cap, num;</span>
+<span class='curline'><a href='../S/411.html#L656'>num</a>               656 src/utility/visitlog.h   l-&gt;num++;</span>
+<span class='curline'><a href='../S/411.html#L700'>num</a>               700 src/utility/visitlog.h     l-&gt;num--;</span>
+<span class='curline'><a href='../S/417.html#L654'>num</a>               654 src/verifier/delta_membrane.c     for (i = 0; i &lt; m-&gt;rulesets.num; i++) {</span>
+<span class='curline'><a href='../S/417.html#L1266'>num</a>              1266 src/verifier/delta_membrane.c     for (i = 0; i &lt; remove_list.num; i++) {</span>
+<span class='curline'><a href='../S/417.html#L1356'>num</a>              1356 src/verifier/delta_membrane.c       for (i = 0; i &lt; change_list.num; i++) {</span>
+<span class='curline'><a href='../S/417.html#L1472'>num</a>              1472 src/verifier/delta_membrane.c   for (i = 0; i &lt; remove_list.num; i++) {</span>
+<span class='curline'><a href='../S/419.html#L970'>num</a>               970 src/verifier/dpor.c   RC_EXPANDED(rc)-&gt;num = succ_i;</span>
+<span class='curline'><a href='../S/421.html#L487'>num</a>               487 src/verifier/dpor_naive.c   RC_EXPANDED(rc)-&gt;num = succ_i;</span>
+<span class='curline'><a href='../S/421.html#L488'>num</a>               488 src/verifier/dpor_naive.c   RC_EXPANDED_RULES(rc)-&gt;num = succ_i;</span>
+<span class='curline'><a href='../S/421.html#L490'>num</a>               490 src/verifier/dpor_naive.c     RC_MEM_DELTAS(rc)-&gt;num = succ_i;</span>
+<span class='curline'><a href='../S/428.html#L385'>num</a>               385 src/verifier/mc.c   RC_EXPANDED(rc)-&gt;num = succ_i;      /* 危険なコード. いつか直すかも. */</span>
+<span class='curline'><a href='../S/428.html#L386'>num</a>               386 src/verifier/mc.c   RC_EXPANDED_RULES(rc)-&gt;num = succ_i;</span>
+<span class='curline'><a href='../S/430.html#L613'>num</a>               613 src/verifier/mc_explorer.c State *map_ordering_states(Automata a, unsigned int num, ...);</span>
+<span class='curline'><a href='../S/430.html#L811'>num</a>               811 src/verifier/mc_explorer.c State *map_ordering_states(Automata a, unsigned int num, ...)</span>
+<span class='curline'><a href='../S/430.html#L817'>num</a>               817 src/verifier/mc_explorer.c   va_start(states, num);</span>
+<span class='curline'><a href='../S/430.html#L820'>num</a>               820 src/verifier/mc_explorer.c   for (i = 0; i &lt; num; i++) {</span>
+<span class='curline'><a href='../S/456.html#L641'>num</a>               641 src/verifier/statespace.c   st-&gt;num          = LMN_NALLOC(unsigned long, thread_num);</span>
+<span class='curline'><a href='../S/456.html#L651'>num</a>               651 src/verifier/statespace.c     st-&gt;num[i]       = 0UL;</span>
+<span class='curline'><a href='../S/456.html#L665'>num</a>               665 src/verifier/statespace.c       st-&gt;num[i]       = 0;</span>
+<span class='curline'><a href='../S/456.html#L686'>num</a>               686 src/verifier/statespace.c     LMN_FREE(st-&gt;num);</span>
+<span class='curline'><a href='../S/457.html#L108'>num</a>               108 src/verifier/statespace.h   unsigned long    *num;</span>
+<span class='curline'><a href='../S/457.html#L161'>num</a>               161 src/verifier/statespace.h   return st-&gt;num[env_my_thread_id()];</span>
+<span class='curline'><a href='../S/457.html#L169'>num</a>               169 src/verifier/statespace.h       ret += st-&gt;num[i];</span>
+<span class='curline'><a href='../S/457.html#L184'>num</a>               184 src/verifier/statespace.h   st-&gt;num[env_my_thread_id()] += n;</span>
+<span class='curline'><a href='../S/457.html#L188'>num</a>               188 src/verifier/statespace.h   st-&gt;num[env_my_thread_id()] -= n;</span>
+<span class='curline'><a href='../S/457.html#L211'>num</a>               211 src/verifier/statespace.h     + (tbl-&gt;num ? tbl-&gt;thread_num * sizeof(unsigned long) : 0)</span>
+<span class='curline'><a href='../S/505.html#L257'>num</a>               257 third_party/google-perftools-1.8.3/src/addressmap-inl.h   template &lt;class T&gt; T* New(int num) {</span>
+<span class='curline'><a href='../S/505.html#L258'>num</a>               258 third_party/google-perftools-1.8.3/src/addressmap-inl.h     void* ptr = (*alloc_)(sizeof(Object) + num*sizeof(T));</span>
+<span class='curline'><a href='../S/505.html#L259'>num</a>               259 third_party/google-perftools-1.8.3/src/addressmap-inl.h     memset(ptr, 0, sizeof(Object) + num*sizeof(T));</span>
+<span class='curline'><a href='../S/505.html#L295'>num</a>               295 third_party/google-perftools-1.8.3/src/addressmap-inl.h   const Number num = reinterpret_cast&lt;Number&gt;(key);</span>
+<span class='curline'><a href='../S/505.html#L296'>num</a>               296 third_party/google-perftools-1.8.3/src/addressmap-inl.h   const Cluster* const c = FindCluster(num, false/*do not create*/);</span>
+<span class='curline'><a href='../S/505.html#L298'>num</a>               298 third_party/google-perftools-1.8.3/src/addressmap-inl.h     for (Entry* e = c-&gt;blocks[BlockID(num)]; e != NULL; e = e-&gt;next) {</span>
+<span class='curline'><a href='../S/505.html#L309'>num</a>               309 third_party/google-perftools-1.8.3/src/addressmap-inl.h   const Number num = reinterpret_cast&lt;Number&gt;(key);</span>
+<span class='curline'><a href='../S/505.html#L310'>num</a>               310 third_party/google-perftools-1.8.3/src/addressmap-inl.h   Cluster* const c = FindCluster(num, true/*create*/);</span>
+<span class='curline'><a href='../S/505.html#L313'>num</a>               313 third_party/google-perftools-1.8.3/src/addressmap-inl.h   const int block = BlockID(num);</span>
+<span class='curline'><a href='../S/505.html#L341'>num</a>               341 third_party/google-perftools-1.8.3/src/addressmap-inl.h   const Number num = reinterpret_cast&lt;Number&gt;(key);</span>
+<span class='curline'><a href='../S/505.html#L342'>num</a>               342 third_party/google-perftools-1.8.3/src/addressmap-inl.h   Cluster* const c = FindCluster(num, false/*do not create*/);</span>
+<span class='curline'><a href='../S/505.html#L344'>num</a>               344 third_party/google-perftools-1.8.3/src/addressmap-inl.h     for (Entry** p = &amp;c-&gt;blocks[BlockID(num)]; *p != NULL; p = &amp;(*p)-&gt;next) {</span>
+<span class='curline'><a href='../S/505.html#L364'>num</a>               364 third_party/google-perftools-1.8.3/src/addressmap-inl.h   Number num = key_num;  // we'll move this to move back through the clusters</span>
+<span class='curline'><a href='../S/505.html#L366'>num</a>               366 third_party/google-perftools-1.8.3/src/addressmap-inl.h     const Cluster* c = FindCluster(num, false/*do not create*/);</span>
+<span class='curline'><a href='../S/505.html#L369'>num</a>               369 third_party/google-perftools-1.8.3/src/addressmap-inl.h         const int block = BlockID(num);</span>
+<span class='curline'><a href='../S/505.html#L386'>num</a>               386 third_party/google-perftools-1.8.3/src/addressmap-inl.h         num |= kBlockSize - 1;  // start at the last addr of prev block</span>
+<span class='curline'><a href='../S/505.html#L387'>num</a>               387 third_party/google-perftools-1.8.3/src/addressmap-inl.h         num -= kBlockSize;</span>
+<span class='curline'><a href='../S/505.html#L388'>num</a>               388 third_party/google-perftools-1.8.3/src/addressmap-inl.h         if (key_num - num &gt; max_size) return NULL;</span>
+<span class='curline'><a href='../S/505.html#L391'>num</a>               391 third_party/google-perftools-1.8.3/src/addressmap-inl.h     if (num &lt; kClusterSize) return NULL;  // first cluster</span>
+<span class='curline'><a href='../S/505.html#L393'>num</a>               393 third_party/google-perftools-1.8.3/src/addressmap-inl.h     num |= kClusterSize - 1;  // start at the last block of previous cluster</span>
+<span class='curline'><a href='../S/505.html#L394'>num</a>               394 third_party/google-perftools-1.8.3/src/addressmap-inl.h     num -= kClusterSize;</span>
+<span class='curline'><a href='../S/505.html#L395'>num</a>               395 third_party/google-perftools-1.8.3/src/addressmap-inl.h     if (key_num - num &gt; max_size) return NULL;</span>
+<span class='curline'><a href='../S/549.html#L341'>num</a>               341 third_party/google-perftools-1.8.3/src/central_freelist.cc   int num = 0;</span>
+<span class='curline'><a href='../S/549.html#L346'>num</a>               346 third_party/google-perftools-1.8.3/src/central_freelist.cc     num++;</span>
+<span class='curline'><a href='../S/549.html#L356'>num</a>               356 third_party/google-perftools-1.8.3/src/central_freelist.cc   counter_ += num;</span>
+<span class='curline'><a href='../S/551.html#L80'>num</a>                80 third_party/google-perftools-1.8.3/src/common.cc   int num = static_cast&lt;int&gt;(64.0 * 1024.0 / size);</span>
+<span class='curline'><a href='../S/551.html#L81'>num</a>                81 third_party/google-perftools-1.8.3/src/common.cc   if (num &lt; 2) num = 2;</span>
+<span class='curline'><a href='../S/551.html#L93'>num</a>                93 third_party/google-perftools-1.8.3/src/common.cc   if (num &gt; 32) num = 32;</span>
+<span class='curline'><a href='../S/551.html#L95'>num</a>                95 third_party/google-perftools-1.8.3/src/common.cc   return num;</span>
+<span class='curline'><a href='../S/572.html#L69'>num</a>                69 third_party/google-perftools-1.8.3/src/internal_logging.cc   bool AddNum(uint64_t num, int base);  // base must be 10 or 16.</span>
+<span class='curline'><a href='../S/572.html#L161'>num</a>               161 third_party/google-perftools-1.8.3/src/internal_logging.cc bool Logger::AddNum(uint64_t num, int base) {</span>
+<span class='curline'><a href='../S/572.html#L168'>num</a>               168 third_party/google-perftools-1.8.3/src/internal_logging.cc     *pos = kDigits[num % base];</span>
+<span class='curline'><a href='../S/572.html#L169'>num</a>               169 third_party/google-perftools-1.8.3/src/internal_logging.cc     num /= base;</span>
+<span class='curline'><a href='../S/572.html#L170'>num</a>               170 third_party/google-perftools-1.8.3/src/internal_logging.cc   } while (num &gt; 0 &amp;&amp; pos &gt; space);</span>
+</pre>
+</body>
+</html>

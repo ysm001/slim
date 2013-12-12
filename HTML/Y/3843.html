@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>nothrow</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/555.html#L1102'>nothrow</a>          1102 third_party/google-perftools-1.8.3/src/debugallocation.cc inline void* debug_cpp_alloc(size_t size, int new_type, bool nothrow) {</span>
+<span class='curline'><a href='../S/555.html#L1130'>nothrow</a>          1130 third_party/google-perftools-1.8.3/src/debugallocation.cc         if (nothrow) return 0;</span>
+<span class='curline'><a href='../S/555.html#L1139'>nothrow</a>          1139 third_party/google-perftools-1.8.3/src/debugallocation.cc         if (!nothrow) throw;</span>
+<span class='curline'><a href='../S/626.html#L994'>nothrow</a>           994 third_party/google-perftools-1.8.3/src/tcmalloc.cc inline void* cpp_alloc(size_t size, bool nothrow);</span>
+<span class='curline'><a href='../S/626.html#L1341'>nothrow</a>          1341 third_party/google-perftools-1.8.3/src/tcmalloc.cc inline void* cpp_alloc(size_t size, bool nothrow) {</span>
+<span class='curline'><a href='../S/626.html#L1369'>nothrow</a>          1369 third_party/google-perftools-1.8.3/src/tcmalloc.cc         if (nothrow) return 0;</span>
+<span class='curline'><a href='../S/626.html#L1378'>nothrow</a>          1378 third_party/google-perftools-1.8.3/src/tcmalloc.cc         if (!nothrow) throw;</span>
+<span class='curline'><a href='../S/632.html#L105'>nothrow</a>           105 third_party/google-perftools-1.8.3/src/tests/debugallocation_test.cc     ::operator delete(y, std::nothrow);</span>
+<span class='curline'><a href='../S/632.html#L115'>nothrow</a>           115 third_party/google-perftools-1.8.3/src/tests/debugallocation_test.cc     ::operator delete[](y, std::nothrow);</span>
+<span class='curline'><a href='../S/632.html#L120'>nothrow</a>           120 third_party/google-perftools-1.8.3/src/tests/debugallocation_test.cc     int* x = new(std::nothrow) int;</span>
+<span class='curline'><a href='../S/632.html#L121'>nothrow</a>           121 third_party/google-perftools-1.8.3/src/tests/debugallocation_test.cc     int* y = new(std::nothrow) int;</span>
+<span class='curline'><a href='../S/632.html#L125'>nothrow</a>           125 third_party/google-perftools-1.8.3/src/tests/debugallocation_test.cc     ::operator delete(y, std::nothrow);</span>
+<span class='curline'><a href='../S/632.html#L130'>nothrow</a>           130 third_party/google-perftools-1.8.3/src/tests/debugallocation_test.cc     int* x = new(std::nothrow) int[1];</span>
+<span class='curline'><a href='../S/632.html#L131'>nothrow</a>           131 third_party/google-perftools-1.8.3/src/tests/debugallocation_test.cc     int* y = new(std::nothrow) int[1];</span>
+<span class='curline'><a href='../S/632.html#L135'>nothrow</a>           135 third_party/google-perftools-1.8.3/src/tests/debugallocation_test.cc     ::operator delete[](y, std::nothrow);</span>
+<span class='curline'><a href='../S/664.html#L679'>nothrow</a>           679 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     void* ptr = (*func)(kNotTooBig, std::nothrow);</span>
+<span class='curline'><a href='../S/664.html#L692'>nothrow</a>           692 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     if ((*func)(kTooBig, std::nothrow) != 0) {</span>
+<span class='curline'><a href='../S/664.html#L1120'>nothrow</a>          1120 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     p2 = new(std::nothrow) char;</span>
+<span class='curline'><a href='../S/664.html#L1126'>nothrow</a>          1126 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     p2 = new(std::nothrow) char[100];</span>
+<span class='curline'><a href='../S/664.html#L1140'>nothrow</a>          1140 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     p2 = static_cast&lt;char*&gt;(::operator new(100, std::nothrow));</span>
+<span class='curline'><a href='../S/664.html#L1143'>nothrow</a>          1143 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     ::operator delete(p2, std::nothrow);</span>
+</pre>
+</body>
+</html>

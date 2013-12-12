@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>LMN_PORT_DATA</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/362.html#L62'>LMN_PORT_DATA</a>      62 src/port.c     #define FILE_PORT_FP(obj) ((FILE *)LMN_PORT_DATA(obj))</span>
+<span class='curline'><a href='../S/362.html#L94'>LMN_PORT_DATA</a>      94 src/port.c           lmn_string_free(LMN_PORT_DATA(port));</span>
+<span class='curline'><a href='../S/362.html#L196'>LMN_PORT_DATA</a>     196 src/port.c         fclose((FILE *)LMN_PORT_DATA(port));</span>
+<span class='curline'><a href='../S/362.html#L201'>LMN_PORT_DATA</a>     201 src/port.c         lmn_string_free(((struct IStrPortData *)LMN_PORT_DATA(port))-&gt;s);</span>
+<span class='curline'><a href='../S/362.html#L202'>LMN_PORT_DATA</a>     202 src/port.c         ((struct IStrPortData *)LMN_PORT_DATA(port))-&gt;s = NULL;</span>
+<span class='curline'><a href='../S/362.html#L203'>LMN_PORT_DATA</a>     203 src/port.c         LMN_FREE(LMN_PORT_DATA(port));</span>
+<span class='curline'><a href='../S/362.html#L204'>LMN_PORT_DATA</a>     204 src/port.c         LMN_PORT_DATA(port) = NULL;</span>
+<span class='curline'><a href='../S/362.html#L235'>LMN_PORT_DATA</a>     235 src/port.c       return lmn_string_copy(LMN_STRING(LMN_PORT_DATA(ostr_port)));</span>
+<span class='curline'><a href='../S/362.html#L252'>LMN_PORT_DATA</a>     252 src/port.c           FILE *f = (FILE *)LMN_PORT_DATA(port);</span>
+<span class='curline'><a href='../S/362.html#L259'>LMN_PORT_DATA</a>     259 src/port.c           struct IStrPortData *d = (struct IStrPortData *)LMN_PORT_DATA(port);</span>
+<span class='curline'><a href='../S/362.html#L281'>LMN_PORT_DATA</a>     281 src/port.c           FILE *f = (FILE *)LMN_PORT_DATA(port);</span>
+<span class='curline'><a href='../S/362.html#L287'>LMN_PORT_DATA</a>     287 src/port.c           struct IStrPortData *d = (struct IStrPortData *)LMN_PORT_DATA(port);</span>
+<span class='curline'><a href='../S/362.html#L346'>LMN_PORT_DATA</a>     346 src/port.c           FILE *f = (FILE *)LMN_PORT_DATA(port);</span>
+<span class='curline'><a href='../S/362.html#L351'>LMN_PORT_DATA</a>     351 src/port.c         lmn_string_push_raw_c((LmnString)LMN_PORT_DATA(port), c);</span>
+<span class='curline'><a href='../S/362.html#L370'>LMN_PORT_DATA</a>     370 src/port.c           FILE *f = (FILE *)LMN_PORT_DATA(port);</span>
+<span class='curline'><a href='../S/362.html#L375'>LMN_PORT_DATA</a>     375 src/port.c         lmn_string_push_raw_s((LmnString)LMN_PORT_DATA(port), str);</span>
+</pre>
+</body>
+</html>

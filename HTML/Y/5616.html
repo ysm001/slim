@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>vdso_base_</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/547.html#L59'>vdso_base_</a>         59 third_party/google-perftools-1.8.3/src/base/vdso_support.cc const void *VDSOSupport::vdso_base_ = ElfMemImage::kInvalidBase;</span>
+<span class='curline'><a href='../S/547.html#L64'>vdso_base_</a>         64 third_party/google-perftools-1.8.3/src/base/vdso_support.cc     : image_(vdso_base_ == ElfMemImage::kInvalidBase ? Init() : vdso_base_) {</span>
+<span class='curline'><a href='../S/547.html#L77'>vdso_base_</a>         77 third_party/google-perftools-1.8.3/src/base/vdso_support.cc   if (vdso_base_ == ElfMemImage::kInvalidBase) {</span>
+<span class='curline'><a href='../S/547.html#L83'>vdso_base_</a>         83 third_party/google-perftools-1.8.3/src/base/vdso_support.cc       vdso_base_ = NULL;</span>
+<span class='curline'><a href='../S/547.html#L90'>vdso_base_</a>         90 third_party/google-perftools-1.8.3/src/base/vdso_support.cc       vdso_base_ = NULL;</span>
+<span class='curline'><a href='../S/547.html#L97'>vdso_base_</a>         97 third_party/google-perftools-1.8.3/src/base/vdso_support.cc         COMPILE_ASSERT(sizeof(vdso_base_) == sizeof(aux.a_un.a_val),</span>
+<span class='curline'><a href='../S/547.html#L99'>vdso_base_</a>         99 third_party/google-perftools-1.8.3/src/base/vdso_support.cc         vdso_base_ = reinterpret_cast&lt;void *&gt;(aux.a_un.a_val);</span>
+<span class='curline'><a href='../S/547.html#L104'>vdso_base_</a>        104 third_party/google-perftools-1.8.3/src/base/vdso_support.cc     if (vdso_base_ == ElfMemImage::kInvalidBase) {</span>
+<span class='curline'><a href='../S/547.html#L106'>vdso_base_</a>        106 third_party/google-perftools-1.8.3/src/base/vdso_support.cc       vdso_base_ = NULL;</span>
+<span class='curline'><a href='../S/547.html#L110'>vdso_base_</a>        110 third_party/google-perftools-1.8.3/src/base/vdso_support.cc   if (vdso_base_) {</span>
+<span class='curline'><a href='../S/547.html#L123'>vdso_base_</a>        123 third_party/google-perftools-1.8.3/src/base/vdso_support.cc   return vdso_base_;</span>
+<span class='curline'><a href='../S/547.html#L128'>vdso_base_</a>        128 third_party/google-perftools-1.8.3/src/base/vdso_support.cc   const void *old_base = vdso_base_;</span>
+<span class='curline'><a href='../S/547.html#L129'>vdso_base_</a>        129 third_party/google-perftools-1.8.3/src/base/vdso_support.cc   vdso_base_ = base;</span>
+<span class='curline'><a href='../S/548.html#L123'>vdso_base_</a>        123 third_party/google-perftools-1.8.3/src/base/vdso_support.h   static const void *vdso_base_;</span>
+</pre>
+</body>
+</html>

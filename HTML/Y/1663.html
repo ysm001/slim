@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>bucket</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/456.html#L183'>bucket</a>            183 src/verifier/statespace.c     unsigned long i, new_cap, bucket;</span>
+<span class='curline'><a href='../S/456.html#L197'>bucket</a>            197 src/verifier/statespace.c         bucket = state_hash(ptr) % new_cap;</span>
+<span class='curline'><a href='../S/456.html#L198'>bucket</a>            198 src/verifier/statespace.c         ptr-&gt;next = new_tbl[bucket];</span>
+<span class='curline'><a href='../S/456.html#L207'>bucket</a>            207 src/verifier/statespace.c         new_tbl[bucket] = ptr;</span>
+<span class='curline'><a href='../S/456.html#L780'>bucket</a>            780 src/verifier/statespace.c     unsigned long bucket, hash;</span>
+<span class='curline'><a href='../S/456.html#L783'>bucket</a>            783 src/verifier/statespace.c     bucket = hash % statetable_cap(st);</span>
+<span class='curline'><a href='../S/456.html#L784'>bucket</a>            784 src/verifier/statespace.c     str    = st-&gt;tbl[bucket];</span>
+<span class='curline'><a href='../S/456.html#L792'>bucket</a>            792 src/verifier/statespace.c                               bucket, NULL, st-&gt;tbl[bucket]);</span>
+<span class='curline'><a href='../S/456.html#L796'>bucket</a>            796 src/verifier/statespace.c         st-&gt;tbl[bucket] = ins;</span>
+<span class='curline'><a href='../S/456.html#L801'>bucket</a>            801 src/verifier/statespace.c                               bucket);</span>
+<span class='curline'><a href='../S/456.html#L806'>bucket</a>            806 src/verifier/statespace.c         str = st-&gt;tbl[bucket];</span>
+<span class='curline'><a href='../S/456.html#L926'>bucket</a>            926 src/verifier/statespace.c                                 ewlock_acquire_write, bucket, NULL, str-&gt;next);</span>
+<span class='curline'><a href='../S/456.html#L934'>bucket</a>            934 src/verifier/statespace.c                                 ewlock_release_write, bucket);</span>
+<span class='curline'><a href='../S/456.html#L968'>bucket</a>            968 src/verifier/statespace.c     unsigned long bucket;</span>
+<span class='curline'><a href='../S/456.html#L977'>bucket</a>            977 src/verifier/statespace.c     bucket   = state_hash(s) % statetable_cap(st);</span>
+<span class='curline'><a href='../S/456.html#L978'>bucket</a>            978 src/verifier/statespace.c     ptr      = st-&gt;tbl[bucket];</span>
+<span class='curline'><a href='../S/456.html#L984'>bucket</a>            984 src/verifier/statespace.c       ENTER__CRITICAL_SECTION(st_add_empty, st-&gt;lock, ewlock_acquire_write, bucket, NULL, st-&gt;tbl[bucket]);</span>
+<span class='curline'><a href='../S/456.html#L988'>bucket</a>            988 src/verifier/statespace.c         st-&gt;tbl[bucket] = s;</span>
+<span class='curline'><a href='../S/456.html#L991'>bucket</a>            991 src/verifier/statespace.c       EXIT___CRITICAL_SECTION(st_add_empty, st-&gt;lock, ewlock_release_write, bucket);</span>
+<span class='curline'><a href='../S/456.html#L992'>bucket</a>            992 src/verifier/statespace.c       if (!inserted) ptr = st-&gt;tbl[bucket];</span>
+<span class='curline'><a href='../S/456.html#L998'>bucket</a>            998 src/verifier/statespace.c         ENTER__CRITICAL_SECTION(st_add_list, st-&gt;lock, ewlock_acquire_write, bucket, NULL, ptr-&gt;next);</span>
+<span class='curline'><a href='../S/456.html#L1005'>bucket</a>           1005 src/verifier/statespace.c         EXIT___CRITICAL_SECTION(st_add_list, st-&gt;lock, ewlock_release_write, bucket);</span>
+<span class='curline'><a href='../S/569.html#L216'>bucket</a>            216 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     Bucket* b = v.bucket();</span>
+<span class='curline'><a href='../S/569.html#L235'>bucket</a>            235 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     info-&gt;call_stack = alloc_value-&gt;bucket()-&gt;stack;</span>
+<span class='curline'><a href='../S/569.html#L236'>bucket</a>            236 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     info-&gt;stack_depth = alloc_value-&gt;bucket()-&gt;depth;</span>
+<span class='curline'><a href='../S/569.html#L384'>bucket</a>            384 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   b.depth = v-&gt;bucket()-&gt;depth;</span>
+<span class='curline'><a href='../S/569.html#L385'>bucket</a>            385 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   b.stack = v-&gt;bucket()-&gt;stack;</span>
+<span class='curline'><a href='../S/569.html#L491'>bucket</a>            491 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   Bucket* bucket;</span>
+<span class='curline'><a href='../S/569.html#L510'>bucket</a>            510 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   Entry* e = &amp;state-&gt;buckets_[v-&gt;bucket()]; // Creates empty Entry first time</span>
+<span class='curline'><a href='../S/569.html#L511'>bucket</a>            511 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   e-&gt;bucket = v-&gt;bucket();</span>
+<span class='curline'><a href='../S/569.html#L554'>bucket</a>            554 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     for (int j = 0; j &lt; e.bucket-&gt;depth; j++) {</span>
+<span class='curline'><a href='../S/569.html#L555'>bucket</a>            555 third_party/google-perftools-1.8.3/src/heap-profile-table.cc       symbolization_table.Add(e.bucket-&gt;stack[j]);</span>
+<span class='curline'><a href='../S/569.html#L567'>bucket</a>            567 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     for (int j = 0; j &lt; e.bucket-&gt;depth; j++) {</span>
+<span class='curline'><a href='../S/569.html#L568'>bucket</a>            568 third_party/google-perftools-1.8.3/src/heap-profile-table.cc       const void* pc = e.bucket-&gt;stack[j];</span>
+<span class='curline'><a href='../S/570.html#L205'>bucket</a>            205 third_party/google-perftools-1.8.3/src/heap-profile-table.h     Bucket* bucket() const {</span>
+<span class='curline'><a href='../S/570.html#L276'>bucket</a>            276 third_party/google-perftools-1.8.3/src/heap-profile-table.h     info.call_stack = v-&gt;bucket()-&gt;stack;</span>
+<span class='curline'><a href='../S/570.html#L277'>bucket</a>            277 third_party/google-perftools-1.8.3/src/heap-profile-table.h     info.stack_depth = v-&gt;bucket()-&gt;depth;</span>
+<span class='curline'><a href='../S/598.html#L171'>bucket</a>            171 third_party/google-perftools-1.8.3/src/profiledata.cc     Bucket* bucket = &amp;hash_[b];</span>
+<span class='curline'><a href='../S/598.html#L173'>bucket</a>            173 third_party/google-perftools-1.8.3/src/profiledata.cc       if (bucket-&gt;entry[a].count &gt; 0) {</span>
+<span class='curline'><a href='../S/598.html#L174'>bucket</a>            174 third_party/google-perftools-1.8.3/src/profiledata.cc         Evict(bucket-&gt;entry[a]);</span>
+<span class='curline'><a href='../S/598.html#L246'>bucket</a>            246 third_party/google-perftools-1.8.3/src/profiledata.cc     Bucket* bucket = &amp;hash_[b];</span>
+<span class='curline'><a href='../S/598.html#L248'>bucket</a>            248 third_party/google-perftools-1.8.3/src/profiledata.cc       if (bucket-&gt;entry[a].count &gt; 0) {</span>
+<span class='curline'><a href='../S/598.html#L249'>bucket</a>            249 third_party/google-perftools-1.8.3/src/profiledata.cc         Evict(bucket-&gt;entry[a]);</span>
+<span class='curline'><a href='../S/598.html#L250'>bucket</a>            250 third_party/google-perftools-1.8.3/src/profiledata.cc         bucket-&gt;entry[a].depth = 0;</span>
+<span class='curline'><a href='../S/598.html#L251'>bucket</a>            251 third_party/google-perftools-1.8.3/src/profiledata.cc         bucket-&gt;entry[a].count = 0;</span>
+<span class='curline'><a href='../S/598.html#L280'>bucket</a>            280 third_party/google-perftools-1.8.3/src/profiledata.cc   Bucket* bucket = &amp;hash_[h % kBuckets];</span>
+<span class='curline'><a href='../S/598.html#L282'>bucket</a>            282 third_party/google-perftools-1.8.3/src/profiledata.cc     Entry* e = &amp;bucket-&gt;entry[a];</span>
+<span class='curline'><a href='../S/598.html#L301'>bucket</a>            301 third_party/google-perftools-1.8.3/src/profiledata.cc     Entry* e = &amp;bucket-&gt;entry[0];</span>
+<span class='curline'><a href='../S/598.html#L303'>bucket</a>            303 third_party/google-perftools-1.8.3/src/profiledata.cc       if (bucket-&gt;entry[a].count &lt; e-&gt;count) {</span>
+<span class='curline'><a href='../S/598.html#L304'>bucket</a>            304 third_party/google-perftools-1.8.3/src/profiledata.cc         e = &amp;bucket-&gt;entry[a];</span>
+</pre>
+</body>
+</html>

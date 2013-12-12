@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>sum_len</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/699.html#L1389'>sum_len</a>          1389 third_party/zdelta-2.1/deflate.c   ulg sum_len[REFNUM];</span>
+<span class='curline'><a href='../S/699.html#L1403'>sum_len</a>          1403 third_party/zdelta-2.1/deflate.c   h-&gt;sum_len[rw] += len;       /* cumm. copy length */</span>
+<span class='curline'><a href='../S/699.html#L1410'>sum_len</a>          1410 third_party/zdelta-2.1/deflate.c   if ((h-&gt;front_ptr[rw] == h-&gt;back_ptr[rw]) || (h-&gt;sum_len[rw] &gt; 5000)){</span>
+<span class='curline'><a href='../S/699.html#L1411'>sum_len</a>          1411 third_party/zdelta-2.1/deflate.c     h-&gt;sum_len[rw] -= h-&gt;len_hist[rw][h-&gt;back_ptr[rw]];</span>
+<span class='curline'><a href='../S/699.html#L1419'>sum_len</a>          1419 third_party/zdelta-2.1/deflate.c     h-&gt;avg_pos = h-&gt;sum_ptr[rw] / h-&gt;sum_len[rw];</span>
+<span class='curline'><a href='../S/699.html#L1421'>sum_len</a>          1421 third_party/zdelta-2.1/deflate.c     if((h-&gt;avg_pos &lt; 22000) &amp;&amp; (h-&gt;sum_len[rw] &gt; 2000) &amp;&amp; </span>
+<span class='curline'><a href='../S/699.html#L1427'>sum_len</a>          1427 third_party/zdelta-2.1/deflate.c       h-&gt;sum_len[rw]   = 0;</span>
+<span class='curline'><a href='../S/699.html#L1448'>sum_len</a>          1448 third_party/zdelta-2.1/deflate.c     ph.sum_len[rw]   = ph.sum_ptr[rw]  = 0;</span>
+<span class='curline'><a href='../S/699.html#L1578'>sum_len</a>          1578 third_party/zdelta-2.1/deflate.c     ph.sum_len[rw]   = ph.sum_ptr[rw]  = 0;</span>
+</pre>
+</body>
+</html>

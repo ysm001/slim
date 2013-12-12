@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>rp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/367.html#L639'>rp</a>                639 src/runtime_status.c           RuleProfiler *rp = (RuleProfiler *)vec_get(&amp;v, i);</span>
+<span class='curline'><a href='../S/367.html#L640'>rp</a>                640 src/runtime_status.c           if (rp-&gt;trial.called_num &gt; 0) {</span>
+<span class='curline'><a href='../S/367.html#L641'>rp</a>                641 src/runtime_status.c             if (lmn_rule_get_name(rp-&gt;src) == ANONYMOUS) {</span>
+<span class='curline'><a href='../S/367.html#L643'>rp</a>                643 src/runtime_status.c               r_others-&gt;trial.called_num += rp-&gt;trial.called_num;</span>
+<span class='curline'><a href='../S/367.html#L644'>rp</a>                644 src/runtime_status.c               r_others-&gt;trial.total_time += rp-&gt;trial.total_time;</span>
+<span class='curline'><a href='../S/367.html#L645'>rp</a>                645 src/runtime_status.c               r_others-&gt;backtrack += rp-&gt;backtrack;</span>
+<span class='curline'><a href='../S/367.html#L649'>rp</a>                649 src/runtime_status.c                        , rp-&gt;ref_rs_id</span>
+<span class='curline'><a href='../S/367.html#L650'>rp</a>                650 src/runtime_status.c                        , lmn_id_to_name(lmn_rule_get_name(rp-&gt;src))</span>
+<span class='curline'><a href='../S/367.html#L651'>rp</a>                651 src/runtime_status.c                        , rp-&gt;trial.called_num</span>
+<span class='curline'><a href='../S/367.html#L652'>rp</a>                652 src/runtime_status.c                        , rp-&gt;apply</span>
+<span class='curline'><a href='../S/367.html#L653'>rp</a>                653 src/runtime_status.c                        , rp-&gt;backtrack</span>
+<span class='curline'><a href='../S/367.html#L654'>rp</a>                654 src/runtime_status.c                        , rp-&gt;trial.total_time / 1e-6);</span>
+<span class='curline'><a href='../S/367.html#L656'>rp</a>                656 src/runtime_status.c             r_total-&gt;apply            += rp-&gt;apply;</span>
+<span class='curline'><a href='../S/367.html#L657'>rp</a>                657 src/runtime_status.c             r_total-&gt;backtrack        += rp-&gt;backtrack;</span>
+<span class='curline'><a href='../S/367.html#L658'>rp</a>                658 src/runtime_status.c             r_total-&gt;trial.called_num += rp-&gt;trial.called_num;</span>
+<span class='curline'><a href='../S/367.html#L659'>rp</a>                659 src/runtime_status.c             r_total-&gt;trial.total_time += rp-&gt;trial.total_time;</span>
+</pre>
+</body>
+</html>

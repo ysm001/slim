@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>srcinside</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/357.html#L912'>srcinside</a>         912 src/membrane.c           LmnSAtom srcinside;</span>
+<span class='curline'><a href='../S/357.html#L915'>srcinside</a>         915 src/membrane.c           srcinside = LMN_SATOM(LMN_SATOM_GET_LINK(srcatom, 0));</span>
+<span class='curline'><a href='../S/357.html#L916'>srcinside</a>         916 src/membrane.c           proc_tbl_get_by_atom(atoms, srcinside, &amp;t);</span>
+<span class='curline'><a href='../S/357.html#L920'>srcinside</a>         920 src/membrane.c           LMN_ASSERT(LMN_SATOM_GET_FUNCTOR(srcinside) == LMN_IN_PROXY_FUNCTOR);</span>
+<span class='curline'><a href='../S/357.html#L921'>srcinside</a>         921 src/membrane.c           LMN_ASSERT(LMN_PROXY_GET_MEM(srcinside)-&gt;parent == LMN_PROXY_GET_MEM(srcatom));</span>
+<span class='curline'><a href='../S/417.html#L684'>srcinside</a>         684 src/verifier/delta_membrane.c           LmnSAtom srcinside;</span>
+<span class='curline'><a href='../S/417.html#L687'>srcinside</a>         687 src/verifier/delta_membrane.c           srcinside = LMN_SATOM(dmem_root_get_link(root_d, srcatom, 0));</span>
+<span class='curline'><a href='../S/417.html#L688'>srcinside</a>         688 src/verifier/delta_membrane.c           if (proc_tbl_get_by_atom(atoms, srcinside, &amp;t)) {</span>
+<span class='curline'><a href='../S/417.html#L693'>srcinside</a>         693 src/verifier/delta_membrane.c             LMN_ASSERT(LMN_SATOM_GET_FUNCTOR(srcinside) == LMN_IN_PROXY_FUNCTOR &amp;&amp;</span>
+<span class='curline'><a href='../S/417.html#L694'>srcinside</a>         694 src/verifier/delta_membrane.c                        LMN_PROXY_GET_MEM(srcinside)-&gt;parent == LMN_PROXY_GET_MEM(srcatom));</span>
+</pre>
+</body>
+</html>

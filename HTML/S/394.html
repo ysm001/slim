@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>src/utility/internal_hash.h</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/733.html'>src</a>/<a href='../files/736.html'>utility</a>/internal_hash.h</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L107'>[^]</a><a href='#L112'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/74.html' title='Multiple included from 5 places.'>INCLUDED FROM</a></h2>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L107' title='Defined at 107.'>internal_hashtbl_space_inner</a></li>
+<li><a href='#L112' title='Defined at 112.'>internal_hashtbl_space</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>/*</em>
+<a id='L2' name='L2' /><em class='comment'> * intrnal_hash.h</em>
+<a id='L3' name='L3' /><em class='comment'> *</em>
+<a id='L4' name='L4' /><em class='comment'> *   Copyright (c) 2008, Ueda Laboratory LMNtal Group &lt;lmntal@ueda.info.waseda.ac.jp&gt;</em>
+<a id='L5' name='L5' /><em class='comment'> *   All rights reserved.</em>
+<a id='L6' name='L6' /><em class='comment'> *</em>
+<a id='L7' name='L7' /><em class='comment'> *   Redistribution and use in source and binary forms, with or without</em>
+<a id='L8' name='L8' /><em class='comment'> *   modification, are permitted provided that the following conditions are</em>
+<a id='L9' name='L9' /><em class='comment'> *   met:</em>
+<a id='L10' name='L10' /><em class='comment'> *</em>
+<a id='L11' name='L11' /><em class='comment'> *    1. Redistributions of source code must retain the above copyright</em>
+<a id='L12' name='L12' /><em class='comment'> *       notice, this list of conditions and the following disclaimer.</em>
+<a id='L13' name='L13' /><em class='comment'> *</em>
+<a id='L14' name='L14' /><em class='comment'> *    2. Redistributions in binary form must reproduce the above copyright</em>
+<a id='L15' name='L15' /><em class='comment'> *       notice, this list of conditions and the following disclaimer in</em>
+<a id='L16' name='L16' /><em class='comment'> *       the documentation and/or other materials provided with the</em>
+<a id='L17' name='L17' /><em class='comment'> *       distribution.</em>
+<a id='L18' name='L18' /><em class='comment'> *</em>
+<a id='L19' name='L19' /><em class='comment'> *    3. Neither the name of the Ueda Laboratory LMNtal Group nor the</em>
+<a id='L20' name='L20' /><em class='comment'> *       names of its contributors may be used to endorse or promote</em>
+<a id='L21' name='L21' /><em class='comment'> *       products derived from this software without specific prior</em>
+<a id='L22' name='L22' /><em class='comment'> *       written permission.</em>
+<a id='L23' name='L23' /><em class='comment'> *</em>
+<a id='L24' name='L24' /><em class='comment'> *   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L25' name='L25' /><em class='comment'> *   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L26' name='L26' /><em class='comment'> *   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L27' name='L27' /><em class='comment'> *   A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L28' name='L28' /><em class='comment'> *   OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L29' name='L29' /><em class='comment'> *   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L30' name='L30' /><em class='comment'> *   LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L31' name='L31' /><em class='comment'> *   DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L32' name='L32' /><em class='comment'> *   THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L33' name='L33' /><em class='comment'> *   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L34' name='L34' /><em class='comment'> *   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L35' name='L35' /><em class='comment'> *</em>
+<a id='L36' name='L36' /><em class='comment'> * $Id: internal_hash.h,v 1.5 2008/10/16 18:06:34 sasaki Exp $</em>
+<a id='L37' name='L37' /><em class='comment'> */</em>
+<a id='L38' name='L38' />
+<a id='L39' name='L39' />
+<a id='L40' name='L40' /><em class='sharp'>#ifndef</em> <a href='../S/394.html#L41' title='Defined at 41 in src/utility/internal_hash.h.'>INTERNAL_HASH_H</a>
+<a id='L41' name='L41' /><em class='sharp'>#define</em> <a href='../S/394.html#L40' title='Refered from 40 in src/utility/internal_hash.h.'>INTERNAL_HASH_H</a>
+<a id='L42' name='L42' />
+<a id='L43' name='L43' /><em class='comment'>/* HashMap */</em>
+<a id='L44' name='L44' /><strong class='reserved'>typedef</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../R/843.html' title='Multiple refered from 73 places.'>HashKeyType</a>;
+<a id='L45' name='L45' /><strong class='reserved'>typedef</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../R/846.html' title='Multiple refered from 17 places.'>HashValueType</a>;
+<a id='L46' name='L46' />
+<a id='L47' name='L47' /><strong class='reserved'>typedef</strong> <strong class='reserved'>struct</strong> <a href='../R/841.html' title='Multiple refered from 12 places.'>HashEntry</a> <em class='brace'>{</em>
+<a id='L48' name='L48' />  <a href='../S/394.html#L44' title='Defined at 44 in src/utility/internal_hash.h.'>HashKeyType</a> <a href='../Y/3140.html' title='Multiple used in 327 places.'>key</a>;
+<a id='L49' name='L49' />  <a href='../S/394.html#L45' title='Defined at 45 in src/utility/internal_hash.h.'>HashValueType</a> <a href='../Y/1968.html' title='Multiple used in 73 places.'>data</a>;
+<a id='L50' name='L50' /><em class='brace'>}</em> <a href='../R/841.html' title='Multiple refered from 12 places.'>HashEntry</a>;
+<a id='L51' name='L51' />
+<a id='L52' name='L52' /><strong class='reserved'>typedef</strong> <strong class='reserved'>struct</strong> <a href='../R/2309.html' title='Multiple refered from 62 places.'>SimpleHashtbl</a> <em class='brace'>{</em>
+<a id='L53' name='L53' />  <strong class='reserved'>struct</strong> <a href='../D/967.html' title='Multiple defined in 2 places.'>HashEntry</a> *<a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>;
+<a id='L54' name='L54' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/1745.html' title='Multiple used in 127 places.'>cap</a>, <a href='../Y/3856.html' title='Multiple used in 168 places.'>num</a>;
+<a id='L55' name='L55' /><em class='brace'>}</em> <a href='../R/2309.html' title='Multiple refered from 62 places.'>SimpleHashtbl</a>;
+<a id='L56' name='L56' />
+<a id='L57' name='L57' /><strong class='reserved'>typedef</strong> <strong class='reserved'>struct</strong> <a href='../R/842.html' title='Multiple refered from 8 places.'>HashIterator</a> <em class='brace'>{</em>
+<a id='L58' name='L58' />  <a href='../D/2576.html' title='Multiple defined in 2 places.'>SimpleHashtbl</a> *<a href='../Y/2730.html' title='Multiple used in 145 places.'>ht</a>;
+<a id='L59' name='L59' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>;
+<a id='L60' name='L60' /><em class='brace'>}</em> <a href='../R/842.html' title='Multiple refered from 8 places.'>HashIterator</a>;
+<a id='L61' name='L61' />
+<a id='L62' name='L62' />
+<a id='L63' name='L63' /><strong class='reserved'>void</strong> <a href='../S/393.html#L90' title='Defined at 90 in src/utility/internal_hash.c.'>hashtbl_init</a>(<a href='../D/2576.html' title='Multiple defined in 2 places.'>SimpleHashtbl</a> *<a href='../Y/2730.html' title='Multiple used in 145 places.'>ht</a>, <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/2812.html' title='Multiple used in 32 places.'>init_size</a>);
+<a id='L64' name='L64' /><a href='../D/2576.html' title='Multiple defined in 2 places.'>SimpleHashtbl</a> *<a href='../S/393.html#L98' title='Defined at 98 in src/utility/internal_hash.c.'>hashtbl_make</a>(<strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/2812.html' title='Multiple used in 32 places.'>init_size</a>);
+<a id='L65' name='L65' /><a href='../S/394.html#L45' title='Defined at 45 in src/utility/internal_hash.h.'>HashValueType</a> <a href='../S/393.html#L116' title='Defined at 116 in src/utility/internal_hash.c.'>hashtbl_get</a>(<a href='../D/2576.html' title='Multiple defined in 2 places.'>SimpleHashtbl</a> *<a href='../Y/2730.html' title='Multiple used in 145 places.'>ht</a>, <a href='../S/394.html#L44' title='Defined at 44 in src/utility/internal_hash.h.'>HashKeyType</a> <a href='../Y/3140.html' title='Multiple used in 327 places.'>key</a>);
+<a id='L66' name='L66' /><a href='../S/394.html#L45' title='Defined at 45 in src/utility/internal_hash.h.'>HashValueType</a> <a href='../S/393.html#L121' title='Defined at 121 in src/utility/internal_hash.c.'>hashtbl_get_default</a>(<a href='../D/2576.html' title='Multiple defined in 2 places.'>SimpleHashtbl</a> *<a href='../Y/2730.html' title='Multiple used in 145 places.'>ht</a>,
+<a id='L67' name='L67' />                                  <a href='../S/394.html#L44' title='Defined at 44 in src/utility/internal_hash.h.'>HashKeyType</a> <a href='../Y/3140.html' title='Multiple used in 327 places.'>key</a>,
+<a id='L68' name='L68' />                                  <a href='../S/394.html#L45' title='Defined at 45 in src/utility/internal_hash.h.'>HashValueType</a> <a href='../Y/1996.html' title='Multiple used in 5 places.'>default_value</a>);
+<a id='L69' name='L69' /><strong class='reserved'>int</strong> <a href='../S/393.html#L130' title='Defined at 130 in src/utility/internal_hash.c.'>hashtbl_contains</a>(<a href='../D/2576.html' title='Multiple defined in 2 places.'>SimpleHashtbl</a> *<a href='../Y/2730.html' title='Multiple used in 145 places.'>ht</a>, <a href='../S/394.html#L44' title='Defined at 44 in src/utility/internal_hash.h.'>HashKeyType</a> <a href='../Y/3140.html' title='Multiple used in 327 places.'>key</a>);
+<a id='L70' name='L70' /><strong class='reserved'>void</strong> <a href='../S/393.html#L135' title='Defined at 135 in src/utility/internal_hash.c.'>hashtbl_put</a>(<a href='../D/2576.html' title='Multiple defined in 2 places.'>SimpleHashtbl</a> *<a href='../Y/2730.html' title='Multiple used in 145 places.'>ht</a>, <a href='../S/394.html#L44' title='Defined at 44 in src/utility/internal_hash.h.'>HashKeyType</a> <a href='../Y/3140.html' title='Multiple used in 327 places.'>key</a>, <a href='../S/394.html#L45' title='Defined at 45 in src/utility/internal_hash.h.'>HashValueType</a> <a href='../Y/5595.html' title='Multiple used in 35 places.'>val</a>);
+<a id='L71' name='L71' /><strong class='reserved'>void</strong> <a href='../S/393.html#L151' title='Defined at 151 in src/utility/internal_hash.c.'>hashtbl_clear</a>(<a href='../D/2576.html' title='Multiple defined in 2 places.'>SimpleHashtbl</a> *<a href='../Y/2730.html' title='Multiple used in 145 places.'>ht</a>);
+<a id='L72' name='L72' /><strong class='reserved'>void</strong> <a href='../S/393.html#L105' title='Defined at 105 in src/utility/internal_hash.c.'>hashtbl_destroy</a>(<a href='../D/2576.html' title='Multiple defined in 2 places.'>SimpleHashtbl</a> *<a href='../Y/2730.html' title='Multiple used in 145 places.'>ht</a>);
+<a id='L73' name='L73' /><strong class='reserved'>void</strong> <a href='../S/393.html#L110' title='Defined at 110 in src/utility/internal_hash.c.'>hashtbl_free</a>(<a href='../D/2576.html' title='Multiple defined in 2 places.'>SimpleHashtbl</a> *<a href='../Y/2730.html' title='Multiple used in 145 places.'>ht</a>);
+<a id='L74' name='L74' /><em class='sharp'>#define</em> <a href='../R/3521.html' title='Multiple refered from 2 places.'>hashtbl_num</a>(<a href='../Y/352.html' title='Multiple used in 2 places.'>HT</a>) (<a href='../Y/352.html' title='Multiple used in 2 places.'>HT</a>)-&gt;<a href='../Y/3856.html' title='Multiple used in 168 places.'>num</a>
+<a id='L75' name='L75' />
+<a id='L76' name='L76' /><a href='../D/968.html' title='Multiple defined in 2 places.'>HashIterator</a> <a href='../S/393.html#L194' title='Defined at 194 in src/utility/internal_hash.c.'>hashtbl_iterator</a>(<a href='../D/2576.html' title='Multiple defined in 2 places.'>SimpleHashtbl</a> *<a href='../Y/2730.html' title='Multiple used in 145 places.'>ht</a>);
+<a id='L77' name='L77' /><strong class='reserved'>void</strong> <a href='../S/393.html#L205' title='Defined at 205 in src/utility/internal_hash.c.'>hashtbliter_next</a>(<a href='../D/968.html' title='Multiple defined in 2 places.'>HashIterator</a> *<a href='../Y/2941.html' title='Multiple used in 83 places.'>iter</a>);
+<a id='L78' name='L78' /><em class='sharp'>#define</em> <a href='../R/3523.html' title='Multiple refered from 5 places.'>hashtbliter_entry</a>(<a href='../Y/364.html' title='Multiple used in 44 places.'>I</a>) (&amp;((<a href='../Y/364.html' title='Multiple used in 44 places.'>I</a>)-&gt;<a href='../Y/2730.html' title='Multiple used in 145 places.'>ht</a>-&gt;<a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>[(<a href='../Y/364.html' title='Multiple used in 44 places.'>I</a>)-&gt;<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>]))
+<a id='L79' name='L79' /><em class='sharp'>#define</em> <a href='../R/3524.html' title='Multiple refered from 3 places.'>hashtbliter_isend</a>(<a href='../Y/364.html' title='Multiple used in 44 places.'>I</a>) ((<a href='../Y/364.html' title='Multiple used in 44 places.'>I</a>)-&gt;<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> &gt;= (<a href='../Y/364.html' title='Multiple used in 44 places.'>I</a>)-&gt;<a href='../Y/2730.html' title='Multiple used in 145 places.'>ht</a>-&gt;<a href='../Y/1745.html' title='Multiple used in 127 places.'>cap</a>)
+<a id='L80' name='L80' />
+<a id='L81' name='L81' /><em class='comment'>/* HashSet */</em>
+<a id='L82' name='L82' /><strong class='reserved'>typedef</strong> <strong class='reserved'>struct</strong> <a href='../R/844.html' title='Multiple refered from 48 places.'>HashSet</a> <em class='brace'>{</em>
+<a id='L83' name='L83' />  <a href='../S/394.html#L44' title='Defined at 44 in src/utility/internal_hash.h.'>HashKeyType</a>* <a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>;
+<a id='L84' name='L84' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/1745.html' title='Multiple used in 127 places.'>cap</a>, <a href='../Y/3856.html' title='Multiple used in 168 places.'>num</a>;
+<a id='L85' name='L85' /><em class='brace'>}</em> <a href='../R/844.html' title='Multiple refered from 48 places.'>HashSet</a>;
+<a id='L86' name='L86' />
+<a id='L87' name='L87' /><strong class='reserved'>typedef</strong> <strong class='reserved'>struct</strong> HashSetItrator <em class='brace'>{</em>
+<a id='L88' name='L88' />  <a href='../D/970.html' title='Multiple defined in 2 places.'>HashSet</a> *<a href='../Y/4774.html' title='Multiple used in 124 places.'>set</a>;
+<a id='L89' name='L89' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>;
+<a id='L90' name='L90' /><em class='brace'>}</em> <a href='../R/845.html' title='Multiple refered from 14 places.'>HashSetIterator</a>;
+<a id='L91' name='L91' />
+<a id='L92' name='L92' /><a href='../D/970.html' title='Multiple defined in 2 places.'>HashSet</a> *<a href='../S/393.html#L220' title='Defined at 220 in src/utility/internal_hash.c.'>hashset_make</a>(<strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/2812.html' title='Multiple used in 32 places.'>init_size</a>);
+<a id='L93' name='L93' /><strong class='reserved'>void</strong> <a href='../S/393.html#L212' title='Defined at 212 in src/utility/internal_hash.c.'>hashset_init</a>(<a href='../D/970.html' title='Multiple defined in 2 places.'>HashSet</a> *<a href='../Y/4774.html' title='Multiple used in 124 places.'>set</a>, <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/2812.html' title='Multiple used in 32 places.'>init_size</a>);
+<a id='L94' name='L94' /><strong class='reserved'>int</strong> <a href='../S/393.html#L238' title='Defined at 238 in src/utility/internal_hash.c.'>hashset_contains</a>(<a href='../D/970.html' title='Multiple defined in 2 places.'>HashSet</a> *<a href='../Y/4774.html' title='Multiple used in 124 places.'>set</a>, <a href='../S/394.html#L44' title='Defined at 44 in src/utility/internal_hash.h.'>HashKeyType</a> <a href='../Y/3140.html' title='Multiple used in 327 places.'>key</a>);
+<a id='L95' name='L95' /><strong class='reserved'>void</strong> <a href='../S/393.html#L268' title='Defined at 268 in src/utility/internal_hash.c.'>hashset_add</a>(<a href='../D/970.html' title='Multiple defined in 2 places.'>HashSet</a> *<a href='../Y/4774.html' title='Multiple used in 124 places.'>set</a>, <a href='../S/394.html#L44' title='Defined at 44 in src/utility/internal_hash.h.'>HashKeyType</a> <a href='../Y/3140.html' title='Multiple used in 327 places.'>key</a>);
+<a id='L96' name='L96' /><strong class='reserved'>void</strong> <a href='../S/393.html#L282' title='Defined at 282 in src/utility/internal_hash.c.'>hashset_clear</a>(<a href='../D/970.html' title='Multiple defined in 2 places.'>HashSet</a> *<a href='../Y/4774.html' title='Multiple used in 124 places.'>set</a>);
+<a id='L97' name='L97' /><strong class='reserved'>void</strong> <a href='../S/393.html#L286' title='Defined at 286 in src/utility/internal_hash.c.'>hashset_delete</a>(<a href='../D/970.html' title='Multiple defined in 2 places.'>HashSet</a> *<a href='../Y/4774.html' title='Multiple used in 124 places.'>set</a>, <a href='../S/394.html#L44' title='Defined at 44 in src/utility/internal_hash.h.'>HashKeyType</a> <a href='../Y/3140.html' title='Multiple used in 327 places.'>key</a>);
+<a id='L98' name='L98' /><strong class='reserved'>void</strong> <a href='../S/393.html#L232' title='Defined at 232 in src/utility/internal_hash.c.'>hashset_free</a>(<a href='../D/970.html' title='Multiple defined in 2 places.'>HashSet</a> *<a href='../Y/4774.html' title='Multiple used in 124 places.'>set</a>);
+<a id='L99' name='L99' /><strong class='reserved'>void</strong> <a href='../S/393.html#L227' title='Defined at 227 in src/utility/internal_hash.c.'>hashset_destroy</a>(<a href='../D/970.html' title='Multiple defined in 2 places.'>HashSet</a> *<a href='../Y/4774.html' title='Multiple used in 124 places.'>set</a>);
+<a id='L100' name='L100' /><a href='../S/394.html#L90' title='Defined at 90 in src/utility/internal_hash.h.'>HashSetIterator</a> <a href='../S/393.html#L298' title='Defined at 298 in src/utility/internal_hash.c.'>hashset_iterator</a>(<a href='../D/970.html' title='Multiple defined in 2 places.'>HashSet</a> *<a href='../Y/4774.html' title='Multiple used in 124 places.'>set</a>);
+<a id='L101' name='L101' /><strong class='reserved'>void</strong> <a href='../S/393.html#L308' title='Defined at 308 in src/utility/internal_hash.c.'>hashsetiter_next</a>(<a href='../S/394.html#L90' title='Defined at 90 in src/utility/internal_hash.h.'>HashSetIterator</a> *<a href='../Y/2934.html' title='Multiple used in 113 places.'>it</a>);
+<a id='L102' name='L102' /><em class='sharp'>#define</em> <a href='../R/3506.html' title='Multiple refered from 2 places.'>hashset_num</a>(<a href='../Y/352.html' title='Multiple used in 2 places.'>HT</a>) (<a href='../Y/352.html' title='Multiple used in 2 places.'>HT</a>)-&gt;<a href='../Y/3856.html' title='Multiple used in 168 places.'>num</a>
+<a id='L103' name='L103' />
+<a id='L104' name='L104' /><em class='sharp'>#define</em> <a href='../R/3507.html' title='Multiple refered from 10 places.'>hashsetiter_entry</a>(<a href='../Y/364.html' title='Multiple used in 44 places.'>I</a>) ((<a href='../Y/364.html' title='Multiple used in 44 places.'>I</a>)-&gt;<a href='../Y/4774.html' title='Multiple used in 124 places.'>set</a>-&gt;<a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>[(<a href='../Y/364.html' title='Multiple used in 44 places.'>I</a>)-&gt;<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>])
+<a id='L105' name='L105' /><em class='sharp'>#define</em> <a href='../R/3508.html' title='Multiple refered from 10 places.'>hashsetiter_isend</a>(<a href='../Y/364.html' title='Multiple used in 44 places.'>I</a>) ((<a href='../Y/364.html' title='Multiple used in 44 places.'>I</a>)-&gt;<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> &gt;= (<a href='../Y/364.html' title='Multiple used in 44 places.'>I</a>)-&gt;<a href='../Y/4774.html' title='Multiple used in 124 places.'>set</a>-&gt;<a href='../Y/1745.html' title='Multiple used in 127 places.'>cap</a>)
+<a id='L106' name='L106' />
+<a id='L107' name='L107' /><strong class='reserved'>inline</strong> <strong class='reserved'>static</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../R/3683.html' title='Multiple refered from 2 places.'>internal_hashtbl_space_inner</a>(<a href='../D/2576.html' title='Multiple defined in 2 places.'>SimpleHashtbl</a> *<a href='../Y/2730.html' title='Multiple used in 145 places.'>ht</a>)
+<a id='L108' name='L108' /><em class='brace'>{</em>
+<a id='L109' name='L109' />  <strong class='reserved'>return</strong> (<strong class='reserved'>sizeof</strong>(<strong class='reserved'>struct</strong> <a href='../D/967.html' title='Multiple defined in 2 places.'>HashEntry</a>) * <a href='../Y/2730.html' title='Multiple used in 145 places.'>ht</a>-&gt;<a href='../Y/1745.html' title='Multiple used in 127 places.'>cap</a>);
+<a id='L110' name='L110' /><em class='brace'>}</em>
+<a id='L111' name='L111' />
+<a id='L112' name='L112' /><strong class='reserved'>inline</strong> <strong class='reserved'>static</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../S/357.html#L296' title='Refered from 296 in src/membrane.c.'>internal_hashtbl_space</a>(<a href='../D/2576.html' title='Multiple defined in 2 places.'>SimpleHashtbl</a> *<a href='../Y/2730.html' title='Multiple used in 145 places.'>ht</a>)
+<a id='L113' name='L113' /><em class='brace'>{</em>
+<a id='L114' name='L114' />  <strong class='reserved'>return</strong> <strong class='reserved'>sizeof</strong>(<strong class='reserved'>struct</strong> <a href='../D/2576.html' title='Multiple defined in 2 places.'>SimpleHashtbl</a>) + <a href='../S/394.html#L107' title='Defined at 107 in src/utility/internal_hash.h.'>internal_hashtbl_space_inner</a>(<a href='../Y/2730.html' title='Multiple used in 145 places.'>ht</a>);
+<a id='L115' name='L115' /><em class='brace'>}</em>
+<a id='L116' name='L116' />
+<a id='L117' name='L117' /><em class='sharp'>#endif</em> <em class='comment'>/*INTERNAL_HASH_H*/</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;]<a href='#L107'>[^]</a><a href='#L112'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

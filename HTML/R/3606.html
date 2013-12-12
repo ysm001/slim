@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>inflate_huft</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/701.html#L150'>inflate_huft</a>      150 third_party/zdelta-2.1/infblock.c        (inflate_huft *)ZALLOC(z, sizeof(inflate_huft), MANY)) == ZD_NULL)</span>
+<span class='curline'><a href='../S/701.html#L205'>inflate_huft</a>      205 third_party/zdelta-2.1/infblock.c 	inflate_huft *tl, *td, *tw;</span>
+<span class='curline'><a href='../S/701.html#L327'>inflate_huft</a>      327 third_party/zdelta-2.1/infblock.c       inflate_huft *h;</span>
+<span class='curline'><a href='../S/701.html#L377'>inflate_huft</a>      377 third_party/zdelta-2.1/infblock.c       inflate_huft *tl, *td, *tzd;</span>
+<span class='curline'><a href='../S/703.html#L62'>inflate_huft</a>       62 third_party/zdelta-2.1/infcodes.c       inflate_huft *tree;       /* pointer into tree */</span>
+<span class='curline'><a href='../S/703.html#L76'>inflate_huft</a>       76 third_party/zdelta-2.1/infcodes.c   inflate_huft *ltree;          /* literal/length/eob tree */</span>
+<span class='curline'><a href='../S/703.html#L77'>inflate_huft</a>       77 third_party/zdelta-2.1/infcodes.c   inflate_huft *dtree;          /* distance tree */</span>
+<span class='curline'><a href='../S/703.html#L78'>inflate_huft</a>       78 third_party/zdelta-2.1/infcodes.c   inflate_huft *zdtree;         /* zdelta code tree */</span>
+<span class='curline'><a href='../S/703.html#L89'>inflate_huft</a>       89 third_party/zdelta-2.1/infcodes.c      inflate_huft *tl;</span>
+<span class='curline'><a href='../S/703.html#L90'>inflate_huft</a>       90 third_party/zdelta-2.1/infcodes.c      inflate_huft *td; </span>
+<span class='curline'><a href='../S/703.html#L91'>inflate_huft</a>       91 third_party/zdelta-2.1/infcodes.c      inflate_huft *tzd; /* need separate declaration for Borland C++ */</span>
+<span class='curline'><a href='../S/703.html#L120'>inflate_huft</a>      120 third_party/zdelta-2.1/infcodes.c   inflate_huft *t;      /* temporary pointer */</span>
+<span class='curline'><a href='../S/704.html#L30'>inflate_huft</a>       30 third_party/zdelta-2.1/infcodes.h     inflate_huft *, inflate_huft *, inflate_huft *,</span>
+<span class='curline'><a href='../S/705.html#L46'>inflate_huft</a>       46 third_party/zdelta-2.1/inffast.c inflate_huft *tl;</span>
+<span class='curline'><a href='../S/705.html#L47'>inflate_huft</a>       47 third_party/zdelta-2.1/inffast.c inflate_huft *td;</span>
+<span class='curline'><a href='../S/705.html#L48'>inflate_huft</a>       48 third_party/zdelta-2.1/inffast.c inflate_huft *tzd; /* need separate declaration for Borland C++ */</span>
+<span class='curline'><a href='../S/705.html#L52'>inflate_huft</a>       52 third_party/zdelta-2.1/inffast.c   inflate_huft *t;      /* temporary pointer */</span>
+<span class='curline'><a href='../S/706.html#L29'>inflate_huft</a>       29 third_party/zdelta-2.1/inffast.h     inflate_huft *,</span>
+<span class='curline'><a href='../S/706.html#L30'>inflate_huft</a>       30 third_party/zdelta-2.1/inffast.h     inflate_huft *,</span>
+<span class='curline'><a href='../S/706.html#L31'>inflate_huft</a>       31 third_party/zdelta-2.1/inffast.h     inflate_huft *,</span>
+<span class='curline'><a href='../S/707.html#L12'>inflate_huft</a>       12 third_party/zdelta-2.1/inffixed.h local inflate_huft fixed_tl[] = {</span>
+<span class='curline'><a href='../S/707.html#L142'>inflate_huft</a>      142 third_party/zdelta-2.1/inffixed.h local inflate_huft fixed_td[] = {</span>
+<span class='curline'><a href='../S/707.html#L274'>inflate_huft</a>      274 third_party/zdelta-2.1/inffixed.h local inflate_huft fixed_tzd[] = {</span>
+<span class='curline'><a href='../S/707.html#L282'>inflate_huft</a>      282 third_party/zdelta-2.1/inffixed.h local inflate_huft fixed_tzd[] = {</span>
+<span class='curline'><a href='../S/709.html#L47'>inflate_huft</a>       47 third_party/zdelta-2.1/inftrees.c     inflate_huft * FAR*,/* result: starting table */</span>
+<span class='curline'><a href='../S/709.html#L49'>inflate_huft</a>       49 third_party/zdelta-2.1/inftrees.c     inflate_huft *,     /* space for trees */</span>
+<span class='curline'><a href='../S/709.html#L150'>inflate_huft</a>      150 third_party/zdelta-2.1/inftrees.c inflate_huft * FAR *t;  /* result: starting table */</span>
+<span class='curline'><a href='../S/709.html#L152'>inflate_huft</a>      152 third_party/zdelta-2.1/inftrees.c inflate_huft *hp;       /* space for trees */</span>
+<span class='curline'><a href='../S/709.html#L173'>inflate_huft</a>      173 third_party/zdelta-2.1/inftrees.c   inflate_huft *q;              /* points to current table */</span>
+<span class='curline'><a href='../S/709.html#L175'>inflate_huft</a>      175 third_party/zdelta-2.1/inftrees.c    inflate_huft *u[BMAX];        /* table stack */</span>
+<span class='curline'><a href='../S/709.html#L195'>inflate_huft</a>      195 third_party/zdelta-2.1/inftrees.c     *t = (inflate_huft *)ZD_NULL;</span>
+<span class='curline'><a href='../S/709.html#L249'>inflate_huft</a>      249 third_party/zdelta-2.1/inftrees.c   u[0] = (inflate_huft *)ZD_NULL;        /* just to keep compilers happy */</span>
+<span class='curline'><a href='../S/709.html#L250'>inflate_huft</a>      250 third_party/zdelta-2.1/inftrees.c   q = (inflate_huft *)ZD_NULL;   /* ditto */</span>
+<span class='curline'><a href='../S/709.html#L348'>inflate_huft</a>      348 third_party/zdelta-2.1/inftrees.c inflate_huft * FAR *tb; /* bits tree result */</span>
+<span class='curline'><a href='../S/709.html#L349'>inflate_huft</a>      349 third_party/zdelta-2.1/inftrees.c inflate_huft *hp;       /* space for trees */</span>
+<span class='curline'><a href='../S/709.html#L379'>inflate_huft</a>      379 third_party/zdelta-2.1/inftrees.c local inflate_huft fixed_mem[FIXEDH];</span>
+<span class='curline'><a href='../S/709.html#L384'>inflate_huft</a>      384 third_party/zdelta-2.1/inftrees.c local inflate_huft *fixed_tl;</span>
+<span class='curline'><a href='../S/709.html#L385'>inflate_huft</a>      385 third_party/zdelta-2.1/inftrees.c local inflate_huft *fixed_td;</span>
+<span class='curline'><a href='../S/709.html#L386'>inflate_huft</a>      386 third_party/zdelta-2.1/inftrees.c local inflate_huft *fixed_tzd;</span>
+<span class='curline'><a href='../S/709.html#L401'>inflate_huft</a>      401 third_party/zdelta-2.1/inftrees.c inflate_huft * FAR *tl;  /* literal/length tree result           */</span>
+<span class='curline'><a href='../S/709.html#L402'>inflate_huft</a>      402 third_party/zdelta-2.1/inftrees.c inflate_huft * FAR *td;  /* distance tree result                 */</span>
+<span class='curline'><a href='../S/709.html#L403'>inflate_huft</a>      403 third_party/zdelta-2.1/inftrees.c inflate_huft * FAR *tzd; /* zdelta code tree result              */</span>
+<span class='curline'><a href='../S/709.html#L509'>inflate_huft</a>      509 third_party/zdelta-2.1/inftrees.c inflate_huft * FAR *tl; /* literal/length tree result */</span>
+<span class='curline'><a href='../S/709.html#L510'>inflate_huft</a>      510 third_party/zdelta-2.1/inftrees.c inflate_huft * FAR *td; /* distance tree result */</span>
+<span class='curline'><a href='../S/709.html#L511'>inflate_huft</a>      511 third_party/zdelta-2.1/inftrees.c inflate_huft * FAR *tzd;/* zdelta flags tree result */</span>
+<span class='curline'><a href='../S/709.html#L512'>inflate_huft</a>      512 third_party/zdelta-2.1/inftrees.c inflate_huft *hp;       /* space for trees */</span>
+<span class='curline'><a href='../S/710.html#L27'>inflate_huft</a>       27 third_party/zdelta-2.1/inftrees.h typedef struct inflate_huft_s FAR inflate_huft;</span>
+<span class='curline'><a href='../S/710.html#L65'>inflate_huft</a>       65 third_party/zdelta-2.1/inftrees.h     inflate_huft * FAR *,       /* bits tree result                      */</span>
+<span class='curline'><a href='../S/710.html#L66'>inflate_huft</a>       66 third_party/zdelta-2.1/inftrees.h     inflate_huft *,             /* space for trees                       */</span>
+<span class='curline'><a href='../S/710.html#L77'>inflate_huft</a>       77 third_party/zdelta-2.1/inftrees.h     inflate_huft * FAR *,       /* literal/length tree result            */</span>
+<span class='curline'><a href='../S/710.html#L78'>inflate_huft</a>       78 third_party/zdelta-2.1/inftrees.h     inflate_huft * FAR *,       /* distance tree result                  */</span>
+<span class='curline'><a href='../S/710.html#L79'>inflate_huft</a>       79 third_party/zdelta-2.1/inftrees.h     inflate_huft * FAR *,       /* zdelta codes tree result              */</span>
+<span class='curline'><a href='../S/710.html#L80'>inflate_huft</a>       80 third_party/zdelta-2.1/inftrees.h     inflate_huft *,             /* space for trees                       */</span>
+<span class='curline'><a href='../S/710.html#L87'>inflate_huft</a>       87 third_party/zdelta-2.1/inftrees.h     inflate_huft * FAR *,       /* literal/length tree result            */</span>
+<span class='curline'><a href='../S/710.html#L88'>inflate_huft</a>       88 third_party/zdelta-2.1/inftrees.h     inflate_huft * FAR *,       /* distance tree result                  */</span>
+<span class='curline'><a href='../S/710.html#L89'>inflate_huft</a>       89 third_party/zdelta-2.1/inftrees.h     inflate_huft * FAR *,       /* zdekt flags tree result               */</span>
+<span class='curline'><a href='../S/712.html#L54'>inflate_huft</a>       54 third_party/zdelta-2.1/infutil.h       inflate_huft *tb;         /* bit length decoding tree */</span>
+<span class='curline'><a href='../S/712.html#L66'>inflate_huft</a>       66 third_party/zdelta-2.1/infutil.h   inflate_huft *hufts;  /* single malloc for tree space */</span>
+<span class='curline'><a href='../S/716.html#L28'>inflate_huft</a>       28 third_party/zdelta-2.1/maketree.c void maketree(uInt b, inflate_huft *t)</span>
+<span class='curline'><a href='../S/716.html#L56'>inflate_huft</a>       56 third_party/zdelta-2.1/maketree.c   inflate_huft *tl, *td, *tzd;</span>
+</pre>
+</body>
+</html>

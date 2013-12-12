@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>clone_pid</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/526.html#L248'>clone_pid</a>         248 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc   pid_t              clone_pid  = sys_gettid(), ppid = sys_getppid();</span>
+<span class='curline'><a href='../S/526.html#L392'>clone_pid</a>         392 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc             if (pid &amp;&amp; pid != clone_pid) {</span>
+<span class='curline'><a href='../S/526.html#L536'>clone_pid</a>         536 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc   pid_t                  clone_pid;</span>
+<span class='curline'><a href='../S/526.html#L601'>clone_pid</a>         601 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc     clone_pid = local_clone((int (*)(void *))ListerThread, &amp;args);</span>
+<span class='curline'><a href='../S/526.html#L606'>clone_pid</a>         606 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc     if (clone_pid &gt;= 0) {</span>
+<span class='curline'><a href='../S/526.html#L608'>clone_pid</a>         608 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc       while ((rc = sys0_waitpid(clone_pid, &amp;status, __WALL)) &lt; 0 &amp;&amp;</span>
+</pre>
+</body>
+</html>

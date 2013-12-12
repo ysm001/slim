@@ -1,0 +1,616 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>BOOL</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/311.html#L205'>BOOL</a>              205 src/atom.h     static inline BOOL lmn_eq_func(LmnAtom atom0, LmnLinkAttr attr0,</span>
+<span class='curline'><a href='../S/311.html#L207'>BOOL</a>              207 src/atom.h     static inline BOOL lmn_data_atom_is_ground(LmnAtom atom, LmnLinkAttr attr);</span>
+<span class='curline'><a href='../S/311.html#L208'>BOOL</a>              208 src/atom.h     static inline BOOL lmn_data_atom_eq(LmnAtom atom1, LmnLinkAttr attr1,</span>
+<span class='curline'><a href='../S/311.html#L350'>BOOL</a>              350 src/atom.h     static inline BOOL lmn_eq_func(LmnAtom     atom0, LmnLinkAttr attr0,</span>
+<span class='curline'><a href='../S/311.html#L368'>BOOL</a>              368 src/atom.h     static inline BOOL lmn_data_atom_is_ground(LmnAtom atom, LmnLinkAttr attr) {</span>
+<span class='curline'><a href='../S/311.html#L381'>BOOL</a>              381 src/atom.h     static inline BOOL lmn_data_atom_eq(LmnAtom atom1, LmnLinkAttr attr1,</span>
+<span class='curline'><a href='../S/317.html#L59'>BOOL</a>               59 src/dumper.c     BOOL done;</span>
+<span class='curline'><a href='../S/317.html#L87'>BOOL</a>               87 src/dumper.c   static BOOL dump_atom(LmnPort port,</span>
+<span class='curline'><a href='../S/317.html#L99'>BOOL</a>               99 src/dumper.c   static BOOL lmn_dump_mem_internal(LmnPort port,</span>
+<span class='curline'><a href='../S/317.html#L104'>BOOL</a>              104 src/dumper.c   static BOOL dump_atom_args(LmnPort port,</span>
+<span class='curline'><a href='../S/317.html#L146'>BOOL</a>              146 src/dumper.c   static BOOL is_direct_printable(LmnFunctor f)</span>
+<span class='curline'><a href='../S/317.html#L246'>BOOL</a>              246 src/dumper.c   static BOOL dump_data_atom(LmnPort port,</span>
+<span class='curline'><a href='../S/317.html#L287'>BOOL</a>              287 src/dumper.c   static BOOL dump_list(LmnPort port,</span>
+<span class='curline'><a href='../S/317.html#L293'>BOOL</a>              293 src/dumper.c     BOOL first = TRUE;</span>
+<span class='curline'><a href='../S/317.html#L386'>BOOL</a>              386 src/dumper.c   static BOOL dump_proxy(LmnPort port,</span>
+<span class='curline'><a href='../S/317.html#L410'>BOOL</a>              410 src/dumper.c       BOOL dumped = FALSE;</span>
+<span class='curline'><a href='../S/317.html#L432'>BOOL</a>              432 src/dumper.c   static BOOL dump_symbol_atom(LmnPort port,</span>
+<span class='curline'><a href='../S/317.html#L477'>BOOL</a>              477 src/dumper.c   static BOOL dump_atom_args(LmnPort port,</span>
+<span class='curline'><a href='../S/317.html#L502'>BOOL</a>              502 src/dumper.c   static BOOL dump_atom(LmnPort port,</span>
+<span class='curline'><a href='../S/317.html#L531'>BOOL</a>              531 src/dumper.c   static BOOL dump_toplevel_atom(LmnPort port,</span>
+<span class='curline'><a href='../S/317.html#L632'>BOOL</a>              632 src/dumper.c   static BOOL lmn_dump_mem_internal(LmnPort port,</span>
+<span class='curline'><a href='../S/317.html#L661'>BOOL</a>              661 src/dumper.c     BOOL printed;</span>
+<span class='curline'><a href='../S/317.html#L736'>BOOL</a>              736 src/dumper.c       BOOL dumped = FALSE;</span>
+<span class='curline'><a href='../S/322.html#L97'>BOOL</a>               97 src/ext/atomic.c static inline BOOL react_ruleset_AMAP(LmnReactCxt *rc,</span>
+<span class='curline'><a href='../S/322.html#L102'>BOOL</a>              102 src/ext/atomic.c   BOOL ret = FALSE;</span>
+<span class='curline'><a href='../S/322.html#L147'>BOOL</a>              147 src/ext/atomic.c static BOOL react_ruleset_atomic_all(LmnReactCxt *rc,</span>
+<span class='curline'><a href='../S/322.html#L203'>BOOL</a>              203 src/ext/atomic.c static BOOL react_ruleset_atomic_sync(LmnReactCxt *rc,</span>
+<span class='curline'><a href='../S/322.html#L207'>BOOL</a>              207 src/ext/atomic.c   BOOL ret;</span>
+<span class='curline'><a href='../S/322.html#L264'>BOOL</a>              264 src/ext/atomic.c static inline BOOL react_ruleset_atomic_simulation(LmnReactCxt *rc,</span>
+<span class='curline'><a href='../S/322.html#L268'>BOOL</a>              268 src/ext/atomic.c   BOOL ret;</span>
+<span class='curline'><a href='../S/322.html#L292'>BOOL</a>              292 src/ext/atomic.c       BOOL reacted;</span>
+<span class='curline'><a href='../S/322.html#L319'>BOOL</a>              319 src/ext/atomic.c BOOL react_ruleset_atomic(LmnReactCxt *rc,</span>
+<span class='curline'><a href='../S/322.html#L323'>BOOL</a>              323 src/ext/atomic.c   BOOL result = FALSE;</span>
+<span class='curline'><a href='../S/324.html#L54'>BOOL</a>               54 src/ext/initial_ruleset.c BOOL register_initial_rulesets(LmnReactCxt *rc, LmnMembrane *mem, LmnRule rule)</span>
+<span class='curline'><a href='../S/324.html#L57'>BOOL</a>               57 src/ext/initial_ruleset.c   BOOL ok = FALSE;</span>
+<span class='curline'><a href='../S/324.html#L92'>BOOL</a>               92 src/ext/initial_ruleset.c BOOL register_initial_module(LmnReactCxt *rc, LmnMembrane *mem, LmnRule rule)</span>
+<span class='curline'><a href='../S/330.html#L48'>BOOL</a>               48 src/functor.c    BOOL special;</span>
+<span class='curline'><a href='../S/330.html#L85'>BOOL</a>               85 src/functor.c  static LmnFunctor functor_intern(BOOL special,</span>
+<span class='curline'><a href='../S/330.html#L90'>BOOL</a>               90 src/functor.c                               BOOL special,</span>
+<span class='curline'><a href='../S/330.html#L187'>BOOL</a>              187 src/functor.c                               BOOL special,</span>
+<span class='curline'><a href='../S/330.html#L205'>BOOL</a>              205 src/functor.c  static LmnFunctor functor_intern(BOOL special,</span>
+<span class='curline'><a href='../S/331.html#L51'>BOOL</a>               51 src/functor.h    BOOL special;</span>
+<span class='curline'><a href='../S/334.html#L473'>BOOL</a>              473 src/hyperlink.c BOOL lmn_hyperlink_eq_hl(HyperLink *hl1, HyperLink *hl2)</span>
+<span class='curline'><a href='../S/334.html#L481'>BOOL</a>              481 src/hyperlink.c BOOL lmn_hyperlink_eq(LmnSAtom atom1, LmnLinkAttr attr1, LmnSAtom atom2, LmnLinkAttr attr2)</span>
+<span class='curline'><a href='../S/334.html#L492'>BOOL</a>              492 src/hyperlink.c BOOL hyperlink_print(LmnMembrane *mem, BOOL *flag, int *group, int *element)</span>
+<span class='curline'><a href='../S/334.html#L500'>BOOL</a>              500 src/hyperlink.c   BOOL result;</span>
+<span class='curline'><a href='../S/334.html#L545'>BOOL</a>              545 src/hyperlink.c         BOOL comma;</span>
+<span class='curline'><a href='../S/334.html#L608'>BOOL</a>              608 src/hyperlink.c   BOOL flag;</span>
+<span class='curline'><a href='../S/334.html#L861'>BOOL</a>              861 src/hyperlink.c BOOL lmn_sameproccxt_from_clone(SameProcCxt *spc, int n)</span>
+<span class='curline'><a href='../S/334.html#L929'>BOOL</a>              929 src/hyperlink.c BOOL lmn_sameproccxt_all_pc_check_original(SameProcCxt *spc, LmnSAtom atom, int atom_arity)</span>
+<span class='curline'><a href='../S/334.html#L932'>BOOL</a>              932 src/hyperlink.c   BOOL all_pc_check;</span>
+<span class='curline'><a href='../S/334.html#L979'>BOOL</a>              979 src/hyperlink.c BOOL lmn_sameproccxt_all_pc_check_clone(SameProcCxt *spc, LmnSAtom atom, int atom_arity)</span>
+<span class='curline'><a href='../S/334.html#L982'>BOOL</a>              982 src/hyperlink.c   BOOL all_pc_check;</span>
+<span class='curline'><a href='../S/335.html#L101'>BOOL</a>              101 src/hyperlink.h BOOL lmn_hyperlink_eq_hl(HyperLink *hl1, HyperLink *hl2);</span>
+<span class='curline'><a href='../S/335.html#L102'>BOOL</a>              102 src/hyperlink.h BOOL lmn_hyperlink_eq(LmnSAtom atom1, LmnLinkAttr attr1, LmnSAtom atom2, LmnLinkAttr attr2);</span>
+<span class='curline'><a href='../S/335.html#L145'>BOOL</a>              145 src/hyperlink.h BOOL lmn_sameproccxt_from_clone(SameProcCxt *spc, int n);</span>
+<span class='curline'><a href='../S/335.html#L147'>BOOL</a>              147 src/hyperlink.h BOOL lmn_sameproccxt_all_pc_check_original(SameProcCxt *spc, LmnSAtom atom, int atom_arity);</span>
+<span class='curline'><a href='../S/335.html#L148'>BOOL</a>              148 src/hyperlink.h BOOL lmn_sameproccxt_all_pc_check_clone(SameProcCxt *spc, LmnSAtom atom, int atom_arity);</span>
+<span class='curline'><a href='../S/344.html#L16'>BOOL</a>               16 src/interpret_generated.c BOOL interpret_generated(LmnReactCxt *rc,</span>
+<span class='curline'><a href='../S/344.html#L523'>BOOL</a>              523 src/interpret_generated.c     BOOL b;</span>
+<span class='curline'><a href='../S/344.html#L680'>BOOL</a>              680 src/interpret_generated.c     BOOL same = lmn_mem_cmp_ground(srcvec, dstvec);</span>
+<span class='curline'><a href='../S/344.html#L695'>BOOL</a>              695 src/interpret_generated.c     BOOL same = lmn_mem_cmp_ground(srcvec, dstvec);</span>
+<span class='curline'><a href='../S/345.html#L205'>BOOL</a>              205 src/jni_lmntal.c static BOOL jni_initialize_lmntal()</span>
+<span class='curline'><a href='../S/345.html#L313'>BOOL</a>              313 src/jni_lmntal.c static BOOL jni_lmntal_compile(char **result, const char *code)</span>
+<span class='curline'><a href='../S/345.html#L397'>BOOL</a>              397 src/jni_lmntal.c   BOOL is_processing = TRUE;</span>
+<span class='curline'><a href='../S/347.html#L61'>BOOL</a>               61 src/lmntal.h   #ifndef BOOL</span>
+<span class='curline'><a href='../S/347.html#L244'>BOOL</a>              244 src/lmntal.h     BOOL trace;</span>
+<span class='curline'><a href='../S/347.html#L245'>BOOL</a>              245 src/lmntal.h     BOOL show_proxy;</span>
+<span class='curline'><a href='../S/347.html#L246'>BOOL</a>              246 src/lmntal.h     BOOL show_ruleset;</span>
+<span class='curline'><a href='../S/347.html#L247'>BOOL</a>              247 src/lmntal.h     BOOL show_chr;</span>
+<span class='curline'><a href='../S/347.html#L249'>BOOL</a>              249 src/lmntal.h     BOOL nd;</span>
+<span class='curline'><a href='../S/347.html#L250'>BOOL</a>              250 src/lmntal.h     BOOL ltl;</span>
+<span class='curline'><a href='../S/347.html#L251'>BOOL</a>              251 src/lmntal.h     BOOL ltl_all;</span>
+<span class='curline'><a href='../S/347.html#L252'>BOOL</a>              252 src/lmntal.h     BOOL show_transition;</span>
+<span class='curline'><a href='../S/347.html#L254'>BOOL</a>              254 src/lmntal.h     BOOL enable_por;          /* to enable partial order reduction for nondeterministic execution or LTL model checking */</span>
+<span class='curline'><a href='../S/347.html#L255'>BOOL</a>              255 src/lmntal.h     BOOL enable_por_old;</span>
+<span class='curline'><a href='../S/347.html#L259'>BOOL</a>              259 src/lmntal.h     BOOL translate;</span>
+<span class='curline'><a href='../S/347.html#L260'>BOOL</a>              260 src/lmntal.h     BOOL bfs;</span>
+<span class='curline'><a href='../S/347.html#L261'>BOOL</a>              261 src/lmntal.h     BOOL mem_enc;</span>
+<span class='curline'><a href='../S/347.html#L262'>BOOL</a>              262 src/lmntal.h     BOOL enable_compress_mem;</span>
+<span class='curline'><a href='../S/347.html#L268'>BOOL</a>              268 src/lmntal.h     BOOL delta_mem;</span>
+<span class='curline'><a href='../S/347.html#L269'>BOOL</a>              269 src/lmntal.h     BOOL z_compress;</span>
+<span class='curline'><a href='../S/347.html#L270'>BOOL</a>              270 src/lmntal.h     BOOL d_compress;</span>
+<span class='curline'><a href='../S/347.html#L271'>BOOL</a>              271 src/lmntal.h     BOOL r_compress;</span>
+<span class='curline'><a href='../S/347.html#L273'>BOOL</a>              273 src/lmntal.h     BOOL prop_scc_driven;</span>
+<span class='curline'><a href='../S/347.html#L274'>BOOL</a>              274 src/lmntal.h     BOOL property_dump;</span>
+<span class='curline'><a href='../S/347.html#L275'>BOOL</a>              275 src/lmntal.h     BOOL enable_parallel;</span>
+<span class='curline'><a href='../S/347.html#L276'>BOOL</a>              276 src/lmntal.h     BOOL optimize_loadbalancing;</span>
+<span class='curline'><a href='../S/347.html#L278'>BOOL</a>              278 src/lmntal.h     BOOL optimize_lock;</span>
+<span class='curline'><a href='../S/347.html#L279'>BOOL</a>              279 src/lmntal.h     BOOL optimize_hash;</span>
+<span class='curline'><a href='../S/347.html#L280'>BOOL</a>              280 src/lmntal.h     BOOL dump;</span>
+<span class='curline'><a href='../S/347.html#L281'>BOOL</a>              281 src/lmntal.h     BOOL end_dump;</span>
+<span class='curline'><a href='../S/347.html#L283'>BOOL</a>              283 src/lmntal.h     BOOL enable_owcty;</span>
+<span class='curline'><a href='../S/347.html#L284'>BOOL</a>              284 src/lmntal.h     BOOL enable_map;</span>
+<span class='curline'><a href='../S/347.html#L285'>BOOL</a>              285 src/lmntal.h     BOOL enable_map_heuristic;</span>
+<span class='curline'><a href='../S/347.html#L286'>BOOL</a>              286 src/lmntal.h     BOOL enable_bledge;</span>
+<span class='curline'><a href='../S/347.html#L288'>BOOL</a>              288 src/lmntal.h     BOOL show_reduced_graph;</span>
+<span class='curline'><a href='../S/347.html#L289'>BOOL</a>              289 src/lmntal.h     BOOL bfs_layer_sync;</span>
+<span class='curline'><a href='../S/347.html#L290'>BOOL</a>              290 src/lmntal.h     BOOL interactive;</span>
+<span class='curline'><a href='../S/347.html#L291'>BOOL</a>              291 src/lmntal.h     BOOL normal_remain;</span>
+<span class='curline'><a href='../S/347.html#L293'>BOOL</a>              293 src/lmntal.h     BOOL normal_remaining;</span>
+<span class='curline'><a href='../S/347.html#L294'>BOOL</a>              294 src/lmntal.h     BOOL normal_cleaning;</span>
+<span class='curline'><a href='../S/347.html#L295'>BOOL</a>              295 src/lmntal.h     BOOL nd_remain;</span>
+<span class='curline'><a href='../S/347.html#L296'>BOOL</a>              296 src/lmntal.h     BOOL nd_remaining;</span>
+<span class='curline'><a href='../S/347.html#L298'>BOOL</a>              298 src/lmntal.h     BOOL nd_cleaning;</span>
+<span class='curline'><a href='../S/347.html#L299'>BOOL</a>              299 src/lmntal.h     BOOL nd_search_end;</span>
+<span class='curline'><a href='../S/347.html#L300'>BOOL</a>              300 src/lmntal.h     BOOL hyperlink;</span>
+<span class='curline'><a href='../S/347.html#L301'>BOOL</a>              301 src/lmntal.h     BOOL show_hyperlink;</span>
+<span class='curline'><a href='../S/347.html#L303'>BOOL</a>              303 src/lmntal.h     BOOL benchmark;</span>
+<span class='curline'><a href='../S/347.html#L306'>BOOL</a>              306 src/lmntal.h     BOOL optimize_hash_old;</span>
+<span class='curline'><a href='../S/347.html#L307'>BOOL</a>              307 src/lmntal.h     BOOL prof_no_memeq;</span>
+<span class='curline'><a href='../S/347.html#L311'>BOOL</a>              311 src/lmntal.h     BOOL debug_isomor;</span>
+<span class='curline'><a href='../S/347.html#L312'>BOOL</a>              312 src/lmntal.h     BOOL debug_delta;</span>
+<span class='curline'><a href='../S/347.html#L313'>BOOL</a>              313 src/lmntal.h     BOOL debug_id;</span>
+<span class='curline'><a href='../S/347.html#L314'>BOOL</a>              314 src/lmntal.h     BOOL debug_hash;</span>
+<span class='curline'><a href='../S/347.html#L315'>BOOL</a>              315 src/lmntal.h     BOOL debug_mc;</span>
+<span class='curline'><a href='../S/347.html#L316'>BOOL</a>              316 src/lmntal.h     BOOL debug_por;</span>
+<span class='curline'><a href='../S/347.html#L317'>BOOL</a>              317 src/lmntal.h     BOOL debug_por_dep;</span>
+<span class='curline'><a href='../S/357.html#L59'>BOOL</a>               59 src/membrane.c                                    BOOL        hl_nd);</span>
+<span class='curline'><a href='../S/357.html#L806'>BOOL</a>              806 src/membrane.c                                          BOOL        hl_nd)</span>
+<span class='curline'><a href='../S/357.html#L844'>BOOL</a>              844 src/membrane.c                                         BOOL        hl_nd)</span>
+<span class='curline'><a href='../S/357.html#L861'>BOOL</a>              861 src/membrane.c                                   BOOL         hl_nd)</span>
+<span class='curline'><a href='../S/357.html#L1085'>BOOL</a>             1085 src/membrane.c BOOL lmn_mem_cmp_ground(const Vector *srcvec, const Vector *dstvec)</span>
+<span class='curline'><a href='../S/357.html#L1088'>BOOL</a>             1088 src/membrane.c   BOOL ret_flag = TRUE;</span>
+<span class='curline'><a href='../S/357.html#L1119'>BOOL</a>             1119 src/membrane.c     BOOL contains1, contains2;</span>
+<span class='curline'><a href='../S/357.html#L1222'>BOOL</a>             1222 src/membrane.c BOOL lmn_mem_is_ground(Vector *srcvec, Vector *avovec, unsigned long *natoms)</span>
+<span class='curline'><a href='../S/357.html#L1225'>BOOL</a>             1225 src/membrane.c   BOOL b;</span>
+<span class='curline'><a href='../S/357.html#L1248'>BOOL</a>             1248 src/membrane.c BOOL ground_atoms(Vector        *srcvec,</span>
+<span class='curline'><a href='../S/357.html#L1258'>BOOL</a>             1258 src/membrane.c   BOOL result;</span>
+<span class='curline'><a href='../S/357.html#L1305'>BOOL</a>             1305 src/membrane.c         BOOL continue_flag = FALSE;</span>
+<span class='curline'><a href='../S/357.html#L1363'>BOOL</a>             1363 src/membrane.c BOOL ground_atoms_old(Vector *srcvec,</span>
+<span class='curline'><a href='../S/357.html#L1376'>BOOL</a>             1376 src/membrane.c   BOOL ok;</span>
+<span class='curline'><a href='../S/357.html#L1573'>BOOL</a>             1573 src/membrane.c static BOOL mem_equals_rec(LmnMembrane *mem1, TraceLog  log1,</span>
+<span class='curline'><a href='../S/357.html#L1579'>BOOL</a>             1579 src/membrane.c BOOL lmn_mem_equals(LmnMembrane *mem1, LmnMembrane *mem2)</span>
+<span class='curline'><a href='../S/357.html#L1581'>BOOL</a>             1581 src/membrane.c   BOOL t;</span>
+<span class='curline'><a href='../S/357.html#L1614'>BOOL</a>             1614 src/membrane.c static BOOL mem_equals_atomlists(LmnMembrane *mem1, LmnMembrane *mem2);</span>
+<span class='curline'><a href='../S/357.html#L1615'>BOOL</a>             1615 src/membrane.c static BOOL mem_equals_isomorphism(LmnMembrane *mem1, TraceLog log1,</span>
+<span class='curline'><a href='../S/357.html#L1622'>BOOL</a>             1622 src/membrane.c static BOOL mem_equals_rec(LmnMembrane *mem1, TraceLog  log1,</span>
+<span class='curline'><a href='../S/357.html#L1686'>BOOL</a>             1686 src/membrane.c static BOOL mem_equals_atomlists(LmnMembrane *mem1, LmnMembrane *mem2)</span>
+<span class='curline'><a href='../S/357.html#L1721'>BOOL</a>             1721 src/membrane.c static inline BOOL mem_equals_molecules(LmnMembrane *mem1, LmnMembrane *mem2, int current_depth);</span>
+<span class='curline'><a href='../S/357.html#L1722'>BOOL</a>             1722 src/membrane.c static inline BOOL mem_equals_children(LmnMembrane *mem1, LmnMembrane *mem2, int current_depth);</span>
+<span class='curline'><a href='../S/357.html#L1728'>BOOL</a>             1728 src/membrane.c static BOOL mem_isomor_mols(LmnMembrane *mem1, TraceLog  log1,</span>
+<span class='curline'><a href='../S/357.html#L1734'>BOOL</a>             1734 src/membrane.c static BOOL mem_equals_isomorphism(LmnMembrane *mem1, TraceLog  log1,</span>
+<span class='curline'><a href='../S/357.html#L1738'>BOOL</a>             1738 src/membrane.c   BOOL ret;</span>
+<span class='curline'><a href='../S/357.html#L1767'>BOOL</a>             1767 src/membrane.c static inline BOOL memIsomorIter_is_root_atom(LmnSAtom atom)</span>
+<span class='curline'><a href='../S/357.html#L1788'>BOOL</a>             1788 src/membrane.c   BOOL changed_lists;</span>
+<span class='curline'><a href='../S/357.html#L1811'>BOOL</a>             1811 src/membrane.c       BOOL cur_is_tail;</span>
+<span class='curline'><a href='../S/357.html#L1887'>BOOL</a>             1887 src/membrane.c static inline BOOL mem_isomor_mol_atoms(LmnMembrane *mem1, TraceLog  log1,</span>
+<span class='curline'><a href='../S/357.html#L1890'>BOOL</a>             1890 src/membrane.c static inline BOOL mem_isomor_mol_mems(LmnMembrane *mem1, TraceLog  log1,</span>
+<span class='curline'><a href='../S/357.html#L1897'>BOOL</a>             1897 src/membrane.c static BOOL mem_isomor_mols(LmnMembrane *mem1, TraceLog  log1,</span>
+<span class='curline'><a href='../S/357.html#L1944'>BOOL</a>             1944 src/membrane.c static inline BOOL mem_isomor_mol_atoms(LmnMembrane *mem1, TraceLog  log1,</span>
+<span class='curline'><a href='../S/357.html#L1999'>BOOL</a>             1999 src/membrane.c static inline BOOL mem_isomor_mol_mems(LmnMembrane *mem1, TraceLog  log1,</span>
+<span class='curline'><a href='../S/357.html#L2027'>BOOL</a>             2027 src/membrane.c static inline BOOL mem_isomor_trace_proxies(LmnAtom cur1, LmnMembrane *mem1, TraceLog log1,</span>
+<span class='curline'><a href='../S/357.html#L2057'>BOOL</a>             2057 src/membrane.c static inline BOOL mem_isomor_trace_proxies(LmnAtom cur1, LmnMembrane *mem1, TraceLog log1,</span>
+<span class='curline'><a href='../S/357.html#L2138'>BOOL</a>             2138 src/membrane.c       BOOL ret = TRUE;</span>
+<span class='curline'><a href='../S/357.html#L2152'>BOOL</a>             2152 src/membrane.c       BOOL ret = mem_isomor_trace(atom1, nxtM1, log1,</span>
+<span class='curline'><a href='../S/357.html#L2256'>BOOL</a>             2256 src/membrane.c static inline BOOL mem_equals_children_inner(Vector *v_mems_children1,</span>
+<span class='curline'><a href='../S/357.html#L2264'>BOOL</a>             2264 src/membrane.c static inline BOOL mem_equals_children(LmnMembrane *mem1, LmnMembrane *mem2, int current_depth)</span>
+<span class='curline'><a href='../S/357.html#L2277'>BOOL</a>             2277 src/membrane.c     BOOL matched;</span>
+<span class='curline'><a href='../S/357.html#L2317'>BOOL</a>             2317 src/membrane.c static inline BOOL mem_equals_children_inner(Vector *v_mems_children1,</span>
+<span class='curline'><a href='../S/357.html#L2322'>BOOL</a>             2322 src/membrane.c   BOOL matched;</span>
+<span class='curline'><a href='../S/357.html#L2405'>BOOL</a>             2405 src/membrane.c static inline BOOL mem_equals_molecules_inner(Vector *v_log1, Vector *v_atoms_not_checked1,</span>
+<span class='curline'><a href='../S/357.html#L2413'>BOOL</a>             2413 src/membrane.c static inline BOOL mem_equals_molecules(LmnMembrane *mem1, LmnMembrane *mem2, int current_depth)</span>
+<span class='curline'><a href='../S/357.html#L2428'>BOOL</a>             2428 src/membrane.c     BOOL ret;</span>
+<span class='curline'><a href='../S/357.html#L2497'>BOOL</a>             2497 src/membrane.c static BOOL mem_trace_links(LmnSAtom a1,</span>
+<span class='curline'><a href='../S/357.html#L2502'>BOOL</a>             2502 src/membrane.c                             BOOL need_to_check_this_membrane_processes);</span>
+<span class='curline'><a href='../S/357.html#L2504'>BOOL</a>             2504 src/membrane.c static inline BOOL mem_equals_molecules_inner(Vector *v_log1, Vector *v_atoms_not_checked1,</span>
+<span class='curline'><a href='../S/357.html#L2508'>BOOL</a>             2508 src/membrane.c   BOOL matched = TRUE;</span>
+<span class='curline'><a href='../S/357.html#L2587'>BOOL</a>             2587 src/membrane.c static BOOL mem_trace_links(LmnSAtom a1,</span>
+<span class='curline'><a href='../S/357.html#L2592'>BOOL</a>             2592 src/membrane.c                                 BOOL need_to_check_this_membrane_processes)</span>
+<span class='curline'><a href='../S/357.html#L2809'>BOOL</a>             2809 src/membrane.c BOOL mem_is_the_same_matching_vec(Vector *vec1, Vector *vec2)</span>
+<span class='curline'><a href='../S/357.html#L2814'>BOOL</a>             2814 src/membrane.c     BOOL is_the_same_functor;</span>
+<span class='curline'><a href='../S/358.html#L91'>BOOL</a>               91 src/membrane.h static inline BOOL atomlist_is_empty(AtomListEntry *ent) {</span>
+<span class='curline'><a href='../S/358.html#L204'>BOOL</a>              204 src/membrane.h   BOOL                 is_activated;</span>
+<span class='curline'><a href='../S/358.html#L259'>BOOL</a>              259 src/membrane.h BOOL lmn_mem_equals(LmnMembrane *mem1, LmnMembrane *mem2);</span>
+<span class='curline'><a href='../S/358.html#L269'>BOOL</a>              269 src/membrane.h                                  BOOL        hl_nd);</span>
+<span class='curline'><a href='../S/358.html#L276'>BOOL</a>              276 src/membrane.h BOOL lmn_mem_cmp_ground(const Vector *srcvec, const Vector *dstvec);</span>
+<span class='curline'><a href='../S/358.html#L277'>BOOL</a>              277 src/membrane.h BOOL lmn_mem_is_ground(Vector *srcvec, Vector *avovec, unsigned long *natoms);</span>
+<span class='curline'><a href='../S/358.html#L285'>BOOL</a>              285 src/membrane.h BOOL ground_atoms(Vector *srcvec,</span>
+<span class='curline'><a href='../S/358.html#L289'>BOOL</a>              289 src/membrane.h BOOL ground_atoms_old(Vector *srcvec,</span>
+<span class='curline'><a href='../S/358.html#L299'>BOOL</a>              299 src/membrane.h static inline BOOL lmn_mem_nmems(LmnMembrane *mem, unsigned int count);</span>
+<span class='curline'><a href='../S/358.html#L305'>BOOL</a>              305 src/membrane.h static inline BOOL lmn_mem_nfreelinks(LmnMembrane *mem, unsigned int count);</span>
+<span class='curline'><a href='../S/358.html#L362'>BOOL</a>              362 src/membrane.h static inline BOOL lmn_mem_nmems(LmnMembrane *mem, unsigned int count) {</span>
+<span class='curline'><a href='../S/358.html#L420'>BOOL</a>              420 src/membrane.h static inline BOOL lmn_mem_nfreelinks(LmnMembrane *mem, unsigned int count) {</span>
+<span class='curline'><a href='../S/361.html#L57'>BOOL</a>               57 src/memstack.c inline BOOL lmn_memstack_isempty(LmnMemStack memstack)</span>
+<span class='curline'><a href='../S/362.html#L108'>BOOL</a>              108 src/port.c     LmnPort lmn_port_copy(LmnPort port, BOOL owner)</span>
+<span class='curline'><a href='../S/362.html#L157'>BOOL</a>              157 src/port.c                                BOOL owner)</span>
+<span class='curline'><a href='../S/362.html#L212'>BOOL</a>              212 src/port.c     BOOL lmn_port_closed(LmnPort port_atom)</span>
+<span class='curline'><a href='../S/362.html#L217'>BOOL</a>              217 src/port.c     BOOL lmn_port_error_occurred(LmnPort port_atom)</span>
+<span class='curline'><a href='../S/362.html#L657'>BOOL</a>              657 src/port.c     BOOL sp_cb_port_eq(void *_p1, void *_p2)</span>
+<span class='curline'><a href='../S/362.html#L669'>BOOL</a>              669 src/port.c     BOOL sp_cp_port_is_ground(void *data)</span>
+<span class='curline'><a href='../S/364.html#L65'>BOOL</a>               65 src/react_context.h   BOOL flag;                /* mode以外に指定するフラグ */</span>
+<span class='curline'><a href='../S/364.html#L135'>BOOL</a>              135 src/react_context.h static inline BOOL rc_hlink_opt(LmnInstrVar atomi, LmnReactCxt *rc) {</span>
+<span class='curline'><a href='../S/365.html#L121'>BOOL</a>              121 src/rule.c       static BOOL first = TRUE;</span>
+<span class='curline'><a href='../S/365.html#L284'>BOOL</a>              284 src/rule.c     static inline BOOL ruleset_cp_is_need_object(LmnRuleSet src)</span>
+<span class='curline'><a href='../S/365.html#L325'>BOOL</a>              325 src/rule.c     BOOL lmn_ruleset_equals(LmnRuleSet set1, LmnRuleSet set2)</span>
+<span class='curline'><a href='../S/365.html#L332'>BOOL</a>              332 src/rule.c         BOOL t1, t2;</span>
+<span class='curline'><a href='../S/365.html#L376'>BOOL</a>              376 src/rule.c     BOOL lmn_rulesets_contains(Vector *rs_vec, LmnRuleSet set1)</span>
+<span class='curline'><a href='../S/365.html#L396'>BOOL</a>              396 src/rule.c     BOOL lmn_rulesets_equals(Vector *rs_v1, Vector *rs_v2)</span>
+<span class='curline'><a href='../S/365.html#L434'>BOOL</a>              434 src/rule.c           BOOL *rs2v_matched, is_ok;</span>
+<span class='curline'><a href='../S/365.html#L436'>BOOL</a>              436 src/rule.c           rs2v_matched = LMN_NALLOC(BOOL, n);</span>
+<span class='curline'><a href='../S/365.html#L437'>BOOL</a>              437 src/rule.c           memset(rs2v_matched, 0U, sizeof(BOOL) * n);</span>
+<span class='curline'><a href='../S/366.html#L54'>BOOL</a>               54 src/rule.h     typedef BOOL (*LmnTranslated)(LmnReactCxt*, LmnMembrane *, LmnRule);</span>
+<span class='curline'><a href='../S/366.html#L64'>BOOL</a>               64 src/rule.h       BOOL             is_invisible;</span>
+<span class='curline'><a href='../S/366.html#L119'>BOOL</a>              119 src/rule.h     static inline BOOL lmn_rule_is_invisible(LmnRule rule) {</span>
+<span class='curline'><a href='../S/366.html#L146'>BOOL</a>              146 src/rule.h       BOOL is_atomic_valid;   /* atomic step中であることを主張するフラグ */</span>
+<span class='curline'><a href='../S/366.html#L147'>BOOL</a>              147 src/rule.h       BOOL is_copy;</span>
+<span class='curline'><a href='../S/366.html#L148'>BOOL</a>              148 src/rule.h       BOOL has_uniqrule;</span>
+<span class='curline'><a href='../S/366.html#L167'>BOOL</a>              167 src/rule.h     BOOL lmn_ruleset_equals(LmnRuleSet set1, LmnRuleSet set2);</span>
+<span class='curline'><a href='../S/366.html#L168'>BOOL</a>              168 src/rule.h     BOOL lmn_rulesets_contains(Vector *rulesets, LmnRuleSet set1);</span>
+<span class='curline'><a href='../S/366.html#L169'>BOOL</a>              169 src/rule.h     BOOL lmn_rulesets_equals(Vector *rulesets1, Vector *rulesets2);</span>
+<span class='curline'><a href='../S/366.html#L180'>BOOL</a>              180 src/rule.h     static inline BOOL lmn_ruleset_is_valid_atomic(LmnRuleSet rs) {</span>
+<span class='curline'><a href='../S/366.html#L213'>BOOL</a>              213 src/rule.h     static inline BOOL lmn_ruleset_is_copy(LmnRuleSet ruleset) {</span>
+<span class='curline'><a href='../S/366.html#L217'>BOOL</a>              217 src/rule.h     static inline BOOL lmn_ruleset_has_uniqrule(LmnRuleSet ruleset) {</span>
+<span class='curline'><a href='../S/368.html#L153'>BOOL</a>              153 src/runtime_status.h   BOOL           valid;</span>
+<span class='curline'><a href='../S/368.html#L154'>BOOL</a>              154 src/runtime_status.h   BOOL           has_property; /* プロファイル出力用にこちらの領域にもメモしておく */</span>
+<span class='curline'><a href='../S/368.html#L155'>BOOL</a>              155 src/runtime_status.h   BOOL           found_err;</span>
+<span class='curline'><a href='../S/370.html#L49'>BOOL</a>               49 src/slim_header/memstack.h inline BOOL lmn_memstack_isempty(LmnMemStack memstack);</span>
+<span class='curline'><a href='../S/371.html#L54'>BOOL</a>               54 src/slim_header/port.h   BOOL direction;</span>
+<span class='curline'><a href='../S/371.html#L56'>BOOL</a>               56 src/slim_header/port.h   BOOL closed;    /* TRUE if this port is closed */</span>
+<span class='curline'><a href='../S/371.html#L57'>BOOL</a>               57 src/slim_header/port.h   BOOL error;     /* error has occurred */</span>
+<span class='curline'><a href='../S/371.html#L58'>BOOL</a>               58 src/slim_header/port.h   BOOL owner;     /* TRUE if this port owns underlying</span>
+<span class='curline'><a href='../S/371.html#L101'>BOOL</a>              101 src/slim_header/port.h BOOL lmn_port_closed(LmnPort port_atom);</span>
+<span class='curline'><a href='../S/371.html#L102'>BOOL</a>              102 src/slim_header/port.h BOOL lmn_port_error_occurred(LmnPort port_atom);</span>
+<span class='curline'><a href='../S/372.html#L54'>BOOL</a>               54 src/slim_header/string.h BOOL lmn_string_eq(LmnString s1, LmnString s2);</span>
+<span class='curline'><a href='../S/372.html#L56'>BOOL</a>               56 src/slim_header/string.h BOOL lmn_is_string(LmnAtom atom, LmnLinkAttr attr);</span>
+<span class='curline'><a href='../S/373.html#L253'>BOOL</a>              253 src/so.h       BOOL tr_instr_commit_finish(LmnReactCxt      *rc,</span>
+<span class='curline'><a href='../S/373.html#L261'>BOOL</a>              261 src/so.h       BOOL tr_instr_jump(LmnTranslated   f,</span>
+<span class='curline'><a href='../S/375.html#L62'>BOOL</a>               62 src/special_atom.h typedef BOOL (*f_eq)(void*, void*);</span>
+<span class='curline'><a href='../S/375.html#L65'>BOOL</a>               65 src/special_atom.h typedef BOOL (*f_is_ground)(void*);</span>
+<span class='curline'><a href='../S/377.html#L75'>BOOL</a>               75 src/string.c   BOOL lmn_is_string(LmnAtom atom, LmnLinkAttr attr)</span>
+<span class='curline'><a href='../S/377.html#L136'>BOOL</a>              136 src/string.c   BOOL lmn_string_eq(LmnString s1, LmnString s2)</span>
+<span class='curline'><a href='../S/377.html#L213'>BOOL</a>              213 src/string.c     BOOL to_be_freed = FALSE;</span>
+<span class='curline'><a href='../S/377.html#L358'>BOOL</a>              358 src/string.c   BOOL sp_cb_string_is_ground(void *data)</span>
+<span class='curline'><a href='../S/377.html#L363'>BOOL</a>              363 src/string.c   BOOL sp_cb_string_eq(void *s1, void *s2)</span>
+<span class='curline'><a href='../S/380.html#L71'>BOOL</a>               71 src/syntax.c     BOOL hasuniq;</span>
+<span class='curline'><a href='../S/380.html#L80'>BOOL</a>               80 src/syntax.c     BOOL is_system_ruleset;</span>
+<span class='curline'><a href='../S/380.html#L483'>BOOL</a>              483 src/syntax.c   BOOL inst_block_has_label(InstBlock ib)</span>
+<span class='curline'><a href='../S/380.html#L490'>BOOL</a>              490 src/syntax.c   Rule rule_make_anonymous(BOOL hasuniq, InstBlock amatch, InstBlock mmatch, InstBlock guard, InstBlock body)</span>
+<span class='curline'><a href='../S/380.html#L537'>BOOL</a>              537 src/syntax.c   BOOL rule_get_hasuniq(Rule rule)</span>
+<span class='curline'><a href='../S/380.html#L573'>BOOL</a>              573 src/syntax.c   RuleSet ruleset_make(int id, RuleList rules, BOOL is_system_ruleset)</span>
+<span class='curline'><a href='../S/380.html#L590'>BOOL</a>              590 src/syntax.c   BOOL ruleset_is_system_ruleset(RuleSet rs)</span>
+<span class='curline'><a href='../S/381.html#L132'>BOOL</a>              132 src/syntax.h   BOOL inst_block_has_label(InstBlock ib);</span>
+<span class='curline'><a href='../S/381.html#L138'>BOOL</a>              138 src/syntax.h   Rule rule_make_anonymous(BOOL hasuniq, InstBlock amatch, InstBlock mmatch, InstBlock guard, InstBlock body);</span>
+<span class='curline'><a href='../S/381.html#L145'>BOOL</a>              145 src/syntax.h   BOOL rule_get_hasuniq(Rule rule);</span>
+<span class='curline'><a href='../S/381.html#L159'>BOOL</a>              159 src/syntax.h   RuleSet ruleset_make(int id, RuleList rules, BOOL is_system_ruleset);</span>
+<span class='curline'><a href='../S/381.html#L160'>BOOL</a>              160 src/syntax.h   BOOL ruleset_is_system_ruleset(RuleSet rs);</span>
+<span class='curline'><a href='../S/382.html#L51'>BOOL</a>               51 src/system_ruleset.c static BOOL delete_redundant_outproxies(LmnReactCxt *rc, LmnMembrane *mem, LmnRule rule)</span>
+<span class='curline'><a href='../S/382.html#L96'>BOOL</a>               96 src/system_ruleset.c static BOOL delete_redundant_inproxies(LmnReactCxt *rc, LmnMembrane *mem, LmnRule rule)</span>
+<span class='curline'><a href='../S/382.html#L128'>BOOL</a>              128 src/system_ruleset.c static BOOL mem_eq(LmnReactCxt *rc, LmnMembrane *mem, LmnRule rule)</span>
+<span class='curline'><a href='../S/383.html#L44'>BOOL</a>               44 src/system_ruleset.h BOOL delete_redundant_outproxies(LmnMembrane *mem);</span>
+<span class='curline'><a href='../S/383.html#L45'>BOOL</a>               45 src/system_ruleset.h BOOL delete_redundant_inproxies(LmnMembrane *mem);</span>
+<span class='curline'><a href='../S/384.html#L142'>BOOL</a>              142 src/task.c     static inline BOOL react_ruleset(LmnReactCxt *rc, LmnMembrane *mem, LmnRuleSet ruleset);</span>
+<span class='curline'><a href='../S/384.html#L143'>BOOL</a>              143 src/task.c     static inline BOOL react_ruleset_inner(LmnReactCxt *rc, LmnMembrane *mem, LmnRuleSet rs);</span>
+<span class='curline'><a href='../S/384.html#L145'>BOOL</a>              145 src/task.c     static inline BOOL react_ruleset_in_all_mem(LmnReactCxt *rc, LmnRuleSet rs, LmnMembrane *mem);</span>
+<span class='curline'><a href='../S/384.html#L146'>BOOL</a>              146 src/task.c     static BOOL interpret(LmnReactCxt *rc, LmnRule rule, LmnRuleInstr instr);</span>
+<span class='curline'><a href='../S/384.html#L147'>BOOL</a>              147 src/task.c     static BOOL dmem_interpret(LmnReactCxt *rc, LmnRule rule, LmnRuleInstr instr);</span>
+<span class='curline'><a href='../S/384.html#L264'>BOOL</a>              264 src/task.c     BOOL react_all_rulesets(LmnReactCxt *rc, LmnMembrane *cur_mem)</span>
+<span class='curline'><a href='../S/384.html#L268'>BOOL</a>              268 src/task.c       BOOL ok = FALSE;</span>
+<span class='curline'><a href='../S/384.html#L288'>BOOL</a>              288 src/task.c     extern BOOL react_ruleset_atomic(LmnReactCxt *rc,</span>
+<span class='curline'><a href='../S/384.html#L296'>BOOL</a>              296 src/task.c     static inline BOOL react_ruleset(LmnReactCxt *rc,</span>
+<span class='curline'><a href='../S/384.html#L300'>BOOL</a>              300 src/task.c       BOOL result;</span>
+<span class='curline'><a href='../S/384.html#L323'>BOOL</a>              323 src/task.c     static inline BOOL react_ruleset_inner(LmnReactCxt *rc,</span>
+<span class='curline'><a href='../S/384.html#L328'>BOOL</a>              328 src/task.c       BOOL ret = FALSE;</span>
+<span class='curline'><a href='../S/384.html#L349'>BOOL</a>              349 src/task.c     BOOL react_rule(LmnReactCxt *rc, LmnMembrane *mem, LmnRule rule)</span>
+<span class='curline'><a href='../S/384.html#L353'>BOOL</a>              353 src/task.c       BOOL result;</span>
+<span class='curline'><a href='../S/384.html#L417'>BOOL</a>              417 src/task.c       BOOL reacted;</span>
+<span class='curline'><a href='../S/384.html#L435'>BOOL</a>              435 src/task.c     static BOOL react_ruleset_in_all_mem(LmnReactCxt *rc, LmnRuleSet rs, LmnMembrane *mem)</span>
+<span class='curline'><a href='../S/384.html#L613'>BOOL</a>              613 src/task.c     static BOOL interpret(LmnReactCxt *rc, LmnRule rule, LmnRuleInstr instr)</span>
+<span class='curline'><a href='../S/384.html#L709'>BOOL</a>              709 src/task.c           BOOL ret;</span>
+<span class='curline'><a href='../S/384.html#L1769'>BOOL</a>             1769 src/task.c               BOOL eq;</span>
+<span class='curline'><a href='../S/384.html#L1802'>BOOL</a>             1802 src/task.c                 BOOL eq;</span>
+<span class='curline'><a href='../S/384.html#L1826'>BOOL</a>             1826 src/task.c           BOOL b;</span>
+<span class='curline'><a href='../S/384.html#L1883'>BOOL</a>             1883 src/task.c           BOOL sh;</span>
+<span class='curline'><a href='../S/384.html#L2105'>BOOL</a>             2105 src/task.c           BOOL ret_flag;</span>
+<span class='curline'><a href='../S/384.html#L3334'>BOOL</a>             3334 src/task.c     static BOOL dmem_interpret(LmnReactCxt *rc, LmnRule rule, LmnRuleInstr instr)</span>
+<span class='curline'><a href='../S/385.html#L69'>BOOL</a>               69 src/task.h     BOOL react_rule(LmnReactCxt *rc, LmnMembrane *mem, LmnRule rule);</span>
+<span class='curline'><a href='../S/385.html#L71'>BOOL</a>               71 src/task.h     BOOL react_all_rulesets(LmnReactCxt *rc, LmnMembrane *cur_mem);</span>
+<span class='curline'><a href='../S/386.html#L184'>BOOL</a>              184 src/translate.c BOOL tr_instr_commit_finish(LmnReactCxt      *rc,</span>
+<span class='curline'><a href='../S/386.html#L221'>BOOL</a>              221 src/translate.c BOOL tr_instr_jump(LmnTranslated   f,</span>
+<span class='curline'><a href='../S/386.html#L230'>BOOL</a>              230 src/translate.c   BOOL ret;</span>
+<span class='curline'><a href='../S/396.html#L121'>BOOL</a>              121 src/utility/lmntal_thread.h   BOOL *elock_used;</span>
+<span class='curline'><a href='../S/402.html#L52'>BOOL</a>               52 src/utility/queue.c inline static void q_lock(Queue *q, BOOL rw);</span>
+<span class='curline'><a href='../S/402.html#L53'>BOOL</a>               53 src/utility/queue.c inline static void q_unlock(Queue *q, BOOL rw);</span>
+<span class='curline'><a href='../S/402.html#L56'>BOOL</a>               56 src/utility/queue.c Queue *make_parallel_queue(BOOL lock_type)</span>
+<span class='curline'><a href='../S/402.html#L163'>BOOL</a>              163 src/utility/queue.c inline BOOL is_empty_queue(Queue *q)</span>
+<span class='curline'><a href='../S/402.html#L186'>BOOL</a>              186 src/utility/queue.c static inline void q_lock(Queue *q, BOOL is_enq)</span>
+<span class='curline'><a href='../S/402.html#L210'>BOOL</a>              210 src/utility/queue.c static inline void q_unlock(Queue *q, BOOL is_enq)</span>
+<span class='curline'><a href='../S/402.html#L240'>BOOL</a>              240 src/utility/queue.c BOOL deq_contains(const Deque *deq, LmnWord keyp)</span>
+<span class='curline'><a href='../S/403.html#L60'>BOOL</a>               60 src/utility/queue.h   BOOL  lock;</span>
+<span class='curline'><a href='../S/403.html#L75'>BOOL</a>               75 src/utility/queue.h Queue *make_parallel_queue(BOOL lock_type);</span>
+<span class='curline'><a href='../S/403.html#L77'>BOOL</a>               77 src/utility/queue.h inline BOOL is_empty_queue(Queue *q);</span>
+<span class='curline'><a href='../S/403.html#L130'>BOOL</a>              130 src/utility/queue.h BOOL    deq_contains(const Deque *deq, LmnWord keyp);</span>
+<span class='curline'><a href='../S/404.html#L688'>BOOL</a>              688 src/utility/st.c static inline BOOL st_equals_inner(st_table_t cmp_dst, st_table_t cmp_src)</span>
+<span class='curline'><a href='../S/408.html#L61'>BOOL</a>               61 src/utility/vector.c BOOL vec_contains(const Vector *vec, LmnWord keyp) {</span>
+<span class='curline'><a href='../S/409.html#L72'>BOOL</a>               72 src/utility/vector.h BOOL    vec_contains(const Vector *vec, LmnWord keyp);</span>
+<span class='curline'><a href='../S/410.html#L120'>BOOL</a>              120 src/utility/visitlog.c BOOL proc_tbl_eq(ProcessTbl a, ProcessTbl b)</span>
+<span class='curline'><a href='../S/411.html#L90'>BOOL</a>               90 src/utility/visitlog.h BOOL       proc_tbl_eq(ProcessTbl a, ProcessTbl b);</span>
+<span class='curline'><a href='../S/411.html#L106'>BOOL</a>              106 src/utility/visitlog.h static inline BOOL proc_tbl_contains(ProcessTbl p, LmnWord key);</span>
+<span class='curline'><a href='../S/411.html#L107'>BOOL</a>              107 src/utility/visitlog.h static inline BOOL proc_tbl_contains_atom(ProcessTbl p, LmnSAtom atom);</span>
+<span class='curline'><a href='../S/411.html#L108'>BOOL</a>              108 src/utility/visitlog.h static inline BOOL proc_tbl_contains_mem(ProcessTbl p, LmnMembrane *mem);</span>
+<span class='curline'><a href='../S/411.html#L230'>BOOL</a>              230 src/utility/visitlog.h static inline BOOL proc_tbl_contains(ProcessTbl p, LmnWord key) {</span>
+<span class='curline'><a href='../S/411.html#L240'>BOOL</a>              240 src/utility/visitlog.h static inline BOOL proc_tbl_contains_atom(ProcessTbl p, LmnSAtom atom) {</span>
+<span class='curline'><a href='../S/411.html#L245'>BOOL</a>              245 src/utility/visitlog.h static inline BOOL proc_tbl_contains_mem(ProcessTbl p, LmnMembrane *mem) {</span>
+<span class='curline'><a href='../S/411.html#L285'>BOOL</a>              285 src/utility/visitlog.h static inline BOOL sproc_tbl_contains(SimplyProcTbl p, LmnWord key);</span>
+<span class='curline'><a href='../S/411.html#L286'>BOOL</a>              286 src/utility/visitlog.h static inline BOOL sproc_tbl_contains_atom(SimplyProcTbl p, LmnSAtom atom);</span>
+<span class='curline'><a href='../S/411.html#L287'>BOOL</a>              287 src/utility/visitlog.h static inline BOOL sproc_tbl_contains_mem(SimplyProcTbl p, LmnMembrane *mem);</span>
+<span class='curline'><a href='../S/411.html#L288'>BOOL</a>              288 src/utility/visitlog.h static inline BOOL sproc_tbl_get_flag(SimplyProcTbl p, LmnWord key, BYTE flag);</span>
+<span class='curline'><a href='../S/411.html#L289'>BOOL</a>              289 src/utility/visitlog.h static inline BOOL sproc_tbl_get_flag_by_atom(SimplyProcTbl p, LmnSAtom key, LmnWord flag);</span>
+<span class='curline'><a href='../S/411.html#L290'>BOOL</a>              290 src/utility/visitlog.h static inline BOOL sproc_tbl_get_flag_by_mem(SimplyProcTbl p, LmnMembrane *key, LmnWord flag);</span>
+<span class='curline'><a href='../S/411.html#L379'>BOOL</a>              379 src/utility/visitlog.h static inline BOOL sproc_tbl_contains(SimplyProcTbl p, LmnWord key) {</span>
+<span class='curline'><a href='../S/411.html#L388'>BOOL</a>              388 src/utility/visitlog.h static inline BOOL sproc_tbl_contains_atom(SimplyProcTbl p, LmnSAtom atom) {</span>
+<span class='curline'><a href='../S/411.html#L392'>BOOL</a>              392 src/utility/visitlog.h static inline BOOL sproc_tbl_contains_mem(SimplyProcTbl p, LmnMembrane *mem) {</span>
+<span class='curline'><a href='../S/411.html#L396'>BOOL</a>              396 src/utility/visitlog.h static inline BOOL sproc_tbl_get_flag(SimplyProcTbl p, LmnWord key, BYTE flag) {</span>
+<span class='curline'><a href='../S/411.html#L406'>BOOL</a>              406 src/utility/visitlog.h static inline BOOL sproc_tbl_get_flag_by_atom(SimplyProcTbl p, LmnSAtom key, LmnWord flag) {</span>
+<span class='curline'><a href='../S/411.html#L410'>BOOL</a>              410 src/utility/visitlog.h static inline BOOL sproc_tbl_get_flag_by_mem(SimplyProcTbl p, LmnMembrane *key, LmnWord flag) {</span>
+<span class='curline'><a href='../S/411.html#L590'>BOOL</a>              590 src/utility/visitlog.h static inline BOOL tracelog_eq_traversed_proc_num(TraceLog      l,</span>
+<span class='curline'><a href='../S/411.html#L602'>BOOL</a>              602 src/utility/visitlog.h static inline BOOL tracelog_contains(TraceLog l, LmnWord key);</span>
+<span class='curline'><a href='../S/411.html#L603'>BOOL</a>              603 src/utility/visitlog.h static inline BOOL tracelog_contains_atom(TraceLog l, LmnSAtom atom);</span>
+<span class='curline'><a href='../S/411.html#L604'>BOOL</a>              604 src/utility/visitlog.h static inline BOOL tracelog_contains_mem(TraceLog l, LmnMembrane *mem);</span>
+<span class='curline'><a href='../S/411.html#L605'>BOOL</a>              605 src/utility/visitlog.h static inline BOOL tracelog_contains_hlink(TraceLog l, HyperLink *hl) ;</span>
+<span class='curline'><a href='../S/411.html#L621'>BOOL</a>              621 src/utility/visitlog.h static inline BOOL tracelog_eq_traversed_proc_num(TraceLog      l,</span>
+<span class='curline'><a href='../S/411.html#L706'>BOOL</a>              706 src/utility/visitlog.h static inline BOOL tracelog_contains(TraceLog l, LmnWord key) {</span>
+<span class='curline'><a href='../S/411.html#L710'>BOOL</a>              710 src/utility/visitlog.h static inline BOOL tracelog_contains_atom(TraceLog l, LmnSAtom atom) {</span>
+<span class='curline'><a href='../S/411.html#L714'>BOOL</a>              714 src/utility/visitlog.h static inline BOOL tracelog_contains_mem(TraceLog l, LmnMembrane *mem) {</span>
+<span class='curline'><a href='../S/411.html#L718'>BOOL</a>              718 src/utility/visitlog.h static inline BOOL tracelog_contains_hlink(TraceLog l, HyperLink *hl) {</span>
+<span class='curline'><a href='../S/411.html#L779'>BOOL</a>              779 src/utility/visitlog.h static inline BOOL simplylog_contains_atom(SimplyLog l, LmnSAtom atom);</span>
+<span class='curline'><a href='../S/411.html#L780'>BOOL</a>              780 src/utility/visitlog.h static inline BOOL simplylog_contains_mem(SimplyLog l, LmnMembrane *mem);</span>
+<span class='curline'><a href='../S/411.html#L802'>BOOL</a>              802 src/utility/visitlog.h static inline BOOL simplylog_contains_atom(SimplyLog l, LmnSAtom atom) {</span>
+<span class='curline'><a href='../S/411.html#L806'>BOOL</a>              806 src/utility/visitlog.h static inline BOOL simplylog_contains_mem(SimplyLog l, LmnMembrane *mem) {</span>
+<span class='curline'><a href='../S/413.html#L71'>BOOL</a>               71 src/verifier/automata.c   BOOL           is_accept;</span>
+<span class='curline'><a href='../S/413.html#L72'>BOOL</a>               72 src/verifier/automata.c   BOOL           is_end;</span>
+<span class='curline'><a href='../S/413.html#L243'>BOOL</a>              243 src/verifier/automata.c                             BOOL         is_accept_state,</span>
+<span class='curline'><a href='../S/413.html#L244'>BOOL</a>              244 src/verifier/automata.c                             BOOL         is_end_state)</span>
+<span class='curline'><a href='../S/413.html#L287'>BOOL</a>              287 src/verifier/automata.c BOOL atmstate_is_accept(AutomataState s)</span>
+<span class='curline'><a href='../S/413.html#L292'>BOOL</a>              292 src/verifier/automata.c BOOL atmstate_is_end(AutomataState s)</span>
+<span class='curline'><a href='../S/413.html#L642'>BOOL</a>              642 src/verifier/automata.c BOOL eval_formula(LmnMembrane *mem, Vector *prop_defs, PLFormula f)</span>
+<span class='curline'><a href='../S/414.html#L77'>BOOL</a>               77 src/verifier/automata.h                                  BOOL is_accept_state,</span>
+<span class='curline'><a href='../S/414.html#L78'>BOOL</a>               78 src/verifier/automata.h                                  BOOL is_end_state);</span>
+<span class='curline'><a href='../S/414.html#L86'>BOOL</a>               86 src/verifier/automata.h BOOL               atmstate_is_accept(AutomataState s);</span>
+<span class='curline'><a href='../S/414.html#L87'>BOOL</a>               87 src/verifier/automata.h BOOL               atmstate_is_end(AutomataState s);</span>
+<span class='curline'><a href='../S/414.html#L114'>BOOL</a>              114 src/verifier/automata.h BOOL               eval_formula(LmnMembrane *mem, Vector *prop_defs, PLFormula f);</span>
+<span class='curline'><a href='../S/417.html#L58'>BOOL</a>               58 src/verifier/delta_membrane.c static inline BOOL dmem_root_is_new_mem(struct MemDeltaRoot *d, LmnMembrane *m);</span>
+<span class='curline'><a href='../S/417.html#L59'>BOOL</a>               59 src/verifier/delta_membrane.c static inline BOOL dmem_root_is_delta_mem(struct MemDeltaRoot *d, LmnMembrane *m);</span>
+<span class='curline'><a href='../S/417.html#L72'>BOOL</a>               72 src/verifier/delta_membrane.c static inline BOOL dmem_root_is_freed_atom(struct MemDeltaRoot *d, LmnSAtom a);</span>
+<span class='curline'><a href='../S/417.html#L75'>BOOL</a>               75 src/verifier/delta_membrane.c static inline BOOL dmem_root_is_new_atom(struct MemDeltaRoot *d, LmnSAtom a);</span>
+<span class='curline'><a href='../S/417.html#L76'>BOOL</a>               76 src/verifier/delta_membrane.c static inline BOOL dmem_root_is_modified_atom(struct MemDeltaRoot *d, LmnSAtom a);</span>
+<span class='curline'><a href='../S/417.html#L83'>BOOL</a>               83 src/verifier/delta_membrane.c static inline BOOL dmem_is_new_atom(struct MemDelta *d, LmnMembrane *m, LmnSAtom a);</span>
+<span class='curline'><a href='../S/417.html#L84'>BOOL</a>               84 src/verifier/delta_membrane.c static inline BOOL dmem_is_removed_atom(struct MemDelta *d, LmnMembrane *m, LmnSAtom a);</span>
+<span class='curline'><a href='../S/417.html#L85'>BOOL</a>               85 src/verifier/delta_membrane.c static inline BOOL dmem_is_removed_mem(struct MemDelta *d, LmnMembrane *parent, LmnMembrane *child);</span>
+<span class='curline'><a href='../S/417.html#L318'>BOOL</a>              318 src/verifier/delta_membrane.c static inline BOOL dmem_root_is_delta_mem(struct MemDeltaRoot *d, LmnMembrane *m)</span>
+<span class='curline'><a href='../S/417.html#L323'>BOOL</a>              323 src/verifier/delta_membrane.c static inline BOOL dmem_root_is_new_mem(struct MemDeltaRoot *d, LmnMembrane *m)</span>
+<span class='curline'><a href='../S/417.html#L1642'>BOOL</a>             1642 src/verifier/delta_membrane.c BOOL dmem_root_is_committed(struct MemDeltaRoot *root_d)</span>
+<span class='curline'><a href='../S/417.html#L1754'>BOOL</a>             1754 src/verifier/delta_membrane.c static inline BOOL dmem_root_is_freed_atom(struct MemDeltaRoot *d, LmnSAtom a)</span>
+<span class='curline'><a href='../S/417.html#L1770'>BOOL</a>             1770 src/verifier/delta_membrane.c static inline BOOL dmem_root_is_new_atom(struct MemDeltaRoot *d, LmnSAtom a)</span>
+<span class='curline'><a href='../S/417.html#L1779'>BOOL</a>             1779 src/verifier/delta_membrane.c static inline BOOL dmem_root_is_modified_atom(struct MemDeltaRoot *d, LmnSAtom a)</span>
+<span class='curline'><a href='../S/417.html#L1892'>BOOL</a>             1892 src/verifier/delta_membrane.c static inline BOOL dmem_is_new_atom(struct MemDelta *d, LmnMembrane *m, LmnSAtom a)</span>
+<span class='curline'><a href='../S/417.html#L1948'>BOOL</a>             1948 src/verifier/delta_membrane.c static inline BOOL dmem_is_removed_atom(struct MemDelta *d, LmnMembrane *m, LmnSAtom a)</span>
+<span class='curline'><a href='../S/417.html#L1954'>BOOL</a>             1954 src/verifier/delta_membrane.c static inline BOOL dmem_is_removed_mem(struct MemDelta *d, LmnMembrane *parent, LmnMembrane *child)</span>
+<span class='curline'><a href='../S/418.html#L63'>BOOL</a>               63 src/verifier/delta_membrane.h   BOOL committed;</span>
+<span class='curline'><a href='../S/418.html#L82'>BOOL</a>               82 src/verifier/delta_membrane.h   BOOL ruleset_removed;</span>
+<span class='curline'><a href='../S/418.html#L176'>BOOL</a>              176 src/verifier/delta_membrane.h BOOL dmem_root_is_committed(struct MemDeltaRoot *root_d);</span>
+<span class='curline'><a href='../S/419.html#L83'>BOOL</a>               83 src/verifier/dpor.c   BOOL         is_ample_cand;</span>
+<span class='curline'><a href='../S/419.html#L84'>BOOL</a>               84 src/verifier/dpor.c   BOOL         is_on_path;</span>
+<span class='curline'><a href='../S/419.html#L127'>BOOL</a>              127 src/verifier/dpor.c static BOOL contextC1s_eq(ContextC1 a, ContextC1 b)</span>
+<span class='curline'><a href='../S/419.html#L260'>BOOL</a>              260 src/verifier/dpor.c   BOOL need_act_check;</span>
+<span class='curline'><a href='../S/419.html#L261'>BOOL</a>              261 src/verifier/dpor.c   BOOL need_flink_check;</span>
+<span class='curline'><a href='../S/419.html#L449'>BOOL</a>              449 src/verifier/dpor.c static inline BOOL dpor_LHS_RHS_are_depend(BYTE lhs, BYTE rhs)</span>
+<span class='curline'><a href='../S/419.html#L474'>BOOL</a>              474 src/verifier/dpor.c static BOOL contextC1s_are_depend(ContextC1 src, ContextC1 dst)</span>
+<span class='curline'><a href='../S/419.html#L508'>BOOL</a>              508 src/verifier/dpor.c static BOOL dpor_dependency_check(McDporData *d, Vector *src, Vector *ret)</span>
+<span class='curline'><a href='../S/419.html#L511'>BOOL</a>              511 src/verifier/dpor.c   BOOL need_ample_check, ok;</span>
+<span class='curline'><a href='../S/419.html#L573'>BOOL</a>              573 src/verifier/dpor.c static inline BOOL dpor_explored_cycle(McDporData *mc,</span>
+<span class='curline'><a href='../S/419.html#L597'>BOOL</a>              597 src/verifier/dpor.c static BOOL dpor_explore_subgraph(McDporData *mc,</span>
+<span class='curline'><a href='../S/419.html#L605'>BOOL</a>              605 src/verifier/dpor.c   BOOL ret;</span>
+<span class='curline'><a href='../S/419.html#L676'>BOOL</a>              676 src/verifier/dpor.c static BOOL dpor_satisfied_C1(McDporData *d, LmnReactCxt *rc, Vector *working_set)</span>
+<span class='curline'><a href='../S/419.html#L680'>BOOL</a>              680 src/verifier/dpor.c   BOOL ret;</span>
+<span class='curline'><a href='../S/419.html#L725'>BOOL</a>              725 src/verifier/dpor.c BOOL dpor_transition_gen_RHS(McDporData   *mc,</span>
+<span class='curline'><a href='../S/419.html#L774'>BOOL</a>              774 src/verifier/dpor.c static BOOL dpor_check_cycle_proviso(StateSpace ss,</span>
+<span class='curline'><a href='../S/419.html#L814'>BOOL</a>              814 src/verifier/dpor.c                                        BOOL         f)</span>
+<span class='curline'><a href='../S/419.html#L818'>BOOL</a>              818 src/verifier/dpor.c   BOOL satisfied_C3;</span>
+<span class='curline'><a href='../S/419.html#L978'>BOOL</a>              978 src/verifier/dpor.c void dpor_start(StateSpace ss, State *s, LmnReactCxt *rc, Vector *new_s, BOOL flag)</span>
+<span class='curline'><a href='../S/420.html#L111'>BOOL</a>              111 src/verifier/dpor.h                 BOOL flag);</span>
+<span class='curline'><a href='../S/420.html#L120'>BOOL</a>              120 src/verifier/dpor.h BOOL dpor_transition_gen_RHS(McDporData   *mc,</span>
+<span class='curline'><a href='../S/421.html#L75'>BOOL</a>               75 src/verifier/dpor_naive.c   BOOL       flags;</span>
+<span class='curline'><a href='../S/421.html#L112'>BOOL</a>              112 src/verifier/dpor_naive.c static void finalize_ample(BOOL org_f);</span>
+<span class='curline'><a href='../S/421.html#L113'>BOOL</a>              113 src/verifier/dpor_naive.c static BOOL ample(StateSpace  ss,</span>
+<span class='curline'><a href='../S/421.html#L117'>BOOL</a>              117 src/verifier/dpor_naive.c                   BOOL        org_f);</span>
+<span class='curline'><a href='../S/421.html#L119'>BOOL</a>              119 src/verifier/dpor_naive.c static void por_store_successors(State *s, LmnReactCxt *rc, BOOL is_store);</span>
+<span class='curline'><a href='../S/421.html#L121'>BOOL</a>              121 src/verifier/dpor_naive.c static BOOL independency_check(State *s, Automata a, Vector *psyms);</span>
+<span class='curline'><a href='../S/421.html#L122'>BOOL</a>              122 src/verifier/dpor_naive.c static BOOL check_C1(State *s, Automata a, Vector *psyms);</span>
+<span class='curline'><a href='../S/421.html#L123'>BOOL</a>              123 src/verifier/dpor_naive.c static BOOL check_C2(State *s);</span>
+<span class='curline'><a href='../S/421.html#L124'>BOOL</a>              124 src/verifier/dpor_naive.c static BOOL check_C3(StateSpace  ss,</span>
+<span class='curline'><a href='../S/421.html#L128'>BOOL</a>              128 src/verifier/dpor_naive.c                      BOOL        f);</span>
+<span class='curline'><a href='../S/421.html#L129'>BOOL</a>              129 src/verifier/dpor_naive.c static BOOL is_independent_of_ample(Transition strans);</span>
+<span class='curline'><a href='../S/421.html#L130'>BOOL</a>              130 src/verifier/dpor_naive.c static BOOL push_independent_strans_to_table(unsigned long i1, unsigned long i2);</span>
+<span class='curline'><a href='../S/421.html#L138'>BOOL</a>              138 src/verifier/dpor_naive.c                                    BOOL        f);</span>
+<span class='curline'><a href='../S/421.html#L139'>BOOL</a>              139 src/verifier/dpor_naive.c static BOOL push_succstates_to_expanded(StateSpace  ss,</span>
+<span class='curline'><a href='../S/421.html#L143'>BOOL</a>              143 src/verifier/dpor_naive.c                                         BOOL        f);</span>
+<span class='curline'><a href='../S/421.html#L179'>BOOL</a>              179 src/verifier/dpor_naive.c                        BOOL        f)</span>
+<span class='curline'><a href='../S/421.html#L230'>BOOL</a>              230 src/verifier/dpor_naive.c   else if (!mc_has_trans(((BOOL)_a))) {</span>
+<span class='curline'><a href='../S/421.html#L248'>BOOL</a>              248 src/verifier/dpor_naive.c static void finalize_ample(BOOL org_f)</span>
+<span class='curline'><a href='../S/421.html#L264'>BOOL</a>              264 src/verifier/dpor_naive.c static BOOL ample(StateSpace  ss,</span>
+<span class='curline'><a href='../S/421.html#L268'>BOOL</a>              268 src/verifier/dpor_naive.c                   BOOL        org_f)</span>
+<span class='curline'><a href='../S/421.html#L416'>BOOL</a>              416 src/verifier/dpor_naive.c                                                  BOOL       org_f)</span>
+<span class='curline'><a href='../S/421.html#L512'>BOOL</a>              512 src/verifier/dpor_naive.c static void por_store_successors(State *s, LmnReactCxt  *rc, BOOL is_store)</span>
+<span class='curline'><a href='../S/421.html#L573'>BOOL</a>              573 src/verifier/dpor_naive.c static BOOL independency_check(State *s, Automata a, Vector *psyms)</span>
+<span class='curline'><a href='../S/421.html#L725'>BOOL</a>              725 src/verifier/dpor_naive.c static BOOL check_C1(State *s, Automata a, Vector *psyms)</span>
+<span class='curline'><a href='../S/421.html#L778'>BOOL</a>              778 src/verifier/dpor_naive.c static BOOL check_C2(State *s)</span>
+<span class='curline'><a href='../S/421.html#L799'>BOOL</a>              799 src/verifier/dpor_naive.c static inline BOOL C3_cycle_proviso_satisfied(State *succ, State *t)</span>
+<span class='curline'><a href='../S/421.html#L834'>BOOL</a>              834 src/verifier/dpor_naive.c static BOOL check_C3(StateSpace  ss,</span>
+<span class='curline'><a href='../S/421.html#L838'>BOOL</a>              838 src/verifier/dpor_naive.c                      BOOL        f)</span>
+<span class='curline'><a href='../S/421.html#L871'>BOOL</a>              871 src/verifier/dpor_naive.c static BOOL is_independent_of_ample(Transition strans)</span>
+<span class='curline'><a href='../S/421.html#L902'>BOOL</a>              902 src/verifier/dpor_naive.c static BOOL push_independent_strans_to_table(unsigned long i1, unsigned long i2)</span>
+<span class='curline'><a href='../S/421.html#L913'>BOOL</a>              913 src/verifier/dpor_naive.c     BOOL is_new_id;</span>
+<span class='curline'><a href='../S/421.html#L993'>BOOL</a>              993 src/verifier/dpor_naive.c   BOOL need_to_push_id_key; /* ID=is_keyの遷移と依存関係にある遷移が存在する場合,</span>
+<span class='curline'><a href='../S/421.html#L1017'>BOOL</a>             1017 src/verifier/dpor_naive.c       BOOL is_dependent;        /* checked_id なるIDを持つ遷移がキーのIDと依存関係にあるならば真 */</span>
+<span class='curline'><a href='../S/421.html#L1057'>BOOL</a>             1057 src/verifier/dpor_naive.c                                    BOOL        f)</span>
+<span class='curline'><a href='../S/421.html#L1102'>BOOL</a>             1102 src/verifier/dpor_naive.c static BOOL push_succstates_to_expanded(StateSpace  ss,</span>
+<span class='curline'><a href='../S/421.html#L1106'>BOOL</a>             1106 src/verifier/dpor_naive.c                                         BOOL        f)</span>
+<span class='curline'><a href='../S/421.html#L1108'>BOOL</a>             1108 src/verifier/dpor_naive.c   BOOL ret = FALSE;</span>
+<span class='curline'><a href='../S/421.html#L1166'>BOOL</a>             1166 src/verifier/dpor_naive.c   BOOL is_formated;</span>
+<span class='curline'><a href='../S/421.html#L1170'>BOOL</a>             1170 src/verifier/dpor_naive.c   is_formated = (BOOL)_a;</span>
+<span class='curline'><a href='../S/422.html#L54'>BOOL</a>               54 src/verifier/dpor_naive.h                        BOOL        flag);</span>
+<span class='curline'><a href='../S/428.html#L193'>BOOL</a>              193 src/verifier/mc.c                                      BOOL        flags);</span>
+<span class='curline'><a href='../S/428.html#L204'>BOOL</a>              204 src/verifier/mc.c                BOOL             f)</span>
+<span class='curline'><a href='../S/428.html#L262'>BOOL</a>              262 src/verifier/mc.c   BOOL f;</span>
+<span class='curline'><a href='../S/428.html#L294'>BOOL</a>              294 src/verifier/mc.c                          BOOL             f)</span>
+<span class='curline'><a href='../S/428.html#L404'>BOOL</a>              404 src/verifier/mc.c BOOL mc_expand_inner(LmnReactCxt *rc, LmnMembrane *cur_mem)</span>
+<span class='curline'><a href='../S/428.html#L406'>BOOL</a>              406 src/verifier/mc.c   BOOL ret_flag = FALSE;</span>
+<span class='curline'><a href='../S/428.html#L435'>BOOL</a>              435 src/verifier/mc.c                        BOOL        f)</span>
+<span class='curline'><a href='../S/428.html#L499'>BOOL</a>              499 src/verifier/mc.c                                      BOOL          f)</span>
+<span class='curline'><a href='../S/428.html#L583'>BOOL</a>              583 src/verifier/mc.c                                      BOOL        f)</span>
+<span class='curline'><a href='../S/428.html#L854'>BOOL</a>              854 src/verifier/mc.c       BOOL cui_dump;</span>
+<span class='curline'><a href='../S/429.html#L60'>BOOL</a>               60 src/verifier/mc.h static inline BOOL mc_vec_states_valid(Vector *v) {</span>
+<span class='curline'><a href='../S/429.html#L81'>BOOL</a>               81 src/verifier/mc.h                BOOL             flag);</span>
+<span class='curline'><a href='../S/429.html#L88'>BOOL</a>               88 src/verifier/mc.h                                      BOOL          flags);</span>
+<span class='curline'><a href='../S/429.html#L93'>BOOL</a>               93 src/verifier/mc.h                        BOOL        flags);</span>
+<span class='curline'><a href='../S/429.html#L98'>BOOL</a>               98 src/verifier/mc.h                          BOOL             f);</span>
+<span class='curline'><a href='../S/429.html#L99'>BOOL</a>               99 src/verifier/mc.h BOOL mc_expand_inner(LmnReactCxt *rc, LmnMembrane *cur_mem);</span>
+<span class='curline'><a href='../S/430.html#L73'>BOOL</a>               73 src/verifier/mc_explorer.c static BOOL state_to_state_path(State      *seed,</span>
+<span class='curline'><a href='../S/430.html#L118'>BOOL</a>              118 src/verifier/mc_explorer.c static BOOL ndfs_loop(State *seed, Vector *search, Vector *postordered);</span>
+<span class='curline'><a href='../S/430.html#L165'>BOOL</a>              165 src/verifier/mc_explorer.c   BOOL has_error;</span>
+<span class='curline'><a href='../S/430.html#L189'>BOOL</a>              189 src/verifier/mc_explorer.c   BOOL gen_counter_example;</span>
+<span class='curline'><a href='../S/430.html#L216'>BOOL</a>              216 src/verifier/mc_explorer.c static BOOL ndfs_loop(State  *seed,</span>
+<span class='curline'><a href='../S/430.html#L280'>BOOL</a>              280 src/verifier/mc_explorer.c                                       BOOL  set_flag,</span>
+<span class='curline'><a href='../S/430.html#L281'>BOOL</a>              281 src/verifier/mc_explorer.c                                       BOOL  is_up);</span>
+<span class='curline'><a href='../S/430.html#L282'>BOOL</a>              282 src/verifier/mc_explorer.c static inline BOOL owcty_traversed_owner_is_me(State *succ,</span>
+<span class='curline'><a href='../S/430.html#L283'>BOOL</a>              283 src/verifier/mc_explorer.c                                                BOOL  set_flag,</span>
+<span class='curline'><a href='../S/430.html#L284'>BOOL</a>              284 src/verifier/mc_explorer.c                                                BOOL  is_up);</span>
+<span class='curline'><a href='../S/430.html#L466'>BOOL</a>              466 src/verifier/mc_explorer.c                                       BOOL  set_flag,</span>
+<span class='curline'><a href='../S/430.html#L467'>BOOL</a>              467 src/verifier/mc_explorer.c                                       BOOL  is_up)</span>
+<span class='curline'><a href='../S/430.html#L516'>BOOL</a>              516 src/verifier/mc_explorer.c static inline BOOL owcty_traversed_owner_is_me(State *succ,</span>
+<span class='curline'><a href='../S/430.html#L517'>BOOL</a>              517 src/verifier/mc_explorer.c                                                BOOL  set_flag,</span>
+<span class='curline'><a href='../S/430.html#L518'>BOOL</a>              518 src/verifier/mc_explorer.c                                                BOOL  is_up)</span>
+<span class='curline'><a href='../S/430.html#L520'>BOOL</a>              520 src/verifier/mc_explorer.c   BOOL flags_fetch, flags_update;</span>
+<span class='curline'><a href='../S/430.html#L615'>BOOL</a>              615 src/verifier/mc_explorer.c static inline BOOL map_entry_state(State *t, State *propag, Automata a);</span>
+<span class='curline'><a href='../S/430.html#L765'>BOOL</a>              765 src/verifier/mc_explorer.c static inline BOOL map_entry_state(State *t, State *propag, Automata a)</span>
+<span class='curline'><a href='../S/430.html#L767'>BOOL</a>              767 src/verifier/mc_explorer.c   BOOL ret = FALSE;</span>
+<span class='curline'><a href='../S/430.html#L789'>BOOL</a>              789 src/verifier/mc_explorer.c   BOOL s1_valid, s2_valid;</span>
+<span class='curline'><a href='../S/430.html#L979'>BOOL</a>              979 src/verifier/mc_explorer.c static BOOL bledge_path_accepting(Vector *v, Automata a)</span>
+<span class='curline'><a href='../S/430.html#L992'>BOOL</a>              992 src/verifier/mc_explorer.c static BOOL bledge_explorer_accepting_cycle(LmnWorker *w, State *u, State *v)</span>
+<span class='curline'><a href='../S/430.html#L1048'>BOOL</a>             1048 src/verifier/mc_explorer.c   BOOL gen_counter_example;</span>
+<span class='curline'><a href='../S/432.html#L237'>BOOL</a>              237 src/verifier/mc_generator.c BOOL dfs_worker_check(LmnWorker *w)</span>
+<span class='curline'><a href='../S/432.html#L581'>BOOL</a>              581 src/verifier/mc_generator.c BOOL bfs_worker_check(LmnWorker *w)</span>
+<span class='curline'><a href='../S/433.html#L53'>BOOL</a>               53 src/verifier/mc_generator.h BOOL dfs_worker_check(LmnWorker *w);</span>
+<span class='curline'><a href='../S/433.html#L59'>BOOL</a>               59 src/verifier/mc_generator.h BOOL bfs_worker_check(LmnWorker *w);</span>
+<span class='curline'><a href='../S/434.html#L104'>BOOL</a>              104 src/verifier/mc_worker.c                            BOOL           flags)</span>
+<span class='curline'><a href='../S/434.html#L182'>BOOL</a>              182 src/verifier/mc_worker.c                         BOOL           flags);</span>
+<span class='curline'><a href='../S/434.html#L192'>BOOL</a>              192 src/verifier/mc_worker.c static BOOL workers_flags_init(LmnWorkerGroup *wp, Automata property_a)</span>
+<span class='curline'><a href='../S/434.html#L194'>BOOL</a>              194 src/verifier/mc_worker.c   BOOL flags = 0x00U;</span>
+<span class='curline'><a href='../S/434.html#L306'>BOOL</a>              306 src/verifier/mc_worker.c   BOOL flags;</span>
+<span class='curline'><a href='../S/434.html#L386'>BOOL</a>              386 src/verifier/mc_worker.c BOOL lmn_workers_termination_detection_for_rings(LmnWorker *root)</span>
+<span class='curline'><a href='../S/434.html#L408'>BOOL</a>              408 src/verifier/mc_worker.c     BOOL ret;</span>
+<span class='curline'><a href='../S/434.html#L469'>BOOL</a>              469 src/verifier/mc_worker.c                         BOOL           flags)</span>
+<span class='curline'><a href='../S/434.html#L602'>BOOL</a>              602 src/verifier/mc_worker.c void lmn_update_opt_cost(LmnWorkerGroup *wp, State *new_s, BOOL f)</span>
+<span class='curline'><a href='../S/435.html#L73'>BOOL</a>               73 src/verifier/mc_worker.h   BOOL           terminated;         /* 終了した場合に真 */</span>
+<span class='curline'><a href='../S/435.html#L75'>BOOL</a>               75 src/verifier/mc_worker.h   BOOL           stop;               /* 待ち合わせ中に真 */</span>
+<span class='curline'><a href='../S/435.html#L76'>BOOL</a>               76 src/verifier/mc_worker.h   BOOL           do_search;          /* 反例の探索を行う場合に真 */</span>
+<span class='curline'><a href='../S/435.html#L77'>BOOL</a>               77 src/verifier/mc_worker.h   BOOL           do_exhaustive;      /* 反例を1つ見つけた場合に探索を!!打ち切らない場合!!に真 */</span>
+<span class='curline'><a href='../S/435.html#L79'>BOOL</a>               79 src/verifier/mc_worker.h   BOOL           do_para_algo;       /* 並列アルゴリズムを使用する場合に真 */</span>
+<span class='curline'><a href='../S/435.html#L81'>BOOL</a>               81 src/verifier/mc_worker.h   BOOL           mc_exit;            /* 反例の発見により探索を打ち切る場合に真 */</span>
+<span class='curline'><a href='../S/435.html#L82'>BOOL</a>               82 src/verifier/mc_worker.h   BOOL           error_exist;        /* 反例が存在する場合に真 */</span>
+<span class='curline'><a href='../S/435.html#L151'>BOOL</a>              151 src/verifier/mc_worker.h   BOOL            f_end;         /* Workerの終了検知判定用フラグ. 任意のWorkerが操作可能 */</span>
+<span class='curline'><a href='../S/435.html#L152'>BOOL</a>              152 src/verifier/mc_worker.h   BOOL            f_end2;        /* Workerの終了検知判定用フラグ. 任意のWorkerが操作可能 */</span>
+<span class='curline'><a href='../S/435.html#L156'>BOOL</a>              156 src/verifier/mc_worker.h   BOOL            wait;</span>
+<span class='curline'><a href='../S/435.html#L163'>BOOL</a>              163 src/verifier/mc_worker.h   BOOL            (*check)( );   /* 終了検知関数 */</span>
+<span class='curline'><a href='../S/435.html#L218'>BOOL</a>              218 src/verifier/mc_worker.h static inline BOOL worker_check(LmnWorker *w) {</span>
+<span class='curline'><a href='../S/435.html#L381'>BOOL</a>              381 src/verifier/mc_worker.h BOOL lmn_workers_termination_detection_for_rings(LmnWorker *root);</span>
+<span class='curline'><a href='../S/435.html#L386'>BOOL</a>              386 src/verifier/mc_worker.h                            BOOL           flags);</span>
+<span class='curline'><a href='../S/435.html#L393'>BOOL</a>              393 src/verifier/mc_worker.h void lmn_update_opt_cost(LmnWorkerGroup *wp, State *new_s, BOOL f);</span>
+<span class='curline'><a href='../S/436.html#L817'>BOOL</a>              817 src/verifier/mem_encode.c   BOOL valid;            /* TRUEで初期化 */</span>
+<span class='curline'><a href='../S/436.html#L818'>BOOL</a>              818 src/verifier/mem_encode.c   BOOL direct;           /* FALSEで初期化, directメソッドを用いた場合はTRUEで初期化 */</span>
+<span class='curline'><a href='../S/436.html#L854'>BOOL</a>              854 src/verifier/mem_encode.c static inline BOOL bsptr_valid(BinStrPtr p)</span>
+<span class='curline'><a href='../S/436.html#L1110'>BOOL</a>             1110 src/verifier/mem_encode.c                       BOOL is_id);</span>
+<span class='curline'><a href='../S/436.html#L1119'>BOOL</a>             1119 src/verifier/mem_encode.c                       BOOL is_id);</span>
+<span class='curline'><a href='../S/436.html#L1198'>BOOL</a>             1198 src/verifier/mem_encode.c                       BOOL is_id)</span>
+<span class='curline'><a href='../S/436.html#L1292'>BOOL</a>             1292 src/verifier/mem_encode.c                       BOOL is_id)</span>
+<span class='curline'><a href='../S/436.html#L1446'>BOOL</a>             1446 src/verifier/mem_encode.c   BOOL last_valid;</span>
+<span class='curline'><a href='../S/436.html#L1501'>BOOL</a>             1501 src/verifier/mem_encode.c     BOOL has_uniq = FALSE;</span>
+<span class='curline'><a href='../S/436.html#L2187'>BOOL</a>             2187 src/verifier/mem_encode.c BOOL mem_eq_enc_mol(LmnBinStr   bs,       int      *i_bs,</span>
+<span class='curline'><a href='../S/436.html#L2191'>BOOL</a>             2191 src/verifier/mem_encode.c BOOL mem_eq_enc_end(LmnMembrane *mem, BOOL rule_flag, LmnMeqLog log);</span>
+<span class='curline'><a href='../S/436.html#L2193'>BOOL</a>             2193 src/verifier/mem_encode.c BOOL mem_eq_enc_atom(LmnBinStr   bs,       int     *i_bs,</span>
+<span class='curline'><a href='../S/436.html#L2197'>BOOL</a>             2197 src/verifier/mem_encode.c BOOL mem_eq_enc_data_atom(unsigned int tag,  LmnBinStr   bs,   int       *i_bs,</span>
+<span class='curline'><a href='../S/436.html#L2199'>BOOL</a>             2199 src/verifier/mem_encode.c static inline BOOL mem_eq_enc_rulesets(LmnBinStr bs, int *i_bs, LmnMembrane *mem);</span>
+<span class='curline'><a href='../S/436.html#L2200'>BOOL</a>             2200 src/verifier/mem_encode.c static inline BOOL mem_eq_enc_ruleset(LmnBinStr bs, int *i_bs, LmnRuleSet rs);</span>
+<span class='curline'><a href='../S/436.html#L2201'>BOOL</a>             2201 src/verifier/mem_encode.c static inline BOOL mem_eq_enc_rulesets_uniq(LmnBinStr bs, int *i_bs, LmnMembrane *mem);</span>
+<span class='curline'><a href='../S/436.html#L2202'>BOOL</a>             2202 src/verifier/mem_encode.c static inline BOOL mem_eq_enc_mem(LmnBinStr   bs,</span>
+<span class='curline'><a href='../S/436.html#L2208'>BOOL</a>             2208 src/verifier/mem_encode.c static inline BOOL mem_eq_enc_traced_mem(BOOL        is_named,</span>
+<span class='curline'><a href='../S/436.html#L2217'>BOOL</a>             2217 src/verifier/mem_encode.c static inline BOOL mem_eq_enc_escape_mem(LmnBinStr   bs,</span>
+<span class='curline'><a href='../S/436.html#L2225'>BOOL</a>             2225 src/verifier/mem_encode.c static inline BOOL mem_eq_enc_visited(unsigned int tag,</span>
+<span class='curline'><a href='../S/436.html#L2230'>BOOL</a>             2230 src/verifier/mem_encode.c static inline BOOL mem_eq_enc_hlink(LmnBinStr   bs,</span>
+<span class='curline'><a href='../S/436.html#L2239'>BOOL</a>             2239 src/verifier/mem_encode.c static BOOL mem_equals_enc_sub(LmnBinStr bs, LmnMembrane *mem, unsigned long tbl_size);</span>
+<span class='curline'><a href='../S/436.html#L2245'>BOOL</a>             2245 src/verifier/mem_encode.c inline BOOL lmn_mem_equals_enc(LmnBinStr bs, LmnMembrane *mem)</span>
+<span class='curline'><a href='../S/436.html#L2247'>BOOL</a>             2247 src/verifier/mem_encode.c   BOOL ret;</span>
+<span class='curline'><a href='../S/436.html#L2263'>BOOL</a>             2263 src/verifier/mem_encode.c BOOL lmn_mem_equals_enc_delta(LmnBinStr bs, struct MemDeltaRoot *d)</span>
+<span class='curline'><a href='../S/436.html#L2265'>BOOL</a>             2265 src/verifier/mem_encode.c   BOOL t;</span>
+<span class='curline'><a href='../S/436.html#L2274'>BOOL</a>             2274 src/verifier/mem_encode.c static BOOL mem_equals_enc_sub(LmnBinStr bs, LmnMembrane *mem, unsigned long tbl_size)</span>
+<span class='curline'><a href='../S/436.html#L2279'>BOOL</a>             2279 src/verifier/mem_encode.c   BOOL t;</span>
+<span class='curline'><a href='../S/436.html#L2330'>BOOL</a>             2330 src/verifier/mem_encode.c   BOOL ok, rule_flag;</span>
+<span class='curline'><a href='../S/436.html#L2553'>BOOL</a>             2553 src/verifier/mem_encode.c static inline BOOL mem_eq_enc_end(LmnMembrane *mem, BOOL rule_flag, LmnMeqLog log)</span>
+<span class='curline'><a href='../S/436.html#L2574'>BOOL</a>             2574 src/verifier/mem_encode.c static BOOL mem_eq_enc_atom(LmnBinStr   bs,       int     *i_bs,</span>
+<span class='curline'><a href='../S/436.html#L2625'>BOOL</a>             2625 src/verifier/mem_encode.c BOOL mem_eq_enc_traced_mem(BOOL is_named,</span>
+<span class='curline'><a href='../S/436.html#L2684'>BOOL</a>             2684 src/verifier/mem_encode.c static inline BOOL mem_eq_enc_mem(LmnBinStr   bs,</span>
+<span class='curline'><a href='../S/436.html#L2710'>BOOL</a>             2710 src/verifier/mem_encode.c static inline BOOL mem_eq_enc_data_atom(unsigned int tag,</span>
+<span class='curline'><a href='../S/436.html#L2770'>BOOL</a>             2770 src/verifier/mem_encode.c static inline BOOL mem_eq_enc_mol(LmnBinStr   bs,</span>
+<span class='curline'><a href='../S/436.html#L2813'>BOOL</a>             2813 src/verifier/mem_encode.c static inline BOOL mem_eq_enc_ruleset(LmnBinStr bs, int *i_bs, LmnRuleSet rs)</span>
+<span class='curline'><a href='../S/436.html#L2826'>BOOL</a>             2826 src/verifier/mem_encode.c static inline BOOL mem_eq_enc_rulesets(LmnBinStr bs, int *i_bs, LmnMembrane *mem)</span>
+<span class='curline'><a href='../S/436.html#L2842'>BOOL</a>             2842 src/verifier/mem_encode.c static inline BOOL mem_eq_enc_rulesets_uniq(LmnBinStr bs, int *i_bs, LmnMembrane *mem)</span>
+<span class='curline'><a href='../S/436.html#L2846'>BOOL</a>             2846 src/verifier/mem_encode.c   BOOL result;</span>
+<span class='curline'><a href='../S/436.html#L2865'>BOOL</a>             2865 src/verifier/mem_encode.c static inline BOOL mem_eq_enc_atom_ref(LmnBinStr   bs,       int         *i_bs,</span>
+<span class='curline'><a href='../S/436.html#L2869'>BOOL</a>             2869 src/verifier/mem_encode.c static inline BOOL mem_eq_enc_mem_ref(LmnBinStr    bs,       int         *i_bs,</span>
+<span class='curline'><a href='../S/436.html#L2873'>BOOL</a>             2873 src/verifier/mem_encode.c static inline BOOL mem_eq_enc_hlink_ref(LmnBinStr    bs,       int         *i_bs,</span>
+<span class='curline'><a href='../S/436.html#L2879'>BOOL</a>             2879 src/verifier/mem_encode.c static inline BOOL mem_eq_enc_visited(unsigned int tag,</span>
+<span class='curline'><a href='../S/436.html#L2886'>BOOL</a>             2886 src/verifier/mem_encode.c   BOOL ret;</span>
+<span class='curline'><a href='../S/436.html#L2924'>BOOL</a>             2924 src/verifier/mem_encode.c static inline BOOL mem_eq_enc_atom_ref(LmnBinStr   bs,       int          *i_bs,</span>
+<span class='curline'><a href='../S/436.html#L2953'>BOOL</a>             2953 src/verifier/mem_encode.c static inline BOOL mem_eq_enc_mem_ref(LmnBinStr    bs,       int          *i_bs,</span>
+<span class='curline'><a href='../S/436.html#L2992'>BOOL</a>             2992 src/verifier/mem_encode.c static inline BOOL mem_eq_enc_hlink_ref(LmnBinStr    bs,       int          *i_bs,</span>
+<span class='curline'><a href='../S/436.html#L3020'>BOOL</a>             3020 src/verifier/mem_encode.c static inline BOOL mem_eq_enc_escape_mem(LmnBinStr   bs,</span>
+<span class='curline'><a href='../S/436.html#L3049'>BOOL</a>             3049 src/verifier/mem_encode.c static inline BOOL mem_eq_enc_hlink(LmnBinStr   bs,</span>
+<span class='curline'><a href='../S/437.html#L49'>BOOL</a>               49 src/verifier/mem_encode.h   BOOL type;          /* バイト列への記録方式を記録しておくためのbit field. 圧縮方式のメモ用に用いる.</span>
+<span class='curline'><a href='../S/437.html#L82'>BOOL</a>               82 src/verifier/mem_encode.h BOOL lmn_mem_equals_enc(LmnBinStr bs, LmnMembrane *mem);</span>
+<span class='curline'><a href='../S/443.html#L1495'>BOOL</a>             1495 src/verifier/nc_parser.c     BOOL is_accept_state = FALSE;</span>
+<span class='curline'><a href='../S/443.html#L1515'>BOOL</a>             1515 src/verifier/nc_parser.c     BOOL is_accept_state = FALSE;</span>
+<span class='curline'><a href='../S/445.html#L114'>BOOL</a>              114 src/verifier/nc_parser.y     BOOL is_accept_state = FALSE;</span>
+<span class='curline'><a href='../S/445.html#L130'>BOOL</a>              130 src/verifier/nc_parser.y     BOOL is_accept_state = FALSE;</span>
+<span class='curline'><a href='../S/446.html#L201'>BOOL</a>              201 src/verifier/propositional_symbol.c BOOL proposition_eval(Proposition prop, LmnMembrane *mem)</span>
+<span class='curline'><a href='../S/446.html#L204'>BOOL</a>              204 src/verifier/propositional_symbol.c   BOOL b;</span>
+<span class='curline'><a href='../S/447.html#L68'>BOOL</a>               68 src/verifier/propositional_symbol.h BOOL proposition_eval(Proposition prop, LmnMembrane *mem);</span>
+<span class='curline'><a href='../S/454.html#L67'>BOOL</a>               67 src/verifier/state.c State *state_make(LmnMembrane *mem, BYTE property_label, BOOL do_encode)</span>
+<span class='curline'><a href='../S/454.html#L122'>BOOL</a>              122 src/verifier/state.c void state_calc_hash(State *s, LmnMembrane *mem, BOOL canonical)</span>
+<span class='curline'><a href='../S/454.html#L422'>BOOL</a>              422 src/verifier/state.c     BOOL org_check, mid_check, meq_check;</span>
+<span class='curline'><a href='../S/454.html#L443'>BOOL</a>              443 src/verifier/state.c       BOOL sp1_check, sp2_check, sp3_check, sp4_check;</span>
+<span class='curline'><a href='../S/454.html#L747'>BOOL</a>              747 src/verifier/state.c     BOOL has_property = owner &amp;&amp; statespace_has_property(owner);</span>
+<span class='curline'><a href='../S/454.html#L800'>BOOL</a>              800 src/verifier/state.c   BOOL need_id_foreach_trans;</span>
+<span class='curline'><a href='../S/454.html#L805'>BOOL</a>              805 src/verifier/state.c   BOOL formated;</span>
+<span class='curline'><a href='../S/455.html#L175'>BOOL</a>              175 src/verifier/state.h State       *state_make(LmnMembrane *mem, BYTE state_name, BOOL encode);</span>
+<span class='curline'><a href='../S/455.html#L188'>BOOL</a>              188 src/verifier/state.h void         state_calc_hash(State *s, LmnMembrane *mem, BOOL encode);</span>
+<span class='curline'><a href='../S/455.html#L198'>BOOL</a>              198 src/verifier/state.h static inline LmnMembrane   *state_restore_mem_inner(State *s, BOOL flag);</span>
+<span class='curline'><a href='../S/455.html#L202'>BOOL</a>              202 src/verifier/state.h static inline unsigned long  state_format_id(State *s, BOOL is_formated);</span>
+<span class='curline'><a href='../S/455.html#L216'>BOOL</a>              216 src/verifier/state.h static inline BOOL           state_succ_contains(State *s, State *t);</span>
+<span class='curline'><a href='../S/455.html#L217'>BOOL</a>              217 src/verifier/state.h static inline BOOL           state_is_accept(Automata a, State *s);</span>
+<span class='curline'><a href='../S/455.html#L218'>BOOL</a>              218 src/verifier/state.h static inline BOOL           state_is_end(Automata a, State *s);</span>
+<span class='curline'><a href='../S/455.html#L229'>BOOL</a>              229 src/verifier/state.h                                                BOOL f,</span>
+<span class='curline'><a href='../S/455.html#L302'>BOOL</a>              302 src/verifier/state.h static inline LmnMembrane *state_restore_mem_inner(State *s, BOOL flag) {</span>
+<span class='curline'><a href='../S/455.html#L348'>BOOL</a>              348 src/verifier/state.h static inline unsigned long state_format_id(State *s, BOOL is_formated) {</span>
+<span class='curline'><a href='../S/455.html#L449'>BOOL</a>              449 src/verifier/state.h static inline BOOL state_succ_contains(State *s, State *t) {</span>
+<span class='curline'><a href='../S/455.html#L460'>BOOL</a>              460 src/verifier/state.h static inline BOOL state_is_accept(Automata a, State *s) {</span>
+<span class='curline'><a href='../S/455.html#L471'>BOOL</a>              471 src/verifier/state.h static inline BOOL state_is_end(Automata a, State *s) {</span>
+<span class='curline'><a href='../S/455.html#L542'>BOOL</a>              542 src/verifier/state.h                                      BOOL f,</span>
+<span class='curline'><a href='../S/456.html#L63'>BOOL</a>               63 src/verifier/statespace.c static inline BOOL statespace_is_memid_hash(StateSpace states, unsigned long hash);</span>
+<span class='curline'><a href='../S/456.html#L85'>BOOL</a>               85 src/verifier/statespace.c static inline BOOL statetable_use_rehasher(StateTable *st);</span>
+<span class='curline'><a href='../S/456.html#L443'>BOOL</a>              443 src/verifier/statespace.c inline BOOL statespace_is_memid_hash(StateSpace states, unsigned long hash)</span>
+<span class='curline'><a href='../S/456.html#L461'>BOOL</a>              461 src/verifier/statespace.c   BOOL is_accept;</span>
+<span class='curline'><a href='../S/456.html#L969'>BOOL</a>              969 src/verifier/statespace.c     BOOL inserted;</span>
+<span class='curline'><a href='../S/457.html#L66'>BOOL</a>               66 src/verifier/statespace.h   BOOL            is_formated;    /* ハッシュ表の並びを崩した整列を行った場合に真 */</span>
+<span class='curline'><a href='../S/457.html#L102'>BOOL</a>              102 src/verifier/statespace.h   BOOL             use_rehasher;</span>
+<span class='curline'><a href='../S/457.html#L132'>BOOL</a>              132 src/verifier/statespace.h static inline BOOL          statetable_use_rehasher(StateTable *st);</span>
+<span class='curline'><a href='../S/457.html#L156'>BOOL</a>              156 src/verifier/statespace.h static inline BOOL statetable_use_rehasher(StateTable *st) {</span>
+<span class='curline'><a href='../S/457.html#L245'>BOOL</a>              245 src/verifier/statespace.h                                                       BOOL enable_compact);</span>
+<span class='curline'><a href='../S/457.html#L256'>BOOL</a>              256 src/verifier/statespace.h                                              BOOL enable_binstr)</span>
+<span class='curline'><a href='../S/528.html#L62'>BOOL</a>               62 third_party/google-perftools-1.8.3/src/base/logging.cc     BOOL ok = WriteFile(handle, buf, len, &amp;wrote, NULL);</span>
+<span class='curline'><a href='../S/542.html#L880'>BOOL</a>              880 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   BOOL ok;</span>
+<span class='curline'><a href='../S/682.html#L86'>BOOL</a>               86 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c static BOOL CALLBACK EnumSymProc(PSYMBOL_INFO symbol_info,</span>
+<span class='curline'><a href='../S/682.html#L112'>BOOL</a>              112 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c static void PrintAvailability(BOOL var, const char *description) {</span>
+<span class='curline'><a href='../S/682.html#L119'>BOOL</a>              119 third_party/google-perftools-1.8.3/src/windows/nm-pdb.c   BOOL getmoduleinfo_rv;</span>
+<span class='curline'><a href='../S/684.html#L351'>BOOL</a>              351 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc   static BOOL WINAPI Perftools_HeapFree(HANDLE hHeap, DWORD dwFlags,</span>
+<span class='curline'><a href='../S/684.html#L357'>BOOL</a>              357 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc   static BOOL WINAPI Perftools_VirtualFreeEx(HANDLE process, LPVOID address,</span>
+<span class='curline'><a href='../S/684.html#L366'>BOOL</a>              366 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc   static BOOL WINAPI Perftools_UnmapViewOfFile(LPCVOID lpBaseAddress);</span>
+<span class='curline'><a href='../S/684.html#L371'>BOOL</a>              371 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc   static BOOL WINAPI Perftools_FreeLibrary(HMODULE hLibModule);</span>
+<span class='curline'><a href='../S/684.html#L924'>BOOL</a>              924 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc BOOL WINAPI WindowsInfo::Perftools_HeapFree(HANDLE hHeap, DWORD dwFlags,</span>
+<span class='curline'><a href='../S/684.html#L927'>BOOL</a>              927 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc   return ((BOOL (WINAPI *)(HANDLE, DWORD, LPVOID))</span>
+<span class='curline'><a href='../S/684.html#L944'>BOOL</a>              944 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc BOOL WINAPI WindowsInfo::Perftools_VirtualFreeEx(HANDLE process, LPVOID address,</span>
+<span class='curline'><a href='../S/684.html#L947'>BOOL</a>              947 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc   return ((BOOL (WINAPI *)(HANDLE, LPVOID, SIZE_T, DWORD))</span>
+<span class='curline'><a href='../S/684.html#L966'>BOOL</a>              966 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc BOOL WINAPI WindowsInfo::Perftools_UnmapViewOfFile(LPCVOID lpBaseAddress) {</span>
+<span class='curline'><a href='../S/684.html#L968'>BOOL</a>              968 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc   return ((BOOL (WINAPI *)(LPCVOID))</span>
+<span class='curline'><a href='../S/684.html#L1006'>BOOL</a>             1006 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc BOOL WINAPI WindowsInfo::Perftools_FreeLibrary(HMODULE hLibModule) {</span>
+<span class='curline'><a href='../S/684.html#L1007'>BOOL</a>             1007 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc   BOOL rv = ((BOOL (WINAPI *)(HMODULE))</span>
+<span class='curline'><a href='../S/684.html#L1015'>BOOL</a>             1015 third_party/google-perftools-1.8.3/src/windows/patch_functions.cc   BOOL result = ::GetModuleHandleExW(</span>
+<span class='curline'><a href='../S/685.html#L169'>BOOL</a>              169 third_party/google-perftools-1.8.3/src/windows/port.cc BOOL WINAPI DllMain(HINSTANCE h, DWORD dwReason, PVOID pv) {</span>
+<span class='curline'><a href='../S/687.html#L127'>BOOL</a>              127 third_party/google-perftools-1.8.3/src/windows/preamble_patcher.cc   BOOL succeeded = ::VirtualProtect(reinterpret_cast&lt;void*&gt;(target_function),</span>
+<span class='curline'><a href='../S/687.html#L210'>BOOL</a>              210 third_party/google-perftools-1.8.3/src/windows/preamble_patcher.cc   BOOL succeeded = ::VirtualProtect(preamble_stub, MAX_PREAMBLE_STUB_SIZE,</span>
+<span class='curline'><a href='../S/687.html#L301'>BOOL</a>              301 third_party/google-perftools-1.8.3/src/windows/preamble_patcher.cc   BOOL succeeded = ::VirtualProtect(reinterpret_cast&lt;void*&gt;(target_function),</span>
+</pre>
+</body>
+</html>

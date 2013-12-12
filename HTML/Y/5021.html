@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>stack</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/357.html#L1008'>stack</a>            1008 src/membrane.c   Vector *stack;</span>
+<span class='curline'><a href='../S/357.html#L1013'>stack</a>            1013 src/membrane.c   stack = vec_make(16);</span>
+<span class='curline'><a href='../S/357.html#L1037'>stack</a>            1037 src/membrane.c         vec_push(stack, l-&gt;ap);</span>
+<span class='curline'><a href='../S/357.html#L1047'>stack</a>            1047 src/membrane.c   while (!vec_is_empty(stack)) {</span>
+<span class='curline'><a href='../S/357.html#L1050'>stack</a>            1050 src/membrane.c     src_atom = (LmnSAtom)vec_pop(stack);</span>
+<span class='curline'><a href='../S/357.html#L1068'>stack</a>            1068 src/membrane.c           vec_push(stack, next_src);</span>
+<span class='curline'><a href='../S/357.html#L1077'>stack</a>            1077 src/membrane.c   vec_free(stack);</span>
+<span class='curline'><a href='../S/357.html#L1371'>stack</a>            1371 src/membrane.c   Vector *stack = vec_make(16);</span>
+<span class='curline'><a href='../S/357.html#L1403'>stack</a>            1403 src/membrane.c     if (vec_num(stack) == 0) {</span>
+<span class='curline'><a href='../S/357.html#L1404'>stack</a>            1404 src/membrane.c       vec_push(stack, l-&gt;ap);</span>
+<span class='curline'><a href='../S/357.html#L1420'>stack</a>            1420 src/membrane.c       while (vec_num(stack) &gt; 0) {</span>
+<span class='curline'><a href='../S/357.html#L1421'>stack</a>            1421 src/membrane.c         LmnSAtom src_atom = LMN_SATOM(vec_pop(stack));</span>
+<span class='curline'><a href='../S/357.html#L1439'>stack</a>            1439 src/membrane.c             vec_push(stack, next_src);</span>
+<span class='curline'><a href='../S/357.html#L1448'>stack</a>            1448 src/membrane.c     } else if (vec_num(stack) &gt;= 2 &amp;&amp; n_root_data &gt; 0) {</span>
+<span class='curline'><a href='../S/357.html#L1450'>stack</a>            1450 src/membrane.c     } else if (vec_num(stack) &gt;= 3) {</span>
+<span class='curline'><a href='../S/357.html#L1455'>stack</a>            1455 src/membrane.c   vec_free(stack);</span>
+<span class='curline'><a href='../S/417.html#L893'>stack</a>             893 src/verifier/delta_membrane.c   Vector stack;</span>
+<span class='curline'><a href='../S/417.html#L901'>stack</a>             901 src/verifier/delta_membrane.c   vec_init(&amp;stack, 16);</span>
+<span class='curline'><a href='../S/417.html#L937'>stack</a>             937 src/verifier/delta_membrane.c       vec_push(&amp;stack, l-&gt;ap);</span>
+<span class='curline'><a href='../S/417.html#L946'>stack</a>             946 src/verifier/delta_membrane.c   while (vec_num(&amp;stack) &gt; 0) {</span>
+<span class='curline'><a href='../S/417.html#L947'>stack</a>             947 src/verifier/delta_membrane.c     LmnSAtom src_atom = LMN_SATOM(vec_pop(&amp;stack));</span>
+<span class='curline'><a href='../S/417.html#L977'>stack</a>             977 src/verifier/delta_membrane.c           vec_push(&amp;stack, next_src);</span>
+<span class='curline'><a href='../S/417.html#L984'>stack</a>             984 src/verifier/delta_membrane.c   vec_destroy(&amp;stack);</span>
+<span class='curline'><a href='../S/432.html#L144'>stack</a>             144 src/verifier/mc_generator.c #define DFS_WORKER_STACK(W)                (DFS_WORKER_OBJ(W)-&gt;stack)</span>
+<span class='curline'><a href='../S/432.html#L164'>stack</a>             164 src/verifier/mc_generator.c                                Vector    *stack,</span>
+<span class='curline'><a href='../S/432.html#L178'>stack</a>             178 src/verifier/mc_generator.c   struct Vector stack;</span>
+<span class='curline'><a href='../S/432.html#L197'>stack</a>             197 src/verifier/mc_generator.c       vec_init(&amp;mc-&gt;stack, 8192);</span>
+<span class='curline'><a href='../S/432.html#L205'>stack</a>             205 src/verifier/mc_generator.c       vec_init(&amp;mc-&gt;stack, mc-&gt;cutoff_depth + 1);</span>
+<span class='curline'><a href='../S/432.html#L378'>stack</a>             378 src/verifier/mc_generator.c                             Vector    *stack,</span>
+<span class='curline'><a href='../S/432.html#L383'>stack</a>             383 src/verifier/mc_generator.c   while (!vec_is_empty(stack)) {</span>
+<span class='curline'><a href='../S/432.html#L391'>stack</a>             391 src/verifier/mc_generator.c     s   = (State *)vec_peek(stack);</span>
+<span class='curline'><a href='../S/432.html#L398'>stack</a>             398 src/verifier/mc_generator.c       pop_stack(stack);</span>
+<span class='curline'><a href='../S/432.html#L402'>stack</a>             402 src/verifier/mc_generator.c       pop_stack(stack);</span>
+<span class='curline'><a href='../S/432.html#L418'>stack</a>             418 src/verifier/mc_generator.c           put_stack(stack, succ);</span>
+<span class='curline'><a href='../S/432.html#L423'>stack</a>             423 src/verifier/mc_generator.c       if (DFS_HANDOFF_COND_STATIC(w, stack)) {</span>
+<span class='curline'><a href='../S/432.html#L430'>stack</a>             430 src/verifier/mc_generator.c           if (DFS_LOAD_BALANCING(stack, w, i, n)) {</span>
+<span class='curline'><a href='../S/432.html#L433'>stack</a>             433 src/verifier/mc_generator.c             put_stack(stack, new_s);</span>
+<span class='curline'><a href='../S/552.html#L241'>stack</a>             241 third_party/google-perftools-1.8.3/src/common.h   void*     stack[kMaxStackDepth];</span>
+<span class='curline'><a href='../S/568.html#L574'>stack</a>             574 third_party/google-perftools-1.8.3/src/heap-checker.cc     void* stack[HeapProfileTable::kMaxStackDepth];</span>
+<span class='curline'><a href='../S/568.html#L575'>stack</a>             575 third_party/google-perftools-1.8.3/src/heap-checker.cc     int depth = HeapProfileTable::GetCallerStackTrace(0, stack);</span>
+<span class='curline'><a href='../S/568.html#L584'>stack</a>             584 third_party/google-perftools-1.8.3/src/heap-checker.cc         heap_profile-&gt;RecordAlloc(ptr, size, depth, stack);</span>
+<span class='curline'><a href='../S/569.html#L147'>stack</a>             147 third_party/google-perftools-1.8.3/src/heap-profile-table.cc       dealloc_(b-&gt;stack);</span>
+<span class='curline'><a href='../S/569.html#L172'>stack</a>             172 third_party/google-perftools-1.8.3/src/heap-profile-table.cc         equal(key, key + depth, b-&gt;stack)) {</span>
+<span class='curline'><a href='../S/569.html#L185'>stack</a>             185 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   b-&gt;stack = kcopy;</span>
+<span class='curline'><a href='../S/569.html#L193'>stack</a>             193 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     int skip_count, void* stack[kMaxStackDepth]) {</span>
+<span class='curline'><a href='../S/569.html#L195'>stack</a>             195 third_party/google-perftools-1.8.3/src/heap-profile-table.cc       stack, kMaxStackDepth, kStripFrames + skip_count + 1);</span>
+<span class='curline'><a href='../S/569.html#L235'>stack</a>             235 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     info-&gt;call_stack = alloc_value-&gt;bucket()-&gt;stack;</span>
+<span class='curline'><a href='../S/569.html#L290'>stack</a>             290 third_party/google-perftools-1.8.3/src/heap-profile-table.cc                        reinterpret_cast&lt;uintptr_t&gt;(b.stack[d]));</span>
+<span class='curline'><a href='../S/569.html#L325'>stack</a>             325 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     info.call_stack = list[i]-&gt;stack;</span>
+<span class='curline'><a href='../S/569.html#L385'>stack</a>             385 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   b.stack = v-&gt;bucket()-&gt;stack;</span>
+<span class='curline'><a href='../S/569.html#L555'>stack</a>             555 third_party/google-perftools-1.8.3/src/heap-profile-table.cc       symbolization_table.Add(e.bucket-&gt;stack[j]);</span>
+<span class='curline'><a href='../S/569.html#L568'>stack</a>             568 third_party/google-perftools-1.8.3/src/heap-profile-table.cc       const void* pc = e.bucket-&gt;stack[j];</span>
+<span class='curline'><a href='../S/570.html#L107'>stack</a>             107 third_party/google-perftools-1.8.3/src/heap-profile-table.h   static int GetCallerStackTrace(int skip_count, void* stack[kMaxStackDepth]);</span>
+<span class='curline'><a href='../S/570.html#L198'>stack</a>             198 third_party/google-perftools-1.8.3/src/heap-profile-table.h     const void** stack;  // Stack trace</span>
+<span class='curline'><a href='../S/570.html#L276'>stack</a>             276 third_party/google-perftools-1.8.3/src/heap-profile-table.h     info.call_stack = v-&gt;bucket()-&gt;stack;</span>
+<span class='curline'><a href='../S/571.html#L328'>stack</a>             328 third_party/google-perftools-1.8.3/src/heap-profiler.cc   void* stack[HeapProfileTable::kMaxStackDepth];</span>
+<span class='curline'><a href='../S/571.html#L329'>stack</a>             329 third_party/google-perftools-1.8.3/src/heap-profiler.cc   int depth = HeapProfileTable::GetCallerStackTrace(skip_count + 1, stack);</span>
+<span class='curline'><a href='../S/571.html#L332'>stack</a>             332 third_party/google-perftools-1.8.3/src/heap-profiler.cc     heap_profile-&gt;RecordAlloc(ptr, bytes, depth, stack);</span>
+<span class='curline'><a href='../S/582.html#L59'>stack</a>              59 third_party/google-perftools-1.8.3/src/malloc_hook.cc # define GetStackTrace(stack, depth, skip)  (0)</span>
+<span class='curline'><a href='../S/582.html#L664'>stack</a>             664 third_party/google-perftools-1.8.3/src/malloc_hook.cc   void* stack[kStackSize];</span>
+<span class='curline'><a href='../S/582.html#L665'>stack</a>             665 third_party/google-perftools-1.8.3/src/malloc_hook.cc   int depth = GetStackTrace(stack, kStackSize, 1);  // skip this function frame</span>
+<span class='curline'><a href='../S/582.html#L669'>stack</a>             669 third_party/google-perftools-1.8.3/src/malloc_hook.cc     if (InHookCaller(stack[i])) {</span>
+<span class='curline'><a href='../S/582.html#L671'>stack</a>             671 third_party/google-perftools-1.8.3/src/malloc_hook.cc                    i, stack[i], stack[i+1]);</span>
+<span class='curline'><a href='../S/582.html#L675'>stack</a>             675 third_party/google-perftools-1.8.3/src/malloc_hook.cc       copy(stack + i, stack + i + depth, result);</span>
+<span class='curline'><a href='../S/591.html#L399'>stack</a>             399 third_party/google-perftools-1.8.3/src/page_heap.cc   t-&gt;depth = GetStackTrace(t-&gt;stack, kMaxStackDepth-1, 3);</span>
+<span class='curline'><a href='../S/591.html#L401'>stack</a>             401 third_party/google-perftools-1.8.3/src/page_heap.cc   t-&gt;stack[kMaxStackDepth-1] = reinterpret_cast&lt;void*&gt;(Static::growth_stacks());</span>
+<span class='curline'><a href='../S/592.html#L62'>stack</a>              62 third_party/google-perftools-1.8.3/src/page_heap.h # define GetStackTrace(stack, depth, skip)  (0)</span>
+<span class='curline'><a href='../S/598.html#L75'>stack</a>              75 third_party/google-perftools-1.8.3/src/profiledata.cc   memcpy(&amp;evict_[num_evicted_], entry.stack, d * sizeof(Slot));</span>
+<span class='curline'><a href='../S/598.html#L260'>stack</a>             260 third_party/google-perftools-1.8.3/src/profiledata.cc void ProfileData::Add(int depth, const void* const* stack) {</span>
+<span class='curline'><a href='../S/598.html#L271'>stack</a>             271 third_party/google-perftools-1.8.3/src/profiledata.cc     Slot slot = reinterpret_cast&lt;Slot&gt;(stack[i]);</span>
+<span class='curline'><a href='../S/598.html#L286'>stack</a>             286 third_party/google-perftools-1.8.3/src/profiledata.cc         if (e-&gt;stack[i] != reinterpret_cast&lt;Slot&gt;(stack[i])) {</span>
+<span class='curline'><a href='../S/598.html#L316'>stack</a>             316 third_party/google-perftools-1.8.3/src/profiledata.cc       e-&gt;stack[i] = reinterpret_cast&lt;Slot&gt;(stack[i]);</span>
+<span class='curline'><a href='../S/599.html#L132'>stack</a>             132 third_party/google-perftools-1.8.3/src/profiledata.h   void Add(int depth, const void* const* stack);</span>
+<span class='curline'><a href='../S/599.html#L156'>stack</a>             156 third_party/google-perftools-1.8.3/src/profiledata.h     Slot stack[kMaxStackDepth];  // Stack contents</span>
+<span class='curline'><a href='../S/600.html#L267'>stack</a>             267 third_party/google-perftools-1.8.3/src/profiler.cc     void* stack[ProfileData::kMaxStackDepth];</span>
+<span class='curline'><a href='../S/600.html#L271'>stack</a>             271 third_party/google-perftools-1.8.3/src/profiler.cc     stack[0] = GetPC(*reinterpret_cast&lt;ucontext_t*&gt;(signal_ucontext));</span>
+<span class='curline'><a href='../S/600.html#L279'>stack</a>             279 third_party/google-perftools-1.8.3/src/profiler.cc     int depth = GetStackTraceWithContext(stack + 1, arraysize(stack) - 1,</span>
+<span class='curline'><a href='../S/600.html#L283'>stack</a>             283 third_party/google-perftools-1.8.3/src/profiler.cc     instance-&gt;collector_.Add(depth, stack);</span>
+<span class='curline'><a href='../S/608.html#L48'>stack</a>              48 third_party/google-perftools-1.8.3/src/stack_trace_table.cc     if (this-&gt;trace.stack[i] != t.stack[i]) {</span>
+<span class='curline'><a href='../S/608.html#L75'>stack</a>              75 third_party/google-perftools-1.8.3/src/stack_trace_table.cc     h += reinterpret_cast&lt;uintptr_t&gt;(t.stack[i]);</span>
+<span class='curline'><a href='../S/608.html#L133'>stack</a>             133 third_party/google-perftools-1.8.3/src/stack_trace_table.cc         out[idx++] = b-&gt;trace.stack[d];</span>
+<span class='curline'><a href='../S/613.html#L64'>stack</a>              64 third_party/google-perftools-1.8.3/src/stacktrace_generic-inl.h   void * stack[kStackLength];</span>
+<span class='curline'><a href='../S/613.html#L67'>stack</a>              67 third_party/google-perftools-1.8.3/src/stacktrace_generic-inl.h   size = backtrace(stack, kStackLength);</span>
+<span class='curline'><a href='../S/613.html#L75'>stack</a>              75 third_party/google-perftools-1.8.3/src/stacktrace_generic-inl.h     result[i] = stack[i + skip_count];</span>
+<span class='curline'><a href='../S/626.html#L493'>stack</a>             493 third_party/google-perftools-1.8.3/src/tcmalloc.cc              t-&gt;stack[tcmalloc::kMaxStackDepth-1])) {</span>
+<span class='curline'><a href='../S/626.html#L513'>stack</a>             513 third_party/google-perftools-1.8.3/src/tcmalloc.cc            t-&gt;stack[tcmalloc::kMaxStackDepth-1])) {</span>
+<span class='curline'><a href='../S/626.html#L524'>stack</a>             524 third_party/google-perftools-1.8.3/src/tcmalloc.cc       result[used_slots+3+d] = t-&gt;stack[d];</span>
+<span class='curline'><a href='../S/626.html#L945'>stack</a>             945 third_party/google-perftools-1.8.3/src/tcmalloc.cc   tmp.depth = GetStackTrace(tmp.stack, tcmalloc::kMaxStackDepth, 1);</span>
+<span class='curline'><a href='../S/626.html#L956'>stack</a>             956 third_party/google-perftools-1.8.3/src/tcmalloc.cc   StackTrace *stack = Static::stacktrace_allocator()-&gt;New();</span>
+<span class='curline'><a href='../S/626.html#L957'>stack</a>             957 third_party/google-perftools-1.8.3/src/tcmalloc.cc   if (stack == NULL) {</span>
+<span class='curline'><a href='../S/626.html#L961'>stack</a>             961 third_party/google-perftools-1.8.3/src/tcmalloc.cc   *stack = tmp;</span>
+<span class='curline'><a href='../S/626.html#L963'>stack</a>             963 third_party/google-perftools-1.8.3/src/tcmalloc.cc   span-&gt;objects = stack;</span>
+<span class='curline'><a href='../S/626.html#L978'>stack</a>             978 third_party/google-perftools-1.8.3/src/tcmalloc.cc   StackTrace stack;</span>
+<span class='curline'><a href='../S/626.html#L979'>stack</a>             979 third_party/google-perftools-1.8.3/src/tcmalloc.cc   stack.depth = GetStackTrace(stack.stack, tcmalloc::kMaxStackDepth, 1);</span>
+<span class='curline'><a href='../S/626.html#L987'>stack</a>             987 third_party/google-perftools-1.8.3/src/tcmalloc.cc   for (int i = 0; i &lt; stack.depth; i++) {</span>
+<span class='curline'><a href='../S/626.html#L988'>stack</a>             988 third_party/google-perftools-1.8.3/src/tcmalloc.cc     printer.printf(" %p", stack.stack[i]);</span>
+<span class='curline'><a href='../S/637.html#L844'>stack</a>             844 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   void *stack[1];</span>
+<span class='curline'><a href='../S/637.html#L845'>stack</a>             845 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   backtrace(stack, 1);</span>
+<span class='curline'><a href='../S/637.html#L1258'>stack</a>            1258 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   void* stack[1];</span>
+<span class='curline'><a href='../S/637.html#L1259'>stack</a>            1259 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   CHECK_EQ(GetStackTrace(stack, 1, 0), 1);</span>
+<span class='curline'><a href='../S/637.html#L1260'>stack</a>            1260 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   *addr_after_mmap_call = reinterpret_cast&lt;uintptr_t&gt;(stack[0]);</span>
+<span class='curline'><a href='../S/637.html#L1300'>stack</a>            1300 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   void* stack[1];</span>
+<span class='curline'><a href='../S/637.html#L1301'>stack</a>            1301 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   CHECK_EQ(GetStackTrace(stack, 1, 0), 1);</span>
+<span class='curline'><a href='../S/637.html#L1302'>stack</a>            1302 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   *addr_after_malloc_call = reinterpret_cast&lt;uintptr_t&gt;(stack[0]);</span>
+<span class='curline'><a href='../S/660.html#L46'>stack</a>              46 third_party/google-perftools-1.8.3/src/tests/stack_trace_table_test.cc   t1.stack[0] = reinterpret_cast&lt;void*&gt;(1);</span>
+<span class='curline'><a href='../S/660.html#L47'>stack</a>              47 third_party/google-perftools-1.8.3/src/tests/stack_trace_table_test.cc   t1.stack[1] = reinterpret_cast&lt;void*&gt;(2);</span>
+<span class='curline'><a href='../S/660.html#L53'>stack</a>              53 third_party/google-perftools-1.8.3/src/tests/stack_trace_table_test.cc   t2.stack[0] = reinterpret_cast&lt;void*&gt;(2);</span>
+<span class='curline'><a href='../S/660.html#L54'>stack</a>              54 third_party/google-perftools-1.8.3/src/tests/stack_trace_table_test.cc   t2.stack[1] = reinterpret_cast&lt;void*&gt;(1);</span>
+<span class='curline'><a href='../S/660.html#L84'>stack</a>              84 third_party/google-perftools-1.8.3/src/tests/stack_trace_table_test.cc   t3.stack[0] = reinterpret_cast&lt;void*&gt;(1);</span>
+<span class='curline'><a href='../S/660.html#L85'>stack</a>              85 third_party/google-perftools-1.8.3/src/tests/stack_trace_table_test.cc   t3.stack[1] = reinterpret_cast&lt;void*&gt;(2);</span>
+<span class='curline'><a href='../S/661.html#L112'>stack</a>             112 third_party/google-perftools-1.8.3/src/tests/stacktrace_unittest.cc   void *stack[STACK_LEN];</span>
+<span class='curline'><a href='../S/661.html#L118'>stack</a>             118 third_party/google-perftools-1.8.3/src/tests/stacktrace_unittest.cc   size = GetStackTrace(stack, STACK_LEN, 0);</span>
+<span class='curline'><a href='../S/661.html#L125'>stack</a>             125 third_party/google-perftools-1.8.3/src/tests/stacktrace_unittest.cc     char **strings = backtrace_symbols(stack, size);</span>
+<span class='curline'><a href='../S/661.html#L128'>stack</a>             128 third_party/google-perftools-1.8.3/src/tests/stacktrace_unittest.cc       printf("%s %p\n", strings[i], stack[i]);</span>
+<span class='curline'><a href='../S/661.html#L136'>stack</a>             136 third_party/google-perftools-1.8.3/src/tests/stacktrace_unittest.cc            i, expected_range[i].start, expected_range[i].end, stack[i]);</span>
+<span class='curline'><a href='../S/661.html#L138'>stack</a>             138 third_party/google-perftools-1.8.3/src/tests/stacktrace_unittest.cc     CheckRetAddrIsInFunction(stack[i], expected_range[i]);</span>
+</pre>
+</body>
+</html>

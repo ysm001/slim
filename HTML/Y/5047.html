@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>start_hl</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/334.html#L883'>start_hl</a>          883 src/hyperlink.c   HyperLink *start_hl;</span>
+<span class='curline'><a href='../S/334.html#L886'>start_hl</a>          886 src/hyperlink.c   start_hl = NULL;</span>
+<span class='curline'><a href='../S/334.html#L912'>start_hl</a>          912 src/hyperlink.c         start_hl = hl;</span>
+<span class='curline'><a href='../S/334.html#L920'>start_hl</a>          920 src/hyperlink.c   return start_hl;</span>
+<span class='curline'><a href='../S/334.html#L1038'>start_hl</a>         1038 src/hyperlink.c void lmn_hyperlink_get_elements(Vector *tree, HyperLink *start_hl)</span>
+<span class='curline'><a href='../S/334.html#L1040'>start_hl</a>         1040 src/hyperlink.c   HyperLink *root = lmn_hyperlink_get_root(start_hl);</span>
+<span class='curline'><a href='../S/334.html#L1041'>start_hl</a>         1041 src/hyperlink.c   if (root-&gt;rank &gt; 0)   hyperlink_get_children_without(tree, root, start_hl);</span>
+<span class='curline'><a href='../S/334.html#L1042'>start_hl</a>         1042 src/hyperlink.c   if (root != start_hl) vec_push(tree, (LmnWord)root);</span>
+<span class='curline'><a href='../S/334.html#L1043'>start_hl</a>         1043 src/hyperlink.c   vec_push(tree, (LmnWord)start_hl);</span>
+<span class='curline'><a href='../S/335.html#L149'>start_hl</a>          149 src/hyperlink.h void lmn_hyperlink_get_elements(Vector *tree, HyperLink *start_hl);</span>
+</pre>
+</body>
+</html>

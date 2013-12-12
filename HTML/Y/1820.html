@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>cmp</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/415.html#L102'>cmp</a>               102 src/verifier/binstr_compress.c   LmnBinStr cmp;</span>
+<span class='curline'><a href='../S/415.html#L117'>cmp</a>               117 src/verifier/binstr_compress.c   cmp = lmn_binstr_make(cmp_8len);</span>
+<span class='curline'><a href='../S/415.html#L118'>cmp</a>               118 src/verifier/binstr_compress.c   cmp-&gt;type = org-&gt;type;</span>
+<span class='curline'><a href='../S/415.html#L119'>cmp</a>               119 src/verifier/binstr_compress.c   ret = compress(cmp-&gt;v, &amp;cmp_8len, org-&gt;v, org_8len);</span>
+<span class='curline'><a href='../S/415.html#L125'>cmp</a>               125 src/verifier/binstr_compress.c   cmp-&gt;len = cmp_8len * TAG_IN_BYTE + ((org-&gt;len &amp; 0x1U) ? 1 : 0);</span>
+<span class='curline'><a href='../S/415.html#L126'>cmp</a>               126 src/verifier/binstr_compress.c   set_comp_z(cmp);</span>
+<span class='curline'><a href='../S/415.html#L130'>cmp</a>               130 src/verifier/binstr_compress.c   cmp_space = lmn_binstr_space(cmp);</span>
+<span class='curline'><a href='../S/415.html#L137'>cmp</a>               137 src/verifier/binstr_compress.c   return cmp;</span>
+<span class='curline'><a href='../S/415.html#L142'>cmp</a>               142 src/verifier/binstr_compress.c LmnBinStr lmn_bscomp_z_decode(const LmnBinStr cmp)</span>
+<span class='curline'><a href='../S/415.html#L145'>cmp</a>               145 src/verifier/binstr_compress.c   return cmp;</span>
+<span class='curline'><a href='../S/415.html#L157'>cmp</a>               157 src/verifier/binstr_compress.c   LMN_ASSERT(is_comp_z(cmp));</span>
+<span class='curline'><a href='../S/415.html#L159'>cmp</a>               159 src/verifier/binstr_compress.c   cmp_8len = cmp-&gt;len / TAG_IN_BYTE;</span>
+<span class='curline'><a href='../S/415.html#L162'>cmp</a>               162 src/verifier/binstr_compress.c   ret = uncompress(org-&gt;v, &amp;org_8len, cmp-&gt;v, cmp_8len);</span>
+<span class='curline'><a href='../S/415.html#L168'>cmp</a>               168 src/verifier/binstr_compress.c   org-&gt;type = cmp-&gt;type;</span>
+<span class='curline'><a href='../S/415.html#L169'>cmp</a>               169 src/verifier/binstr_compress.c   org-&gt;len  = org_8len * TAG_IN_BYTE - ((cmp-&gt;len &amp; 0x1U) ? 1 : 0);</span>
+</pre>
+</body>
+</html>

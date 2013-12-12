@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>env</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/345.html#L55'>env</a>                55 src/jni_lmntal.c static JNIEnv *env;</span>
+<span class='curline'><a href='../S/345.html#L92'>env</a>                92 src/jni_lmntal.c   if (NULL == (jc_lmntal.c_System = (*env)-&gt;FindClass(env, "Ljava/lang/System;"))) {</span>
+<span class='curline'><a href='../S/345.html#L93'>env</a>                93 src/jni_lmntal.c     (*env)-&gt;FatalError(env, "FindClass : java/lang/System");</span>
+<span class='curline'><a href='../S/345.html#L97'>env</a>                97 src/jni_lmntal.c   if (NULL == (jc_lmntal.m_System_setOut = (*env)-&gt;GetStaticMethodID(env, jc_lmntal.c_System, "setOut", "(Ljava/io/PrintStream;)V"))) {</span>
+<span class='curline'><a href='../S/345.html#L98'>env</a>                98 src/jni_lmntal.c     (*env)-&gt;FatalError(env, "GetStaticMethodID : System.setOut(Ljava/io/PrintStream;)V");</span>
+<span class='curline'><a href='../S/345.html#L102'>env</a>               102 src/jni_lmntal.c   if (NULL == (jc_lmntal.f_System_out = (*env)-&gt;GetStaticFieldID(env, jc_lmntal.c_System, "out", "Ljava/io/PrintStream;"))) {</span>
+<span class='curline'><a href='../S/345.html#L103'>env</a>               103 src/jni_lmntal.c     (*env)-&gt;FatalError(env, "GetStaticFieldID : System.out");</span>
+<span class='curline'><a href='../S/345.html#L107'>env</a>               107 src/jni_lmntal.c   if (NULL == (jc_lmntal.c_PrintStream = (*env)-&gt;FindClass(env, "Ljava/io/PrintStream;"))) {</span>
+<span class='curline'><a href='../S/345.html#L108'>env</a>               108 src/jni_lmntal.c     (*env)-&gt;FatalError(env, "FindClass : java.io.PrintStream");</span>
+<span class='curline'><a href='../S/345.html#L112'>env</a>               112 src/jni_lmntal.c   if (NULL == (jc_lmntal.m_PrintStream_constructor = (*env)-&gt;GetMethodID(env, jc_lmntal.c_PrintStream, "&lt;init&gt;", "(Ljava/io/OutputStream;)V"))) {</span>
+<span class='curline'><a href='../S/345.html#L113'>env</a>               113 src/jni_lmntal.c     (*env)-&gt;FatalError(env, "GetStaticMethodID : PrintStream.PrintStream()");</span>
+<span class='curline'><a href='../S/345.html#L117'>env</a>               117 src/jni_lmntal.c   if (NULL == (jc_lmntal.c_ByteArrayOutputStream = (*env)-&gt;FindClass(env, "Ljava/io/ByteArrayOutputStream;"))) {</span>
+<span class='curline'><a href='../S/345.html#L118'>env</a>               118 src/jni_lmntal.c     (*env)-&gt;FatalError(env, "FindClass : java.io.ByteArrayOutputStream");</span>
+<span class='curline'><a href='../S/345.html#L122'>env</a>               122 src/jni_lmntal.c   if (NULL == (jc_lmntal.m_ByteArrayOutputStream_constructor = (*env)-&gt;GetMethodID(env, jc_lmntal.c_ByteArrayOutputStream, "&lt;init&gt;", "()V"))) {</span>
+<span class='curline'><a href='../S/345.html#L123'>env</a>               123 src/jni_lmntal.c     (*env)-&gt;FatalError(env, "GetStaticMethodID : ByteArrayOutputStream.ByteArrayOutputStream()");</span>
+<span class='curline'><a href='../S/345.html#L127'>env</a>               127 src/jni_lmntal.c   if (NULL == (jc_lmntal.m_ByteArrayOutputStream_toString = (*env)-&gt;GetMethodID(env, jc_lmntal.c_ByteArrayOutputStream, "toString", "()Ljava/lang/String;"))) {</span>
+<span class='curline'><a href='../S/345.html#L128'>env</a>               128 src/jni_lmntal.c     (*env)-&gt;FatalError(env, "GetStaticMethodID : ByteArrayOutputStream.toString()");</span>
+<span class='curline'><a href='../S/345.html#L132'>env</a>               132 src/jni_lmntal.c   if (NULL == (jc_lmntal.m_ByteArrayOutputStream_reset = (*env)-&gt;GetMethodID(env, jc_lmntal.c_ByteArrayOutputStream, "reset", "()V"))) {</span>
+<span class='curline'><a href='../S/345.html#L133'>env</a>               133 src/jni_lmntal.c     (*env)-&gt;FatalError(env, "GetStaticMethodID : ByteArrayOutputStream.reset()");</span>
+<span class='curline'><a href='../S/345.html#L140'>env</a>               140 src/jni_lmntal.c   if (NULL == (jc_lmntal.c_Env = (*env)-&gt;FindClass(env, "Lruntime/Env;"))) {</span>
+<span class='curline'><a href='../S/345.html#L141'>env</a>               141 src/jni_lmntal.c     (*env)-&gt;FatalError(env, "FindClass : runtime.Env");</span>
+<span class='curline'><a href='../S/345.html#L145'>env</a>               145 src/jni_lmntal.c   if (NULL == (jc_lmntal.f_Env_slimcode = (*env)-&gt;GetStaticFieldID(env, jc_lmntal.c_Env, "slimcode", "Z"))) {</span>
+<span class='curline'><a href='../S/345.html#L146'>env</a>               146 src/jni_lmntal.c     (*env)-&gt;FatalError(env, "GetStaticFieldID : Env.slimcode");</span>
+<span class='curline'><a href='../S/345.html#L150'>env</a>               150 src/jni_lmntal.c   if (NULL == (jc_lmntal.f_Env_compileonly = (*env)-&gt;GetStaticFieldID(env, jc_lmntal.c_Env, "compileonly", "Z"))) {</span>
+<span class='curline'><a href='../S/345.html#L151'>env</a>               151 src/jni_lmntal.c     (*env)-&gt;FatalError(env, "GetStaticFieldID : Env.compileonly");</span>
+<span class='curline'><a href='../S/345.html#L155'>env</a>               155 src/jni_lmntal.c   if (NULL == (jc_lmntal.f_Env_fInterpret = (*env)-&gt;GetStaticFieldID(env, jc_lmntal.c_Env, "fInterpret", "Z"))) {</span>
+<span class='curline'><a href='../S/345.html#L156'>env</a>               156 src/jni_lmntal.c     (*env)-&gt;FatalError(env, "GetStaticFieldID : Env.fInterpret");</span>
+<span class='curline'><a href='../S/345.html#L160'>env</a>               160 src/jni_lmntal.c   if (NULL == (jc_lmntal.f_Env_findatom2 = (*env)-&gt;GetStaticFieldID(env, jc_lmntal.c_Env, "findatom2", "Z"))) {</span>
+<span class='curline'><a href='../S/345.html#L161'>env</a>               161 src/jni_lmntal.c     (*env)-&gt;FatalError(env, "GetStaticFieldID : Env.findatom2");</span>
+<span class='curline'><a href='../S/345.html#L165'>env</a>               165 src/jni_lmntal.c   if (NULL == (jc_lmntal.f_Env_fGUI = (*env)-&gt;GetStaticFieldID(env, jc_lmntal.c_Env, "fGUI", "Z"))) {</span>
+<span class='curline'><a href='../S/345.html#L166'>env</a>               166 src/jni_lmntal.c     (*env)-&gt;FatalError(env, "GetStaticFieldID : Env.fGUI");</span>
+<span class='curline'><a href='../S/345.html#L170'>env</a>               170 src/jni_lmntal.c   if (NULL == (jc_lmntal.f_Env_shuffle = (*env)-&gt;GetStaticFieldID(env, jc_lmntal.c_Env, "shuffle", "I"))) {</span>
+<span class='curline'><a href='../S/345.html#L171'>env</a>               171 src/jni_lmntal.c     (*env)-&gt;FatalError(env, "GetStaticFieldID : Env.shuffle");</span>
+<span class='curline'><a href='../S/345.html#L175'>env</a>               175 src/jni_lmntal.c   if (NULL == (jc_lmntal.f_Env_nErrors = (*env)-&gt;GetStaticFieldID(env, jc_lmntal.c_Env, "nErrors", "I"))) {</span>
+<span class='curline'><a href='../S/345.html#L176'>env</a>               176 src/jni_lmntal.c     (*env)-&gt;FatalError(env, "GetStaticFieldID : Env.nErrors");</span>
+<span class='curline'><a href='../S/345.html#L183'>env</a>               183 src/jni_lmntal.c   if (NULL == (jc_lmntal.c_FrontEnd = (*env)-&gt;FindClass(env, "Lruntime/FrontEnd;"))) {</span>
+<span class='curline'><a href='../S/345.html#L184'>env</a>               184 src/jni_lmntal.c     (*env)-&gt;FatalError(env, "FindClass : runtime.FrontEnd");</span>
+<span class='curline'><a href='../S/345.html#L188'>env</a>               188 src/jni_lmntal.c   if (NULL == (jc_lmntal.m_FrontEnd_run = (*env)-&gt;GetStaticMethodID(env, jc_lmntal.c_FrontEnd, "run", "(Ljava/io/Reader;)V"))) {</span>
+<span class='curline'><a href='../S/345.html#L189'>env</a>               189 src/jni_lmntal.c     (*env)-&gt;FatalError(env, "GetStaticMethodID : FrontEnd.run(Ljava/io/Reader;)V");</span>
+<span class='curline'><a href='../S/345.html#L193'>env</a>               193 src/jni_lmntal.c   if (NULL == (jc_lmntal.c_StringReader = (*env)-&gt;FindClass(env, "Ljava/io/StringReader;"))) {</span>
+<span class='curline'><a href='../S/345.html#L194'>env</a>               194 src/jni_lmntal.c     (*env)-&gt;FatalError(env, "FindClass : java.io.StringReader");</span>
+<span class='curline'><a href='../S/345.html#L198'>env</a>               198 src/jni_lmntal.c   if (NULL == (jc_lmntal.m_StringReader_constructor = (*env)-&gt;GetMethodID(env, jc_lmntal.c_StringReader, "&lt;init&gt;", "(Ljava/lang/String;)V"))) {</span>
+<span class='curline'><a href='../S/345.html#L199'>env</a>               199 src/jni_lmntal.c     (*env)-&gt;FatalError(env, "GetStaticMethodID : StringReader.StringReader(java.lang.String)");</span>
+<span class='curline'><a href='../S/345.html#L260'>env</a>               260 src/jni_lmntal.c   JNI_CreateJavaVM(&amp;jvm, (void **) &amp;env, (void *) &amp;vm_args);</span>
+<span class='curline'><a href='../S/345.html#L272'>env</a>               272 src/jni_lmntal.c   jc_lmntal.oldOut = (*env)-&gt;GetStaticObjectField(env, jc_lmntal.c_System, jc_lmntal.f_System_out);</span>
+<span class='curline'><a href='../S/345.html#L273'>env</a>               273 src/jni_lmntal.c   jc_lmntal.byteArray = (*env)-&gt;NewObject(env, jc_lmntal.c_ByteArrayOutputStream, jc_lmntal.m_ByteArrayOutputStream_constructor);</span>
+<span class='curline'><a href='../S/345.html#L274'>env</a>               274 src/jni_lmntal.c   jobject newOut = (*env)-&gt;NewObject(env, jc_lmntal.c_PrintStream, jc_lmntal.m_PrintStream_constructor, jc_lmntal.byteArray);</span>
+<span class='curline'><a href='../S/345.html#L275'>env</a>               275 src/jni_lmntal.c   (*env)-&gt;CallStaticVoidMethod(env, jc_lmntal.c_System, jc_lmntal.m_System_setOut, newOut);</span>
+<span class='curline'><a href='../S/345.html#L287'>env</a>               287 src/jni_lmntal.c   (*env)-&gt;SetStaticBooleanField(env, jc_lmntal.c_Env, jc_lmntal.f_Env_slimcode, JNI_TRUE);</span>
+<span class='curline'><a href='../S/345.html#L288'>env</a>               288 src/jni_lmntal.c   (*env)-&gt;SetStaticBooleanField(env, jc_lmntal.c_Env, jc_lmntal.f_Env_compileonly, JNI_TRUE);</span>
+<span class='curline'><a href='../S/345.html#L289'>env</a>               289 src/jni_lmntal.c   (*env)-&gt;SetStaticBooleanField(env, jc_lmntal.c_Env, jc_lmntal.f_Env_fInterpret, JNI_TRUE);</span>
+<span class='curline'><a href='../S/345.html#L290'>env</a>               290 src/jni_lmntal.c   (*env)-&gt;SetStaticBooleanField(env, jc_lmntal.c_Env, jc_lmntal.f_Env_findatom2, JNI_FALSE);</span>
+<span class='curline'><a href='../S/345.html#L291'>env</a>               291 src/jni_lmntal.c   (*env)-&gt;SetStaticBooleanField(env, jc_lmntal.c_Env, jc_lmntal.f_Env_fGUI, JNI_FALSE);</span>
+<span class='curline'><a href='../S/345.html#L292'>env</a>               292 src/jni_lmntal.c   (*env)-&gt;SetStaticIntField(env, jc_lmntal.c_Env, jc_lmntal.f_Env_shuffle, jc_lmntal.shuffle_level);</span>
+<span class='curline'><a href='../S/345.html#L304'>env</a>               304 src/jni_lmntal.c   (*env)-&gt;CallStaticVoidMethod(env, jc_lmntal.c_System, jc_lmntal.m_System_setOut, jc_lmntal.oldOut);</span>
+<span class='curline'><a href='../S/345.html#L319'>env</a>               319 src/jni_lmntal.c   jstring line = (*env)-&gt;NewStringUTF(env, code); // lmntalコードのString型</span>
+<span class='curline'><a href='../S/345.html#L320'>env</a>               320 src/jni_lmntal.c   jobject stringReader = (*env)-&gt;NewObject(env, jc_lmntal.c_StringReader, jc_lmntal.m_StringReader_constructor, line); // String to StringReader</span>
+<span class='curline'><a href='../S/345.html#L321'>env</a>               321 src/jni_lmntal.c   (*env)-&gt;CallStaticObjectMethod(env, jc_lmntal.c_FrontEnd, jc_lmntal.m_FrontEnd_run, stringReader); // run</span>
+<span class='curline'><a href='../S/345.html#L324'>env</a>               324 src/jni_lmntal.c   jstring slimcode = (*env)-&gt;CallObjectMethod(env, jc_lmntal.byteArray, jc_lmntal.m_ByteArrayOutputStream_toString);</span>
+<span class='curline'><a href='../S/345.html#L325'>env</a>               325 src/jni_lmntal.c   (*env)-&gt;CallObjectMethod(env, jc_lmntal.byteArray, jc_lmntal.m_ByteArrayOutputStream_reset);</span>
+<span class='curline'><a href='../S/345.html#L326'>env</a>               326 src/jni_lmntal.c   const char *r = (*env)-&gt;GetStringUTFChars(env, slimcode, NULL);</span>
+<span class='curline'><a href='../S/345.html#L329'>env</a>               329 src/jni_lmntal.c   (*env)-&gt;ReleaseStringUTFChars(env, slimcode, r);</span>
+<span class='curline'><a href='../S/345.html#L332'>env</a>               332 src/jni_lmntal.c   jint nErrors = (*env)-&gt;GetStaticIntField(env, jc_lmntal.c_Env, jc_lmntal.f_Env_nErrors);</span>
+<span class='curline'><a href='../S/345.html#L446'>env</a>               446 src/jni_lmntal.c           (*env)-&gt;SetStaticIntField(env, jc_lmntal.c_Env, jc_lmntal.f_Env_shuffle, jc_lmntal.shuffle_level);</span>
+<span class='curline'><a href='../S/345.html#L454'>env</a>               454 src/jni_lmntal.c         (*env)-&gt;SetStaticBooleanField(env, jc_lmntal.c_Env, jc_lmntal.f_Env_slimcode, JNI_FALSE);</span>
+<span class='curline'><a href='../S/345.html#L455'>env</a>               455 src/jni_lmntal.c         (*env)-&gt;SetStaticBooleanField(env, jc_lmntal.c_Env, jc_lmntal.f_Env_compileonly, JNI_FALSE);</span>
+<span class='curline'><a href='../S/345.html#L456'>env</a>               456 src/jni_lmntal.c         (*env)-&gt;SetStaticBooleanField(env, jc_lmntal.c_Env, jc_lmntal.f_Env_fGUI, JNI_TRUE);</span>
+<span class='curline'><a href='../S/345.html#L461'>env</a>               461 src/jni_lmntal.c         (*env)-&gt;SetStaticBooleanField(env, jc_lmntal.c_Env, jc_lmntal.f_Env_slimcode, JNI_TRUE);</span>
+<span class='curline'><a href='../S/345.html#L462'>env</a>               462 src/jni_lmntal.c         (*env)-&gt;SetStaticBooleanField(env, jc_lmntal.c_Env, jc_lmntal.f_Env_compileonly, JNI_TRUE);</span>
+<span class='curline'><a href='../S/345.html#L463'>env</a>               463 src/jni_lmntal.c         (*env)-&gt;SetStaticBooleanField(env, jc_lmntal.c_Env, jc_lmntal.f_Env_fGUI, JNI_FALSE);</span>
+<span class='curline'><a href='../S/519.html#L186'>env</a>               186 third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c     char *env = getenv("VALGRIND_SLOWDOWN");</span>
+<span class='curline'><a href='../S/519.html#L187'>env</a>               187 third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c     slowdown = local_slowdown = env ? atof(env) : 50.0;</span>
+<span class='curline'><a href='../S/626.html#L908'>env</a>               908 third_party/google-perftools-1.8.3/src/tcmalloc.cc     const char* env = getenv("MALLOCSTATS");</span>
+<span class='curline'><a href='../S/626.html#L909'>env</a>               909 third_party/google-perftools-1.8.3/src/tcmalloc.cc     if (env != NULL) {</span>
+<span class='curline'><a href='../S/626.html#L910'>env</a>               910 third_party/google-perftools-1.8.3/src/tcmalloc.cc       int level = atoi(env);</span>
+</pre>
+</body>
+</html>

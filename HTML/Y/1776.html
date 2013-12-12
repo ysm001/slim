@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>child</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/334.html#L158'>child</a>             158 src/hyperlink.c       HyperLink *child = (HyperLink *)hashsetiter_entry(&amp;it);</span>
+<span class='curline'><a href='../S/334.html#L159'>child</a>             159 src/hyperlink.c       if ((HashKeyType)child &lt; DELETED_KEY) {</span>
+<span class='curline'><a href='../S/334.html#L160'>child</a>             160 src/hyperlink.c         return child;</span>
+<span class='curline'><a href='../S/334.html#L186'>child</a>             186 src/hyperlink.c       HyperLink *child = hyperlink_head_child(hl);</span>
+<span class='curline'><a href='../S/334.html#L187'>child</a>             187 src/hyperlink.c       hyperlink_swap_atom(hl, child);</span>
+<span class='curline'><a href='../S/334.html#L188'>child</a>             188 src/hyperlink.c       hl = child;</span>
+<span class='curline'><a href='../S/334.html#L401'>child</a>             401 src/hyperlink.c HyperLink *hyperlink_unify(HyperLink *parent, HyperLink *child)</span>
+<span class='curline'><a href='../S/334.html#L403'>child</a>             403 src/hyperlink.c   child-&gt;parent = parent;</span>
+<span class='curline'><a href='../S/334.html#L407'>child</a>             407 src/hyperlink.c   hashset_add(parent-&gt;children, (HashKeyType)child);</span>
+<span class='curline'><a href='../S/334.html#L408'>child</a>             408 src/hyperlink.c   parent-&gt;rank = parent-&gt;rank + child-&gt;rank + 1;</span>
+<span class='curline'><a href='../S/335.html#L97'>child</a>              97 src/hyperlink.h HyperLink *hyperlink_unify(HyperLink *parent, HyperLink *child);</span>
+<span class='curline'><a href='../S/357.html#L1717'>child</a>            1717 src/membrane.c   LmnMembrane   *child;</span>
+<span class='curline'><a href='../S/357.html#L1762'>child</a>            1762 src/membrane.c   ma_iter-&gt;child = NULL;</span>
+<span class='curline'><a href='../S/357.html#L1867'>child</a>            1867 src/membrane.c     if (!iter-&gt;child) {</span>
+<span class='curline'><a href='../S/357.html#L1868'>child</a>            1868 src/membrane.c       iter-&gt;child = lmn_mem_child_head(iter-&gt;mem);</span>
+<span class='curline'><a href='../S/357.html#L1870'>child</a>            1870 src/membrane.c       iter-&gt;child = lmn_mem_next(iter-&gt;child);</span>
+<span class='curline'><a href='../S/357.html#L1873'>child</a>            1873 src/membrane.c     if (!iter-&gt;child) {</span>
+<span class='curline'><a href='../S/357.html#L1877'>child</a>            1877 src/membrane.c       return iter-&gt;child;</span>
+<span class='curline'><a href='../S/357.html#L1915'>child</a>            1915 src/membrane.c     LmnMembrane *child;</span>
+<span class='curline'><a href='../S/357.html#L1917'>child</a>            1917 src/membrane.c       child = memIsomorIter_child_traversed(iter);</span>
+<span class='curline'><a href='../S/357.html#L1918'>child</a>            1918 src/membrane.c     } while (child &amp;&amp; tracelog_contains_mem(log1, child));</span>
+<span class='curline'><a href='../S/357.html#L1920'>child</a>            1920 src/membrane.c     if (child) {</span>
+<span class='curline'><a href='../S/357.html#L1924'>child</a>            1924 src/membrane.c                                  iter, child);</span>
+<span class='curline'><a href='../S/417.html#L85'>child</a>              85 src/verifier/delta_membrane.c static inline BOOL dmem_is_removed_mem(struct MemDelta *d, LmnMembrane *parent, LmnMembrane *child);</span>
+<span class='curline'><a href='../S/417.html#L110'>child</a>             110 src/verifier/delta_membrane.c                                LmnMembrane *child);</span>
+<span class='curline'><a href='../S/417.html#L1183'>child</a>            1183 src/verifier/delta_membrane.c                              LmnMembrane *child)</span>
+<span class='curline'><a href='../S/417.html#L1185'>child</a>            1185 src/verifier/delta_membrane.c   if (dmem_root_is_new_mem(d, child)) { /* 追加する方が新しい膜 */</span>
+<span class='curline'><a href='../S/417.html#L1186'>child</a>            1186 src/verifier/delta_membrane.c     child-&gt;parent = parent;</span>
+<span class='curline'><a href='../S/417.html#L1188'>child</a>            1188 src/verifier/delta_membrane.c     dmem_root_get_mem_delta(d, child)-&gt;new_parent = parent;</span>
+<span class='curline'><a href='../S/417.html#L1191'>child</a>            1191 src/verifier/delta_membrane.c     vec_push(&amp;dmem_root_get_new_mem_info(d, parent)-&gt;new_child_mems, (vec_data_t)child);</span>
+<span class='curline'><a href='../S/417.html#L1193'>child</a>            1193 src/verifier/delta_membrane.c     dmem_add_child_mem(dmem_root_get_mem_delta(d, parent), parent, child);</span>
+<span class='curline'><a href='../S/417.html#L1196'>child</a>            1196 src/verifier/delta_membrane.c   proc_tbl_put_mem(&amp;d-&gt;owner_tbl, child, (LmnWord)parent);</span>
+<span class='curline'><a href='../S/417.html#L1201'>child</a>            1201 src/verifier/delta_membrane.c                           LmnMembrane *child)</span>
+<span class='curline'><a href='../S/417.html#L1203'>child</a>            1203 src/verifier/delta_membrane.c   if (dmem_root_is_new_mem(root_d, child)) {</span>
+<span class='curline'><a href='../S/417.html#L1204'>child</a>            1204 src/verifier/delta_membrane.c     child-&gt;parent = NULL;</span>
+<span class='curline'><a href='../S/417.html#L1206'>child</a>            1206 src/verifier/delta_membrane.c     dmem_root_get_mem_delta(root_d, child)-&gt;new_parent = NULL;</span>
+<span class='curline'><a href='../S/417.html#L1210'>child</a>            1210 src/verifier/delta_membrane.c     vec_push(&amp;dmem_root_get_new_mem_info(root_d, parent)-&gt;removed_child_mems, (vec_data_t)child);</span>
+<span class='curline'><a href='../S/417.html#L1215'>child</a>            1215 src/verifier/delta_membrane.c     if (dmem_root_is_new_mem(root_d, child)) lmn_fatal("unexpected");</span>
+<span class='curline'><a href='../S/417.html#L1216'>child</a>            1216 src/verifier/delta_membrane.c     if (dmem_is_removed_mem(d, parent, child)) lmn_fatal("unexpected");</span>
+<span class='curline'><a href='../S/417.html#L1218'>child</a>            1218 src/verifier/delta_membrane.c     vec_push(&amp;d-&gt;del_mems, (vec_data_t)child);</span>
+<span class='curline'><a href='../S/417.html#L1220'>child</a>            1220 src/verifier/delta_membrane.c   proc_tbl_put_mem(&amp;root_d-&gt;owner_tbl, child, 0);</span>
+<span class='curline'><a href='../S/417.html#L1954'>child</a>            1954 src/verifier/delta_membrane.c static inline BOOL dmem_is_removed_mem(struct MemDelta *d, LmnMembrane *parent, LmnMembrane *child)</span>
+<span class='curline'><a href='../S/417.html#L1957'>child</a>            1957 src/verifier/delta_membrane.c   return proc_tbl_get_by_mem(&amp;d-&gt;root_d-&gt;owner_tbl, child, &amp;t) &amp;&amp; (LmnMembrane *)t != parent;</span>
+<span class='curline'><a href='../S/417.html#L1987'>child</a>            1987 src/verifier/delta_membrane.c                                LmnMembrane *child)</span>
+<span class='curline'><a href='../S/417.html#L1989'>child</a>            1989 src/verifier/delta_membrane.c   vec_push(&amp;d-&gt;new_mems, (vec_data_t)child);</span>
+<span class='curline'><a href='../S/418.html#L130'>child</a>             130 src/verifier/delta_membrane.h                              LmnMembrane *child);</span>
+<span class='curline'><a href='../S/418.html#L152'>child</a>             152 src/verifier/delta_membrane.h                           LmnMembrane *child);</span>
+</pre>
+</body>
+</html>

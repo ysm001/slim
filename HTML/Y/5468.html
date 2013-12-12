@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>trees</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/701.html#L118'>trees</a>             118 third_party/zdelta-2.1/infblock.c     ZFREE(z, s-&gt;sub.trees.blens);</span>
+<span class='curline'><a href='../S/701.html#L260'>trees</a>             260 third_party/zdelta-2.1/infblock.c     s-&gt;sub.trees.table = t = (uInt)b &amp; MASK(LBL+DBL+ZBL+BBL);</span>
+<span class='curline'><a href='../S/701.html#L281'>trees</a>             281 third_party/zdelta-2.1/infblock.c     if ((s-&gt;sub.trees.blens = (uIntf*)ZALLOC(z, t, sizeof(uInt))) == ZD_NULL)</span>
+<span class='curline'><a href='../S/701.html#L287'>trees</a>             287 third_party/zdelta-2.1/infblock.c     s-&gt;sub.trees.index = 0;</span>
+<span class='curline'><a href='../S/701.html#L291'>trees</a>             291 third_party/zdelta-2.1/infblock.c     while (s-&gt;sub.trees.index &lt; 4 + (s-&gt;sub.trees.table &gt;&gt; (LBL+DBL+ZBL)) )</span>
+<span class='curline'><a href='../S/701.html#L294'>trees</a>             294 third_party/zdelta-2.1/infblock.c       s-&gt;sub.trees.blens[border[s-&gt;sub.trees.index++]] = (uInt)b &amp; 7;</span>
+<span class='curline'><a href='../S/701.html#L296'>trees</a>             296 third_party/zdelta-2.1/infblock.c 	      border[s-&gt;sub.trees.index-1], (uInt)b &amp; 7) );</span>
+<span class='curline'><a href='../S/701.html#L299'>trees</a>             299 third_party/zdelta-2.1/infblock.c     while (s-&gt;sub.trees.index &lt; 19)</span>
+<span class='curline'><a href='../S/701.html#L300'>trees</a>             300 third_party/zdelta-2.1/infblock.c       s-&gt;sub.trees.blens[border[s-&gt;sub.trees.index++]] = 0;</span>
+<span class='curline'><a href='../S/701.html#L301'>trees</a>             301 third_party/zdelta-2.1/infblock.c     s-&gt;sub.trees.bb = 7;</span>
+<span class='curline'><a href='../S/701.html#L302'>trees</a>             302 third_party/zdelta-2.1/infblock.c     t = inflate_trees_bits(s-&gt;sub.trees.blens, &amp;s-&gt;sub.trees.bb,</span>
+<span class='curline'><a href='../S/701.html#L303'>trees</a>             303 third_party/zdelta-2.1/infblock.c 			   &amp;s-&gt;sub.trees.tb, s-&gt;hufts, z);</span>
+<span class='curline'><a href='../S/701.html#L306'>trees</a>             306 third_party/zdelta-2.1/infblock.c       ZFREE(z, s-&gt;sub.trees.blens);</span>
+<span class='curline'><a href='../S/701.html#L312'>trees</a>             312 third_party/zdelta-2.1/infblock.c     s-&gt;sub.trees.index = 0;</span>
+<span class='curline'><a href='../S/701.html#L318'>trees</a>             318 third_party/zdelta-2.1/infblock.c     while (t = s-&gt;sub.trees.table,</span>
+<span class='curline'><a href='../S/701.html#L319'>trees</a>             319 third_party/zdelta-2.1/infblock.c 	   s-&gt;sub.trees.index &lt; 259 + (t &amp; MASK(LBL)) + </span>
+<span class='curline'><a href='../S/701.html#L322'>trees</a>             322 third_party/zdelta-2.1/infblock.c     while (t = s-&gt;sub.trees.table,</span>
+<span class='curline'><a href='../S/701.html#L323'>trees</a>             323 third_party/zdelta-2.1/infblock.c 	   s-&gt;sub.trees.index &lt; 258 + (t &amp; MASK(LBL)) + </span>
+<span class='curline'><a href='../S/701.html#L330'>trees</a>             330 third_party/zdelta-2.1/infblock.c       t = s-&gt;sub.trees.bb;</span>
+<span class='curline'><a href='../S/701.html#L332'>trees</a>             332 third_party/zdelta-2.1/infblock.c       h = s-&gt;sub.trees.tb + ((uInt)b &amp; inflate_mask[t]);</span>
+<span class='curline'><a href='../S/701.html#L338'>trees</a>             338 third_party/zdelta-2.1/infblock.c         s-&gt;sub.trees.blens[s-&gt;sub.trees.index++] = c;</span>
+<span class='curline'><a href='../S/701.html#L340'>trees</a>             340 third_party/zdelta-2.1/infblock.c 	       s-&gt;sub.trees.index-1,s-&gt;sub.trees.blens[s-&gt;sub.trees.index-1]));</span>
+<span class='curline'><a href='../S/701.html#L350'>trees</a>             350 third_party/zdelta-2.1/infblock.c         i = s-&gt;sub.trees.index;</span>
+<span class='curline'><a href='../S/701.html#L351'>trees</a>             351 third_party/zdelta-2.1/infblock.c 	t = s-&gt;sub.trees.table;</span>
+<span class='curline'><a href='../S/701.html#L360'>trees</a>             360 third_party/zdelta-2.1/infblock.c 	  ZFREE(z, s-&gt;sub.trees.blens);</span>
+<span class='curline'><a href='../S/701.html#L366'>trees</a>             366 third_party/zdelta-2.1/infblock.c 	c = c == 16 ? s-&gt;sub.trees.blens[i - 1] : 0;</span>
+<span class='curline'><a href='../S/701.html#L368'>trees</a>             368 third_party/zdelta-2.1/infblock.c 	  s-&gt;sub.trees.blens[i++] = c;</span>
+<span class='curline'><a href='../S/701.html#L371'>trees</a>             371 third_party/zdelta-2.1/infblock.c 	s-&gt;sub.trees.index = i;</span>
+<span class='curline'><a href='../S/701.html#L374'>trees</a>             374 third_party/zdelta-2.1/infblock.c     s-&gt;sub.trees.tb = ZD_NULL;</span>
+<span class='curline'><a href='../S/701.html#L383'>trees</a>             383 third_party/zdelta-2.1/infblock.c       t = s-&gt;sub.trees.table;</span>
+<span class='curline'><a href='../S/701.html#L392'>trees</a>             392 third_party/zdelta-2.1/infblock.c 				s-&gt;sub.trees.blens, &amp;bl, &amp;bd, &amp;bzd, &amp;tl, &amp;td, </span>
+<span class='curline'><a href='../S/701.html#L394'>trees</a>             394 third_party/zdelta-2.1/infblock.c       ZFREE(z, s-&gt;sub.trees.blens);</span>
+<span class='curline'><a href='../S/712.html#L55'>trees</a>              55 third_party/zdelta-2.1/infutil.h     } trees;            /* if DTREE, decoding info for trees */</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>next_memory_steal_</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/669.html#L64'>next_memory_steal_</a>   64 third_party/google-perftools-1.8.3/src/thread_cache.cc ThreadCache* ThreadCache::next_memory_steal_ = NULL;</span>
+<span class='curline'><a href='../S/669.html#L284'>next_memory_steal_</a>  284 third_party/google-perftools-1.8.3/src/thread_cache.cc        ++i, next_memory_steal_ = next_memory_steal_-&gt;next_) {</span>
+<span class='curline'><a href='../S/669.html#L286'>next_memory_steal_</a>  286 third_party/google-perftools-1.8.3/src/thread_cache.cc     if (next_memory_steal_ == NULL) {</span>
+<span class='curline'><a href='../S/669.html#L288'>next_memory_steal_</a>  288 third_party/google-perftools-1.8.3/src/thread_cache.cc       next_memory_steal_ = thread_heaps_;</span>
+<span class='curline'><a href='../S/669.html#L290'>next_memory_steal_</a>  290 third_party/google-perftools-1.8.3/src/thread_cache.cc     if (next_memory_steal_ == this ||</span>
+<span class='curline'><a href='../S/669.html#L291'>next_memory_steal_</a>  291 third_party/google-perftools-1.8.3/src/thread_cache.cc         next_memory_steal_-&gt;max_size_ &lt;= kMinThreadCacheSize) {</span>
+<span class='curline'><a href='../S/669.html#L294'>next_memory_steal_</a>  294 third_party/google-perftools-1.8.3/src/thread_cache.cc     next_memory_steal_-&gt;max_size_ -= kStealAmount;</span>
+<span class='curline'><a href='../S/669.html#L297'>next_memory_steal_</a>  297 third_party/google-perftools-1.8.3/src/thread_cache.cc     next_memory_steal_ = next_memory_steal_-&gt;next_;</span>
+<span class='curline'><a href='../S/669.html#L395'>next_memory_steal_</a>  395 third_party/google-perftools-1.8.3/src/thread_cache.cc     ASSERT(next_memory_steal_ == NULL);</span>
+<span class='curline'><a href='../S/669.html#L396'>next_memory_steal_</a>  396 third_party/google-perftools-1.8.3/src/thread_cache.cc     next_memory_steal_ = heap;</span>
+<span class='curline'><a href='../S/669.html#L449'>next_memory_steal_</a>  449 third_party/google-perftools-1.8.3/src/thread_cache.cc   if (next_memory_steal_ == heap) next_memory_steal_ = heap-&gt;next_;</span>
+<span class='curline'><a href='../S/669.html#L450'>next_memory_steal_</a>  450 third_party/google-perftools-1.8.3/src/thread_cache.cc   if (next_memory_steal_ == NULL) next_memory_steal_ = thread_heaps_;</span>
+<span class='curline'><a href='../S/670.html#L278'>next_memory_steal_</a>  278 third_party/google-perftools-1.8.3/src/thread_cache.h   static ThreadCache* next_memory_steal_;</span>
+</pre>
+</body>
+</html>

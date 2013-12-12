@@ -1,0 +1,435 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>third_party/google-perftools-1.8.3/src/malloc_extension.cc</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/738.html'>third_party</a>/<a href='../files/739.html'>google-perftools-1.8.3</a>/<a href='../files/740.html'>src</a>/malloc_extension.cc</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L57'>[^]</a><a href='#L369'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L57' title='Defined at 57.'>DumpAddressMap</a></li>
+<li><a href='#L77' title='Defined at 77.'>Initialize</a></li>
+<li><a href='#L110' title='Defined at 110.'>VerifyAllMemory</a></li>
+<li><a href='#L111' title='Defined at 111.'>VerifyNewMemory</a></li>
+<li><a href='#L112' title='Defined at 112.'>VerifyArrayNewMemory</a></li>
+<li><a href='#L113' title='Defined at 113.'>VerifyMallocMemory</a></li>
+<li><a href='#L115' title='Defined at 115.'>GetNumericProperty</a></li>
+<li><a href='#L119' title='Defined at 119.'>SetNumericProperty</a></li>
+<li><a href='#L123' title='Defined at 123.'>GetStats</a></li>
+<li><a href='#L128' title='Defined at 128.'>MallocMemoryStats</a></li>
+<li><a href='#L136' title='Defined at 136.'>ReadStackTraces</a></li>
+<li><a href='#L140' title='Defined at 140.'>ReadHeapGrowthStackTraces</a></li>
+<li><a href='#L144' title='Defined at 144.'>MarkThreadIdle</a></li>
+<li><a href='#L148' title='Defined at 148.'>MarkThreadBusy</a></li>
+<li><a href='#L152' title='Defined at 152.'>GetSystemAllocator</a></li>
+<li><a href='#L156' title='Defined at 156.'>SetSystemAllocator</a></li>
+<li><a href='#L160' title='Defined at 160.'>ReleaseToSystem</a></li>
+<li><a href='#L164' title='Defined at 164.'>ReleaseFreeMemory</a></li>
+<li><a href='#L168' title='Defined at 168.'>SetMemoryReleaseRate</a></li>
+<li><a href='#L172' title='Defined at 172.'>GetMemoryReleaseRate</a></li>
+<li><a href='#L176' title='Defined at 176.'>GetEstimatedAllocatedSize</a></li>
+<li><a href='#L180' title='Defined at 180.'>GetAllocatedSize</a></li>
+<li><a href='#L185' title='Defined at 185.'>GetOwnership</a></li>
+<li><a href='#L189' title='Defined at 189.'>GetFreeListSizes</a></li>
+<li><a href='#L199' title='Defined at 199.'>InitModule</a></li>
+<li><a href='#L206' title='Defined at 206.'>instance</a></li>
+<li><a href='#L211' title='Defined at 211.'>Register</a></li>
+<li><a href='#L230' title='Defined at 230.'>Count</a></li>
+<li><a href='#L233' title='Defined at 233.'>Size</a></li>
+<li><a href='#L236' title='Defined at 236.'>Depth</a></li>
+<li><a href='#L239' title='Defined at 239.'>PC</a></li>
+<li><a href='#L243' title='Defined at 243.'>PrintCountAndSize</a></li>
+<li><a href='#L255' title='Defined at 255.'>PrintHeader</a></li>
+<li><a href='#L273' title='Defined at 273.'>PrintStackEntry</a></li>
+<li><a href='#L286' title='Defined at 286.'>GetHeapSample</a></li>
+<li><a href='#L310' title='Defined at 310.'>GetHeapGrowthStacks</a></li>
+<li><a href='#L334' title='Defined at 334.'>Ranges</a></li>
+<li><a href='#L369' title='Defined at 369.'>MallocExtension_GetOwnership</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>// Copyright (c) 2005, Google Inc.</em>
+<a id='L2' name='L2' /><em class='comment'>// All rights reserved.</em>
+<a id='L3' name='L3' /><em class='comment'>// </em>
+<a id='L4' name='L4' /><em class='comment'>// Redistribution and use in source and binary forms, with or without</em>
+<a id='L5' name='L5' /><em class='comment'>// modification, are permitted provided that the following conditions are</em>
+<a id='L6' name='L6' /><em class='comment'>// met:</em>
+<a id='L7' name='L7' /><em class='comment'>// </em>
+<a id='L8' name='L8' /><em class='comment'>//     * Redistributions of source code must retain the above copyright</em>
+<a id='L9' name='L9' /><em class='comment'>// notice, this list of conditions and the following disclaimer.</em>
+<a id='L10' name='L10' /><em class='comment'>//     * Redistributions in binary form must reproduce the above</em>
+<a id='L11' name='L11' /><em class='comment'>// copyright notice, this list of conditions and the following disclaimer</em>
+<a id='L12' name='L12' /><em class='comment'>// in the documentation and/or other materials provided with the</em>
+<a id='L13' name='L13' /><em class='comment'>// distribution.</em>
+<a id='L14' name='L14' /><em class='comment'>//     * Neither the name of Google Inc. nor the names of its</em>
+<a id='L15' name='L15' /><em class='comment'>// contributors may be used to endorse or promote products derived from</em>
+<a id='L16' name='L16' /><em class='comment'>// this software without specific prior written permission.</em>
+<a id='L17' name='L17' /><em class='comment'>// </em>
+<a id='L18' name='L18' /><em class='comment'>// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L19' name='L19' /><em class='comment'>// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L20' name='L20' /><em class='comment'>// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L21' name='L21' /><em class='comment'>// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L22' name='L22' /><em class='comment'>// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L23' name='L23' /><em class='comment'>// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L24' name='L24' /><em class='comment'>// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L25' name='L25' /><em class='comment'>// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L26' name='L26' /><em class='comment'>// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L27' name='L27' /><em class='comment'>// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L28' name='L28' /><em class='comment'>// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L29' name='L29' />
+<a id='L30' name='L30' /><em class='comment'>// ---</em>
+<a id='L31' name='L31' /><em class='comment'>// Author: Sanjay Ghemawat &lt;opensource@google.com&gt;</em>
+<a id='L32' name='L32' />
+<a id='L33' name='L33' /><em class='sharp'>#include</em> &lt;<a href='../I/6.html'>config.h</a>&gt;
+<a id='L34' name='L34' /><em class='sharp'>#include</em> &lt;assert.h&gt;
+<a id='L35' name='L35' /><em class='sharp'>#include</em> &lt;<a href='372.html'>string.h</a>&gt;
+<a id='L36' name='L36' /><em class='sharp'>#include</em> &lt;stdio.h&gt;
+<a id='L37' name='L37' /><em class='sharp'>#if</em> <strong class='reserved'>defined</strong> <a href='../D/935.html' title='Multiple defined in 2 places.'>HAVE_STDINT_H</a>
+<a id='L38' name='L38' /><em class='sharp'>#include</em> &lt;stdint.h&gt;
+<a id='L39' name='L39' /><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong> <a href='../D/911.html' title='Multiple defined in 2 places.'>HAVE_INTTYPES_H</a>
+<a id='L40' name='L40' /><em class='sharp'>#include</em> &lt;inttypes.h&gt;
+<a id='L41' name='L41' /><em class='sharp'>#else</em>
+<a id='L42' name='L42' /><em class='sharp'>#include</em> &lt;sys/types.h&gt;
+<a id='L43' name='L43' /><em class='sharp'>#endif</em>
+<a id='L44' name='L44' /><em class='sharp'>#include</em> &lt;string&gt;
+<a id='L45' name='L45' /><em class='sharp'>#include</em> "<a href='520.html'>base/dynamic_annotations.h</a>"
+<a id='L46' name='L46' /><em class='sharp'>#include</em> "<a href='543.html'>base/sysinfo.h</a>"    <em class='comment'>// for FillProcSelfMaps</em>
+<a id='L47' name='L47' /><em class='sharp'>#ifndef</em> <a href='../S/672.html#L301' title='Defined at 301 in third_party/google-perftools-1.8.3/src/windows/config.h.'>NO_HEAP_CHECK</a>
+<a id='L48' name='L48' /><em class='sharp'>#include</em> "<a href='557.html'>google/heap-checker.h</a>"
+<a id='L49' name='L49' /><em class='sharp'>#endif</em>
+<a id='L50' name='L50' /><em class='sharp'>#include</em> "<a href='559.html'>google/malloc_extension.h</a>"
+<a id='L51' name='L51' /><em class='sharp'>#include</em> "<a href='560.html'>google/malloc_extension_c.h</a>"
+<a id='L52' name='L52' /><em class='sharp'>#include</em> "<a href='586.html'>maybe_threads.h</a>"
+<a id='L53' name='L53' />
+<a id='L54' name='L54' /><strong class='reserved'>using</strong> <a href='../D/2522.html' title='Multiple defined in 2 places.'>STL_NAMESPACE</a>::<a href='../Y/5133.html' title='Multiple used in 61 places.'>string</a>;
+<a id='L55' name='L55' /><strong class='reserved'>using</strong> <a href='../D/2522.html' title='Multiple defined in 2 places.'>STL_NAMESPACE</a>::<a href='../Y/5622.html' title='Multiple used in 63 places.'>vector</a>;
+<a id='L56' name='L56' />
+<a id='L57' name='L57' /><strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../R/556.html' title='Multiple refered from 2 places.'>DumpAddressMap</a>(<a href='../Y/5133.html' title='Multiple used in 61 places.'>string</a>* <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>) <em class='brace'>{</em>
+<a id='L58' name='L58' />  *<a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a> += "\nMAPPED_LIBRARIES:\n";
+<a id='L59' name='L59' />  <em class='comment'>// We keep doubling until we get a fit</em>
+<a id='L60' name='L60' />  <strong class='reserved'>const</strong> <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/3944.html' title='Multiple used in 6 places.'>old_resultlen</a> = <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>-&gt;<a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>();
+<a id='L61' name='L61' />  <strong class='reserved'>for</strong> (<strong class='reserved'>int</strong> <a href='../Y/1460.html' title='Multiple used in 3 places.'>amap_size</a> = 10240; <a href='../Y/1460.html' title='Multiple used in 3 places.'>amap_size</a> &lt; 10000000; <a href='../Y/1460.html' title='Multiple used in 3 places.'>amap_size</a> *= 2) <em class='brace'>{</em>
+<a id='L62' name='L62' />    <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>-&gt;<a href='../Y/4524.html' title='Multiple used in 4 places.'>resize</a>(<a href='../Y/3944.html' title='Multiple used in 6 places.'>old_resultlen</a> + <a href='../Y/1460.html' title='Multiple used in 3 places.'>amap_size</a>);
+<a id='L63' name='L63' />    <strong class='reserved'>bool</strong> <a href='../Y/5708.html' title='Multiple used in 7 places.'>wrote_all</a> = <strong class='reserved'>false</strong>;
+<a id='L64' name='L64' />    <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> <a href='../Y/1700.html' title='Multiple used in 12 places.'>bytes_written</a> =
+<a id='L65' name='L65' />        <a href='../D/5409.html' title='Multiple defined in 10 places.'>tcmalloc</a>::<a href='../S/542.html#L935' title='Defined at 935 in third_party/google-perftools-1.8.3/src/base/sysinfo.cc.'>FillProcSelfMaps</a>(&amp;((*<a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>)[<a href='../Y/3944.html' title='Multiple used in 6 places.'>old_resultlen</a>]), <a href='../Y/1460.html' title='Multiple used in 3 places.'>amap_size</a>,
+<a id='L66' name='L66' />                                   &amp;<a href='../Y/5708.html' title='Multiple used in 7 places.'>wrote_all</a>);
+<a id='L67' name='L67' />    <strong class='reserved'>if</strong> (<a href='../Y/5708.html' title='Multiple used in 7 places.'>wrote_all</a>) <em class='brace'>{</em>   <em class='comment'>// we fit!</em>
+<a id='L68' name='L68' />      (*<a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>)[<a href='../Y/3944.html' title='Multiple used in 6 places.'>old_resultlen</a> + <a href='../Y/1700.html' title='Multiple used in 12 places.'>bytes_written</a>] = '\0';
+<a id='L69' name='L69' />      <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>-&gt;<a href='../Y/4524.html' title='Multiple used in 4 places.'>resize</a>(<a href='../Y/3944.html' title='Multiple used in 6 places.'>old_resultlen</a> + <a href='../Y/1700.html' title='Multiple used in 12 places.'>bytes_written</a>);
+<a id='L70' name='L70' />      <strong class='reserved'>return</strong>;
+<a id='L71' name='L71' />    <em class='brace'>}</em>
+<a id='L72' name='L72' />  <em class='brace'>}</em>
+<a id='L73' name='L73' />  <a href='../Y/4529.html' title='Multiple used in 474 places.'>result</a>-&gt;reserve(<a href='../Y/3944.html' title='Multiple used in 6 places.'>old_resultlen</a>);   <em class='comment'>// just don't print anything</em>
+<a id='L74' name='L74' /><em class='brace'>}</em>
+<a id='L75' name='L75' />
+<a id='L76' name='L76' /><em class='comment'>// Note: this routine is meant to be called before threads are spawned.</em>
+<a id='L77' name='L77' /><strong class='reserved'>void</strong> <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../R/1098.html' title='Multiple refered from 10 places.'>Initialize</a>() <em class='brace'>{</em>
+<a id='L78' name='L78' />  <strong class='reserved'>static</strong> <strong class='reserved'>bool</strong> <a href='../Y/2823.html' title='Multiple used in 3 places.'>initialize_called</a> = <strong class='reserved'>false</strong>;
+<a id='L79' name='L79' />
+<a id='L80' name='L80' />  <strong class='reserved'>if</strong> (<a href='../Y/2823.html' title='Multiple used in 3 places.'>initialize_called</a>) <strong class='reserved'>return</strong>;
+<a id='L81' name='L81' />  <a href='../Y/2823.html' title='Multiple used in 3 places.'>initialize_called</a> = <strong class='reserved'>true</strong>;
+<a id='L82' name='L82' />
+<a id='L83' name='L83' /><em class='sharp'>#ifdef</em> <a href='../Y/1043.html' title='Multiple used in 10 places.'>__GLIBC__</a>
+<a id='L84' name='L84' />  <em class='comment'>// GNU libc++ versions 3.3 and 3.4 obey the environment variables</em>
+<a id='L85' name='L85' />  <em class='comment'>// GLIBCPP_FORCE_NEW and GLIBCXX_FORCE_NEW respectively.  Setting</em>
+<a id='L86' name='L86' />  <em class='comment'>// one of these variables forces the STL default allocator to call</em>
+<a id='L87' name='L87' />  <em class='comment'>// new() or delete() for each allocation or deletion.  Otherwise</em>
+<a id='L88' name='L88' />  <em class='comment'>// the STL allocator tries to avoid the high cost of doing</em>
+<a id='L89' name='L89' />  <em class='comment'>// allocations by pooling memory internally.  However, tcmalloc</em>
+<a id='L90' name='L90' />  <em class='comment'>// does allocations really fast, especially for the types of small</em>
+<a id='L91' name='L91' />  <em class='comment'>// items one sees in STL, so it's better off just using us.</em>
+<a id='L92' name='L92' />  <em class='comment'>// TODO: control whether we do this via an environment variable?</em>
+<a id='L93' name='L93' />  <a href='../Y/4794.html' title='Multiple used in 2 places.'>setenv</a>("GLIBCPP_FORCE_NEW", "1", <strong class='reserved'>false</strong> <em class='comment'>/* no overwrite*/</em>);
+<a id='L94' name='L94' />  <a href='../Y/4794.html' title='Multiple used in 2 places.'>setenv</a>("GLIBCXX_FORCE_NEW", "1", <strong class='reserved'>false</strong> <em class='comment'>/* no overwrite*/</em>);
+<a id='L95' name='L95' />
+<a id='L96' name='L96' />  <em class='comment'>// Now we need to make the setenv 'stick', which it may not do since</em>
+<a id='L97' name='L97' />  <em class='comment'>// the env is flakey before main() is called.  But luckily stl only</em>
+<a id='L98' name='L98' />  <em class='comment'>// looks at this env var the first time it tries to do an alloc, and</em>
+<a id='L99' name='L99' />  <em class='comment'>// caches what it finds.  So we just cause an stl alloc here.</em>
+<a id='L100' name='L100' />  <a href='../Y/5133.html' title='Multiple used in 61 places.'>string</a> <a href='../Y/2107.html' title='Multiple used in 25 places.'>dummy</a>("I need to be allocated");
+<a id='L101' name='L101' />  <a href='../Y/2107.html' title='Multiple used in 25 places.'>dummy</a> += "!";         <em class='comment'>// so the definition of dummy isn't optimized out</em>
+<a id='L102' name='L102' /><em class='sharp'>#endif</em>  <em class='comment'>/* __GLIBC__ */</em>
+<a id='L103' name='L103' /><em class='brace'>}</em>
+<a id='L104' name='L104' />
+<a id='L105' name='L105' /><em class='comment'>// SysAllocator implementation</em>
+<a id='L106' name='L106' /><a href='../S/580.html#L106' title='Defined at 106 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>SysAllocator</a>::~<a href='../R/2361.html' title='Multiple refered from 31 places.'>SysAllocator</a>() <em class='brace'>{</em><em class='brace'>}</em>
+<a id='L107' name='L107' />
+<a id='L108' name='L108' /><em class='comment'>// Default implementation -- does nothing</em>
+<a id='L109' name='L109' /><a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::~<a href='../R/1609.html' title='Multiple refered from 115 places.'>MallocExtension</a>() <em class='brace'>{</em> <em class='brace'>}</em>
+<a id='L110' name='L110' /><strong class='reserved'>bool</strong> <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../R/2645.html' title='Multiple refered from 5 places.'>VerifyAllMemory</a>() <em class='brace'>{</em> <strong class='reserved'>return</strong> <strong class='reserved'>true</strong>; <em class='brace'>}</em>
+<a id='L111' name='L111' /><strong class='reserved'>bool</strong> <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../R/2652.html' title='Multiple refered from 2 places.'>VerifyNewMemory</a>(<strong class='reserved'>void</strong>* <a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>) <em class='brace'>{</em> <strong class='reserved'>return</strong> <strong class='reserved'>true</strong>; <em class='brace'>}</em>
+<a id='L112' name='L112' /><strong class='reserved'>bool</strong> <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../R/2646.html' title='Multiple refered from 2 places.'>VerifyArrayNewMemory</a>(<strong class='reserved'>void</strong>* <a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>) <em class='brace'>{</em> <strong class='reserved'>return</strong> <strong class='reserved'>true</strong>; <em class='brace'>}</em>
+<a id='L113' name='L113' /><strong class='reserved'>bool</strong> <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../R/2650.html' title='Multiple refered from 2 places.'>VerifyMallocMemory</a>(<strong class='reserved'>void</strong>* <a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>) <em class='brace'>{</em> <strong class='reserved'>return</strong> <strong class='reserved'>true</strong>; <em class='brace'>}</em>
+<a id='L114' name='L114' />
+<a id='L115' name='L115' /><strong class='reserved'>bool</strong> <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../R/751.html' title='Multiple refered from 12 places.'>GetNumericProperty</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../Y/4307.html' title='Multiple used in 8 places.'>property</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a>* <a href='../Y/5599.html' title='Multiple used in 481 places.'>value</a>) <em class='brace'>{</em>
+<a id='L116' name='L116' />  <strong class='reserved'>return</strong> <strong class='reserved'>false</strong>;
+<a id='L117' name='L117' /><em class='brace'>}</em>
+<a id='L118' name='L118' />
+<a id='L119' name='L119' /><strong class='reserved'>bool</strong> <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../R/2297.html' title='Multiple refered from 2 places.'>SetNumericProperty</a>(<strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../Y/4307.html' title='Multiple used in 8 places.'>property</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/5599.html' title='Multiple used in 481 places.'>value</a>) <em class='brace'>{</em>
+<a id='L120' name='L120' />  <strong class='reserved'>return</strong> <strong class='reserved'>false</strong>;
+<a id='L121' name='L121' /><em class='brace'>}</em>
+<a id='L122' name='L122' />
+<a id='L123' name='L123' /><strong class='reserved'>void</strong> <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../R/767.html' title='Multiple refered from 6 places.'>GetStats</a>(<strong class='reserved'>char</strong>* <a href='../Y/1680.html' title='Multiple used in 109 places.'>buffer</a>, <strong class='reserved'>int</strong> <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>) <em class='brace'>{</em>
+<a id='L124' name='L124' />  <a href='../Y/1520.html' title='Multiple used in 35 places.'>assert</a>(<a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a> &gt; 0);
+<a id='L125' name='L125' />  <a href='../Y/1680.html' title='Multiple used in 109 places.'>buffer</a>[0] = '\0';
+<a id='L126' name='L126' /><em class='brace'>}</em>
+<a id='L127' name='L127' />
+<a id='L128' name='L128' /><strong class='reserved'>bool</strong> <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../R/1646.html' title='Multiple refered from 3 places.'>MallocMemoryStats</a>(<strong class='reserved'>int</strong>* <a href='../Y/1641.html' title='Multiple used in 31 places.'>blocks</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a>* <a href='../Y/5432.html' title='Multiple used in 90 places.'>total</a>,
+<a id='L129' name='L129' />                                       <strong class='reserved'>int</strong> <a href='../Y/2705.html' title='Multiple used in 15 places.'>histogram</a>[<a href='../Y/3040.html' title='Multiple used in 11 places.'>kMallocHistogramSize</a>]) <em class='brace'>{</em>
+<a id='L130' name='L130' />  *<a href='../Y/1641.html' title='Multiple used in 31 places.'>blocks</a> = 0;
+<a id='L131' name='L131' />  *<a href='../Y/5432.html' title='Multiple used in 90 places.'>total</a> = 0;
+<a id='L132' name='L132' />  <a href='../Y/3518.html' title='Multiple used in 105 places.'>memset</a>(<a href='../Y/2705.html' title='Multiple used in 15 places.'>histogram</a>, 0, <strong class='reserved'>sizeof</strong>(*<a href='../Y/2705.html' title='Multiple used in 15 places.'>histogram</a>) * <a href='../Y/3040.html' title='Multiple used in 11 places.'>kMallocHistogramSize</a>);
+<a id='L133' name='L133' />  <strong class='reserved'>return</strong> <strong class='reserved'>true</strong>;
+<a id='L134' name='L134' /><em class='brace'>}</em>
+<a id='L135' name='L135' />
+<a id='L136' name='L136' /><strong class='reserved'>void</strong>** <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../R/2132.html' title='Multiple refered from 2 places.'>ReadStackTraces</a>(<strong class='reserved'>int</strong>* <a href='../Y/4717.html' title='Multiple used in 19 places.'>sample_period</a>) <em class='brace'>{</em>
+<a id='L137' name='L137' />  <strong class='reserved'>return</strong> <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>;
+<a id='L138' name='L138' /><em class='brace'>}</em>
+<a id='L139' name='L139' />
+<a id='L140' name='L140' /><strong class='reserved'>void</strong>** <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../R/2129.html' title='Multiple refered from 2 places.'>ReadHeapGrowthStackTraces</a>() <em class='brace'>{</em>
+<a id='L141' name='L141' />  <strong class='reserved'>return</strong> <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>;
+<a id='L142' name='L142' /><em class='brace'>}</em>
+<a id='L143' name='L143' />
+<a id='L144' name='L144' /><strong class='reserved'>void</strong> <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../R/1653.html' title='Multiple refered from 5 places.'>MarkThreadIdle</a>() <em class='brace'>{</em>
+<a id='L145' name='L145' />  <em class='comment'>// Default implementation does nothing</em>
+<a id='L146' name='L146' /><em class='brace'>}</em>
+<a id='L147' name='L147' />
+<a id='L148' name='L148' /><strong class='reserved'>void</strong> <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../R/1652.html' title='Multiple refered from 3 places.'>MarkThreadBusy</a>() <em class='brace'>{</em>
+<a id='L149' name='L149' />  <em class='comment'>// Default implementation does nothing</em>
+<a id='L150' name='L150' /><em class='brace'>}</em>
+<a id='L151' name='L151' />
+<a id='L152' name='L152' /><a href='../S/580.html#L106' title='Defined at 106 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>SysAllocator</a>* <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../R/770.html' title='Multiple refered from 2 places.'>GetSystemAllocator</a>() <em class='brace'>{</em>
+<a id='L153' name='L153' />  <strong class='reserved'>return</strong> <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>;
+<a id='L154' name='L154' /><em class='brace'>}</em>
+<a id='L155' name='L155' />
+<a id='L156' name='L156' /><strong class='reserved'>void</strong> <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../R/2298.html' title='Multiple refered from 3 places.'>SetSystemAllocator</a>(<a href='../S/580.html#L106' title='Defined at 106 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>SysAllocator</a> *<a href='../Y/1366.html' title='Multiple used in 517 places.'>a</a>) <em class='brace'>{</em>
+<a id='L157' name='L157' />  <em class='comment'>// Default implementation does nothing</em>
+<a id='L158' name='L158' /><em class='brace'>}</em>
+<a id='L159' name='L159' />
+<a id='L160' name='L160' /><strong class='reserved'>void</strong> <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../R/2158.html' title='Multiple refered from 9 places.'>ReleaseToSystem</a>(<a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/3861.html' title='Multiple used in 17 places.'>num_bytes</a>) <em class='brace'>{</em>
+<a id='L161' name='L161' />  <em class='comment'>// Default implementation does nothing</em>
+<a id='L162' name='L162' /><em class='brace'>}</em>
+<a id='L163' name='L163' />
+<a id='L164' name='L164' /><strong class='reserved'>void</strong> <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../R/2152.html' title='Multiple refered from 7 places.'>ReleaseFreeMemory</a>() <em class='brace'>{</em>
+<a id='L165' name='L165' />  <a href='../D/2406.html' title='Multiple defined in 2 places.'>ReleaseToSystem</a>(<strong class='reserved'>static_cast</strong>&lt;<a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a>&gt;(-1));   <em class='comment'>// SIZE_T_MAX</em>
+<a id='L166' name='L166' /><em class='brace'>}</em>
+<a id='L167' name='L167' />
+<a id='L168' name='L168' /><strong class='reserved'>void</strong> <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../S/559.html#L258' title='Refered from 258 in third_party/google-perftools-1.8.3/src/google/malloc_extension.h.'>SetMemoryReleaseRate</a>(<strong class='reserved'>double</strong> <a href='../Y/4436.html' title='Multiple used in 7 places.'>rate</a>) <em class='brace'>{</em>
+<a id='L169' name='L169' />  <em class='comment'>// Default implementation does nothing</em>
+<a id='L170' name='L170' /><em class='brace'>}</em>
+<a id='L171' name='L171' />
+<a id='L172' name='L172' /><strong class='reserved'>double</strong> <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../S/559.html#L261' title='Refered from 261 in third_party/google-perftools-1.8.3/src/google/malloc_extension.h.'>GetMemoryReleaseRate</a>() <em class='brace'>{</em>
+<a id='L173' name='L173' />  <strong class='reserved'>return</strong> -1.0;
+<a id='L174' name='L174' /><em class='brace'>}</em>
+<a id='L175' name='L175' />
+<a id='L176' name='L176' /><a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../R/737.html' title='Multiple refered from 5 places.'>GetEstimatedAllocatedSize</a>(<a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>) <em class='brace'>{</em>
+<a id='L177' name='L177' />  <strong class='reserved'>return</strong> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>;
+<a id='L178' name='L178' /><em class='brace'>}</em>
+<a id='L179' name='L179' />
+<a id='L180' name='L180' /><a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../R/726.html' title='Multiple refered from 13 places.'>GetAllocatedSize</a>(<strong class='reserved'>void</strong>* <a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>) <em class='brace'>{</em>
+<a id='L181' name='L181' />  <a href='../Y/1520.html' title='Multiple used in 35 places.'>assert</a>(<a href='../D/857.html' title='Multiple defined in 3 places.'>GetOwnership</a>(<a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>) != <a href='../S/559.html#L301' title='Defined at 301 in third_party/google-perftools-1.8.3/src/google/malloc_extension.h.'>kNotOwned</a>);
+<a id='L182' name='L182' />  <strong class='reserved'>return</strong> 0;
+<a id='L183' name='L183' /><em class='brace'>}</em>
+<a id='L184' name='L184' />
+<a id='L185' name='L185' /><a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../S/559.html#L296' title='Defined at 296 in third_party/google-perftools-1.8.3/src/google/malloc_extension.h.'>Ownership</a> <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../R/753.html' title='Multiple refered from 10 places.'>GetOwnership</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>) <em class='brace'>{</em>
+<a id='L186' name='L186' />  <strong class='reserved'>return</strong> <a href='../S/559.html#L299' title='Defined at 299 in third_party/google-perftools-1.8.3/src/google/malloc_extension.h.'>kUnknownOwnership</a>;
+<a id='L187' name='L187' /><em class='brace'>}</em>
+<a id='L188' name='L188' />
+<a id='L189' name='L189' /><strong class='reserved'>void</strong> <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../R/738.html' title='Multiple refered from 2 places.'>GetFreeListSizes</a>(
+<a id='L190' name='L190' />    <a href='../Y/5622.html' title='Multiple used in 63 places.'>vector</a>&lt;<a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../S/559.html#L314' title='Defined at 314 in third_party/google-perftools-1.8.3/src/google/malloc_extension.h.'>FreeListInfo</a>&gt;* <a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>) <em class='brace'>{</em>
+<a id='L191' name='L191' />  <a href='../Y/5575.html' title='Multiple used in 535 places.'>v</a>-&gt;<a href='../Y/1802.html' title='Multiple used in 6 places.'>clear</a>();
+<a id='L192' name='L192' /><em class='brace'>}</em>
+<a id='L193' name='L193' />
+<a id='L194' name='L194' /><em class='comment'>// The current malloc extension object.</em>
+<a id='L195' name='L195' />
+<a id='L196' name='L196' /><strong class='reserved'>static</strong> <a href='../S/686.html#L122' title='Defined at 122 in third_party/google-perftools-1.8.3/src/windows/port.h.'>pthread_once_t</a> <a href='../Y/3590.html' title='Multiple used in 3 places.'>module_init</a> = <a href='../S/686.html#L123' title='Defined at 123 in third_party/google-perftools-1.8.3/src/windows/port.h.'>PTHREAD_ONCE_INIT</a>;
+<a id='L197' name='L197' /><strong class='reserved'>static</strong> <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>* <a href='../Y/1931.html' title='Multiple used in 5 places.'>current_instance</a> = <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>;
+<a id='L198' name='L198' />
+<a id='L199' name='L199' /><strong class='reserved'>static</strong> <strong class='reserved'>void</strong> <a href='../R/1089.html' title='Multiple refered from 6 places.'>InitModule</a>() <em class='brace'>{</em>
+<a id='L200' name='L200' />  <a href='../Y/1931.html' title='Multiple used in 5 places.'>current_instance</a> = <strong class='reserved'>new</strong> <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>;
+<a id='L201' name='L201' /><em class='sharp'>#ifndef</em> <a href='../S/672.html#L301' title='Defined at 301 in third_party/google-perftools-1.8.3/src/windows/config.h.'>NO_HEAP_CHECK</a>
+<a id='L202' name='L202' />  <a href='../D/978.html' title='Multiple defined in 4 places.'>HeapLeakChecker</a>::<a href='../Y/377.html' title='Multiple used in 7 places.'>IgnoreObject</a>(<a href='../Y/1931.html' title='Multiple used in 5 places.'>current_instance</a>);
+<a id='L203' name='L203' /><em class='sharp'>#endif</em>
+<a id='L204' name='L204' /><em class='brace'>}</em>
+<a id='L205' name='L205' />
+<a id='L206' name='L206' /><a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>* <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../R/3665.html' title='Multiple refered from 67 places.'>instance</a>() <em class='brace'>{</em>
+<a id='L207' name='L207' />  <a href='../D/4792.html' title='Multiple defined in 2 places.'>perftools_pthread_once</a>(&amp;<a href='../Y/3590.html' title='Multiple used in 3 places.'>module_init</a>, <a href='../D/1264.html' title='Multiple defined in 3 places.'>InitModule</a>);
+<a id='L208' name='L208' />  <strong class='reserved'>return</strong> <a href='../Y/1931.html' title='Multiple used in 5 places.'>current_instance</a>;
+<a id='L209' name='L209' /><em class='brace'>}</em>
+<a id='L210' name='L210' />
+<a id='L211' name='L211' /><strong class='reserved'>void</strong> <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../R/2145.html' title='Multiple refered from 3 places.'>Register</a>(<a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>* <a href='../Y/2782.html' title='Multiple used in 3 places.'>implementation</a>) <em class='brace'>{</em>
+<a id='L212' name='L212' />  <a href='../D/4792.html' title='Multiple defined in 2 places.'>perftools_pthread_once</a>(&amp;<a href='../Y/3590.html' title='Multiple used in 3 places.'>module_init</a>, <a href='../D/1264.html' title='Multiple defined in 3 places.'>InitModule</a>);
+<a id='L213' name='L213' />  <em class='comment'>// When running under valgrind, our custom malloc is replaced with</em>
+<a id='L214' name='L214' />  <em class='comment'>// valgrind's one and malloc extensions will not work.  (Note:</em>
+<a id='L215' name='L215' />  <em class='comment'>// callers should be responsible for checking that they are the</em>
+<a id='L216' name='L216' />  <em class='comment'>// malloc that is really being run, before calling Register.  This</em>
+<a id='L217' name='L217' />  <em class='comment'>// is just here as an extra sanity check.)</em>
+<a id='L218' name='L218' />  <strong class='reserved'>if</strong> (!<a href='../S/519.html#L163' title='Defined at 163 in third_party/google-perftools-1.8.3/src/base/dynamic_annotations.c.'>RunningOnValgrind</a>()) <em class='brace'>{</em>
+<a id='L219' name='L219' />    <a href='../Y/1931.html' title='Multiple used in 5 places.'>current_instance</a> = <a href='../Y/2782.html' title='Multiple used in 3 places.'>implementation</a>;
+<a id='L220' name='L220' />  <em class='brace'>}</em>
+<a id='L221' name='L221' /><em class='brace'>}</em>
+<a id='L222' name='L222' />
+<a id='L223' name='L223' /><em class='comment'>// -----------------------------------------------------------------------</em>
+<a id='L224' name='L224' /><em class='comment'>// Heap sampling support</em>
+<a id='L225' name='L225' /><em class='comment'>// -----------------------------------------------------------------------</em>
+<a id='L226' name='L226' />
+<a id='L227' name='L227' /><strong class='reserved'>namespace</strong> <em class='brace'>{</em>
+<a id='L228' name='L228' />
+<a id='L229' name='L229' /><em class='comment'>// Accessors</em>
+<a id='L230' name='L230' /><a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a> <a href='../R/417.html' title='Multiple refered from 17 places.'>Count</a>(<strong class='reserved'>void</strong>** <a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>) <em class='brace'>{</em>
+<a id='L231' name='L231' />  <strong class='reserved'>return</strong> <strong class='reserved'>reinterpret_cast</strong>&lt;<a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a>&gt;(<a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>[0]);
+<a id='L232' name='L232' /><em class='brace'>}</em>
+<a id='L233' name='L233' /><a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a> <a href='../R/2313.html' title='Multiple refered from 4 places.'>Size</a>(<strong class='reserved'>void</strong>** <a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>) <em class='brace'>{</em>
+<a id='L234' name='L234' />  <strong class='reserved'>return</strong> <strong class='reserved'>reinterpret_cast</strong>&lt;<a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a>&gt;(<a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>[1]);
+<a id='L235' name='L235' /><em class='brace'>}</em>
+<a id='L236' name='L236' /><a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a> <a href='../R/525.html' title='Multiple refered from 4 places.'>Depth</a>(<strong class='reserved'>void</strong>** <a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>) <em class='brace'>{</em>
+<a id='L237' name='L237' />  <strong class='reserved'>return</strong> <strong class='reserved'>reinterpret_cast</strong>&lt;<a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a>&gt;(<a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>[2]);
+<a id='L238' name='L238' /><em class='brace'>}</em>
+<a id='L239' name='L239' /><strong class='reserved'>void</strong>* <a href='../R/1847.html' title='Multiple refered from 5 places.'>PC</a>(<strong class='reserved'>void</strong>** <a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>, <strong class='reserved'>int</strong> <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>) <em class='brace'>{</em>
+<a id='L240' name='L240' />  <strong class='reserved'>return</strong> <a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>[3+<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>];
+<a id='L241' name='L241' /><em class='brace'>}</em>
+<a id='L242' name='L242' />
+<a id='L243' name='L243' /><strong class='reserved'>void</strong> <a href='../R/1977.html' title='Multiple refered from 2 places.'>PrintCountAndSize</a>(<a href='../S/559.html#L67' title='Defined at 67 in third_party/google-perftools-1.8.3/src/google/malloc_extension.h.'>MallocExtensionWriter</a>* <a href='../Y/5704.html' title='Multiple used in 27 places.'>writer</a>,
+<a id='L244' name='L244' />                       <a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a> <a href='../Y/1870.html' title='Multiple used in 157 places.'>count</a>, <a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>) <em class='brace'>{</em>
+<a id='L245' name='L245' />  <strong class='reserved'>char</strong> <a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>[100];
+<a id='L246' name='L246' />  <a href='../S/686.html#L318' title='Defined at 318 in third_party/google-perftools-1.8.3/src/windows/port.h.'>snprintf</a>(<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>, <strong class='reserved'>sizeof</strong>(<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>),
+<a id='L247' name='L247' />           "%6"<a href='../D/2103.html' title='Multiple defined in 2 places.'>PRIu64</a>": %8"<a href='../D/2103.html' title='Multiple defined in 2 places.'>PRIu64</a>" [%6"<a href='../D/2103.html' title='Multiple defined in 2 places.'>PRIu64</a>": %8"<a href='../D/2103.html' title='Multiple defined in 2 places.'>PRIu64</a>"] @",
+<a id='L248' name='L248' />           <strong class='reserved'>static_cast</strong>&lt;<a href='../S/516.html#L71' title='Defined at 71 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>uint64</a>&gt;(<a href='../Y/1870.html' title='Multiple used in 157 places.'>count</a>),
+<a id='L249' name='L249' />           <strong class='reserved'>static_cast</strong>&lt;<a href='../S/516.html#L71' title='Defined at 71 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>uint64</a>&gt;(<a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>),
+<a id='L250' name='L250' />           <strong class='reserved'>static_cast</strong>&lt;<a href='../S/516.html#L71' title='Defined at 71 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>uint64</a>&gt;(<a href='../Y/1870.html' title='Multiple used in 157 places.'>count</a>),
+<a id='L251' name='L251' />           <strong class='reserved'>static_cast</strong>&lt;<a href='../S/516.html#L71' title='Defined at 71 in third_party/google-perftools-1.8.3/src/base/basictypes.h.'>uint64</a>&gt;(<a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>));
+<a id='L252' name='L252' />  <a href='../Y/5704.html' title='Multiple used in 27 places.'>writer</a>-&gt;<a href='../Y/1474.html' title='Multiple used in 12 places.'>append</a>(<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>, <a href='../Y/5139.html' title='Multiple used in 84 places.'>strlen</a>(<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>));
+<a id='L253' name='L253' /><em class='brace'>}</em>
+<a id='L254' name='L254' />
+<a id='L255' name='L255' /><strong class='reserved'>void</strong> <a href='../R/1979.html' title='Multiple refered from 2 places.'>PrintHeader</a>(<a href='../S/559.html#L67' title='Defined at 67 in third_party/google-perftools-1.8.3/src/google/malloc_extension.h.'>MallocExtensionWriter</a>* <a href='../Y/5704.html' title='Multiple used in 27 places.'>writer</a>,
+<a id='L256' name='L256' />                 <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../Y/3167.html' title='Multiple used in 27 places.'>label</a>, <strong class='reserved'>void</strong>** <a href='../Y/2211.html' title='Multiple used in 30 places.'>entries</a>) <em class='brace'>{</em>
+<a id='L257' name='L257' />  <em class='comment'>// Compute the total count and total size</em>
+<a id='L258' name='L258' />  <a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a> <a href='../Y/5438.html' title='Multiple used in 3 places.'>total_count</a> = 0;
+<a id='L259' name='L259' />  <a href='../D/5498.html' title='Multiple defined in 14 places.'>uintptr_t</a> <a href='../Y/5445.html' title='Multiple used in 8 places.'>total_size</a> = 0;
+<a id='L260' name='L260' />  <strong class='reserved'>for</strong> (<strong class='reserved'>void</strong>** <a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a> = <a href='../Y/2211.html' title='Multiple used in 30 places.'>entries</a>; <a href='../S/580.html#L230' title='Defined at 230 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>Count</a>(<a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>) != 0; <a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a> += 3 + <a href='../S/580.html#L236' title='Defined at 236 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>Depth</a>(<a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>)) <em class='brace'>{</em>
+<a id='L261' name='L261' />    <a href='../Y/5438.html' title='Multiple used in 3 places.'>total_count</a> += <a href='../S/580.html#L230' title='Defined at 230 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>Count</a>(<a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>);
+<a id='L262' name='L262' />    <a href='../Y/5445.html' title='Multiple used in 8 places.'>total_size</a> += <a href='../S/580.html#L233' title='Defined at 233 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>Size</a>(<a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>);
+<a id='L263' name='L263' />  <em class='brace'>}</em>
+<a id='L264' name='L264' />
+<a id='L265' name='L265' />  <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <strong class='reserved'>const</strong> <a href='../Y/3118.html' title='Multiple used in 2 places.'>kTitle</a> = "heap profile: ";
+<a id='L266' name='L266' />  <a href='../Y/5704.html' title='Multiple used in 27 places.'>writer</a>-&gt;<a href='../Y/1474.html' title='Multiple used in 12 places.'>append</a>(<a href='../Y/3118.html' title='Multiple used in 2 places.'>kTitle</a>, <a href='../Y/5139.html' title='Multiple used in 84 places.'>strlen</a>(<a href='../Y/3118.html' title='Multiple used in 2 places.'>kTitle</a>));
+<a id='L267' name='L267' />  <a href='../S/580.html#L243' title='Defined at 243 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>PrintCountAndSize</a>(<a href='../Y/5704.html' title='Multiple used in 27 places.'>writer</a>, <a href='../Y/5438.html' title='Multiple used in 3 places.'>total_count</a>, <a href='../Y/5445.html' title='Multiple used in 8 places.'>total_size</a>);
+<a id='L268' name='L268' />  <a href='../Y/5704.html' title='Multiple used in 27 places.'>writer</a>-&gt;<a href='../Y/1474.html' title='Multiple used in 12 places.'>append</a>(" ", 1);
+<a id='L269' name='L269' />  <a href='../Y/5704.html' title='Multiple used in 27 places.'>writer</a>-&gt;<a href='../Y/1474.html' title='Multiple used in 12 places.'>append</a>(<a href='../Y/3167.html' title='Multiple used in 27 places.'>label</a>, <a href='../Y/5139.html' title='Multiple used in 84 places.'>strlen</a>(<a href='../Y/3167.html' title='Multiple used in 27 places.'>label</a>));
+<a id='L270' name='L270' />  <a href='../Y/5704.html' title='Multiple used in 27 places.'>writer</a>-&gt;<a href='../Y/1474.html' title='Multiple used in 12 places.'>append</a>("\n", 1);
+<a id='L271' name='L271' /><em class='brace'>}</em>
+<a id='L272' name='L272' />
+<a id='L273' name='L273' /><strong class='reserved'>void</strong> <a href='../R/1980.html' title='Multiple refered from 2 places.'>PrintStackEntry</a>(<a href='../S/559.html#L67' title='Defined at 67 in third_party/google-perftools-1.8.3/src/google/malloc_extension.h.'>MallocExtensionWriter</a>* <a href='../Y/5704.html' title='Multiple used in 27 places.'>writer</a>, <strong class='reserved'>void</strong>** <a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>) <em class='brace'>{</em>
+<a id='L274' name='L274' />  <a href='../S/580.html#L243' title='Defined at 243 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>PrintCountAndSize</a>(<a href='../Y/5704.html' title='Multiple used in 27 places.'>writer</a>, <a href='../S/580.html#L230' title='Defined at 230 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>Count</a>(<a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>), <a href='../S/580.html#L233' title='Defined at 233 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>Size</a>(<a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>));
+<a id='L275' name='L275' />
+<a id='L276' name='L276' />  <strong class='reserved'>for</strong> (<strong class='reserved'>int</strong> <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> = 0; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> &lt; <a href='../S/580.html#L236' title='Defined at 236 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>Depth</a>(<a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>); <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>++) <em class='brace'>{</em>
+<a id='L277' name='L277' />    <strong class='reserved'>char</strong> <a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>[32];
+<a id='L278' name='L278' />    <a href='../S/686.html#L318' title='Defined at 318 in third_party/google-perftools-1.8.3/src/windows/port.h.'>snprintf</a>(<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>, <strong class='reserved'>sizeof</strong>(<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>), " %p", <a href='../S/580.html#L239' title='Defined at 239 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>PC</a>(<a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>, <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>));
+<a id='L279' name='L279' />    <a href='../Y/5704.html' title='Multiple used in 27 places.'>writer</a>-&gt;<a href='../Y/1474.html' title='Multiple used in 12 places.'>append</a>(<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>, <a href='../Y/5139.html' title='Multiple used in 84 places.'>strlen</a>(<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>));
+<a id='L280' name='L280' />  <em class='brace'>}</em>
+<a id='L281' name='L281' />  <a href='../Y/5704.html' title='Multiple used in 27 places.'>writer</a>-&gt;<a href='../Y/1474.html' title='Multiple used in 12 places.'>append</a>("\n", 1);
+<a id='L282' name='L282' /><em class='brace'>}</em>
+<a id='L283' name='L283' />
+<a id='L284' name='L284' /><em class='brace'>}</em>
+<a id='L285' name='L285' />
+<a id='L286' name='L286' /><strong class='reserved'>void</strong> <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../R/741.html' title='Multiple refered from 3 places.'>GetHeapSample</a>(<a href='../S/559.html#L67' title='Defined at 67 in third_party/google-perftools-1.8.3/src/google/malloc_extension.h.'>MallocExtensionWriter</a>* <a href='../Y/5704.html' title='Multiple used in 27 places.'>writer</a>) <em class='brace'>{</em>
+<a id='L287' name='L287' />  <strong class='reserved'>int</strong> <a href='../Y/4717.html' title='Multiple used in 19 places.'>sample_period</a> = 0;
+<a id='L288' name='L288' />  <strong class='reserved'>void</strong>** <a href='../Y/2211.html' title='Multiple used in 30 places.'>entries</a> = <a href='../D/2378.html' title='Multiple defined in 2 places.'>ReadStackTraces</a>(&amp;<a href='../Y/4717.html' title='Multiple used in 19 places.'>sample_period</a>);
+<a id='L289' name='L289' />  <strong class='reserved'>if</strong> (<a href='../Y/2211.html' title='Multiple used in 30 places.'>entries</a> == <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>) <em class='brace'>{</em>
+<a id='L290' name='L290' />    <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <strong class='reserved'>const</strong> <a href='../Y/3001.html' title='Multiple used in 4 places.'>kErrorMsg</a> =
+<a id='L291' name='L291' />        "This malloc implementation does not support sampling.\n"
+<a id='L292' name='L292' />        "As of 2005/01/26, only tcmalloc supports sampling, and\n"
+<a id='L293' name='L293' />        "you are probably running a binary that does not use\n"
+<a id='L294' name='L294' />        "tcmalloc.\n";
+<a id='L295' name='L295' />    <a href='../Y/5704.html' title='Multiple used in 27 places.'>writer</a>-&gt;<a href='../Y/1474.html' title='Multiple used in 12 places.'>append</a>(<a href='../Y/3001.html' title='Multiple used in 4 places.'>kErrorMsg</a>, <a href='../Y/5139.html' title='Multiple used in 84 places.'>strlen</a>(<a href='../Y/3001.html' title='Multiple used in 4 places.'>kErrorMsg</a>));
+<a id='L296' name='L296' />    <strong class='reserved'>return</strong>;
+<a id='L297' name='L297' />  <em class='brace'>}</em>
+<a id='L298' name='L298' />
+<a id='L299' name='L299' />  <strong class='reserved'>char</strong> <a href='../Y/3167.html' title='Multiple used in 27 places.'>label</a>[32];
+<a id='L300' name='L300' />  <a href='../Y/4951.html' title='Multiple used in 25 places.'>sprintf</a>(<a href='../Y/3167.html' title='Multiple used in 27 places.'>label</a>, "heap_v2/%d", <a href='../Y/4717.html' title='Multiple used in 19 places.'>sample_period</a>);
+<a id='L301' name='L301' />  <a href='../S/580.html#L255' title='Defined at 255 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>PrintHeader</a>(<a href='../Y/5704.html' title='Multiple used in 27 places.'>writer</a>, <a href='../Y/3167.html' title='Multiple used in 27 places.'>label</a>, <a href='../Y/2211.html' title='Multiple used in 30 places.'>entries</a>);
+<a id='L302' name='L302' />  <strong class='reserved'>for</strong> (<strong class='reserved'>void</strong>** <a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a> = <a href='../Y/2211.html' title='Multiple used in 30 places.'>entries</a>; <a href='../S/580.html#L230' title='Defined at 230 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>Count</a>(<a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>) != 0; <a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a> += 3 + <a href='../S/580.html#L236' title='Defined at 236 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>Depth</a>(<a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>)) <em class='brace'>{</em>
+<a id='L303' name='L303' />    <a href='../S/580.html#L273' title='Defined at 273 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>PrintStackEntry</a>(<a href='../Y/5704.html' title='Multiple used in 27 places.'>writer</a>, <a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>);
+<a id='L304' name='L304' />  <em class='brace'>}</em>
+<a id='L305' name='L305' />  <strong class='reserved'>delete</strong>[] <a href='../Y/2211.html' title='Multiple used in 30 places.'>entries</a>;
+<a id='L306' name='L306' />
+<a id='L307' name='L307' />  <a href='../S/580.html#L57' title='Defined at 57 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>DumpAddressMap</a>(<a href='../Y/5704.html' title='Multiple used in 27 places.'>writer</a>);
+<a id='L308' name='L308' /><em class='brace'>}</em>
+<a id='L309' name='L309' />
+<a id='L310' name='L310' /><strong class='reserved'>void</strong> <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../R/739.html' title='Multiple refered from 2 places.'>GetHeapGrowthStacks</a>(<a href='../S/559.html#L67' title='Defined at 67 in third_party/google-perftools-1.8.3/src/google/malloc_extension.h.'>MallocExtensionWriter</a>* <a href='../Y/5704.html' title='Multiple used in 27 places.'>writer</a>) <em class='brace'>{</em>
+<a id='L311' name='L311' />  <strong class='reserved'>void</strong>** <a href='../Y/2211.html' title='Multiple used in 30 places.'>entries</a> = <a href='../D/2375.html' title='Multiple defined in 2 places.'>ReadHeapGrowthStackTraces</a>();
+<a id='L312' name='L312' />  <strong class='reserved'>if</strong> (<a href='../Y/2211.html' title='Multiple used in 30 places.'>entries</a> == <a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>) <em class='brace'>{</em>
+<a id='L313' name='L313' />    <strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <strong class='reserved'>const</strong> <a href='../Y/3001.html' title='Multiple used in 4 places.'>kErrorMsg</a> =
+<a id='L314' name='L314' />        "This malloc implementation does not support "
+<a id='L315' name='L315' />        "ReadHeapGrowthStackTraces().\n"
+<a id='L316' name='L316' />        "As of 2005/09/27, only tcmalloc supports this, and you\n"
+<a id='L317' name='L317' />        "are probably running a binary that does not use tcmalloc.\n";
+<a id='L318' name='L318' />    <a href='../Y/5704.html' title='Multiple used in 27 places.'>writer</a>-&gt;<a href='../Y/1474.html' title='Multiple used in 12 places.'>append</a>(<a href='../Y/3001.html' title='Multiple used in 4 places.'>kErrorMsg</a>, <a href='../Y/5139.html' title='Multiple used in 84 places.'>strlen</a>(<a href='../Y/3001.html' title='Multiple used in 4 places.'>kErrorMsg</a>));
+<a id='L319' name='L319' />    <strong class='reserved'>return</strong>;
+<a id='L320' name='L320' />  <em class='brace'>}</em>
+<a id='L321' name='L321' />
+<a id='L322' name='L322' />  <em class='comment'>// Do not canonicalize the stack entries, so that we get a</em>
+<a id='L323' name='L323' />  <em class='comment'>// time-ordered list of stack traces, which may be useful if the</em>
+<a id='L324' name='L324' />  <em class='comment'>// client wants to focus on the latest stack traces.</em>
+<a id='L325' name='L325' />  <a href='../S/580.html#L255' title='Defined at 255 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>PrintHeader</a>(<a href='../Y/5704.html' title='Multiple used in 27 places.'>writer</a>, "growth", <a href='../Y/2211.html' title='Multiple used in 30 places.'>entries</a>);
+<a id='L326' name='L326' />  <strong class='reserved'>for</strong> (<strong class='reserved'>void</strong>** <a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a> = <a href='../Y/2211.html' title='Multiple used in 30 places.'>entries</a>; <a href='../S/580.html#L230' title='Defined at 230 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>Count</a>(<a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>) != 0; <a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a> += 3 + <a href='../S/580.html#L236' title='Defined at 236 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>Depth</a>(<a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>)) <em class='brace'>{</em>
+<a id='L327' name='L327' />    <a href='../S/580.html#L273' title='Defined at 273 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>PrintStackEntry</a>(<a href='../Y/5704.html' title='Multiple used in 27 places.'>writer</a>, <a href='../Y/2212.html' title='Multiple used in 135 places.'>entry</a>);
+<a id='L328' name='L328' />  <em class='brace'>}</em>
+<a id='L329' name='L329' />  <strong class='reserved'>delete</strong>[] <a href='../Y/2211.html' title='Multiple used in 30 places.'>entries</a>;
+<a id='L330' name='L330' />
+<a id='L331' name='L331' />  <a href='../S/580.html#L57' title='Defined at 57 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>DumpAddressMap</a>(<a href='../Y/5704.html' title='Multiple used in 27 places.'>writer</a>);
+<a id='L332' name='L332' /><em class='brace'>}</em>
+<a id='L333' name='L333' />
+<a id='L334' name='L334' /><strong class='reserved'>void</strong> <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../R/2120.html' title='Multiple refered from 2 places.'>Ranges</a>(<strong class='reserved'>void</strong>* <a href='../Y/1482.html' title='Multiple used in 187 places.'>arg</a>, <a href='../Y/678.html' title='Multiple used in 5 places.'>RangeFunction</a> <a href='../Y/2487.html' title='Multiple used in 57 places.'>func</a>) <em class='brace'>{</em>
+<a id='L335' name='L335' />  <em class='comment'>// No callbacks by default</em>
+<a id='L336' name='L336' /><em class='brace'>}</em>
+<a id='L337' name='L337' />
+<a id='L338' name='L338' /><em class='comment'>// These are C shims that work on the current instance.</em>
+<a id='L339' name='L339' />
+<a id='L340' name='L340' /><em class='sharp'>#define</em> <a href='../R/355.html' title='Multiple refered from 14 places.'>C_SHIM</a>(<a href='../Y/2409.html' title='Multiple used in 54 places.'>fn</a>, <a href='../Y/4555.html' title='Multiple used in 12 places.'>retval</a>, <a href='../Y/4115.html' title='Multiple used in 2 places.'>paramlist</a>, <a href='../Y/1499.html' title='Multiple used in 2 places.'>arglist</a>)          \
+<a id='L341' name='L341' />  <strong class='reserved'>extern</strong> "C" <a href='../D/2076.html' title='Multiple defined in 25 places.'>PERFTOOLS_DLL_DECL</a> <a href='../Y/4555.html' title='Multiple used in 12 places.'>retval</a> MallocExtension_##<a href='../Y/2409.html' title='Multiple used in 54 places.'>fn</a> <a href='../Y/4115.html' title='Multiple used in 2 places.'>paramlist</a> <em class='brace'>{</em>    \
+<a id='L342' name='L342' />    <strong class='reserved'>return</strong> <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../S/580.html#L206' title='Defined at 206 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>instance</a>()-&gt;<a href='../Y/2409.html' title='Multiple used in 54 places.'>fn</a> <a href='../Y/1499.html' title='Multiple used in 2 places.'>arglist</a>;     \
+<a id='L343' name='L343' />  <em class='brace'>}</em>
+<a id='L344' name='L344' />
+<a id='L345' name='L345' /><a href='../S/580.html#L340' title='Defined at 340 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>C_SHIM</a>(<a href='../D/2946.html' title='Multiple defined in 2 places.'>VerifyAllMemory</a>, <strong class='reserved'>int</strong>, (<strong class='reserved'>void</strong>), ());
+<a id='L346' name='L346' /><a href='../S/580.html#L340' title='Defined at 340 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>C_SHIM</a>(<a href='../D/2953.html' title='Multiple defined in 2 places.'>VerifyNewMemory</a>, <strong class='reserved'>int</strong>, (<strong class='reserved'>void</strong>* <a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>), (<a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>));
+<a id='L347' name='L347' /><a href='../S/580.html#L340' title='Defined at 340 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>C_SHIM</a>(<a href='../D/2947.html' title='Multiple defined in 2 places.'>VerifyArrayNewMemory</a>, <strong class='reserved'>int</strong>, (<strong class='reserved'>void</strong>* <a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>), (<a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>));
+<a id='L348' name='L348' /><a href='../S/580.html#L340' title='Defined at 340 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>C_SHIM</a>(<a href='../D/2951.html' title='Multiple defined in 2 places.'>VerifyMallocMemory</a>, <strong class='reserved'>int</strong>, (<strong class='reserved'>void</strong>* <a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>), (<a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>));
+<a id='L349' name='L349' /><a href='../S/580.html#L340' title='Defined at 340 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>C_SHIM</a>(<a href='../D/1844.html' title='Multiple defined in 2 places.'>MallocMemoryStats</a>, <strong class='reserved'>int</strong>,
+<a id='L350' name='L350' />       (<strong class='reserved'>int</strong>* <a href='../Y/1641.html' title='Multiple used in 31 places.'>blocks</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a>* <a href='../Y/5432.html' title='Multiple used in 90 places.'>total</a>, <strong class='reserved'>int</strong> <a href='../Y/2705.html' title='Multiple used in 15 places.'>histogram</a>[<a href='../Y/3040.html' title='Multiple used in 11 places.'>kMallocHistogramSize</a>]),
+<a id='L351' name='L351' />       (<a href='../Y/1641.html' title='Multiple used in 31 places.'>blocks</a>, <a href='../Y/5432.html' title='Multiple used in 90 places.'>total</a>, <a href='../Y/2705.html' title='Multiple used in 15 places.'>histogram</a>));
+<a id='L352' name='L352' />
+<a id='L353' name='L353' /><a href='../S/580.html#L340' title='Defined at 340 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>C_SHIM</a>(<a href='../D/871.html' title='Multiple defined in 2 places.'>GetStats</a>, <strong class='reserved'>void</strong>,
+<a id='L354' name='L354' />       (<strong class='reserved'>char</strong>* <a href='../Y/1680.html' title='Multiple used in 109 places.'>buffer</a>, <strong class='reserved'>int</strong> <a href='../Y/1682.html' title='Multiple used in 7 places.'>buffer_length</a>), (<a href='../Y/1680.html' title='Multiple used in 109 places.'>buffer</a>, <a href='../Y/1682.html' title='Multiple used in 7 places.'>buffer_length</a>));
+<a id='L355' name='L355' /><a href='../S/580.html#L340' title='Defined at 340 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>C_SHIM</a>(<a href='../D/855.html' title='Multiple defined in 3 places.'>GetNumericProperty</a>, <strong class='reserved'>int</strong>,
+<a id='L356' name='L356' />       (<strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../Y/4307.html' title='Multiple used in 8 places.'>property</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a>* <a href='../Y/5599.html' title='Multiple used in 481 places.'>value</a>), (<a href='../Y/4307.html' title='Multiple used in 8 places.'>property</a>, <a href='../Y/5599.html' title='Multiple used in 481 places.'>value</a>));
+<a id='L357' name='L357' /><a href='../S/580.html#L340' title='Defined at 340 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>C_SHIM</a>(<a href='../D/2564.html' title='Multiple defined in 2 places.'>SetNumericProperty</a>, <strong class='reserved'>int</strong>,
+<a id='L358' name='L358' />       (<strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* <a href='../Y/4307.html' title='Multiple used in 8 places.'>property</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/5599.html' title='Multiple used in 481 places.'>value</a>), (<a href='../Y/4307.html' title='Multiple used in 8 places.'>property</a>, <a href='../Y/5599.html' title='Multiple used in 481 places.'>value</a>));
+<a id='L359' name='L359' />
+<a id='L360' name='L360' /><a href='../S/580.html#L340' title='Defined at 340 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>C_SHIM</a>(<a href='../D/1851.html' title='Multiple defined in 2 places.'>MarkThreadIdle</a>, <strong class='reserved'>void</strong>, (<strong class='reserved'>void</strong>), ());
+<a id='L361' name='L361' /><a href='../S/580.html#L340' title='Defined at 340 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>C_SHIM</a>(<a href='../D/1850.html' title='Multiple defined in 2 places.'>MarkThreadBusy</a>, <strong class='reserved'>void</strong>, (<strong class='reserved'>void</strong>), ());
+<a id='L362' name='L362' /><a href='../S/580.html#L340' title='Defined at 340 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>C_SHIM</a>(<a href='../S/580.html#L164' title='Defined at 164 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>ReleaseFreeMemory</a>, <strong class='reserved'>void</strong>, (<strong class='reserved'>void</strong>), ());
+<a id='L363' name='L363' /><a href='../S/580.html#L340' title='Defined at 340 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>C_SHIM</a>(<a href='../D/2406.html' title='Multiple defined in 2 places.'>ReleaseToSystem</a>, <strong class='reserved'>void</strong>, (<a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/3861.html' title='Multiple used in 17 places.'>num_bytes</a>), (<a href='../Y/3861.html' title='Multiple used in 17 places.'>num_bytes</a>));
+<a id='L364' name='L364' /><a href='../S/580.html#L340' title='Defined at 340 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>C_SHIM</a>(<a href='../D/841.html' title='Multiple defined in 3 places.'>GetEstimatedAllocatedSize</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a>, (<a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>), (<a href='../S/555.html#L187' title='Defined at 187 in third_party/google-perftools-1.8.3/src/debugallocation.cc.'>size</a>));
+<a id='L365' name='L365' /><a href='../S/580.html#L340' title='Defined at 340 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>C_SHIM</a>(<a href='../D/830.html' title='Multiple defined in 3 places.'>GetAllocatedSize</a>, <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a>, (<strong class='reserved'>void</strong>* <a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>), (<a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>));
+<a id='L366' name='L366' />
+<a id='L367' name='L367' /><em class='comment'>// Can't use the shim here because of the need to translate the enums.</em>
+<a id='L368' name='L368' /><strong class='reserved'>extern</strong> "C"
+<a id='L369' name='L369' /><a href='../S/560.html#L91' title='Defined at 91 in third_party/google-perftools-1.8.3/src/google/malloc_extension_c.h.'>MallocExtension_Ownership</a> <a href='../R/1611.html' title='Multiple refered from 6 places.'>MallocExtension_GetOwnership</a>(<strong class='reserved'>const</strong> <strong class='reserved'>void</strong>* <a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>) <em class='brace'>{</em>
+<a id='L370' name='L370' />  <strong class='reserved'>return</strong> <strong class='reserved'>static_cast</strong>&lt;<a href='../S/560.html#L91' title='Defined at 91 in third_party/google-perftools-1.8.3/src/google/malloc_extension_c.h.'>MallocExtension_Ownership</a>&gt;(
+<a id='L371' name='L371' />      <a href='../S/580.html#L109' title='Defined at 109 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>MallocExtension</a>::<a href='../S/580.html#L206' title='Defined at 206 in third_party/google-perftools-1.8.3/src/malloc_extension.cc.'>instance</a>()-&gt;<a href='../D/857.html' title='Multiple defined in 3 places.'>GetOwnership</a>(<a href='../Y/4073.html' title='Multiple used in 1292 places.'>p</a>));
+<a id='L372' name='L372' /><em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;]<a href='#L57'>[^]</a><a href='#L369'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

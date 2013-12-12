@@ -1,0 +1,432 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>src/verifier/statespace.h</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/733.html'>src</a>/<a href='../files/737.html'>verifier</a>/statespace.h</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L148'>[^]</a><a href='#L355'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/128.html' title='Multiple included from 7 places.'>INCLUDED FROM</a></h2>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L148' title='Defined at 148.'>statetable_set_lock</a></li>
+<li><a href='#L152' title='Defined at 152.'>statetable_set_rehasher</a></li>
+<li><a href='#L156' title='Defined at 156.'>statetable_use_rehasher</a></li>
+<li><a href='#L160' title='Defined at 160.'>statetable_num_by_me</a></li>
+<li><a href='#L164' title='Defined at 164.'>statetable_num</a></li>
+<li><a href='#L175' title='Defined at 175.'>statetable_cap</a></li>
+<li><a href='#L179' title='Defined at 179.'>statetable_cap_density</a></li>
+<li><a href='#L183' title='Defined at 183.'>statetable_num_add</a></li>
+<li><a href='#L187' title='Defined at 187.'>statetable_num_sub</a></li>
+<li><a href='#L191' title='Defined at 191.'>statetable_dummy_add</a></li>
+<li><a href='#L195' title='Defined at 195.'>statetable_dummy_sub</a></li>
+<li><a href='#L199' title='Defined at 199.'>statetable_set_rehash_tbl</a></li>
+<li><a href='#L204' title='Defined at 204.'>statetable_rehash_tbl</a></li>
+<li><a href='#L208' title='Defined at 208.'>statetable_space</a></li>
+<li><a href='#L255' title='Defined at 255.'>statespace_set_init_state</a></li>
+<li><a href='#L266' title='Defined at 266.'>statespace_init_state</a></li>
+<li><a href='#L271' title='Defined at 271.'>statespace_num</a></li>
+<li><a href='#L276' title='Defined at 276.'>statespace_num_raw</a></li>
+<li><a href='#L284' title='Defined at 284.'>statespace_dummy_num</a></li>
+<li><a href='#L308' title='Defined at 308.'>statespace_end_num</a></li>
+<li><a href='#L324' title='Defined at 324.'>statespace_add_end_state</a></li>
+<li><a href='#L334' title='Defined at 334.'>statespace_end_states</a></li>
+<li><a href='#L339' title='Defined at 339.'>statespace_tbl</a></li>
+<li><a href='#L343' title='Defined at 343.'>statespace_memid_tbl</a></li>
+<li><a href='#L347' title='Defined at 347.'>statespace_accept_tbl</a></li>
+<li><a href='#L351' title='Defined at 351.'>statespace_accept_memid_tbl</a></li>
+<li><a href='#L355' title='Defined at 355.'>statespace_space</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>/*</em>
+<a id='L2' name='L2' /><em class='comment'> * statespace.h</em>
+<a id='L3' name='L3' /><em class='comment'> *</em>
+<a id='L4' name='L4' /><em class='comment'> *   Copyright (c) 2008, Ueda Laboratory LMNtal Group</em>
+<a id='L5' name='L5' /><em class='comment'> *                                         &lt;lmntal@ueda.info.waseda.ac.jp&gt;</em>
+<a id='L6' name='L6' /><em class='comment'> *   All rights reserved.</em>
+<a id='L7' name='L7' /><em class='comment'> *</em>
+<a id='L8' name='L8' /><em class='comment'> *   Redistribution and use in source and binary forms, with or without</em>
+<a id='L9' name='L9' /><em class='comment'> *   modification, are permitted provided that the following conditions are</em>
+<a id='L10' name='L10' /><em class='comment'> *   met:</em>
+<a id='L11' name='L11' /><em class='comment'> *</em>
+<a id='L12' name='L12' /><em class='comment'> *    1. Redistributions of source code must retain the above copyright</em>
+<a id='L13' name='L13' /><em class='comment'> *       notice, this list of conditions and the following disclaimer.</em>
+<a id='L14' name='L14' /><em class='comment'> *</em>
+<a id='L15' name='L15' /><em class='comment'> *    2. Redistributions in binary form must reproduce the above copyright</em>
+<a id='L16' name='L16' /><em class='comment'> *       notice, this list of conditions and the following disclaimer in</em>
+<a id='L17' name='L17' /><em class='comment'> *       the documentation and/or other materials provided with the</em>
+<a id='L18' name='L18' /><em class='comment'> *       distribution.</em>
+<a id='L19' name='L19' /><em class='comment'> *</em>
+<a id='L20' name='L20' /><em class='comment'> *    3. Neither the name of the Ueda Laboratory LMNtal Group nor the</em>
+<a id='L21' name='L21' /><em class='comment'> *       names of its contributors may be used to endorse or promote</em>
+<a id='L22' name='L22' /><em class='comment'> *       products derived from this software without specific prior</em>
+<a id='L23' name='L23' /><em class='comment'> *       written permission.</em>
+<a id='L24' name='L24' /><em class='comment'> *</em>
+<a id='L25' name='L25' /><em class='comment'> *   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L26' name='L26' /><em class='comment'> *   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L27' name='L27' /><em class='comment'> *   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L28' name='L28' /><em class='comment'> *   A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L29' name='L29' /><em class='comment'> *   OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L30' name='L30' /><em class='comment'> *   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L31' name='L31' /><em class='comment'> *   LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L32' name='L32' /><em class='comment'> *   DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L33' name='L33' /><em class='comment'> *   THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L34' name='L34' /><em class='comment'> *   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L35' name='L35' /><em class='comment'> *   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L36' name='L36' /><em class='comment'> *</em>
+<a id='L37' name='L37' /><em class='comment'> * $Id$</em>
+<a id='L38' name='L38' /><em class='comment'> */</em>
+<a id='L39' name='L39' />
+<a id='L40' name='L40' /><em class='comment'>/** @author Masato Gocho</em>
+<a id='L41' name='L41' /><em class='comment'> *  Closed Address Hash Table / Parallel Hash Table for State Management Table</em>
+<a id='L42' name='L42' /><em class='comment'> */</em>
+<a id='L43' name='L43' />
+<a id='L44' name='L44' /><em class='sharp'>#ifndef</em> <a href='../S/457.html#L45' title='Defined at 45 in src/verifier/statespace.h.'>LMN_STATESPACE_H</a>
+<a id='L45' name='L45' /><em class='sharp'>#define</em> <a href='../S/457.html#L44' title='Refered from 44 in src/verifier/statespace.h.'>LMN_STATESPACE_H</a>
+<a id='L46' name='L46' />
+<a id='L47' name='L47' /><em class='sharp'>#include</em> "<a href='347.html'>lmntal.h</a>"
+<a id='L48' name='L48' /><em class='sharp'>#include</em> "<a href='405.html'>st.h</a>"
+<a id='L49' name='L49' /><em class='sharp'>#include</em> "<a href='409.html'>vector.h</a>"
+<a id='L50' name='L50' /><em class='sharp'>#include</em> "<a href='403.html'>queue.h</a>"
+<a id='L51' name='L51' /><em class='sharp'>#include</em> "<a href='414.html'>automata.h</a>"
+<a id='L52' name='L52' /><em class='sharp'>#include</em> "<a href='455.html'>state.h</a>"
+<a id='L53' name='L53' /><em class='sharp'>#include</em> "<a href='../I/54.html'>slim_header/port.h</a>"
+<a id='L54' name='L54' /><em class='sharp'>#include</em> "<a href='396.html'>lmntal_thread.h</a>"
+<a id='L55' name='L55' /><em class='sharp'>#include</em> "<a href='418.html'>delta_membrane.h</a>"
+<a id='L56' name='L56' /><em class='sharp'>#include</em> "<a href='437.html'>mem_encode.h</a>"
+<a id='L57' name='L57' />
+<a id='L58' name='L58' /><strong class='reserved'>struct</strong> <a href='../R/4886.html' title='Multiple refered from 4 places.'>statespace_type</a> <em class='brace'>{</em>
+<a id='L59' name='L59' />  <strong class='reserved'>int</strong>(*<a href='../Y/1839.html' title='Multiple used in 8 places.'>compare</a>) ( );               <em class='comment'>/* 状態の等価性判定を行う関数 */</em>
+<a id='L60' name='L60' />  <a href='../D/1652.html' title='Multiple defined in 2 places.'>LmnBinStr</a>(*<a href='../Y/1842.html' title='Multiple used in 23 places.'>compress</a>) ( ); <em class='comment'>/* 状態sの圧縮バイト列を計算して返す関数 */</em>
+<a id='L61' name='L61' /><em class='brace'>}</em>;
+<a id='L62' name='L62' />
+<a id='L63' name='L63' />
+<a id='L64' name='L64' /><strong class='reserved'>struct</strong> <a href='../R/2344.html' title='Multiple refered from 115 places.'>StateSpace</a> <em class='brace'>{</em>
+<a id='L65' name='L65' />  <a href='../S/347.html#L101' title='Defined at 101 in src/lmntal.h.'>BYTE</a>            <a href='../Y/5314.html' title='Multiple used in 8 places.'>tbl_type</a>;       <em class='comment'>/* なんらかの特殊操作を行うためのフラグフィールド */</em>
+<a id='L66' name='L66' />  <a href='../S/347.html#L62' title='Defined at 62 in src/lmntal.h.'>BOOL</a>            <a href='../Y/2907.html' title='Multiple used in 22 places.'>is_formated</a>;    <em class='comment'>/* ハッシュ表の並びを崩した整列を行った場合に真 */</em>
+<a id='L67' name='L67' />  <em class='comment'>/* 2bytes alignment */</em>
+<a id='L68' name='L68' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong>    <a href='../Y/5364.html' title='Multiple used in 101 places.'>thread_num</a>;     <em class='comment'>/* 本テーブルの操作スレッド数 */</em>
+<a id='L69' name='L69' />
+<a id='L70' name='L70' />  <a href='../Y/186.html' title='Multiple used in 169 places.'>FILE</a>            *<a href='../Y/4047.html' title='Multiple used in 124 places.'>out</a>;           <em class='comment'>/* dump先 */</em>
+<a id='L71' name='L71' />  <a href='../D/2610.html' title='Multiple defined in 3 places.'>State</a>           *<a href='../Y/2815.html' title='Multiple used in 14 places.'>init_state</a>;    <em class='comment'>/* 初期状態 */</em>
+<a id='L72' name='L72' />  <a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a>          *<a href='../Y/2198.html' title='Multiple used in 16 places.'>end_states</a>;    <em class='comment'>/* 最終状態の集合 */</em>
+<a id='L73' name='L73' />  <a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a>      *<a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>;           <em class='comment'>/* mhash値をkeyに, 状態のアドレスを登録する状態管理表 */</em>
+<a id='L74' name='L74' />  <a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a>      *<a href='../Y/3512.html' title='Multiple used in 7 places.'>memid_tbl</a>;     <em class='comment'>/* memid_hashをkeyに, 状態のアドレスを登録する状態管理表 */</em>
+<a id='L75' name='L75' />  <a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a>      *<a href='../Y/1382.html' title='Multiple used in 4 places.'>acc_tbl</a>;
+<a id='L76' name='L76' />  <a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a>      *<a href='../Y/1381.html' title='Multiple used in 6 places.'>acc_memid_tbl</a>;
+<a id='L77' name='L77' />
+<a id='L78' name='L78' />  <a href='../D/231.html' title='Multiple defined in 2 places.'>Automata</a>       <a href='../Y/4309.html' title='Multiple used in 7 places.'>property_automata</a>;  <em class='comment'>/* Never Clainへのポインタ */</em>
+<a id='L79' name='L79' />  <a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a>         *<a href='../Y/4325.html' title='Multiple used in 9 places.'>propsyms</a>;          <em class='comment'>/* 命題記号定義へのポインタ */</em>
+<a id='L80' name='L80' />
+<a id='L81' name='L81' /><em class='sharp'>#ifdef</em> <a href='../Y/611.html' title='Multiple used in 97 places.'>PROFILE</a>
+<a id='L82' name='L82' />  <a href='../D/970.html' title='Multiple defined in 2 places.'>HashSet</a> <a href='../Y/3511.html' title='Multiple used in 5 places.'>memid_hashes</a>;   <em class='comment'>/* 膜のIDで同型性の判定を行うハッシュ値(mhash)のSet */</em>
+<a id='L83' name='L83' /><em class='sharp'>#endif</em>
+<a id='L84' name='L84' /><em class='brace'>}</em>;
+<a id='L85' name='L85' />
+<a id='L86' name='L86' /><em class='sharp'>#define</em> <a href='../R/4868.html' title='Multiple refered from 8 places.'>statespace_has_property</a>(<a href='../Y/747.html' title='Multiple used in 9 places.'>SS</a>)     ((<a href='../Y/747.html' title='Multiple used in 9 places.'>SS</a>)-&gt;<a href='../Y/4309.html' title='Multiple used in 7 places.'>property_automata</a>)
+<a id='L87' name='L87' /><em class='sharp'>#define</em> <a href='../R/4854.html' title='Multiple refered from 28 places.'>statespace_automata</a>(<a href='../Y/747.html' title='Multiple used in 9 places.'>SS</a>)         ((<a href='../Y/747.html' title='Multiple used in 9 places.'>SS</a>)-&gt;<a href='../Y/4309.html' title='Multiple used in 7 places.'>property_automata</a>)
+<a id='L88' name='L88' /><em class='sharp'>#define</em> <a href='../R/4880.html' title='Multiple refered from 11 places.'>statespace_propsyms</a>(<a href='../Y/747.html' title='Multiple used in 9 places.'>SS</a>)         ((<a href='../Y/747.html' title='Multiple used in 9 places.'>SS</a>)-&gt;<a href='../Y/4325.html' title='Multiple used in 9 places.'>propsyms</a>)
+<a id='L89' name='L89' />
+<a id='L90' name='L90' /><em class='comment'>/* the member "tbl_type" in struct StateSpace */</em>
+<a id='L91' name='L91' /><em class='sharp'>#define</em> <a href='../R/2243.html' title='Multiple refered from 3 places.'>SS_MEMID_MASK</a>           (0x01U)
+<a id='L92' name='L92' /><em class='sharp'>#define</em> <a href='../R/2244.html' title='Multiple refered from 3 places.'>SS_REHASHER_MASK</a>        (0x01U &lt;&lt; 1)
+<a id='L93' name='L93' />
+<a id='L94' name='L94' /><em class='sharp'>#define</em> <a href='../R/4887.html' title='Multiple refered from 4 places.'>statespace_use_memenc</a>(<a href='../Y/747.html' title='Multiple used in 9 places.'>SS</a>)       ((<a href='../Y/747.html' title='Multiple used in 9 places.'>SS</a>)-&gt;<a href='../Y/5314.html' title='Multiple used in 8 places.'>tbl_type</a> &amp;    <a href='../S/457.html#L91' title='Defined at 91 in src/verifier/statespace.h.'>SS_MEMID_MASK</a>)
+<a id='L95' name='L95' /><em class='sharp'>#define</em> <a href='../S/456.html#L252' title='Refered from 252 in src/verifier/statespace.c.'>statespace_set_memenc</a>(<a href='../Y/747.html' title='Multiple used in 9 places.'>SS</a>)       ((<a href='../Y/747.html' title='Multiple used in 9 places.'>SS</a>)-&gt;<a href='../Y/5314.html' title='Multiple used in 8 places.'>tbl_type</a> |=   <a href='../S/457.html#L91' title='Defined at 91 in src/verifier/statespace.h.'>SS_MEMID_MASK</a>)
+<a id='L96' name='L96' /><em class='sharp'>#define</em> statespace_unset_memenc(<a href='../Y/747.html' title='Multiple used in 9 places.'>SS</a>)     ((<a href='../Y/747.html' title='Multiple used in 9 places.'>SS</a>)-&gt;<a href='../Y/5314.html' title='Multiple used in 8 places.'>tbl_type</a> &amp;= (~<a href='../S/457.html#L91' title='Defined at 91 in src/verifier/statespace.h.'>SS_MEMID_MASK</a>))
+<a id='L97' name='L97' /><em class='sharp'>#define</em> statespace_use_rehasher(<a href='../Y/747.html' title='Multiple used in 9 places.'>SS</a>)     ((<a href='../Y/747.html' title='Multiple used in 9 places.'>SS</a>)-&gt;<a href='../Y/5314.html' title='Multiple used in 8 places.'>tbl_type</a> &amp;    <a href='../S/457.html#L92' title='Defined at 92 in src/verifier/statespace.h.'>SS_REHASHER_MASK</a>)
+<a id='L98' name='L98' /><em class='sharp'>#define</em> <a href='../S/456.html#L273' title='Refered from 273 in src/verifier/statespace.c.'>statespace_set_rehasher</a>(<a href='../Y/747.html' title='Multiple used in 9 places.'>SS</a>)     ((<a href='../Y/747.html' title='Multiple used in 9 places.'>SS</a>)-&gt;<a href='../Y/5314.html' title='Multiple used in 8 places.'>tbl_type</a> |=   <a href='../S/457.html#L92' title='Defined at 92 in src/verifier/statespace.h.'>SS_REHASHER_MASK</a>)
+<a id='L99' name='L99' /><em class='sharp'>#define</em> statespace_unset_rehasher(<a href='../Y/747.html' title='Multiple used in 9 places.'>SS</a>)   ((<a href='../Y/747.html' title='Multiple used in 9 places.'>SS</a>)-&gt;<a href='../Y/5314.html' title='Multiple used in 8 places.'>tbl_type</a> &amp;= (~<a href='../S/457.html#L92' title='Defined at 92 in src/verifier/statespace.h.'>SS_REHASHER_MASK</a>))
+<a id='L100' name='L100' />
+<a id='L101' name='L101' /><strong class='reserved'>struct</strong> <a href='../R/2345.html' title='Multiple refered from 90 places.'>StateTable</a> <em class='brace'>{</em>
+<a id='L102' name='L102' />  <a href='../S/347.html#L62' title='Defined at 62 in src/lmntal.h.'>BOOL</a>             <a href='../Y/5563.html' title='Multiple used in 4 places.'>use_rehasher</a>;
+<a id='L103' name='L103' />  <a href='../S/347.html#L101' title='Defined at 101 in src/lmntal.h.'>BYTE</a>             <a href='../Y/5364.html' title='Multiple used in 101 places.'>thread_num</a>;
+<a id='L104' name='L104' />  <strong class='reserved'>struct</strong> <a href='../S/457.html#L58' title='Defined at 58 in src/verifier/statespace.h.'>statespace_type</a> *<a href='../Y/5486.html' title='Multiple used in 318 places.'>type</a>;
+<a id='L105' name='L105' />  <a href='../D/2610.html' title='Multiple defined in 3 places.'>State</a>            **<a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>;
+<a id='L106' name='L106' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong>    <a href='../Y/1745.html' title='Multiple used in 127 places.'>cap</a>;
+<a id='L107' name='L107' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong>    <a href='../Y/1746.html' title='Multiple used in 4 places.'>cap_density</a>;
+<a id='L108' name='L108' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong>    *<a href='../Y/3856.html' title='Multiple used in 168 places.'>num</a>;
+<a id='L109' name='L109' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong>    *<a href='../Y/3865.html' title='Multiple used in 10 places.'>num_dummy</a>;
+<a id='L110' name='L110' />  <a href='../D/686.html' title='Multiple defined in 2 places.'>EWLock</a>           *<a href='../Y/3313.html' title='Multiple used in 107 places.'>lock</a>;
+<a id='L111' name='L111' />  <a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a>       *<a href='../Y/4492.html' title='Multiple used in 11 places.'>rehash_tbl</a>;   <em class='comment'>/* rehashした際に登録するテーブル */</em>
+<a id='L112' name='L112' /><em class='brace'>}</em>;
+<a id='L113' name='L113' />
+<a id='L114' name='L114' /><em class='sharp'>#define</em> <a href='../R/438.html' title='Multiple refered from 4 places.'>DEFAULT_ARGS</a>  (<a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a>)<a href='../Y/551.html' title='Multiple used in 1022 places.'>NULL</a>
+<a id='L115' name='L115' />
+<a id='L116' name='L116' />
+<a id='L117' name='L117' />
+<a id='L118' name='L118' />
+<a id='L119' name='L119' />
+<a id='L120' name='L120' /><em class='comment'>/** -----------</em>
+<a id='L121' name='L121' /><em class='comment'> *  StateTable</em>
+<a id='L122' name='L122' /><em class='comment'> */</em>
+<a id='L123' name='L123' />
+<a id='L124' name='L124' /><strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../S/456.html#L1014' title='Defined at 1014 in src/verifier/statespace.c.'>statetable_foreach</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>, <strong class='reserved'>void</strong> (*<a href='../Y/2487.html' title='Multiple used in 57 places.'>func</a>) ( ),
+<a id='L125' name='L125' />                               <a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a> <a href='../Y/1251.html' title='Multiple used in 21 places.'>_arg1</a>, <a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a> <a href='../Y/1252.html' title='Multiple used in 20 places.'>_arg2</a>);
+<a id='L126' name='L126' /><strong class='reserved'>void</strong> <a href='../S/456.html#L1039' title='Defined at 1039 in src/verifier/statespace.c.'>statetable_foreach_parallel</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>, <strong class='reserved'>void</strong> (*<a href='../Y/3616.html' title='Multiple used in 4 places.'>mt_safe_func</a>) ( ),
+<a id='L127' name='L127' />                                 <a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a> <a href='../Y/1251.html' title='Multiple used in 21 places.'>_arg1</a>, <a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a> <a href='../Y/1252.html' title='Multiple used in 20 places.'>_arg2</a>, <strong class='reserved'>int</strong> <a href='../Y/3855.html' title='Multiple used in 10 places.'>nthreads</a>);
+<a id='L128' name='L128' /><strong class='reserved'>void</strong> <a href='../S/456.html#L1232' title='Defined at 1232 in src/verifier/statespace.c.'>statetable_format_states</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>);
+<a id='L129' name='L129' />
+<a id='L130' name='L130' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong>          <a href='../S/457.html#L148' title='Defined at 148 in src/verifier/statespace.h.'>statetable_set_lock</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>, <a href='../D/686.html' title='Multiple defined in 2 places.'>EWLock</a> *<a href='../Y/3313.html' title='Multiple used in 107 places.'>lock</a>);
+<a id='L131' name='L131' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong>          <a href='../S/457.html#L152' title='Defined at 152 in src/verifier/statespace.h.'>statetable_set_rehasher</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>);
+<a id='L132' name='L132' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../S/347.html#L62' title='Defined at 62 in src/lmntal.h.'>BOOL</a>          <a href='../S/457.html#L156' title='Defined at 156 in src/verifier/statespace.h.'>statetable_use_rehasher</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>);
+<a id='L133' name='L133' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../S/457.html#L160' title='Defined at 160 in src/verifier/statespace.h.'>statetable_num_by_me</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>);
+<a id='L134' name='L134' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../S/457.html#L164' title='Defined at 164 in src/verifier/statespace.h.'>statetable_num</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>);
+<a id='L135' name='L135' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../S/457.html#L175' title='Defined at 175 in src/verifier/statespace.h.'>statetable_cap</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>);
+<a id='L136' name='L136' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../S/457.html#L179' title='Defined at 179 in src/verifier/statespace.h.'>statetable_cap_density</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>);
+<a id='L137' name='L137' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong>          <a href='../S/457.html#L183' title='Defined at 183 in src/verifier/statespace.h.'>statetable_num_add</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>, <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>);
+<a id='L138' name='L138' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong>          <a href='../S/457.html#L187' title='Defined at 187 in src/verifier/statespace.h.'>statetable_num_sub</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>, <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>);
+<a id='L139' name='L139' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong>          <a href='../S/457.html#L191' title='Defined at 191 in src/verifier/statespace.h.'>statetable_dummy_add</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>, <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>);
+<a id='L140' name='L140' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong>          <a href='../S/457.html#L195' title='Defined at 195 in src/verifier/statespace.h.'>statetable_dummy_sub</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>, <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>);
+<a id='L141' name='L141' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong>          <a href='../S/457.html#L199' title='Defined at 199 in src/verifier/statespace.h.'>statetable_set_rehash_tbl</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>,
+<a id='L142' name='L142' />                                                      <a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4492.html' title='Multiple used in 11 places.'>rehash_tbl</a>);
+<a id='L143' name='L143' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a>   *<a href='../S/457.html#L204' title='Defined at 204 in src/verifier/statespace.h.'>statetable_rehash_tbl</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>);
+<a id='L144' name='L144' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../S/457.html#L208' title='Defined at 208 in src/verifier/statespace.h.'>statetable_space</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>);
+<a id='L145' name='L145' />
+<a id='L146' name='L146' />
+<a id='L147' name='L147' />
+<a id='L148' name='L148' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../R/4912.html' title='Multiple refered from 8 places.'>statetable_set_lock</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>, <a href='../D/686.html' title='Multiple defined in 2 places.'>EWLock</a> *<a href='../Y/3313.html' title='Multiple used in 107 places.'>lock</a>) <em class='brace'>{</em>
+<a id='L149' name='L149' />  <a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>-&gt;<a href='../Y/3313.html' title='Multiple used in 107 places.'>lock</a> = <a href='../Y/3313.html' title='Multiple used in 107 places.'>lock</a>;
+<a id='L150' name='L150' /><em class='brace'>}</em>
+<a id='L151' name='L151' />
+<a id='L152' name='L152' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../R/4914.html' title='Multiple refered from 3 places.'>statetable_set_rehasher</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>) <em class='brace'>{</em>
+<a id='L153' name='L153' />  <a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>-&gt;<a href='../Y/5563.html' title='Multiple used in 4 places.'>use_rehasher</a> = <a href='../S/347.html#L69' title='Defined at 69 in src/lmntal.h.'>TRUE</a>;
+<a id='L154' name='L154' /><em class='brace'>}</em>
+<a id='L155' name='L155' />
+<a id='L156' name='L156' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../S/347.html#L62' title='Defined at 62 in src/lmntal.h.'>BOOL</a> <a href='../R/4917.html' title='Multiple refered from 4 places.'>statetable_use_rehasher</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>) <em class='brace'>{</em>
+<a id='L157' name='L157' />  <strong class='reserved'>return</strong> <a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>-&gt;<a href='../Y/5563.html' title='Multiple used in 4 places.'>use_rehasher</a>;
+<a id='L158' name='L158' /><em class='brace'>}</em>
+<a id='L159' name='L159' />
+<a id='L160' name='L160' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../R/4908.html' title='Multiple refered from 4 places.'>statetable_num_by_me</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>) <em class='brace'>{</em>
+<a id='L161' name='L161' />  <strong class='reserved'>return</strong> <a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>-&gt;<a href='../Y/3856.html' title='Multiple used in 168 places.'>num</a>[<a href='../D/3780.html' title='Multiple defined in 2 places.'>env_my_thread_id</a>()];
+<a id='L162' name='L162' /><em class='brace'>}</em>
+<a id='L163' name='L163' />
+<a id='L164' name='L164' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../R/4906.html' title='Multiple refered from 6 places.'>statetable_num</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>) <em class='brace'>{</em>
+<a id='L165' name='L165' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a> = 0;
+<a id='L166' name='L166' />  <strong class='reserved'>if</strong> (<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>) <em class='brace'>{</em>
+<a id='L167' name='L167' />    <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>;
+<a id='L168' name='L168' />    <strong class='reserved'>for</strong> (<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> = 0; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> &lt; <a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>-&gt;<a href='../Y/5364.html' title='Multiple used in 101 places.'>thread_num</a>; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>++) <em class='brace'>{</em>
+<a id='L169' name='L169' />      <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a> += <a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>-&gt;<a href='../Y/3856.html' title='Multiple used in 168 places.'>num</a>[<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>];
+<a id='L170' name='L170' />    <em class='brace'>}</em>
+<a id='L171' name='L171' />  <em class='brace'>}</em>
+<a id='L172' name='L172' />  <strong class='reserved'>return</strong> <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a>;
+<a id='L173' name='L173' /><em class='brace'>}</em>
+<a id='L174' name='L174' />
+<a id='L175' name='L175' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../R/4889.html' title='Multiple refered from 6 places.'>statetable_cap</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>) <em class='brace'>{</em>
+<a id='L176' name='L176' />  <strong class='reserved'>return</strong> <a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>-&gt;<a href='../Y/1745.html' title='Multiple used in 127 places.'>cap</a>;
+<a id='L177' name='L177' /><em class='brace'>}</em>
+<a id='L178' name='L178' />
+<a id='L179' name='L179' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../R/4890.html' title='Multiple refered from 4 places.'>statetable_cap_density</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>) <em class='brace'>{</em>
+<a id='L180' name='L180' />  <strong class='reserved'>return</strong> <a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>-&gt;<a href='../Y/1746.html' title='Multiple used in 4 places.'>cap_density</a>;
+<a id='L181' name='L181' /><em class='brace'>}</em>
+<a id='L182' name='L182' />
+<a id='L183' name='L183' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../R/4907.html' title='Multiple refered from 6 places.'>statetable_num_add</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>, <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>) <em class='brace'>{</em>
+<a id='L184' name='L184' />  <a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>-&gt;<a href='../Y/3856.html' title='Multiple used in 168 places.'>num</a>[<a href='../D/3780.html' title='Multiple defined in 2 places.'>env_my_thread_id</a>()] += <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>;
+<a id='L185' name='L185' /><em class='brace'>}</em>
+<a id='L186' name='L186' />
+<a id='L187' name='L187' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../R/4909.html' title='Multiple refered from 2 places.'>statetable_num_sub</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>, <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>) <em class='brace'>{</em>
+<a id='L188' name='L188' />  <a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>-&gt;<a href='../Y/3856.html' title='Multiple used in 168 places.'>num</a>[<a href='../D/3780.html' title='Multiple defined in 2 places.'>env_my_thread_id</a>()] -= <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>;
+<a id='L189' name='L189' /><em class='brace'>}</em>
+<a id='L190' name='L190' />
+<a id='L191' name='L191' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../R/4894.html' title='Multiple refered from 3 places.'>statetable_dummy_add</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>, <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>) <em class='brace'>{</em>
+<a id='L192' name='L192' />  <a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>-&gt;<a href='../Y/3865.html' title='Multiple used in 10 places.'>num_dummy</a>[<a href='../D/3780.html' title='Multiple defined in 2 places.'>env_my_thread_id</a>()] += <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>;
+<a id='L193' name='L193' /><em class='brace'>}</em>
+<a id='L194' name='L194' />
+<a id='L195' name='L195' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../R/4895.html' title='Multiple refered from 2 places.'>statetable_dummy_sub</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>, <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>) <em class='brace'>{</em>
+<a id='L196' name='L196' />  <a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>-&gt;<a href='../Y/3865.html' title='Multiple used in 10 places.'>num_dummy</a>[<a href='../D/3780.html' title='Multiple defined in 2 places.'>env_my_thread_id</a>()] -= <a href='../Y/3648.html' title='Multiple used in 868 places.'>n</a>;
+<a id='L197' name='L197' /><em class='brace'>}</em>
+<a id='L198' name='L198' />
+<a id='L199' name='L199' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../R/4913.html' title='Multiple refered from 4 places.'>statetable_set_rehash_tbl</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>, <a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4492.html' title='Multiple used in 11 places.'>rehash_tbl</a>) <em class='brace'>{</em>
+<a id='L200' name='L200' />  <a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>-&gt;<a href='../Y/4492.html' title='Multiple used in 11 places.'>rehash_tbl</a> = <a href='../Y/4492.html' title='Multiple used in 11 places.'>rehash_tbl</a>;
+<a id='L201' name='L201' />  <a href='../S/457.html#L152' title='Defined at 152 in src/verifier/statespace.h.'>statetable_set_rehasher</a>(<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>);
+<a id='L202' name='L202' /><em class='brace'>}</em>
+<a id='L203' name='L203' />
+<a id='L204' name='L204' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../R/4910.html' title='Multiple refered from 7 places.'>statetable_rehash_tbl</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>) <em class='brace'>{</em>
+<a id='L205' name='L205' />  <strong class='reserved'>return</strong> <a href='../Y/4987.html' title='Multiple used in 177 places.'>st</a>-&gt;<a href='../Y/4492.html' title='Multiple used in 11 places.'>rehash_tbl</a>;
+<a id='L206' name='L206' /><em class='brace'>}</em>
+<a id='L207' name='L207' />
+<a id='L208' name='L208' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../R/4915.html' title='Multiple refered from 6 places.'>statetable_space</a>(<a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>) <em class='brace'>{</em>
+<a id='L209' name='L209' />  <strong class='reserved'>return</strong>
+<a id='L210' name='L210' />    <strong class='reserved'>sizeof</strong>(<strong class='reserved'>struct</strong> <a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a>)
+<a id='L211' name='L211' />    + (<a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>-&gt;<a href='../Y/3856.html' title='Multiple used in 168 places.'>num</a> ? <a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>-&gt;<a href='../Y/5364.html' title='Multiple used in 101 places.'>thread_num</a> * <strong class='reserved'>sizeof</strong>(<strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong>) : 0)
+<a id='L212' name='L212' />    + (<a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>-&gt;<a href='../Y/3865.html' title='Multiple used in 10 places.'>num_dummy</a> ? <a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>-&gt;<a href='../Y/5364.html' title='Multiple used in 101 places.'>thread_num</a> * <strong class='reserved'>sizeof</strong>(<strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong>) : 0)
+<a id='L213' name='L213' />    + (<a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>-&gt;<a href='../Y/1745.html' title='Multiple used in 127 places.'>cap</a> * <strong class='reserved'>sizeof</strong>(<a href='../D/2610.html' title='Multiple defined in 3 places.'>State</a> *))
+<a id='L214' name='L214' />    + <a href='../S/396.html#L129' title='Defined at 129 in src/utility/lmntal_thread.h.'>lmn_ewlock_space</a>(<a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>-&gt;<a href='../Y/3313.html' title='Multiple used in 107 places.'>lock</a>);
+<a id='L215' name='L215' /><em class='brace'>}</em>
+<a id='L216' name='L216' />
+<a id='L217' name='L217' />
+<a id='L218' name='L218' />
+<a id='L219' name='L219' /><em class='comment'>/** -----------</em>
+<a id='L220' name='L220' /><em class='comment'> *  StateSpace</em>
+<a id='L221' name='L221' /><em class='comment'> */</em>
+<a id='L222' name='L222' />
+<a id='L223' name='L223' /><a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../S/456.html#L312' title='Defined at 312 in src/verifier/statespace.c.'>statespace_make</a>(<a href='../D/231.html' title='Multiple defined in 2 places.'>Automata</a> <a href='../Y/1366.html' title='Multiple used in 517 places.'>a</a>, <a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/4334.html' title='Multiple used in 42 places.'>psyms</a>);
+<a id='L224' name='L224' /><a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../S/456.html#L325' title='Defined at 325 in src/verifier/statespace.c.'>statespace_make_for_parallel</a>(<strong class='reserved'>int</strong> <a href='../Y/5364.html' title='Multiple used in 101 places.'>thread_num</a>, <a href='../D/231.html' title='Multiple defined in 2 places.'>Automata</a> <a href='../Y/1366.html' title='Multiple used in 517 places.'>a</a>, <a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../Y/4334.html' title='Multiple used in 42 places.'>psyms</a>);
+<a id='L225' name='L225' /><strong class='reserved'>void</strong>       <a href='../S/456.html#L357' title='Defined at 357 in src/verifier/statespace.c.'>statespace_free</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>);
+<a id='L226' name='L226' /><strong class='reserved'>void</strong>       <a href='../S/456.html#L568' title='Defined at 568 in src/verifier/statespace.c.'>statespace_add_direct</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>, <a href='../D/2610.html' title='Multiple defined in 3 places.'>State</a> *<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>);
+<a id='L227' name='L227' /><a href='../D/2610.html' title='Multiple defined in 3 places.'>State</a>     *<a href='../S/456.html#L457' title='Defined at 457 in src/verifier/statespace.c.'>statespace_insert</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>, <a href='../D/2610.html' title='Multiple defined in 3 places.'>State</a> *<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>);
+<a id='L228' name='L228' /><a href='../D/2610.html' title='Multiple defined in 3 places.'>State</a>     *<a href='../S/456.html#L536' title='Defined at 536 in src/verifier/statespace.c.'>statespace_insert_delta</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>, <a href='../D/2610.html' title='Multiple defined in 3 places.'>State</a> *<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>, <strong class='reserved'>struct</strong> <a href='../D/1864.html' title='Multiple defined in 2 places.'>MemDeltaRoot</a> *<a href='../Y/1949.html' title='Multiple used in 724 places.'>d</a>);
+<a id='L229' name='L229' /><strong class='reserved'>void</strong>       <a href='../S/456.html#L587' title='Defined at 587 in src/verifier/statespace.c.'>statespace_foreach</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>, <strong class='reserved'>void</strong> (*<a href='../Y/2487.html' title='Multiple used in 57 places.'>func</a>) ( ),
+<a id='L230' name='L230' />                              <a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a> <a href='../Y/1251.html' title='Multiple used in 21 places.'>_arg1</a>, <a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a> <a href='../Y/1252.html' title='Multiple used in 20 places.'>_arg2</a>);
+<a id='L231' name='L231' /><strong class='reserved'>void</strong>       <a href='../S/456.html#L596' title='Defined at 596 in src/verifier/statespace.c.'>statespace_foreach_parallel</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>, <strong class='reserved'>void</strong> (*<a href='../Y/2487.html' title='Multiple used in 57 places.'>func</a>) ( ),
+<a id='L232' name='L232' />                              <a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a> <a href='../Y/1251.html' title='Multiple used in 21 places.'>_arg1</a>, <a href='../S/347.html#L100' title='Defined at 100 in src/lmntal.h.'>LmnWord</a> <a href='../Y/1252.html' title='Multiple used in 20 places.'>_arg2</a>, <strong class='reserved'>int</strong> <a href='../Y/3654.html' title='Multiple used in 6 places.'>nPE</a>);
+<a id='L233' name='L233' /><strong class='reserved'>void</strong>       <a href='../S/456.html#L1192' title='Defined at 1192 in src/verifier/statespace.c.'>statespace_format_states</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>);
+<a id='L234' name='L234' /><strong class='reserved'>void</strong>       <a href='../S/456.html#L343' title='Defined at 343 in src/verifier/statespace.c.'>statespace_clear</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>);
+<a id='L235' name='L235' /><strong class='reserved'>void</strong>       <a href='../S/456.html#L1066' title='Defined at 1066 in src/verifier/statespace.c.'>statespace_ends_dumper</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>);
+<a id='L236' name='L236' /><strong class='reserved'>void</strong>       <a href='../S/456.html#L1095' title='Defined at 1095 in src/verifier/statespace.c.'>statespace_dumper</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>);
+<a id='L237' name='L237' />
+<a id='L238' name='L238' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../S/457.html#L276' title='Defined at 276 in src/verifier/statespace.h.'>statespace_num_raw</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>);
+<a id='L239' name='L239' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../S/457.html#L271' title='Defined at 271 in src/verifier/statespace.h.'>statespace_num</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>);
+<a id='L240' name='L240' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../S/457.html#L284' title='Defined at 284 in src/verifier/statespace.h.'>statespace_dummy_num</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>);
+<a id='L241' name='L241' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../S/457.html#L308' title='Defined at 308 in src/verifier/statespace.h.'>statespace_end_num</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>);
+<a id='L242' name='L242' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../D/2610.html' title='Multiple defined in 3 places.'>State</a>        *<a href='../S/457.html#L266' title='Defined at 266 in src/verifier/statespace.h.'>statespace_init_state</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>);
+<a id='L243' name='L243' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong>          <a href='../S/457.html#L255' title='Defined at 255 in src/verifier/statespace.h.'>statespace_set_init_state</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>,
+<a id='L244' name='L244' />                                                      <a href='../D/2610.html' title='Multiple defined in 3 places.'>State</a> *<a href='../Y/2815.html' title='Multiple used in 14 places.'>init_state</a>,
+<a id='L245' name='L245' />                                                      <a href='../S/347.html#L62' title='Defined at 62 in src/lmntal.h.'>BOOL</a> enable_compact);
+<a id='L246' name='L246' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong>          <a href='../S/457.html#L324' title='Defined at 324 in src/verifier/statespace.h.'>statespace_add_end_state</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>, <a href='../D/2610.html' title='Multiple defined in 3 places.'>State</a> *<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>);
+<a id='L247' name='L247' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>const</strong> <a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../S/457.html#L334' title='Defined at 334 in src/verifier/statespace.h.'>statespace_end_states</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>);
+<a id='L248' name='L248' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a>   *<a href='../S/457.html#L339' title='Defined at 339 in src/verifier/statespace.h.'>statespace_tbl</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>);
+<a id='L249' name='L249' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a>   *<a href='../S/457.html#L343' title='Defined at 343 in src/verifier/statespace.h.'>statespace_memid_tbl</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>);
+<a id='L250' name='L250' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a>   *<a href='../S/457.html#L347' title='Defined at 347 in src/verifier/statespace.h.'>statespace_accept_tbl</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>);
+<a id='L251' name='L251' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a>   *<a href='../S/457.html#L351' title='Defined at 351 in src/verifier/statespace.h.'>statespace_accept_memid_tbl</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>);
+<a id='L252' name='L252' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../S/457.html#L355' title='Defined at 355 in src/verifier/statespace.h.'>statespace_space</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>);
+<a id='L253' name='L253' />
+<a id='L254' name='L254' /><em class='comment'>/* 初期状態を追加する MT-UNSAFE */</em>
+<a id='L255' name='L255' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../R/4881.html' title='Multiple refered from 2 places.'>statespace_set_init_state</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>, <a href='../D/2610.html' title='Multiple defined in 3 places.'>State</a>* <a href='../Y/2815.html' title='Multiple used in 14 places.'>init_state</a>,
+<a id='L256' name='L256' />                                             <a href='../S/347.html#L62' title='Defined at 62 in src/lmntal.h.'>BOOL</a> <a href='../Y/2177.html' title='Multiple used in 2 places.'>enable_binstr</a>)
+<a id='L257' name='L257' /><em class='brace'>{</em>
+<a id='L258' name='L258' />  <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>-&gt;<a href='../Y/2815.html' title='Multiple used in 14 places.'>init_state</a> = <a href='../Y/2815.html' title='Multiple used in 14 places.'>init_state</a>;
+<a id='L259' name='L259' />  <a href='../S/456.html#L568' title='Defined at 568 in src/verifier/statespace.c.'>statespace_add_direct</a>(<a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>, <a href='../Y/2815.html' title='Multiple used in 14 places.'>init_state</a>);
+<a id='L260' name='L260' />  <strong class='reserved'>if</strong> (<a href='../Y/2177.html' title='Multiple used in 2 places.'>enable_binstr</a>) <em class='brace'>{</em>
+<a id='L261' name='L261' />    <a href='../S/454.html#L217' title='Defined at 217 in src/verifier/state.c.'>state_free_mem</a>(<a href='../Y/2815.html' title='Multiple used in 14 places.'>init_state</a>);
+<a id='L262' name='L262' />  <em class='brace'>}</em>
+<a id='L263' name='L263' /><em class='brace'>}</em>
+<a id='L264' name='L264' />
+<a id='L265' name='L265' /><em class='comment'>/* 初期状態を返す */</em>
+<a id='L266' name='L266' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../D/2610.html' title='Multiple defined in 3 places.'>State</a> *<a href='../R/4869.html' title='Multiple refered from 5 places.'>statespace_init_state</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>) <em class='brace'>{</em>
+<a id='L267' name='L267' />  <strong class='reserved'>return</strong> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>-&gt;<a href='../Y/2815.html' title='Multiple used in 14 places.'>init_state</a>;
+<a id='L268' name='L268' /><em class='brace'>}</em>
+<a id='L269' name='L269' />
+<a id='L270' name='L270' /><em class='comment'>/* 状態数を返す */</em>
+<a id='L271' name='L271' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../R/4878.html' title='Multiple refered from 3 places.'>statespace_num</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>) <em class='brace'>{</em>
+<a id='L272' name='L272' />  <strong class='reserved'>return</strong> (<a href='../S/457.html#L276' title='Defined at 276 in src/verifier/statespace.h.'>statespace_num_raw</a>(<a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>) - <a href='../S/457.html#L284' title='Defined at 284 in src/verifier/statespace.h.'>statespace_dummy_num</a>(<a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>));
+<a id='L273' name='L273' /><em class='brace'>}</em>
+<a id='L274' name='L274' />
+<a id='L275' name='L275' /><em class='comment'>/* dummyの状態数を含む, 管理している状態数を返す */</em>
+<a id='L276' name='L276' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../R/4879.html' title='Multiple refered from 2 places.'>statespace_num_raw</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>) <em class='brace'>{</em>
+<a id='L277' name='L277' />  <strong class='reserved'>return</strong> <a href='../S/457.html#L164' title='Defined at 164 in src/verifier/statespace.h.'>statetable_num</a>(<a href='../S/457.html#L339' title='Defined at 339 in src/verifier/statespace.h.'>statespace_tbl</a>(<a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>))
+<a id='L278' name='L278' />       + <a href='../S/457.html#L164' title='Defined at 164 in src/verifier/statespace.h.'>statetable_num</a>(<a href='../S/457.html#L343' title='Defined at 343 in src/verifier/statespace.h.'>statespace_memid_tbl</a>(<a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>))
+<a id='L279' name='L279' />       + <a href='../S/457.html#L164' title='Defined at 164 in src/verifier/statespace.h.'>statetable_num</a>(<a href='../S/457.html#L347' title='Defined at 347 in src/verifier/statespace.h.'>statespace_accept_tbl</a>(<a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>))
+<a id='L280' name='L280' />       + <a href='../S/457.html#L164' title='Defined at 164 in src/verifier/statespace.h.'>statetable_num</a>(<a href='../S/457.html#L351' title='Defined at 351 in src/verifier/statespace.h.'>statespace_accept_memid_tbl</a>(<a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>));
+<a id='L281' name='L281' /><em class='brace'>}</em>
+<a id='L282' name='L282' />
+<a id='L283' name='L283' /><em class='comment'>/* memidテーブルに追加されているdummy状態数を返す */</em>
+<a id='L284' name='L284' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../R/4856.html' title='Multiple refered from 2 places.'>statespace_dummy_num</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>) <em class='brace'>{</em>
+<a id='L285' name='L285' />  <a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>;
+<a id='L286' name='L286' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a>;
+<a id='L287' name='L287' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>;
+<a id='L288' name='L288' />
+<a id='L289' name='L289' />  <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a> = 0UL;
+<a id='L290' name='L290' />  <a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a> = <a href='../S/457.html#L343' title='Defined at 343 in src/verifier/statespace.h.'>statespace_memid_tbl</a>(<a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>);
+<a id='L291' name='L291' />  <strong class='reserved'>if</strong> (<a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>) <em class='brace'>{</em>
+<a id='L292' name='L292' />    <strong class='reserved'>for</strong> (<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> = 0; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> &lt; <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>-&gt;<a href='../Y/5364.html' title='Multiple used in 101 places.'>thread_num</a>; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>++) <em class='brace'>{</em>
+<a id='L293' name='L293' />      <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a> += <a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>-&gt;<a href='../Y/3865.html' title='Multiple used in 10 places.'>num_dummy</a>[<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>];
+<a id='L294' name='L294' />    <em class='brace'>}</em>
+<a id='L295' name='L295' />  <em class='brace'>}</em>
+<a id='L296' name='L296' />
+<a id='L297' name='L297' />  <a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a> = <a href='../S/457.html#L351' title='Defined at 351 in src/verifier/statespace.h.'>statespace_accept_memid_tbl</a>(<a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>);
+<a id='L298' name='L298' />  <strong class='reserved'>if</strong> (<a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>) <em class='brace'>{</em>
+<a id='L299' name='L299' />    <strong class='reserved'>for</strong> (<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> = 0; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> &lt; <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>-&gt;<a href='../Y/5364.html' title='Multiple used in 101 places.'>thread_num</a>; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>++) <em class='brace'>{</em>
+<a id='L300' name='L300' />      <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a> += <a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>-&gt;<a href='../Y/3865.html' title='Multiple used in 10 places.'>num_dummy</a>[<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>];
+<a id='L301' name='L301' />    <em class='brace'>}</em>
+<a id='L302' name='L302' />  <em class='brace'>}</em>
+<a id='L303' name='L303' />  <strong class='reserved'>return</strong> <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a>;
+<a id='L304' name='L304' /><em class='brace'>}</em>
+<a id='L305' name='L305' />
+<a id='L306' name='L306' />
+<a id='L307' name='L307' /><em class='comment'>/* 最終状態数を返す */</em>
+<a id='L308' name='L308' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../R/4861.html' title='Multiple refered from 3 places.'>statespace_end_num</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>) <em class='brace'>{</em>
+<a id='L309' name='L309' />  <strong class='reserved'>if</strong> (<a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>-&gt;<a href='../Y/5364.html' title='Multiple used in 101 places.'>thread_num</a> &gt; 1) <em class='brace'>{</em>
+<a id='L310' name='L310' />    <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../Y/5178.html' title='Multiple used in 20 places.'>sum</a> = 0;
+<a id='L311' name='L311' />    <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>;
+<a id='L312' name='L312' />    <strong class='reserved'>for</strong> (<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> = 0; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> &lt; <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>-&gt;<a href='../Y/5364.html' title='Multiple used in 101 places.'>thread_num</a>; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>++) <em class='brace'>{</em>
+<a id='L313' name='L313' />      <a href='../Y/5178.html' title='Multiple used in 20 places.'>sum</a> += <a href='../S/409.html#L54' title='Defined at 54 in src/utility/vector.h.'>vec_num</a>(&amp;<a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>-&gt;<a href='../Y/2198.html' title='Multiple used in 16 places.'>end_states</a>[<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>]);
+<a id='L314' name='L314' />    <em class='brace'>}</em>
+<a id='L315' name='L315' />    <strong class='reserved'>return</strong> <a href='../Y/5178.html' title='Multiple used in 20 places.'>sum</a>;
+<a id='L316' name='L316' />
+<a id='L317' name='L317' />  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L318' name='L318' />    <strong class='reserved'>return</strong> <a href='../S/409.html#L54' title='Defined at 54 in src/utility/vector.h.'>vec_num</a>(<a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>-&gt;<a href='../Y/2198.html' title='Multiple used in 16 places.'>end_states</a>);
+<a id='L319' name='L319' />  <em class='brace'>}</em>
+<a id='L320' name='L320' /><em class='brace'>}</em>
+<a id='L321' name='L321' />
+<a id='L322' name='L322' />
+<a id='L323' name='L323' /><em class='comment'>/* 状態空間に**すでに含まれている**状態sを最終状態として登録する */</em>
+<a id='L324' name='L324' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>void</strong> <a href='../R/4852.html' title='Multiple refered from 2 places.'>statespace_add_end_state</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>, <a href='../D/2610.html' title='Multiple defined in 3 places.'>State</a> *<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>) <em class='brace'>{</em>
+<a id='L325' name='L325' />  <a href='../D/1415.html' title='Multiple defined in 2 places.'>LMN_ASSERT</a>(<a href='../D/3780.html' title='Multiple defined in 2 places.'>env_my_thread_id</a>() &lt; <a href='../D/3787.html' title='Multiple defined in 2 places.'>env_threads_num</a>());
+<a id='L326' name='L326' />  <strong class='reserved'>if</strong> (<a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>-&gt;<a href='../Y/5364.html' title='Multiple used in 101 places.'>thread_num</a> &gt; 1)
+<a id='L327' name='L327' />    <a href='../S/409.html#L102' title='Defined at 102 in src/utility/vector.h.'>vec_push</a>(&amp;<a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>-&gt;<a href='../Y/2198.html' title='Multiple used in 16 places.'>end_states</a>[<a href='../D/3780.html' title='Multiple defined in 2 places.'>env_my_thread_id</a>()], (<a href='../S/409.html#L51' title='Defined at 51 in src/utility/vector.h.'>vec_data_t</a>)<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>);
+<a id='L328' name='L328' />  <strong class='reserved'>else</strong>
+<a id='L329' name='L329' />    <a href='../S/409.html#L102' title='Defined at 102 in src/utility/vector.h.'>vec_push</a>(<a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>-&gt;<a href='../Y/2198.html' title='Multiple used in 16 places.'>end_states</a>, (<a href='../S/409.html#L51' title='Defined at 51 in src/utility/vector.h.'>vec_data_t</a>)<a href='../Y/4659.html' title='Multiple used in 2112 places.'>s</a>);
+<a id='L330' name='L330' /><em class='brace'>}</em>
+<a id='L331' name='L331' />
+<a id='L332' name='L332' />
+<a id='L333' name='L333' /><em class='comment'>/* 最終状態のベクタを返す */</em>
+<a id='L334' name='L334' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>const</strong> <a href='../D/2945.html' title='Multiple defined in 2 places.'>Vector</a> *<a href='../R/4862.html' title='Multiple refered from 3 places.'>statespace_end_states</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>)
+<a id='L335' name='L335' /><em class='brace'>{</em>
+<a id='L336' name='L336' />  <strong class='reserved'>return</strong> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>-&gt;<a href='../Y/2198.html' title='Multiple used in 16 places.'>end_states</a>;
+<a id='L337' name='L337' /><em class='brace'>}</em>
+<a id='L338' name='L338' />
+<a id='L339' name='L339' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../R/4885.html' title='Multiple refered from 16 places.'>statespace_tbl</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>) <em class='brace'>{</em>
+<a id='L340' name='L340' />  <strong class='reserved'>return</strong> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>-&gt;<a href='../Y/5310.html' title='Multiple used in 255 places.'>tbl</a>;
+<a id='L341' name='L341' /><em class='brace'>}</em>
+<a id='L342' name='L342' />
+<a id='L343' name='L343' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../R/4877.html' title='Multiple refered from 21 places.'>statespace_memid_tbl</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>) <em class='brace'>{</em>
+<a id='L344' name='L344' />  <strong class='reserved'>return</strong> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>-&gt;<a href='../Y/3512.html' title='Multiple used in 7 places.'>memid_tbl</a>;
+<a id='L345' name='L345' /><em class='brace'>}</em>
+<a id='L346' name='L346' />
+<a id='L347' name='L347' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../R/4850.html' title='Multiple refered from 19 places.'>statespace_accept_tbl</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>) <em class='brace'>{</em>
+<a id='L348' name='L348' />  <strong class='reserved'>return</strong> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>-&gt;<a href='../Y/1382.html' title='Multiple used in 4 places.'>acc_tbl</a>;
+<a id='L349' name='L349' /><em class='brace'>}</em>
+<a id='L350' name='L350' />
+<a id='L351' name='L351' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <a href='../D/2612.html' title='Multiple defined in 2 places.'>StateTable</a> *<a href='../R/4849.html' title='Multiple refered from 21 places.'>statespace_accept_memid_tbl</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>) <em class='brace'>{</em>
+<a id='L352' name='L352' />  <strong class='reserved'>return</strong> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>-&gt;<a href='../Y/1381.html' title='Multiple used in 6 places.'>acc_memid_tbl</a>;
+<a id='L353' name='L353' /><em class='brace'>}</em>
+<a id='L354' name='L354' />
+<a id='L355' name='L355' /><strong class='reserved'>static</strong> <strong class='reserved'>inline</strong> <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../R/4884.html' title='Multiple refered from 10 places.'>statespace_space</a>(<a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a> <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>) <em class='brace'>{</em>
+<a id='L356' name='L356' />  <strong class='reserved'>unsigned</strong> <strong class='reserved'>long</strong> <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a> = <strong class='reserved'>sizeof</strong>(<strong class='reserved'>struct</strong> <a href='../D/2611.html' title='Multiple defined in 2 places.'>StateSpace</a>);
+<a id='L357' name='L357' />  <strong class='reserved'>if</strong> (<a href='../S/457.html#L339' title='Defined at 339 in src/verifier/statespace.h.'>statespace_tbl</a>(<a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>)) <em class='brace'>{</em>
+<a id='L358' name='L358' />    <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a> += <a href='../S/457.html#L208' title='Defined at 208 in src/verifier/statespace.h.'>statetable_space</a>(<a href='../S/457.html#L339' title='Defined at 339 in src/verifier/statespace.h.'>statespace_tbl</a>(<a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>));
+<a id='L359' name='L359' />  <em class='brace'>}</em>
+<a id='L360' name='L360' />  <strong class='reserved'>if</strong> (<a href='../S/457.html#L343' title='Defined at 343 in src/verifier/statespace.h.'>statespace_memid_tbl</a>(<a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>)) <em class='brace'>{</em>
+<a id='L361' name='L361' />    <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a> += <a href='../S/457.html#L208' title='Defined at 208 in src/verifier/statespace.h.'>statetable_space</a>(<a href='../S/457.html#L343' title='Defined at 343 in src/verifier/statespace.h.'>statespace_memid_tbl</a>(<a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>));
+<a id='L362' name='L362' />  <em class='brace'>}</em>
+<a id='L363' name='L363' />  <strong class='reserved'>if</strong> (<a href='../S/457.html#L347' title='Defined at 347 in src/verifier/statespace.h.'>statespace_accept_tbl</a>(<a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>)) <em class='brace'>{</em>
+<a id='L364' name='L364' />    <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a> += <a href='../S/457.html#L208' title='Defined at 208 in src/verifier/statespace.h.'>statetable_space</a>(<a href='../S/457.html#L347' title='Defined at 347 in src/verifier/statespace.h.'>statespace_accept_tbl</a>(<a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>));
+<a id='L365' name='L365' />  <em class='brace'>}</em>
+<a id='L366' name='L366' />  <strong class='reserved'>if</strong> (<a href='../S/457.html#L351' title='Defined at 351 in src/verifier/statespace.h.'>statespace_accept_memid_tbl</a>(<a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>)) <em class='brace'>{</em>
+<a id='L367' name='L367' />    <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a> += <a href='../S/457.html#L208' title='Defined at 208 in src/verifier/statespace.h.'>statetable_space</a>(<a href='../S/457.html#L351' title='Defined at 351 in src/verifier/statespace.h.'>statespace_accept_memid_tbl</a>(<a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>));
+<a id='L368' name='L368' />  <em class='brace'>}</em>
+<a id='L369' name='L369' />  <strong class='reserved'>if</strong> (<a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>-&gt;<a href='../Y/5364.html' title='Multiple used in 101 places.'>thread_num</a> &gt; 1) <em class='brace'>{</em>
+<a id='L370' name='L370' />    <strong class='reserved'>unsigned</strong> <strong class='reserved'>int</strong> <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>;
+<a id='L371' name='L371' />    <strong class='reserved'>for</strong> (<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> = 0; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a> &lt; <a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>-&gt;<a href='../Y/5364.html' title='Multiple used in 101 places.'>thread_num</a>; <a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>++)  <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a> += <a href='../S/409.html#L173' title='Defined at 173 in src/utility/vector.h.'>vec_space</a>(&amp;<a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>-&gt;<a href='../Y/2198.html' title='Multiple used in 16 places.'>end_states</a>[<a href='../Y/2740.html' title='Multiple used in 2304 places.'>i</a>]);
+<a id='L372' name='L372' />  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L373' name='L373' />    <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a> += <a href='../S/409.html#L173' title='Defined at 173 in src/utility/vector.h.'>vec_space</a>(<a href='../Y/4978.html' title='Multiple used in 383 places.'>ss</a>-&gt;<a href='../Y/2198.html' title='Multiple used in 16 places.'>end_states</a>);
+<a id='L374' name='L374' />  <em class='brace'>}</em>
+<a id='L375' name='L375' />  <strong class='reserved'>return</strong> <a href='../Y/4533.html' title='Multiple used in 370 places.'>ret</a>;
+<a id='L376' name='L376' /><em class='brace'>}</em>
+<a id='L377' name='L377' />
+<a id='L378' name='L378' /><em class='sharp'>#endif</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;]<a href='#L148'>[^]</a><a href='#L355'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

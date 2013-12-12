@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>disabled_ranges</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/568.html#L413'>disabled_ranges</a>   413 third_party/google-perftools-1.8.3/src/heap-checker.cc static DisabledRangeMap* disabled_ranges = NULL;</span>
+<span class='curline'><a href='../S/568.html#L744'>disabled_ranges</a>   744 third_party/google-perftools-1.8.3/src/heap-checker.cc     if (disabled_ranges) {</span>
+<span class='curline'><a href='../S/568.html#L746'>disabled_ranges</a>   746 third_party/google-perftools-1.8.3/src/heap-checker.cc         = disabled_ranges-&gt;upper_bound(addr);</span>
+<span class='curline'><a href='../S/568.html#L747'>disabled_ranges</a>   747 third_party/google-perftools-1.8.3/src/heap-checker.cc       if (iter != disabled_ranges-&gt;end()) {</span>
+<span class='curline'><a href='../S/568.html#L2189'>disabled_ranges</a>  2189 third_party/google-perftools-1.8.3/src/heap-checker.cc     Allocator::DeleteAndNullIfNot(&amp;disabled_ranges);</span>
+<span class='curline'><a href='../S/568.html#L2286'>disabled_ranges</a>  2286 third_party/google-perftools-1.8.3/src/heap-checker.cc   if (disabled_ranges == NULL) {</span>
+<span class='curline'><a href='../S/568.html#L2287'>disabled_ranges</a>  2287 third_party/google-perftools-1.8.3/src/heap-checker.cc     disabled_ranges = new(Allocator::Allocate(sizeof(DisabledRangeMap)))</span>
+<span class='curline'><a href='../S/568.html#L2293'>disabled_ranges</a>  2293 third_party/google-perftools-1.8.3/src/heap-checker.cc   if (disabled_ranges-&gt;insert(make_pair(AsInt(end_address), value)).second) {</span>
+<span class='curline'><a href='../S/568.html#L2298'>disabled_ranges</a>  2298 third_party/google-perftools-1.8.3/src/heap-checker.cc     RangeValue const&amp; val = disabled_ranges-&gt;find(AsInt(end_address))-&gt;second;</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>wait_start_time</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/533.html#L99'>wait_start_time</a>    99 third_party/google-perftools-1.8.3/src/base/spinlock.cc   int64 wait_start_time = CycleClock::Now();</span>
+<span class='curline'><a href='../S/533.html#L101'>wait_start_time</a>   101 third_party/google-perftools-1.8.3/src/base/spinlock.cc   Atomic32 lock_value = SpinLoop(wait_start_time, &amp;wait_cycles);</span>
+<span class='curline'><a href='../S/533.html#L135'>wait_start_time</a>   135 third_party/google-perftools-1.8.3/src/base/spinlock.cc     lock_value = SpinLoop(wait_start_time, &amp;wait_cycles);</span>
+<span class='curline'><a href='../S/533.html#L173'>wait_start_time</a>   173 third_party/google-perftools-1.8.3/src/base/spinlock.cc inline int32 SpinLock::CalculateWaitCycles(int64 wait_start_time) {</span>
+<span class='curline'><a href='../S/533.html#L174'>wait_start_time</a>   174 third_party/google-perftools-1.8.3/src/base/spinlock.cc   int32 wait_cycles = ((CycleClock::Now() - wait_start_time) &gt;&gt;</span>
+<span class='curline'><a href='../S/534.html#L128'>wait_start_time</a>   128 third_party/google-perftools-1.8.3/src/base/spinlock.h   inline int32 CalculateWaitCycles(int64 wait_start_time);</span>
+</pre>
+</body>
+</html>

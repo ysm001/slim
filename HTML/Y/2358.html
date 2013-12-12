@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>filedata</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/652.html#L169'>filedata</a>          169 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   scoped_array&lt;ProfileDataSlot&gt; filedata(new ProfileDataSlot[num_slots]);</span>
+<span class='curline'><a href='../S/652.html#L170'>filedata</a>          170 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   size_t expected_bytes = num_slots * sizeof filedata[0];</span>
+<span class='curline'><a href='../S/652.html#L171'>filedata</a>          171 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   ssize_t bytes_read = ReadPersistent(fd.get(), filedata.get(), expected_bytes);</span>
+<span class='curline'><a href='../S/652.html#L181'>filedata</a>          181 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc     if (slots[i] != filedata[i])</span>
+<span class='curline'><a href='../S/652.html#L199'>filedata</a>          199 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   scoped_array&lt;char&gt; filedata(new char[filesize]);</span>
+<span class='curline'><a href='../S/652.html#L200'>filedata</a>          200 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   if (ReadPersistent(fd.get(), filedata.get(), filesize) != filesize)</span>
+<span class='curline'><a href='../S/652.html#L208'>filedata</a>          208 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   if (reinterpret_cast&lt;ProfileDataSlot*&gt;(filedata.get())[0] != 0)</span>
+<span class='curline'><a href='../S/652.html#L210'>filedata</a>          210 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   if (reinterpret_cast&lt;ProfileDataSlot*&gt;(filedata.get())[1] != 3)</span>
+<span class='curline'><a href='../S/652.html#L212'>filedata</a>          212 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   if (reinterpret_cast&lt;ProfileDataSlot*&gt;(filedata.get())[2] != 0)</span>
+<span class='curline'><a href='../S/652.html#L215'>filedata</a>          215 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   if (reinterpret_cast&lt;ProfileDataSlot*&gt;(filedata.get())[4] != 0)</span>
+<span class='curline'><a href='../S/652.html#L226'>filedata</a>          226 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc         reinterpret_cast&lt;ProfileDataSlot*&gt;(filedata.get() + cur_offset);</span>
+<span class='curline'><a href='../S/652.html#L252'>filedata</a>          252 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   if (filedata[filesize - 1] != '\n')</span>
+<span class='curline'><a href='../S/652.html#L256'>filedata</a>          256 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc     char* line_start = filedata.get() + cur_offset;</span>
+</pre>
+</body>
+</html>

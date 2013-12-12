@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>batch_size</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/669.html#L153'>batch_size</a>        153 third_party/google-perftools-1.8.3/src/thread_cache.cc   const int batch_size = Static::sizemap()-&gt;num_objects_to_move(cl);</span>
+<span class='curline'><a href='../S/669.html#L155'>batch_size</a>        155 third_party/google-perftools-1.8.3/src/thread_cache.cc   const int num_to_move = min&lt;int&gt;(list-&gt;max_length(), batch_size);</span>
+<span class='curline'><a href='../S/669.html#L169'>batch_size</a>        169 third_party/google-perftools-1.8.3/src/thread_cache.cc   if (list-&gt;max_length() &lt; batch_size) {</span>
+<span class='curline'><a href='../S/669.html#L175'>batch_size</a>        175 third_party/google-perftools-1.8.3/src/thread_cache.cc     int new_length = min&lt;int&gt;(list-&gt;max_length() + batch_size,</span>
+<span class='curline'><a href='../S/669.html#L180'>batch_size</a>        180 third_party/google-perftools-1.8.3/src/thread_cache.cc     new_length -= new_length % batch_size;</span>
+<span class='curline'><a href='../S/669.html#L181'>batch_size</a>        181 third_party/google-perftools-1.8.3/src/thread_cache.cc     ASSERT(new_length % batch_size == 0);</span>
+<span class='curline'><a href='../S/669.html#L188'>batch_size</a>        188 third_party/google-perftools-1.8.3/src/thread_cache.cc   const int batch_size = Static::sizemap()-&gt;num_objects_to_move(cl);</span>
+<span class='curline'><a href='../S/669.html#L189'>batch_size</a>        189 third_party/google-perftools-1.8.3/src/thread_cache.cc   ReleaseToCentralCache(list, cl, batch_size);</span>
+<span class='curline'><a href='../S/669.html#L196'>batch_size</a>        196 third_party/google-perftools-1.8.3/src/thread_cache.cc   if (list-&gt;max_length() &lt; batch_size) {</span>
+<span class='curline'><a href='../S/669.html#L199'>batch_size</a>        199 third_party/google-perftools-1.8.3/src/thread_cache.cc   } else if (list-&gt;max_length() &gt; batch_size) {</span>
+<span class='curline'><a href='../S/669.html#L204'>batch_size</a>        204 third_party/google-perftools-1.8.3/src/thread_cache.cc       ASSERT(list-&gt;max_length() &gt; batch_size);</span>
+<span class='curline'><a href='../S/669.html#L205'>batch_size</a>        205 third_party/google-perftools-1.8.3/src/thread_cache.cc       list-&gt;set_max_length(list-&gt;max_length() - batch_size);</span>
+<span class='curline'><a href='../S/669.html#L219'>batch_size</a>        219 third_party/google-perftools-1.8.3/src/thread_cache.cc   int batch_size = Static::sizemap()-&gt;num_objects_to_move(cl);</span>
+<span class='curline'><a href='../S/669.html#L220'>batch_size</a>        220 third_party/google-perftools-1.8.3/src/thread_cache.cc   while (N &gt; batch_size) {</span>
+<span class='curline'><a href='../S/669.html#L222'>batch_size</a>        222 third_party/google-perftools-1.8.3/src/thread_cache.cc     src-&gt;PopRange(batch_size, &amp;head, &amp;tail);</span>
+<span class='curline'><a href='../S/669.html#L223'>batch_size</a>        223 third_party/google-perftools-1.8.3/src/thread_cache.cc     Static::central_cache()[cl].InsertRange(head, tail, batch_size);</span>
+<span class='curline'><a href='../S/669.html#L224'>batch_size</a>        224 third_party/google-perftools-1.8.3/src/thread_cache.cc     N -= batch_size;</span>
+<span class='curline'><a href='../S/669.html#L255'>batch_size</a>        255 third_party/google-perftools-1.8.3/src/thread_cache.cc       const int batch_size = Static::sizemap()-&gt;num_objects_to_move(cl);</span>
+<span class='curline'><a href='../S/669.html#L256'>batch_size</a>        256 third_party/google-perftools-1.8.3/src/thread_cache.cc       if (list-&gt;max_length() &gt; batch_size) {</span>
+<span class='curline'><a href='../S/669.html#L258'>batch_size</a>        258 third_party/google-perftools-1.8.3/src/thread_cache.cc             max&lt;int&gt;(list-&gt;max_length() - batch_size, batch_size));</span>
+</pre>
+</body>
+</html>

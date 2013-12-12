@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>tc_valloc</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/565.html#L90'>tc_valloc</a>          90 third_party/google-perftools-1.8.3/src/google/tcmalloc.h   PERFTOOLS_DLL_DECL void* tc_valloc(size_t __size) __THROW;</span>
+<span class='curline'><a href='../S/575.html#L80'>tc_valloc</a>          80 third_party/google-perftools-1.8.3/src/libc_override_gcc_and_weak.h   void* valloc(size_t size) __THROW               ALIAS(tc_valloc);</span>
+<span class='curline'><a href='../S/576.html#L83'>tc_valloc</a>          83 third_party/google-perftools-1.8.3/src/libc_override_glibc.h   void* __libc_valloc(size_t size)                ALIAS(tc_valloc);</span>
+<span class='curline'><a href='../S/577.html#L119'>tc_valloc</a>         119 third_party/google-perftools-1.8.3/src/libc_override_osx.h   return tc_valloc(size);</span>
+<span class='curline'><a href='../S/578.html#L75'>tc_valloc</a>          75 third_party/google-perftools-1.8.3/src/libc_override_redefine.h   void* valloc(size_t s) __THROW                 { return tc_valloc(s);       }</span>
+<span class='curline'><a href='../S/626.html#L228'>tc_valloc</a>         228 third_party/google-perftools-1.8.3/src/tcmalloc.cc   void* tc_valloc(size_t __size) __THROW</span>
+<span class='curline'><a href='../S/674.html#L90'>tc_valloc</a>          90 third_party/google-perftools-1.8.3/src/windows/google/tcmalloc.h   PERFTOOLS_DLL_DECL void* tc_valloc(size_t __size) __THROW;</span>
+</pre>
+</body>
+</html>

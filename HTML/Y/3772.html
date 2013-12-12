@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>newatom</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/311.html#L229'>newatom</a>           229 src/atom.h       LmnSAtom newatom;</span>
+<span class='curline'><a href='../S/311.html#L233'>newatom</a>           233 src/atom.h       newatom = lmn_new_atom(f);</span>
+<span class='curline'><a href='../S/311.html#L235'>newatom</a>           235 src/atom.h       memcpy((void *)newatom,</span>
+<span class='curline'><a href='../S/311.html#L239'>newatom</a>           239 src/atom.h       LMN_SATOM_SET_ID(newatom, 0);</span>
+<span class='curline'><a href='../S/311.html#L240'>newatom</a>           240 src/atom.h       return newatom;</span>
+<span class='curline'><a href='../S/311.html#L274'>newatom</a>           274 src/atom.h       LmnSAtom newatom;</span>
+<span class='curline'><a href='../S/311.html#L278'>newatom</a>           278 src/atom.h       newatom = lmn_new_atom(f);</span>
+<span class='curline'><a href='../S/311.html#L280'>newatom</a>           280 src/atom.h       LMN_ASSERT(newatom != atom);</span>
+<span class='curline'><a href='../S/311.html#L282'>newatom</a>           282 src/atom.h       memcpy((void *)newatom,</span>
+<span class='curline'><a href='../S/311.html#L288'>newatom</a>           288 src/atom.h           LMN_SATOM_SET_LINK(newatom, i,</span>
+<span class='curline'><a href='../S/311.html#L294'>newatom</a>           294 src/atom.h       LMN_SATOM_SET_ID(newatom, 0);</span>
+<span class='curline'><a href='../S/311.html#L296'>newatom</a>           296 src/atom.h       return newatom;</span>
+<span class='curline'><a href='../S/334.html#L308'>newatom</a>           308 src/hyperlink.c void lmn_hyperlink_copy(LmnSAtom newatom, LmnSAtom oriatom)</span>
+<span class='curline'><a href='../S/334.html#L312'>newatom</a>           312 src/hyperlink.c   lmn_hyperlink_make(newatom);</span>
+<span class='curline'><a href='../S/334.html#L313'>newatom</a>           313 src/hyperlink.c   newhl = lmn_hyperlink_at_to_hl(newatom);</span>
+<span class='curline'><a href='../S/335.html#L93'>newatom</a>            93 src/hyperlink.h void lmn_hyperlink_copy(LmnSAtom newatom, LmnSAtom oriatom);</span>
+<span class='curline'><a href='../S/357.html#L889'>newatom</a>           889 src/membrane.c       LmnSAtom newatom;</span>
+<span class='curline'><a href='../S/357.html#L899'>newatom</a>           899 src/membrane.c       newatom = lmn_mem_newatom(destmem, f);</span>
+<span class='curline'><a href='../S/357.html#L901'>newatom</a>           901 src/membrane.c       proc_tbl_put_atom(atoms, srcatom, (LmnWord)newatom);</span>
+<span class='curline'><a href='../S/357.html#L909'>newatom</a>           909 src/membrane.c         LMN_PROXY_SET_MEM(newatom, destmem);</span>
+<span class='curline'><a href='../S/357.html#L922'>newatom</a>           922 src/membrane.c           lmn_newlink_in_symbols(newatom, 0, newinside, 0);</span>
+<span class='curline'><a href='../S/357.html#L966'>newatom</a>           966 src/membrane.c             lmn_mem_newlink(destmem, (LmnAtom)newatom,</span>
+<span class='curline'><a href='../S/357.html#L967'>newatom</a>           967 src/membrane.c                             LMN_ATTR_GET_VALUE(LMN_ATOM(newatom)), i,</span>
+<span class='curline'><a href='../S/357.html#L970'>newatom</a>           970 src/membrane.c             newlink_symbol_and_something(newatom, i, newargatom, attr);</span>
+<span class='curline'><a href='../S/357.html#L975'>newatom</a>           975 src/membrane.c           newlink_symbol_and_something(newatom, i, LMN_ATOM(t), attr);</span>
+<span class='curline'><a href='../S/417.html#L663'>newatom</a>           663 src/verifier/delta_membrane.c       LmnSAtom newatom;</span>
+<span class='curline'><a href='../S/417.html#L671'>newatom</a>           671 src/verifier/delta_membrane.c       newatom = dmem_root_copy_satom_with_data(root_d, srcatom);</span>
+<span class='curline'><a href='../S/417.html#L672'>newatom</a>           672 src/verifier/delta_membrane.c       if (d) dmem_put_symbol_atom(d, destmem, newatom);</span>
+<span class='curline'><a href='../S/417.html#L673'>newatom</a>           673 src/verifier/delta_membrane.c       else mem_push_symbol_atom(destmem, newatom);</span>
+<span class='curline'><a href='../S/417.html#L674'>newatom</a>           674 src/verifier/delta_membrane.c       proc_tbl_put_atom(atoms, srcatom, (LmnWord)newatom);</span>
+<span class='curline'><a href='../S/417.html#L680'>newatom</a>           680 src/verifier/delta_membrane.c         LMN_PROXY_SET_MEM(newatom, destmem);</span>
+<span class='curline'><a href='../S/417.html#L695'>newatom</a>           695 src/verifier/delta_membrane.c             lmn_newlink_in_symbols(newatom, 0, newinside, 0);</span>
+<span class='curline'><a href='../S/417.html#L712'>newatom</a>           712 src/verifier/delta_membrane.c           lmn_newlink_in_symbols(newatom, i, LMN_SATOM(t), LMN_ATTR_MAKE_LINK(attr));</span>
+</pre>
+</body>
+</html>

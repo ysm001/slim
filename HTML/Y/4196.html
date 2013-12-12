@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>pos</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/325.html#L82'>pos</a>                82 src/ext/integer.c                     l-&gt;ap, t2, LMN_ATTR_GET_VALUE(l-&gt;pos));</span>
+<span class='curline'><a href='../S/344.html#L666'>pos</a>               666 src/interpret_generated.c       warry_set(rc, targ0, lo-&gt;ap, lo-&gt;pos, TT_ATOM);</span>
+<span class='curline'><a href='../S/357.html#L435'>pos</a>               435 src/membrane.c                                                 int pos,</span>
+<span class='curline'><a href='../S/357.html#L439'>pos</a>               439 src/membrane.c   LMN_SATOM_SET_LINK(atom0, pos, atom1);</span>
+<span class='curline'><a href='../S/357.html#L440'>pos</a>               440 src/membrane.c   LMN_SATOM_SET_ATTR(atom0, pos, attr);</span>
+<span class='curline'><a href='../S/357.html#L443'>pos</a>               443 src/membrane.c     LMN_SATOM_SET_ATTR(LMN_SATOM(atom1), LMN_ATTR_GET_VALUE(attr), LMN_ATTR_MAKE_LINK(pos));</span>
+<span class='curline'><a href='../S/357.html#L989'>pos</a>               989 src/membrane.c LinkObj LinkObj_make(LmnAtom ap, LmnLinkAttr pos)</span>
+<span class='curline'><a href='../S/357.html#L993'>pos</a>               993 src/membrane.c   ret-&gt;pos = pos;</span>
+<span class='curline'><a href='../S/357.html#L1023'>pos</a>              1023 src/membrane.c     if (LMN_ATTR_IS_DATA(l-&gt;pos)) {</span>
+<span class='curline'><a href='../S/357.html#L1024'>pos</a>              1024 src/membrane.c       cpatom = lmn_copy_data_atom(l-&gt;ap, l-&gt;pos);</span>
+<span class='curline'><a href='../S/357.html#L1025'>pos</a>              1025 src/membrane.c       lmn_mem_push_atom(mem, cpatom, l-&gt;pos);</span>
+<span class='curline'><a href='../S/357.html#L1036'>pos</a>              1036 src/membrane.c         LMN_SATOM_SET_LINK(cpatom, l-&gt;pos, 0);</span>
+<span class='curline'><a href='../S/357.html#L1041'>pos</a>              1041 src/membrane.c         LMN_SATOM_SET_LINK(cpatom, l-&gt;pos, 0);</span>
+<span class='curline'><a href='../S/357.html#L1044'>pos</a>              1044 src/membrane.c     vec_push(*ret_dstlovec, (vec_data_t)LinkObj_make(cpatom, l-&gt;pos));</span>
+<span class='curline'><a href='../S/357.html#L1100'>pos</a>              1100 src/membrane.c                         ((LinkObj)vec_get(srcvec,0))-&gt;pos);</span>
+<span class='curline'><a href='../S/357.html#L1102'>pos</a>              1102 src/membrane.c                         ((LinkObj)vec_get(dstvec,0))-&gt;pos);</span>
+<span class='curline'><a href='../S/357.html#L1104'>pos</a>              1104 src/membrane.c   if (!LMN_ATTR_IS_DATA(start1-&gt;pos) &amp;&amp; !LMN_ATTR_IS_DATA(start2-&gt;pos)) {</span>
+<span class='curline'><a href='../S/357.html#L1110'>pos</a>              1110 src/membrane.c     if (!lmn_data_atom_eq(start1-&gt;ap, start1-&gt;pos, start2-&gt;ap, start2-&gt;pos)) {</span>
+<span class='curline'><a href='../S/357.html#L1128'>pos</a>              1128 src/membrane.c       if (l1-&gt;ap == LMN_SATOM_GET_LINK(lobj-&gt;ap, lobj-&gt;pos)</span>
+<span class='curline'><a href='../S/357.html#L1129'>pos</a>              1129 src/membrane.c           &amp;&amp; l1-&gt;pos == LMN_SATOM_GET_ATTR(lobj-&gt;ap, lobj-&gt;pos)) {</span>
+<span class='curline'><a href='../S/357.html#L1136'>pos</a>              1136 src/membrane.c       if (l2-&gt;ap == LMN_SATOM_GET_LINK(lobj-&gt;ap, lobj-&gt;pos)</span>
+<span class='curline'><a href='../S/357.html#L1137'>pos</a>              1137 src/membrane.c           &amp;&amp; l2-&gt;pos == LMN_SATOM_GET_ATTR(lobj-&gt;ap, lobj-&gt;pos)) {</span>
+<span class='curline'><a href='../S/357.html#L1152'>pos</a>              1152 src/membrane.c     if (l1-&gt;pos != l2-&gt;pos) { /* 引数検査 */</span>
+<span class='curline'><a href='../S/357.html#L1182'>pos</a>              1182 src/membrane.c       if (i == l1-&gt;pos) continue;</span>
+<span class='curline'><a href='../S/357.html#L1270'>pos</a>              1270 src/membrane.c     vec_push(unsearched_link_stack, (LmnWord)LinkObj_make(l-&gt;ap, l-&gt;pos));</span>
+<span class='curline'><a href='../S/357.html#L1280'>pos</a>              1280 src/membrane.c     l_pos = l-&gt;pos;</span>
+<span class='curline'><a href='../S/357.html#L1297'>pos</a>              1297 src/membrane.c         if (IS_BUDDY(l_ap, l_pos, a-&gt;ap, a-&gt;pos)) {</span>
+<span class='curline'><a href='../S/357.html#L1308'>pos</a>              1308 src/membrane.c           if (IS_BUDDY(l_ap, l_pos, a-&gt;ap, a-&gt;pos)) {</span>
+<span class='curline'><a href='../S/357.html#L1384'>pos</a>              1384 src/membrane.c     if (LMN_ATTR_IS_DATA(l-&gt;pos)) {</span>
+<span class='curline'><a href='../S/357.html#L1385'>pos</a>              1385 src/membrane.c       if (lmn_data_atom_is_ground(l-&gt;ap, l-&gt;pos)) {</span>
+<span class='curline'><a href='../S/357.html#L1397'>pos</a>              1397 src/membrane.c     if (l-&gt;ap == LMN_SATOM_GET_LINK(l-&gt;ap, l-&gt;pos)) {</span>
+<span class='curline'><a href='../S/357.html#L1402'>pos</a>              1402 src/membrane.c     hashset_add(root, (HashKeyType)LMN_SATOM_GET_LINK(l-&gt;ap, l-&gt;pos));</span>
+<span class='curline'><a href='../S/357.html#L1413'>pos</a>              1413 src/membrane.c         if (!LMN_ATTR_IS_DATA(l-&gt;pos)) {</span>
+<span class='curline'><a href='../S/357.html#L1414'>pos</a>              1414 src/membrane.c           hashtbl_put(guard, l-&gt;ap, (HashValueType)l-&gt;pos);</span>
+<span class='curline'><a href='../S/357.html#L1495'>pos</a>              1495 src/membrane.c     if (LMN_ATTR_IS_DATA_WITHOUT_EX(l-&gt;pos)) {</span>
+<span class='curline'><a href='../S/357.html#L1496'>pos</a>              1496 src/membrane.c       lmn_mem_remove_data_atom(mem, l-&gt;ap, l-&gt;pos);</span>
+<span class='curline'><a href='../S/357.html#L1497'>pos</a>              1497 src/membrane.c     } else if (LMN_ATTR_IS_EX(l-&gt;pos)) {</span>
+<span class='curline'><a href='../S/357.html#L1527'>pos</a>              1527 src/membrane.c     if (LMN_ATTR_IS_DATA(l-&gt;pos)) lmn_free_atom(l-&gt;ap, l-&gt;pos);</span>
+<span class='curline'><a href='../S/357.html#L1547'>pos</a>              1547 src/membrane.c     if (LMN_ATTR_IS_DATA(l-&gt;pos)) {</span>
+<span class='curline'><a href='../S/357.html#L1548'>pos</a>              1548 src/membrane.c       lmn_mem_remove_data_atom(mem, l-&gt;ap, l-&gt;pos);</span>
+<span class='curline'><a href='../S/357.html#L1549'>pos</a>              1549 src/membrane.c       lmn_free_atom(l-&gt;ap, l-&gt;pos);</span>
+<span class='curline'><a href='../S/357.html#L1714'>pos</a>              1714 src/membrane.c   AtomListIter  pos;</span>
+<span class='curline'><a href='../S/357.html#L1758'>pos</a>              1758 src/membrane.c   ma_iter-&gt;pos   = atomlist_iter_initializer(mem-&gt;atomset);</span>
+<span class='curline'><a href='../S/357.html#L1796'>pos</a>              1796 src/membrane.c        atomlist_iter_condition(iter-&gt;mem, iter-&gt;pos);</span>
+<span class='curline'><a href='../S/357.html#L1797'>pos</a>              1797 src/membrane.c        atomlist_iter_next(iter-&gt;pos), changed_lists = TRUE, iter-&gt;atom = NULL)</span>
+<span class='curline'><a href='../S/357.html#L1802'>pos</a>              1802 src/membrane.c     f   = atomlist_iter_get_functor(iter-&gt;pos);</span>
+<span class='curline'><a href='../S/357.html#L1803'>pos</a>              1803 src/membrane.c     ent = atomlist_iter_get_entry(iter-&gt;mem, iter-&gt;pos);</span>
+<span class='curline'><a href='../S/358.html#L639'>pos</a>               639 src/membrane.h   LmnLinkAttr pos;</span>
+<span class='curline'><a href='../S/358.html#L642'>pos</a>               642 src/membrane.h LinkObj LinkObj_make(LmnAtom ap, LmnLinkAttr pos);</span>
+<span class='curline'><a href='../S/373.html#L229'>pos</a>               229 src/so.h       #define TR_INSTR_DEREFFUNC(rc, funci, atomi, pos)                          \</span>
+<span class='curline'><a href='../S/373.html#L231'>pos</a>               231 src/so.h           LmnLinkAttr attr = LMN_SATOM_GET_ATTR(LMN_SATOM(wt(rc, atomi)), pos);  \</span>
+<span class='curline'><a href='../S/373.html#L234'>pos</a>               234 src/so.h                       LMN_SATOM_GET_LINK(LMN_SATOM(wt(rc, atomi)), pos),         \</span>
+<span class='curline'><a href='../S/373.html#L240'>pos</a>               240 src/so.h                     LMN_SATOM_GET_FUNCTOR(LMN_SATOM_GET_LINK(LMN_SATOM(wt(rc, atomi)), pos)),\</span>
+<span class='curline'><a href='../S/384.html#L2380'>pos</a>              2380 src/task.c               warry_set(rc, dsti, lo-&gt;ap, lo-&gt;pos, TT_ATOM);</span>
+<span class='curline'><a href='../S/384.html#L2896'>pos</a>              2896 src/task.c           LmnInstrVar funci, atomi, pos;</span>
+<span class='curline'><a href='../S/384.html#L2901'>pos</a>              2901 src/task.c           READ_VAL(LmnLinkAttr, instr, pos);</span>
+<span class='curline'><a href='../S/384.html#L2903'>pos</a>              2903 src/task.c           attr = LMN_SATOM_GET_ATTR(LMN_SATOM(wt(rc, atomi)), pos);</span>
+<span class='curline'><a href='../S/384.html#L2906'>pos</a>              2906 src/task.c                       LMN_SATOM_GET_LINK(LMN_SATOM(wt(rc, atomi)), pos),</span>
+<span class='curline'><a href='../S/384.html#L2912'>pos</a>              2912 src/task.c                       LMN_SATOM_GET_FUNCTOR(LMN_SATOM_GET_LINK(LMN_SATOM(wt(rc, atomi)), pos)),</span>
+<span class='curline'><a href='../S/384.html#L3855'>pos</a>              3855 src/task.c               at_set(rc, dsti, lo-&gt;pos);</span>
+<span class='curline'><a href='../S/417.html#L855'>pos</a>               855 src/verifier/delta_membrane.c     if (LMN_ATTR_IS_DATA(l-&gt;pos)) {</span>
+<span class='curline'><a href='../S/417.html#L857'>pos</a>               857 src/verifier/delta_membrane.c         lmn_mem_remove_data_atom(mem, l-&gt;ap, l-&gt;pos);</span>
+<span class='curline'><a href='../S/417.html#L911'>pos</a>               911 src/verifier/delta_membrane.c     if (LMN_ATTR_IS_DATA(l-&gt;pos)) {</span>
+<span class='curline'><a href='../S/417.html#L912'>pos</a>               912 src/verifier/delta_membrane.c       cpatom = lmn_copy_data_atom(l-&gt;ap, l-&gt;pos);</span>
+<span class='curline'><a href='../S/417.html#L914'>pos</a>               914 src/verifier/delta_membrane.c         dmem_put_atom(d, mem, cpatom, l-&gt;pos);</span>
+<span class='curline'><a href='../S/417.html#L916'>pos</a>               916 src/verifier/delta_membrane.c         lmn_mem_push_atom(mem, cpatom, l-&gt;pos);</span>
+<span class='curline'><a href='../S/417.html#L936'>pos</a>               936 src/verifier/delta_membrane.c       LMN_SATOM_SET_LINK(cpatom, l-&gt;pos, 0);</span>
+<span class='curline'><a href='../S/417.html#L941'>pos</a>               941 src/verifier/delta_membrane.c       LMN_SATOM_SET_LINK(cpatom, l-&gt;pos, 0);</span>
+<span class='curline'><a href='../S/417.html#L943'>pos</a>               943 src/verifier/delta_membrane.c     vec_push(*ret_dstlovec, (LmnWord)LinkObj_make(cpatom, l-&gt;pos));</span>
+<span class='curline'><a href='../S/436.html#L335'>pos</a>               335 src/verifier/mem_encode.c #define BS_SET(a, pos, v)                                               \</span>
+<span class='curline'><a href='../S/436.html#L336'>pos</a>               336 src/verifier/mem_encode.c   (((pos) &amp; 1) ?                                                        \</span>
+<span class='curline'><a href='../S/436.html#L337'>pos</a>               337 src/verifier/mem_encode.c    ((a)[(pos)&gt;&gt;1] = ((a)[(pos)&gt;&gt;1] &amp; 0x0f) | ((v) &lt;&lt; TAG_BIT_SIZE)) :   \</span>
+<span class='curline'><a href='../S/436.html#L338'>pos</a>               338 src/verifier/mem_encode.c    ((a)[(pos)&gt;&gt;1] = (v&amp;0x0f) | ((a)[(pos)&gt;&gt;1] &amp; 0xf0)))</span>
+<span class='curline'><a href='../S/436.html#L339'>pos</a>               339 src/verifier/mem_encode.c #define BS_GET(a, pos)                                                  \</span>
+<span class='curline'><a href='../S/436.html#L340'>pos</a>               340 src/verifier/mem_encode.c   (((pos) &amp; 1) ? ((a)[(pos)&gt;&gt;1] &amp; 0xf0)&gt;&gt;TAG_BIT_SIZE :  (a)[(pos)&gt;&gt;1] &amp; 0x0f)</span>
+<span class='curline'><a href='../S/436.html#L344'>pos</a>               344 src/verifier/mem_encode.c static inline int binstr_set(struct BinStr *bs, BYTE b, int pos)</span>
+<span class='curline'><a href='../S/436.html#L347'>pos</a>               347 src/verifier/mem_encode.c   while (bs-&gt;size &lt;= pos) {</span>
+<span class='curline'><a href='../S/436.html#L355'>pos</a>               355 src/verifier/mem_encode.c   if (bs-&gt;cur == pos) {</span>
+<span class='curline'><a href='../S/436.html#L356'>pos</a>               356 src/verifier/mem_encode.c     BS_SET(bs-&gt;v, pos, b);</span>
+<span class='curline'><a href='../S/436.html#L360'>pos</a>               360 src/verifier/mem_encode.c   else if (bs-&gt;cur &gt; pos) {</span>
+<span class='curline'><a href='../S/436.html#L362'>pos</a>               362 src/verifier/mem_encode.c     if (BS_GET(bs-&gt;v, pos) &lt; b) return 0;</span>
+<span class='curline'><a href='../S/436.html#L363'>pos</a>               363 src/verifier/mem_encode.c     else if (BS_GET(bs-&gt;v, pos) &gt; b) {</span>
+<span class='curline'><a href='../S/436.html#L366'>pos</a>               366 src/verifier/mem_encode.c       binstr_invalidate_ptrs(bs, pos + 1); /* curの位置をposまで戻す */</span>
+<span class='curline'><a href='../S/436.html#L367'>pos</a>               367 src/verifier/mem_encode.c       bs-&gt;cur = pos + 1;</span>
+<span class='curline'><a href='../S/436.html#L368'>pos</a>               368 src/verifier/mem_encode.c       BS_SET(bs-&gt;v, pos, b);</span>
+<span class='curline'><a href='../S/436.html#L382'>pos</a>               382 src/verifier/mem_encode.c static inline int binstr_set_direct(struct BinStr *bs, BYTE b, int pos)</span>
+<span class='curline'><a href='../S/436.html#L384'>pos</a>               384 src/verifier/mem_encode.c   while (bs-&gt;size &lt;= pos) {</span>
+<span class='curline'><a href='../S/436.html#L392'>pos</a>               392 src/verifier/mem_encode.c   BS_SET(bs-&gt;v, pos, b);</span>
+<span class='curline'><a href='../S/436.html#L393'>pos</a>               393 src/verifier/mem_encode.c   bs-&gt;cur = pos+1;</span>
+<span class='curline'><a href='../S/436.html#L399'>pos</a>               399 src/verifier/mem_encode.c static inline BYTE binstr_get_byte(BYTE *bs, int pos)</span>
+<span class='curline'><a href='../S/436.html#L401'>pos</a>               401 src/verifier/mem_encode.c   return (BS_GET(bs, pos + 1)) | (BS_GET(bs, pos) &lt;&lt; 4);</span>
+<span class='curline'><a href='../S/436.html#L405'>pos</a>               405 src/verifier/mem_encode.c static inline uint16_t binstr_get_uint16(BYTE *bs, int pos)</span>
+<span class='curline'><a href='../S/436.html#L408'>pos</a>               408 src/verifier/mem_encode.c     (uint16_t)((binstr_get_byte(bs, pos + 2)) | ((binstr_get_byte(bs, pos)) &lt;&lt; 8));</span>
+<span class='curline'><a href='../S/436.html#L412'>pos</a>               412 src/verifier/mem_encode.c static inline uint32_t binstr_get_uint32(BYTE *bs, int pos)</span>
+<span class='curline'><a href='../S/436.html#L414'>pos</a>               414 src/verifier/mem_encode.c   return (uint32_t)(binstr_get_uint16(bs, pos + 4) | (binstr_get_uint16(bs, pos) &lt;&lt; 16));</span>
+<span class='curline'><a href='../S/436.html#L418'>pos</a>               418 src/verifier/mem_encode.c static inline uint64_t binstr_get_uint64(BYTE *bs, int pos)</span>
+<span class='curline'><a href='../S/436.html#L420'>pos</a>               420 src/verifier/mem_encode.c   return (uint64_t)(binstr_get_uint32(bs, pos + 8) | (uint64_t)binstr_get_uint32(bs, pos) &lt;&lt; 32);</span>
+<span class='curline'><a href='../S/436.html#L425'>pos</a>               425 src/verifier/mem_encode.c static inline long binstr_get_int(BYTE *bs, int pos)</span>
+<span class='curline'><a href='../S/436.html#L428'>pos</a>               428 src/verifier/mem_encode.c   return (long)binstr_get_uint32(bs, pos);</span>
+<span class='curline'><a href='../S/436.html#L430'>pos</a>               430 src/verifier/mem_encode.c   return (long)binstr_get_uint64(bs, pos);</span>
+<span class='curline'><a href='../S/436.html#L437'>pos</a>               437 src/verifier/mem_encode.c static inline double binstr_get_dbl(BYTE *bs, int pos)</span>
+<span class='curline'><a href='../S/436.html#L446'>pos</a>               446 src/verifier/mem_encode.c     v.t[i] = binstr_get_byte(bs, pos + (7-i) * TAG_IN_BYTE);</span>
+<span class='curline'><a href='../S/436.html#L453'>pos</a>               453 src/verifier/mem_encode.c static inline LmnWord binstr_get_word(BYTE *bs, int pos)</span>
+<span class='curline'><a href='../S/436.html#L456'>pos</a>               456 src/verifier/mem_encode.c   return (LmnWord)binstr_get_uint32(bs, pos);</span>
+<span class='curline'><a href='../S/436.html#L458'>pos</a>               458 src/verifier/mem_encode.c   return (LmnWord)binstr_get_uint64(bs, pos);</span>
+<span class='curline'><a href='../S/436.html#L465'>pos</a>               465 src/verifier/mem_encode.c static inline LmnFunctor binstr_get_functor(BYTE *bs, int pos)</span>
+<span class='curline'><a href='../S/436.html#L468'>pos</a>               468 src/verifier/mem_encode.c   long f = binstr_get_uint16(bs, pos);</span>
+<span class='curline'><a href='../S/436.html#L473'>pos</a>               473 src/verifier/mem_encode.c static inline unsigned int binstr_get_ref_num(BYTE *bs, int pos)</span>
+<span class='curline'><a href='../S/436.html#L476'>pos</a>               476 src/verifier/mem_encode.c   return (unsigned int)binstr_get_uint32(bs, pos);</span>
+<span class='curline'><a href='../S/436.html#L480'>pos</a>               480 src/verifier/mem_encode.c static inline unsigned int binstr_get_arg_ref(BYTE *bs, int pos)</span>
+<span class='curline'><a href='../S/436.html#L483'>pos</a>               483 src/verifier/mem_encode.c   return binstr_get_byte(bs, pos);</span>
+<span class='curline'><a href='../S/436.html#L487'>pos</a>               487 src/verifier/mem_encode.c static inline lmn_interned_str binstr_get_mem_name(BYTE *bs, int pos)</span>
+<span class='curline'><a href='../S/436.html#L489'>pos</a>               489 src/verifier/mem_encode.c   return binstr_get_uint32(bs, pos);</span>
+<span class='curline'><a href='../S/436.html#L493'>pos</a>               493 src/verifier/mem_encode.c static inline long binstr_get_ruleset_num(BYTE *bs, int pos)</span>
+<span class='curline'><a href='../S/436.html#L495'>pos</a>               495 src/verifier/mem_encode.c   return binstr_get_uint32(bs, pos);</span>
+<span class='curline'><a href='../S/436.html#L500'>pos</a>               500 src/verifier/mem_encode.c static inline long binstr_get_ruleset(BYTE *bs, int pos)</span>
+<span class='curline'><a href='../S/436.html#L502'>pos</a>               502 src/verifier/mem_encode.c   return binstr_get_uint16(bs, pos);</span>
+<span class='curline'><a href='../S/436.html#L505'>pos</a>               505 src/verifier/mem_encode.c static inline lmn_interned_str binstr_get_strid(BYTE *bs, int pos)</span>
+<span class='curline'><a href='../S/436.html#L508'>pos</a>               508 src/verifier/mem_encode.c   return binstr_get_uint32(bs, pos);</span>
+<span class='curline'><a href='../S/436.html#L511'>pos</a>               511 src/verifier/mem_encode.c static inline long binstr_get_history_num(BYTE *bs, int pos)</span>
+<span class='curline'><a href='../S/436.html#L514'>pos</a>               514 src/verifier/mem_encode.c   return binstr_get_uint32(bs, pos);</span>
+<span class='curline'><a href='../S/436.html#L518'>pos</a>               518 src/verifier/mem_encode.c static inline lmn_interned_str binstr_get_history(BYTE *bs, int pos)</span>
+<span class='curline'><a href='../S/436.html#L520'>pos</a>               520 src/verifier/mem_encode.c   return binstr_get_strid(bs, pos);</span>
+<span class='curline'><a href='../S/436.html#L593'>pos</a>               593 src/verifier/mem_encode.c static inline void binstr_dump_data_atom(BYTE *bs, int *pos, unsigned int tag)</span>
+<span class='curline'><a href='../S/436.html#L598'>pos</a>               598 src/verifier/mem_encode.c       long n = binstr_get_int(bs, *pos);</span>
+<span class='curline'><a href='../S/436.html#L599'>pos</a>               599 src/verifier/mem_encode.c       (*pos) += BS_INT_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L605'>pos</a>               605 src/verifier/mem_encode.c       double n = binstr_get_dbl(bs, *pos);</span>
+<span class='curline'><a href='../S/436.html#L606'>pos</a>               606 src/verifier/mem_encode.c       (*pos) += BS_DBL_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L612'>pos</a>               612 src/verifier/mem_encode.c       lmn_interned_str n = binstr_get_strid(bs, *pos);</span>
+<span class='curline'><a href='../S/436.html#L613'>pos</a>               613 src/verifier/mem_encode.c       (*pos) += BS_STR_ID_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L627'>pos</a>               627 src/verifier/mem_encode.c   int pos, v_i;</span>
+<span class='curline'><a href='../S/436.html#L630'>pos</a>               630 src/verifier/mem_encode.c   pos = 0;</span>
+<span class='curline'><a href='../S/436.html#L632'>pos</a>               632 src/verifier/mem_encode.c   while (pos &lt; len) {</span>
+<span class='curline'><a href='../S/436.html#L633'>pos</a>               633 src/verifier/mem_encode.c     unsigned int tag = BS_GET(bs, pos);</span>
+<span class='curline'><a href='../S/436.html#L634'>pos</a>               634 src/verifier/mem_encode.c     pos++;</span>
+<span class='curline'><a href='../S/436.html#L640'>pos</a>               640 src/verifier/mem_encode.c         f    = binstr_get_functor(bs, pos);</span>
+<span class='curline'><a href='../S/436.html#L641'>pos</a>               641 src/verifier/mem_encode.c         pos += BS_FUNCTOR_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L658'>pos</a>               658 src/verifier/mem_encode.c           name = binstr_get_mem_name(bs, pos);</span>
+<span class='curline'><a href='../S/436.html#L659'>pos</a>               659 src/verifier/mem_encode.c           pos += BS_MEM_NAME_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L675'>pos</a>               675 src/verifier/mem_encode.c         hl_num = binstr_get_ref_num(bs, pos);</span>
+<span class='curline'><a href='../S/436.html#L676'>pos</a>               676 src/verifier/mem_encode.c         pos   += BS_HLINK_NUM_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L688'>pos</a>               688 src/verifier/mem_encode.c         ref = binstr_get_ref_num(bs, pos);</span>
+<span class='curline'><a href='../S/436.html#L689'>pos</a>               689 src/verifier/mem_encode.c         pos += BS_PROC_REF_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L693'>pos</a>               693 src/verifier/mem_encode.c           printf("$%d's%d ", ref, binstr_get_arg_ref(bs, pos));</span>
+<span class='curline'><a href='../S/436.html#L694'>pos</a>               694 src/verifier/mem_encode.c           pos += BS_ATOM_REF_ARG_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L710'>pos</a>               710 src/verifier/mem_encode.c         unsigned int sub_tag = BS_GET(bs, pos);</span>
+<span class='curline'><a href='../S/436.html#L711'>pos</a>               711 src/verifier/mem_encode.c         pos++;</span>
+<span class='curline'><a href='../S/436.html#L713'>pos</a>               713 src/verifier/mem_encode.c         binstr_dump_data_atom(bs, &amp;pos, sub_tag);</span>
+<span class='curline'><a href='../S/436.html#L730'>pos</a>               730 src/verifier/mem_encode.c       binstr_dump_data_atom(bs, &amp;pos, tag);</span>
+<span class='curline'><a href='../S/436.html#L736'>pos</a>               736 src/verifier/mem_encode.c         rs_id = binstr_get_ruleset(bs, pos);</span>
+<span class='curline'><a href='../S/436.html#L737'>pos</a>               737 src/verifier/mem_encode.c         pos += BS_RULESET_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L745'>pos</a>               745 src/verifier/mem_encode.c         n = binstr_get_ruleset_num(bs, pos);</span>
+<span class='curline'><a href='../S/436.html#L746'>pos</a>               746 src/verifier/mem_encode.c         pos += BS_RULESET_NUM_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L748'>pos</a>               748 src/verifier/mem_encode.c           rs_id = binstr_get_ruleset(bs, pos);</span>
+<span class='curline'><a href='../S/436.html#L749'>pos</a>               749 src/verifier/mem_encode.c           pos += BS_RULESET_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L760'>pos</a>               760 src/verifier/mem_encode.c         n = binstr_get_ruleset_num(bs, pos);</span>
+<span class='curline'><a href='../S/436.html#L761'>pos</a>               761 src/verifier/mem_encode.c         pos += BS_RULESET_NUM_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L763'>pos</a>               763 src/verifier/mem_encode.c           rs_id = binstr_get_ruleset(bs, pos);</span>
+<span class='curline'><a href='../S/436.html#L764'>pos</a>               764 src/verifier/mem_encode.c           pos += BS_RULESET_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L775'>pos</a>               775 src/verifier/mem_encode.c             his_num = binstr_get_history_num(bs, pos);</span>
+<span class='curline'><a href='../S/436.html#L776'>pos</a>               776 src/verifier/mem_encode.c             pos += BS_HISTORY_NUM_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L778'>pos</a>               778 src/verifier/mem_encode.c               id = binstr_get_history(bs, pos);</span>
+<span class='curline'><a href='../S/436.html#L779'>pos</a>               779 src/verifier/mem_encode.c               pos += BS_HISTORY_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L789'>pos</a>               789 src/verifier/mem_encode.c       printf("pos = %d, len = %d\n", pos, len);</span>
+<span class='curline'><a href='../S/436.html#L816'>pos</a>               816 src/verifier/mem_encode.c   int pos;               /* bit (0で初期化) */</span>
+<span class='curline'><a href='../S/436.html#L824'>pos</a>               824 src/verifier/mem_encode.c   p-&gt;pos    = 0;</span>
+<span class='curline'><a href='../S/436.html#L839'>pos</a>               839 src/verifier/mem_encode.c   return p-&gt;pos;</span>
+<span class='curline'><a href='../S/436.html#L845'>pos</a>               845 src/verifier/mem_encode.c   to-&gt;pos    = from-&gt;pos;</span>
+<span class='curline'><a href='../S/436.html#L871'>pos</a>               871 src/verifier/mem_encode.c       binstr_set_direct(p-&gt;binstr, v[size&gt;&gt;1] &amp; 0x0f, p-&gt;pos++);</span>
+<span class='curline'><a href='../S/436.html#L874'>pos</a>               874 src/verifier/mem_encode.c       binstr_set_direct(p-&gt;binstr, (v[i]&gt;&gt;TAG_BIT_SIZE &amp; 0x0f), p-&gt;pos++);</span>
+<span class='curline'><a href='../S/436.html#L875'>pos</a>               875 src/verifier/mem_encode.c       binstr_set_direct(p-&gt;binstr, v[i] &amp; 0x0f, p-&gt;pos++);</span>
+<span class='curline'><a href='../S/436.html#L880'>pos</a>               880 src/verifier/mem_encode.c       if (binstr_set(p-&gt;binstr, v[size&gt;&gt;1] &amp; 0x0f, p-&gt;pos)) p-&gt;pos++;</span>
+<span class='curline'><a href='../S/436.html#L885'>pos</a>               885 src/verifier/mem_encode.c       if (binstr_set(p-&gt;binstr, (v[i]&gt;&gt;TAG_BIT_SIZE &amp; 0x0f), p-&gt;pos)) {p-&gt;pos++;}</span>
+<span class='curline'><a href='../S/436.html#L887'>pos</a>               887 src/verifier/mem_encode.c       if (binstr_set(p-&gt;binstr, v[i] &amp; 0x0f, p-&gt;pos)) p-&gt;pos++;</span>
+<span class='curline'><a href='../S/436.html#L899'>pos</a>               899 src/verifier/mem_encode.c   if (binstr_set(p-&gt;binstr, v &amp; 0x0f, p-&gt;pos)) {</span>
+<span class='curline'><a href='../S/436.html#L900'>pos</a>               900 src/verifier/mem_encode.c     p-&gt;pos++;</span>
+<span class='curline'><a href='../S/436.html#L1173'>pos</a>              1173 src/verifier/mem_encode.c   bs-&gt;cur = bsp.pos;</span>
+<span class='curline'><a href='../S/436.html#L1590'>pos</a>              1590 src/verifier/mem_encode.c                               int pos,</span>
+<span class='curline'><a href='../S/436.html#L1597'>pos</a>              1597 src/verifier/mem_encode.c                              int pos,</span>
+<span class='curline'><a href='../S/436.html#L1604'>pos</a>              1604 src/verifier/mem_encode.c                               int pos,</span>
+<span class='curline'><a href='../S/436.html#L1675'>pos</a>              1675 src/verifier/mem_encode.c                               int         pos,</span>
+<span class='curline'><a href='../S/436.html#L1684'>pos</a>              1684 src/verifier/mem_encode.c   for (i = 0; pos &lt; bs-&gt;len; i++) {</span>
+<span class='curline'><a href='../S/436.html#L1685'>pos</a>              1685 src/verifier/mem_encode.c     unsigned int tag = BS_GET(bs-&gt;v, pos);</span>
+<span class='curline'><a href='../S/436.html#L1689'>pos</a>              1689 src/verifier/mem_encode.c       pos++;</span>
+<span class='curline'><a href='../S/436.html#L1695'>pos</a>              1695 src/verifier/mem_encode.c       pos++;</span>
+<span class='curline'><a href='../S/436.html#L1696'>pos</a>              1696 src/verifier/mem_encode.c       rs_id = binstr_get_ruleset(bs-&gt;v, pos);</span>
+<span class='curline'><a href='../S/436.html#L1697'>pos</a>              1697 src/verifier/mem_encode.c       pos += BS_RULESET_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L1703'>pos</a>              1703 src/verifier/mem_encode.c       pos++;</span>
+<span class='curline'><a href='../S/436.html#L1704'>pos</a>              1704 src/verifier/mem_encode.c       n = binstr_get_ruleset_num(bs-&gt;v, pos);</span>
+<span class='curline'><a href='../S/436.html#L1705'>pos</a>              1705 src/verifier/mem_encode.c       pos += BS_RULESET_NUM_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L1707'>pos</a>              1707 src/verifier/mem_encode.c         rs_id = binstr_get_ruleset(bs-&gt;v, pos);</span>
+<span class='curline'><a href='../S/436.html#L1708'>pos</a>              1708 src/verifier/mem_encode.c         pos += BS_RULESET_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L1715'>pos</a>              1715 src/verifier/mem_encode.c       pos++;</span>
+<span class='curline'><a href='../S/436.html#L1716'>pos</a>              1716 src/verifier/mem_encode.c       rs_num = binstr_get_ruleset_num(bs-&gt;v, pos);</span>
+<span class='curline'><a href='../S/436.html#L1717'>pos</a>              1717 src/verifier/mem_encode.c       pos += BS_RULESET_NUM_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L1719'>pos</a>              1719 src/verifier/mem_encode.c       binstr_decode_rulesets(bs, &amp;pos, lmn_mem_get_rulesets(mem), rs_num);</span>
+<span class='curline'><a href='../S/436.html#L1724'>pos</a>              1724 src/verifier/mem_encode.c         pos = binstr_decode_mol(bs, pos, log, nvisit, mem, from_atom, from_arg);</span>
+<span class='curline'><a href='../S/436.html#L1726'>pos</a>              1726 src/verifier/mem_encode.c         pos = binstr_decode_mol(bs, pos, log, nvisit, mem, NULL, from_arg);</span>
+<span class='curline'><a href='../S/436.html#L1730'>pos</a>              1730 src/verifier/mem_encode.c   return pos;</span>
+<span class='curline'><a href='../S/436.html#L1776'>pos</a>              1776 src/verifier/mem_encode.c                              int         pos,</span>
+<span class='curline'><a href='../S/436.html#L1786'>pos</a>              1786 src/verifier/mem_encode.c   if (pos &gt;= bs-&gt;len) return pos;</span>
+<span class='curline'><a href='../S/436.html#L1788'>pos</a>              1788 src/verifier/mem_encode.c   tag = BS_GET(bs-&gt;v, pos);</span>
+<span class='curline'><a href='../S/436.html#L1789'>pos</a>              1789 src/verifier/mem_encode.c   pos++;</span>
+<span class='curline'><a href='../S/436.html#L1795'>pos</a>              1795 src/verifier/mem_encode.c     return binstr_decode_atom(bs, pos, log, nvisit, mem, from_atom, from_arg);</span>
+<span class='curline'><a href='../S/436.html#L1797'>pos</a>              1797 src/verifier/mem_encode.c     mem_name = binstr_get_mem_name(bs-&gt;v, pos);</span>
+<span class='curline'><a href='../S/436.html#L1798'>pos</a>              1798 src/verifier/mem_encode.c     pos += BS_MEM_NAME_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L1818'>pos</a>              1818 src/verifier/mem_encode.c         pos = binstr_decode_cell(bs, pos, log, nvisit, new_mem, in, 1);</span>
+<span class='curline'><a href='../S/436.html#L1820'>pos</a>              1820 src/verifier/mem_encode.c         pos = binstr_decode_cell(bs, pos, log, nvisit, new_mem, from_atom, from_arg);</span>
+<span class='curline'><a href='../S/436.html#L1835'>pos</a>              1835 src/verifier/mem_encode.c       sub_tag = BS_GET(bs-&gt;v, pos);</span>
+<span class='curline'><a href='../S/436.html#L1836'>pos</a>              1836 src/verifier/mem_encode.c       pos++;</span>
+<span class='curline'><a href='../S/436.html#L1839'>pos</a>              1839 src/verifier/mem_encode.c         n = (LmnWord)binstr_get_int(bs-&gt;v, pos);</span>
+<span class='curline'><a href='../S/436.html#L1841'>pos</a>              1841 src/verifier/mem_encode.c         pos += BS_INT_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L1844'>pos</a>              1844 src/verifier/mem_encode.c         n = (LmnWord)binstr_get_dbl(bs-&gt;v, pos);</span>
+<span class='curline'><a href='../S/436.html#L1846'>pos</a>              1846 src/verifier/mem_encode.c         pos += BS_DBL_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L1849'>pos</a>              1849 src/verifier/mem_encode.c         lmn_interned_str n_id = binstr_get_strid(bs-&gt;v, pos);</span>
+<span class='curline'><a href='../S/436.html#L1852'>pos</a>              1852 src/verifier/mem_encode.c         pos += BS_STR_ID_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L1867'>pos</a>              1867 src/verifier/mem_encode.c       pos = binstr_decode_mol(bs, pos, log, nvisit, lmn_mem_parent(mem), out, 1);</span>
+<span class='curline'><a href='../S/436.html#L1881'>pos</a>              1881 src/verifier/mem_encode.c         pos = binstr_decode_mol(bs, pos, log, nvisit, parent, out, 1);</span>
+<span class='curline'><a href='../S/436.html#L1883'>pos</a>              1883 src/verifier/mem_encode.c         pos = binstr_decode_mol(bs, pos, log, nvisit, parent, NULL, 1);</span>
+<span class='curline'><a href='../S/436.html#L1897'>pos</a>              1897 src/verifier/mem_encode.c       pos += BS_HLINK_NUM_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L1904'>pos</a>              1904 src/verifier/mem_encode.c       ref  = binstr_get_ref_num(bs-&gt;v, pos);</span>
+<span class='curline'><a href='../S/436.html#L1905'>pos</a>              1905 src/verifier/mem_encode.c       pos += BS_PROC_REF_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L1912'>pos</a>              1912 src/verifier/mem_encode.c           arg  = binstr_get_arg_ref(bs-&gt;v, pos);</span>
+<span class='curline'><a href='../S/436.html#L1913'>pos</a>              1913 src/verifier/mem_encode.c           pos += BS_ATOM_REF_ARG_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L1924'>pos</a>              1924 src/verifier/mem_encode.c             pos = binstr_decode_mol(bs, pos, log, nvisit, ref_mem, NULL, from_arg);</span>
+<span class='curline'><a href='../S/436.html#L1934'>pos</a>              1934 src/verifier/mem_encode.c             pos = binstr_decode_mol(bs, pos, log, nvisit, ref_mem, in, 1);</span>
+<span class='curline'><a href='../S/436.html#L1962'>pos</a>              1962 src/verifier/mem_encode.c       n = binstr_get_int(bs-&gt;v, pos);</span>
+<span class='curline'><a href='../S/436.html#L1963'>pos</a>              1963 src/verifier/mem_encode.c       pos += BS_INT_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L1973'>pos</a>              1973 src/verifier/mem_encode.c       *n = binstr_get_dbl(bs-&gt;v, pos);</span>
+<span class='curline'><a href='../S/436.html#L1974'>pos</a>              1974 src/verifier/mem_encode.c       pos += BS_DBL_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L1985'>pos</a>              1985 src/verifier/mem_encode.c       n    = binstr_get_strid(bs-&gt;v, pos);</span>
+<span class='curline'><a href='../S/436.html#L1986'>pos</a>              1986 src/verifier/mem_encode.c       pos += BS_STR_ID_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L1999'>pos</a>              1999 src/verifier/mem_encode.c   return pos;</span>
+<span class='curline'><a href='../S/436.html#L2007'>pos</a>              2007 src/verifier/mem_encode.c                               int         pos,</span>
+<span class='curline'><a href='../S/436.html#L2018'>pos</a>              2018 src/verifier/mem_encode.c   f     = binstr_get_functor(bs-&gt;v, pos); /* functorを持ってくる */</span>
+<span class='curline'><a href='../S/436.html#L2019'>pos</a>              2019 src/verifier/mem_encode.c   pos  += BS_FUNCTOR_SIZE;</span>
+<span class='curline'><a href='../S/436.html#L2033'>pos</a>              2033 src/verifier/mem_encode.c     unsigned int tag = BS_GET(bs-&gt;v, pos);</span>
+<span class='curline'><a href='../S/436.html#L2039'>pos</a>              2039 src/verifier/mem_encode.c       pos++;</span>
+<span class='curline'><a href='../S/436.html#L2044'>pos</a>              2044 src/verifier/mem_encode.c         pos = binstr_decode_mol(bs, pos, log, nvisit, mem, NULL, i);</span>
+<span class='curline'><a href='../S/436.html#L2046'>pos</a>              2046 src/verifier/mem_encode.c         pos = binstr_decode_mol(bs, pos, log, nvisit, mem, atom, i);</span>
+<span class='curline'><a href='../S/436.html#L2052'>pos</a>              2052 src/verifier/mem_encode.c   return pos;</span>
+<span class='curline'><a href='../S/436.html#L2096'>pos</a>              2096 src/verifier/mem_encode.c   bs-&gt;cur = bsp.pos;</span>
+<span class='curline'><a href='../S/572.html#L165'>pos</a>               165 third_party/google-perftools-1.8.3/src/internal_logging.cc   char* pos = end;</span>
+<span class='curline'><a href='../S/572.html#L167'>pos</a>               167 third_party/google-perftools-1.8.3/src/internal_logging.cc     pos--;</span>
+<span class='curline'><a href='../S/572.html#L168'>pos</a>               168 third_party/google-perftools-1.8.3/src/internal_logging.cc     *pos = kDigits[num % base];</span>
+<span class='curline'><a href='../S/572.html#L170'>pos</a>               170 third_party/google-perftools-1.8.3/src/internal_logging.cc   } while (num &gt; 0 &amp;&amp; pos &gt; space);</span>
+<span class='curline'><a href='../S/572.html#L171'>pos</a>               171 third_party/google-perftools-1.8.3/src/internal_logging.cc   return AddStr(pos, end - pos);</span>
+<span class='curline'><a href='../S/699.html#L1373'>pos</a>              1373 third_party/zdelta-2.1/deflate.c #define UPDATE_REF_POINTERS(ptr, pos, len, dist) \</span>
+<span class='curline'><a href='../S/699.html#L1378'>pos</a>              1378 third_party/zdelta-2.1/deflate.c      s-&gt;rwptr[ptr] = pos + len;                  \</span>
+<span class='curline'><a href='../S/699.html#L1382'>pos</a>              1382 third_party/zdelta-2.1/deflate.c   s-&gt;rwptr[ptr] = pos + len;                     \</span>
+<span class='curline'><a href='../S/721.html#L17'>pos</a>                17 third_party/zdelta-2.1/zd_mem.c     m-&gt;pos= m-&gt;buffer;</span>
+<span class='curline'><a href='../S/721.html#L29'>pos</a>                29 third_party/zdelta-2.1/zd_mem.c   int tmp_pos= (m-&gt;pos - m-&gt;buffer);</span>
+<span class='curline'><a href='../S/721.html#L40'>pos</a>                40 third_party/zdelta-2.1/zd_mem.c        m-&gt;pos = p + tmp_pos;</span>
+<span class='curline'><a href='../S/721.html#L57'>pos</a>                57 third_party/zdelta-2.1/zd_mem.c     m-&gt;pos= NULL;</span>
+<span class='curline'><a href='../S/721.html#L68'>pos</a>                68 third_party/zdelta-2.1/zd_mem.c   avail = (m-&gt;size - (m-&gt;pos - m-&gt;buffer));</span>
+<span class='curline'><a href='../S/721.html#L73'>pos</a>                73 third_party/zdelta-2.1/zd_mem.c   memcpy(m-&gt;pos, data, n);</span>
+<span class='curline'><a href='../S/721.html#L74'>pos</a>                74 third_party/zdelta-2.1/zd_mem.c   m-&gt;pos += n;</span>
+<span class='curline'><a href='../S/721.html#L89'>pos</a>                89 third_party/zdelta-2.1/zd_mem.c     nbread = fread((void *) buffer-&gt;pos, </span>
+<span class='curline'><a href='../S/721.html#L91'>pos</a>                91 third_party/zdelta-2.1/zd_mem.c     buffer-&gt;pos=buffer-&gt;pos+nbread;</span>
+<span class='curline'><a href='../S/721.html#L95'>pos</a>                95 third_party/zdelta-2.1/zd_mem.c       return (buffer-&gt;pos - buffer-&gt;buffer);</span>
+<span class='curline'><a href='../S/722.html#L19'>pos</a>                19 third_party/zdelta-2.1/zd_mem.h   Bytef *pos;</span>
+<span class='curline'><a href='../S/723.html#L54'>pos</a>                54 third_party/zdelta-2.1/zdc.c     ref[i] = ref_buf[i].buffer;  ref_s[i] = ref_buf[i].pos-ref_buf[i].buffer; </span>
+<span class='curline'><a href='../S/723.html#L60'>pos</a>                60 third_party/zdelta-2.1/zdc.c 		   (const Bytef*) tar_buf.buffer, tar_buf.pos - tar_buf.buffer,</span>
+<span class='curline'><a href='../S/723.html#L113'>pos</a>               113 third_party/zdelta-2.1/zdc.c   if(zd_compress1((const Bytef*) ref_buf.buffer, ref_buf.pos - ref_buf.buffer,</span>
+<span class='curline'><a href='../S/723.html#L114'>pos</a>               114 third_party/zdelta-2.1/zdc.c 		  (const Bytef*) tar_buf.buffer, tar_buf.pos - tar_buf.buffer,</span>
+<span class='curline'><a href='../S/725.html#L102'>pos</a>               102 third_party/zdelta-2.1/zdelta.c   strm.next_out  = dbuf.pos;</span>
+<span class='curline'><a href='../S/725.html#L122'>pos</a>               122 third_party/zdelta-2.1/zdelta.c     dbuf.pos = strm.next_out; </span>
+<span class='curline'><a href='../S/725.html#L128'>pos</a>               128 third_party/zdelta-2.1/zdelta.c     strm.next_out = (uch*)dbuf.pos;</span>
+<span class='curline'><a href='../S/725.html#L133'>pos</a>               133 third_party/zdelta-2.1/zdelta.c   dbuf.pos = strm.next_out; </span>
+<span class='curline'><a href='../S/725.html#L235'>pos</a>               235 third_party/zdelta-2.1/zdelta.c   strm.next_out  = dbuf.pos;</span>
+<span class='curline'><a href='../S/725.html#L255'>pos</a>               255 third_party/zdelta-2.1/zdelta.c     dbuf.pos = strm.next_out; </span>
+<span class='curline'><a href='../S/725.html#L261'>pos</a>               261 third_party/zdelta-2.1/zdelta.c     strm.next_out = (uch*)dbuf.pos;</span>
+<span class='curline'><a href='../S/725.html#L266'>pos</a>               266 third_party/zdelta-2.1/zdelta.c   dbuf.pos = strm.next_out; </span>
+<span class='curline'><a href='../S/725.html#L379'>pos</a>               379 third_party/zdelta-2.1/zdelta.c     tbuf.pos = strm.next_out; </span>
+<span class='curline'><a href='../S/725.html#L385'>pos</a>               385 third_party/zdelta-2.1/zdelta.c     strm.next_out = tbuf.pos; </span>
+<span class='curline'><a href='../S/725.html#L390'>pos</a>               390 third_party/zdelta-2.1/zdelta.c   tbuf.pos = strm.next_out; </span>
+<span class='curline'><a href='../S/725.html#L510'>pos</a>               510 third_party/zdelta-2.1/zdelta.c     tbuf.pos = strm.next_out; </span>
+<span class='curline'><a href='../S/725.html#L516'>pos</a>               516 third_party/zdelta-2.1/zdelta.c     strm.next_out  = tbuf.pos; </span>
+<span class='curline'><a href='../S/725.html#L521'>pos</a>               521 third_party/zdelta-2.1/zdelta.c   tbuf.pos = strm.next_out; </span>
+<span class='curline'><a href='../S/727.html#L56'>pos</a>                56 third_party/zdelta-2.1/zdu.c     ref_s[i] = ref_buf[i].pos - ref_buf[i].buffer; </span>
+<span class='curline'><a href='../S/727.html#L63'>pos</a>                63 third_party/zdelta-2.1/zdu.c 		    (const Bytef*) delta.buffer, delta.pos - delta.buffer) == ZD_OK){</span>
+<span class='curline'><a href='../S/727.html#L117'>pos</a>               117 third_party/zdelta-2.1/zdu.c   if(zd_uncompress1((const Bytef*)ref_buf.buffer, ref_buf.pos - ref_buf.buffer,</span>
+<span class='curline'><a href='../S/727.html#L120'>pos</a>               120 third_party/zdelta-2.1/zdu.c 		    delta.pos - delta.buffer) == ZD_OK){</span>
+</pre>
+</body>
+</html>

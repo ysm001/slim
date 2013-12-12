@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>spaces</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/367.html#L154'>spaces</a>            154 src/runtime_status.c   for (i = 0; i &lt; ARY_SIZEOF(p-&gt;spaces); i++) {</span>
+<span class='curline'><a href='../S/367.html#L155'>spaces</a>            155 src/runtime_status.c     memory_profiler_init(&amp;p-&gt;spaces[i]);</span>
+<span class='curline'><a href='../S/367.html#L171'>spaces</a>            171 src/runtime_status.c   for (i = 0; i &lt; ARY_SIZEOF(p-&gt;spaces); i++) {</span>
+<span class='curline'><a href='../S/367.html#L172'>spaces</a>            172 src/runtime_status.c     memory_profiler_destroy(&amp;p-&gt;spaces[i]);</span>
+<span class='curline'><a href='../S/367.html#L201'>spaces</a>            201 src/runtime_status.c   for (data_i = 0; data_i &lt; ARY_SIZEOF(total-&gt;spaces); data_i++) {</span>
+<span class='curline'><a href='../S/367.html#L204'>spaces</a>            204 src/runtime_status.c       total-&gt;spaces[data_i].space.cur  += p-&gt;spaces[data_i].space.cur;</span>
+<span class='curline'><a href='../S/367.html#L205'>spaces</a>            205 src/runtime_status.c       total-&gt;spaces[data_i].space.peak += p-&gt;spaces[data_i].space.peak;</span>
+<span class='curline'><a href='../S/367.html#L206'>spaces</a>            206 src/runtime_status.c       total-&gt;spaces[data_i].num.cur    += p-&gt;spaces[data_i].space.cur;</span>
+<span class='curline'><a href='../S/367.html#L207'>spaces</a>            207 src/runtime_status.c       total-&gt;spaces[data_i].num.peak   += p-&gt;spaces[data_i].num.peak;</span>
+<span class='curline'><a href='../S/367.html#L772'>spaces</a>            772 src/runtime_status.c   for (i = 0; i &lt; ARY_SIZEOF(total.spaces); i++) {</span>
+<span class='curline'><a href='../S/367.html#L776'>spaces</a>            776 src/runtime_status.c                , (double)total.spaces[i].space.cur / 1024 /1024);</span>
+<span class='curline'><a href='../S/367.html#L780'>spaces</a>            780 src/runtime_status.c                , (double)total.spaces[i].space.cur  / 1024 / 1024</span>
+<span class='curline'><a href='../S/367.html#L781'>spaces</a>            781 src/runtime_status.c                , (double)total.spaces[i].space.peak / 1024 / 1024</span>
+<span class='curline'><a href='../S/367.html#L782'>spaces</a>            782 src/runtime_status.c                , total.spaces[i].num.peak);</span>
+<span class='curline'><a href='../S/368.html#L140'>spaces</a>            140 src/runtime_status.h   MemoryProfiler spaces[PSPACE_TAIL];         /* メモリ使用量の調査 */</span>
+<span class='curline'><a href='../S/368.html#L238'>spaces</a>            238 src/runtime_status.h   for (i = 0; i &lt; ARY_SIZEOF(p-&gt;spaces); i++) {</span>
+<span class='curline'><a href='../S/368.html#L242'>spaces</a>            242 src/runtime_status.h     else sum += p-&gt;spaces[i].space.cur;</span>
+<span class='curline'><a href='../S/368.html#L246'>spaces</a>            246 src/runtime_status.h   profile_peakcounter_set_v(&amp;(p-&gt;spaces[PROFILE_SPACE__TOTAL].space), sum);</span>
+<span class='curline'><a href='../S/368.html#L256'>spaces</a>            256 src/runtime_status.h   MemoryProfiler *p = &amp;(lmn_prof.lv3[env_my_thread_id()].spaces[type]);</span>
+<span class='curline'><a href='../S/368.html#L264'>spaces</a>            264 src/runtime_status.h     MemoryProfiler *p = &amp;(lmn_prof.lv3[env_my_thread_id()].spaces[type]);</span>
+</pre>
+</body>
+</html>

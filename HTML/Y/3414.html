@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>map_length</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/569.html#L341'>map_length</a>        341 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   int map_length = snprintf(buf, size, "%s", kProcSelfMapsHeader);</span>
+<span class='curline'><a href='../S/569.html#L342'>map_length</a>        342 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   if (map_length &lt; 0 || map_length &gt;= size) return 0;</span>
+<span class='curline'><a href='../S/569.html#L344'>map_length</a>        344 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   map_length += FillProcSelfMaps(buf + map_length, size - map_length, &amp;dummy);</span>
+<span class='curline'><a href='../S/569.html#L345'>map_length</a>        345 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   RAW_DCHECK(map_length &lt;= size, "");</span>
+<span class='curline'><a href='../S/569.html#L346'>map_length</a>        346 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   char* const map_start = buf + size - map_length;      // move to end</span>
+<span class='curline'><a href='../S/569.html#L347'>map_length</a>        347 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   memmove(map_start, buf, map_length);</span>
+<span class='curline'><a href='../S/569.html#L348'>map_length</a>        348 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   size -= map_length;</span>
+<span class='curline'><a href='../S/569.html#L365'>map_length</a>        365 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   memmove(buf + bucket_length, map_start, map_length);  // close the gap</span>
+<span class='curline'><a href='../S/569.html#L367'>map_length</a>        367 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   return bucket_length + map_length;</span>
+</pre>
+</body>
+</html>

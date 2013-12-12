@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>data</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/317.html#L134'>data</a>              134 src/dumper.c       if (hashtbliter_entry(&amp;iter)-&gt;data) {</span>
+<span class='curline'><a href='../S/317.html#L135'>data</a>              135 src/dumper.c         atomrec_free((struct AtomRec *)hashtbliter_entry(&amp;iter)-&gt;data);</span>
+<span class='curline'><a href='../S/317.html#L247'>data</a>              247 src/dumper.c                              LmnAtom data,</span>
+<span class='curline'><a href='../S/317.html#L254'>data</a>              254 src/dumper.c         char *s = int_to_str((long)data);</span>
+<span class='curline'><a href='../S/317.html#L262'>data</a>              262 src/dumper.c         sprintf(buf, "%f", *(double*)data);</span>
+<span class='curline'><a href='../S/317.html#L267'>data</a>              267 src/dumper.c       SP_ATOM_DUMP(data, port);</span>
+<span class='curline'><a href='../S/317.html#L274'>data</a>              274 src/dumper.c           sprintf(buf, "H%lx", LMN_HL_ID(lmn_hyperlink_at_to_hl(LMN_SATOM(data))));</span>
+<span class='curline'><a href='../S/317.html#L276'>data</a>              276 src/dumper.c           sprintf(buf, "H%lx", LMN_HL_ID(LMN_HL_ATOM_ROOT_HL(LMN_SATOM(data))));</span>
+<span class='curline'><a href='../S/334.html#L731'>data</a>              731 src/hyperlink.c       if (sht-&gt;tbl[i].key == EMPTY_KEY) printf("%3d: key: %p data: %p\n", i, (void *)sht-&gt;tbl[i].key, (HyperLink *)sht-&gt;tbl[i].data);</span>
+<span class='curline'><a href='../S/334.html#L733'>data</a>              733 src/hyperlink.c         if (sht-&gt;tbl[i].data &lt; DELETED_KEY){</span>
+<span class='curline'><a href='../S/334.html#L734'>data</a>              734 src/hyperlink.c           printf("%3d: key: %p data: %p-&gt;%p\n", i, (void *)sht-&gt;tbl[i].key, (HyperLink *)sht-&gt;tbl[i].data, (void*)((HyperLink *)sht-&gt;tbl[i].data)-&gt;atom);</span>
+<span class='curline'><a href='../S/334.html#L736'>data</a>              736 src/hyperlink.c           printf("%3d: key: %p data: %p\n", i, (void *)sht-&gt;tbl[i].key, (HyperLink *)sht-&gt;tbl[i].data);</span>
+<span class='curline'><a href='../S/334.html#L797'>data</a>              797 src/hyperlink.c     SameProcCxt *spc = (SameProcCxt *)(hashtbliter_entry(&amp;it)-&gt;data);</span>
+<span class='curline'><a href='../S/358.html#L564'>data</a>              564 src/membrane.h #define atomlist_iter_get_entry(Mem, Iter) ((AtomListEntry *)hashtbliter_entry(&amp;(Iter))-&gt;data)</span>
+<span class='curline'><a href='../S/362.html#L56'>data</a>               56 src/port.c     #define LMN_PORT_DATA(obj) (LMN_PORT(obj)-&gt;data)</span>
+<span class='curline'><a href='../S/362.html#L78'>data</a>               78 src/port.c       port-&gt;data = NULL;</span>
+<span class='curline'><a href='../S/362.html#L118'>data</a>              118 src/port.c         new_port-&gt;data = lmn_string_copy(LMN_STRING(port-&gt;data));</span>
+<span class='curline'><a href='../S/362.html#L161'>data</a>              161 src/port.c       port-&gt;data = file;</span>
+<span class='curline'><a href='../S/362.html#L175'>data</a>              175 src/port.c       port-&gt;data = d;</span>
+<span class='curline'><a href='../S/362.html#L185'>data</a>              185 src/port.c       port-&gt;data = lmn_string_make_empty();</span>
+<span class='curline'><a href='../S/362.html#L646'>data</a>              646 src/port.c     void *sp_cb_port_copy(void *data)</span>
+<span class='curline'><a href='../S/362.html#L648'>data</a>              648 src/port.c       return lmn_port_copy(LMN_PORT(data), TRUE);</span>
+<span class='curline'><a href='../S/362.html#L651'>data</a>              651 src/port.c     void sp_cb_port_free(void *data)</span>
+<span class='curline'><a href='../S/362.html#L653'>data</a>              653 src/port.c       lmn_port_free(LMN_PORT(data));</span>
+<span class='curline'><a href='../S/362.html#L662'>data</a>              662 src/port.c     void sp_cb_port_dump(void *data, LmnPort port)</span>
+<span class='curline'><a href='../S/362.html#L665'>data</a>              665 src/port.c       port_put_raw_s(port, LMN_SYMBOL_STR(LMN_PORT(data)-&gt;name));</span>
+<span class='curline'><a href='../S/362.html#L669'>data</a>              669 src/port.c     BOOL sp_cp_port_is_ground(void *data)</span>
+<span class='curline'><a href='../S/371.html#L62'>data</a>               62 src/slim_header/port.h   void *data;    /* used internally */</span>
+<span class='curline'><a href='../S/377.html#L358'>data</a>              358 src/string.c   BOOL sp_cb_string_is_ground(void *data)</span>
+<span class='curline'><a href='../S/384.html#L1953'>data</a>             1953 src/task.c           id = lmn_intern((char *)lmn_string_c_str(port-&gt;data));</span>
+<span class='curline'><a href='../S/393.html#L118'>data</a>              118 src/utility/internal_hash.c   return hashtbl_get_p(ht, key)-&gt;data;</span>
+<span class='curline'><a href='../S/393.html#L127'>data</a>              127 src/utility/internal_hash.c   else return e-&gt;data;</span>
+<span class='curline'><a href='../S/393.html#L135'>data</a>              135 src/utility/internal_hash.c void hashtbl_put(SimpleHashtbl *ht, HashKeyType key, HashValueType data)</span>
+<span class='curline'><a href='../S/393.html#L144'>data</a>              144 src/utility/internal_hash.c   e-&gt;data = data;</span>
+<span class='curline'><a href='../S/393.html#L188'>data</a>              188 src/utility/internal_hash.c       e-&gt;data = tbl[i].data;</span>
+<span class='curline'><a href='../S/394.html#L49'>data</a>               49 src/utility/internal_hash.h   HashValueType data;</span>
+<span class='curline'><a href='../S/428.html#L456'>data</a>              456 src/verifier/mc.c     vec_data_t data;</span>
+<span class='curline'><a href='../S/428.html#L472'>data</a>              472 src/verifier/mc.c       data = (vec_data_t)transition_make(news, nid);</span>
+<span class='curline'><a href='../S/428.html#L475'>data</a>              475 src/verifier/mc.c       data = (vec_data_t)news;</span>
+<span class='curline'><a href='../S/428.html#L482'>data</a>              482 src/verifier/mc.c       vec_push(expanded_roots, data);</span>
+<span class='curline'><a href='../S/428.html#L484'>data</a>              484 src/verifier/mc.c       vec_set(expanded_roots, i, data);</span>
+<span class='curline'><a href='../S/428.html#L540'>data</a>              540 src/verifier/mc.c       vec_data_t data;</span>
+<span class='curline'><a href='../S/428.html#L555'>data</a>              555 src/verifier/mc.c         data = (vec_data_t)transition_make(new_s, transition_rule(src_succ_t, 0));</span>
+<span class='curline'><a href='../S/428.html#L557'>data</a>              557 src/verifier/mc.c         transition_set_cost((Transition)data, transition_cost(src_succ_t));</span>
+<span class='curline'><a href='../S/428.html#L561'>data</a>              561 src/verifier/mc.c         data = (vec_data_t)new_s;</span>
+<span class='curline'><a href='../S/428.html#L563'>data</a>              563 src/verifier/mc.c       vec_push(RC_EXPANDED(rc), data);</span>
+<span class='curline'><a href='../S/428.html#L585'>data</a>              585 src/verifier/mc.c   vec_data_t data;</span>
+<span class='curline'><a href='../S/428.html#L616'>data</a>              616 src/verifier/mc.c     data = (vec_data_t)transition_make(new_s, lmn_intern("ε"));</span>
+<span class='curline'><a href='../S/428.html#L619'>data</a>              619 src/verifier/mc.c     data = (vec_data_t)new_s;</span>
+<span class='curline'><a href='../S/428.html#L621'>data</a>              621 src/verifier/mc.c   vec_push(RC_EXPANDED(rc), data);</span>
+<span class='curline'><a href='../S/436.html#L2470'>data</a>             2470 src/verifier/mem_encode.c           LmnSAtom data;</span>
+<span class='curline'><a href='../S/436.html#L2478'>data</a>             2478 src/verifier/mem_encode.c           data = LMN_SATOM(LMN_SATOM_GET_LINK(in, 1));</span>
+<span class='curline'><a href='../S/436.html#L2485'>data</a>             2485 src/verifier/mem_encode.c               !mem_eq_enc_data_atom(sub_tag, bs, &amp;tmp_i_bs, LMN_ATOM(data), data_attr, log)) {</span>
+<span class='curline'><a href='../S/454.html#L92'>data</a>               92 src/verifier/state.c   new_s-&gt;data             = NULL;</span>
+<span class='curline'><a href='../S/454.html#L494'>data</a>              494 src/verifier/state.c     s-&gt;data = NULL;</span>
+<span class='curline'><a href='../S/455.html#L81'>data</a>               81 src/verifier/state.h   state_data_t       data;            /*  8(4)byte: 膜, バイナリストリングのどちらか */</span>
+<span class='curline'><a href='../S/455.html#L379'>data</a>              379 src/verifier/state.h     return (LmnMembrane *)s-&gt;data;</span>
+<span class='curline'><a href='../S/455.html#L387'>data</a>              387 src/verifier/state.h   s-&gt;data = (state_data_t)mem;</span>
+<span class='curline'><a href='../S/455.html#L401'>data</a>              401 src/verifier/state.h     return (LmnBinStr)s-&gt;data;</span>
+<span class='curline'><a href='../S/455.html#L409'>data</a>              409 src/verifier/state.h   s-&gt;data = (state_data_t)bs;</span>
+<span class='curline'><a href='../S/455.html#L417'>data</a>              417 src/verifier/state.h     s-&gt;data = (state_data_t)NULL;</span>
+<span class='curline'><a href='../S/526.html#L196'>data</a>              196 third_party/google-perftools-1.8.3/src/base/linuxthreads.cc static void SignalHandler(int signum, siginfo_t *si, void *data) {</span>
+<span class='curline'><a href='../S/542.html#L419'>data</a>              419 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   DWORD data, data_size = sizeof(data);</span>
+<span class='curline'><a href='../S/542.html#L424'>data</a>              424 third_party/google-perftools-1.8.3/src/base/sysinfo.cc                            "~MHz", NULL, &amp;data, &amp;data_size)))</span>
+<span class='curline'><a href='../S/542.html#L425'>data</a>              425 third_party/google-perftools-1.8.3/src/base/sysinfo.cc     cpuinfo_cycles_per_second = (int64)data * (int64)(1000 * 1000); // was mhz</span>
+<span class='curline'><a href='../S/582.html#L261'>data</a>              261 third_party/google-perftools-1.8.3/src/malloc_hook.cc     AtomicWord data = base::subtle::Acquire_Load(&amp;priv_data[i]);</span>
+<span class='curline'><a href='../S/582.html#L262'>data</a>              262 third_party/google-perftools-1.8.3/src/malloc_hook.cc     if (data != 0) {</span>
+<span class='curline'><a href='../S/582.html#L263'>data</a>              263 third_party/google-perftools-1.8.3/src/malloc_hook.cc       *output_array++ = bit_cast&lt;T&gt;(data);</span>
+<span class='curline'><a href='../S/587.html#L224'>data</a>              224 third_party/google-perftools-1.8.3/src/memfs_malloc.cc   memcpy(path, FLAGS_memfs_malloc_path.data(), pathlen);</span>
+<span class='curline'><a href='../S/652.html#L60'>data</a>               60 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc   scoped_array(T* data) : data_(data) { }</span>
+<span class='curline'><a href='../S/658.html#L60'>data</a>               60 third_party/google-perftools-1.8.3/src/tests/sampling_test.cc   fwrite(s.data(), 1, s.length(), fp);</span>
+<span class='curline'><a href='../S/721.html#L65'>data</a>               65 third_party/zdelta-2.1/zd_mem.c size_t zd_memcpy(zd_mem_buffer *m, void *data, size_t n){</span>
+<span class='curline'><a href='../S/721.html#L73'>data</a>               73 third_party/zdelta-2.1/zd_mem.c   memcpy(m-&gt;pos, data, n);</span>
+</pre>
+</body>
+</html>

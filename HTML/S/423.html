@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>src/verifier/ltl2ba_adapter.c</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/733.html'>src</a>/<a href='../files/737.html'>verifier</a>/ltl2ba_adapter.c</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L45'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L45' title='Defined at 45.'>ltl2ba_str</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>/*</em>
+<a id='L2' name='L2' /><em class='comment'> * ltl2ba_adapter.c</em>
+<a id='L3' name='L3' /><em class='comment'> *</em>
+<a id='L4' name='L4' /><em class='comment'> *   Copyright (c) 2008, Ueda Laboratory LMNtal Group</em>
+<a id='L5' name='L5' /><em class='comment'> *                                         &lt;lmntal@ueda.info.waseda.ac.jp&gt;</em>
+<a id='L6' name='L6' /><em class='comment'> *   All rights reserved.</em>
+<a id='L7' name='L7' /><em class='comment'> *</em>
+<a id='L8' name='L8' /><em class='comment'> *   Redistribution and use in source and binary forms, with or without</em>
+<a id='L9' name='L9' /><em class='comment'> *   modification, are permitted provided that the following conditions are</em>
+<a id='L10' name='L10' /><em class='comment'> *   met:</em>
+<a id='L11' name='L11' /><em class='comment'> *</em>
+<a id='L12' name='L12' /><em class='comment'> *    1. Redistributions of source code must retain the above copyright</em>
+<a id='L13' name='L13' /><em class='comment'> *       notice, this list of conditions and the following disclaimer.</em>
+<a id='L14' name='L14' /><em class='comment'> *</em>
+<a id='L15' name='L15' /><em class='comment'> *    2. Redistributions in binary form must reproduce the above copyright</em>
+<a id='L16' name='L16' /><em class='comment'> *       notice, this list of conditions and the following disclaimer in</em>
+<a id='L17' name='L17' /><em class='comment'> *       the documentation and/or other materials provided with the</em>
+<a id='L18' name='L18' /><em class='comment'> *       distribution.</em>
+<a id='L19' name='L19' /><em class='comment'> *</em>
+<a id='L20' name='L20' /><em class='comment'> *    3. Neither the name of the Ueda Laboratory LMNtal Group nor the</em>
+<a id='L21' name='L21' /><em class='comment'> *       names of its contributors may be used to endorse or promote</em>
+<a id='L22' name='L22' /><em class='comment'> *       products derived from this software without specific prior</em>
+<a id='L23' name='L23' /><em class='comment'> *       written permission.</em>
+<a id='L24' name='L24' /><em class='comment'> *</em>
+<a id='L25' name='L25' /><em class='comment'> *   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L26' name='L26' /><em class='comment'> *   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L27' name='L27' /><em class='comment'> *   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L28' name='L28' /><em class='comment'> *   A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L29' name='L29' /><em class='comment'> *   OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L30' name='L30' /><em class='comment'> *   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L31' name='L31' /><em class='comment'> *   LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L32' name='L32' /><em class='comment'> *   DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L33' name='L33' /><em class='comment'> *   THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L34' name='L34' /><em class='comment'> *   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L35' name='L35' /><em class='comment'> *   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L36' name='L36' /><em class='comment'> *</em>
+<a id='L37' name='L37' /><em class='comment'> * $Id$</em>
+<a id='L38' name='L38' /><em class='comment'> */</em>
+<a id='L39' name='L39' />
+<a id='L40' name='L40' /><em class='sharp'>#include</em> "<a href='424.html'>ltl2ba_adapter.h</a>"
+<a id='L41' name='L41' /><em class='sharp'>#include</em> "<a href='347.html'>lmntal.h</a>"
+<a id='L42' name='L42' /><em class='sharp'>#include</em> "<a href='321.html'>error.h</a>"
+<a id='L43' name='L43' /><em class='sharp'>#include</em> &lt;stdlib.h&gt;
+<a id='L44' name='L44' />
+<a id='L45' name='L45' /><a href='../Y/186.html' title='Multiple used in 169 places.'>FILE</a> *<a href='../R/4075.html' title='Multiple refered from 2 places.'>ltl2ba_str</a>(<strong class='reserved'>char</strong> *<a href='../Y/3347.html' title='Multiple used in 11 places.'>ltl</a>)
+<a id='L46' name='L46' /><em class='brace'>{</em>
+<a id='L47' name='L47' />  <strong class='reserved'>char</strong> *<a href='../Y/1818.html' title='Multiple used in 20 places.'>cmd</a>;
+<a id='L48' name='L48' />  <strong class='reserved'>char</strong> <a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>[2048] = <em class='brace'>{</em>0<em class='brace'>}</em>;
+<a id='L49' name='L49' />  
+<a id='L50' name='L50' />  <strong class='reserved'>if</strong> ((<a href='../Y/1818.html' title='Multiple used in 20 places.'>cmd</a> = <a href='../Y/2538.html' title='Multiple used in 24 places.'>getenv</a>(<a href='../S/424.html#L46' title='Defined at 46 in src/verifier/ltl2ba_adapter.h.'>ENV_LTL2BA</a>))) <em class='brace'>{</em>
+<a id='L51' name='L51' />    <a href='../Y/4951.html' title='Multiple used in 25 places.'>sprintf</a>(<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>, "%s -f \"%s\"", <a href='../Y/1818.html' title='Multiple used in 20 places.'>cmd</a>, <a href='../Y/3347.html' title='Multiple used in 11 places.'>ltl</a>);
+<a id='L52' name='L52' />    <strong class='reserved'>return</strong> <a href='../S/686.html#L380' title='Defined at 380 in third_party/google-perftools-1.8.3/src/windows/port.h.'>popen</a>(<a href='../Y/1671.html' title='Multiple used in 330 places.'>buf</a>, "r");
+<a id='L53' name='L53' />  <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L54' name='L54' />    <a href='../Y/2438.html' title='Multiple used in 547 places.'>fprintf</a>(<a href='../Y/5101.html' title='Multiple used in 275 places.'>stderr</a>, "environment variable \"%s\" is not set", <a href='../S/424.html#L46' title='Defined at 46 in src/verifier/ltl2ba_adapter.h.'>ENV_LTL2BA</a>);
+<a id='L55' name='L55' />    <a href='../Y/2261.html' title='Multiple used in 105 places.'>exit</a>(<a href='../Y/169.html' title='Multiple used in 24 places.'>EXIT_FAILURE</a>);
+<a id='L56' name='L56' />  <em class='brace'>}</em>
+<a id='L57' name='L57' /><em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L45'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

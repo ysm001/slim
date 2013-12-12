@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>cache</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/548.html#L129'>cache</a>             129 third_party/google-perftools-1.8.3/src/base/vdso_support.h   static long InitAndGetCPU(unsigned *cpu, void *cache,     // NOLINT 'long'.</span>
+<span class='curline'><a href='../S/548.html#L131'>cache</a>             131 third_party/google-perftools-1.8.3/src/base/vdso_support.h   static long GetCPUViaSyscall(unsigned *cpu, void *cache,  // NOLINT 'long'.</span>
+<span class='curline'><a href='../S/548.html#L133'>cache</a>             133 third_party/google-perftools-1.8.3/src/base/vdso_support.h   typedef long (*GetCpuFn)(unsigned *cpu, void *cache,      // NOLINT 'long'.</span>
+<span class='curline'><a href='../S/648.html#L41'>cache</a>              41 third_party/google-perftools-1.8.3/src/tests/packed-cache_test.cc   PackedCache&lt;32, uint32&gt; cache(0);</span>
+<span class='curline'><a href='../S/648.html#L42'>cache</a>              42 third_party/google-perftools-1.8.3/src/tests/packed-cache_test.cc   CHECK_EQ(cache.GetOrDefault(0, 1), 0);</span>
+<span class='curline'><a href='../S/648.html#L43'>cache</a>              43 third_party/google-perftools-1.8.3/src/tests/packed-cache_test.cc   cache.Put(0, 17);</span>
+<span class='curline'><a href='../S/648.html#L44'>cache</a>              44 third_party/google-perftools-1.8.3/src/tests/packed-cache_test.cc   CHECK(cache.Has(0));</span>
+<span class='curline'><a href='../S/648.html#L45'>cache</a>              45 third_party/google-perftools-1.8.3/src/tests/packed-cache_test.cc   CHECK_EQ(cache.GetOrDefault(0, 1), 17);</span>
+<span class='curline'><a href='../S/648.html#L46'>cache</a>              46 third_party/google-perftools-1.8.3/src/tests/packed-cache_test.cc   cache.Put(19, 99);</span>
+<span class='curline'><a href='../S/648.html#L47'>cache</a>              47 third_party/google-perftools-1.8.3/src/tests/packed-cache_test.cc   CHECK(cache.Has(0) &amp;&amp; cache.Has(19));</span>
+<span class='curline'><a href='../S/648.html#L48'>cache</a>              48 third_party/google-perftools-1.8.3/src/tests/packed-cache_test.cc   CHECK_EQ(cache.GetOrDefault(0, 1), 17);</span>
+<span class='curline'><a href='../S/648.html#L49'>cache</a>              49 third_party/google-perftools-1.8.3/src/tests/packed-cache_test.cc   CHECK_EQ(cache.GetOrDefault(19, 1), 99);</span>
+<span class='curline'><a href='../S/648.html#L51'>cache</a>              51 third_party/google-perftools-1.8.3/src/tests/packed-cache_test.cc   cache.Put(1 &lt;&lt; kHashbits, 22);</span>
+<span class='curline'><a href='../S/648.html#L52'>cache</a>              52 third_party/google-perftools-1.8.3/src/tests/packed-cache_test.cc   CHECK(!cache.Has(0));</span>
+<span class='curline'><a href='../S/648.html#L53'>cache</a>              53 third_party/google-perftools-1.8.3/src/tests/packed-cache_test.cc   CHECK_EQ(cache.GetOrDefault(0, 1), 1);</span>
+<span class='curline'><a href='../S/648.html#L54'>cache</a>              54 third_party/google-perftools-1.8.3/src/tests/packed-cache_test.cc   CHECK_EQ(cache.GetOrDefault(1 &lt;&lt; kHashbits, 1), 22);</span>
+</pre>
+</body>
+</html>

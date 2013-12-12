@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>third_party/google-perftools-1.8.3/src/central_freelist.h</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP' /><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/738.html'>third_party</a>/<a href='../files/739.html'>google-perftools-1.8.3</a>/<a href='../files/740.html'>src</a>/central_freelist.h</h2>
+<em class='comment'>/* [&lt;][&gt;][^][v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'><a href='../J/174.html' title='Multiple included from 4 places.'>INCLUDED FROM</a></h2>
+<hr />
+<pre>
+<a id='L1' name='L1' /><em class='comment'>// Copyright (c) 2008, Google Inc.</em>
+<a id='L2' name='L2' /><em class='comment'>// All rights reserved.</em>
+<a id='L3' name='L3' /><em class='comment'>//</em>
+<a id='L4' name='L4' /><em class='comment'>// Redistribution and use in source and binary forms, with or without</em>
+<a id='L5' name='L5' /><em class='comment'>// modification, are permitted provided that the following conditions are</em>
+<a id='L6' name='L6' /><em class='comment'>// met:</em>
+<a id='L7' name='L7' /><em class='comment'>//</em>
+<a id='L8' name='L8' /><em class='comment'>//     * Redistributions of source code must retain the above copyright</em>
+<a id='L9' name='L9' /><em class='comment'>// notice, this list of conditions and the following disclaimer.</em>
+<a id='L10' name='L10' /><em class='comment'>//     * Redistributions in binary form must reproduce the above</em>
+<a id='L11' name='L11' /><em class='comment'>// copyright notice, this list of conditions and the following disclaimer</em>
+<a id='L12' name='L12' /><em class='comment'>// in the documentation and/or other materials provided with the</em>
+<a id='L13' name='L13' /><em class='comment'>// distribution.</em>
+<a id='L14' name='L14' /><em class='comment'>//     * Neither the name of Google Inc. nor the names of its</em>
+<a id='L15' name='L15' /><em class='comment'>// contributors may be used to endorse or promote products derived from</em>
+<a id='L16' name='L16' /><em class='comment'>// this software without specific prior written permission.</em>
+<a id='L17' name='L17' /><em class='comment'>//</em>
+<a id='L18' name='L18' /><em class='comment'>// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS</em>
+<a id='L19' name='L19' /><em class='comment'>// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT</em>
+<a id='L20' name='L20' /><em class='comment'>// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR</em>
+<a id='L21' name='L21' /><em class='comment'>// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT</em>
+<a id='L22' name='L22' /><em class='comment'>// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,</em>
+<a id='L23' name='L23' /><em class='comment'>// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT</em>
+<a id='L24' name='L24' /><em class='comment'>// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</em>
+<a id='L25' name='L25' /><em class='comment'>// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</em>
+<a id='L26' name='L26' /><em class='comment'>// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</em>
+<a id='L27' name='L27' /><em class='comment'>// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</em>
+<a id='L28' name='L28' /><em class='comment'>// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a id='L29' name='L29' />
+<a id='L30' name='L30' /><em class='comment'>// ---</em>
+<a id='L31' name='L31' /><em class='comment'>// Author: Sanjay Ghemawat &lt;opensource@google.com&gt;</em>
+<a id='L32' name='L32' />
+<a id='L33' name='L33' /><em class='sharp'>#ifndef</em> <a href='../S/550.html#L34' title='Defined at 34 in third_party/google-perftools-1.8.3/src/central_freelist.h.'>TCMALLOC_CENTRAL_FREELIST_H_</a>
+<a id='L34' name='L34' /><em class='sharp'>#define</em> <a href='../S/550.html#L33' title='Refered from 33 in third_party/google-perftools-1.8.3/src/central_freelist.h.'>TCMALLOC_CENTRAL_FREELIST_H_</a>
+<a id='L35' name='L35' />
+<a id='L36' name='L36' /><em class='sharp'>#include</em> "<a href='../I/6.html'>config.h</a>"
+<a id='L37' name='L37' /><em class='sharp'>#include</em> &lt;stddef.h&gt;                     <em class='comment'>// for size_t</em>
+<a id='L38' name='L38' /><em class='sharp'>#ifdef</em> <a href='../D/935.html' title='Multiple defined in 2 places.'>HAVE_STDINT_H</a>
+<a id='L39' name='L39' /><em class='sharp'>#include</em> &lt;stdint.h&gt;                     <em class='comment'>// for int32_t</em>
+<a id='L40' name='L40' /><em class='sharp'>#endif</em>
+<a id='L41' name='L41' /><em class='sharp'>#include</em> "<a href='534.html'>base/spinlock.h</a>"
+<a id='L42' name='L42' /><em class='sharp'>#include</em> "<a href='544.html'>base/thread_annotations.h</a>"
+<a id='L43' name='L43' /><em class='sharp'>#include</em> "<a href='552.html'>common.h</a>"
+<a id='L44' name='L44' /><em class='sharp'>#include</em> "<a href='607.html'>span.h</a>"
+<a id='L45' name='L45' />
+<a id='L46' name='L46' /><a href='../Y/3671.html' title='Multiple used in 66 places.'>namespace</a> <a href='../D/5409.html' title='Multiple defined in 10 places.'>tcmalloc</a> <em class='brace'>{</em>
+<a id='L47' name='L47' />
+<a id='L48' name='L48' /><em class='comment'>// Data kept per size-class in central cache.</em>
+<a id='L49' name='L49' /><a href='../Y/1792.html' title='Multiple used in 90 places.'>class</a> <a href='../Y/76.html' title='Multiple used in 18 places.'>CentralFreeList</a> <em class='brace'>{</em>
+<a id='L50' name='L50' /> <a href='../Y/4390.html' title='Multiple used in 61 places.'>public</a>:
+<a id='L51' name='L51' />  <em class='comment'>// A CentralFreeList may be used before its constructor runs.</em>
+<a id='L52' name='L52' />  <em class='comment'>// So we prevent lock_'s constructor from doing anything to the</em>
+<a id='L53' name='L53' />  <em class='comment'>// lock_ state.</em>
+<a id='L54' name='L54' />  <a href='../Y/76.html' title='Multiple used in 18 places.'>CentralFreeList</a>() : <a href='../Y/3314.html' title='Multiple used in 57 places.'>lock_</a>(<a href='../D/3379.html' title='Multiple defined in 6 places.'>base</a>::<a href='../D/1389.html' title='Multiple defined in 3 places.'>LINKER_INITIALIZED</a>) <em class='brace'>{</em> <em class='brace'>}</em>
+<a id='L55' name='L55' />
+<a id='L56' name='L56' />  <strong class='reserved'>void</strong> <a href='../D/1261.html' title='Multiple defined in 10 places.'>Init</a>(<a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../Y/1790.html' title='Multiple used in 108 places.'>cl</a>);
+<a id='L57' name='L57' />
+<a id='L58' name='L58' />  <em class='comment'>// These methods all do internal locking.</em>
+<a id='L59' name='L59' />
+<a id='L60' name='L60' />  <em class='comment'>// Insert the specified range into the central freelist.  N is the number of</em>
+<a id='L61' name='L61' />  <em class='comment'>// elements in the range.  RemoveRange() is the opposite operation.</em>
+<a id='L62' name='L62' />  <strong class='reserved'>void</strong> <a href='../S/549.html#L230' title='Defined at 230 in third_party/google-perftools-1.8.3/src/central_freelist.cc.'>InsertRange</a>(<strong class='reserved'>void</strong> *<a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <strong class='reserved'>void</strong> *<a href='../S/521.html#L388' title='Defined at 388 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>end</a>, <strong class='reserved'>int</strong> <a href='../Y/535.html' title='Multiple used in 121 places.'>N</a>);
+<a id='L63' name='L63' />
+<a id='L64' name='L64' />  <em class='comment'>// Returns the actual number of fetched elements and sets *start and *end.</em>
+<a id='L65' name='L65' />  <strong class='reserved'>int</strong> <a href='../S/549.html#L245' title='Defined at 245 in third_party/google-perftools-1.8.3/src/central_freelist.cc.'>RemoveRange</a>(<strong class='reserved'>void</strong> **<a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>, <strong class='reserved'>void</strong> **<a href='../S/521.html#L388' title='Defined at 388 in third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc.'>end</a>, <strong class='reserved'>int</strong> <a href='../Y/535.html' title='Multiple used in 121 places.'>N</a>);
+<a id='L66' name='L66' />
+<a id='L67' name='L67' />  <em class='comment'>// Returns the number of free objects in cache.</em>
+<a id='L68' name='L68' />  <strong class='reserved'>int</strong> <a href='../Y/3209.html' title='Multiple used in 184 places.'>length</a>() <em class='brace'>{</em>
+<a id='L69' name='L69' />    <a href='../S/534.html#L148' title='Defined at 148 in third_party/google-perftools-1.8.3/src/base/spinlock.h.'>SpinLockHolder</a> <a href='../Y/2604.html' title='Multiple used in 127 places.'>h</a>(&amp;<a href='../Y/3314.html' title='Multiple used in 57 places.'>lock_</a>);
+<a id='L70' name='L70' />    <strong class='reserved'>return</strong> <a href='../Y/1878.html' title='Multiple used in 7 places.'>counter_</a>;
+<a id='L71' name='L71' />  <em class='brace'>}</em>
+<a id='L72' name='L72' />
+<a id='L73' name='L73' />  <em class='comment'>// Returns the number of free objects in the transfer cache.</em>
+<a id='L74' name='L74' />  <strong class='reserved'>int</strong> <a href='../S/549.html#L359' title='Defined at 359 in third_party/google-perftools-1.8.3/src/central_freelist.cc.'>tc_length</a>();
+<a id='L75' name='L75' />
+<a id='L76' name='L76' />  <em class='comment'>// Returns the memory overhead (internal fragmentation) attributable</em>
+<a id='L77' name='L77' />  <em class='comment'>// to the freelist.  This is memory lost when the size of elements</em>
+<a id='L78' name='L78' />  <em class='comment'>// in a freelist doesn't exactly divide the page-size (an 8192-byte</em>
+<a id='L79' name='L79' />  <em class='comment'>// page full of 5-byte objects would have 2 bytes memory overhead).</em>
+<a id='L80' name='L80' />  <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a> <a href='../S/549.html#L364' title='Defined at 364 in third_party/google-perftools-1.8.3/src/central_freelist.cc.'>OverheadBytes</a>();
+<a id='L81' name='L81' />
+<a id='L82' name='L82' /> <a href='../Y/4261.html' title='Multiple used in 50 places.'>private</a>:
+<a id='L83' name='L83' />  <em class='comment'>// TransferCache is used to cache transfers of</em>
+<a id='L84' name='L84' />  <em class='comment'>// sizemap.num_objects_to_move(size_class) back and forth between</em>
+<a id='L85' name='L85' />  <em class='comment'>// thread caches and the central cache for a given size class.</em>
+<a id='L86' name='L86' />  <strong class='reserved'>struct</strong> <a href='../R/2391.html' title='Multiple refered from 3 places.'>TCEntry</a> <em class='brace'>{</em>
+<a id='L87' name='L87' />    <strong class='reserved'>void</strong> *<a href='../Y/2650.html' title='Multiple used in 86 places.'>head</a>;  <em class='comment'>// Head of chain of objects.</em>
+<a id='L88' name='L88' />    <strong class='reserved'>void</strong> *<a href='../Y/5285.html' title='Multiple used in 50 places.'>tail</a>;  <em class='comment'>// Tail of chain of objects.</em>
+<a id='L89' name='L89' />  <em class='brace'>}</em>;
+<a id='L90' name='L90' />
+<a id='L91' name='L91' />  <em class='comment'>// A central cache freelist can have anywhere from 0 to kMaxNumTransferEntries</em>
+<a id='L92' name='L92' />  <em class='comment'>// slots to put link list chains into.</em>
+<a id='L93' name='L93' /><em class='sharp'>#ifdef</em> <a href='../Y/849.html' title='Multiple used in 5 places.'>TCMALLOC_SMALL_BUT_SLOW</a>
+<a id='L94' name='L94' />  <em class='comment'>// For the small memory model, the transfer cache is not used.</em>
+<a id='L95' name='L95' />  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> <a href='../Y/3059.html' title='Multiple used in 4 places.'>kMaxNumTransferEntries</a> = 0;
+<a id='L96' name='L96' /><em class='sharp'>#else</em>
+<a id='L97' name='L97' />  <em class='comment'>// Starting point for the the maximum number of entries in the transfer cache.</em>
+<a id='L98' name='L98' />  <em class='comment'>// This actual maximum for a given size class may be lower than this</em>
+<a id='L99' name='L99' />  <em class='comment'>// maximum value.</em>
+<a id='L100' name='L100' />  <strong class='reserved'>static</strong> <strong class='reserved'>const</strong> <strong class='reserved'>int</strong> <a href='../Y/3059.html' title='Multiple used in 4 places.'>kMaxNumTransferEntries</a> = 64;
+<a id='L101' name='L101' /><em class='sharp'>#endif</em>
+<a id='L102' name='L102' />
+<a id='L103' name='L103' />  <em class='comment'>// REQUIRES: lock_ is held</em>
+<a id='L104' name='L104' />  <em class='comment'>// Remove object from cache and return.</em>
+<a id='L105' name='L105' />  <em class='comment'>// Return NULL if no free entries in cache.</em>
+<a id='L106' name='L106' />  <strong class='reserved'>void</strong>* <a href='../S/549.html#L291' title='Defined at 291 in third_party/google-perftools-1.8.3/src/central_freelist.cc.'>FetchFromSpans</a>() <a href='../S/544.html#L93' title='Defined at 93 in third_party/google-perftools-1.8.3/src/base/thread_annotations.h.'>EXCLUSIVE_LOCKS_REQUIRED</a>(<a href='../Y/3314.html' title='Multiple used in 57 places.'>lock_</a>);
+<a id='L107' name='L107' />
+<a id='L108' name='L108' />  <em class='comment'>// REQUIRES: lock_ is held</em>
+<a id='L109' name='L109' />  <em class='comment'>// Remove object from cache and return.  Fetches</em>
+<a id='L110' name='L110' />  <em class='comment'>// from pageheap if cache is empty.  Only returns</em>
+<a id='L111' name='L111' />  <em class='comment'>// NULL on allocation failure.</em>
+<a id='L112' name='L112' />  <strong class='reserved'>void</strong>* <a href='../S/549.html#L282' title='Defined at 282 in third_party/google-perftools-1.8.3/src/central_freelist.cc.'>FetchFromSpansSafe</a>() <a href='../S/544.html#L93' title='Defined at 93 in third_party/google-perftools-1.8.3/src/base/thread_annotations.h.'>EXCLUSIVE_LOCKS_REQUIRED</a>(<a href='../Y/3314.html' title='Multiple used in 57 places.'>lock_</a>);
+<a id='L113' name='L113' />
+<a id='L114' name='L114' />  <em class='comment'>// REQUIRES: lock_ is held</em>
+<a id='L115' name='L115' />  <em class='comment'>// Release a linked list of objects to spans.</em>
+<a id='L116' name='L116' />  <em class='comment'>// May temporarily release lock_.</em>
+<a id='L117' name='L117' />  <strong class='reserved'>void</strong> <a href='../S/549.html#L81' title='Defined at 81 in third_party/google-perftools-1.8.3/src/central_freelist.cc.'>ReleaseListToSpans</a>(<strong class='reserved'>void</strong> *<a href='../Y/5036.html' title='Multiple used in 278 places.'>start</a>) <a href='../S/544.html#L93' title='Defined at 93 in third_party/google-perftools-1.8.3/src/base/thread_annotations.h.'>EXCLUSIVE_LOCKS_REQUIRED</a>(<a href='../Y/3314.html' title='Multiple used in 57 places.'>lock_</a>);
+<a id='L118' name='L118' />
+<a id='L119' name='L119' />  <em class='comment'>// REQUIRES: lock_ is held</em>
+<a id='L120' name='L120' />  <em class='comment'>// Release an object to spans.</em>
+<a id='L121' name='L121' />  <em class='comment'>// May temporarily release lock_.</em>
+<a id='L122' name='L122' />  <strong class='reserved'>void</strong> <a href='../S/549.html#L103' title='Defined at 103 in third_party/google-perftools-1.8.3/src/central_freelist.cc.'>ReleaseToSpans</a>(<strong class='reserved'>void</strong>* <a href='../Y/3910.html' title='Multiple used in 61 places.'>object</a>) <a href='../S/544.html#L93' title='Defined at 93 in third_party/google-perftools-1.8.3/src/base/thread_annotations.h.'>EXCLUSIVE_LOCKS_REQUIRED</a>(<a href='../Y/3314.html' title='Multiple used in 57 places.'>lock_</a>);
+<a id='L123' name='L123' />
+<a id='L124' name='L124' />  <em class='comment'>// REQUIRES: lock_ is held</em>
+<a id='L125' name='L125' />  <em class='comment'>// Populate cache by fetching from the page heap.</em>
+<a id='L126' name='L126' />  <em class='comment'>// May temporarily release lock_.</em>
+<a id='L127' name='L127' />  <strong class='reserved'>void</strong> <a href='../S/549.html#L310' title='Defined at 310 in third_party/google-perftools-1.8.3/src/central_freelist.cc.'>Populate</a>() <a href='../S/544.html#L93' title='Defined at 93 in third_party/google-perftools-1.8.3/src/base/thread_annotations.h.'>EXCLUSIVE_LOCKS_REQUIRED</a>(<a href='../Y/3314.html' title='Multiple used in 57 places.'>lock_</a>);
+<a id='L128' name='L128' />
+<a id='L129' name='L129' />  <em class='comment'>// REQUIRES: lock is held.</em>
+<a id='L130' name='L130' />  <em class='comment'>// Tries to make room for a TCEntry.  If the cache is full it will try to</em>
+<a id='L131' name='L131' />  <em class='comment'>// expand it at the cost of some other cache size.  Return false if there is</em>
+<a id='L132' name='L132' />  <em class='comment'>// no space.</em>
+<a id='L133' name='L133' />  <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../S/549.html#L166' title='Defined at 166 in third_party/google-perftools-1.8.3/src/central_freelist.cc.'>MakeCacheSpace</a>() <a href='../S/544.html#L93' title='Defined at 93 in third_party/google-perftools-1.8.3/src/base/thread_annotations.h.'>EXCLUSIVE_LOCKS_REQUIRED</a>(<a href='../Y/3314.html' title='Multiple used in 57 places.'>lock_</a>);
+<a id='L134' name='L134' />
+<a id='L135' name='L135' />  <em class='comment'>// REQUIRES: lock_ for locked_size_class is held.</em>
+<a id='L136' name='L136' />  <em class='comment'>// Picks a "random" size class to steal TCEntry slot from.  In reality it</em>
+<a id='L137' name='L137' />  <em class='comment'>// just iterates over the sizeclasses but does so without taking a lock.</em>
+<a id='L138' name='L138' />  <em class='comment'>// Returns true on success.</em>
+<a id='L139' name='L139' />  <em class='comment'>// May temporarily lock a "random" size class.</em>
+<a id='L140' name='L140' />  <strong class='reserved'>static</strong> <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../S/549.html#L150' title='Defined at 150 in third_party/google-perftools-1.8.3/src/central_freelist.cc.'>EvictRandomSizeClass</a>(<strong class='reserved'>int</strong> <a href='../Y/3322.html' title='Multiple used in 7 places.'>locked_size_class</a>, <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../Y/2421.html' title='Multiple used in 7 places.'>force</a>);
+<a id='L141' name='L141' />
+<a id='L142' name='L142' />  <em class='comment'>// REQUIRES: lock_ is *not* held.</em>
+<a id='L143' name='L143' />  <em class='comment'>// Tries to shrink the Cache.  If force is true it will relase objects to</em>
+<a id='L144' name='L144' />  <em class='comment'>// spans if it allows it to shrink the cache.  Return false if it failed to</em>
+<a id='L145' name='L145' />  <em class='comment'>// shrink the cache.  Decrements cache_size_ on succeess.</em>
+<a id='L146' name='L146' />  <em class='comment'>// May temporarily take lock_.  If it takes lock_, the locked_size_class</em>
+<a id='L147' name='L147' />  <em class='comment'>// lock is released to keep the thread from holding two size class locks</em>
+<a id='L148' name='L148' />  <em class='comment'>// concurrently which could lead to a deadlock.</em>
+<a id='L149' name='L149' />  <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../S/549.html#L202' title='Defined at 202 in third_party/google-perftools-1.8.3/src/central_freelist.cc.'>ShrinkCache</a>(<strong class='reserved'>int</strong> <a href='../Y/3322.html' title='Multiple used in 7 places.'>locked_size_class</a>, <a href='../Y/1648.html' title='Multiple used in 174 places.'>bool</a> <a href='../Y/2421.html' title='Multiple used in 7 places.'>force</a>) <a href='../S/544.html#L102' title='Defined at 102 in third_party/google-perftools-1.8.3/src/base/thread_annotations.h.'>LOCKS_EXCLUDED</a>(<a href='../Y/3314.html' title='Multiple used in 57 places.'>lock_</a>);
+<a id='L150' name='L150' />
+<a id='L151' name='L151' />  <em class='comment'>// This lock protects all the data members.  cached_entries and cache_size_</em>
+<a id='L152' name='L152' />  <em class='comment'>// may be looked at without holding the lock.</em>
+<a id='L153' name='L153' />  <a href='../Y/802.html' title='Multiple used in 48 places.'>SpinLock</a> <a href='../Y/3314.html' title='Multiple used in 57 places.'>lock_</a>;
+<a id='L154' name='L154' />
+<a id='L155' name='L155' />  <em class='comment'>// We keep linked lists of empty and non-empty spans.</em>
+<a id='L156' name='L156' />  <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a>   <a href='../Y/4876.html' title='Multiple used in 14 places.'>size_class_</a>;     <em class='comment'>// My size class</em>
+<a id='L157' name='L157' />  <a href='../S/607.html#L44' title='Defined at 44 in third_party/google-perftools-1.8.3/src/span.h.'>Span</a>     <a href='../Y/2175.html' title='Multiple used in 3 places.'>empty_</a>;          <em class='comment'>// Dummy header for list of empty spans</em>
+<a id='L158' name='L158' />  <a href='../S/607.html#L44' title='Defined at 44 in third_party/google-perftools-1.8.3/src/span.h.'>Span</a>     <a href='../Y/3835.html' title='Multiple used in 6 places.'>nonempty_</a>;       <em class='comment'>// Dummy header for list of non-empty spans</em>
+<a id='L159' name='L159' />  <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a>   <a href='../Y/3882.html' title='Multiple used in 5 places.'>num_spans_</a>;      <em class='comment'>// Number of spans in empty_ plus nonempty_</em>
+<a id='L160' name='L160' />  <a href='../D/5108.html' title='Multiple defined in 2 places.'>size_t</a>   <a href='../Y/1878.html' title='Multiple used in 7 places.'>counter_</a>;        <em class='comment'>// Number of free objects in cache entry</em>
+<a id='L161' name='L161' />
+<a id='L162' name='L162' />  <em class='comment'>// Here we reserve space for TCEntry cache slots.  Space is preallocated</em>
+<a id='L163' name='L163' />  <em class='comment'>// for the largest possible number of entries than any one size class may</em>
+<a id='L164' name='L164' />  <em class='comment'>// accumulate.  Not all size classes are allowed to accumulate</em>
+<a id='L165' name='L165' />  <em class='comment'>// kMaxNumTransferEntries, so there is some wasted space for those size</em>
+<a id='L166' name='L166' />  <em class='comment'>// classes.</em>
+<a id='L167' name='L167' />  <a href='../S/550.html#L86' title='Defined at 86 in third_party/google-perftools-1.8.3/src/central_freelist.h.'>TCEntry</a> <a href='../Y/5321.html' title='Multiple used in 4 places.'>tc_slots_</a>[<a href='../Y/3059.html' title='Multiple used in 4 places.'>kMaxNumTransferEntries</a>];
+<a id='L168' name='L168' />
+<a id='L169' name='L169' />  <em class='comment'>// Number of currently used cached entries in tc_slots_.  This variable is</em>
+<a id='L170' name='L170' />  <em class='comment'>// updated under a lock but can be read without one.</em>
+<a id='L171' name='L171' />  <a href='../S/686.html#L104' title='Defined at 104 in third_party/google-perftools-1.8.3/src/windows/port.h.'>int32_t</a> <a href='../Y/5566.html' title='Multiple used in 12 places.'>used_slots_</a>;
+<a id='L172' name='L172' />  <em class='comment'>// The current number of slots for this size class.  This is an</em>
+<a id='L173' name='L173' />  <em class='comment'>// adaptive value that is increased if there is lots of traffic</em>
+<a id='L174' name='L174' />  <em class='comment'>// on a given size class.</em>
+<a id='L175' name='L175' />  <a href='../S/686.html#L104' title='Defined at 104 in third_party/google-perftools-1.8.3/src/windows/port.h.'>int32_t</a> <a href='../Y/1718.html' title='Multiple used in 17 places.'>cache_size_</a>;
+<a id='L176' name='L176' />  <em class='comment'>// Maximum size of the cache for a given size class.</em>
+<a id='L177' name='L177' />  <a href='../S/686.html#L104' title='Defined at 104 in third_party/google-perftools-1.8.3/src/windows/port.h.'>int32_t</a> <a href='../Y/3441.html' title='Multiple used in 8 places.'>max_cache_size_</a>;
+<a id='L178' name='L178' /><em class='brace'>}</em>;
+<a id='L179' name='L179' />
+<a id='L180' name='L180' /><em class='comment'>// Pads each CentralCache object to multiple of 64 bytes.  Since some</em>
+<a id='L181' name='L181' /><em class='comment'>// compilers (such as MSVC) don't like it when the padding is 0, I use</em>
+<a id='L182' name='L182' /><em class='comment'>// template specialization to remove the padding entirely when</em>
+<a id='L183' name='L183' /><em class='comment'>// sizeof(CentralFreeList) is a multiple of 64.</em>
+<a id='L184' name='L184' /><a href='../Y/5333.html' title='Multiple used in 38 places.'>template</a>&lt;<strong class='reserved'>int</strong> <a href='../Y/3005.html' title='Multiple used in 2 places.'>kFreeListSizeMod64</a>&gt;
+<a id='L185' name='L185' /><a href='../Y/1792.html' title='Multiple used in 90 places.'>class</a> <a href='../Y/78.html' title='Multiple used in 3 places.'>CentralFreeListPaddedTo</a> : <a href='../Y/4390.html' title='Multiple used in 61 places.'>public</a> <a href='../Y/76.html' title='Multiple used in 18 places.'>CentralFreeList</a> <em class='brace'>{</em>
+<a id='L186' name='L186' /> <a href='../Y/4261.html' title='Multiple used in 50 places.'>private</a>:
+<a id='L187' name='L187' />  <strong class='reserved'>char</strong> pad_[64 - <a href='../Y/3005.html' title='Multiple used in 2 places.'>kFreeListSizeMod64</a>];
+<a id='L188' name='L188' /><em class='brace'>}</em>;
+<a id='L189' name='L189' />
+<a id='L190' name='L190' /><a href='../Y/5333.html' title='Multiple used in 38 places.'>template</a>&lt;&gt;
+<a id='L191' name='L191' /><a href='../Y/1792.html' title='Multiple used in 90 places.'>class</a> <a href='../Y/78.html' title='Multiple used in 3 places.'>CentralFreeListPaddedTo</a>&lt;0&gt; : <a href='../Y/4390.html' title='Multiple used in 61 places.'>public</a> <a href='../Y/76.html' title='Multiple used in 18 places.'>CentralFreeList</a> <em class='brace'>{</em>
+<a id='L192' name='L192' /><em class='brace'>}</em>;
+<a id='L193' name='L193' />
+<a id='L194' name='L194' /><a href='../Y/1792.html' title='Multiple used in 90 places.'>class</a> <a href='../Y/77.html' title='Multiple used in 4 places.'>CentralFreeListPadded</a> : <a href='../Y/4390.html' title='Multiple used in 61 places.'>public</a> <a href='../Y/78.html' title='Multiple used in 3 places.'>CentralFreeListPaddedTo</a>&lt;
+<a id='L195' name='L195' />  <strong class='reserved'>sizeof</strong>(<a href='../Y/76.html' title='Multiple used in 18 places.'>CentralFreeList</a>) % 64&gt; <em class='brace'>{</em>
+<a id='L196' name='L196' /><em class='brace'>}</em>;
+<a id='L197' name='L197' />
+<a id='L198' name='L198' /><em class='brace'>}</em>  <em class='comment'>// namespace tcmalloc</em>
+<a id='L199' name='L199' />
+<a id='L200' name='L200' /><em class='sharp'>#endif</em>  <em class='comment'>// TCMALLOC_CENTRAL_FREELIST_H_</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM' />
+<em class='comment'>/* [&lt;][&gt;][^][v]<a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

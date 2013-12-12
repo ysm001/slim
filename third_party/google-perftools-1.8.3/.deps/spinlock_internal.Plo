@@ -1,0 +1,165 @@
+spinlock_internal.lo spinlock_internal.o: src/base/spinlock_internal.cc \
+  src/base/spinlock_internal.h ../../src/config.h src/base/basictypes.h \
+  /usr/include/string.h /usr/include/_types.h /usr/include/sys/_types.h \
+  /usr/include/sys/cdefs.h /usr/include/sys/_symbol_aliasing.h \
+  /usr/include/sys/_posix_availability.h /usr/include/machine/_types.h \
+  /usr/include/i386/_types.h /usr/include/Availability.h \
+  /usr/include/AvailabilityInternal.h /usr/include/strings.h \
+  /usr/include/inttypes.h /usr/include/stdint.h /usr/include/sys/types.h \
+  /usr/include/sys/appleapiopts.h /usr/include/machine/types.h \
+  /usr/include/i386/types.h /usr/include/i386/_types.h \
+  /usr/include/machine/endian.h /usr/include/i386/endian.h \
+  /usr/include/sys/_endian.h /usr/include/libkern/_OSByteOrder.h \
+  /usr/include/libkern/i386/_OSByteOrder.h /usr/include/sys/_structs.h \
+  /usr/include/mach-o/getsect.h /usr/include/mach-o/loader.h \
+  /usr/include/mach/machine.h /usr/include/mach/machine/vm_types.h \
+  /usr/include/mach/i386/vm_types.h /usr/include/mach/i386/vm_param.h \
+  /usr/include/mach/boolean.h /usr/include/mach/machine/boolean.h \
+  /usr/include/mach/i386/boolean.h /usr/include/mach/vm_prot.h \
+  /usr/include/mach/machine/thread_status.h \
+  /usr/include/mach/i386/thread_status.h \
+  /usr/include/mach/i386/_structs.h /usr/include/mach/message.h \
+  /usr/include/mach/port.h /usr/include/mach/kern_return.h \
+  /usr/include/mach/machine/kern_return.h \
+  /usr/include/mach/i386/kern_return.h /usr/include/mach/i386/fp_reg.h \
+  /usr/include/mach/i386/thread_state.h /usr/include/i386/eflags.h \
+  /usr/include/architecture/byte_order.h \
+  /usr/include/libkern/OSByteOrder.h \
+  /usr/include/libkern/i386/OSByteOrder.h /usr/include/mach-o/dyld.h \
+  /usr/llvm-gcc-4.2/bin/../lib/gcc/i686-apple-darwin11/4.2.1/include/stddef.h \
+  /usr/llvm-gcc-4.2/bin/../lib/gcc/i686-apple-darwin11/4.2.1/include/stdbool.h \
+  src/base/atomicops.h src/base/arm_instruction_set_select.h \
+  src/base/atomicops-internals-macosx.h /usr/include/libkern/OSAtomic.h \
+  src/base/spinlock_posix-inl.h /usr/include/errno.h \
+  /usr/include/sys/errno.h /usr/include/sched.h \
+  /usr/include/pthread_impl.h /usr/include/time.h /usr/include/_structs.h
+
+src/base/spinlock_internal.h:
+
+../../src/config.h:
+
+src/base/basictypes.h:
+
+/usr/include/string.h:
+
+/usr/include/_types.h:
+
+/usr/include/sys/_types.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/sys/_symbol_aliasing.h:
+
+/usr/include/sys/_posix_availability.h:
+
+/usr/include/machine/_types.h:
+
+/usr/include/i386/_types.h:
+
+/usr/include/Availability.h:
+
+/usr/include/AvailabilityInternal.h:
+
+/usr/include/strings.h:
+
+/usr/include/inttypes.h:
+
+/usr/include/stdint.h:
+
+/usr/include/sys/types.h:
+
+/usr/include/sys/appleapiopts.h:
+
+/usr/include/machine/types.h:
+
+/usr/include/i386/types.h:
+
+/usr/include/i386/_types.h:
+
+/usr/include/machine/endian.h:
+
+/usr/include/i386/endian.h:
+
+/usr/include/sys/_endian.h:
+
+/usr/include/libkern/_OSByteOrder.h:
+
+/usr/include/libkern/i386/_OSByteOrder.h:
+
+/usr/include/sys/_structs.h:
+
+/usr/include/mach-o/getsect.h:
+
+/usr/include/mach-o/loader.h:
+
+/usr/include/mach/machine.h:
+
+/usr/include/mach/machine/vm_types.h:
+
+/usr/include/mach/i386/vm_types.h:
+
+/usr/include/mach/i386/vm_param.h:
+
+/usr/include/mach/boolean.h:
+
+/usr/include/mach/machine/boolean.h:
+
+/usr/include/mach/i386/boolean.h:
+
+/usr/include/mach/vm_prot.h:
+
+/usr/include/mach/machine/thread_status.h:
+
+/usr/include/mach/i386/thread_status.h:
+
+/usr/include/mach/i386/_structs.h:
+
+/usr/include/mach/message.h:
+
+/usr/include/mach/port.h:
+
+/usr/include/mach/kern_return.h:
+
+/usr/include/mach/machine/kern_return.h:
+
+/usr/include/mach/i386/kern_return.h:
+
+/usr/include/mach/i386/fp_reg.h:
+
+/usr/include/mach/i386/thread_state.h:
+
+/usr/include/i386/eflags.h:
+
+/usr/include/architecture/byte_order.h:
+
+/usr/include/libkern/OSByteOrder.h:
+
+/usr/include/libkern/i386/OSByteOrder.h:
+
+/usr/include/mach-o/dyld.h:
+
+/usr/llvm-gcc-4.2/bin/../lib/gcc/i686-apple-darwin11/4.2.1/include/stddef.h:
+
+/usr/llvm-gcc-4.2/bin/../lib/gcc/i686-apple-darwin11/4.2.1/include/stdbool.h:
+
+src/base/atomicops.h:
+
+src/base/arm_instruction_set_select.h:
+
+src/base/atomicops-internals-macosx.h:
+
+/usr/include/libkern/OSAtomic.h:
+
+src/base/spinlock_posix-inl.h:
+
+/usr/include/errno.h:
+
+/usr/include/sys/errno.h:
+
+/usr/include/sched.h:
+
+/usr/include/pthread_impl.h:
+
+/usr/include/time.h:
+
+/usr/include/_structs.h:

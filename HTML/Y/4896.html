@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>sleep_time</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/542.html#L212'>sleep_time</a>        212 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   struct timespec sleep_time;</span>
+<span class='curline'><a href='../S/542.html#L213'>sleep_time</a>        213 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   sleep_time.tv_sec = milliseconds / 1000;</span>
+<span class='curline'><a href='../S/542.html#L214'>sleep_time</a>        214 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   sleep_time.tv_nsec = (milliseconds % 1000) * 1000000;</span>
+<span class='curline'><a href='../S/542.html#L215'>sleep_time</a>        215 third_party/google-perftools-1.8.3/src/base/sysinfo.cc   while (nanosleep(&amp;sleep_time, &amp;sleep_time) != 0 &amp;&amp; errno == EINTR)</span>
+<span class='curline'><a href='../S/568.html#L2263'>sleep_time</a>       2263 third_party/google-perftools-1.8.3/src/heap-checker.cc       const struct timespec sleep_time = { 0, 500000000 };  // 500 ms</span>
+<span class='curline'><a href='../S/568.html#L2264'>sleep_time</a>       2264 third_party/google-perftools-1.8.3/src/heap-checker.cc       nanosleep(&amp;sleep_time, NULL);</span>
+</pre>
+</body>
+</html>

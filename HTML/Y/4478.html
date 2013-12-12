@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>ref_window</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/699.html#L230'>ref_window</a>        230 third_party/zdelta-2.1/deflate.c    (UPDATE_HASH(s, s-&gt;ref_h, s-&gt;ref_window[rw][(str) + (MIN_MATCH-1)]), \</span>
+<span class='curline'><a href='../S/699.html#L436'>ref_window</a>        436 third_party/zdelta-2.1/deflate.c   s-&gt;ref_window[0]=(Bytef *) ZALLOC(strm, s-&gt;w_size*2*(refnum+1),sizeof(Byte));</span>
+<span class='curline'><a href='../S/699.html#L437'>ref_window</a>        437 third_party/zdelta-2.1/deflate.c   s-&gt;window       =(Bytef *) (s-&gt;ref_window[0]+(2*refnum*s-&gt;w_size)); </span>
+<span class='curline'><a href='../S/699.html#L452'>ref_window</a>        452 third_party/zdelta-2.1/deflate.c   if (s-&gt;ref_window  == ZD_NULL || s-&gt;prev        == ZD_NULL ||</span>
+<span class='curline'><a href='../S/699.html#L467'>ref_window</a>        467 third_party/zdelta-2.1/deflate.c     s-&gt;ref_window[i] = (Bytef *) (s-&gt;ref_window[0] +(s-&gt;w_size)*2*i);</span>
+<span class='curline'><a href='../S/699.html#L684'>ref_window</a>        684 third_party/zdelta-2.1/deflate.c   TRY_FREE(strm, strm-&gt;state-&gt;ref_window[0]);</span>
+<span class='curline'><a href='../S/699.html#L906'>ref_window</a>        906 third_party/zdelta-2.1/deflate.c   zmemcpy((Bytef*) s-&gt;ref_window[rw], </span>
+<span class='curline'><a href='../S/699.html#L907'>ref_window</a>        907 third_party/zdelta-2.1/deflate.c 	  (Bytef*) (s-&gt;ref_window[rw]+wsize), </span>
+<span class='curline'><a href='../S/699.html#L909'>ref_window</a>        909 third_party/zdelta-2.1/deflate.c   nb = read_ref_buf(s-&gt;strm,s-&gt;ref_window[rw]+wsize, wsize, rw);</span>
+<span class='curline'><a href='../S/699.html#L924'>ref_window</a>        924 third_party/zdelta-2.1/deflate.c   s-&gt;ref_h = s-&gt;ref_window[rw][0];</span>
+<span class='curline'><a href='../S/699.html#L929'>ref_window</a>        929 third_party/zdelta-2.1/deflate.c   UPDATE_HASH(s, s-&gt;ref_h, s-&gt;ref_window[rw][1]);</span>
+<span class='curline'><a href='../S/699.html#L947'>ref_window</a>        947 third_party/zdelta-2.1/deflate.c     n = read_ref_buf(s-&gt;strm, s-&gt;ref_window[rw], s-&gt;ref_window_size[rw], rw);</span>
+<span class='curline'><a href='../S/699.html#L952'>ref_window</a>        952 third_party/zdelta-2.1/deflate.c     s-&gt;ref_h = s-&gt;ref_window[rw][0];</span>
+<span class='curline'><a href='../S/699.html#L953'>ref_window</a>        953 third_party/zdelta-2.1/deflate.c     UPDATE_HASH(s, s-&gt;ref_h, s-&gt;ref_window[rw][1]);</span>
+<span class='curline'><a href='../S/699.html#L1112'>ref_window</a>       1112 third_party/zdelta-2.1/deflate.c     match = s-&gt;ref_window[rw] + cur_match; </span>
+<span class='curline'><a href='../S/700.html#L147'>ref_window</a>        147 third_party/zdelta-2.1/deflate.h   Bytef *ref_window[REFNUM];	/* zdelta: reference file buffer */</span>
+</pre>
+</body>
+</html>

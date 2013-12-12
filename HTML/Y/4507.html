@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>remove_list_m</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/357.html#L558'>remove_list_m</a>     558 src/membrane.c   struct Vector remove_list_p, remove_list_m, change_list;</span>
+<span class='curline'><a href='../S/357.html#L565'>remove_list_m</a>     565 src/membrane.c   vec_init(&amp;remove_list_m, 16); /* mem用 */</span>
+<span class='curline'><a href='../S/357.html#L582'>remove_list_m</a>     582 src/membrane.c           vec_push(&amp;remove_list_m, (LmnWord)a0);</span>
+<span class='curline'><a href='../S/357.html#L583'>remove_list_m</a>     583 src/membrane.c           vec_push(&amp;remove_list_m, (LmnWord)ipxy);</span>
+<span class='curline'><a href='../S/357.html#L624'>remove_list_m</a>     624 src/membrane.c   for (i = 0; i &lt; vec_num(&amp;remove_list_m); i++) {</span>
+<span class='curline'><a href='../S/357.html#L625'>remove_list_m</a>     625 src/membrane.c     mem_remove_symbol_atom(mem, LMN_SATOM(vec_get(&amp;remove_list_m, i)));</span>
+<span class='curline'><a href='../S/357.html#L626'>remove_list_m</a>     626 src/membrane.c     lmn_delete_atom(LMN_SATOM(vec_get(&amp;remove_list_m, i)));</span>
+<span class='curline'><a href='../S/357.html#L628'>remove_list_m</a>     628 src/membrane.c   vec_destroy(&amp;remove_list_m);</span>
+</pre>
+</body>
+</html>

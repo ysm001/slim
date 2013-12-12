@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>control_lock_</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/596.html#L141'>control_lock_</a>     141 third_party/google-perftools-1.8.3/src/profile-handler.cc   int32 callback_count_ GUARDED_BY(control_lock_);</span>
+<span class='curline'><a href='../S/596.html#L157'>control_lock_</a>     157 third_party/google-perftools-1.8.3/src/profile-handler.cc   } timer_sharing_ GUARDED_BY(control_lock_);</span>
+<span class='curline'><a href='../S/596.html#L165'>control_lock_</a>     165 third_party/google-perftools-1.8.3/src/profile-handler.cc   SpinLock control_lock_ ACQUIRED_BEFORE(signal_lock_);</span>
+<span class='curline'><a href='../S/596.html#L188'>control_lock_</a>     188 third_party/google-perftools-1.8.3/src/profile-handler.cc   void StartTimer() EXCLUSIVE_LOCKS_REQUIRED(control_lock_);</span>
+<span class='curline'><a href='../S/596.html#L193'>control_lock_</a>     193 third_party/google-perftools-1.8.3/src/profile-handler.cc   void StopTimer() EXCLUSIVE_LOCKS_REQUIRED(control_lock_);</span>
+<span class='curline'><a href='../S/596.html#L198'>control_lock_</a>     198 third_party/google-perftools-1.8.3/src/profile-handler.cc   bool IsTimerRunning() EXCLUSIVE_LOCKS_REQUIRED(control_lock_);</span>
+<span class='curline'><a href='../S/596.html#L201'>control_lock_</a>     201 third_party/google-perftools-1.8.3/src/profile-handler.cc   void EnableHandler() EXCLUSIVE_LOCKS_REQUIRED(control_lock_);</span>
+<span class='curline'><a href='../S/596.html#L204'>control_lock_</a>     204 third_party/google-perftools-1.8.3/src/profile-handler.cc   void DisableHandler() EXCLUSIVE_LOCKS_REQUIRED(control_lock_);</span>
+<span class='curline'><a href='../S/596.html#L252'>control_lock_</a>     252 third_party/google-perftools-1.8.3/src/profile-handler.cc   SpinLockHolder cl(&amp;control_lock_);</span>
+<span class='curline'><a href='../S/596.html#L290'>control_lock_</a>     290 third_party/google-perftools-1.8.3/src/profile-handler.cc   SpinLockHolder cl(&amp;control_lock_);</span>
+<span class='curline'><a href='../S/596.html#L344'>control_lock_</a>     344 third_party/google-perftools-1.8.3/src/profile-handler.cc   SpinLockHolder cl(&amp;control_lock_);</span>
+<span class='curline'><a href='../S/596.html#L360'>control_lock_</a>     360 third_party/google-perftools-1.8.3/src/profile-handler.cc   SpinLockHolder cl(&amp;control_lock_);</span>
+<span class='curline'><a href='../S/596.html#L385'>control_lock_</a>     385 third_party/google-perftools-1.8.3/src/profile-handler.cc   SpinLockHolder cl(&amp;control_lock_);</span>
+<span class='curline'><a href='../S/596.html#L405'>control_lock_</a>     405 third_party/google-perftools-1.8.3/src/profile-handler.cc   SpinLockHolder cl(&amp;control_lock_);</span>
+</pre>
+</body>
+</html>

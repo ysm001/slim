@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>data_i</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/367.html#L182'>data_i</a>            182 src/runtime_status.c   unsigned int data_i, th_id;</span>
+<span class='curline'><a href='../S/367.html#L184'>data_i</a>            184 src/runtime_status.c   for (data_i = 0; data_i &lt; ARY_SIZEOF(total-&gt;times); data_i++) {</span>
+<span class='curline'><a href='../S/367.html#L186'>data_i</a>            186 src/runtime_status.c       TimeProfiler *p = &amp;(lmn_prof.lv3[th_id].times[data_i]);</span>
+<span class='curline'><a href='../S/367.html#L187'>data_i</a>            187 src/runtime_status.c       total-&gt;times[data_i].called_num += p-&gt;called_num;</span>
+<span class='curline'><a href='../S/367.html#L188'>data_i</a>            188 src/runtime_status.c       total-&gt;times[data_i].total_time += p-&gt;total_time;</span>
+<span class='curline'><a href='../S/367.html#L190'>data_i</a>            190 src/runtime_status.c     if (total-&gt;times[data_i].total_time &gt; 0.0) {</span>
+<span class='curline'><a href='../S/367.html#L191'>data_i</a>            191 src/runtime_status.c       total-&gt;times[data_i].total_time /= lmn_prof.thread_num;</span>
+<span class='curline'><a href='../S/367.html#L195'>data_i</a>            195 src/runtime_status.c   for (data_i = 0; data_i &lt; ARY_SIZEOF(total-&gt;counters); data_i++) {</span>
+<span class='curline'><a href='../S/367.html#L197'>data_i</a>            197 src/runtime_status.c       total-&gt;counters[data_i] += lmn_prof.lv3[th_id].counters[data_i];</span>
+<span class='curline'><a href='../S/367.html#L201'>data_i</a>            201 src/runtime_status.c   for (data_i = 0; data_i &lt; ARY_SIZEOF(total-&gt;spaces); data_i++) {</span>
+<span class='curline'><a href='../S/367.html#L204'>data_i</a>            204 src/runtime_status.c       total-&gt;spaces[data_i].space.cur  += p-&gt;spaces[data_i].space.cur;</span>
+<span class='curline'><a href='../S/367.html#L205'>data_i</a>            205 src/runtime_status.c       total-&gt;spaces[data_i].space.peak += p-&gt;spaces[data_i].space.peak;</span>
+<span class='curline'><a href='../S/367.html#L206'>data_i</a>            206 src/runtime_status.c       total-&gt;spaces[data_i].num.cur    += p-&gt;spaces[data_i].space.cur;</span>
+<span class='curline'><a href='../S/367.html#L207'>data_i</a>            207 src/runtime_status.c       total-&gt;spaces[data_i].num.peak   += p-&gt;spaces[data_i].num.peak;</span>
+</pre>
+</body>
+</html>

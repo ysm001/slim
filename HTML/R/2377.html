@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>TAG_IN_BYTE</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/415.html#L115'>TAG_IN_BYTE</a>       115 src/verifier/binstr_compress.c   org_8len = (org-&gt;len + 1) / TAG_IN_BYTE;</span>
+<span class='curline'><a href='../S/415.html#L125'>TAG_IN_BYTE</a>       125 src/verifier/binstr_compress.c   cmp-&gt;len = cmp_8len * TAG_IN_BYTE + ((org-&gt;len &amp; 0x1U) ? 1 : 0);</span>
+<span class='curline'><a href='../S/415.html#L159'>TAG_IN_BYTE</a>       159 src/verifier/binstr_compress.c   cmp_8len = cmp-&gt;len / TAG_IN_BYTE;</span>
+<span class='curline'><a href='../S/415.html#L169'>TAG_IN_BYTE</a>       169 src/verifier/binstr_compress.c   org-&gt;len  = org_8len * TAG_IN_BYTE - ((cmp-&gt;len &amp; 0x1U) ? 1 : 0);</span>
+<span class='curline'><a href='../S/415.html#L228'>TAG_IN_BYTE</a>       228 src/verifier/binstr_compress.c   org_8len = (org-&gt;len + 1) / TAG_IN_BYTE;</span>
+<span class='curline'><a href='../S/415.html#L229'>TAG_IN_BYTE</a>       229 src/verifier/binstr_compress.c   ref_8len = (ref-&gt;len + 1) / TAG_IN_BYTE;</span>
+<span class='curline'><a href='../S/415.html#L253'>TAG_IN_BYTE</a>       253 src/verifier/binstr_compress.c   dif-&gt;len  = dif_8len * TAG_IN_BYTE + ((org-&gt;len &amp; 0x1U) ? 1 : 0);</span>
+<span class='curline'><a href='../S/415.html#L285'>TAG_IN_BYTE</a>       285 src/verifier/binstr_compress.c   ref_8len = (ref-&gt;len + 1) / TAG_IN_BYTE;</span>
+<span class='curline'><a href='../S/415.html#L286'>TAG_IN_BYTE</a>       286 src/verifier/binstr_compress.c   dif_8len = dif-&gt;len / TAG_IN_BYTE;</span>
+<span class='curline'><a href='../S/415.html#L311'>TAG_IN_BYTE</a>       311 src/verifier/binstr_compress.c   org-&gt;len  = org_8len * TAG_IN_BYTE - ((dif-&gt;len &amp; 0x1U) ? 1 : 0);</span>
+<span class='curline'><a href='../S/436.html#L158'>TAG_IN_BYTE</a>       158 src/verifier/mem_encode.c #define BS_PROC_REF_SIZE       (TAG_IN_BYTE * sizeof(uint32_t))         /* 訪問番号(4byteへ拡張したが, sizeof(ProcessID)とするのが好ましいはず) */</span>
+<span class='curline'><a href='../S/436.html#L159'>TAG_IN_BYTE</a>       159 src/verifier/mem_encode.c #define BS_ATOM_REF_ARG_SIZE   (TAG_IN_BYTE * sizeof(LmnArity))         /* アトムあたりのリンク本数は127本までなので1Byteで良い */</span>
+<span class='curline'><a href='../S/436.html#L160'>TAG_IN_BYTE</a>       160 src/verifier/mem_encode.c #define BS_FUNCTOR_SIZE        (TAG_IN_BYTE * sizeof(LmnFunctor))       /* Functor ID */</span>
+<span class='curline'><a href='../S/436.html#L161'>TAG_IN_BYTE</a>       161 src/verifier/mem_encode.c #define BS_INT_SIZE            (TAG_IN_BYTE * SIZEOF_LONG)              /* lmntalにおける整数データは1wordであるためlongで良い */</span>
+<span class='curline'><a href='../S/436.html#L162'>TAG_IN_BYTE</a>       162 src/verifier/mem_encode.c #define BS_MEM_NAME_SIZE       (TAG_IN_BYTE * sizeof(lmn_interned_str)) /* 膜名 */</span>
+<span class='curline'><a href='../S/436.html#L163'>TAG_IN_BYTE</a>       163 src/verifier/mem_encode.c #define BS_RULESET_SIZE        (TAG_IN_BYTE * sizeof(LmnRulesetId))     /* ルールセットID */</span>
+<span class='curline'><a href='../S/436.html#L164'>TAG_IN_BYTE</a>       164 src/verifier/mem_encode.c #define BS_RULESET_NUM_SIZE    (TAG_IN_BYTE * sizeof(uint32_t))         /* ルールセット数 */</span>
+<span class='curline'><a href='../S/436.html#L165'>TAG_IN_BYTE</a>       165 src/verifier/mem_encode.c #define BS_RULE_NUM_SIZE       (TAG_IN_BYTE * sizeof(uint32_t))         /* ルール数 */</span>
+<span class='curline'><a href='../S/436.html#L166'>TAG_IN_BYTE</a>       166 src/verifier/mem_encode.c #define BS_DBL_SIZE            (TAG_IN_BYTE * sizeof(double))           /* 浮動小数点数 */</span>
+<span class='curline'><a href='../S/436.html#L167'>TAG_IN_BYTE</a>       167 src/verifier/mem_encode.c #define BS_STR_ID_SIZE         (TAG_IN_BYTE * sizeof(lmn_interned_str)) /* 文字列に対応させたID */</span>
+<span class='curline'><a href='../S/436.html#L170'>TAG_IN_BYTE</a>       170 src/verifier/mem_encode.c #define BS_HLINK_NUM_SIZE      (TAG_IN_BYTE * sizeof(LmnHlinkRank))     /* ハイパーリンクの接続個数. 同型性判定で使う */</span>
+<span class='curline'><a href='../S/436.html#L232'>TAG_IN_BYTE</a>       232 src/verifier/mem_encode.c   bs-&gt;len  = real_len * TAG_IN_BYTE;</span>
+<span class='curline'><a href='../S/436.html#L245'>TAG_IN_BYTE</a>       245 src/verifier/mem_encode.c   v_len_real  = ((src_bs-&gt;len + 1)/ TAG_IN_BYTE);</span>
+<span class='curline'><a href='../S/436.html#L270'>TAG_IN_BYTE</a>       270 src/verifier/mem_encode.c   return sizeof(struct LmnBinStr) + sizeof(BYTE) * ((bs-&gt;len + 1)/ TAG_IN_BYTE);</span>
+<span class='curline'><a href='../S/436.html#L292'>TAG_IN_BYTE</a>       292 src/verifier/mem_encode.c   p-&gt;size  = BS_TBL_SIZE * TAG_IN_BYTE;</span>
+<span class='curline'><a href='../S/436.html#L293'>TAG_IN_BYTE</a>       293 src/verifier/mem_encode.c   p-&gt;v     = LMN_NALLOC(BYTE, p-&gt;size / TAG_IN_BYTE);</span>
+<span class='curline'><a href='../S/436.html#L313'>TAG_IN_BYTE</a>       313 src/verifier/mem_encode.c   return (p-&gt;len / TAG_IN_BYTE) + sizeof(struct LmnBinStr);</span>
+<span class='curline'><a href='../S/436.html#L325'>TAG_IN_BYTE</a>       325 src/verifier/mem_encode.c   hval = lmn_byte_hash(a-&gt;v, (a-&gt;len + 1) / TAG_IN_BYTE);</span>
+<span class='curline'><a href='../S/436.html#L348'>TAG_IN_BYTE</a>       348 src/verifier/mem_encode.c     int org_size = bs-&gt;size / TAG_IN_BYTE;</span>
+<span class='curline'><a href='../S/436.html#L350'>TAG_IN_BYTE</a>       350 src/verifier/mem_encode.c     bs-&gt;v = LMN_REALLOC(BYTE, bs-&gt;v, bs-&gt;size / TAG_IN_BYTE);</span>
+<span class='curline'><a href='../S/436.html#L351'>TAG_IN_BYTE</a>       351 src/verifier/mem_encode.c     memset(bs-&gt;v + org_size, 0x0U, sizeof(BYTE) * ((bs-&gt;size / TAG_IN_BYTE) - org_size));</span>
+<span class='curline'><a href='../S/436.html#L385'>TAG_IN_BYTE</a>       385 src/verifier/mem_encode.c     int org_size = bs-&gt;size / TAG_IN_BYTE;</span>
+<span class='curline'><a href='../S/436.html#L387'>TAG_IN_BYTE</a>       387 src/verifier/mem_encode.c     bs-&gt;v = LMN_REALLOC(BYTE, bs-&gt;v, bs-&gt;size / TAG_IN_BYTE);</span>
+<span class='curline'><a href='../S/436.html#L388'>TAG_IN_BYTE</a>       388 src/verifier/mem_encode.c     memset(bs-&gt;v + org_size, 0x0U, sizeof(BYTE) * ((bs-&gt;size / TAG_IN_BYTE) - org_size));</span>
+<span class='curline'><a href='../S/436.html#L446'>TAG_IN_BYTE</a>       446 src/verifier/mem_encode.c     v.t[i] = binstr_get_byte(bs, pos + (7-i) * TAG_IN_BYTE);</span>
+<span class='curline'><a href='../S/436.html#L475'>TAG_IN_BYTE</a>       475 src/verifier/mem_encode.c   LMN_ASSERT(BS_PROC_REF_SIZE == (sizeof(uint32_t) * TAG_IN_BYTE));</span>
+<span class='curline'><a href='../S/436.html#L556'>TAG_IN_BYTE</a>       556 src/verifier/mem_encode.c   ret = lmn_byte_cmp(a-&gt;v, (a-&gt;len + 1) / TAG_IN_BYTE,</span>
+<span class='curline'><a href='../S/436.html#L557'>TAG_IN_BYTE</a>       557 src/verifier/mem_encode.c                      b-&gt;v, (b-&gt;len + 1) / TAG_IN_BYTE);</span>
+<span class='curline'><a href='../S/436.html#L629'>TAG_IN_BYTE</a>       629 src/verifier/mem_encode.c   log = LMN_NALLOC(BsDecodeLog, len * TAG_IN_BYTE);</span>
+<span class='curline'><a href='../S/436.html#L922'>TAG_IN_BYTE</a>       922 src/verifier/mem_encode.c       bsptr_push(p, (BYTE*)&amp;name, sizeof(lmn_interned_str)*TAG_IN_BYTE);</span>
+<span class='curline'><a href='../S/436.html#L1629'>TAG_IN_BYTE</a>      1629 src/verifier/mem_encode.c   log    = LMN_NALLOC(BsDecodeLog, bs-&gt;len * TAG_IN_BYTE);</span>
+<span class='curline'><a href='../S/436.html#L2300'>TAG_IN_BYTE</a>      2300 src/verifier/mem_encode.c   ref_log = LMN_NALLOC(BsDecodeLog, round2up(binstr_byte_size(bs) * TAG_IN_BYTE));</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>rnd_</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/603.html#L80'>rnd_</a>               80 third_party/google-perftools-1.8.3/src/sampler.cc     rnd_ = seed;</span>
+<span class='curline'><a href='../S/603.html#L82'>rnd_</a>               82 third_party/google-perftools-1.8.3/src/sampler.cc     rnd_ = static_cast&lt;uint32_t&gt;(reinterpret_cast&lt;uintptr_t&gt;(this));</span>
+<span class='curline'><a href='../S/603.html#L83'>rnd_</a>               83 third_party/google-perftools-1.8.3/src/sampler.cc     if (rnd_ == 0) {</span>
+<span class='curline'><a href='../S/603.html#L84'>rnd_</a>               84 third_party/google-perftools-1.8.3/src/sampler.cc       rnd_ = 1;</span>
+<span class='curline'><a href='../S/603.html#L89'>rnd_</a>               89 third_party/google-perftools-1.8.3/src/sampler.cc     rnd_ = NextRandom(rnd_);</span>
+<span class='curline'><a href='../S/603.html#L112'>rnd_</a>              112 third_party/google-perftools-1.8.3/src/sampler.cc   rnd_ = NextRandom(rnd_);</span>
+<span class='curline'><a href='../S/603.html#L119'>rnd_</a>              119 third_party/google-perftools-1.8.3/src/sampler.cc   double q = static_cast&lt;uint32_t&gt;(rnd_ &gt;&gt; (prng_mod_power - 26)) + 1.0;</span>
+<span class='curline'><a href='../S/604.html#L124'>rnd_</a>              124 third_party/google-perftools-1.8.3/src/sampler.h   static uint64_t NextRandom(uint64_t rnd_);  // Returns the next prng value</span>
+<span class='curline'><a href='../S/604.html#L130'>rnd_</a>              130 third_party/google-perftools-1.8.3/src/sampler.h   uint64_t      rnd_;                   // Cheap random number generator</span>
+<span class='curline'><a href='../S/657.html#L444'>rnd_</a>              444 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   uint32_t rnd_;                   // Cheap random number generator</span>
+<span class='curline'><a href='../S/657.html#L459'>rnd_</a>              459 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc     rnd_ = seed;</span>
+<span class='curline'><a href='../S/657.html#L461'>rnd_</a>              461 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc     rnd_ = 12345;</span>
+<span class='curline'><a href='../S/657.html#L474'>rnd_</a>              474 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   uint32_t r = rnd_;</span>
+<span class='curline'><a href='../S/657.html#L475'>rnd_</a>              475 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   rnd_ = (r &lt;&lt; 1) ^ ((static_cast&lt;int32_t&gt;(r) &gt;&gt; 31) &amp; kPoly);</span>
+<span class='curline'><a href='../S/657.html#L489'>rnd_</a>              489 third_party/google-perftools-1.8.3/src/tests/sampler_test.cc   bytes_until_sample_ += rnd_ % sample_period;</span>
+<span class='curline'><a href='../S/664.html#L340'>rnd_</a>              340 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   AllocatorState        rnd_;           // For generating random numbers</span>
+<span class='curline'><a href='../S/664.html#L378'>rnd_</a>              378 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc       rnd_(id+1),</span>
+<span class='curline'><a href='../S/664.html#L394'>rnd_</a>              394 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     rnd_.AddType(ALLOC,  FLAGS_allocweight,   "allocate");</span>
+<span class='curline'><a href='../S/664.html#L395'>rnd_</a>              395 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     rnd_.AddType(FREE,   FLAGS_freeweight,    "free");</span>
+<span class='curline'><a href='../S/664.html#L396'>rnd_</a>              396 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     rnd_.AddType(UPDATE, FLAGS_updateweight,  "update");</span>
+<span class='curline'><a href='../S/664.html#L397'>rnd_</a>              397 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     rnd_.AddType(PASS,   FLAGS_passweight,    "pass");</span>
+<span class='curline'><a href='../S/664.html#L402'>rnd_</a>              402 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc       switch (rnd_.PickType()) {</span>
+<span class='curline'><a href='../S/664.html#L421'>rnd_</a>              421 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     object.size = rnd_.Skewed(FLAGS_lgmaxsize);</span>
+<span class='curline'><a href='../S/664.html#L422'>rnd_</a>              422 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     object.ptr = static_cast&lt;char*&gt;(rnd_.alloc(object.size));</span>
+<span class='curline'><a href='../S/664.html#L433'>rnd_</a>              433 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     const int index = rnd_.Uniform(heap_.size());</span>
+<span class='curline'><a href='../S/664.html#L442'>rnd_</a>              442 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     const int index = rnd_.Uniform(heap_.size());</span>
+<span class='curline'><a href='../S/664.html#L470'>rnd_</a>              470 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     const int index = rnd_.Uniform(heap_.size());</span>
+<span class='curline'><a href='../S/664.html#L475'>rnd_</a>              475 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     const int tid = rnd_.Uniform(FLAGS_numthreads);</span>
+</pre>
+</body>
+</html>

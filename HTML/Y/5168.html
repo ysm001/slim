@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>succ_s</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/419.html#L824'>succ_s</a>            824 src/verifier/dpor.c     State *succ_s;</span>
+<span class='curline'><a href='../S/419.html#L827'>succ_s</a>            827 src/verifier/dpor.c       succ_s = transition_next_state(succ_t);</span>
+<span class='curline'><a href='../S/419.html#L830'>succ_s</a>            830 src/verifier/dpor.c       succ_s = (State *)vec_get(RC_EXPANDED(rc), i);</span>
+<span class='curline'><a href='../S/419.html#L832'>succ_s</a>            832 src/verifier/dpor.c     state_free(succ_s);</span>
+<span class='curline'><a href='../S/421.html#L235'>succ_s</a>            235 src/verifier/dpor_naive.c       State *succ_s;</span>
+<span class='curline'><a href='../S/421.html#L237'>succ_s</a>            237 src/verifier/dpor_naive.c       succ_s = transition_next_state(succ_t);</span>
+<span class='curline'><a href='../S/421.html#L239'>succ_s</a>            239 src/verifier/dpor_naive.c       s-&gt;successors[i] = (succ_data_t)succ_s;</span>
+<span class='curline'><a href='../S/421.html#L414'>succ_s</a>            414 src/verifier/dpor_naive.c                                                  State      *succ_s,</span>
+<span class='curline'><a href='../S/421.html#L421'>succ_s</a>            421 src/verifier/dpor_naive.c   succ_m = state_mem(succ_s);</span>
+<span class='curline'><a href='../S/421.html#L422'>succ_s</a>            422 src/verifier/dpor_naive.c   t = statespace_insert(ss, succ_s);</span>
+<span class='curline'><a href='../S/421.html#L425'>succ_s</a>            425 src/verifier/dpor_naive.c   if (t == succ_s) {</span>
+<span class='curline'><a href='../S/421.html#L427'>succ_s</a>            427 src/verifier/dpor_naive.c     state_id_issue(succ_s);</span>
+<span class='curline'><a href='../S/421.html#L428'>succ_s</a>            428 src/verifier/dpor_naive.c     if (mc_is_dump(org_f)) dump_state_data(succ_s, (LmnWord)stdout, (LmnWord)NULL);</span>
+<span class='curline'><a href='../S/421.html#L430'>succ_s</a>            430 src/verifier/dpor_naive.c     if (new_ss) vec_push(new_ss, (vec_data_t)succ_s);</span>
+<span class='curline'><a href='../S/421.html#L599'>succ_s</a>            599 src/verifier/dpor_naive.c     State    *succ_s;</span>
+<span class='curline'><a href='../S/421.html#L602'>succ_s</a>            602 src/verifier/dpor_naive.c     succ_s = transition_next_state(succ_t);</span>
+<span class='curline'><a href='../S/421.html#L604'>succ_s</a>            604 src/verifier/dpor_naive.c     if (!is_por_expanded(succ_s)) {</span>
+<span class='curline'><a href='../S/421.html#L607'>succ_s</a>            607 src/verifier/dpor_naive.c       por_gen_successors(succ_s, mc_por.rc, a, psyms);</span>
+<span class='curline'><a href='../S/421.html#L608'>succ_s</a>            608 src/verifier/dpor_naive.c       por_store_successors(succ_s, mc_por.rc, FALSE); /* 2step目の遷移のIDはテーブルに登録しない */</span>
+<span class='curline'><a href='../S/421.html#L610'>succ_s</a>            610 src/verifier/dpor_naive.c       set_por_expanded(succ_s);</span>
+<span class='curline'><a href='../S/421.html#L750'>succ_s</a>            750 src/verifier/dpor_naive.c       State *succ_s = transition_next_state(succ_t);</span>
+<span class='curline'><a href='../S/421.html#L752'>succ_s</a>            752 src/verifier/dpor_naive.c       if (!is_independency_checked(succ_s)) {</span>
+<span class='curline'><a href='../S/421.html#L753'>succ_s</a>            753 src/verifier/dpor_naive.c         independency_check(succ_s, a, psyms);</span>
+<span class='curline'><a href='../S/421.html#L754'>succ_s</a>            754 src/verifier/dpor_naive.c         for (i = 0; i &lt; state_succ_num(succ_s); i++) {</span>
+<span class='curline'><a href='../S/421.html#L755'>succ_s</a>            755 src/verifier/dpor_naive.c           Transition succ_succ_t = transition(succ_s, i);</span>
+<span class='curline'><a href='../S/421.html#L846'>succ_s</a>            846 src/verifier/dpor_naive.c     State     *succ_s, *t;</span>
+<span class='curline'><a href='../S/421.html#L849'>succ_s</a>            849 src/verifier/dpor_naive.c     succ_s = transition_next_state(succ_t);</span>
+<span class='curline'><a href='../S/421.html#L857'>succ_s</a>            857 src/verifier/dpor_naive.c     t = por_state_insert_statespace(ss, succ_t, succ_s, new_ss, f);</span>
+<span class='curline'><a href='../S/421.html#L859'>succ_s</a>            859 src/verifier/dpor_naive.c     if (!C3_cycle_proviso_satisfied(succ_s, t)) {</span>
+<span class='curline'><a href='../S/421.html#L1066'>succ_s</a>           1066 src/verifier/dpor_naive.c       State      *succ_s;</span>
+<span class='curline'><a href='../S/421.html#L1069'>succ_s</a>           1069 src/verifier/dpor_naive.c       succ_s = transition_next_state(succ_t);</span>
+<span class='curline'><a href='../S/421.html#L1071'>succ_s</a>           1071 src/verifier/dpor_naive.c       if (is_inserted(succ_s) &amp;&amp; is_outside_exist(succ_s)) {</span>
+<span class='curline'><a href='../S/421.html#L1080'>succ_s</a>           1080 src/verifier/dpor_naive.c         if (!is_inserted(succ_s)) {</span>
+<span class='curline'><a href='../S/421.html#L1081'>succ_s</a>           1081 src/verifier/dpor_naive.c           por_state_insert_statespace(ss, succ_t, succ_s, new_ss, f);</span>
+<span class='curline'><a href='../S/421.html#L1114'>succ_s</a>           1114 src/verifier/dpor_naive.c       State     *succ_s;</span>
+<span class='curline'><a href='../S/421.html#L1117'>succ_s</a>           1117 src/verifier/dpor_naive.c       succ_s = transition_next_state(succ_t);</span>
+<span class='curline'><a href='../S/421.html#L1119'>succ_s</a>           1119 src/verifier/dpor_naive.c       if (!is_inserted(succ_s)) {</span>
+<span class='curline'><a href='../S/421.html#L1120'>succ_s</a>           1120 src/verifier/dpor_naive.c         por_state_insert_statespace(ss, succ_t, succ_s, new_ss, f);</span>
+</pre>
+</body>
+</html>

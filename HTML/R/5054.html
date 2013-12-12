@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>uintptr_t</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/505.html#L148'>uintptr_t</a>         148 third_party/google-perftools-1.8.3/src/addressmap-inl.h   typedef uintptr_t Number;</span>
+<span class='curline'><a href='../S/516.html#L114'>uintptr_t</a>         114 third_party/google-perftools-1.8.3/src/base/basictypes.h #define PRINTABLE_PTHREAD(pthreadt) reinterpret_cast&lt;uintptr_t&gt;(pthreadt)</span>
+<span class='curline'><a href='../S/521.html#L194'>uintptr_t</a>         194 third_party/google-perftools-1.8.3/src/base/elf_mem_image.cc   const intptr_t base_as_uintptr_t = reinterpret_cast&lt;uintptr_t&gt;(base);</span>
+<span class='curline'><a href='../S/549.html#L98'>uintptr_t</a>          98 third_party/google-perftools-1.8.3/src/central_freelist.cc   const PageID p = reinterpret_cast&lt;uintptr_t&gt;(object) &gt;&gt; kPageShift;</span>
+<span class='curline'><a href='../S/552.html#L46'>uintptr_t</a>          46 third_party/google-perftools-1.8.3/src/common.h typedef uintptr_t PageID;</span>
+<span class='curline'><a href='../S/552.html#L49'>uintptr_t</a>          49 third_party/google-perftools-1.8.3/src/common.h typedef uintptr_t Length;</span>
+<span class='curline'><a href='../S/552.html#L239'>uintptr_t</a>         239 third_party/google-perftools-1.8.3/src/common.h   uintptr_t size;          // Size of object</span>
+<span class='curline'><a href='../S/552.html#L240'>uintptr_t</a>         240 third_party/google-perftools-1.8.3/src/common.h   uintptr_t depth;         // Number of PC values stored in array below</span>
+<span class='curline'><a href='../S/557.html#L315'>uintptr_t</a>         315 third_party/google-perftools-1.8.3/src/google/heap-checker.h                                          uintptr_t start_address,</span>
+<span class='curline'><a href='../S/557.html#L316'>uintptr_t</a>         316 third_party/google-perftools-1.8.3/src/google/heap-checker.h                                          uintptr_t end_address);</span>
+<span class='curline'><a href='../S/557.html#L389'>uintptr_t</a>         389 third_party/google-perftools-1.8.3/src/google/heap-checker.h       : masked_t_(reinterpret_cast&lt;uintptr_t&gt;(t) ^ kHideMask) {</span>
+<span class='curline'><a href='../S/557.html#L397'>uintptr_t</a>         397 third_party/google-perftools-1.8.3/src/google/heap-checker.h   static const uintptr_t kHideMask =</span>
+<span class='curline'><a href='../S/557.html#L398'>uintptr_t</a>         398 third_party/google-perftools-1.8.3/src/google/heap-checker.h       static_cast&lt;uintptr_t&gt;(0xF03A5F7BF03A5F7Bll);</span>
+<span class='curline'><a href='../S/557.html#L399'>uintptr_t</a>         399 third_party/google-perftools-1.8.3/src/google/heap-checker.h   uintptr_t masked_t_;</span>
+<span class='curline'><a href='../S/559.html#L389'>uintptr_t</a>         389 third_party/google-perftools-1.8.3/src/google/malloc_extension.h   uintptr_t address;    // Address of range</span>
+<span class='curline'><a href='../S/568.html#L357'>uintptr_t</a>         357 third_party/google-perftools-1.8.3/src/heap-checker.cc   uintptr_t size;         // its size</span>
+<span class='curline'><a href='../S/568.html#L404'>uintptr_t</a>         404 third_party/google-perftools-1.8.3/src/heap-checker.cc   uintptr_t start_address;  // the start of the range</span>
+<span class='curline'><a href='../S/568.html#L532'>uintptr_t</a>         532 third_party/google-perftools-1.8.3/src/heap-checker.cc static uintptr_t min_heap_address = uintptr_t(-1LL);</span>
+<span class='curline'><a href='../S/568.html#L533'>uintptr_t</a>         533 third_party/google-perftools-1.8.3/src/heap-checker.cc static uintptr_t max_heap_address = 0;</span>
+<span class='curline'><a href='../S/568.html#L542'>uintptr_t</a>         542 third_party/google-perftools-1.8.3/src/heap-checker.cc inline static uintptr_t AsInt(const void* ptr) {</span>
+<span class='curline'><a href='../S/568.html#L543'>uintptr_t</a>         543 third_party/google-perftools-1.8.3/src/heap-checker.cc   return reinterpret_cast&lt;uintptr_t&gt;(ptr);</span>
+<span class='curline'><a href='../S/568.html#L579'>uintptr_t</a>         579 third_party/google-perftools-1.8.3/src/heap-checker.cc       uintptr_t addr = AsInt(ptr);</span>
+<span class='curline'><a href='../S/568.html#L615'>uintptr_t</a>         615 third_party/google-perftools-1.8.3/src/heap-checker.cc     const uintptr_t *const ptr) {</span>
+<span class='curline'><a href='../S/568.html#L616'>uintptr_t</a>         616 third_party/google-perftools-1.8.3/src/heap-checker.cc   uintptr_t x;</span>
+<span class='curline'><a href='../S/568.html#L635'>uintptr_t</a>         635 third_party/google-perftools-1.8.3/src/heap-checker.cc   uintptr_t top = AsInt(top_ptr);</span>
+<span class='curline'><a href='../S/568.html#L666'>uintptr_t</a>         666 third_party/google-perftools-1.8.3/src/heap-checker.cc         uintptr_t start = AsInt(span-&gt;ptr);</span>
+<span class='curline'><a href='../S/568.html#L667'>uintptr_t</a>         667 third_party/google-perftools-1.8.3/src/heap-checker.cc         uintptr_t end = start + span-&gt;size;</span>
+<span class='curline'><a href='../S/568.html#L675'>uintptr_t</a>         675 third_party/google-perftools-1.8.3/src/heap-checker.cc           uintptr_t stack_start = start;</span>
+<span class='curline'><a href='../S/568.html#L676'>uintptr_t</a>         676 third_party/google-perftools-1.8.3/src/heap-checker.cc           uintptr_t stack_end = end;</span>
+<span class='curline'><a href='../S/568.html#L743'>uintptr_t</a>         743 third_party/google-perftools-1.8.3/src/heap-checker.cc     uintptr_t addr = AsInt(info.call_stack[depth]);</span>
+<span class='curline'><a href='../S/568.html#L758'>uintptr_t</a>         758 third_party/google-perftools-1.8.3/src/heap-checker.cc     uintptr_t start_address = AsInt(ptr);</span>
+<span class='curline'><a href='../S/568.html#L759'>uintptr_t</a>         759 third_party/google-perftools-1.8.3/src/heap-checker.cc     uintptr_t end_address = start_address + info.object_size;</span>
+<span class='curline'><a href='../S/568.html#L797'>uintptr_t</a>         797 third_party/google-perftools-1.8.3/src/heap-checker.cc static void RecordGlobalDataLocked(uintptr_t start_address,</span>
+<span class='curline'><a href='../S/568.html#L798'>uintptr_t</a>         798 third_party/google-perftools-1.8.3/src/heap-checker.cc                                    uintptr_t end_address,</span>
+<span class='curline'><a href='../S/568.html#L823'>uintptr_t</a>         823 third_party/google-perftools-1.8.3/src/heap-checker.cc                                                  uintptr_t start_address,</span>
+<span class='curline'><a href='../S/568.html#L824'>uintptr_t</a>         824 third_party/google-perftools-1.8.3/src/heap-checker.cc                                                  uintptr_t end_address) {</span>
+<span class='curline'><a href='../S/568.html#L1158'>uintptr_t</a>        1158 third_party/google-perftools-1.8.3/src/heap-checker.cc           if (region-&gt;caller() == static_cast&lt;uintptr_t&gt;(NULL)) {</span>
+<span class='curline'><a href='../S/568.html#L1176'>uintptr_t</a>        1176 third_party/google-perftools-1.8.3/src/heap-checker.cc             uintptr_t start = AsInt(i-&gt;ptr);</span>
+<span class='curline'><a href='../S/568.html#L1177'>uintptr_t</a>        1177 third_party/google-perftools-1.8.3/src/heap-checker.cc             uintptr_t end = start + i-&gt;size;</span>
+<span class='curline'><a href='../S/568.html#L1411'>uintptr_t</a>        1411 third_party/google-perftools-1.8.3/src/heap-checker.cc       const uintptr_t addr = *reinterpret_cast&lt;const uintptr_t*&gt;(object);</span>
+<span class='curline'><a href='../S/568.html#L2314'>uintptr_t</a>        2314 third_party/google-perftools-1.8.3/src/heap-checker.cc   const uintptr_t addr = AsInt(*ptr);</span>
+<span class='curline'><a href='../S/569.html#L158'>uintptr_t</a>         158 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   uintptr_t h = 0;</span>
+<span class='curline'><a href='../S/569.html#L160'>uintptr_t</a>         160 third_party/google-perftools-1.8.3/src/heap-profile-table.cc     h += reinterpret_cast&lt;uintptr_t&gt;(key[i]);</span>
+<span class='curline'><a href='../S/569.html#L290'>uintptr_t</a>         290 third_party/google-perftools-1.8.3/src/heap-profile-table.cc                        reinterpret_cast&lt;uintptr_t&gt;(b.stack[d]));</span>
+<span class='curline'><a href='../S/569.html#L570'>uintptr_t</a>         570 third_party/google-perftools-1.8.3/src/heap-profile-table.cc           reinterpret_cast&lt;uintptr_t&gt;(pc), symbolization_table.GetSymbol(pc));</span>
+<span class='curline'><a href='../S/570.html#L196'>uintptr_t</a>         196 third_party/google-perftools-1.8.3/src/heap-profile-table.h     uintptr_t    hash;   // Hash value of the stack trace</span>
+<span class='curline'><a href='../S/570.html#L206'>uintptr_t</a>         206 third_party/google-perftools-1.8.3/src/heap-profile-table.h       return reinterpret_cast&lt;Bucket*&gt;(bucket_rep &amp; ~uintptr_t(kMask));</span>
+<span class='curline'><a href='../S/570.html#L209'>uintptr_t</a>         209 third_party/google-perftools-1.8.3/src/heap-profile-table.h     void set_bucket(Bucket* b) { bucket_rep = reinterpret_cast&lt;uintptr_t&gt;(b); }</span>
+<span class='curline'><a href='../S/570.html#L215'>uintptr_t</a>         215 third_party/google-perftools-1.8.3/src/heap-profile-table.h       bucket_rep = (bucket_rep &amp; ~uintptr_t(kLive)) | (l ? kLive : 0);</span>
+<span class='curline'><a href='../S/570.html#L221'>uintptr_t</a>         221 third_party/google-perftools-1.8.3/src/heap-profile-table.h       bucket_rep = (bucket_rep &amp; ~uintptr_t(kIgnore)) | (r ? kIgnore : 0);</span>
+<span class='curline'><a href='../S/570.html#L231'>uintptr_t</a>         231 third_party/google-perftools-1.8.3/src/heap-profile-table.h     uintptr_t bucket_rep;</span>
+<span class='curline'><a href='../S/571.html#L377'>uintptr_t</a>         377 third_party/google-perftools-1.8.3/src/heap-profiler.cc             (uintptr_t) start, size, prot, flags, fd, (unsigned int) offset,</span>
+<span class='curline'><a href='../S/571.html#L378'>uintptr_t</a>         378 third_party/google-perftools-1.8.3/src/heap-profiler.cc             (uintptr_t) result);</span>
+<span class='curline'><a href='../S/571.html#L396'>uintptr_t</a>         396 third_party/google-perftools-1.8.3/src/heap-profiler.cc             (uintptr_t) old_addr, old_size, new_size, flags,</span>
+<span class='curline'><a href='../S/571.html#L397'>uintptr_t</a>         397 third_party/google-perftools-1.8.3/src/heap-profiler.cc             (uintptr_t) new_addr, (uintptr_t) result);</span>
+<span class='curline'><a href='../S/571.html#L410'>uintptr_t</a>         410 third_party/google-perftools-1.8.3/src/heap-profiler.cc                   (uintptr_t) ptr, size);</span>
+<span class='curline'><a href='../S/571.html#L420'>uintptr_t</a>         420 third_party/google-perftools-1.8.3/src/heap-profiler.cc                   increment, (uintptr_t) result);</span>
+<span class='curline'><a href='../S/572.html#L145'>uintptr_t</a>         145 third_party/google-perftools-1.8.3/src/internal_logging.cc           &amp;&amp; AddNum(reinterpret_cast&lt;uintptr_t&gt;(item.u_.ptr), 16);</span>
+<span class='curline'><a href='../S/580.html#L230'>uintptr_t</a>         230 third_party/google-perftools-1.8.3/src/malloc_extension.cc uintptr_t Count(void** entry) {</span>
+<span class='curline'><a href='../S/580.html#L231'>uintptr_t</a>         231 third_party/google-perftools-1.8.3/src/malloc_extension.cc   return reinterpret_cast&lt;uintptr_t&gt;(entry[0]);</span>
+<span class='curline'><a href='../S/580.html#L233'>uintptr_t</a>         233 third_party/google-perftools-1.8.3/src/malloc_extension.cc uintptr_t Size(void** entry) {</span>
+<span class='curline'><a href='../S/580.html#L234'>uintptr_t</a>         234 third_party/google-perftools-1.8.3/src/malloc_extension.cc   return reinterpret_cast&lt;uintptr_t&gt;(entry[1]);</span>
+<span class='curline'><a href='../S/580.html#L236'>uintptr_t</a>         236 third_party/google-perftools-1.8.3/src/malloc_extension.cc uintptr_t Depth(void** entry) {</span>
+<span class='curline'><a href='../S/580.html#L237'>uintptr_t</a>         237 third_party/google-perftools-1.8.3/src/malloc_extension.cc   return reinterpret_cast&lt;uintptr_t&gt;(entry[2]);</span>
+<span class='curline'><a href='../S/580.html#L244'>uintptr_t</a>         244 third_party/google-perftools-1.8.3/src/malloc_extension.cc                        uintptr_t count, uintptr_t size) {</span>
+<span class='curline'><a href='../S/580.html#L258'>uintptr_t</a>         258 third_party/google-perftools-1.8.3/src/malloc_extension.cc   uintptr_t total_count = 0;</span>
+<span class='curline'><a href='../S/580.html#L259'>uintptr_t</a>         259 third_party/google-perftools-1.8.3/src/malloc_extension.cc   uintptr_t total_size = 0;</span>
+<span class='curline'><a href='../S/582.html#L602'>uintptr_t</a>         602 third_party/google-perftools-1.8.3/src/malloc_hook.cc   (reinterpret_cast&lt;uintptr_t&gt;(ATTRIBUTE_SECTION_START(name)) &lt;= \</span>
+<span class='curline'><a href='../S/582.html#L603'>uintptr_t</a>         603 third_party/google-perftools-1.8.3/src/malloc_hook.cc      reinterpret_cast&lt;uintptr_t&gt;(addr) &amp;&amp; \</span>
+<span class='curline'><a href='../S/582.html#L604'>uintptr_t</a>         604 third_party/google-perftools-1.8.3/src/malloc_hook.cc    reinterpret_cast&lt;uintptr_t&gt;(addr) &lt; \</span>
+<span class='curline'><a href='../S/582.html#L605'>uintptr_t</a>         605 third_party/google-perftools-1.8.3/src/malloc_hook.cc      reinterpret_cast&lt;uintptr_t&gt;(ATTRIBUTE_SECTION_STOP(name)))</span>
+<span class='curline'><a href='../S/587.html#L200'>uintptr_t</a>         200 third_party/google-perftools-1.8.3/src/memfs_malloc.cc   uintptr_t ptr = reinterpret_cast&lt;uintptr_t&gt;(result);</span>
+<span class='curline'><a href='../S/588.html#L296'>uintptr_t</a>         296 third_party/google-perftools-1.8.3/src/memory_region_map.cc MemoryRegionMap::DoFindRegionLocked(uintptr_t addr) {</span>
+<span class='curline'><a href='../S/588.html#L312'>uintptr_t</a>         312 third_party/google-perftools-1.8.3/src/memory_region_map.cc bool MemoryRegionMap::FindRegion(uintptr_t addr, Region* result) {</span>
+<span class='curline'><a href='../S/588.html#L320'>uintptr_t</a>         320 third_party/google-perftools-1.8.3/src/memory_region_map.cc bool MemoryRegionMap::FindAndMarkStackRegion(uintptr_t stack_top,</span>
+<span class='curline'><a href='../S/588.html#L478'>uintptr_t</a>         478 third_party/google-perftools-1.8.3/src/memory_region_map.cc     uintptr_t start_addr = reinterpret_cast&lt;uintptr_t&gt;(start);</span>
+<span class='curline'><a href='../S/588.html#L479'>uintptr_t</a>         479 third_party/google-perftools-1.8.3/src/memory_region_map.cc     uintptr_t end_addr = start_addr + size;</span>
+<span class='curline'><a href='../S/588.html#L509'>uintptr_t</a>         509 third_party/google-perftools-1.8.3/src/memory_region_map.cc   uintptr_t start_addr = reinterpret_cast&lt;uintptr_t&gt;(start);</span>
+<span class='curline'><a href='../S/588.html#L510'>uintptr_t</a>         510 third_party/google-perftools-1.8.3/src/memory_region_map.cc   uintptr_t end_addr = start_addr + size;</span>
+<span class='curline'><a href='../S/588.html#L587'>uintptr_t</a>         587 third_party/google-perftools-1.8.3/src/memory_region_map.cc               reinterpret_cast&lt;uintptr_t&gt;(result), size,</span>
+<span class='curline'><a href='../S/588.html#L608'>uintptr_t</a>         608 third_party/google-perftools-1.8.3/src/memory_region_map.cc               (uintptr_t)result, (uintptr_t)old_addr,</span>
+<span class='curline'><a href='../S/588.html#L610'>uintptr_t</a>         610 third_party/google-perftools-1.8.3/src/memory_region_map.cc                flags &amp; MREMAP_FIXED ? (uintptr_t)new_addr : 0);</span>
+<span class='curline'><a href='../S/588.html#L620'>uintptr_t</a>         620 third_party/google-perftools-1.8.3/src/memory_region_map.cc   RAW_VLOG(10, "Sbrk = 0x%"PRIxPTR" of %"PRIdS"", (uintptr_t)result, increment);</span>
+<span class='curline'><a href='../S/588.html#L624'>uintptr_t</a>         624 third_party/google-perftools-1.8.3/src/memory_region_map.cc       RecordRegionAddition(result, reinterpret_cast&lt;uintptr_t&gt;(new_end) -</span>
+<span class='curline'><a href='../S/588.html#L625'>uintptr_t</a>         625 third_party/google-perftools-1.8.3/src/memory_region_map.cc                                    reinterpret_cast&lt;uintptr_t&gt;(result));</span>
+<span class='curline'><a href='../S/588.html#L628'>uintptr_t</a>         628 third_party/google-perftools-1.8.3/src/memory_region_map.cc       RecordRegionRemoval(new_end, reinterpret_cast&lt;uintptr_t&gt;(result) -</span>
+<span class='curline'><a href='../S/588.html#L629'>uintptr_t</a>         629 third_party/google-perftools-1.8.3/src/memory_region_map.cc                                    reinterpret_cast&lt;uintptr_t&gt;(new_end));</span>
+<span class='curline'><a href='../S/588.html#L637'>uintptr_t</a>         637 third_party/google-perftools-1.8.3/src/memory_region_map.cc   uintptr_t previous = 0;</span>
+<span class='curline'><a href='../S/589.html#L125'>uintptr_t</a>         125 third_party/google-perftools-1.8.3/src/memory_region_map.h     uintptr_t start_addr;  // region start address</span>
+<span class='curline'><a href='../S/589.html#L126'>uintptr_t</a>         126 third_party/google-perftools-1.8.3/src/memory_region_map.h     uintptr_t end_addr;  // region end address</span>
+<span class='curline'><a href='../S/589.html#L140'>uintptr_t</a>         140 third_party/google-perftools-1.8.3/src/memory_region_map.h     uintptr_t caller() const {</span>
+<span class='curline'><a href='../S/589.html#L141'>uintptr_t</a>         141 third_party/google-perftools-1.8.3/src/memory_region_map.h       return reinterpret_cast&lt;uintptr_t&gt;(call_stack_depth &gt;= 1</span>
+<span class='curline'><a href='../S/589.html#L155'>uintptr_t</a>         155 third_party/google-perftools-1.8.3/src/memory_region_map.h       start_addr = reinterpret_cast&lt;uintptr_t&gt;(start);</span>
+<span class='curline'><a href='../S/589.html#L169'>uintptr_t</a>         169 third_party/google-perftools-1.8.3/src/memory_region_map.h     void set_start_addr(uintptr_t addr) {</span>
+<span class='curline'><a href='../S/589.html#L173'>uintptr_t</a>         173 third_party/google-perftools-1.8.3/src/memory_region_map.h     void set_end_addr(uintptr_t addr) {</span>
+<span class='curline'><a href='../S/589.html#L187'>uintptr_t</a>         187 third_party/google-perftools-1.8.3/src/memory_region_map.h     void SetRegionSetKey(uintptr_t addr) {</span>
+<span class='curline'><a href='../S/589.html#L208'>uintptr_t</a>         208 third_party/google-perftools-1.8.3/src/memory_region_map.h   static bool FindRegion(uintptr_t addr, Region* result);</span>
+<span class='curline'><a href='../S/589.html#L215'>uintptr_t</a>         215 third_party/google-perftools-1.8.3/src/memory_region_map.h   static bool FindAndMarkStackRegion(uintptr_t stack_top, Region* result);</span>
+<span class='curline'><a href='../S/589.html#L293'>uintptr_t</a>         293 third_party/google-perftools-1.8.3/src/memory_region_map.h   static const Region* DoFindRegionLocked(uintptr_t addr);</span>
+<span class='curline'><a href='../S/590.html#L136'>uintptr_t</a>         136 third_party/google-perftools-1.8.3/src/packed-cache-inl.h   typedef uintptr_t K;</span>
+<span class='curline'><a href='../S/591.html#L424'>uintptr_t</a>         424 third_party/google-perftools-1.8.3/src/page_heap.cc   const PageID p = reinterpret_cast&lt;uintptr_t&gt;(ptr) &gt;&gt; kPageShift;</span>
+<span class='curline'><a href='../S/594.html#L70'>uintptr_t</a>          70 third_party/google-perftools-1.8.3/src/pagemap.h   typedef uintptr_t Number;</span>
+<span class='curline'><a href='../S/594.html#L137'>uintptr_t</a>         137 third_party/google-perftools-1.8.3/src/pagemap.h   typedef uintptr_t Number;</span>
+<span class='curline'><a href='../S/594.html#L240'>uintptr_t</a>         240 third_party/google-perftools-1.8.3/src/pagemap.h   typedef uintptr_t Number;</span>
+<span class='curline'><a href='../S/599.html#L150'>uintptr_t</a>         150 third_party/google-perftools-1.8.3/src/profiledata.h   typedef uintptr_t Slot;</span>
+<span class='curline'><a href='../S/603.html#L82'>uintptr_t</a>          82 third_party/google-perftools-1.8.3/src/sampler.cc     rnd_ = static_cast&lt;uint32_t&gt;(reinterpret_cast&lt;uintptr_t&gt;(this));</span>
+<span class='curline'><a href='../S/608.html#L44'>uintptr_t</a>          44 third_party/google-perftools-1.8.3/src/stack_trace_table.cc bool StackTraceTable::Bucket::KeyEqual(uintptr_t h,</span>
+<span class='curline'><a href='../S/608.html#L73'>uintptr_t</a>          73 third_party/google-perftools-1.8.3/src/stack_trace_table.cc   uintptr_t h = 0;</span>
+<span class='curline'><a href='../S/608.html#L75'>uintptr_t</a>          75 third_party/google-perftools-1.8.3/src/stack_trace_table.cc     h += reinterpret_cast&lt;uintptr_t&gt;(t.stack[i]);</span>
+<span class='curline'><a href='../S/608.html#L129'>uintptr_t</a>         129 third_party/google-perftools-1.8.3/src/stack_trace_table.cc       out[idx++] = reinterpret_cast&lt;void*&gt;(static_cast&lt;uintptr_t&gt;(b-&gt;count));</span>
+<span class='curline'><a href='../S/608.html#L138'>uintptr_t</a>         138 third_party/google-perftools-1.8.3/src/stack_trace_table.cc   out[idx++] = static_cast&lt;uintptr_t&gt;(0);</span>
+<span class='curline'><a href='../S/609.html#L66'>uintptr_t</a>          66 third_party/google-perftools-1.8.3/src/stack_trace_table.h     uintptr_t hash;</span>
+<span class='curline'><a href='../S/609.html#L73'>uintptr_t</a>          73 third_party/google-perftools-1.8.3/src/stack_trace_table.h     bool KeyEqual(uintptr_t h, const StackTrace&amp; t) const;</span>
+<span class='curline'><a href='../S/611.html#L68'>uintptr_t</a>          68 third_party/google-perftools-1.8.3/src/stacktrace_arm-inl.h     if ((uintptr_t)new_sp - (uintptr_t)old_sp &gt; 100000) return NULL;</span>
+<span class='curline'><a href='../S/611.html#L75'>uintptr_t</a>          75 third_party/google-perftools-1.8.3/src/stacktrace_arm-inl.h         &amp;&amp; ((uintptr_t)new_sp - (uintptr_t)old_sp &gt; 1000000)) return NULL;</span>
+<span class='curline'><a href='../S/611.html#L77'>uintptr_t</a>          77 third_party/google-perftools-1.8.3/src/stacktrace_arm-inl.h   if ((uintptr_t)new_sp &amp; (sizeof(void *) - 1)) return NULL;</span>
+<span class='curline'><a href='../S/611.html#L134'>uintptr_t</a>         134 third_party/google-perftools-1.8.3/src/stacktrace_arm-inl.h         sizes[n] = (uintptr_t)next_sp - (uintptr_t)sp;</span>
+<span class='curline'><a href='../S/616.html#L63'>uintptr_t</a>          63 third_party/google-perftools-1.8.3/src/stacktrace_powerpc-inl.h     if ((uintptr_t)new_sp - (uintptr_t)old_sp &gt; 100000) return NULL;</span>
+<span class='curline'><a href='../S/616.html#L70'>uintptr_t</a>          70 third_party/google-perftools-1.8.3/src/stacktrace_powerpc-inl.h         &amp;&amp; ((uintptr_t)new_sp - (uintptr_t)old_sp &gt; 1000000)) return NULL;</span>
+<span class='curline'><a href='../S/616.html#L72'>uintptr_t</a>          72 third_party/google-perftools-1.8.3/src/stacktrace_powerpc-inl.h   if ((uintptr_t)new_sp &amp; (sizeof(void *) - 1)) return NULL;</span>
+<span class='curline'><a href='../S/616.html#L159'>uintptr_t</a>         159 third_party/google-perftools-1.8.3/src/stacktrace_powerpc-inl.h         sizes[n] = (uintptr_t)next_sp - (uintptr_t)sp;</span>
+<span class='curline'><a href='../S/618.html#L202'>uintptr_t</a>         202 third_party/google-perftools-1.8.3/src/stacktrace_x86-inl.h             ((uintptr_t)reg_esp &amp; (sizeof(reg_esp) - 1)) == 0) {</span>
+<span class='curline'><a href='../S/618.html#L216'>uintptr_t</a>         216 third_party/google-perftools-1.8.3/src/stacktrace_x86-inl.h                   (uintptr_t)(reg_esp + num_push_instructions - 1) &amp;</span>
+<span class='curline'><a href='../S/618.html#L236'>uintptr_t</a>         236 third_party/google-perftools-1.8.3/src/stacktrace_x86-inl.h     if ((uintptr_t)new_sp - (uintptr_t)old_sp &gt; 100000) return NULL;</span>
+<span class='curline'><a href='../S/618.html#L243'>uintptr_t</a>         243 third_party/google-perftools-1.8.3/src/stacktrace_x86-inl.h       const uintptr_t delta = (uintptr_t)new_sp - (uintptr_t)old_sp;</span>
+<span class='curline'><a href='../S/618.html#L244'>uintptr_t</a>         244 third_party/google-perftools-1.8.3/src/stacktrace_x86-inl.h       const uintptr_t acceptable_delta = 1000000;</span>
+<span class='curline'><a href='../S/618.html#L250'>uintptr_t</a>         250 third_party/google-perftools-1.8.3/src/stacktrace_x86-inl.h   if ((uintptr_t)new_sp &amp; (sizeof(void *) - 1)) return NULL;</span>
+<span class='curline'><a href='../S/618.html#L255'>uintptr_t</a>         255 third_party/google-perftools-1.8.3/src/stacktrace_x86-inl.h   if ((uintptr_t)new_sp &gt;= 0xffffe000) return NULL;</span>
+<span class='curline'><a href='../S/618.html#L265'>uintptr_t</a>         265 third_party/google-perftools-1.8.3/src/stacktrace_x86-inl.h     void *new_sp_aligned = (void *)((uintptr_t)new_sp &amp; ~(page_size - 1));</span>
+<span class='curline'><a href='../S/618.html#L340'>uintptr_t</a>         340 third_party/google-perftools-1.8.3/src/stacktrace_x86-inl.h         sizes[n] = (uintptr_t)next_sp - (uintptr_t)sp;</span>
+<span class='curline'><a href='../S/622.html#L232'>uintptr_t</a>         232 third_party/google-perftools-1.8.3/src/symbolize.cc                  "0x%"PRIxPTR"\n", reinterpret_cast&lt;uintptr_t&gt;(iter-&gt;first));</span>
+<span class='curline'><a href='../S/624.html#L87'>uintptr_t</a>          87 third_party/google-perftools-1.8.3/src/system-alloc.cc template &lt;int ADDRESS_BITS&gt; bool CheckAddressBits(uintptr_t ptr) {</span>
+<span class='curline'><a href='../S/624.html#L92'>uintptr_t</a>          92 third_party/google-perftools-1.8.3/src/system-alloc.cc template &lt;&gt; bool CheckAddressBits&lt;8 * sizeof(void*)&gt;(uintptr_t ptr) {</span>
+<span class='curline'><a href='../S/624.html#L235'>uintptr_t</a>         235 third_party/google-perftools-1.8.3/src/system-alloc.cc   uintptr_t ptr = reinterpret_cast&lt;uintptr_t&gt;(result);</span>
+<span class='curline'><a href='../S/624.html#L241'>uintptr_t</a>         241 third_party/google-perftools-1.8.3/src/system-alloc.cc   if (reinterpret_cast&lt;uintptr_t&gt;(r2) == (ptr + size)) {</span>
+<span class='curline'><a href='../S/624.html#L252'>uintptr_t</a>         252 third_party/google-perftools-1.8.3/src/system-alloc.cc   ptr = reinterpret_cast&lt;uintptr_t&gt;(result);</span>
+<span class='curline'><a href='../S/624.html#L310'>uintptr_t</a>         310 third_party/google-perftools-1.8.3/src/system-alloc.cc   uintptr_t ptr = reinterpret_cast&lt;uintptr_t&gt;(result);</span>
+<span class='curline'><a href='../S/624.html#L396'>uintptr_t</a>         396 third_party/google-perftools-1.8.3/src/system-alloc.cc   uintptr_t ptr = reinterpret_cast&lt;uintptr_t&gt;(result);</span>
+<span class='curline'><a href='../S/624.html#L481'>uintptr_t</a>         481 third_party/google-perftools-1.8.3/src/system-alloc.cc           reinterpret_cast&lt;uintptr_t&gt;(result) + *actual_size - 1);</span>
+<span class='curline'><a href='../S/624.html#L484'>uintptr_t</a>         484 third_party/google-perftools-1.8.3/src/system-alloc.cc           reinterpret_cast&lt;uintptr_t&gt;(result) + size - 1);</span>
+<span class='curline'><a href='../S/626.html#L520'>uintptr_t</a>         520 third_party/google-perftools-1.8.3/src/tcmalloc.cc     result[used_slots+0] = reinterpret_cast&lt;void*&gt;(static_cast&lt;uintptr_t&gt;(1));</span>
+<span class='curline'><a href='../S/626.html#L528'>uintptr_t</a>         528 third_party/google-perftools-1.8.3/src/tcmalloc.cc   result[used_slots] = reinterpret_cast&lt;void*&gt;(static_cast&lt;uintptr_t&gt;(0));</span>
+<span class='curline'><a href='../S/626.html#L547'>uintptr_t</a>         547 third_party/google-perftools-1.8.3/src/tcmalloc.cc           uintptr_t limit = ranges[n].address + ranges[n].length;</span>
+<span class='curline'><a href='../S/626.html#L763'>uintptr_t</a>         763 third_party/google-perftools-1.8.3/src/tcmalloc.cc     const PageID p = reinterpret_cast&lt;uintptr_t&gt;(ptr) &gt;&gt; kPageShift;</span>
+<span class='curline'><a href='../S/626.html#L925'>uintptr_t</a>         925 third_party/google-perftools-1.8.3/src/tcmalloc.cc   PageID p = reinterpret_cast&lt;uintptr_t&gt;(ptr) &gt;&gt; kPageShift;</span>
+<span class='curline'><a href='../S/626.html#L1096'>uintptr_t</a>        1096 third_party/google-perftools-1.8.3/src/tcmalloc.cc   const PageID p = reinterpret_cast&lt;uintptr_t&gt;(ptr) &gt;&gt; kPageShift;</span>
+<span class='curline'><a href='../S/626.html#L1128'>uintptr_t</a>        1128 third_party/google-perftools-1.8.3/src/tcmalloc.cc     ASSERT(reinterpret_cast&lt;uintptr_t&gt;(ptr) % kPageSize == 0);</span>
+<span class='curline'><a href='../S/626.html#L1151'>uintptr_t</a>        1151 third_party/google-perftools-1.8.3/src/tcmalloc.cc   const PageID p = reinterpret_cast&lt;uintptr_t&gt;(ptr) &gt;&gt; kPageShift;</span>
+<span class='curline'><a href='../S/626.html#L1235'>uintptr_t</a>        1235 third_party/google-perftools-1.8.3/src/tcmalloc.cc     ASSERT((reinterpret_cast&lt;uintptr_t&gt;(p) % align) == 0);</span>
+<span class='curline'><a href='../S/637.html#L291'>uintptr_t</a>         291 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc static const uintptr_t kHideMask =</span>
+<span class='curline'><a href='../S/637.html#L292'>uintptr_t</a>         292 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   static_cast&lt;uintptr_t&gt;(0xF03A5F7BF03A5F7BLL);</span>
+<span class='curline'><a href='../S/637.html#L306'>uintptr_t</a>         306 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   *ptr = reinterpret_cast&lt;T*&gt;(reinterpret_cast&lt;uintptr_t&gt;(*ptr) ^ kHideMask);</span>
+<span class='curline'><a href='../S/637.html#L314'>uintptr_t</a>         314 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   *ptr = reinterpret_cast&lt;T*&gt;(reinterpret_cast&lt;uintptr_t&gt;(*ptr) ^ kHideMask);</span>
+<span class='curline'><a href='../S/637.html#L905'>uintptr_t</a>         905 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc                  reinterpret_cast&lt;uintptr_t&gt;(ptr) ^ kHideMask)</span>
+<span class='curline'><a href='../S/637.html#L922'>uintptr_t</a>         922 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc           reinterpret_cast&lt;uintptr_t&gt;(ptr) ^ kHideMask);</span>
+<span class='curline'><a href='../S/637.html#L926'>uintptr_t</a>         926 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc           reinterpret_cast&lt;uintptr_t&gt;(ptr) ^ kHideMask);</span>
+<span class='curline'><a href='../S/637.html#L1254'>uintptr_t</a>        1254 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc static void* Mmapper(uintptr_t* addr_after_mmap_call) {</span>
+<span class='curline'><a href='../S/637.html#L1260'>uintptr_t</a>        1260 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   *addr_after_mmap_call = reinterpret_cast&lt;uintptr_t&gt;(stack[0]);</span>
+<span class='curline'><a href='../S/637.html#L1266'>uintptr_t</a>        1266 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc static void* (*mmapper_addr)(uintptr_t* addr) = &amp;Mmapper;</span>
+<span class='curline'><a href='../S/637.html#L1271'>uintptr_t</a>        1271 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   uintptr_t caller_addr_limit;</span>
+<span class='curline'><a href='../S/637.html#L1273'>uintptr_t</a>        1273 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   uintptr_t caller = 0;</span>
+<span class='curline'><a href='../S/637.html#L1278'>uintptr_t</a>        1278 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc       if (i-&gt;start_addr == reinterpret_cast&lt;uintptr_t&gt;(addr)) {</span>
+<span class='curline'><a href='../S/637.html#L1285'>uintptr_t</a>        1285 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   if (!(reinterpret_cast&lt;uintptr_t&gt;(mmapper_addr) &lt;= caller  &amp;&amp;</span>
+<span class='curline'><a href='../S/637.html#L1289'>uintptr_t</a>        1289 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc          &lt;&lt; "0x" &lt;&lt; reinterpret_cast&lt;uintptr_t&gt;(mmapper_addr)</span>
+<span class='curline'><a href='../S/637.html#L1296'>uintptr_t</a>        1296 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc static void* Mallocer(uintptr_t* addr_after_malloc_call) {</span>
+<span class='curline'><a href='../S/637.html#L1302'>uintptr_t</a>        1302 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   *addr_after_malloc_call = reinterpret_cast&lt;uintptr_t&gt;(stack[0]);</span>
+<span class='curline'><a href='../S/637.html#L1307'>uintptr_t</a>        1307 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc static void* (*mallocer_addr)(uintptr_t* addr) = &amp;Mallocer;</span>
+<span class='curline'><a href='../S/637.html#L1313'>uintptr_t</a>        1313 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   uintptr_t caller_addr_limit;</span>
+<span class='curline'><a href='../S/637.html#L1315'>uintptr_t</a>        1315 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   uintptr_t caller =</span>
+<span class='curline'><a href='../S/637.html#L1316'>uintptr_t</a>        1316 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc     reinterpret_cast&lt;uintptr_t&gt;(HeapLeakChecker::GetAllocCaller(addr));</span>
+<span class='curline'><a href='../S/637.html#L1318'>uintptr_t</a>        1318 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc   if (!(reinterpret_cast&lt;uintptr_t&gt;(mallocer_addr) &lt;= caller  &amp;&amp;</span>
+<span class='curline'><a href='../S/637.html#L1322'>uintptr_t</a>        1322 third_party/google-perftools-1.8.3/src/tests/heap-checker_unittest.cc          &lt;&lt; "0x" &lt;&lt; reinterpret_cast&lt;uintptr_t&gt;(mallocer_addr)</span>
+<span class='curline'><a href='../S/647.html#L100'>uintptr_t</a>         100 third_party/google-perftools-1.8.3/src/tests/memalign_unittest.cc static uintptr_t Number(void* p) {</span>
+<span class='curline'><a href='../S/647.html#L101'>uintptr_t</a>         101 third_party/google-perftools-1.8.3/src/tests/memalign_unittest.cc   return reinterpret_cast&lt;uintptr_t&gt;(p);</span>
+<span class='curline'><a href='../S/652.html#L107'>uintptr_t</a>         107 third_party/google-perftools-1.8.3/src/tests/profiledata_unittest.cc typedef uintptr_t ProfileDataSlot;</span>
+<span class='curline'><a href='../S/660.html#L15'>uintptr_t</a>          15 third_party/google-perftools-1.8.3/src/tests/stack_trace_table_test.cc                         const uintptr_t* expected, int len) {</span>
+<span class='curline'><a href='../S/660.html#L18'>uintptr_t</a>          18 third_party/google-perftools-1.8.3/src/tests/stack_trace_table_test.cc     CHECK_EQ(reinterpret_cast&lt;uintptr_t&gt;(entries[i]), expected[i]);</span>
+<span class='curline'><a href='../S/660.html#L40'>uintptr_t</a>          40 third_party/google-perftools-1.8.3/src/tests/stack_trace_table_test.cc   static const uintptr_t k1[] = {0};</span>
+<span class='curline'><a href='../S/660.html#L44'>uintptr_t</a>          44 third_party/google-perftools-1.8.3/src/tests/stack_trace_table_test.cc   t1.size = static_cast&lt;uintptr_t&gt;(1024);</span>
+<span class='curline'><a href='../S/660.html#L45'>uintptr_t</a>          45 third_party/google-perftools-1.8.3/src/tests/stack_trace_table_test.cc   t1.depth = static_cast&lt;uintptr_t&gt;(2);</span>
+<span class='curline'><a href='../S/660.html#L51'>uintptr_t</a>          51 third_party/google-perftools-1.8.3/src/tests/stack_trace_table_test.cc   t2.size = static_cast&lt;uintptr_t&gt;(512);</span>
+<span class='curline'><a href='../S/660.html#L52'>uintptr_t</a>          52 third_party/google-perftools-1.8.3/src/tests/stack_trace_table_test.cc   t2.depth = static_cast&lt;uintptr_t&gt;(2);</span>
+<span class='curline'><a href='../S/660.html#L60'>uintptr_t</a>          60 third_party/google-perftools-1.8.3/src/tests/stack_trace_table_test.cc   static const uintptr_t k2[] = {1, 1024, 2, 1, 2, 0};</span>
+<span class='curline'><a href='../S/660.html#L68'>uintptr_t</a>          68 third_party/google-perftools-1.8.3/src/tests/stack_trace_table_test.cc   static const uintptr_t k3[] = {1, 1024, 2, 1, 2, 1,  512, 2, 2, 1, 0};</span>
+<span class='curline'><a href='../S/660.html#L77'>uintptr_t</a>          77 third_party/google-perftools-1.8.3/src/tests/stack_trace_table_test.cc   static const uintptr_t k4[] = {2, 2048, 2, 1, 2, 1,  512, 2, 2, 1, 0};</span>
+<span class='curline'><a href='../S/660.html#L82'>uintptr_t</a>          82 third_party/google-perftools-1.8.3/src/tests/stack_trace_table_test.cc   t3.size = static_cast&lt;uintptr_t&gt;(2);</span>
+<span class='curline'><a href='../S/660.html#L83'>uintptr_t</a>          83 third_party/google-perftools-1.8.3/src/tests/stack_trace_table_test.cc   t3.depth = static_cast&lt;uintptr_t&gt;(2);</span>
+<span class='curline'><a href='../S/660.html#L92'>uintptr_t</a>          92 third_party/google-perftools-1.8.3/src/tests/stack_trace_table_test.cc   static const uintptr_t k5[] = {2, 1026, 2, 1, 2, 0};</span>
+<span class='curline'><a href='../S/662.html#L66'>uintptr_t</a>          66 third_party/google-perftools-1.8.3/src/tests/system-alloc_unittest.cc     uintptr_t ptr = reinterpret_cast&lt;uintptr_t&gt;(result);</span>
+<span class='curline'><a href='../S/664.html#L758'>uintptr_t</a>         758 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc     uintptr_t p = reinterpret_cast&lt;uintptr_t&gt;(ptrs[i]);</span>
+<span class='curline'><a href='../S/664.html#L797'>uintptr_t</a>         797 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   uintptr_t ptr;</span>
+<span class='curline'><a href='../S/664.html#L827'>uintptr_t</a>         827 third_party/google-perftools-1.8.3/src/tests/tcmalloc_unittest.cc   state.ptr = reinterpret_cast&lt;uintptr_t&gt;(ptr);</span>
+<span class='curline'><a href='../S/685.html#L247'>uintptr_t</a>         247 third_party/google-perftools-1.8.3/src/windows/port.cc   uintptr_t ptr = reinterpret_cast&lt;uintptr_t&gt;(result);</span>
+</pre>
+</body>
+</html>

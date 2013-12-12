@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>stats</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.1' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/568.html#L1783'>stats</a>            1783 third_party/google-perftools-1.8.3/src/heap-checker.cc     const HeapProfileTable::Stats&amp; stats = heap_profile-&gt;total();</span>
+<span class='curline'><a href='../S/568.html#L1789'>stats</a>            1789 third_party/google-perftools-1.8.3/src/heap-checker.cc              int64(stats.allocs - stats.frees),</span>
+<span class='curline'><a href='../S/568.html#L1790'>stats</a>            1790 third_party/google-perftools-1.8.3/src/heap-checker.cc              int64(stats.alloc_size - stats.free_size));</span>
+<span class='curline'><a href='../S/569.html#L350'>stats</a>             350 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   Stats stats;</span>
+<span class='curline'><a href='../S/569.html#L351'>stats</a>             351 third_party/google-perftools-1.8.3/src/heap-profile-table.cc   memset(&amp;stats, 0, sizeof(stats));</span>
+<span class='curline'><a href='../S/569.html#L355'>stats</a>             355 third_party/google-perftools-1.8.3/src/heap-profile-table.cc                                 " heapprofile", &amp;stats);</span>
+<span class='curline'><a href='../S/569.html#L358'>stats</a>             358 third_party/google-perftools-1.8.3/src/heap-profile-table.cc                                   &amp;stats);</span>
+<span class='curline'><a href='../S/571.html#L211'>stats</a>             211 third_party/google-perftools-1.8.3/src/heap-profiler.cc     HeapProfileTable::Stats const stats = heap_profile-&gt;total();</span>
+<span class='curline'><a href='../S/571.html#L212'>stats</a>             212 third_party/google-perftools-1.8.3/src/heap-profiler.cc     (void)stats;   // avoid an unused-variable warning in non-debug mode.</span>
+<span class='curline'><a href='../S/571.html#L218'>stats</a>             218 third_party/google-perftools-1.8.3/src/heap-profiler.cc     RAW_DCHECK(stats.Equivalent(heap_profile-&gt;total()), "");</span>
+<span class='curline'><a href='../S/577.html#L178'>stats</a>             178 third_party/google-perftools-1.8.3/src/libc_override_osx.h void mi_statistics(malloc_zone_t *zone, malloc_statistics_t *stats) {</span>
+<span class='curline'><a href='../S/577.html#L180'>stats</a>             180 third_party/google-perftools-1.8.3/src/libc_override_osx.h   stats-&gt;blocks_in_use = 0;</span>
+<span class='curline'><a href='../S/577.html#L181'>stats</a>             181 third_party/google-perftools-1.8.3/src/libc_override_osx.h   stats-&gt;size_in_use = 0;</span>
+<span class='curline'><a href='../S/577.html#L182'>stats</a>             182 third_party/google-perftools-1.8.3/src/libc_override_osx.h   stats-&gt;max_size_in_use = 0;</span>
+<span class='curline'><a href='../S/577.html#L183'>stats</a>             183 third_party/google-perftools-1.8.3/src/libc_override_osx.h   stats-&gt;size_allocated = 0;</span>
+<span class='curline'><a href='../S/592.html#L150'>stats</a>             150 third_party/google-perftools-1.8.3/src/page_heap.h   inline Stats stats() const { return stats_; }</span>
+<span class='curline'><a href='../S/626.html#L334'>stats</a>             334 third_party/google-perftools-1.8.3/src/tcmalloc.cc     r-&gt;pageheap = Static::pageheap()-&gt;stats();</span>
+<span class='curline'><a href='../S/626.html#L350'>stats</a>             350 third_party/google-perftools-1.8.3/src/tcmalloc.cc   TCMallocStats stats;</span>
+<span class='curline'><a href='../S/626.html#L355'>stats</a>             355 third_party/google-perftools-1.8.3/src/tcmalloc.cc     ExtractStats(&amp;stats, class_count, &amp;small, &amp;large);</span>
+<span class='curline'><a href='../S/626.html#L357'>stats</a>             357 third_party/google-perftools-1.8.3/src/tcmalloc.cc     ExtractStats(&amp;stats, NULL, NULL, NULL);</span>
+<span class='curline'><a href='../S/626.html#L362'>stats</a>             362 third_party/google-perftools-1.8.3/src/tcmalloc.cc   const uint64_t virtual_memory_used = (stats.pageheap.system_bytes</span>
+<span class='curline'><a href='../S/626.html#L363'>stats</a>             363 third_party/google-perftools-1.8.3/src/tcmalloc.cc                                         + stats.metadata_bytes);</span>
+<span class='curline'><a href='../S/626.html#L365'>stats</a>             365 third_party/google-perftools-1.8.3/src/tcmalloc.cc                                          - stats.pageheap.unmapped_bytes);</span>
+<span class='curline'><a href='../S/626.html#L367'>stats</a>             367 third_party/google-perftools-1.8.3/src/tcmalloc.cc                                         - stats.metadata_bytes</span>
+<span class='curline'><a href='../S/626.html#L368'>stats</a>             368 third_party/google-perftools-1.8.3/src/tcmalloc.cc                                         - stats.pageheap.free_bytes</span>
+<span class='curline'><a href='../S/626.html#L369'>stats</a>             369 third_party/google-perftools-1.8.3/src/tcmalloc.cc                                         - stats.central_bytes</span>
+<span class='curline'><a href='../S/626.html#L370'>stats</a>             370 third_party/google-perftools-1.8.3/src/tcmalloc.cc                                         - stats.transfer_bytes</span>
+<span class='curline'><a href='../S/626.html#L371'>stats</a>             371 third_party/google-perftools-1.8.3/src/tcmalloc.cc                                         - stats.thread_bytes);</span>
+<span class='curline'><a href='../S/626.html#L400'>stats</a>             400 third_party/google-perftools-1.8.3/src/tcmalloc.cc       stats.pageheap.free_bytes, stats.pageheap.free_bytes / MiB,</span>
+<span class='curline'><a href='../S/626.html#L401'>stats</a>             401 third_party/google-perftools-1.8.3/src/tcmalloc.cc       stats.central_bytes, stats.central_bytes / MiB,</span>
+<span class='curline'><a href='../S/626.html#L402'>stats</a>             402 third_party/google-perftools-1.8.3/src/tcmalloc.cc       stats.transfer_bytes, stats.transfer_bytes / MiB,</span>
+<span class='curline'><a href='../S/626.html#L403'>stats</a>             403 third_party/google-perftools-1.8.3/src/tcmalloc.cc       stats.thread_bytes, stats.thread_bytes / MiB,</span>
+<span class='curline'><a href='../S/626.html#L404'>stats</a>             404 third_party/google-perftools-1.8.3/src/tcmalloc.cc       stats.metadata_bytes, stats.metadata_bytes / MiB,</span>
+<span class='curline'><a href='../S/626.html#L406'>stats</a>             406 third_party/google-perftools-1.8.3/src/tcmalloc.cc       stats.pageheap.unmapped_bytes, stats.pageheap.unmapped_bytes / MiB,</span>
+<span class='curline'><a href='../S/626.html#L440'>stats</a>             440 third_party/google-perftools-1.8.3/src/tcmalloc.cc                 nonempty_sizes, stats.pageheap.free_bytes / MiB,</span>
+<span class='curline'><a href='../S/626.html#L441'>stats</a>             441 third_party/google-perftools-1.8.3/src/tcmalloc.cc                 stats.pageheap.unmapped_bytes / MiB);</span>
+<span class='curline'><a href='../S/626.html#L629'>stats</a>             629 third_party/google-perftools-1.8.3/src/tcmalloc.cc       TCMallocStats stats;</span>
+<span class='curline'><a href='../S/626.html#L630'>stats</a>             630 third_party/google-perftools-1.8.3/src/tcmalloc.cc       ExtractStats(&amp;stats, NULL, NULL, NULL);</span>
+<span class='curline'><a href='../S/626.html#L631'>stats</a>             631 third_party/google-perftools-1.8.3/src/tcmalloc.cc       *value = stats.pageheap.system_bytes</span>
+<span class='curline'><a href='../S/626.html#L632'>stats</a>             632 third_party/google-perftools-1.8.3/src/tcmalloc.cc                - stats.thread_bytes</span>
+<span class='curline'><a href='../S/626.html#L633'>stats</a>             633 third_party/google-perftools-1.8.3/src/tcmalloc.cc                - stats.central_bytes</span>
+<span class='curline'><a href='../S/626.html#L634'>stats</a>             634 third_party/google-perftools-1.8.3/src/tcmalloc.cc                - stats.transfer_bytes</span>
+<span class='curline'><a href='../S/626.html#L635'>stats</a>             635 third_party/google-perftools-1.8.3/src/tcmalloc.cc                - stats.pageheap.free_bytes</span>
+<span class='curline'><a href='../S/626.html#L636'>stats</a>             636 third_party/google-perftools-1.8.3/src/tcmalloc.cc                - stats.pageheap.unmapped_bytes;</span>
+<span class='curline'><a href='../S/626.html#L641'>stats</a>             641 third_party/google-perftools-1.8.3/src/tcmalloc.cc       TCMallocStats stats;</span>
+<span class='curline'><a href='../S/626.html#L642'>stats</a>             642 third_party/google-perftools-1.8.3/src/tcmalloc.cc       ExtractStats(&amp;stats, NULL, NULL, NULL);</span>
+<span class='curline'><a href='../S/626.html#L643'>stats</a>             643 third_party/google-perftools-1.8.3/src/tcmalloc.cc       *value = stats.pageheap.system_bytes;</span>
+<span class='curline'><a href='../S/626.html#L651'>stats</a>             651 third_party/google-perftools-1.8.3/src/tcmalloc.cc       PageHeap::Stats stats = Static::pageheap()-&gt;stats();</span>
+<span class='curline'><a href='../S/626.html#L652'>stats</a>             652 third_party/google-perftools-1.8.3/src/tcmalloc.cc       *value = stats.free_bytes + stats.unmapped_bytes;</span>
+<span class='curline'><a href='../S/626.html#L658'>stats</a>             658 third_party/google-perftools-1.8.3/src/tcmalloc.cc       *value = Static::pageheap()-&gt;stats().free_bytes;</span>
+<span class='curline'><a href='../S/626.html#L664'>stats</a>             664 third_party/google-perftools-1.8.3/src/tcmalloc.cc       *value = Static::pageheap()-&gt;stats().unmapped_bytes;</span>
+<span class='curline'><a href='../S/626.html#L675'>stats</a>             675 third_party/google-perftools-1.8.3/src/tcmalloc.cc       TCMallocStats stats;</span>
+<span class='curline'><a href='../S/626.html#L676'>stats</a>             676 third_party/google-perftools-1.8.3/src/tcmalloc.cc       ExtractStats(&amp;stats, NULL, NULL, NULL);</span>
+<span class='curline'><a href='../S/626.html#L677'>stats</a>             677 third_party/google-perftools-1.8.3/src/tcmalloc.cc       *value = stats.thread_bytes;</span>
+<span class='curline'><a href='../S/626.html#L1313'>stats</a>            1313 third_party/google-perftools-1.8.3/src/tcmalloc.cc   TCMallocStats stats;</span>
+<span class='curline'><a href='../S/626.html#L1314'>stats</a>            1314 third_party/google-perftools-1.8.3/src/tcmalloc.cc   ExtractStats(&amp;stats, NULL, NULL, NULL);</span>
+<span class='curline'><a href='../S/626.html#L1322'>stats</a>            1322 third_party/google-perftools-1.8.3/src/tcmalloc.cc   info.arena     = static_cast&lt;int&gt;(stats.pageheap.system_bytes);</span>
+<span class='curline'><a href='../S/626.html#L1323'>stats</a>            1323 third_party/google-perftools-1.8.3/src/tcmalloc.cc   info.fsmblks   = static_cast&lt;int&gt;(stats.thread_bytes</span>
+<span class='curline'><a href='../S/626.html#L1324'>stats</a>            1324 third_party/google-perftools-1.8.3/src/tcmalloc.cc                                     + stats.central_bytes</span>
+<span class='curline'><a href='../S/626.html#L1325'>stats</a>            1325 third_party/google-perftools-1.8.3/src/tcmalloc.cc                                     + stats.transfer_bytes);</span>
+<span class='curline'><a href='../S/626.html#L1326'>stats</a>            1326 third_party/google-perftools-1.8.3/src/tcmalloc.cc   info.fordblks  = static_cast&lt;int&gt;(stats.pageheap.free_bytes +</span>
+<span class='curline'><a href='../S/626.html#L1327'>stats</a>            1327 third_party/google-perftools-1.8.3/src/tcmalloc.cc                                     stats.pageheap.unmapped_bytes);</span>
+<span class='curline'><a href='../S/626.html#L1328'>stats</a>            1328 third_party/google-perftools-1.8.3/src/tcmalloc.cc   info.uordblks  = static_cast&lt;int&gt;(stats.pageheap.system_bytes</span>
+<span class='curline'><a href='../S/626.html#L1329'>stats</a>            1329 third_party/google-perftools-1.8.3/src/tcmalloc.cc                                     - stats.thread_bytes</span>
+<span class='curline'><a href='../S/626.html#L1330'>stats</a>            1330 third_party/google-perftools-1.8.3/src/tcmalloc.cc                                     - stats.central_bytes</span>
+<span class='curline'><a href='../S/626.html#L1331'>stats</a>            1331 third_party/google-perftools-1.8.3/src/tcmalloc.cc                                     - stats.transfer_bytes</span>
+<span class='curline'><a href='../S/626.html#L1332'>stats</a>            1332 third_party/google-perftools-1.8.3/src/tcmalloc.cc                                     - stats.pageheap.free_bytes</span>
+<span class='curline'><a href='../S/626.html#L1333'>stats</a>            1333 third_party/google-perftools-1.8.3/src/tcmalloc.cc                                     - stats.pageheap.unmapped_bytes);</span>
+<span class='curline'><a href='../S/649.html#L16'>stats</a>              16 third_party/google-perftools-1.8.3/src/tests/page_heap_test.cc   tcmalloc::PageHeap::Stats stats = ph-&gt;stats();</span>
+<span class='curline'><a href='../S/649.html#L17'>stats</a>              17 third_party/google-perftools-1.8.3/src/tests/page_heap_test.cc   EXPECT_EQ(system_pages, stats.system_bytes &gt;&gt; kPageShift);</span>
+<span class='curline'><a href='../S/649.html#L18'>stats</a>              18 third_party/google-perftools-1.8.3/src/tests/page_heap_test.cc   EXPECT_EQ(free_pages, stats.free_bytes &gt;&gt; kPageShift);</span>
+<span class='curline'><a href='../S/649.html#L19'>stats</a>              19 third_party/google-perftools-1.8.3/src/tests/page_heap_test.cc   EXPECT_EQ(unmapped_pages, stats.unmapped_bytes &gt;&gt; kPageShift);</span>
+</pre>
+</body>
+</html>
