@@ -567,6 +567,8 @@ static void worker_set_env(LmnWorker *w)
       map_env_set(w);
     } else if(lmn_env.enable_mapndfs) {
       mapndfs_env_set(w);
+    } else if(lmn_env.enable_mcndfs) {
+      mcndfs_env_set(w);
     } else if (lmn_env.enable_bledge || worker_use_lsync(w) || worker_on_mc_bfs(w)) {
       bledge_env_set(w);
     }

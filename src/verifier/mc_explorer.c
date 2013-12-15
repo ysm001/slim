@@ -1261,3 +1261,157 @@ static BOOL mapndfs_loop(State  *seed,
 
   return FALSE;
 }
+
+void mcndfs_worker_init(LmnWorker *w)
+{
+  McSearchMAPNDFS *mc = LMN_MALLOC(McSearchMAPNDFS);
+  mc->open = vec_make(1024);
+  mc->path = vec_make(512);
+
+#ifdef MAPNDFS_USE_MAP
+  if (worker_id(w) == LMN_PRIMARY_ID) {
+    if (workers_entried_num(worker_group(w)) > 1) {
+      mc->propagate   = make_parallel_queue(LMN_Q_MRMW);
+      mc->waitingSeed = make_parallel_queue(LMN_Q_MRMW);
+    } else {
+      mc->propagate   = new_queue();
+      mc->waitingSeed = new_queue();
+    }
+  }
+  else {
+    LmnWorker *prim = workers_get_worker(worker_group(w), LMN_PRIMARY_ID);
+    mc->propagate   = MAP_WORKER_PROPAG_G(prim);
+    mc->waitingSeed = MAP_WORKER_DEL_G(prim);
+  }
+  mc->traversed = NULL;
+#endif
+
+  MAPNDFS_WORKER_OBJ_SET(w, mc);
+}
+
+void mcndfs_worker_finalize(LmnWorker *w)
+{
+  vec_free(MAPNDFS_WORKER_OPEN_VEC(w));
+  vec_free(MAPNDFS_WORKER_PATH_VEC(w));
+
+#ifdef MAPNDFS_USE_MAP
+  if (worker_id(w) == LMN_PRIMARY_ID) {
+    q_free(MAP_WORKER_PROPAG_G(w));
+    q_free(MAP_WORKER_DEL_G(w));
+  }
+  if(MAP_WORKER_HASHSET(w)) st_free_table(MAP_WORKER_HASHSET(w));
+#endif
+
+  LMN_FREE(MAPNDFS_WORKER_OBJ(w));
+}
+
+void mcndfs_env_set(LmnWorker *w)
+{
+  if(lmn_env.core_num == 1)ndfs_env_set(w);
+  else {  
+      worker_set_mcndfs(w);
+      worker_explorer_init_f_set(w, mapndfs_worker_init);
+      worker_explorer_finalize_f_set(w, mapndfs_worker_finalize);
+
+      if (lmn_env.prop_scc_driven) {
+          worker_set_opt_scc(w);
+      }
+#ifdef MAPNDFS_USE_MAP
+      if (lmn_env.enable_map_heuristic) {
+          worker_set_map(w);
+      }
+#endif
+  }
+}
+
+
+/* Nested-DFS, Double-DFS, Red-DFS:
+ * 1段階目のDFSで求めたpostorder順に, 受理頂点seedから自身に戻る閉路(受理サイクル)を探索する. */
+void mcndfs_start(LmnWorker *w, State *seed)
+{
+  BOOL has_error;
+  START_CYCLE_SEARCH();
+
+  has_error = FALSE;
+  vec_push(MAPNDFS_WORKER_OPEN_VEC(w), (vec_data_t)seed);
+  has_error = mapndfs_loop(seed,
+                        MAPNDFS_WORKER_OPEN_VEC(w),
+                        MAPNDFS_WORKER_PATH_VEC(w));
+
+  FINISH_CYCLE_SEARCH();
+
+  if (has_error) {
+    mapndfs_found_accepting_cycle(w, seed, MAPNDFS_WORKER_PATH_VEC(w));
+  }
+
+  MAPNDFS_WORKER_OBJ_CLEAR(w);
+}
+
+void mcndfs_found_accepting_cycle(LmnWorker *w, State *seed, Vector *cycle_path)
+{
+  LmnWorkerGroup *wp;
+  Vector *v;
+  unsigned long i;
+  BOOL gen_counter_example;
+
+  wp = worker_group(w);
+  workers_found_error(wp);
+
+  gen_counter_example = lmn_env.dump;
+  set_on_cycle(seed); /* 受理サイクルに含まれるフラグを立てる */
+
+
+  v = gen_counter_example ? vec_make(vec_num(cycle_path)) : NULL;
+
+  /* 受理サイクル上の状態にフラグを立てていく */
+  for (i = 0; i < vec_num(cycle_path); i++) {
+    State *s = (State *)vec_get(cycle_path, i);
+    set_on_cycle(s);
+
+    if (gen_counter_example) vec_push(v, (vec_data_t)s);
+  }
+
+  /* サイクルを登録 */
+  if (gen_counter_example) {
+    mc_found_invalid_path(wp, v);
+  } else if (!wp->do_exhaustive) {
+    workers_set_exit(wp);
+  }
+}
+
+static BOOL mcndfs_loop(State  *seed,
+                      Vector *search,
+                      Vector *path)
+{
+  while(vec_num(search) > 0) {
+    State *s = (State *)vec_peek(search);
+
+    if (is_snd(s)) { /* 訪問済み */
+      /** DFS2 BackTracking */
+      State *s_pop = (State *)vec_pop(search);
+      if (vec_num(path) > 0 && (State *)vec_peek(path) == s_pop) {
+        vec_pop(path);
+      }
+    }
+    else {
+      unsigned int i;
+      vec_push(path, (vec_data_t)s);
+      set_snd(s);
+      for (i = 0; i < state_succ_num(s); i++) {
+        State *succ = state_succ_state(s, i);
+
+        if (is_on_cycle(succ)) {
+          return FALSE;
+        } else if (!is_expanded(succ)) {
+          continue;
+        } else if (succ == seed /* || is_on_stack(succ) */) {
+          return TRUE; /* 同一のseedから探索する閉路が1つ見つかったならば探索を打ち切る */
+        } else {
+          vec_push(search, (vec_data_t)succ);
+        }
+      }
+    }
+  }
+
+  return FALSE;
+}

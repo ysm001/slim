@@ -497,6 +497,8 @@ static void dump_execution_stat(FILE *f)
         expr = "BLE";
       } else if(lmn_env.enable_mapndfs) {
         expr = "MAPNDFS";
+      } else if(lmn_env.enable_mcndfs) {
+        expr = "MCNDFS";
       } else if (lmn_prof.thread_num == 1 && !lmn_env.enable_parallel) {
         expr = "NDFS";
       } else {

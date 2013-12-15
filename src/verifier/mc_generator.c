@@ -164,11 +164,16 @@
                                    ||  (s_is_red(s) && worker_is_generator(w)) ) 
 
 /* 初期状態を割り当てるワーカーの条件 */
-#define WORKER_FOR_INIT_STATE(w, s) ( (worker_use_mapndfs(w)  && worker_is_explorer(w) ) \ 
+#define WORKER_FOR_INIT_STATE(w, s) ( (worker_use_mapndfs(w)  && worker_is_explorer(w) ) \
                                    || (!worker_use_mapndfs(w) &&  worker_id(w) == 0)     \
                                    || !worker_on_parallel(w) )
 
 static inline void    dfs_loop(LmnWorker *w,
+                               Vector    *stack,
+                               Vector    *new_states,
+                               Automata  a,
+                               Vector    *psyms);
+static inline void    mapdfs_loop(LmnWorker *w,
                                Vector    *stack,
                                Vector    *new_states,
                                Automata  a,
@@ -178,6 +183,7 @@ static inline void    mcdfs_loop(LmnWorker *w,
                                Vector    *new_states,
                                Automata  a,
                                Vector    *psyms);
+
 void    costed_dfs_loop(LmnWorker *w,
                         Deque    *deq,
                         Vector    *new_states,
@@ -320,7 +326,7 @@ static inline void dfs_handoff_task(LmnWorker *me, LmnWord task)
 /* ワーカーwが輪の方向に沿って, 他のワーカーから未展開状態を奪いに巡回する.
  * 未展開状態を発見した場合, そのワーカーのキューからdequeueして返す.
  * 発見できなかった場合, NULLを返す */
-static inline LmnWord mcdfs_work_stealing(LmnWorker *w)
+static inline LmnWord mapdfs_work_stealing(LmnWorker *w)
 {
   LmnWorker *dst;
 
@@ -342,7 +348,7 @@ static inline LmnWord mcdfs_work_stealing(LmnWorker *w)
 
 
 /* ベクタexpandsに積まれたタスクをワーカーmeの隣接ワーカーに全てハンドオフする */
-static inline void mcdfs_handoff_all_task(LmnWorker *me, Vector *expands)
+static inline void mapdfs_handoff_all_task(LmnWorker *me, Vector *expands)
 {
   unsigned long i, n;
   LmnWorker *rn = worker_next_generator(me);
@@ -412,10 +418,10 @@ void dfs_start(LmnWorker *w)
         if (lmn_workers_termination_detection_for_rings(w)) {
           /* termination is detected! */
           break;
-        } else if (worker_on_dynamic_lb(w) ){
+        } else if (worker_on_dynamic_lb(w) && !worker_use_mcndfs(w)){
           /* 職探しの旅 */
           if(!worker_use_mapndfs(w)) s = (State *)dfs_work_stealing(w);
-          else if(worker_is_generator(w)) s = (State *)mcdfs_work_stealing(w);
+          else if(worker_is_generator(w)) s = (State *)mapdfs_work_stealing(w);
           else {
               // explorerの仕事無くなったら終了
               printf("\n\n\nexplorer have no work\n\n\n");
@@ -437,7 +443,8 @@ void dfs_start(LmnWorker *w)
 #endif
           {
             put_stack(&DFS_WORKER_STACK(w), s);
-            if(worker_use_mapndfs(w)) mcdfs_loop(w, &DFS_WORKER_STACK(w), &new_ss, statespace_automata(ss), statespace_propsyms(ss));
+            if(worker_use_mapndfs(w)) mapdfs_loop(w, &DFS_WORKER_STACK(w), &new_ss, statespace_automata(ss), statespace_propsyms(ss));
+            else if(worker_use_mcndfs(w)) mcdfs_loop(w, &DFS_WORKER_STACK(w), &new_ss, statespace_automata(ss), statespace_propsyms(ss));
             else dfs_loop(w, &DFS_WORKER_STACK(w), &new_ss, statespace_automata(ss), statespace_propsyms(ss));
             s = NULL;
             vec_clear(&DFS_WORKER_STACK(w));
@@ -529,8 +536,8 @@ static inline void dfs_loop(LmnWorker *w,
   }
 }
 
-/* MC-NDFS : 基本的にndfs_loopと同じ。安定したら合併させます。 */
-static inline void mcdfs_loop(LmnWorker *w,
+/* MAP+NDFS : 基本的にndfs_loopと同じ。安定したら合併させます。 */
+static inline void mapdfs_loop(LmnWorker *w,
                             Vector    *stack,
                             Vector    *new_ss,
                             Automata  a,
@@ -590,7 +597,7 @@ static inline void mcdfs_loop(LmnWorker *w,
     /* 並列アルゴリズム使用時 MAPNDFS使ってる時点で並列前提だけど一応 */
     if(worker_on_parallel(w)) {
       if (DFS_HANDOFF_COND_STATIC(w, stack) /*|| worker_is_explorer(w)*/) {
-        mcdfs_handoff_all_task(w, new_ss);
+        mapdfs_handoff_all_task(w, new_ss);
       } else {
         n = vec_num(new_ss);
         for (i = 0; i < n; i++) {
@@ -608,6 +615,77 @@ static inline void mcdfs_loop(LmnWorker *w,
     vec_clear(new_ss);
   }
 }
+
+static inline void mcdfs_loop(LmnWorker *w,
+                            Vector    *stack,
+                            Vector    *new_ss,
+                            Automata  a,
+                            Vector    *psyms)
+{
+  while (!vec_is_empty(stack)) {
+    State *s;
+    AutomataState p_s;
+    unsigned int i, n;
+
+    if (workers_are_exit(worker_group(w))) break;
+
+    /** 展開元の状態の取得 */
+    s   = (State *)vec_peek(stack);
+    p_s = MC_GET_PROPERTY(s, a);
+    if (is_expanded(s)) {
+      if (NDFS_COND(w, s, p_s)) {
+        /** entering second DFS */
+          w->red++;
+        ndfs_start(w, s);
+      }
+      else if (MAPNDFS_COND(w, s, p_s)) {
+        mapndfs_start(w,s);
+      }
+      pop_stack(stack);
+      continue;
+    } else if (!worker_ltl_none(w) && atmstate_is_end(p_s)) {
+      mc_found_invalid_state(worker_group(w), s);
+      pop_stack(stack);
+      continue;
+    }
+
+    /* サクセッサを展開 */
+    mc_expand(worker_states(w), s, p_s, &worker_rc(w), new_ss, psyms, worker_flags(w));
+
+    if (MAP_COND(w)) map_start(w, s);
+
+    if (!worker_on_parallel(w)) { /* Nested-DFS: postorder順を求めるDFS(再度到達した未展開状態がStackに積み直される) */
+      set_on_stack(s);
+      n = state_succ_num(s);
+      for (i = 0; i < n; i++) {
+        State *succ = state_succ_state(s, i);
+
+        if (!is_expanded(succ)) {
+          put_stack(stack, succ);
+        }
+      }
+    }
+    else {/* 並列アルゴリズム使用時 */
+      if (DFS_HANDOFF_COND_STATIC(w, stack)) {
+        dfs_handoff_all_task(w, new_ss);
+      } else {
+        n = vec_num(new_ss);
+        for (i = 0; i < n; i++) {
+          State *new_s = (State *)vec_get(new_ss, i);
+
+          if (DFS_LOAD_BALANCING(stack, w, i, n)) {
+            dfs_handoff_task(w, (LmnWord)new_s);
+          } else {
+            put_stack(stack, new_s);
+          }
+        }
+      }
+    }
+
+    vec_clear(new_ss);
+  }
+}
+
 
 /* TODO: DequeとStackが異なるだけでdfs_loopと同じ.
  *   C++ template関数として記述するなど, 保守性向上のための修正が必要 */
