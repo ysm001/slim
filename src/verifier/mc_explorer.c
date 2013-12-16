@@ -1078,6 +1078,7 @@ static void bledge_found_accepting_cycle(LmnWorker *w, Vector *cycle_path)
 /* NDFSとMAPのハイブリッドなアルゴリズム */
 static BOOL mapndfs_loop(State *seed, Vector *search, Vector *postordered);
 static void mapndfs_found_accepting_cycle(LmnWorker *w, State *seed, Vector *cycle_path);
+static void mcndfs_found_accepting_cycle(LmnWorker *w, State *seed, Vector *cycle_path);
 
 #define MAPNDFS_USE_MAP
 /* MAP_WORKER_~ 系のマクロでアクセスするため、最初にMcSearchMapを持ってくる必要がある */
@@ -1316,11 +1317,10 @@ void mcndfs_env_set(LmnWorker *w)
       if (lmn_env.prop_scc_driven) {
           worker_set_opt_scc(w);
       }
-#ifdef MAPNDFS_USE_MAP
+
       if (lmn_env.enable_map_heuristic) {
           worker_set_map(w);
       }
-#endif
   }
 }
 

@@ -651,6 +651,7 @@ static inline void mcdfs_loop(LmnWorker *w,
 
     /* サクセッサを展開 */
     mc_expand(worker_states(w), s, p_s, &worker_rc(w), new_ss, psyms, worker_flags(w));
+    w->expand++;
 
     if (MAP_COND(w)) map_start(w, s);
 
