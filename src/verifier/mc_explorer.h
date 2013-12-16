@@ -119,4 +119,10 @@ void mapndfs_worker_init(LmnWorker *w);
 void mapndfs_worker_finalize(LmnWorker *w);
 void mapndfs_worker_start(LmnWorker *w);
 
+void mcndfs_env_set(LmnWorker *w);
+void mcndfs_start(LmnWorker *w, State *seed);
+void mcndfs_worker_init(LmnWorker *w);
+void mcndfs_worker_finalize(LmnWorker *w);
+void mcndfs_worker_start(LmnWorker *w);
+
 #endif
