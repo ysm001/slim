@@ -154,8 +154,8 @@ struct State {                 /* Total:64(36)byte */
 #define STATE_REDUCED_MASK             (0x01U)
 #define STATE_DELTA_MASK               (0x01U << 1)
 #define STATE_UPDATE_MASK              (0x01U << 2)
-#define BLUE_MASK                      (0x01U << 3)
-#define RED_MASK                       (0x01U << 4)
+#define EXPLORER_VISIT_MASK            (0x01U << 3)
+#define GENERATOR_VISIT_MASK           (0x01U << 4)
 
 /* manipulation for flags2 */
 #define s_set_d(S)                     ((S)->flags2 |=   STATE_DELTA_MASK)
@@ -167,15 +167,15 @@ struct State {                 /* Total:64(36)byte */
 #define s_set_update(S)                ((S)->flags2 |=   STATE_UPDATE_MASK)
 #define s_unset_update(S)              ((S)->flags2 &= (~STATE_UPDATE_MASK))
 #define s_is_update(S)                 ((S)->flags2 &    STATE_UPDATE_MASK)
-#define s_set_blue(S)                  ((S)->flags2 |=   BLUE_MASK)
-#define s_unset_blue(S)                ((S)->flags2 &= (~BLUE_MASK))
-#define s_is_blue(S)                   ((S)->flags2 &    BLUE_MASK)
-#define s_set_red(S)                   ((S)->flags2 |=   RED_MASK)
-#define s_unset_red(S)                 ((S)->flags2 &= (~RED_MASK))
-#define s_is_red(S)                    ((S)->flags2 &    RED_MASK)
-#define s_set_white(S)                 (s_unset_blue(S); s_unset_red(S))
-#define s_is_white(S)                  (!s_is_blue(S) && !s_is_red(S))
 
+#define s_set_visited_by_explorer(S)                  ((S)->flags2 |=   EXPLORER_VISIT_MASK)
+#define s_unset_visited_by_explorer(S)                ((S)->flags2 &= (~EXPLORER_VISIT_MASK))
+#define s_is_visited_by_explorer(S)                   ((S)->flags2 &    EXPLORER_VISIT_MASK)
+#define s_set_visited_by_generator(S)                 ((S)->flags2 |=   GENERATOR_VISIT_MASK)
+#define s_unset_visited_by_generator(S)               ((S)->flags2 &= (~GENERATOR_VISIT_MASK))
+#define s_is_visited_by_generator(S)                  ((S)->flags2 &    GENERATOR_VISIT_MASK)
+#define s_set_unvisited(S)                 (s_unset_visited_by_explorer(S); s_unset_visited_by_generator(S))
+#define s_is_unvisited(S)                  (!s_is_visited_by_explorer(S) && !s_is_visited_by_generator(S))
 
 /*　不必要な場合に使用する状態ID/遷移ID/性質オートマトン */
 #define DEFAULT_STATE_ID       0

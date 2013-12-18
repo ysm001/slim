@@ -56,7 +56,7 @@
                                           &&atmstate_is_accept(PROP_S)    \
                                           && !is_snd(SYST_S)              \
                                           && !is_on_cycle(SYST_S)         \
-                                           && s_is_blue(SYST_S)           \
+                                           && s_is_visited_by_explorer(SYST_S)           \
                                            && worker_is_explorer(W))
 
 #define OWCTY_COND(W)                   (worker_use_owcty(W)              \

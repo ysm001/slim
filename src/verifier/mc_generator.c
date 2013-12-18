@@ -160,8 +160,8 @@
   (DFS_HANDOFF_COND_STATIC_DEQ(W, Deq) || DFS_HANDOFF_COND_DYNAMIC(I, N, W))
 
 /* 既に到達した状態であるかを判定するための条件 */
-#define MAPNDFS_ALREADY_VISITED(w, s) ( (s_is_blue(s) && worker_is_explorer(w)) \
-                                   ||  (s_is_red(s) && worker_is_generator(w)) ) 
+#define MAPNDFS_ALREADY_VISITED(w, s) ( (s_is_visited_by_explorer(s) && worker_is_explorer(w)) \
+                                   ||  (s_is_visited_by_generator(s) && worker_is_generator(w)) ) 
 
 /* 初期状態を割り当てるワーカーの条件 */
 #define WORKER_FOR_INIT_STATE(w, s) ( (worker_use_mapndfs(w)  && worker_is_explorer(w) ) \
@@ -578,9 +578,9 @@ static inline void mapdfs_loop(LmnWorker *w,
     if (MAP_COND(w)) map_start(w, s);
 
     /* explorerが到達した状態はblueに着色 */
-    if(worker_is_explorer(w)) s_set_blue(s);
+    if(worker_is_explorer(w)) s_set_visited_by_explorer(s);
     // generatorが到達した状態はredに着色
-    else if(worker_is_generator(w)) s_set_red(s);
+    else if(worker_is_generator(w)) s_set_visited_by_generator(s);
 
 
    /* Nested-DFS: postorder順を求めるDFS(explorerから未到達の状態がStackに積み直される) */
@@ -589,7 +589,7 @@ static inline void mapdfs_loop(LmnWorker *w,
       n = state_succ_num(s);
       for (i = 0; i < n; i++) {
         State* succ = state_succ_state(s, i);
-        if (!s_is_blue(succ) ) {
+        if (!s_is_visited_by_explorer(succ) ) {
           put_stack(stack, succ);
         }
       }
