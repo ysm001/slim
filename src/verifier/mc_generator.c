@@ -417,11 +417,6 @@ void mcdfs_start(LmnWorker *w)
         if (s || (s = (State *)dequeue(DFS_WORKER_QUEUE(w)))) {
           EXECUTE_PROFILE_START();
           {
-	    if (!s->local_flags) {
-		s->local_flags = LMN_NALLOC(BYTE, wp->worker_num);
-	    }
-
-	    s_set_cyan(s, worker_id(w));
             put_stack(&DFS_WORKER_STACK(w), s);
             mcdfs_loop(w, &DFS_WORKER_STACK(w), &new_ss, statespace_automata(ss), statespace_propsyms(ss));
             s = NULL;
@@ -694,18 +689,23 @@ static inline void mcdfs_loop(LmnWorker *w,
     unsigned int i, n;
 
     if (workers_are_exit(worker_group(w))) break;
-
+    
     /** 展開元の状態の取得 */
     s   = (State *)vec_peek(stack);
     p_s = MC_GET_PROPERTY(s, a);
+
+    // cyan flag用の領域を確保
+    if (!s->local_flags) {
+	s->local_flags = LMN_NALLOC(BYTE, workers_entried_num((worker_group(w))));
+    }
+
+    // cyanに着色
+    s_set_cyan(s, worker_id(w));
+
     if (is_expanded(s)) {
-      if (NDFS_COND(w, s, p_s)) {
-        /** entering second DFS */
-          w->red++;
-        ndfs_start(w, s);
-      }
-      else if (MAPNDFS_COND(w, s, p_s)) {
-        mapndfs_start(w,s);
+      if (MCNDFS_COND(w, s, p_s)) {
+        /** entering red DFS */
+        mcndfs_start(w, s);
       }
       pop_stack(stack);
       continue;
