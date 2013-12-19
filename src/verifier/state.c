@@ -204,6 +204,10 @@ void state_free(State *s)
     LMN_FREE(s->successors);
   }
 
+  if (s->local_flags) {
+      LMN_FREE(s->local_flags);
+  }
+
   state_free_mem(s);
   state_free_binstr(s);
   LMN_FREE(s);
