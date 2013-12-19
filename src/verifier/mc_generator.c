@@ -381,9 +381,71 @@ static inline void mcdfs_handoff_task(LmnWorker *me, LmnWord task)
   ADD_OPEN_PROFILE(sizeof(Node));
 }
 
+void mcdfs_start(LmnWorker *w)
+{
+  LmnWorkerGroup *wp;
+  struct Vector new_ss;
+  State  *s;
+  StateSpace ss;
+  
+  ss = worker_states(w);
+  wp = worker_group(w);
+  vec_init(&new_ss, 32);
+
+  if(WORKER_FOR_INIT_STATE(w, s)) {
+    s = statespace_init_state(ss);
+  } else {
+    s = NULL;
+  }
+
+  if (!worker_on_parallel(w)) { /* DFS */
+    {
+      put_stack(&DFS_WORKER_STACK(w), s);
+      dfs_loop(w, &DFS_WORKER_STACK(w), &new_ss, statespace_automata(ss), statespace_propsyms(ss));
+    }
+  }
+  else {                        /* Stack-Slicing */
+    while (!wp->mc_exit) {
+      if (!s && is_empty_queue(DFS_WORKER_QUEUE(w))) {
+        worker_set_idle(w);
+        if (lmn_workers_termination_detection_for_rings(w)) {
+          /* termination is detected! */
+          break;
+        } 
+      } else {
+        worker_set_active(w);
+        if (s || (s = (State *)dequeue(DFS_WORKER_QUEUE(w)))) {
+          EXECUTE_PROFILE_START();
+          {
+            put_stack(&DFS_WORKER_STACK(w), s);
+            mcdfs_loop(w, &DFS_WORKER_STACK(w), &new_ss, statespace_automata(ss), statespace_propsyms(ss));
+            s = NULL;
+            vec_clear(&DFS_WORKER_STACK(w));
+          }
+          vec_clear(&new_ss);
+
+          EXECUTE_PROFILE_FINISH();
+        }
+      }
+    }
+
+  }
+
+
+  printf("%d : exit (total expand=%d)\n", worker_id(w), w->expand);
+  if(worker_is_explorer(w) || worker_use_ndfs(w)) printf("red dfs count : %d\n", w->red);
+
+
+  vec_destroy(&new_ss);
+}
+
 
 void dfs_start(LmnWorker *w)
 {
+  if (worker_use_mcndfs(w)) {
+      return mcdfs_start(w);
+  }
+
   LmnWorkerGroup *wp;
   struct Vector new_ss;
   State  *s;
@@ -418,7 +480,7 @@ void dfs_start(LmnWorker *w)
         if (lmn_workers_termination_detection_for_rings(w)) {
           /* termination is detected! */
           break;
-        } else if (worker_on_dynamic_lb(w) && !worker_use_mcndfs(w)){
+        } else if (worker_on_dynamic_lb(w)){
           /* 職探しの旅 */
           if(!worker_use_mapndfs(w)) s = (State *)dfs_work_stealing(w);
           else if(worker_is_generator(w)) s = (State *)mapdfs_work_stealing(w);
@@ -444,7 +506,6 @@ void dfs_start(LmnWorker *w)
           {
             put_stack(&DFS_WORKER_STACK(w), s);
             if(worker_use_mapndfs(w)) mapdfs_loop(w, &DFS_WORKER_STACK(w), &new_ss, statespace_automata(ss), statespace_propsyms(ss));
-            else if(worker_use_mcndfs(w)) mcdfs_loop(w, &DFS_WORKER_STACK(w), &new_ss, statespace_automata(ss), statespace_propsyms(ss));
             else dfs_loop(w, &DFS_WORKER_STACK(w), &new_ss, statespace_automata(ss), statespace_propsyms(ss));
             s = NULL;
             vec_clear(&DFS_WORKER_STACK(w));

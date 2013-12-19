@@ -52,6 +52,8 @@ void dfs_worker_init(LmnWorker *w);
 void dfs_worker_finalize(LmnWorker *w);
 BOOL dfs_worker_check(LmnWorker *w);
 
+void mcdfs_start(LmnWorker *w);
+
 void bfs_env_set(LmnWorker *w);
 void bfs_start(LmnWorker *w);
 void bfs_worker_init(LmnWorker *w);
