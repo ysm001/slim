@@ -94,6 +94,7 @@ State *state_make_minimal()
   new_s->flags            = 0x00U;
   new_s->flags2           = 0x00U;
   new_s->flags3           = 0x00U;
+  new_s->local_flags      = 0x00U;
   new_s->hash             = 0;
   new_s->next             = NULL;
   new_s->successors       = NULL;
@@ -212,6 +213,11 @@ void state_free(State *s)
     profile_remove_space(PROFILE_SPACE__STATE_OBJECT, sizeof(struct State));
   }
 #endif
+}
+
+void state_alloc_local_flags(State *s, int size) {
+    if (s->local_flags) LMN_FREE(s->local_flags);
+    s->local_flags = LMN_NALLOC(BYTE, state_succ_num(s));
 }
 
 void state_free_mem(State *s)
