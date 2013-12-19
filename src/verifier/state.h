@@ -202,9 +202,9 @@ struct State {                 /* Total:64(36)byte */
 #define STATE_CYAN_MASK             (0x01U)
 
 /* manipulation for local flags */
-#define s_set_cyan(S, i)                     ((S)->local_flag[i] |=   STATE_CYAN_MASK)
-#define s_unset_cyan(S, i)                   ((S)->local_flag[i] &= (~STATE_CYAN_MASK))
-#define s_is_cyan(S, i)                      ((S)->local_flag[i] &    STATE_CYAN_MASK)
+#define s_set_cyan(S, i)                     ((S)->local_flags[i] |=   STATE_CYAN_MASK)
+#define s_unset_cyan(S, i)                   ((S)->local_flags[i] &= (~STATE_CYAN_MASK))
+#define s_is_cyan(S, i)                      ((S)->local_flags[i] &    STATE_CYAN_MASK)
 
 
 /*　不必要な場合に使用する状態ID/遷移ID/性質オートマトン */

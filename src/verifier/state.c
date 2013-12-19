@@ -219,11 +219,6 @@ void state_free(State *s)
 #endif
 }
 
-void state_alloc_local_flags(State *s, int size) {
-    if (s->local_flags) LMN_FREE(s->local_flags);
-    s->local_flags = LMN_NALLOC(BYTE, state_succ_num(s));
-}
-
 void state_free_mem(State *s)
 {
   if (state_mem(s)) {

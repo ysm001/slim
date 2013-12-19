@@ -404,7 +404,7 @@ void mcdfs_start(LmnWorker *w)
       dfs_loop(w, &DFS_WORKER_STACK(w), &new_ss, statespace_automata(ss), statespace_propsyms(ss));
     }
   }
-  else {                        /* Stack-Slicing */
+  else {
     while (!wp->mc_exit) {
       if (!s && is_empty_queue(DFS_WORKER_QUEUE(w))) {
         worker_set_idle(w);
@@ -417,6 +417,11 @@ void mcdfs_start(LmnWorker *w)
         if (s || (s = (State *)dequeue(DFS_WORKER_QUEUE(w)))) {
           EXECUTE_PROFILE_START();
           {
+	    if (!s->local_flags) {
+		s->local_flags = LMN_NALLOC(BYTE, wp->worker_num);
+	    }
+
+	    s_set_cyan(s, worker_id(w));
             put_stack(&DFS_WORKER_STACK(w), s);
             mcdfs_loop(w, &DFS_WORKER_STACK(w), &new_ss, statespace_automata(ss), statespace_propsyms(ss));
             s = NULL;
