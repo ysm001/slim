@@ -83,6 +83,7 @@ struct State {                 /* Total:64(36)byte */
   State             *parent;          /*  8(4)byte: 自身を生成した状態へのポインタを持たせておく */
   unsigned long      state_id;        /*  8(4)byte: 生成順に割り当てる状態の整数ID */
   State             *map;             /*  8(4)byte: MAP値 or 最適化実行時の前状態 */
+  BYTE              *local_flags;     /*  8(4)byte: 並列実行時、スレッド事に保持しておきたいフラグ(mcndfsのcyanフラグ等) */
 #ifdef KWBT_OPT
   LmnCost            cost;            /*  8(4)byte: cost */
 #endif
@@ -91,6 +92,7 @@ struct State {                 /* Total:64(36)byte */
 #define state_flags(S)                 ((S)->flags)
 #define state_flags2(S)                ((S)->flags2)
 #define state_flags3(S)                ((S)->flags3)
+#define state_loflags(S)               ((S)->local_flags)
 
 /** Flags (8bit)
  *  0000 0001  stack上に存在する頂点であることを示すフラグ (for nested dfs)
@@ -143,10 +145,10 @@ struct State {                 /* Total:64(36)byte */
 /** Flags2 (8bit)
  *  0000 0001  Partial Order ReductionによるReductionマーキング(debug/demo用機能)
  *  0000 0010  D compression stateか否かを示すフラグ
- *  0000 0100  (MC_NDFS)blue flag
- *  0000 1000  (MC_NDFS)red flag
- *  0001 0000
- *  0010 0000
+ *  0000 0100  (MAPNDFS)explorer visit flag
+ *  0000 1000  (MAPNDFS)generator visit flag
+ *  0001 0000  (MCNDFS)blue flag
+ *  0010 0000  (MCNDFS)red flag
  *  0100 0000
  *  1000 0000
  */
@@ -156,6 +158,8 @@ struct State {                 /* Total:64(36)byte */
 #define STATE_UPDATE_MASK              (0x01U << 2)
 #define EXPLORER_VISIT_MASK            (0x01U << 3)
 #define GENERATOR_VISIT_MASK           (0x01U << 4)
+#define VLUE_MASK                      (0x01U << 5)
+#define RED_MASK                       (0x01U << 6)
 
 /* manipulation for flags2 */
 #define s_set_d(S)                     ((S)->flags2 |=   STATE_DELTA_MASK)
@@ -176,6 +180,32 @@ struct State {                 /* Total:64(36)byte */
 #define s_is_visited_by_generator(S)                  ((S)->flags2 &    GENERATOR_VISIT_MASK)
 #define s_set_unvisited(S)                 (s_unset_visited_by_explorer(S); s_unset_visited_by_generator(S))
 #define s_is_unvisited(S)                  (!s_is_visited_by_explorer(S) && !s_is_visited_by_generator(S))
+
+#define s_set_BLUE(S)                ((S)->flags2 |=   STATE_BLUE_MASK)
+#define s_unset_BLUE(S)              ((S)->flags2 &= (~STATE_BLUE_MASK))
+#define s_is_BLUE(S)                 ((S)->flags2 &    STATE_BLUE_MASK)
+
+#define s_set_RED(S)                ((S)->flags2 |=   STATE_RED_MASK)
+#define s_unset_RED(S)              ((S)->flags2 &= (~STATE_RED_MASK))
+#define s_is_RED(S)                 ((S)->flags2 &    STATE_RED_MASK)
+
+/** local flags (8bit)
+ *  0000 0001  (MCNDFS)cyan flag
+ *  0000 0010  
+ *  0000 0100  
+ *  0000 1000  
+ *  0001 0000  
+ *  0010 0000  
+ *  0100 0000
+ *  1000 0000
+ */
+#define STATE_CYAN_MASK             (0x01U)
+
+/* manipulation for local flags */
+#define s_set_cyan(S, i)                     ((S)->local_flag[i] |=   STATE_CYAN_MASK)
+#define s_unset_cyan(S, i)                   ((S)->local_flag[i] &= (~STATE_CYAN_MASK))
+#define s_is_cyan(S, i)                      ((S)->local_flag[i] &    STATE_CYAN_MASK)
+
 
 /*　不必要な場合に使用する状態ID/遷移ID/性質オートマトン */
 #define DEFAULT_STATE_ID       0
