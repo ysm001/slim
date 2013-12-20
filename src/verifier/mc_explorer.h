@@ -42,6 +42,7 @@
 
 #include "state.h"
 #include "mc_worker.h"
+#include "stack_macro.h"
 
 
 /* Nested-DFSが起動するための条件 */

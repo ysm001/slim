@@ -38,9 +38,9 @@ slim-atomic.o slim-atomic.o: ext/atomic.c lmntal.h config.h \
   /usr/include/limits.h /usr/include/machine/limits.h \
   /usr/include/i386/limits.h /usr/include/i386/_limits.h \
   /usr/include/sys/syslimits.h rule.h react_context.h slim_header/port.h \
-  verifier/mc_generator.h verifier/mc_worker.h runtime_status.h \
-  utility/lmntal_thread.h verifier/mc.h verifier/mc_worker.h \
-  verifier/statespace.h /usr/include/sys/time.h \
+  verifier/mc_generator.h verifier/mc_worker.h verifier/stack_macro.h \
+  runtime_status.h utility/lmntal_thread.h verifier/mc.h \
+  verifier/mc_worker.h verifier/statespace.h /usr/include/sys/time.h \
   /usr/include/sys/_select.h
 
 lmntal.h:
@@ -254,6 +254,8 @@ slim_header/port.h:
 verifier/mc_generator.h:
 
 verifier/mc_worker.h:
+
+verifier/stack_macro.h:
 
 runtime_status.h:
 

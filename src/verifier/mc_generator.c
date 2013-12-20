@@ -617,6 +617,38 @@ static inline void mcdfs_loop(LmnWorker *w,
 
     // backtrack
     if (s_is_cyan(s, worker_id(w))) {
+      if (state_is_accept(a, s)) {
+          Vector red_states;
+          vec_init(&red_states, 8192);
+
+          // launch red dfs
+          mcndfs_start(w, s, &red_states);
+
+          // await
+          do {
+            repaired = TRUE;
+            n = vec_num(&red_states);
+            for (i=0; i<n; i++) {
+                State *r = (State*)vec_get(&red_states, i);
+
+                if (state_id(r) != state_id(s) && state_is_accept(a, r)) {
+          	  if (!s_is_red(r)) {
+          	      repaired = FALSE;
+          	      usleep(1);
+          	      break;
+          	  }
+                }
+            }
+          } while(!repaired);
+
+          // set red
+          n = vec_num(&red_states);
+          for (i=0; i<n; i++) {
+              State *r = (State*)vec_get(&red_states, i);
+              s_set_red(r);
+          }
+      }
+
       s_set_blue(s);
       s_unset_cyan(s, worker_id(w));
 
@@ -634,38 +666,6 @@ static inline void mcdfs_loop(LmnWorker *w,
 
     mc_expand(worker_states(w), s, p_s, &worker_rc(w), new_ss, psyms, worker_flags(w));
     w->expand++;
-
-    if (MCNDFS_COND(w, s, p_s)) {
-	Vector red_states;
-        vec_init(&red_states, 8192);
-
-	// launch red dfs
-        mcndfs_start(w, s, &red_states);
-
-	// await
-	do {
-	  repaired = TRUE;
-	  n = vec_num(&red_states);
-	  for (i=0; i<n; i++) {
-	      State *r = (State*)vec_get(&red_states, i);
-
-	      if (state_id(r) != state_id(s)) {
-		  if (!s_is_red(r)) {
-		      repaired = FALSE;
-		      usleep(1);
-		      break;
-		  }
-	      }
-	  }
-	} while(!repaired);
-
-	// set red
-	n = vec_num(&red_states);
-	for (i=0; i<n; i++) {
-	    State *r = (State*)vec_get(&red_states, i);
-	    s_set_red(r);
-	}
-    }
 
     // cyandでもblueでもないsuccessorをスタックに積む
     n = state_succ_num(s);

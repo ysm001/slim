@@ -39,11 +39,12 @@ slim-task.o slim-task.o: task.c task.h lmntal.h config.h \
   verifier/statespace.h utility/st.h utility/queue.h verifier/automata.h \
   verifier/state.h utility/lmntal_thread.h verifier/mem_encode.h \
   membrane.h verifier/delta_membrane.h react_context.h slim_header/port.h \
-  verifier/mc_generator.h verifier/mc_worker.h verifier/dpor.h dumper.h \
-  error.h runtime_status.h utility/lmntal_thread.h verifier/mc.h lmntal.h \
-  utility/lmntal_thread.h verifier/automata.h react_context.h \
-  verifier/state.h verifier/statespace.h verifier/mc_worker.h \
-  verifier/mc_worker.h verifier/statespace.h /usr/include/sys/time.h \
+  verifier/mc_generator.h verifier/mc_worker.h verifier/stack_macro.h \
+  verifier/dpor.h dumper.h error.h runtime_status.h \
+  utility/lmntal_thread.h verifier/mc.h lmntal.h utility/lmntal_thread.h \
+  verifier/automata.h react_context.h verifier/state.h \
+  verifier/statespace.h verifier/mc_worker.h verifier/mc_worker.h \
+  verifier/statespace.h /usr/include/sys/time.h \
   /usr/include/sys/_select.h
 
 task.h:
@@ -259,6 +260,8 @@ slim_header/port.h:
 verifier/mc_generator.h:
 
 verifier/mc_worker.h:
+
+verifier/stack_macro.h:
 
 verifier/dpor.h:
 
