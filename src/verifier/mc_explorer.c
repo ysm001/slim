@@ -1071,14 +1071,13 @@ static void bledge_found_accepting_cycle(LmnWorker *w, Vector *cycle_path)
 
 
 /** ==================================
- *  === MultiCore Nested-DFS ========
+ *  === MAP + Nested-DFS ========
  *  ==================================
  */
 
 /* NDFSとMAPのハイブリッドなアルゴリズム */
 static BOOL mapndfs_loop(State *seed, Vector *search, Vector *postordered);
 static void mapndfs_found_accepting_cycle(LmnWorker *w, State *seed, Vector *cycle_path);
-static void mcndfs_found_accepting_cycle(LmnWorker *w, State *seed, Vector *cycle_path);
 
 #define MAPNDFS_USE_MAP
 /* MAP_WORKER_~ 系のマクロでアクセスするため、最初にMcSearchMapを持ってくる必要がある */
@@ -1262,6 +1261,13 @@ static BOOL mapndfs_loop(State  *seed,
 
   return FALSE;
 }
+
+/** ==================================
+ *  === Multicore Nested-DFS ========
+ *  ==================================
+ */
+static BOOL mcndfs_loop(State *seed, Vector *search, Vector *postordered);
+static void mcndfs_found_accepting_cycle(LmnWorker *w, State *seed, Vector *cycle_path);
 
 void mcndfs_worker_init(LmnWorker *w)
 {
