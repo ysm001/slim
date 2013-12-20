@@ -1266,7 +1266,7 @@ static BOOL mapndfs_loop(State  *seed,
  *  === Multicore Nested-DFS ========
  *  ==================================
  */
-static BOOL mcndfs_loop(State *seed, Vector *search, Vector *postordered);
+static BOOL mcndfs_loop(LmnWorker* w, State *seed, Vector *search, Vector *postordered);
 static void mcndfs_found_accepting_cycle(LmnWorker *w, State *seed, Vector *cycle_path);
 
 void mcndfs_worker_init(LmnWorker *w)
@@ -1340,7 +1340,7 @@ void mcndfs_start(LmnWorker *w, State *seed, Vector* red_states)
 
   has_error = FALSE;
   vec_push(MAPNDFS_WORKER_OPEN_VEC(w), (vec_data_t)seed);
-  has_error = mcndfs_loop(seed,
+  has_error = mcndfs_loop(w, seed,
                         MAPNDFS_WORKER_OPEN_VEC(w),
                         MAPNDFS_WORKER_PATH_VEC(w));
 
@@ -1385,7 +1385,8 @@ void mcndfs_found_accepting_cycle(LmnWorker *w, State *seed, Vector *cycle_path)
   }
 }
 
-static BOOL mcndfs_loop(State  *seed,
+static BOOL mcndfs_loop(LmnWorker *w,
+	              State  *seed,
                       Vector *search,
                       Vector *path)
 {
@@ -1410,7 +1411,7 @@ static BOOL mcndfs_loop(State  *seed,
           return FALSE;
         } else if (!is_expanded(succ)) {
           continue;
-        } else if (succ == seed /* || is_on_stack(succ) */) {
+        } else if (s_is_cyan(s, worker_id(w))/*succ == seed*/ /* || is_on_stack(succ) */) {
           return TRUE; /* 同一のseedから探索する閉路が1つ見つかったならば探索を打ち切る */
         } else {
           vec_push(search, (vec_data_t)succ);
