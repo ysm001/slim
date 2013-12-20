@@ -312,11 +312,14 @@ void mcdfs_start(LmnWorker *w)
   wp = worker_group(w);
   vec_init(&new_ss, 32);
 
+  /*
   if(WORKER_FOR_INIT_STATE(w, s)) {
     s = statespace_init_state(ss);
   } else {
     s = NULL;
   }
+  */
+  s = statespace_init_state(ss);
 
   if (!worker_on_parallel(w)) { /* DFS */
     {
@@ -664,8 +667,14 @@ static inline void mcdfs_loop(LmnWorker *w,
     // cyanに着色
     s_set_cyan(s, worker_id(w));
 
-    mc_expand(worker_states(w), s, p_s, &worker_rc(w), new_ss, psyms, worker_flags(w));
-    w->expand++;
+    // 同時に状態を展開すると問題が起こるのでロック
+    // このロックを無くしたい
+    workers_lock(worker_group(w));
+    if (!is_expanded(s)) {
+        mc_expand(worker_states(w), s, p_s, &worker_rc(w), new_ss, psyms, worker_flags(w));
+        w->expand++;
+    }
+    workers_unlock(worker_group(w));
 
     // cyandでもblueでもないsuccessorをスタックに積む
     n = state_succ_num(s);
