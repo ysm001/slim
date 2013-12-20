@@ -47,6 +47,7 @@
 #include "error.h"
 #include "lmntal_thread.h"
 #include "runtime_status.h"
+#include <unistd.h>
 
 /* TODO: C++ template関数で書き直した方がよい */
 
@@ -687,12 +688,22 @@ static inline void mcdfs_loop(LmnWorker *w,
     State *s;
     AutomataState p_s;
     unsigned int i, n;
+    BOOL repaired;
 
     if (workers_are_exit(worker_group(w))) break;
     
     /** 展開元の状態の取得 */
     s   = (State *)vec_peek(stack);
     p_s = MC_GET_PROPERTY(s, a);
+
+    // backtrack
+    if (s_is_cyan(s, worker_id(w))) {
+      s_set_blue(s);
+      s_unset_cyan(s, worker_id(w));
+
+      pop_stack(stack);
+      continue;
+    }
 
     // cyan flag用の領域を確保
     if (!s->local_flags) {
@@ -702,6 +713,53 @@ static inline void mcdfs_loop(LmnWorker *w,
     // cyanに着色
     s_set_cyan(s, worker_id(w));
 
+    mc_expand(worker_states(w), s, p_s, &worker_rc(w), new_ss, psyms, worker_flags(w));
+    w->expand++;
+
+    if (MCNDFS_COND(w, s, p_s)) {
+	Vector red_states;
+        vec_init(&red_states, 8192);
+
+	// launch red dfs
+        mcndfs_start(w, s, &red_states);
+
+	// await
+	do {
+	  repaired = TRUE;
+	  n = vec_num(&red_states);
+	  for (i=0; i<n; i++) {
+	      State *r = (State*)vec_get(&red_states, i);
+
+	      if (state_id(r) != state_id(s)) {
+		  if (!s_is_red(r)) {
+		      repaired = FALSE;
+		      usleep(1);
+		      break;
+		  }
+	      }
+	  }
+	} while(!repaired);
+
+	// set red
+	n = vec_num(&red_states);
+	for (i=0; i<n; i++) {
+	    State *r = (State*)vec_get(&red_states, i);
+	    s_set_red(r);
+	}
+    }
+
+    // cyandでもblueでもないsuccessorをスタックに積む
+    n = state_succ_num(s);
+    for (i = 0; i < n; i++) {
+      State *succ = state_succ_state(s, i);
+
+      if (!s_is_blue(succ) && !s_is_cyan(succ, worker_id(w))) {
+        put_stack(stack, succ);
+      }
+    }
+
+
+#if 0
     if (is_expanded(s)) {
       if (MCNDFS_COND(w, s, p_s)) {
         /** entering red DFS */
@@ -750,6 +808,7 @@ static inline void mcdfs_loop(LmnWorker *w,
     }
 
     vec_clear(new_ss);
+#endif
   }
 }
 

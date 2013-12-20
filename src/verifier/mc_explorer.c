@@ -1327,14 +1327,14 @@ void mcndfs_env_set(LmnWorker *w)
 
 /* Nested-DFS, Double-DFS, Red-DFS:
  * 1段階目のDFSで求めたpostorder順に, 受理頂点seedから自身に戻る閉路(受理サイクル)を探索する. */
-void mcndfs_start(LmnWorker *w, State *seed)
+void mcndfs_start(LmnWorker *w, State *seed, Vector* red_states)
 {
   BOOL has_error;
   START_CYCLE_SEARCH();
 
   has_error = FALSE;
   vec_push(MAPNDFS_WORKER_OPEN_VEC(w), (vec_data_t)seed);
-  has_error = mapndfs_loop(seed,
+  has_error = mcndfs_loop(seed,
                         MAPNDFS_WORKER_OPEN_VEC(w),
                         MAPNDFS_WORKER_PATH_VEC(w));
 

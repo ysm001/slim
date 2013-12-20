@@ -158,8 +158,8 @@ struct State {                 /* Total:64(36)byte */
 #define STATE_UPDATE_MASK              (0x01U << 2)
 #define EXPLORER_VISIT_MASK            (0x01U << 3)
 #define GENERATOR_VISIT_MASK           (0x01U << 4)
-#define VLUE_MASK                      (0x01U << 5)
-#define RED_MASK                       (0x01U << 6)
+#define STATE_BLUE_MASK                      (0x01U << 5)
+#define STATE_RED_MASK                       (0x01U << 6)
 
 /* manipulation for flags2 */
 #define s_set_d(S)                     ((S)->flags2 |=   STATE_DELTA_MASK)
@@ -181,13 +181,13 @@ struct State {                 /* Total:64(36)byte */
 #define s_set_unvisited(S)                 (s_unset_visited_by_explorer(S); s_unset_visited_by_generator(S))
 #define s_is_unvisited(S)                  (!s_is_visited_by_explorer(S) && !s_is_visited_by_generator(S))
 
-#define s_set_BLUE(S)                ((S)->flags2 |=   STATE_BLUE_MASK)
-#define s_unset_BLUE(S)              ((S)->flags2 &= (~STATE_BLUE_MASK))
-#define s_is_BLUE(S)                 ((S)->flags2 &    STATE_BLUE_MASK)
+#define s_set_blue(S)                ((S)->flags2 |=   STATE_BLUE_MASK)
+#define s_unset_blue(S)              ((S)->flags2 &= (~STATE_BLUE_MASK))
+#define s_is_blue(S)                 ((S)->flags2 &    STATE_BLUE_MASK)
 
-#define s_set_RED(S)                ((S)->flags2 |=   STATE_RED_MASK)
-#define s_unset_RED(S)              ((S)->flags2 &= (~STATE_RED_MASK))
-#define s_is_RED(S)                 ((S)->flags2 &    STATE_RED_MASK)
+#define s_set_red(S)                ((S)->flags2 |=   STATE_RED_MASK)
+#define s_unset_red(S)              ((S)->flags2 &= (~STATE_RED_MASK))
+#define s_is_red(S)                 ((S)->flags2 &    STATE_RED_MASK)
 
 /** local flags (8bit)
  *  0000 0001  (MCNDFS)cyan flag
@@ -204,7 +204,7 @@ struct State {                 /* Total:64(36)byte */
 /* manipulation for local flags */
 #define s_set_cyan(S, i)                     (((S)->local_flags)[i] |=   STATE_CYAN_MASK)
 #define s_unset_cyan(S, i)                   (((S)->local_flags)[i] &= (~STATE_CYAN_MASK))
-#define s_is_cyan(S, i)                      (((S)->local_flags)[i] &    STATE_CYAN_MASK)
+#define s_is_cyan(S, i)                      (((S)->local_flags) && (((S)->local_flags)[i] &    STATE_CYAN_MASK))
 
 
 /*　不必要な場合に使用する状態ID/遷移ID/性質オートマトン */
