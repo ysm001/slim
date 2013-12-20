@@ -609,7 +609,7 @@ static inline void mcdfs_loop(LmnWorker *w,
   while (!vec_is_empty(stack)) {
     State *s;
     AutomataState p_s;
-    unsigned int i, n;
+    unsigned int i, n, start;
     BOOL repaired;
 
     if (workers_are_exit(worker_group(w))) break;
@@ -677,6 +677,8 @@ static inline void mcdfs_loop(LmnWorker *w,
     workers_unlock(worker_group(w));
 
     // cyandでもblueでもないsuccessorをスタックに積む
+    //////////// 普通に積む ////////////
+    /*
     n = state_succ_num(s);
     for (i = 0; i < n; i++) {
       State *succ = state_succ_state(s, i);
@@ -685,6 +687,18 @@ static inline void mcdfs_loop(LmnWorker *w,
         put_stack(stack, succ);
       }
     }
+    */
+    //////////// workerごとにsuccessorをずらして積む ////////////
+    n = state_succ_num(s);
+    start = worker_id(w) % n;
+    for (i = 0; i < n; i++) {
+      State *succ = state_succ_state(s, (start + i) % n);
+
+      if (!s_is_blue(succ) && !s_is_cyan(succ, worker_id(w))) {
+        put_stack(stack, succ);
+      }
+    }
+
 
 
 #if 0
