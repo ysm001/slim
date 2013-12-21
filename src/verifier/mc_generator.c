@@ -52,6 +52,22 @@
 /* TODO: C++ template関数で書き直した方がよい */
 
 /* 邪魔なので上に持ってきた */
+#ifdef PROFILE
+#  include "runtime_status.h"
+
+#  define START_LOCK()                                             \
+    if (lmn_env.profile_level >= 3) {                                      \
+      profile_start_timer(PROFILE_TIME__LOCK);                    \
+    }
+#  define FINISH_LOCK()                                            \
+    if (lmn_env.profile_level >= 3) {                                      \
+      profile_finish_timer(PROFILE_TIME__LOCK);                   \
+    }
+#else
+#  define START_CYCLE_SEARCH()
+#  define FINISH_CYCLE_SEARCH()
+#endif
+
 
 /** ------------------------------------------------------------------
  *  Depth First Search
@@ -669,7 +685,9 @@ static inline void mcdfs_loop(LmnWorker *w,
 
     // 同時に状態を展開すると問題が起こるのでロック
     // このロックを無くしたい
+    START_LOCK();
     workers_lock(worker_group(w));
+    FINISH_LOCK();
     if (!is_expanded(s)) {
         mc_expand(worker_states(w), s, p_s, &worker_rc(w), new_ss, psyms, worker_flags(w));
         w->expand++;
