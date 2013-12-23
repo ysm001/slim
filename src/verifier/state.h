@@ -84,7 +84,7 @@ struct State {                 /* Total:64(36)byte */
   unsigned long      state_id;        /*  8(4)byte: 生成順に割り当てる状態の整数ID */
   State             *map;             /*  8(4)byte: MAP値 or 最適化実行時の前状態 */
   BYTE              *local_flags;     /*  8(4)byte: 並列実行時、スレッド事に保持しておきたいフラグ(mcndfsのcyanフラグ等) */
-  pthread_mutex_t    lock;
+  pthread_mutex_t    expand_lock;
 #ifdef KWBT_OPT
   LmnCost            cost;            /*  8(4)byte: cost */
 #endif
@@ -95,8 +95,10 @@ struct State {                 /* Total:64(36)byte */
 #define state_flags3(S)                ((S)->flags3)
 #define state_loflags(S)               ((S)->local_flags)
 
-#define state_lock(S)                  (lmn_mutex_lock(&((S)->lock)))
-#define state_unlock(S)                (lmn_mutex_unlock(&((S)->lock)))
+#define state_expand_lock_init(S)             (lmn_mutex_init(&((S)->expand_lock)))
+#define state_expand_lock_destroy(S)          (lmn_mutex_destroy(&((S)->expand_lock)))
+#define state_expand_lock(S)                  (lmn_mutex_lock(&((S)->expand_lock)))
+#define state_expand_unlock(S)                (lmn_mutex_unlock(&((S)->expand_lock)))
 
 /** Flags (8bit)
  *  0000 0001  stack上に存在する頂点であることを示すフラグ (for nested dfs)

@@ -686,13 +686,13 @@ static inline void mcdfs_loop(LmnWorker *w,
     // 同時に状態を展開すると問題が起こるのでロック
     // このロックを無くしたい
     START_LOCK();
-    state_lock(s);
+    state_expand_lock(s);
     FINISH_LOCK();
     if (!is_expanded(s)) {
         mc_expand(worker_states(w), s, p_s, &worker_rc(w), new_ss, psyms, worker_flags(w));
         w->expand++;
     }
-    state_unlock(s);
+    state_expand_unlock(s);
 
     // cyandでもblueでもないsuccessorをスタックに積む
     //////////// 普通に積む ////////////

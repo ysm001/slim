@@ -103,7 +103,7 @@ State *state_make_minimal()
   new_s->state_id         = 0;
   new_s->map              = NULL;
 
-  lmn_mutex_init(&(new_s->lock));
+  state_expand_lock_init(new_s);
 
 #ifdef KWBT_OPT
   if (lmn_env.opt_mode != OPT_NONE) {
@@ -210,7 +210,7 @@ void state_free(State *s)
       LMN_FREE(s->local_flags);
   }
 
-  lmn_mutex_destroy(&(s->lock));
+  state_expand_lock_destroy(s);
 
   state_free_mem(s);
   state_free_binstr(s);
