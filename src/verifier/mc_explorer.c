@@ -1071,14 +1071,13 @@ static void bledge_found_accepting_cycle(LmnWorker *w, Vector *cycle_path)
 
 
 /** ==================================
- *  === MultiCore Nested-DFS ========
+ *  === MAP + Nested-DFS ========
  *  ==================================
  */
 
 /* NDFSとMAPのハイブリッドなアルゴリズム */
 static BOOL mapndfs_loop(State *seed, Vector *search, Vector *postordered);
 static void mapndfs_found_accepting_cycle(LmnWorker *w, State *seed, Vector *cycle_path);
-static void mcndfs_found_accepting_cycle(LmnWorker *w, State *seed, Vector *cycle_path);
 
 #define MAPNDFS_USE_MAP
 /* MAP_WORKER_~ 系のマクロでアクセスするため、最初にMcSearchMapを持ってくる必要がある */
@@ -1263,6 +1262,13 @@ static BOOL mapndfs_loop(State  *seed,
   return FALSE;
 }
 
+/** ==================================
+ *  === Multicore Nested-DFS ========
+ *  ==================================
+ */
+static BOOL mcndfs_loop(LmnWorker* w, State *seed, Vector *search, Vector *postordered, Vector *red_states);
+static void mcndfs_found_accepting_cycle(LmnWorker *w, State *seed, Vector *cycle_path);
+
 void mcndfs_worker_init(LmnWorker *w)
 {
   McSearchMAPNDFS *mc = LMN_MALLOC(McSearchMAPNDFS);
@@ -1327,16 +1333,17 @@ void mcndfs_env_set(LmnWorker *w)
 
 /* Nested-DFS, Double-DFS, Red-DFS:
  * 1段階目のDFSで求めたpostorder順に, 受理頂点seedから自身に戻る閉路(受理サイクル)を探索する. */
-void mcndfs_start(LmnWorker *w, State *seed)
+void mcndfs_start(LmnWorker *w, State *seed, Vector* red_states)
 {
   BOOL has_error;
   START_CYCLE_SEARCH();
 
   has_error = FALSE;
   vec_push(MAPNDFS_WORKER_OPEN_VEC(w), (vec_data_t)seed);
-  has_error = mapndfs_loop(seed,
+  has_error = mcndfs_loop(w, seed,
                         MAPNDFS_WORKER_OPEN_VEC(w),
-                        MAPNDFS_WORKER_PATH_VEC(w));
+                        MAPNDFS_WORKER_PATH_VEC(w),
+			red_states);
 
   FINISH_CYCLE_SEARCH();
 
@@ -1379,13 +1386,51 @@ void mcndfs_found_accepting_cycle(LmnWorker *w, State *seed, Vector *cycle_path)
   }
 }
 
-static BOOL mcndfs_loop(State  *seed,
+static BOOL mcndfs_loop(LmnWorker *w,
+	              State  *seed,
                       Vector *search,
-                      Vector *path)
+                      Vector *path,
+		      Vector *red_states)
 {
+  unsigned int i, j, n, m;
+  State *s, *t, *succ;
+  BOOL contained;
+
   while(vec_num(search) > 0) {
     State *s = (State *)vec_peek(search);
 
+    if (is_snd(s)) {
+      t = (State *)vec_pop(search);
+      if (vec_num(path) > 0 && (State *)vec_peek(path) == t) {
+        vec_pop(path);
+      }
+      continue;
+    }
+
+    put_stack(red_states, s);
+    set_snd(s);
+
+    n = state_succ_num(s);
+    for (i = 0; i < n; i++) {
+	succ = state_succ_state(s, i);
+	if (s_is_cyan(succ, worker_id(w))) {
+	    return TRUE;
+	}
+	else if (!s_is_red(succ)) {
+	    m = vec_num(red_states);
+	    contained = FALSE;
+	    for (j = 0; j < m; j++) {
+		t = vec_get(red_states, j);
+		if (state_id(t) == state_id(succ)) {
+		    contained = TRUE;
+		    break;
+		}
+	    }
+	    if (!contained) put_stack(search, succ);
+	}
+    }
+
+#if 0
     if (is_snd(s)) { /* 訪問済み */
       /** DFS2 BackTracking */
       State *s_pop = (State *)vec_pop(search);
@@ -1404,13 +1449,14 @@ static BOOL mcndfs_loop(State  *seed,
           return FALSE;
         } else if (!is_expanded(succ)) {
           continue;
-        } else if (succ == seed /* || is_on_stack(succ) */) {
+        } else if (s_is_cyan(s, worker_id(w))/*succ == seed*/ /* || is_on_stack(succ) */) {
           return TRUE; /* 同一のseedから探索する閉路が1つ見つかったならば探索を打ち切る */
         } else {
           vec_push(search, (vec_data_t)succ);
         }
       }
     }
+#endif
   }
 
   return FALSE;

@@ -345,6 +345,8 @@ LmnWorkerGroup *lmn_workergroup_make(Automata a, Vector *psyms, int thread_num)
   workers_gen(wp, workers_entried_num(wp), a, psyms, flags);
   workers_ring_alignment(wp);
 
+  lmn_mutex_init(&(wp->lock));
+
   return wp;
 }
 
@@ -360,6 +362,8 @@ void lmn_workergroup_free(LmnWorkerGroup *wp)
   if (wp->ewlock) {
     ewlock_free(wp->ewlock);
   }
+
+  lmn_mutex_destroy(&(wp->lock));
 }
 
 

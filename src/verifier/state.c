@@ -94,6 +94,7 @@ State *state_make_minimal()
   new_s->flags            = 0x00U;
   new_s->flags2           = 0x00U;
   new_s->flags3           = 0x00U;
+  new_s->local_flags      = 0x00U;
   new_s->hash             = 0;
   new_s->next             = NULL;
   new_s->successors       = NULL;
@@ -201,6 +202,10 @@ void state_free(State *s)
       }
     }
     LMN_FREE(s->successors);
+  }
+
+  if (s->local_flags) {
+      LMN_FREE(s->local_flags);
   }
 
   state_free_mem(s);

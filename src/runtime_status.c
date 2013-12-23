@@ -535,7 +535,7 @@ static void dump_execution_stat(FILE *f)
     fprintf(f, "%-9s: %-8s=%6s  %-8s=%6s\n"
              , "EXPLORER"
              , "strtgy"  , expr
-             , "heurstc" , heuristic);
+	     , "heurstc" , heuristic);
   }
   fprintf(f,  "============================================================\n");
   fprintf(f,  "\n");
@@ -859,6 +859,9 @@ static char *profile_time_id_to_name(int type)
     break;
   case PROFILE_TIME__COST_UPDATE:
     ret = "cost update";
+    break;
+  case PROFILE_TIME__LOCK:
+    ret = "lock";
     break;
   default:
     ret = "unknown";
