@@ -63,9 +63,21 @@
     if (lmn_env.profile_level >= 3) {                                      \
       profile_finish_timer(PROFILE_TIME__LOCK);                   \
     }
+
+#  define START_REPAIR_PHASE()                                             \
+    if (lmn_env.profile_level >= 3) {                                      \
+      profile_start_timer(PROFILE_TIME__REPAIR);                    \
+    }
+#  define FINISH_REPAIR_PHASE()                                            \
+    if (lmn_env.profile_level >= 3) {                                      \
+      profile_finish_timer(PROFILE_TIME__REPAIR);                   \
+    }
+
 #else
-#  define START_CYCLE_SEARCH()
-#  define FINISH_CYCLE_SEARCH()
+#  define START_LOCK()
+#  define FINISH_LOCK()
+#  define START_REPAIR_PHASE()
+#  define FINISH_REPAIR_PHASE()
 #endif
 
 
@@ -643,7 +655,8 @@ static inline void mcdfs_loop(LmnWorker *w,
           // launch red dfs
           mcndfs_start(w, s, &red_states);
 
-          // await
+          // repair phase
+	  START_REPAIR_PHASE();
           do {
             repaired = TRUE;
             n = vec_num(&red_states);
@@ -659,6 +672,7 @@ static inline void mcdfs_loop(LmnWorker *w,
                 }
             }
           } while(!repaired);
+	  FINISH_REPAIR_PHASE();
 
           // set red
           n = vec_num(&red_states);
@@ -684,7 +698,6 @@ static inline void mcdfs_loop(LmnWorker *w,
     s_set_cyan(s, worker_id(w));
 
     // 同時に状態を展開すると問題が起こるのでロック
-    // このロックを無くしたい
     START_LOCK();
     state_expand_lock(s);
     FINISH_LOCK();
@@ -694,18 +707,6 @@ static inline void mcdfs_loop(LmnWorker *w,
     }
     state_expand_unlock(s);
 
-    // cyandでもblueでもないsuccessorをスタックに積む
-    //////////// 普通に積む ////////////
-    /*
-    n = state_succ_num(s);
-    for (i = 0; i < n; i++) {
-      State *succ = state_succ_state(s, i);
-
-      if (!s_is_blue(succ) && !s_is_cyan(succ, worker_id(w))) {
-        put_stack(stack, succ);
-      }
-    }
-    */
     //////////// workerごとにsuccessorをずらして積む ////////////
     n = state_succ_num(s);
 
@@ -719,59 +720,6 @@ static inline void mcdfs_loop(LmnWorker *w,
         }
       }
     }
-
-
-
-#if 0
-    if (is_expanded(s)) {
-      if (MCNDFS_COND(w, s, p_s)) {
-        /** entering red DFS */
-        mcndfs_start(w, s);
-      }
-      pop_stack(stack);
-      continue;
-    } else if (!worker_ltl_none(w) && atmstate_is_end(p_s)) {
-      mc_found_invalid_state(worker_group(w), s);
-      pop_stack(stack);
-      continue;
-    }
-
-    /* サクセッサを展開 */
-    mc_expand(worker_states(w), s, p_s, &worker_rc(w), new_ss, psyms, worker_flags(w));
-    w->expand++;
-
-    if (MAP_COND(w)) map_start(w, s);
-
-    if (!worker_on_parallel(w)) { /* Nested-DFS: postorder順を求めるDFS(再度到達した未展開状態がStackに積み直される) */
-      set_on_stack(s);
-      n = state_succ_num(s);
-      for (i = 0; i < n; i++) {
-        State *succ = state_succ_state(s, i);
-
-        if (!is_expanded(succ)) {
-          put_stack(stack, succ);
-        }
-      }
-    }
-    else {/* 並列アルゴリズム使用時 */
-      if (DFS_HANDOFF_COND_STATIC(w, stack)) {
-        dfs_handoff_all_task(w, new_ss);
-      } else {
-        n = vec_num(new_ss);
-        for (i = 0; i < n; i++) {
-          State *new_s = (State *)vec_get(new_ss, i);
-
-          if (DFS_LOAD_BALANCING(stack, w, i, n)) {
-            dfs_handoff_task(w, (LmnWord)new_s);
-          } else {
-            put_stack(stack, new_s);
-          }
-        }
-      }
-    }
-
-    vec_clear(new_ss);
-#endif
   }
 }
 

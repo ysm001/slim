@@ -863,6 +863,9 @@ static char *profile_time_id_to_name(int type)
   case PROFILE_TIME__LOCK:
     ret = "lock";
     break;
+  case PROFILE_TIME__REPAIR:
+    ret = "repair phase";
+    break;
   default:
     ret = "unknown";
     break;
