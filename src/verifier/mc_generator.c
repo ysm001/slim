@@ -708,12 +708,15 @@ static inline void mcdfs_loop(LmnWorker *w,
     */
     //////////// workerごとにsuccessorをずらして積む ////////////
     n = state_succ_num(s);
-    start = worker_id(w) % n;
-    for (i = 0; i < n; i++) {
-      State *succ = state_succ_state(s, (start + i) % n);
 
-      if (!s_is_blue(succ) && !s_is_cyan(succ, worker_id(w))) {
-        put_stack(stack, succ);
+    if (n > 0) {
+      start = worker_id(w) % n;
+      for (i = 0; i < n; i++) {
+        State *succ = state_succ_state(s, (start + i) % n);
+
+        if (!s_is_blue(succ) && !s_is_cyan(succ, worker_id(w))) {
+          put_stack(stack, succ);
+        }
       }
     }
 
