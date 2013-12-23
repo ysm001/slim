@@ -86,8 +86,6 @@ struct LmnWorkerGroup {
                                       * wlock: 各状態のコストアップデート用 */
 
   FILE           *out;               /* 出力先 */
-
-  pthread_mutex_t lock;
 };
 
 #define workers_are_exit(WP)         ((WP)->mc_exit)
@@ -113,9 +111,6 @@ struct LmnWorkerGroup {
 #define workers_synchronizer(WP)     ((WP)->synchronizer)
 #define workers_get_entry(WP, I)     ((WP)->workers[(I)])
 #define workers_set_entry(WP, I, W)  ((WP)->workers[(I)] = (W))
-
-#define workers_lock(WP)             (lmn_mutex_lock(&((WP)->lock)))
-#define workers_unlock(WP)           (lmn_mutex_unlock(&((WP)->lock)))
 
 /**
  *  Objects for Model Checking
