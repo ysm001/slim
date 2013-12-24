@@ -1319,6 +1319,7 @@ void mcndfs_env_set(LmnWorker *w)
       worker_set_mcndfs(w);
       worker_explorer_init_f_set(w, mapndfs_worker_init);
       worker_explorer_finalize_f_set(w, mapndfs_worker_finalize);
+      w->is_explorer = FALSE;
 
       if (lmn_env.prop_scc_driven) {
           worker_set_opt_scc(w);
