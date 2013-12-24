@@ -358,13 +358,14 @@ void mcdfs_start(LmnWorker *w)
   else {
     while (!wp->mc_exit) {
       if (!s && is_empty_queue(DFS_WORKER_QUEUE(w))) {
-        worker_set_idle(w);
+	break;
+	/*
         if (lmn_workers_termination_detection_for_rings(w)) {
-          /* termination is detected! */
           break;
         } 
+	*/
       } else {
-        worker_set_active(w);
+        //worker_set_active(w);
         if (s || (s = (State *)dequeue(DFS_WORKER_QUEUE(w)))) {
           EXECUTE_PROFILE_START();
           {
@@ -379,13 +380,10 @@ void mcdfs_start(LmnWorker *w)
         }
       }
     }
-
   }
 
 
   printf("%d : exit (total expand=%d)\n", worker_id(w), w->expand);
-  if(worker_is_explorer(w) || worker_use_ndfs(w)) printf("red dfs count : %d\n", w->red);
-
 
   vec_destroy(&new_ss);
 }
@@ -691,7 +689,9 @@ static inline void mcdfs_loop(LmnWorker *w,
 
     // cyan flag用の領域を確保
     if (!s->local_flags) {
-	s->local_flags = LMN_NALLOC(BYTE, workers_entried_num((worker_group(w))));
+        n = workers_entried_num((worker_group(w)));
+	s->local_flags = LMN_NALLOC(BYTE, n);
+	memset(s->local_flags, 0, sizeof(BYTE) * n);
     }
 
     // cyanに着色
