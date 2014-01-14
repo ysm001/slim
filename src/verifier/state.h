@@ -85,6 +85,8 @@ struct State {                 /* Total:64(36)byte */
   State             *map;             /*  8(4)byte: MAP値 or 最適化実行時の前状態 */
   BYTE              *local_flags;     /*  8(4)byte: 並列実行時、スレッド事に保持しておきたいフラグ(mcndfsのcyanフラグ等) */
   pthread_mutex_t    expand_lock;
+
+  unsigned long      expander_id;
 #ifdef KWBT_OPT
   LmnCost            cost;            /*  8(4)byte: cost */
 #endif
@@ -155,7 +157,7 @@ struct State {                 /* Total:64(36)byte */
  *  0000 1000  (MAPNDFS)generator visit flag
  *  0001 0000  (MCNDFS)blue flag
  *  0010 0000  (MCNDFS)red flag
- *  0100 0000
+ *  0100 0000  (Visualize)visited
  *  1000 0000
  */
 
@@ -164,8 +166,9 @@ struct State {                 /* Total:64(36)byte */
 #define STATE_UPDATE_MASK              (0x01U << 2)
 #define EXPLORER_VISIT_MASK            (0x01U << 3)
 #define GENERATOR_VISIT_MASK           (0x01U << 4)
-#define STATE_BLUE_MASK                      (0x01U << 5)
-#define STATE_RED_MASK                       (0x01U << 6)
+#define STATE_BLUE_MASK                (0x01U << 5)
+#define STATE_RED_MASK                 (0x01U << 6)
+#define STATE_VIS_VISITED_MASK         (0x01U << 7)
 
 /* manipulation for flags2 */
 #define s_set_d(S)                     ((S)->flags2 |=   STATE_DELTA_MASK)
@@ -194,6 +197,10 @@ struct State {                 /* Total:64(36)byte */
 #define s_set_red(S)                ((S)->flags2 |=   STATE_RED_MASK)
 #define s_unset_red(S)              ((S)->flags2 &= (~STATE_RED_MASK))
 #define s_is_red(S)                 ((S)->flags2 &    STATE_RED_MASK)
+
+#define s_set_visited_by_visualizer(S)                ((S)->flags2 |=   STATE_VIS_VISITED_MASK)
+#define s_unset_visited_by_visualizer(S)              ((S)->flags2 &= (~STATE_VIS_VISITED_MASK))
+#define s_is_visited_by_visualizer(S)                 ((S)->flags2 &    STATE_VIS_VISITED_MASK)
 
 /** local flags (8bit)
  *  0000 0001  (MCNDFS)cyan flag

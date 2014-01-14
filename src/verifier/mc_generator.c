@@ -49,6 +49,8 @@
 #include "runtime_status.h"
 #include <unistd.h>
 
+#include "mc_visualizer.h"
+
 /* TODO: C++ template関数で書き直した方がよい */
 
 /* 邪魔なので上に持ってきた */
@@ -383,7 +385,13 @@ void mcdfs_start(LmnWorker *w)
   }
 
 
-  printf("%d : exit (total expand=%d)\n", worker_id(w), w->expand);
+  fprintf(stderr, "%d : exit (total expand=%d)\n", worker_id(w), w->expand);
+  //fflush(stdout);
+  if (lmn_env.enable_visualize) {
+      if (worker_id(w) == 0) {
+	  dump_dot(ss, wp->worker_num);
+      }
+  }
 
   vec_destroy(&new_ss);
 }
@@ -469,9 +477,12 @@ void dfs_start(LmnWorker *w)
   }
 
 
-  printf("%d : exit (total expand=%d)\n", worker_id(w), w->expand);
-  if(worker_is_explorer(w) || worker_use_ndfs(w)) printf("red dfs count : %d\n", w->red);
-
+  fprintf(stderr, "%d : exit (total expand=%d)\n", worker_id(w), w->expand);
+  if (lmn_env.enable_visualize) {
+      if (worker_id(w) == 0) {
+	  dump_dot(ss, wp->worker_num);
+      }
+  }
 
   vec_destroy(&new_ss);
 }
@@ -511,6 +522,7 @@ static inline void dfs_loop(LmnWorker *w,
 
     /* サクセッサを展開 */
     mc_expand(worker_states(w), s, p_s, &worker_rc(w), new_ss, psyms, worker_flags(w));
+    s->expander_id = worker_id(w);
 
     if (MAP_COND(w)) map_start(w, s);
 
@@ -583,6 +595,7 @@ static inline void mapdfs_loop(LmnWorker *w,
     if(!is_expanded(s)) {
         w->expand++;
         mc_expand(worker_states(w), s, p_s, &worker_rc(w), new_ss, psyms, worker_flags(w));
+        s->expander_id = worker_id(w);
     }
     
     if (MAP_COND(w)) map_start(w, s);
@@ -704,6 +717,7 @@ static inline void mcdfs_loop(LmnWorker *w,
     if (!is_expanded(s)) {
         mc_expand(worker_states(w), s, p_s, &worker_rc(w), new_ss, psyms, worker_flags(w));
         w->expand++;
+	s->expander_id = worker_id(w);
     }
     state_expand_unlock(s);
 
