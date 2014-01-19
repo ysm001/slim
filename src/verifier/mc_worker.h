@@ -171,8 +171,8 @@ struct LmnWorker {
   Vector         *invalid_seeds;
   Vector         *cycles;
 
-    int expand; // for debug
-    int red;
+  int expand; // for debug
+  int red;
 };
 
 /**
