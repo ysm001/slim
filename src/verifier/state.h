@@ -202,6 +202,26 @@ struct State {                 /* Total:64(36)byte */
 #define s_unset_visited_by_visualizer(S)              ((S)->flags2 &= (~STATE_VIS_VISITED_MASK))
 #define s_is_visited_by_visualizer(S)                 ((S)->flags2 &    STATE_VIS_VISITED_MASK)
 
+/** Flags3 (8bit)
+ *  0000 0001 freshな状態(展開されておらず、または展開用スタックにも積まれていない状態)。fresh successor heuristcs用。
+ *  0000 0010  
+ *  0000 0100  
+ *  0000 1000  
+ *  0001 0000  
+ *  0010 0000  
+ *  0100 0000  
+ *  1000 0000
+ */
+
+
+#define STATE_FRESH_MASK             (0x01U)
+
+/* manipulation for flags2 */
+#define s_set_fresh(S)                     ((S)->flags3 |=   STATE_FRESH_MASK)
+#define s_unset_fresh(S)                   ((S)->flags3 &= (~STATE_FRESH_MASK))
+#define s_is_fresh(S)                      ((S)->flags3 &    STATE_FRESH_MASK)
+
+
 /** local flags (8bit)
  *  0000 0001  (MCNDFS)cyan flag
  *  0000 0010  

@@ -105,6 +105,7 @@ State *state_make_minimal()
   new_s->expander_id      = LONG_MAX;
 
   state_expand_lock_init(new_s);
+  s_set_fresh(new_s);
 
 #ifdef KWBT_OPT
   if (lmn_env.opt_mode != OPT_NONE) {

@@ -721,7 +721,8 @@ static inline void mcdfs_loop(LmnWorker *w,
     }
     state_expand_unlock(s);
 
-    //////////// workerごとにsuccessorをずらして積む ////////////
+#if 0
+    // workerごとにsuccessorをずらして積む
     n = state_succ_num(s);
 
     if (n > 0) {
@@ -734,6 +735,36 @@ static inline void mcdfs_loop(LmnWorker *w,
         }
       }
     }
+#else
+    // fresh successor heuristics
+    n = state_succ_num(s);
+    Vector* fresh = NULL;
+
+    if (n > 0) {
+      fresh = vec_make(n);
+      start = worker_id(w) % n;
+      for (i = 0; i < n; i++) {
+        State *succ = state_succ_state(s, (start + i) % n);
+
+        if (!s_is_blue(succ) && !s_is_cyan(succ, worker_id(w))) {
+	  if (!is_expanded(succ) && s_is_fresh(succ)) put_stack(fresh, succ);
+	  else put_stack(stack, succ);
+        }
+      }
+    }
+
+    // freshな状態をスタックの上位に持ってくる
+    if (fresh) {
+      n = vec_num(fresh);
+      if (n > 0) {
+        for (i = 0; i < n; i++) {
+	  State *fs = vec_get(fresh, i);
+	  s_unset_fresh(fs);
+          put_stack(stack, fs);
+        }
+      }
+    }
+#endif
   }
 }
 
